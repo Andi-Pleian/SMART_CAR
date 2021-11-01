@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_dir_709452afcd0e4a33cf84584f254631d6" xml:lang="en-US">
+<title>ArduinoSketch2/main Directory Reference</title>
+<indexterm><primary>ArduinoSketch2/main Directory Reference</primary></indexterm>
+<simplesect>
+    <title>Directories    </title>
+        <itemizedlist>
+            <listitem><para>directory <link linkend="_dir_ef693ed792bb8bc9b52c2b1e9cd7a09d">Debug</link></para>
+</listitem>
+            <listitem><para>directory <link linkend="_dir_0b803c2c58b4539de795414bb20eac9f">Modules</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Files    </title>
+        <itemizedlist>
+            <listitem><para>file <link linkend="_main_8cpp">main.cpp</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

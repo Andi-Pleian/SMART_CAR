@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_temp_meas" xml:lang="en-US">
+<title>TempMeas Class Reference</title>
+<indexterm><primary>TempMeas</primary></indexterm>
+<para>
+<computeroutput>#include &lt;TempMeas.h&gt;</computeroutput>
+</para>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_temp_meas_1adf7fd1f83f7d13e71d351c7dbfd94bda">TempMeas</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_class_temp_meas_1a65415272f37734351ea4eda012e35c66">~TempMeas</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Private Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_temp_meas_1a24cd6293efcf3d3c7be1224dfeb3df92">TempMeas</link> (const <link linkend="_class_temp_meas">TempMeas</link> &amp;c)</para>
+</listitem>
+            <listitem><para><link linkend="_class_temp_meas">TempMeas</link> &amp; <link linkend="_class_temp_meas_1afcb7fb8a5c44c7272a4ea4ceab5a66c3">operator=</link> (const <link linkend="_class_temp_meas">TempMeas</link> &amp;c)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+<para>
+Definition at line <link linkend="__temp_meas_8h_source_1l00013">13</link> of file <link linkend="__temp_meas_8h_source">TempMeas.h</link>.</para>
+</section>
+<section>
+<title>Constructor &amp; Destructor Documentation</title>
+<anchor xml:id="_class_temp_meas_1adf7fd1f83f7d13e71d351c7dbfd94bda"/><section>
+    <title>TempMeas()<computeroutput>[1/2]</computeroutput></title>
+<indexterm><primary>TempMeas</primary><secondary>TempMeas</secondary></indexterm>
+<indexterm><primary>TempMeas</primary><secondary>TempMeas</secondary></indexterm>
+<para><computeroutput>TempMeas::TempMeas ( )</computeroutput></para><para>
+Definition at line <link linkend="__temp_meas_8cpp_source_1l00012">12</link> of file <link linkend="__temp_meas_8cpp_source">TempMeas.cpp</link>.</para>
+</section>
+<anchor xml:id="_class_temp_meas_1a65415272f37734351ea4eda012e35c66"/><section>
+    <title>~TempMeas()</title>
+<indexterm><primary>~TempMeas</primary><secondary>TempMeas</secondary></indexterm>
+<indexterm><primary>TempMeas</primary><secondary>~TempMeas</secondary></indexterm>
+<para><computeroutput>TempMeas::~TempMeas ( )</computeroutput></para><para>
+Definition at line <link linkend="__temp_meas_8cpp_source_1l00017">17</link> of file <link linkend="__temp_meas_8cpp_source">TempMeas.cpp</link>.</para>
+</section>
+<anchor xml:id="_class_temp_meas_1a24cd6293efcf3d3c7be1224dfeb3df92"/><section>
+    <title>TempMeas()<computeroutput>[2/2]</computeroutput></title>
+<indexterm><primary>TempMeas</primary><secondary>TempMeas</secondary></indexterm>
+<indexterm><primary>TempMeas</primary><secondary>TempMeas</secondary></indexterm>
+<para><computeroutput>TempMeas::TempMeas (const <link linkend="_class_temp_meas">TempMeas</link> &amp; c)<computeroutput>[private]</computeroutput></computeroutput></para></section>
+</section>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_class_temp_meas_1afcb7fb8a5c44c7272a4ea4ceab5a66c3"/><section>
+    <title>operator=()</title>
+<indexterm><primary>operator=</primary><secondary>TempMeas</secondary></indexterm>
+<indexterm><primary>TempMeas</primary><secondary>operator=</secondary></indexterm>
+<para><computeroutput><link linkend="_class_temp_meas">TempMeas</link> &amp; TempMeas::operator= (const <link linkend="_class_temp_meas">TempMeas</link> &amp; c)<computeroutput>[private]</computeroutput></computeroutput></para></section>
+<para>
+The documentation for this class was generated from the following files:</para>
+ArduinoSketch2/main/Modules/Sensors/TempMeas/<link linkend="__temp_meas_8h">TempMeas.h</link>ArduinoSketch2/main/Modules/Sensors/TempMeas/<link linkend="__temp_meas_8cpp">TempMeas.cpp</link></section>
+</section>

@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_dir_fab8c171b463b8770de4859797e7a798" xml:lang="en-US">
+<title>ArduinoSketch2/main/Debug/Modules/Actuators Directory Reference</title>
+<indexterm><primary>ArduinoSketch2/main/Debug/Modules/Actuators Directory Reference</primary></indexterm>
+<simplesect>
+    <title>Directories    </title>
+        <itemizedlist>
+            <listitem><para>directory <link linkend="_dir_c4441d9f6b082194c825f8cca4e0d424">Buzzer</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

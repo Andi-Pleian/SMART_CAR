@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_index" xml:lang="en-US">
+    <info>
+    <title>Smart Car</title>
+    </info>
+<chapter>
+    <title>Class Documentation</title>
+    <xi:include href="class_buzzer.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="class_s_p_s.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+</chapter>
+<chapter>
+    <title>File Documentation</title>
+    <xi:include href="main_8d.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="main_8d_source.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="_buzzer_8d.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="_buzzer_8d_source.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="_smart_parking_sensor_8d.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="_smart_parking_sensor_8d_source.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="_s_p_s_8d.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="_s_p_s_8d_source.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="main_8cpp.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="main_8cpp_source.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="_buzzer_8cpp.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="_buzzer_8cpp_source.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="_buzzer_8h.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="_buzzer_8h_source.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="_buzzer___config_8h.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="_buzzer___config_8h_source.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="_s_p_s_8cpp.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="_s_p_s_8cpp_source.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="_s_p_s_8h.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="_s_p_s_8h_source.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="_s_p_s___config_8h.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="_s_p_s___config_8h_source.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+</chapter>
+<index/>
+</book>

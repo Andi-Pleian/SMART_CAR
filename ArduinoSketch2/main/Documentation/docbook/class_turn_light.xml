@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_turn_light" xml:lang="en-US">
+<title>TurnLight Class Reference</title>
+<indexterm><primary>TurnLight</primary></indexterm>
+<para>
+<computeroutput>#include &lt;TurnLight.h&gt;</computeroutput>
+</para>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_turn_light_1a28599a5b814887424a7f51fca11f5d07">TurnLight</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_class_turn_light_1a10c3beee4013ba99436f3e4d36899d06">~TurnLight</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Private Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_turn_light_1a694a2047e147e0f01c40b42677e72e1f">TurnLight</link> (const <link linkend="_class_turn_light">TurnLight</link> &amp;c)</para>
+</listitem>
+            <listitem><para><link linkend="_class_turn_light">TurnLight</link> &amp; <link linkend="_class_turn_light_1aa501548f5dcd692107153e6b2abbacc2">operator=</link> (const <link linkend="_class_turn_light">TurnLight</link> &amp;c)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+<para>
+Definition at line <link linkend="__turn_light_8h_source_1l00013">13</link> of file <link linkend="__turn_light_8h_source">TurnLight.h</link>.</para>
+</section>
+<section>
+<title>Constructor &amp; Destructor Documentation</title>
+<anchor xml:id="_class_turn_light_1a28599a5b814887424a7f51fca11f5d07"/><section>
+    <title>TurnLight()<computeroutput>[1/2]</computeroutput></title>
+<indexterm><primary>TurnLight</primary><secondary>TurnLight</secondary></indexterm>
+<indexterm><primary>TurnLight</primary><secondary>TurnLight</secondary></indexterm>
+<para><computeroutput>TurnLight::TurnLight ( )</computeroutput></para><para>
+Definition at line <link linkend="__turn_light_8cpp_source_1l00012">12</link> of file <link linkend="__turn_light_8cpp_source">TurnLight.cpp</link>.</para>
+</section>
+<anchor xml:id="_class_turn_light_1a10c3beee4013ba99436f3e4d36899d06"/><section>
+    <title>~TurnLight()</title>
+<indexterm><primary>~TurnLight</primary><secondary>TurnLight</secondary></indexterm>
+<indexterm><primary>TurnLight</primary><secondary>~TurnLight</secondary></indexterm>
+<para><computeroutput>TurnLight::~TurnLight ( )</computeroutput></para><para>
+Definition at line <link linkend="__turn_light_8cpp_source_1l00017">17</link> of file <link linkend="__turn_light_8cpp_source">TurnLight.cpp</link>.</para>
+</section>
+<anchor xml:id="_class_turn_light_1a694a2047e147e0f01c40b42677e72e1f"/><section>
+    <title>TurnLight()<computeroutput>[2/2]</computeroutput></title>
+<indexterm><primary>TurnLight</primary><secondary>TurnLight</secondary></indexterm>
+<indexterm><primary>TurnLight</primary><secondary>TurnLight</secondary></indexterm>
+<para><computeroutput>TurnLight::TurnLight (const <link linkend="_class_turn_light">TurnLight</link> &amp; c)<computeroutput>[private]</computeroutput></computeroutput></para></section>
+</section>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_class_turn_light_1aa501548f5dcd692107153e6b2abbacc2"/><section>
+    <title>operator=()</title>
+<indexterm><primary>operator=</primary><secondary>TurnLight</secondary></indexterm>
+<indexterm><primary>TurnLight</primary><secondary>operator=</secondary></indexterm>
+<para><computeroutput><link linkend="_class_turn_light">TurnLight</link> &amp; TurnLight::operator= (const <link linkend="_class_turn_light">TurnLight</link> &amp; c)<computeroutput>[private]</computeroutput></computeroutput></para></section>
+<para>
+The documentation for this class was generated from the following files:</para>
+ArduinoSketch2/main/Modules/Actuators/TurnLight/<link linkend="__turn_light_8h">TurnLight.h</link>ArduinoSketch2/main/Modules/Actuators/TurnLight/<link linkend="__turn_light_8cpp">TurnLight.cpp</link></section>
+</section>

@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="__stop_light_8cpp_source" xml:lang="en-US">
+<title>StopLight.cpp</title>
+<indexterm><primary>ArduinoSketch2/main/Modules/Actuators/StopLight/StopLight.cpp</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered"><anchor xml:id="__stop_light_8cpp_source_1l00001"/>00001 <emphasis role="comment">/*&#32;</emphasis>
+<anchor xml:id="__stop_light_8cpp_source_1l00002"/>00002 <emphasis role="comment">*&#32;StopLight.cpp</emphasis>
+<anchor xml:id="__stop_light_8cpp_source_1l00003"/>00003 <emphasis role="comment">*</emphasis>
+<anchor xml:id="__stop_light_8cpp_source_1l00004"/>00004 <emphasis role="comment">*&#32;Created:&#32;10/7/2021&#32;12:19:50&#32;AM</emphasis>
+<anchor xml:id="__stop_light_8cpp_source_1l00005"/>00005 <emphasis role="comment">*&#32;Author:&#32;Andi</emphasis>
+<anchor xml:id="__stop_light_8cpp_source_1l00006"/>00006 <emphasis role="comment">*/</emphasis>
+<anchor xml:id="__stop_light_8cpp_source_1l00007"/>00007 
+<anchor xml:id="__stop_light_8cpp_source_1l00008"/>00008 
+<anchor xml:id="__stop_light_8cpp_source_1l00009"/>00009 <emphasis role="preprocessor">#include&#32;&quot;<link linkend="__stop_light_8h">StopLight.h</link>&quot;</emphasis>
+<anchor xml:id="__stop_light_8cpp_source_1l00010"/>00010 
+<anchor xml:id="__stop_light_8cpp_source_1l00011"/>00011 <emphasis role="comment">//&#32;default&#32;constructor</emphasis>
+<anchor xml:id="__stop_light_8cpp_source_1l00012"/><link linkend="_class_stop_light_1aa485a2726fb54af1156d65ce8a292b8c">00012</link> <link linkend="_class_stop_light_1aa485a2726fb54af1156d65ce8a292b8c">StopLight::StopLight</link>()
+<anchor xml:id="__stop_light_8cpp_source_1l00013"/>00013 {
+<anchor xml:id="__stop_light_8cpp_source_1l00014"/>00014 }&#32;<emphasis role="comment">//StopLight</emphasis>
+<anchor xml:id="__stop_light_8cpp_source_1l00015"/>00015 
+<anchor xml:id="__stop_light_8cpp_source_1l00016"/>00016 <emphasis role="comment">//&#32;default&#32;destructor</emphasis>
+<anchor xml:id="__stop_light_8cpp_source_1l00017"/><link linkend="_class_stop_light_1a1a94a1a9dda678cade7071f74085685a">00017</link> <link linkend="_class_stop_light_1a1a94a1a9dda678cade7071f74085685a">StopLight::~StopLight</link>()
+<anchor xml:id="__stop_light_8cpp_source_1l00018"/>00018 {
+<anchor xml:id="__stop_light_8cpp_source_1l00019"/>00019 }&#32;<emphasis role="comment">//~StopLight</emphasis>
+</programlisting></section>

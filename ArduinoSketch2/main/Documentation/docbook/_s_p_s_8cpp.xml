@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="__s_p_s_8cpp" xml:lang="en-US">
+<title>ArduinoSketch2/main/Modules/Sensors/SPS/SPS.cpp File Reference</title>
+<indexterm><primary>ArduinoSketch2/main/Modules/Sensors/SPS/SPS.cpp</primary></indexterm>
+<programlisting linenumbering="unnumbered">#include &quot;SPS.h&quot;
+#include &lt;string.h&gt;
+#include &quot;..\..\..\..\ArduinoCore\include\core\Arduino.h&quot;
+</programlisting></section>

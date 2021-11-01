@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_stop_light" xml:lang="en-US">
+<title>StopLight Class Reference</title>
+<indexterm><primary>StopLight</primary></indexterm>
+<para>
+<computeroutput>#include &lt;StopLight.h&gt;</computeroutput>
+</para>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_stop_light_1aa485a2726fb54af1156d65ce8a292b8c">StopLight</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_class_stop_light_1a1a94a1a9dda678cade7071f74085685a">~StopLight</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Private Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_stop_light_1af54c92b6b8aad721e4c2e401820fe85e">StopLight</link> (const <link linkend="_class_stop_light">StopLight</link> &amp;c)</para>
+</listitem>
+            <listitem><para><link linkend="_class_stop_light">StopLight</link> &amp; <link linkend="_class_stop_light_1a7ebde1c825f729a6e6ca73bbe0c3f260">operator=</link> (const <link linkend="_class_stop_light">StopLight</link> &amp;c)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+<para>
+Definition at line <link linkend="__stop_light_8h_source_1l00013">13</link> of file <link linkend="__stop_light_8h_source">StopLight.h</link>.</para>
+</section>
+<section>
+<title>Constructor &amp; Destructor Documentation</title>
+<anchor xml:id="_class_stop_light_1aa485a2726fb54af1156d65ce8a292b8c"/><section>
+    <title>StopLight()<computeroutput>[1/2]</computeroutput></title>
+<indexterm><primary>StopLight</primary><secondary>StopLight</secondary></indexterm>
+<indexterm><primary>StopLight</primary><secondary>StopLight</secondary></indexterm>
+<para><computeroutput>StopLight::StopLight ( )</computeroutput></para><para>
+Definition at line <link linkend="__stop_light_8cpp_source_1l00012">12</link> of file <link linkend="__stop_light_8cpp_source">StopLight.cpp</link>.</para>
+</section>
+<anchor xml:id="_class_stop_light_1a1a94a1a9dda678cade7071f74085685a"/><section>
+    <title>~StopLight()</title>
+<indexterm><primary>~StopLight</primary><secondary>StopLight</secondary></indexterm>
+<indexterm><primary>StopLight</primary><secondary>~StopLight</secondary></indexterm>
+<para><computeroutput>StopLight::~StopLight ( )</computeroutput></para><para>
+Definition at line <link linkend="__stop_light_8cpp_source_1l00017">17</link> of file <link linkend="__stop_light_8cpp_source">StopLight.cpp</link>.</para>
+</section>
+<anchor xml:id="_class_stop_light_1af54c92b6b8aad721e4c2e401820fe85e"/><section>
+    <title>StopLight()<computeroutput>[2/2]</computeroutput></title>
+<indexterm><primary>StopLight</primary><secondary>StopLight</secondary></indexterm>
+<indexterm><primary>StopLight</primary><secondary>StopLight</secondary></indexterm>
+<para><computeroutput>StopLight::StopLight (const <link linkend="_class_stop_light">StopLight</link> &amp; c)<computeroutput>[private]</computeroutput></computeroutput></para></section>
+</section>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_class_stop_light_1a7ebde1c825f729a6e6ca73bbe0c3f260"/><section>
+    <title>operator=()</title>
+<indexterm><primary>operator=</primary><secondary>StopLight</secondary></indexterm>
+<indexterm><primary>StopLight</primary><secondary>operator=</secondary></indexterm>
+<para><computeroutput><link linkend="_class_stop_light">StopLight</link> &amp; StopLight::operator= (const <link linkend="_class_stop_light">StopLight</link> &amp; c)<computeroutput>[private]</computeroutput></computeroutput></para></section>
+<para>
+The documentation for this class was generated from the following files:</para>
+ArduinoSketch2/main/Modules/Actuators/StopLight/<link linkend="__stop_light_8h">StopLight.h</link>ArduinoSketch2/main/Modules/Actuators/StopLight/<link linkend="__stop_light_8cpp">StopLight.cpp</link></section>
+</section>

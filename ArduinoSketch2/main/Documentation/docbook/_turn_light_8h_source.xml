@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="__turn_light_8h_source" xml:lang="en-US">
+<title>TurnLight.h</title>
+<indexterm><primary>ArduinoSketch2/main/Modules/Actuators/TurnLight/TurnLight.h</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered"><anchor xml:id="__turn_light_8h_source_1l00001"/>00001 <emphasis role="comment">/*&#32;</emphasis>
+<anchor xml:id="__turn_light_8h_source_1l00002"/>00002 <emphasis role="comment">*&#32;TurnLight.h</emphasis>
+<anchor xml:id="__turn_light_8h_source_1l00003"/>00003 <emphasis role="comment">*</emphasis>
+<anchor xml:id="__turn_light_8h_source_1l00004"/>00004 <emphasis role="comment">*&#32;Created:&#32;10/7/2021&#32;12:19:59&#32;AM</emphasis>
+<anchor xml:id="__turn_light_8h_source_1l00005"/>00005 <emphasis role="comment">*&#32;Author:&#32;Andi</emphasis>
+<anchor xml:id="__turn_light_8h_source_1l00006"/>00006 <emphasis role="comment">*/</emphasis>
+<anchor xml:id="__turn_light_8h_source_1l00007"/>00007 
+<anchor xml:id="__turn_light_8h_source_1l00008"/>00008 
+<anchor xml:id="__turn_light_8h_source_1l00009"/>00009 <emphasis role="preprocessor">#ifndef&#32;__TURNLIGHT_H__</emphasis>
+<anchor xml:id="__turn_light_8h_source_1l00010"/>00010 <emphasis role="preprocessor">#define&#32;__TURNLIGHT_H__</emphasis>
+<anchor xml:id="__turn_light_8h_source_1l00011"/>00011 
+<anchor xml:id="__turn_light_8h_source_1l00012"/>00012 
+<anchor xml:id="__turn_light_8h_source_1l00013"/><link linkend="_class_turn_light">00013</link> <emphasis role="keyword">class&#32;</emphasis><link linkend="_class_turn_light">TurnLight</link>
+<anchor xml:id="__turn_light_8h_source_1l00014"/>00014 {
+<anchor xml:id="__turn_light_8h_source_1l00015"/>00015 <emphasis role="comment">//variables</emphasis>
+<anchor xml:id="__turn_light_8h_source_1l00016"/>00016 <emphasis role="keyword">public</emphasis>:
+<anchor xml:id="__turn_light_8h_source_1l00017"/>00017 <emphasis role="keyword">protected</emphasis>:
+<anchor xml:id="__turn_light_8h_source_1l00018"/>00018 <emphasis role="keyword">private</emphasis>:
+<anchor xml:id="__turn_light_8h_source_1l00019"/>00019 
+<anchor xml:id="__turn_light_8h_source_1l00020"/>00020 <emphasis role="comment">//functions</emphasis>
+<anchor xml:id="__turn_light_8h_source_1l00021"/>00021 <emphasis role="keyword">public</emphasis>:
+<anchor xml:id="__turn_light_8h_source_1l00022"/>00022 &#32;&#32;&#32;&#32;<link linkend="_class_turn_light_1a28599a5b814887424a7f51fca11f5d07">TurnLight</link>();
+<anchor xml:id="__turn_light_8h_source_1l00023"/>00023 &#32;&#32;&#32;&#32;<link linkend="_class_turn_light_1a10c3beee4013ba99436f3e4d36899d06">~TurnLight</link>();
+<anchor xml:id="__turn_light_8h_source_1l00024"/>00024 <emphasis role="keyword">protected</emphasis>:
+<anchor xml:id="__turn_light_8h_source_1l00025"/>00025 <emphasis role="keyword">private</emphasis>:
+<anchor xml:id="__turn_light_8h_source_1l00026"/><link linkend="_class_turn_light_1a694a2047e147e0f01c40b42677e72e1f">00026</link> &#32;&#32;&#32;&#32;<link linkend="_class_turn_light_1a694a2047e147e0f01c40b42677e72e1f">TurnLight</link>(&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_turn_light">TurnLight</link>&#32;&amp;c&#32;);
+<anchor xml:id="__turn_light_8h_source_1l00027"/><link linkend="_class_turn_light_1aa501548f5dcd692107153e6b2abbacc2">00027</link> &#32;&#32;&#32;&#32;<link linkend="_class_turn_light">TurnLight</link>&amp;&#32;<link linkend="_class_turn_light_1aa501548f5dcd692107153e6b2abbacc2">operator=</link>(&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_turn_light">TurnLight</link>&#32;&amp;c&#32;);
+<anchor xml:id="__turn_light_8h_source_1l00028"/>00028 
+<anchor xml:id="__turn_light_8h_source_1l00029"/>00029 };&#32;<emphasis role="comment">//TurnLight</emphasis>
+<anchor xml:id="__turn_light_8h_source_1l00030"/>00030 
+<anchor xml:id="__turn_light_8h_source_1l00031"/>00031 <emphasis role="preprocessor">#endif&#32;</emphasis><emphasis role="comment">//__TURNLIGHT_H__</emphasis>
+</programlisting></section>

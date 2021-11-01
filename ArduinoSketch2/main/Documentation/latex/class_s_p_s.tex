@@ -1,0 +1,202 @@
+\hypertarget{class_s_p_s}{}\doxysection{SPS Class Reference}
+\label{class_s_p_s}\index{SPS@{SPS}}
+
+
+Smart Parking Sensor.  
+
+
+
+
+{\ttfamily \#include $<$SPS.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_s_p_s_a2d03e5f0ea4268a8bd752db53c3c07a1}{SPS}} ()
+\item 
+\mbox{\hyperlink{class_s_p_s_ad668b99d9e4e892d1b1a70ed8ae69841}{$\sim$\+SPS}} ()
+\item 
+int \mbox{\hyperlink{class_s_p_s_ab1949c9585fd0425060433e0f5eb6389}{get\+Distance\+To\+Object}} ()
+\item 
+long \mbox{\hyperlink{class_s_p_s_a8a8d0864285e1fad60204ba0965597ee}{get\+Wave\+Comeback\+Time}} ()
+\item 
+void \mbox{\hyperlink{class_s_p_s_a9a332ee56500de1cfdf465c7dd5ad9be}{serial\+Print\+Distance}} ()
+\item 
+unsigned short int \mbox{\hyperlink{class_s_p_s_a8461e9636268894118ac81e00776f8ad}{get\+Trig\+Pin}} ()
+\item 
+unsigned short int \mbox{\hyperlink{class_s_p_s_a099f45c52cce5025a61812e5eae69fd9}{get\+Echo\+Pin}} ()
+\item 
+void \mbox{\hyperlink{class_s_p_s_adf60aae57ef3128652cab3d7c9e9d188}{set\+Trig\+Pin}} (unsigned short int)
+\item 
+void \mbox{\hyperlink{class_s_p_s_ac755f66267700b1eb976d8cb9e832458}{set\+Echo\+Pin}} (unsigned short int)
+\item 
+void \mbox{\hyperlink{class_s_p_s_ae7953aedbab8656b7c9f11f083e4ee1f}{cyclic\+Eval}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+unsigned short int \mbox{\hyperlink{class_s_p_s_a553b8d744a502577564eac19da2a1479}{trig\+Pin}}
+\item 
+unsigned short int \mbox{\hyperlink{class_s_p_s_a8599b95fb322ec9dd2638f643619e6d2}{echo\+Pin}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Smart Parking Sensor. 
+
+This class is used for implementing the \mbox{\hyperlink{class_s_p_s}{SPS}}. 
+
+Definition at line \mbox{\hyperlink{_s_p_s_8h_source_l00038}{38}} of file \mbox{\hyperlink{_s_p_s_8h_source}{SPS.\+h}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_s_p_s_a2d03e5f0ea4268a8bd752db53c3c07a1}\label{class_s_p_s_a2d03e5f0ea4268a8bd752db53c3c07a1}} 
+\index{SPS@{SPS}!SPS@{SPS}}
+\index{SPS@{SPS}!SPS@{SPS}}
+\doxysubsubsection{\texorpdfstring{SPS()}{SPS()}}
+{\footnotesize\ttfamily SPS\+::\+SPS (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\hyperlink{class_buzzer}{Buzzer}} associated with this \mbox{\hyperlink{class_s_p_s}{SPS}}
+
+Default constructor (empty) 
+
+Definition at line \mbox{\hyperlink{_s_p_s_8cpp_source_l00026}{26}} of file \mbox{\hyperlink{_s_p_s_8cpp_source}{SPS.\+cpp}}.
+
+\mbox{\Hypertarget{class_s_p_s_ad668b99d9e4e892d1b1a70ed8ae69841}\label{class_s_p_s_ad668b99d9e4e892d1b1a70ed8ae69841}} 
+\index{SPS@{SPS}!````~SPS@{$\sim$SPS}}
+\index{````~SPS@{$\sim$SPS}!SPS@{SPS}}
+\doxysubsubsection{\texorpdfstring{$\sim$SPS()}{~SPS()}}
+{\footnotesize\ttfamily SPS\+::$\sim$\+SPS (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Default destructor (empty) 
+
+Definition at line \mbox{\hyperlink{_s_p_s_8cpp_source_l00033}{33}} of file \mbox{\hyperlink{_s_p_s_8cpp_source}{SPS.\+cpp}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_s_p_s_ae7953aedbab8656b7c9f11f083e4ee1f}\label{class_s_p_s_ae7953aedbab8656b7c9f11f083e4ee1f}} 
+\index{SPS@{SPS}!cyclicEval@{cyclicEval}}
+\index{cyclicEval@{cyclicEval}!SPS@{SPS}}
+\doxysubsubsection{\texorpdfstring{cyclicEval()}{cyclicEval()}}
+{\footnotesize\ttfamily void SPS\+::cyclic\+Eval (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_s_p_s_ab1949c9585fd0425060433e0f5eb6389}\label{class_s_p_s_ab1949c9585fd0425060433e0f5eb6389}} 
+\index{SPS@{SPS}!getDistanceToObject@{getDistanceToObject}}
+\index{getDistanceToObject@{getDistanceToObject}!SPS@{SPS}}
+\doxysubsubsection{\texorpdfstring{getDistanceToObject()}{getDistanceToObject()}}
+{\footnotesize\ttfamily int SPS\+::get\+Distance\+To\+Object (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Measures distance (in cm) to object based on ultrasound comeback time, using the following formula\+: Distance = (Time $\ast$ Speed) / 2
+
+\begin{DoxyReturn}{Returns}
+Distance in cm to object 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_s_p_s_8cpp_source_l00084}{84}} of file \mbox{\hyperlink{_s_p_s_8cpp_source}{SPS.\+cpp}}.
+
+\mbox{\Hypertarget{class_s_p_s_a099f45c52cce5025a61812e5eae69fd9}\label{class_s_p_s_a099f45c52cce5025a61812e5eae69fd9}} 
+\index{SPS@{SPS}!getEchoPin@{getEchoPin}}
+\index{getEchoPin@{getEchoPin}!SPS@{SPS}}
+\doxysubsubsection{\texorpdfstring{getEchoPin()}{getEchoPin()}}
+{\footnotesize\ttfamily unsigned short int SPS\+::get\+Echo\+Pin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_s_p_s_8cpp_source_l00128}{128}} of file \mbox{\hyperlink{_s_p_s_8cpp_source}{SPS.\+cpp}}.
+
+\mbox{\Hypertarget{class_s_p_s_a8461e9636268894118ac81e00776f8ad}\label{class_s_p_s_a8461e9636268894118ac81e00776f8ad}} 
+\index{SPS@{SPS}!getTrigPin@{getTrigPin}}
+\index{getTrigPin@{getTrigPin}!SPS@{SPS}}
+\doxysubsubsection{\texorpdfstring{getTrigPin()}{getTrigPin()}}
+{\footnotesize\ttfamily unsigned short int SPS\+::get\+Trig\+Pin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_s_p_s_8cpp_source_l00123}{123}} of file \mbox{\hyperlink{_s_p_s_8cpp_source}{SPS.\+cpp}}.
+
+\mbox{\Hypertarget{class_s_p_s_a8a8d0864285e1fad60204ba0965597ee}\label{class_s_p_s_a8a8d0864285e1fad60204ba0965597ee}} 
+\index{SPS@{SPS}!getWaveComebackTime@{getWaveComebackTime}}
+\index{getWaveComebackTime@{getWaveComebackTime}!SPS@{SPS}}
+\doxysubsubsection{\texorpdfstring{getWaveComebackTime()}{getWaveComebackTime()}}
+{\footnotesize\ttfamily long SPS\+::get\+Wave\+Comeback\+Time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Custom constructor used for initializing a new \mbox{\hyperlink{class_s_p_s}{SPS}}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em trig\+Pin\+\_\+arg} & Trigger\+Pin \\
+\hline
+\mbox{\texttt{ in}}  & {\em echo\+Pin\+\_\+arg} & Echo\+Pin \\
+\hline
+\mbox{\texttt{ in}}  & {\em tag\+\_\+arg} & \mbox{\hyperlink{class_s_p_s}{SPS}}\textquotesingle{}s tag This function sends an ultrasound through trig\+Pin and receives it back in echo\+Pin from where we get the wave travel time with pulse\+In() method\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Sound wave travel time 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_s_p_s_8cpp_source_l00066}{66}} of file \mbox{\hyperlink{_s_p_s_8cpp_source}{SPS.\+cpp}}.
+
+\mbox{\Hypertarget{class_s_p_s_a9a332ee56500de1cfdf465c7dd5ad9be}\label{class_s_p_s_a9a332ee56500de1cfdf465c7dd5ad9be}} 
+\index{SPS@{SPS}!serialPrintDistance@{serialPrintDistance}}
+\index{serialPrintDistance@{serialPrintDistance}!SPS@{SPS}}
+\doxysubsubsection{\texorpdfstring{serialPrintDistance()}{serialPrintDistance()}}
+{\footnotesize\ttfamily void SPS\+::serial\+Print\+Distance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_s_p_s_8cpp_source_l00088}{88}} of file \mbox{\hyperlink{_s_p_s_8cpp_source}{SPS.\+cpp}}.
+
+\mbox{\Hypertarget{class_s_p_s_ac755f66267700b1eb976d8cb9e832458}\label{class_s_p_s_ac755f66267700b1eb976d8cb9e832458}} 
+\index{SPS@{SPS}!setEchoPin@{setEchoPin}}
+\index{setEchoPin@{setEchoPin}!SPS@{SPS}}
+\doxysubsubsection{\texorpdfstring{setEchoPin()}{setEchoPin()}}
+{\footnotesize\ttfamily void SPS\+::set\+Echo\+Pin (\begin{DoxyParamCaption}\item[{unsigned short int}]{echo\+Pin\+\_\+arg }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_s_p_s_8cpp_source_l00138}{138}} of file \mbox{\hyperlink{_s_p_s_8cpp_source}{SPS.\+cpp}}.
+
+\mbox{\Hypertarget{class_s_p_s_adf60aae57ef3128652cab3d7c9e9d188}\label{class_s_p_s_adf60aae57ef3128652cab3d7c9e9d188}} 
+\index{SPS@{SPS}!setTrigPin@{setTrigPin}}
+\index{setTrigPin@{setTrigPin}!SPS@{SPS}}
+\doxysubsubsection{\texorpdfstring{setTrigPin()}{setTrigPin()}}
+{\footnotesize\ttfamily void SPS\+::set\+Trig\+Pin (\begin{DoxyParamCaption}\item[{unsigned short int}]{trig\+Pin\+\_\+arg }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_s_p_s_8cpp_source_l00133}{133}} of file \mbox{\hyperlink{_s_p_s_8cpp_source}{SPS.\+cpp}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_s_p_s_a8599b95fb322ec9dd2638f643619e6d2}\label{class_s_p_s_a8599b95fb322ec9dd2638f643619e6d2}} 
+\index{SPS@{SPS}!echoPin@{echoPin}}
+\index{echoPin@{echoPin}!SPS@{SPS}}
+\doxysubsubsection{\texorpdfstring{echoPin}{echoPin}}
+{\footnotesize\ttfamily unsigned short int SPS\+::echo\+Pin\hspace{0.3cm}{\ttfamily [private]}}
+
+Echo pin 
+
+Definition at line \mbox{\hyperlink{_s_p_s_8h_source_l00051}{51}} of file \mbox{\hyperlink{_s_p_s_8h_source}{SPS.\+h}}.
+
+\mbox{\Hypertarget{class_s_p_s_a553b8d744a502577564eac19da2a1479}\label{class_s_p_s_a553b8d744a502577564eac19da2a1479}} 
+\index{SPS@{SPS}!trigPin@{trigPin}}
+\index{trigPin@{trigPin}!SPS@{SPS}}
+\doxysubsubsection{\texorpdfstring{trigPin}{trigPin}}
+{\footnotesize\ttfamily unsigned short int SPS\+::trig\+Pin\hspace{0.3cm}{\ttfamily [private]}}
+
+Trigger pin 
+
+Definition at line \mbox{\hyperlink{_s_p_s_8h_source_l00048}{48}} of file \mbox{\hyperlink{_s_p_s_8h_source}{SPS.\+h}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Arduino\+Sketch2/main/\+Modules/\+Sensors/\+SPS/\mbox{\hyperlink{_s_p_s_8h}{SPS.\+h}}\item 
+Arduino\+Sketch2/main/\+Modules/\+Sensors/\+SPS/\mbox{\hyperlink{_s_p_s_8cpp}{SPS.\+cpp}}\end{DoxyCompactItemize}

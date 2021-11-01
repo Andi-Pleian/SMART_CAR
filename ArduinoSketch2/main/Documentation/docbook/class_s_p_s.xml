@@ -1,0 +1,208 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_s_p_s" xml:lang="en-US">
+<title>SPS Class Reference</title>
+<indexterm><primary>SPS</primary></indexterm>
+<para>
+
+<para>Smart Parking Sensor. </para>
+ 
+</para>
+<para>
+<computeroutput>#include &lt;SPS.h&gt;</computeroutput>
+</para>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_s_p_s_1a2d03e5f0ea4268a8bd752db53c3c07a1">SPS</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_class_s_p_s_1ad668b99d9e4e892d1b1a70ed8ae69841">~SPS</link> ()</para>
+</listitem>
+            <listitem><para>int <link linkend="_class_s_p_s_1ab1949c9585fd0425060433e0f5eb6389">getDistanceToObject</link> ()</para>
+</listitem>
+            <listitem><para>long <link linkend="_class_s_p_s_1a8a8d0864285e1fad60204ba0965597ee">getWaveComebackTime</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_class_s_p_s_1a9a332ee56500de1cfdf465c7dd5ad9be">serialPrintDistance</link> ()</para>
+</listitem>
+            <listitem><para>unsigned short int <link linkend="_class_s_p_s_1a8461e9636268894118ac81e00776f8ad">getTrigPin</link> ()</para>
+</listitem>
+            <listitem><para>unsigned short int <link linkend="_class_s_p_s_1a099f45c52cce5025a61812e5eae69fd9">getEchoPin</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_class_s_p_s_1adf60aae57ef3128652cab3d7c9e9d188">setTrigPin</link> (unsigned short int)</para>
+</listitem>
+            <listitem><para>void <link linkend="_class_s_p_s_1ac755f66267700b1eb976d8cb9e832458">setEchoPin</link> (unsigned short int)</para>
+</listitem>
+            <listitem><para>void <link linkend="_class_s_p_s_1ae7953aedbab8656b7c9f11f083e4ee1f">cyclicEval</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Private Attributes    </title>
+        <itemizedlist>
+            <listitem><para>unsigned short int <link linkend="_class_s_p_s_1a553b8d744a502577564eac19da2a1479">trigPin</link></para>
+</listitem>
+            <listitem><para>unsigned short int <link linkend="_class_s_p_s_1a8599b95fb322ec9dd2638f643619e6d2">echoPin</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>Smart Parking Sensor. </para>
+
+
+
+<para>This class is used for implementing the <link linkend="_class_s_p_s">SPS</link>. </para>
+<para>
+Definition at line <link linkend="__s_p_s_8h_source_1l00038">38</link> of file <link linkend="__s_p_s_8h_source">SPS.h</link>.</para>
+</section>
+<section>
+<title>Constructor &amp; Destructor Documentation</title>
+<anchor xml:id="_class_s_p_s_1a2d03e5f0ea4268a8bd752db53c3c07a1"/><section>
+    <title>SPS()</title>
+<indexterm><primary>SPS</primary><secondary>SPS</secondary></indexterm>
+<indexterm><primary>SPS</primary><secondary>SPS</secondary></indexterm>
+<para><computeroutput>SPS::SPS ( )</computeroutput></para>
+<para><link linkend="_class_buzzer">Buzzer</link> associated with this <link linkend="_class_s_p_s">SPS</link></para>
+
+<para>Default constructor (empty) </para>
+<para>
+Definition at line <link linkend="__s_p_s_8cpp_source_1l00026">26</link> of file <link linkend="__s_p_s_8cpp_source">SPS.cpp</link>.</para>
+</section>
+<anchor xml:id="_class_s_p_s_1ad668b99d9e4e892d1b1a70ed8ae69841"/><section>
+    <title>~SPS()</title>
+<indexterm><primary>~SPS</primary><secondary>SPS</secondary></indexterm>
+<indexterm><primary>SPS</primary><secondary>~SPS</secondary></indexterm>
+<para><computeroutput>SPS::~SPS ( )</computeroutput></para>
+<para>Default destructor (empty) </para>
+<para>
+Definition at line <link linkend="__s_p_s_8cpp_source_1l00033">33</link> of file <link linkend="__s_p_s_8cpp_source">SPS.cpp</link>.</para>
+</section>
+</section>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_class_s_p_s_1ae7953aedbab8656b7c9f11f083e4ee1f"/><section>
+    <title>cyclicEval()</title>
+<indexterm><primary>cyclicEval</primary><secondary>SPS</secondary></indexterm>
+<indexterm><primary>SPS</primary><secondary>cyclicEval</secondary></indexterm>
+<para><computeroutput>void SPS::cyclicEval ( )</computeroutput></para></section>
+<anchor xml:id="_class_s_p_s_1ab1949c9585fd0425060433e0f5eb6389"/><section>
+    <title>getDistanceToObject()</title>
+<indexterm><primary>getDistanceToObject</primary><secondary>SPS</secondary></indexterm>
+<indexterm><primary>SPS</primary><secondary>getDistanceToObject</secondary></indexterm>
+<para><computeroutput>int SPS::getDistanceToObject ( )</computeroutput></para>
+<para>Measures distance (in cm) to object based on ultrasound comeback time, using the following formula: Distance = (Time * Speed) / 2</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>Distance in cm to object </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="__s_p_s_8cpp_source_1l00084">84</link> of file <link linkend="__s_p_s_8cpp_source">SPS.cpp</link>.</para>
+</section>
+<anchor xml:id="_class_s_p_s_1a099f45c52cce5025a61812e5eae69fd9"/><section>
+    <title>getEchoPin()</title>
+<indexterm><primary>getEchoPin</primary><secondary>SPS</secondary></indexterm>
+<indexterm><primary>SPS</primary><secondary>getEchoPin</secondary></indexterm>
+<para><computeroutput>unsigned short int SPS::getEchoPin ( )</computeroutput></para><para>
+Definition at line <link linkend="__s_p_s_8cpp_source_1l00128">128</link> of file <link linkend="__s_p_s_8cpp_source">SPS.cpp</link>.</para>
+</section>
+<anchor xml:id="_class_s_p_s_1a8461e9636268894118ac81e00776f8ad"/><section>
+    <title>getTrigPin()</title>
+<indexterm><primary>getTrigPin</primary><secondary>SPS</secondary></indexterm>
+<indexterm><primary>SPS</primary><secondary>getTrigPin</secondary></indexterm>
+<para><computeroutput>unsigned short int SPS::getTrigPin ( )</computeroutput></para><para>
+Definition at line <link linkend="__s_p_s_8cpp_source_1l00123">123</link> of file <link linkend="__s_p_s_8cpp_source">SPS.cpp</link>.</para>
+</section>
+<anchor xml:id="_class_s_p_s_1a8a8d0864285e1fad60204ba0965597ee"/><section>
+    <title>getWaveComebackTime()</title>
+<indexterm><primary>getWaveComebackTime</primary><secondary>SPS</secondary></indexterm>
+<indexterm><primary>SPS</primary><secondary>getWaveComebackTime</secondary></indexterm>
+<para><computeroutput>long SPS::getWaveComebackTime ( )</computeroutput></para>
+<para>Custom constructor used for initializing a new <link linkend="_class_s_p_s">SPS</link></para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>in</entry><entry>trigPin_arg</entry><entry>
+<para>TriggerPin </para>
+</entry>
+                            </row>
+                            <row>
+<entry>in</entry><entry>echoPin_arg</entry><entry>
+<para>EchoPin </para>
+</entry>
+                            </row>
+                            <row>
+<entry>in</entry><entry>tag_arg</entry><entry>
+<para><link linkend="_class_s_p_s">SPS</link>&apos;s tag This function sends an ultrasound through trigPin and receives it back in echoPin from where we get the wave travel time with pulseIn() method</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>Sound wave travel time </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="__s_p_s_8cpp_source_1l00066">66</link> of file <link linkend="__s_p_s_8cpp_source">SPS.cpp</link>.</para>
+</section>
+<anchor xml:id="_class_s_p_s_1a9a332ee56500de1cfdf465c7dd5ad9be"/><section>
+    <title>serialPrintDistance()</title>
+<indexterm><primary>serialPrintDistance</primary><secondary>SPS</secondary></indexterm>
+<indexterm><primary>SPS</primary><secondary>serialPrintDistance</secondary></indexterm>
+<para><computeroutput>void SPS::serialPrintDistance ( )</computeroutput></para><para>
+Definition at line <link linkend="__s_p_s_8cpp_source_1l00088">88</link> of file <link linkend="__s_p_s_8cpp_source">SPS.cpp</link>.</para>
+</section>
+<anchor xml:id="_class_s_p_s_1ac755f66267700b1eb976d8cb9e832458"/><section>
+    <title>setEchoPin()</title>
+<indexterm><primary>setEchoPin</primary><secondary>SPS</secondary></indexterm>
+<indexterm><primary>SPS</primary><secondary>setEchoPin</secondary></indexterm>
+<para><computeroutput>void SPS::setEchoPin (unsigned short int echoPin_arg)</computeroutput></para><para>
+Definition at line <link linkend="__s_p_s_8cpp_source_1l00138">138</link> of file <link linkend="__s_p_s_8cpp_source">SPS.cpp</link>.</para>
+</section>
+<anchor xml:id="_class_s_p_s_1adf60aae57ef3128652cab3d7c9e9d188"/><section>
+    <title>setTrigPin()</title>
+<indexterm><primary>setTrigPin</primary><secondary>SPS</secondary></indexterm>
+<indexterm><primary>SPS</primary><secondary>setTrigPin</secondary></indexterm>
+<para><computeroutput>void SPS::setTrigPin (unsigned short int trigPin_arg)</computeroutput></para><para>
+Definition at line <link linkend="__s_p_s_8cpp_source_1l00133">133</link> of file <link linkend="__s_p_s_8cpp_source">SPS.cpp</link>.</para>
+</section>
+</section>
+<section>
+<title>Member Data Documentation</title>
+<anchor xml:id="_class_s_p_s_1a8599b95fb322ec9dd2638f643619e6d2"/><section>
+    <title>echoPin</title>
+<indexterm><primary>echoPin</primary><secondary>SPS</secondary></indexterm>
+<indexterm><primary>SPS</primary><secondary>echoPin</secondary></indexterm>
+<para><computeroutput>unsigned short int SPS::echoPin<computeroutput>[private]</computeroutput></computeroutput></para>
+<para>Echo pin </para>
+<para>
+Definition at line <link linkend="__s_p_s_8h_source_1l00051">51</link> of file <link linkend="__s_p_s_8h_source">SPS.h</link>.</para>
+</section>
+<anchor xml:id="_class_s_p_s_1a553b8d744a502577564eac19da2a1479"/><section>
+    <title>trigPin</title>
+<indexterm><primary>trigPin</primary><secondary>SPS</secondary></indexterm>
+<indexterm><primary>SPS</primary><secondary>trigPin</secondary></indexterm>
+<para><computeroutput>unsigned short int SPS::trigPin<computeroutput>[private]</computeroutput></computeroutput></para>
+<para>Trigger pin </para>
+<para>
+Definition at line <link linkend="__s_p_s_8h_source_1l00048">48</link> of file <link linkend="__s_p_s_8h_source">SPS.h</link>.</para>
+</section>
+<para>
+The documentation for this class was generated from the following files:</para>
+ArduinoSketch2/main/Modules/Sensors/SPS/<link linkend="__s_p_s_8h">SPS.h</link>ArduinoSketch2/main/Modules/Sensors/SPS/<link linkend="__s_p_s_8cpp">SPS.cpp</link></section>
+</section>

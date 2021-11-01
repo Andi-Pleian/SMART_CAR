@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_dir_ef693ed792bb8bc9b52c2b1e9cd7a09d" xml:lang="en-US">
+<title>ArduinoSketch2/main/Debug Directory Reference</title>
+<indexterm><primary>ArduinoSketch2/main/Debug Directory Reference</primary></indexterm>
+<simplesect>
+    <title>Directories    </title>
+        <itemizedlist>
+            <listitem><para>directory <link linkend="_dir_465ab7c36c1ca773ff9782f1ad747d9b">Modules</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Files    </title>
+        <itemizedlist>
+            <listitem><para>file <link linkend="_main_8d">main.d</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

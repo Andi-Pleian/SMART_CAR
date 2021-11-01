@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_h_m_i" xml:lang="en-US">
+<title>HMI Class Reference</title>
+<indexterm><primary>HMI</primary></indexterm>
+<para>
+<computeroutput>#include &lt;HMI.h&gt;</computeroutput>
+</para>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_h_m_i_1aefef264c56fcfd0ab8d1b5d0b5389e12">HMI</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_class_h_m_i_1a9da31f52da495c50622fcc2c2b68c5cc">~HMI</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Private Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_h_m_i_1a7fcbe6d52d8a6e2ff911fd51a67eb728">HMI</link> (const <link linkend="_class_h_m_i">HMI</link> &amp;c)</para>
+</listitem>
+            <listitem><para><link linkend="_class_h_m_i">HMI</link> &amp; <link linkend="_class_h_m_i_1abf4a5b431a8258628de5dbd67ab22649">operator=</link> (const <link linkend="_class_h_m_i">HMI</link> &amp;c)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+<para>
+Definition at line <link linkend="__h_m_i_8h_source_1l00013">13</link> of file <link linkend="__h_m_i_8h_source">HMI.h</link>.</para>
+</section>
+<section>
+<title>Constructor &amp; Destructor Documentation</title>
+<anchor xml:id="_class_h_m_i_1aefef264c56fcfd0ab8d1b5d0b5389e12"/><section>
+    <title>HMI()<computeroutput>[1/2]</computeroutput></title>
+<indexterm><primary>HMI</primary><secondary>HMI</secondary></indexterm>
+<indexterm><primary>HMI</primary><secondary>HMI</secondary></indexterm>
+<para><computeroutput>HMI::HMI ( )</computeroutput></para><para>
+Definition at line <link linkend="__h_m_i_8cpp_source_1l00012">12</link> of file <link linkend="__h_m_i_8cpp_source">HMI.cpp</link>.</para>
+</section>
+<anchor xml:id="_class_h_m_i_1a9da31f52da495c50622fcc2c2b68c5cc"/><section>
+    <title>~HMI()</title>
+<indexterm><primary>~HMI</primary><secondary>HMI</secondary></indexterm>
+<indexterm><primary>HMI</primary><secondary>~HMI</secondary></indexterm>
+<para><computeroutput>HMI::~HMI ( )</computeroutput></para><para>
+Definition at line <link linkend="__h_m_i_8cpp_source_1l00017">17</link> of file <link linkend="__h_m_i_8cpp_source">HMI.cpp</link>.</para>
+</section>
+<anchor xml:id="_class_h_m_i_1a7fcbe6d52d8a6e2ff911fd51a67eb728"/><section>
+    <title>HMI()<computeroutput>[2/2]</computeroutput></title>
+<indexterm><primary>HMI</primary><secondary>HMI</secondary></indexterm>
+<indexterm><primary>HMI</primary><secondary>HMI</secondary></indexterm>
+<para><computeroutput>HMI::HMI (const <link linkend="_class_h_m_i">HMI</link> &amp; c)<computeroutput>[private]</computeroutput></computeroutput></para></section>
+</section>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_class_h_m_i_1abf4a5b431a8258628de5dbd67ab22649"/><section>
+    <title>operator=()</title>
+<indexterm><primary>operator=</primary><secondary>HMI</secondary></indexterm>
+<indexterm><primary>HMI</primary><secondary>operator=</secondary></indexterm>
+<para><computeroutput><link linkend="_class_h_m_i">HMI</link> &amp; HMI::operator= (const <link linkend="_class_h_m_i">HMI</link> &amp; c)<computeroutput>[private]</computeroutput></computeroutput></para></section>
+<para>
+The documentation for this class was generated from the following files:</para>
+ArduinoSketch2/main/Modules/Actuators/HMI/<link linkend="__h_m_i_8h">HMI.h</link>ArduinoSketch2/main/Modules/Actuators/HMI/<link linkend="__h_m_i_8cpp">HMI.cpp</link></section>
+</section>

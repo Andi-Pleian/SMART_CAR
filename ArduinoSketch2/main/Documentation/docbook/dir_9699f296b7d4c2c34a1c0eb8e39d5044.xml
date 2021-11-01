@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_dir_9699f296b7d4c2c34a1c0eb8e39d5044" xml:lang="en-US">
+<title>ArduinoSketch2/main/Debug/Modules/Actuators/HMI Directory Reference</title>
+<indexterm><primary>ArduinoSketch2/main/Debug/Modules/Actuators/HMI Directory Reference</primary></indexterm>
+<simplesect>
+    <title>Files    </title>
+        <itemizedlist>
+            <listitem><para>file <link linkend="__h_m_i_8d">HMI.d</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

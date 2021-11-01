@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="__s_p_s___config_8h_source" xml:lang="en-US">
+<title>SPS_Config.h</title>
+<indexterm><primary>ArduinoSketch2/main/Modules/Sensors/SPS/SPS_Config.h</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered"><anchor xml:id="__s_p_s___config_8h_source_1l00001"/>00001 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="__s_p_s___config_8h_source_1l00002"/>00002 <emphasis role="comment">&#32;*&#32;SPS_Config.cpp</emphasis>
+<anchor xml:id="__s_p_s___config_8h_source_1l00003"/>00003 <emphasis role="comment">&#32;*</emphasis>
+<anchor xml:id="__s_p_s___config_8h_source_1l00004"/>00004 <emphasis role="comment">&#32;*&#32;Created:&#32;10/20/2021&#32;10:25:41&#32;PM</emphasis>
+<anchor xml:id="__s_p_s___config_8h_source_1l00005"/>00005 <emphasis role="comment">&#32;*&#32;&#32;Author:&#32;Andi</emphasis>
+<anchor xml:id="__s_p_s___config_8h_source_1l00006"/>00006 <emphasis role="comment">&#32;*/</emphasis>&#32;
+<anchor xml:id="__s_p_s___config_8h_source_1l00007"/>00007 
+<anchor xml:id="__s_p_s___config_8h_source_1l00008"/>00008 
+<anchor xml:id="__s_p_s___config_8h_source_1l00009"/>00009 <emphasis role="comment">/*&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;Defines&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;*/</emphasis>
+<anchor xml:id="__s_p_s___config_8h_source_1l00010"/>00010 
+<anchor xml:id="__s_p_s___config_8h_source_1l00012"/>00012 <emphasis role="preprocessor">#pragma&#32;region&#32;Defines</emphasis>
+<anchor xml:id="__s_p_s___config_8h_source_1l00013"/>00013 
+<anchor xml:id="__s_p_s___config_8h_source_1l00014"/>00014 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="__s_p_s___config_8h_source_1l00015"/>00015 <emphasis role="comment">&#32;*&#32;&#32;Speed&#32;of&#32;sound&#32;in&#32;ms</emphasis>
+<anchor xml:id="__s_p_s___config_8h_source_1l00016"/>00016 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="__s_p_s___config_8h_source_1l00017"/><link linkend="__s_p_s___config_8h_1aab8eac8ee01e0378133e9eb1432a0dd2">00017</link> <emphasis role="preprocessor">#define&#32;SOUND_SPEED_MS&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;0.034&#32;&#32;&#32;</emphasis>
+<anchor xml:id="__s_p_s___config_8h_source_1l00018"/>00018 
+<anchor xml:id="__s_p_s___config_8h_source_1l00019"/>00019 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="__s_p_s___config_8h_source_1l00020"/>00020 <emphasis role="comment">&#32;*&#32;&#32;Maximum&#32;distance&#32;that&#32;can&#32;be&#32;</emphasis>
+<anchor xml:id="__s_p_s___config_8h_source_1l00021"/>00021 <emphasis role="comment">&#32;*&#32;&#32;recorded&#32;accurately&#32;by&#32;the&#32;SPS&#32;(in&#32;cm)</emphasis>
+<anchor xml:id="__s_p_s___config_8h_source_1l00022"/>00022 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="__s_p_s___config_8h_source_1l00023"/><link linkend="__s_p_s___config_8h_1a051a3bf6498986ef52775452178c90ea">00023</link> <emphasis role="preprocessor">#define&#32;SPS_MAX_DISTANCE_CM&#32;&#32;&#32;&#32;&#32;70</emphasis>
+<anchor xml:id="__s_p_s___config_8h_source_1l00024"/>00024 
+<anchor xml:id="__s_p_s___config_8h_source_1l00025"/>00025 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="__s_p_s___config_8h_source_1l00026"/>00026 <emphasis role="comment">&#32;*&#32;&#32;Minimum&#32;distance&#32;that&#32;can&#32;be&#32;</emphasis>
+<anchor xml:id="__s_p_s___config_8h_source_1l00027"/>00027 <emphasis role="comment">&#32;*&#32;&#32;recorded&#32;accurately&#32;by&#32;the&#32;SPS&#32;(in&#32;cm)</emphasis>
+<anchor xml:id="__s_p_s___config_8h_source_1l00028"/>00028 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="__s_p_s___config_8h_source_1l00029"/><link linkend="__s_p_s___config_8h_1aa038d4d755046a94bb76330cf424bb6e">00029</link> <emphasis role="preprocessor">#define&#32;SPS_MIN_DISTANCE_CM&#32;&#32;&#32;&#32;&#32;0</emphasis>
+<anchor xml:id="__s_p_s___config_8h_source_1l00030"/>00030 
+<anchor xml:id="__s_p_s___config_8h_source_1l00031"/>00031 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="__s_p_s___config_8h_source_1l00032"/>00032 <emphasis role="comment">&#32;*&#32;&#32;First&#32;distance&#32;stage&#32;(15&#32;cm)</emphasis>
+<anchor xml:id="__s_p_s___config_8h_source_1l00033"/>00033 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="__s_p_s___config_8h_source_1l00034"/><link linkend="__s_p_s___config_8h_1a66f50f4bc67f329bf1308b9abf68f45f">00034</link> <emphasis role="preprocessor">#define&#32;SPS_1ST_STAGE_CM&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;15&#32;</emphasis>
+<anchor xml:id="__s_p_s___config_8h_source_1l00035"/>00035 
+<anchor xml:id="__s_p_s___config_8h_source_1l00036"/>00036 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="__s_p_s___config_8h_source_1l00037"/>00037 <emphasis role="comment">&#32;*&#32;&#32;Second&#32;distance&#32;stage&#32;(10&#32;cm)</emphasis>
+<anchor xml:id="__s_p_s___config_8h_source_1l00038"/>00038 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="__s_p_s___config_8h_source_1l00039"/><link linkend="__s_p_s___config_8h_1a99f557a9a226289d7cd8e595e5290a50">00039</link> <emphasis role="preprocessor">#define&#32;SPS_2ST_STAGE_CM&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;10</emphasis>
+<anchor xml:id="__s_p_s___config_8h_source_1l00040"/>00040 
+<anchor xml:id="__s_p_s___config_8h_source_1l00041"/>00041 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="__s_p_s___config_8h_source_1l00042"/>00042 <emphasis role="comment">&#32;*&#32;&#32;Third&#32;distance&#32;stage&#32;(5&#32;cm)</emphasis>
+<anchor xml:id="__s_p_s___config_8h_source_1l00043"/>00043 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="__s_p_s___config_8h_source_1l00044"/><link linkend="__s_p_s___config_8h_1a815cb67c81505a17b70ac35fe42daf0e">00044</link> <emphasis role="preprocessor">#define&#32;SPS_3ST_STAGE_CM&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;5</emphasis>
+<anchor xml:id="__s_p_s___config_8h_source_1l00045"/>00045 
+<anchor xml:id="__s_p_s___config_8h_source_1l00046"/>00046 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="__s_p_s___config_8h_source_1l00047"/>00047 <emphasis role="comment">&#32;*&#32;&#32;Fourth&#32;distance&#32;stage&#32;(2&#32;cm)</emphasis>
+<anchor xml:id="__s_p_s___config_8h_source_1l00048"/>00048 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="__s_p_s___config_8h_source_1l00049"/><link linkend="__s_p_s___config_8h_1acfa0396bf3a0cc35d205ede537db3b2b">00049</link> <emphasis role="preprocessor">#define&#32;SPS_4ST_STAGE_CM&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;2</emphasis>
+<anchor xml:id="__s_p_s___config_8h_source_1l00050"/>00050 
+<anchor xml:id="__s_p_s___config_8h_source_1l00051"/>00051 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="__s_p_s___config_8h_source_1l00052"/>00052 <emphasis role="comment">&#32;*&#32;&#32;Fifth&#32;distance&#32;stage&#32;(1&#32;cm)</emphasis>
+<anchor xml:id="__s_p_s___config_8h_source_1l00053"/>00053 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="__s_p_s___config_8h_source_1l00054"/><link linkend="__s_p_s___config_8h_1a2836814106d029c0cbd4b9bd5567c5bc">00054</link> <emphasis role="preprocessor">#define&#32;SPS_5ST_STAGE_CM&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;1</emphasis>
+<anchor xml:id="__s_p_s___config_8h_source_1l00055"/>00055 
+<anchor xml:id="__s_p_s___config_8h_source_1l00056"/>00056 <emphasis role="preprocessor">#pragma&#32;endregion</emphasis>
+</programlisting></section>

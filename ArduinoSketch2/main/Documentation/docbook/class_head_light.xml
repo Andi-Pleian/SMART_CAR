@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_head_light" xml:lang="en-US">
+<title>HeadLight Class Reference</title>
+<indexterm><primary>HeadLight</primary></indexterm>
+<para>
+<computeroutput>#include &lt;HeadLight.h&gt;</computeroutput>
+</para>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_head_light_1a567d80133909744277ce46de0bb7afb1">HeadLight</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_class_head_light_1af6b716494b5a5bcaea306f8a83e9d673">~HeadLight</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Private Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_head_light_1a15fe4dae86328a8c1da42831a5ca9657">HeadLight</link> (const <link linkend="_class_head_light">HeadLight</link> &amp;c)</para>
+</listitem>
+            <listitem><para><link linkend="_class_head_light">HeadLight</link> &amp; <link linkend="_class_head_light_1a7cac416cc764cfefa7d7571e45c92d26">operator=</link> (const <link linkend="_class_head_light">HeadLight</link> &amp;c)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+<para>
+Definition at line <link linkend="__head_light_8h_source_1l00013">13</link> of file <link linkend="__head_light_8h_source">HeadLight.h</link>.</para>
+</section>
+<section>
+<title>Constructor &amp; Destructor Documentation</title>
+<anchor xml:id="_class_head_light_1a567d80133909744277ce46de0bb7afb1"/><section>
+    <title>HeadLight()<computeroutput>[1/2]</computeroutput></title>
+<indexterm><primary>HeadLight</primary><secondary>HeadLight</secondary></indexterm>
+<indexterm><primary>HeadLight</primary><secondary>HeadLight</secondary></indexterm>
+<para><computeroutput>HeadLight::HeadLight ( )</computeroutput></para><para>
+Definition at line <link linkend="__head_light_8cpp_source_1l00012">12</link> of file <link linkend="__head_light_8cpp_source">HeadLight.cpp</link>.</para>
+</section>
+<anchor xml:id="_class_head_light_1af6b716494b5a5bcaea306f8a83e9d673"/><section>
+    <title>~HeadLight()</title>
+<indexterm><primary>~HeadLight</primary><secondary>HeadLight</secondary></indexterm>
+<indexterm><primary>HeadLight</primary><secondary>~HeadLight</secondary></indexterm>
+<para><computeroutput>HeadLight::~HeadLight ( )</computeroutput></para><para>
+Definition at line <link linkend="__head_light_8cpp_source_1l00017">17</link> of file <link linkend="__head_light_8cpp_source">HeadLight.cpp</link>.</para>
+</section>
+<anchor xml:id="_class_head_light_1a15fe4dae86328a8c1da42831a5ca9657"/><section>
+    <title>HeadLight()<computeroutput>[2/2]</computeroutput></title>
+<indexterm><primary>HeadLight</primary><secondary>HeadLight</secondary></indexterm>
+<indexterm><primary>HeadLight</primary><secondary>HeadLight</secondary></indexterm>
+<para><computeroutput>HeadLight::HeadLight (const <link linkend="_class_head_light">HeadLight</link> &amp; c)<computeroutput>[private]</computeroutput></computeroutput></para></section>
+</section>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_class_head_light_1a7cac416cc764cfefa7d7571e45c92d26"/><section>
+    <title>operator=()</title>
+<indexterm><primary>operator=</primary><secondary>HeadLight</secondary></indexterm>
+<indexterm><primary>HeadLight</primary><secondary>operator=</secondary></indexterm>
+<para><computeroutput><link linkend="_class_head_light">HeadLight</link> &amp; HeadLight::operator= (const <link linkend="_class_head_light">HeadLight</link> &amp; c)<computeroutput>[private]</computeroutput></computeroutput></para></section>
+<para>
+The documentation for this class was generated from the following files:</para>
+ArduinoSketch2/main/Modules/Actuators/HeadLight/<link linkend="__head_light_8h">HeadLight.h</link>ArduinoSketch2/main/Modules/Actuators/HeadLight/<link linkend="__head_light_8cpp">HeadLight.cpp</link></section>
+</section>

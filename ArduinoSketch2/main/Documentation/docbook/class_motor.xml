@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_motor" xml:lang="en-US">
+<title>Motor Class Reference</title>
+<indexterm><primary>Motor</primary></indexterm>
+<para>
+<computeroutput>#include &lt;Motor.h&gt;</computeroutput>
+</para>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_motor_1af6106b4c506411265c5face762b6c004">Motor</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_class_motor_1a2e57c7b2681efea1d3b7f253ee88ecd4">~Motor</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Private Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_motor_1a374a2ec8c28e0c63e811cefc7d38de3d">Motor</link> (const <link linkend="_class_motor">Motor</link> &amp;c)</para>
+</listitem>
+            <listitem><para><link linkend="_class_motor">Motor</link> &amp; <link linkend="_class_motor_1a925827faee1e2a123813cea8f7c099bc">operator=</link> (const <link linkend="_class_motor">Motor</link> &amp;c)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+<para>
+Definition at line <link linkend="__motor_8h_source_1l00013">13</link> of file <link linkend="__motor_8h_source">Motor.h</link>.</para>
+</section>
+<section>
+<title>Constructor &amp; Destructor Documentation</title>
+<anchor xml:id="_class_motor_1af6106b4c506411265c5face762b6c004"/><section>
+    <title>Motor()<computeroutput>[1/2]</computeroutput></title>
+<indexterm><primary>Motor</primary><secondary>Motor</secondary></indexterm>
+<indexterm><primary>Motor</primary><secondary>Motor</secondary></indexterm>
+<para><computeroutput>Motor::Motor ( )</computeroutput></para><para>
+Definition at line <link linkend="__motor_8cpp_source_1l00012">12</link> of file <link linkend="__motor_8cpp_source">Motor.cpp</link>.</para>
+</section>
+<anchor xml:id="_class_motor_1a2e57c7b2681efea1d3b7f253ee88ecd4"/><section>
+    <title>~Motor()</title>
+<indexterm><primary>~Motor</primary><secondary>Motor</secondary></indexterm>
+<indexterm><primary>Motor</primary><secondary>~Motor</secondary></indexterm>
+<para><computeroutput>Motor::~Motor ( )</computeroutput></para><para>
+Definition at line <link linkend="__motor_8cpp_source_1l00017">17</link> of file <link linkend="__motor_8cpp_source">Motor.cpp</link>.</para>
+</section>
+<anchor xml:id="_class_motor_1a374a2ec8c28e0c63e811cefc7d38de3d"/><section>
+    <title>Motor()<computeroutput>[2/2]</computeroutput></title>
+<indexterm><primary>Motor</primary><secondary>Motor</secondary></indexterm>
+<indexterm><primary>Motor</primary><secondary>Motor</secondary></indexterm>
+<para><computeroutput>Motor::Motor (const <link linkend="_class_motor">Motor</link> &amp; c)<computeroutput>[private]</computeroutput></computeroutput></para></section>
+</section>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_class_motor_1a925827faee1e2a123813cea8f7c099bc"/><section>
+    <title>operator=()</title>
+<indexterm><primary>operator=</primary><secondary>Motor</secondary></indexterm>
+<indexterm><primary>Motor</primary><secondary>operator=</secondary></indexterm>
+<para><computeroutput><link linkend="_class_motor">Motor</link> &amp; Motor::operator= (const <link linkend="_class_motor">Motor</link> &amp; c)<computeroutput>[private]</computeroutput></computeroutput></para></section>
+<para>
+The documentation for this class was generated from the following files:</para>
+ArduinoSketch2/main/Modules/Actuators/MotorDriver/<link linkend="__motor_8h">Motor.h</link>ArduinoSketch2/main/Modules/Actuators/MotorDriver/<link linkend="__motor_8cpp">Motor.cpp</link></section>
+</section>

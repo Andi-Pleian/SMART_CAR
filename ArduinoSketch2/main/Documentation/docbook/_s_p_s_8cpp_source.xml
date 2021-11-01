@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="__s_p_s_8cpp_source" xml:lang="en-US">
+<title>SPS.cpp</title>
+<indexterm><primary>ArduinoSketch2/main/Modules/Sensors/SPS/SPS.cpp</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered"><anchor xml:id="__s_p_s_8cpp_source_1l00001"/>00001 <emphasis role="comment">/*&#32;</emphasis>
+<anchor xml:id="__s_p_s_8cpp_source_1l00002"/>00002 <emphasis role="comment">*&#32;SPS.cpp</emphasis>
+<anchor xml:id="__s_p_s_8cpp_source_1l00003"/>00003 <emphasis role="comment">*</emphasis>
+<anchor xml:id="__s_p_s_8cpp_source_1l00004"/>00004 <emphasis role="comment">*&#32;Created:&#32;10/7/2021&#32;12:17:58&#32;AM</emphasis>
+<anchor xml:id="__s_p_s_8cpp_source_1l00005"/>00005 <emphasis role="comment">*&#32;Author:&#32;Andi</emphasis>
+<anchor xml:id="__s_p_s_8cpp_source_1l00006"/>00006 <emphasis role="comment">*/</emphasis>
+<anchor xml:id="__s_p_s_8cpp_source_1l00007"/>00007 
+<anchor xml:id="__s_p_s_8cpp_source_1l00008"/>00008 <emphasis role="preprocessor">#pragma&#32;region&#32;Includes</emphasis>
+<anchor xml:id="__s_p_s_8cpp_source_1l00009"/>00009 
+<anchor xml:id="__s_p_s_8cpp_source_1l00010"/>00010 <emphasis role="preprocessor">#include&#32;&quot;<link linkend="__s_p_s_8h">SPS.h</link>&quot;</emphasis>
+<anchor xml:id="__s_p_s_8cpp_source_1l00011"/>00011 <emphasis role="comment">//#include&#32;&quot;Actuators/Buzzer/Buzzer.h&quot;;</emphasis>
+<anchor xml:id="__s_p_s_8cpp_source_1l00012"/>00012 <emphasis role="preprocessor">#include&#32;&lt;string.h&gt;</emphasis>
+<anchor xml:id="__s_p_s_8cpp_source_1l00013"/>00013 <emphasis role="preprocessor">#include&#32;&quot;..\..\..\..\ArduinoCore\include\core\Arduino.h&quot;</emphasis>
+<anchor xml:id="__s_p_s_8cpp_source_1l00014"/>00014 
+<anchor xml:id="__s_p_s_8cpp_source_1l00015"/>00015 <emphasis role="preprocessor">#pragma&#32;endregion</emphasis>
+<anchor xml:id="__s_p_s_8cpp_source_1l00016"/>00016 
+<anchor xml:id="__s_p_s_8cpp_source_1l00017"/>00017 
+<anchor xml:id="__s_p_s_8cpp_source_1l00018"/>00018 <emphasis role="comment">/*&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;Default&#32;Constructors&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;*/</emphasis>
+<anchor xml:id="__s_p_s_8cpp_source_1l00019"/>00019 
+<anchor xml:id="__s_p_s_8cpp_source_1l00021"/>00021 <emphasis role="preprocessor">#pragma&#32;region&#32;Default&#32;Constructors</emphasis>
+<anchor xml:id="__s_p_s_8cpp_source_1l00022"/>00022 
+<anchor xml:id="__s_p_s_8cpp_source_1l00026"/><link linkend="_class_s_p_s_1a2d03e5f0ea4268a8bd752db53c3c07a1">00026</link> <link linkend="_class_s_p_s_1a2d03e5f0ea4268a8bd752db53c3c07a1">SPS::SPS</link>()
+<anchor xml:id="__s_p_s_8cpp_source_1l00027"/>00027 {
+<anchor xml:id="__s_p_s_8cpp_source_1l00028"/>00028 }&#32;<emphasis role="comment">//SPS</emphasis>
+<anchor xml:id="__s_p_s_8cpp_source_1l00029"/>00029 
+<anchor xml:id="__s_p_s_8cpp_source_1l00033"/><link linkend="_class_s_p_s_1ad668b99d9e4e892d1b1a70ed8ae69841">00033</link> <link linkend="_class_s_p_s_1ad668b99d9e4e892d1b1a70ed8ae69841">SPS::~SPS</link>()
+<anchor xml:id="__s_p_s_8cpp_source_1l00034"/>00034 {
+<anchor xml:id="__s_p_s_8cpp_source_1l00035"/>00035 }&#32;<emphasis role="comment">//~SPS</emphasis>
+<anchor xml:id="__s_p_s_8cpp_source_1l00036"/>00036 
+<anchor xml:id="__s_p_s_8cpp_source_1l00037"/>00037 <emphasis role="preprocessor">#pragma&#32;endregion</emphasis>
+<anchor xml:id="__s_p_s_8cpp_source_1l00038"/>00038 
+<anchor xml:id="__s_p_s_8cpp_source_1l00039"/>00039 
+<anchor xml:id="__s_p_s_8cpp_source_1l00040"/>00040 <emphasis role="comment">/*&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;Public&#32;Functions&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;*/</emphasis>
+<anchor xml:id="__s_p_s_8cpp_source_1l00041"/>00041 
+<anchor xml:id="__s_p_s_8cpp_source_1l00043"/>00043 <emphasis role="preprocessor">#pragma&#32;region&#32;Public&#32;Functions</emphasis>
+<anchor xml:id="__s_p_s_8cpp_source_1l00044"/>00044 
+<anchor xml:id="__s_p_s_8cpp_source_1l00053"/>00053 <emphasis role="comment">/*SPS::SPS(unsigned&#32;short&#32;int&#32;trigPin_arg,&#32;unsigned&#32;short&#32;int&#32;echoPin_arg,&#32;Buzzer&#32;buzzer_arg)&#32;{</emphasis>
+<anchor xml:id="__s_p_s_8cpp_source_1l00054"/>00054 <emphasis role="comment">&#32;&#32;&#32;&#32;this-&gt;trigPin&#32;=&#32;trigPin_arg;</emphasis>
+<anchor xml:id="__s_p_s_8cpp_source_1l00055"/>00055 <emphasis role="comment">&#32;&#32;&#32;&#32;this-&gt;echoPin&#32;=&#32;echoPin_arg;</emphasis>
+<anchor xml:id="__s_p_s_8cpp_source_1l00056"/>00056 <emphasis role="comment">&#32;&#32;&#32;&#32;this-&gt;buzzer&#32;&#32;=&#32;buzzer_arg;</emphasis>
+<anchor xml:id="__s_p_s_8cpp_source_1l00057"/>00057 <emphasis role="comment">}*/</emphasis>
+<anchor xml:id="__s_p_s_8cpp_source_1l00058"/>00058 
+<anchor xml:id="__s_p_s_8cpp_source_1l00066"/><link linkend="_class_s_p_s_1a8a8d0864285e1fad60204ba0965597ee">00066</link> <emphasis role="keywordtype">long</emphasis>&#32;<link linkend="_class_s_p_s_1a8a8d0864285e1fad60204ba0965597ee">SPS::getWaveComebackTime</link>()&#32;{
+<anchor xml:id="__s_p_s_8cpp_source_1l00067"/>00067 &#32;&#32;&#32;&#32;digitalWrite(this-&gt;<link linkend="_class_s_p_s_1a553b8d744a502577564eac19da2a1479">trigPin</link>,&#32;LOW);&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;
+<anchor xml:id="__s_p_s_8cpp_source_1l00068"/>00068 &#32;&#32;&#32;&#32;delayMicroseconds(2);
+<anchor xml:id="__s_p_s_8cpp_source_1l00069"/>00069 &#32;&#32;&#32;&#32;
+<anchor xml:id="__s_p_s_8cpp_source_1l00070"/>00070 &#32;&#32;&#32;&#32;digitalWrite(<link linkend="_class_s_p_s_1a553b8d744a502577564eac19da2a1479">trigPin</link>,&#32;HIGH);&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;
+<anchor xml:id="__s_p_s_8cpp_source_1l00071"/>00071 &#32;&#32;&#32;&#32;delayMicroseconds(10);&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;
+<anchor xml:id="__s_p_s_8cpp_source_1l00072"/>00072 &#32;&#32;&#32;&#32;digitalWrite(<link linkend="_class_s_p_s_1a553b8d744a502577564eac19da2a1479">trigPin</link>,&#32;LOW);&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;
+<anchor xml:id="__s_p_s_8cpp_source_1l00073"/>00073 &#32;&#32;&#32;&#32;
+<anchor xml:id="__s_p_s_8cpp_source_1l00074"/>00074 &#32;&#32;&#32;&#32;
+<anchor xml:id="__s_p_s_8cpp_source_1l00075"/>00075 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;pulseIn(<link linkend="_class_s_p_s_1a8599b95fb322ec9dd2638f643619e6d2">echoPin</link>,&#32;HIGH);&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Reads&#32;the&#32;echoPin,&#32;returns&#32;the&#32;sound&#32;wave&#32;travel&#32;time&#32;in&#32;microseconds</emphasis>
+<anchor xml:id="__s_p_s_8cpp_source_1l00076"/>00076 }
+<anchor xml:id="__s_p_s_8cpp_source_1l00077"/>00077 
+<anchor xml:id="__s_p_s_8cpp_source_1l00084"/><link linkend="_class_s_p_s_1ab1949c9585fd0425060433e0f5eb6389">00084</link> <emphasis role="keywordtype">int</emphasis>&#32;<link linkend="_class_s_p_s_1ab1949c9585fd0425060433e0f5eb6389">SPS::getDistanceToObject</link>()&#32;{
+<anchor xml:id="__s_p_s_8cpp_source_1l00085"/>00085 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;(<link linkend="_class_s_p_s_1a8a8d0864285e1fad60204ba0965597ee">getWaveComebackTime</link>()&#32;*&#32;<link linkend="__s_p_s___config_8h_1aab8eac8ee01e0378133e9eb1432a0dd2">SOUND_SPEED_MS</link>)&#32;/&#32;2;&#32;&#32;&#32;&#32;
+<anchor xml:id="__s_p_s_8cpp_source_1l00086"/>00086 }
+<anchor xml:id="__s_p_s_8cpp_source_1l00087"/>00087 
+<anchor xml:id="__s_p_s_8cpp_source_1l00088"/><link linkend="_class_s_p_s_1a9a332ee56500de1cfdf465c7dd5ad9be">00088</link> <emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_class_s_p_s_1a9a332ee56500de1cfdf465c7dd5ad9be">SPS::serialPrintDistance</link>()&#32;{
+<anchor xml:id="__s_p_s_8cpp_source_1l00089"/>00089 &#32;&#32;&#32;&#32;Serial.print(<emphasis role="stringliteral">&quot;Distance:&#32;&quot;</emphasis>);
+<anchor xml:id="__s_p_s_8cpp_source_1l00090"/>00090 &#32;&#32;&#32;&#32;Serial.print(this-&gt;<link linkend="_class_s_p_s_1ab1949c9585fd0425060433e0f5eb6389">getDistanceToObject</link>());
+<anchor xml:id="__s_p_s_8cpp_source_1l00091"/>00091 &#32;&#32;&#32;&#32;Serial.println(<emphasis role="stringliteral">&quot;&#32;cm&quot;</emphasis>);
+<anchor xml:id="__s_p_s_8cpp_source_1l00092"/>00092 }
+<anchor xml:id="__s_p_s_8cpp_source_1l00093"/>00093 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="__s_p_s_8cpp_source_1l00094"/>00094 <emphasis role="comment">void&#32;SPS::SPS_CycEval()&#32;{</emphasis>
+<anchor xml:id="__s_p_s_8cpp_source_1l00095"/>00095 <emphasis role="comment">&#32;&#32;&#32;&#32;if&#32;((this-&gt;getDistanceToObject()&#32;&lt;=&#32;SPS_1ST_STAGE_CM)&#32;&amp;&amp;&#32;(this-&gt;getDistanceToObject()&#32;&gt;&#32;SPS_2ST_STAGE_CM))&#32;{</emphasis>
+<anchor xml:id="__s_p_s_8cpp_source_1l00096"/>00096 <emphasis role="comment">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;this-&gt;serialPrintDistance();</emphasis>
+<anchor xml:id="__s_p_s_8cpp_source_1l00097"/>00097 <emphasis role="comment">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;tone(this-&gt;buzzer-&gt;getSigPin(),&#32;BUZZER_FREQ,&#32;BUZZER_DEFAULT_DURATION);</emphasis>
+<anchor xml:id="__s_p_s_8cpp_source_1l00098"/>00098 <emphasis role="comment">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;delay(1000);</emphasis>
+<anchor xml:id="__s_p_s_8cpp_source_1l00099"/>00099 <emphasis role="comment">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;else&#32;if&#32;((this-&gt;getDistanceToObject()&#32;&lt;=&#32;SPS_2ST_STAGE_CM)&#32;&amp;&amp;&#32;(this-&gt;getDistanceToObject()&#32;&gt;&#32;SPS_3ST_STAGE_CM))&#32;{</emphasis>
+<anchor xml:id="__s_p_s_8cpp_source_1l00100"/>00100 <emphasis role="comment">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;this-&gt;serialPrintDistance();</emphasis>
+<anchor xml:id="__s_p_s_8cpp_source_1l00101"/>00101 <emphasis role="comment">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;tone(this-&gt;buzzer-&gt;getSigPin(),&#32;BUZZER_FREQ,&#32;BUZZER_DEFAULT_DURATION);</emphasis>
+<anchor xml:id="__s_p_s_8cpp_source_1l00102"/>00102 <emphasis role="comment">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;delay(800);</emphasis>
+<anchor xml:id="__s_p_s_8cpp_source_1l00103"/>00103 <emphasis role="comment">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;else&#32;if&#32;((this-&gt;getDistanceToObject()&#32;&lt;=&#32;SPS_3ST_STAGE_CM)&#32;&amp;&amp;&#32;(this-&gt;getDistanceToObject()&#32;&gt;&#32;SPS_4ST_STAGE_CM))&#32;{</emphasis>
+<anchor xml:id="__s_p_s_8cpp_source_1l00104"/>00104 <emphasis role="comment">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;this-&gt;serialPrintDistance();</emphasis>
+<anchor xml:id="__s_p_s_8cpp_source_1l00105"/>00105 <emphasis role="comment">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;tone(this-&gt;buzzer-&gt;getSigPin(),&#32;BUZZER_FREQ,&#32;BUZZER_DEFAULT_DURATION);</emphasis>
+<anchor xml:id="__s_p_s_8cpp_source_1l00106"/>00106 <emphasis role="comment">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;delay(600);</emphasis>
+<anchor xml:id="__s_p_s_8cpp_source_1l00107"/>00107 <emphasis role="comment">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;else&#32;if&#32;((this-&gt;getDistanceToObject()&#32;&lt;=&#32;SPS_4ST_STAGE_CM)&#32;&amp;&amp;&#32;(this-&gt;getDistanceToObject()&#32;&gt;&#32;SPS_5ST_STAGE_CM))&#32;{</emphasis>
+<anchor xml:id="__s_p_s_8cpp_source_1l00108"/>00108 <emphasis role="comment">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;this-&gt;serialPrintDistance();</emphasis>
+<anchor xml:id="__s_p_s_8cpp_source_1l00109"/>00109 <emphasis role="comment">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;tone(this-&gt;buzzer-&gt;getSigPin(),&#32;BUZZER_FREQ,&#32;BUZZER_DEFAULT_DURATION);</emphasis>
+<anchor xml:id="__s_p_s_8cpp_source_1l00110"/>00110 <emphasis role="comment">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;delay(400);</emphasis>
+<anchor xml:id="__s_p_s_8cpp_source_1l00111"/>00111 <emphasis role="comment">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;else&#32;if&#32;((this-&gt;getDistanceToObject()&#32;&lt;=&#32;SPS_5ST_STAGE_CM)&#32;&amp;&amp;&#32;(this-&gt;getDistanceToObject()&#32;&gt;&#32;SPS_MIN_DISTANCE_CM))&#32;{</emphasis>
+<anchor xml:id="__s_p_s_8cpp_source_1l00112"/>00112 <emphasis role="comment">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;this-&gt;serialPrintDistance();</emphasis>
+<anchor xml:id="__s_p_s_8cpp_source_1l00113"/>00113 <emphasis role="comment">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;tone(this-&gt;buzzer-&gt;getSigPin(),&#32;BUZZER_FREQ,&#32;BUZZER_DEFAULT_DURATION);</emphasis>
+<anchor xml:id="__s_p_s_8cpp_source_1l00114"/>00114 <emphasis role="comment">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;delay(200);</emphasis>
+<anchor xml:id="__s_p_s_8cpp_source_1l00115"/>00115 <emphasis role="comment">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;else&#32;if&#32;(this-&gt;getDistanceToObject()&#32;&lt;=&#32;SPS_MIN_DISTANCE_CM)&#32;{</emphasis>
+<anchor xml:id="__s_p_s_8cpp_source_1l00116"/>00116 <emphasis role="comment">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;this-&gt;serialPrintDistance();</emphasis>
+<anchor xml:id="__s_p_s_8cpp_source_1l00117"/>00117 <emphasis role="comment">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;tone(this-&gt;buzzer-&gt;getSigPin(),&#32;BUZZER_FREQ,&#32;BUZZER_DEFAULT_DURATION);</emphasis>
+<anchor xml:id="__s_p_s_8cpp_source_1l00118"/>00118 <emphasis role="comment">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;delay(100);</emphasis>
+<anchor xml:id="__s_p_s_8cpp_source_1l00119"/>00119 <emphasis role="comment">&#32;&#32;&#32;&#32;}</emphasis>
+<anchor xml:id="__s_p_s_8cpp_source_1l00120"/>00120 <emphasis role="comment">}*/</emphasis>
+<anchor xml:id="__s_p_s_8cpp_source_1l00121"/>00121 
+<anchor xml:id="__s_p_s_8cpp_source_1l00122"/>00122 
+<anchor xml:id="__s_p_s_8cpp_source_1l00123"/><link linkend="_class_s_p_s_1a8461e9636268894118ac81e00776f8ad">00123</link> <emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">short</emphasis>&#32;<emphasis role="keywordtype">int</emphasis>&#32;<link linkend="_class_s_p_s_1a8461e9636268894118ac81e00776f8ad">SPS::getTrigPin</link>()
+<anchor xml:id="__s_p_s_8cpp_source_1l00124"/>00124 {
+<anchor xml:id="__s_p_s_8cpp_source_1l00125"/>00125 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;this-&gt;<link linkend="_class_s_p_s_1a553b8d744a502577564eac19da2a1479">trigPin</link>;
+<anchor xml:id="__s_p_s_8cpp_source_1l00126"/>00126 }
+<anchor xml:id="__s_p_s_8cpp_source_1l00127"/>00127 
+<anchor xml:id="__s_p_s_8cpp_source_1l00128"/><link linkend="_class_s_p_s_1a099f45c52cce5025a61812e5eae69fd9">00128</link> <emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">short</emphasis>&#32;<emphasis role="keywordtype">int</emphasis>&#32;<link linkend="_class_s_p_s_1a099f45c52cce5025a61812e5eae69fd9">SPS::getEchoPin</link>()
+<anchor xml:id="__s_p_s_8cpp_source_1l00129"/>00129 {
+<anchor xml:id="__s_p_s_8cpp_source_1l00130"/>00130 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;this-&gt;<link linkend="_class_s_p_s_1a8599b95fb322ec9dd2638f643619e6d2">echoPin</link>;
+<anchor xml:id="__s_p_s_8cpp_source_1l00131"/>00131 }
+<anchor xml:id="__s_p_s_8cpp_source_1l00132"/>00132 
+<anchor xml:id="__s_p_s_8cpp_source_1l00133"/><link linkend="_class_s_p_s_1adf60aae57ef3128652cab3d7c9e9d188">00133</link> <emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_class_s_p_s_1adf60aae57ef3128652cab3d7c9e9d188">SPS::setTrigPin</link>(<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">short</emphasis>&#32;<emphasis role="keywordtype">int</emphasis>&#32;trigPin_arg)
+<anchor xml:id="__s_p_s_8cpp_source_1l00134"/>00134 {
+<anchor xml:id="__s_p_s_8cpp_source_1l00135"/>00135 &#32;&#32;&#32;&#32;this-&gt;<link linkend="_class_s_p_s_1a553b8d744a502577564eac19da2a1479">trigPin</link>&#32;=&#32;trigPin_arg;
+<anchor xml:id="__s_p_s_8cpp_source_1l00136"/>00136 }
+<anchor xml:id="__s_p_s_8cpp_source_1l00137"/>00137 
+<anchor xml:id="__s_p_s_8cpp_source_1l00138"/><link linkend="_class_s_p_s_1ac755f66267700b1eb976d8cb9e832458">00138</link> <emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_class_s_p_s_1ac755f66267700b1eb976d8cb9e832458">SPS::setEchoPin</link>(<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">short</emphasis>&#32;<emphasis role="keywordtype">int</emphasis>&#32;echoPin_arg)
+<anchor xml:id="__s_p_s_8cpp_source_1l00139"/>00139 {
+<anchor xml:id="__s_p_s_8cpp_source_1l00140"/>00140 &#32;&#32;&#32;&#32;this-&gt;<link linkend="_class_s_p_s_1a8599b95fb322ec9dd2638f643619e6d2">echoPin</link>&#32;=&#32;echoPin_arg;
+<anchor xml:id="__s_p_s_8cpp_source_1l00141"/>00141 }
+<anchor xml:id="__s_p_s_8cpp_source_1l00142"/>00142 
+<anchor xml:id="__s_p_s_8cpp_source_1l00143"/>00143 <emphasis role="preprocessor">#pragma&#32;endregion&#32;</emphasis>
+<anchor xml:id="__s_p_s_8cpp_source_1l00144"/>00144 
+</programlisting></section>

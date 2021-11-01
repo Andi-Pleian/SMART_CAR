@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="__s_p_s_8h_source" xml:lang="en-US">
+<title>SPS.h</title>
+<indexterm><primary>ArduinoSketch2/main/Modules/Sensors/SPS/SPS.h</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered"><anchor xml:id="__s_p_s_8h_source_1l00001"/>00001 <emphasis role="comment">/*&#32;</emphasis>
+<anchor xml:id="__s_p_s_8h_source_1l00002"/>00002 <emphasis role="comment">*&#32;SPS.h</emphasis>
+<anchor xml:id="__s_p_s_8h_source_1l00003"/>00003 <emphasis role="comment">*</emphasis>
+<anchor xml:id="__s_p_s_8h_source_1l00004"/>00004 <emphasis role="comment">*&#32;Smart&#32;Parking&#32;Sensor</emphasis>
+<anchor xml:id="__s_p_s_8h_source_1l00005"/>00005 <emphasis role="comment">*</emphasis>
+<anchor xml:id="__s_p_s_8h_source_1l00006"/>00006 <emphasis role="comment">*&#32;Created:&#32;10/7/2021&#32;12:17:58&#32;AM</emphasis>
+<anchor xml:id="__s_p_s_8h_source_1l00007"/>00007 <emphasis role="comment">*&#32;Author:&#32;Andi</emphasis>
+<anchor xml:id="__s_p_s_8h_source_1l00008"/>00008 <emphasis role="comment">*/</emphasis>
+<anchor xml:id="__s_p_s_8h_source_1l00009"/>00009 
+<anchor xml:id="__s_p_s_8h_source_1l00010"/>00010 <emphasis role="preprocessor">#ifndef&#32;__SPS_H__</emphasis>
+<anchor xml:id="__s_p_s_8h_source_1l00011"/>00011 <emphasis role="preprocessor">#define&#32;__SPS_H__</emphasis>
+<anchor xml:id="__s_p_s_8h_source_1l00012"/>00012 
+<anchor xml:id="__s_p_s_8h_source_1l00013"/>00013 <emphasis role="preprocessor">#pragma&#32;region&#32;Includes</emphasis>
+<anchor xml:id="__s_p_s_8h_source_1l00014"/>00014 
+<anchor xml:id="__s_p_s_8h_source_1l00015"/>00015 <emphasis role="preprocessor">#include&#32;&quot;<link linkend="__s_p_s___config_8h">SPS_Config.h</link>&quot;</emphasis>;
+<anchor xml:id="__s_p_s_8h_source_1l00016"/>00016 
+<anchor xml:id="__s_p_s_8h_source_1l00017"/>00017 <emphasis role="preprocessor">#pragma&#32;endregion</emphasis>
+<anchor xml:id="__s_p_s_8h_source_1l00018"/>00018 
+<anchor xml:id="__s_p_s_8h_source_1l00019"/>00019 
+<anchor xml:id="__s_p_s_8h_source_1l00020"/>00020 <emphasis role="comment">/*&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;Defines&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;*/</emphasis>
+<anchor xml:id="__s_p_s_8h_source_1l00021"/>00021 
+<anchor xml:id="__s_p_s_8h_source_1l00023"/>00023 <emphasis role="preprocessor">#pragma&#32;region&#32;Defines</emphasis>
+<anchor xml:id="__s_p_s_8h_source_1l00024"/>00024 
+<anchor xml:id="__s_p_s_8h_source_1l00025"/>00025 <emphasis role="preprocessor">#pragma&#32;endregion&#32;</emphasis>
+<anchor xml:id="__s_p_s_8h_source_1l00026"/>00026 
+<anchor xml:id="__s_p_s_8h_source_1l00027"/>00027 
+<anchor xml:id="__s_p_s_8h_source_1l00028"/>00028 <emphasis role="comment">/*&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;SPS&#32;Class&#32;Implementation&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;*/</emphasis>
+<anchor xml:id="__s_p_s_8h_source_1l00029"/>00029 
+<anchor xml:id="__s_p_s_8h_source_1l00031"/>00031 <emphasis role="preprocessor">#pragma&#32;region&#32;SPS&#32;Implementation</emphasis>
+<anchor xml:id="__s_p_s_8h_source_1l00032"/>00032 
+<anchor xml:id="__s_p_s_8h_source_1l00038"/><link linkend="_class_s_p_s">00038</link> <emphasis role="keyword">class&#32;</emphasis><link linkend="_class_s_p_s">SPS</link>
+<anchor xml:id="__s_p_s_8h_source_1l00039"/>00039 {
+<anchor xml:id="__s_p_s_8h_source_1l00040"/>00040 
+<anchor xml:id="__s_p_s_8h_source_1l00041"/>00041 <emphasis role="comment">/*&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;Private&#32;Attributes&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;*/</emphasis>
+<anchor xml:id="__s_p_s_8h_source_1l00042"/>00042 
+<anchor xml:id="__s_p_s_8h_source_1l00044"/>00044 <emphasis role="preprocessor">#pragma&#32;region&#32;Private&#32;attributes</emphasis>
+<anchor xml:id="__s_p_s_8h_source_1l00045"/>00045 
+<anchor xml:id="__s_p_s_8h_source_1l00046"/>00046 <emphasis role="keyword">private</emphasis>:
+<anchor xml:id="__s_p_s_8h_source_1l00048"/><link linkend="_class_s_p_s_1a553b8d744a502577564eac19da2a1479">00048</link> &#32;&#32;&#32;&#32;<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">short</emphasis>&#32;<emphasis role="keywordtype">int</emphasis>&#32;&#32;<link linkend="_class_s_p_s_1a553b8d744a502577564eac19da2a1479">trigPin</link>;
+<anchor xml:id="__s_p_s_8h_source_1l00049"/>00049 &#32;&#32;&#32;&#32;
+<anchor xml:id="__s_p_s_8h_source_1l00051"/><link linkend="_class_s_p_s_1a8599b95fb322ec9dd2638f643619e6d2">00051</link> &#32;&#32;&#32;&#32;<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">short</emphasis>&#32;<emphasis role="keywordtype">int</emphasis>&#32;&#32;<link linkend="_class_s_p_s_1a8599b95fb322ec9dd2638f643619e6d2">echoPin</link>;
+<anchor xml:id="__s_p_s_8h_source_1l00052"/>00052 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;
+<anchor xml:id="__s_p_s_8h_source_1l00054"/>00054 &#32;&#32;&#32;&#32;<emphasis role="comment">//Buzzer*&#32;buzzer;</emphasis>
+<anchor xml:id="__s_p_s_8h_source_1l00055"/>00055 &#32;&#32;&#32;&#32;
+<anchor xml:id="__s_p_s_8h_source_1l00056"/>00056 <emphasis role="preprocessor">#pragma&#32;endregion</emphasis>
+<anchor xml:id="__s_p_s_8h_source_1l00057"/>00057 
+<anchor xml:id="__s_p_s_8h_source_1l00058"/>00058 
+<anchor xml:id="__s_p_s_8h_source_1l00059"/>00059 <emphasis role="comment">/*&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;Public&#32;function&#32;declarations&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;*/</emphasis>
+<anchor xml:id="__s_p_s_8h_source_1l00060"/>00060 
+<anchor xml:id="__s_p_s_8h_source_1l00062"/>00062 <emphasis role="preprocessor">#pragma&#32;region&#32;Public&#32;functions&#32;declarations</emphasis>
+<anchor xml:id="__s_p_s_8h_source_1l00063"/>00063 
+<anchor xml:id="__s_p_s_8h_source_1l00064"/>00064 <emphasis role="keyword">public</emphasis>:
+<anchor xml:id="__s_p_s_8h_source_1l00065"/>00065 &#32;&#32;&#32;&#32;<link linkend="_class_s_p_s_1a2d03e5f0ea4268a8bd752db53c3c07a1">SPS</link>();
+<anchor xml:id="__s_p_s_8h_source_1l00066"/>00066 &#32;&#32;&#32;&#32;<link linkend="_class_s_p_s_1ad668b99d9e4e892d1b1a70ed8ae69841">~SPS</link>();
+<anchor xml:id="__s_p_s_8h_source_1l00067"/>00067 &#32;&#32;&#32;&#32;<emphasis role="comment">//SPS(unsigned&#32;short&#32;int,&#32;unsigned&#32;short&#32;int,&#32;Buzzer&#32;);</emphasis>
+<anchor xml:id="__s_p_s_8h_source_1l00068"/>00068 &#32;&#32;&#32;&#32;
+<anchor xml:id="__s_p_s_8h_source_1l00069"/>00069 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">int</emphasis>&#32;<link linkend="_class_s_p_s_1ab1949c9585fd0425060433e0f5eb6389">getDistanceToObject</link>();
+<anchor xml:id="__s_p_s_8h_source_1l00070"/>00070 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">long</emphasis>&#32;<link linkend="_class_s_p_s_1a8a8d0864285e1fad60204ba0965597ee">getWaveComebackTime</link>();
+<anchor xml:id="__s_p_s_8h_source_1l00071"/>00071 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_class_s_p_s_1a9a332ee56500de1cfdf465c7dd5ad9be">serialPrintDistance</link>();
+<anchor xml:id="__s_p_s_8h_source_1l00072"/>00072 &#32;&#32;&#32;&#32;
+<anchor xml:id="__s_p_s_8h_source_1l00073"/>00073 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">short</emphasis>&#32;<emphasis role="keywordtype">int</emphasis>&#32;<link linkend="_class_s_p_s_1a8461e9636268894118ac81e00776f8ad">getTrigPin</link>();
+<anchor xml:id="__s_p_s_8h_source_1l00074"/>00074 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">short</emphasis>&#32;<emphasis role="keywordtype">int</emphasis>&#32;<link linkend="_class_s_p_s_1a099f45c52cce5025a61812e5eae69fd9">getEchoPin</link>();
+<anchor xml:id="__s_p_s_8h_source_1l00075"/>00075 &#32;&#32;&#32;&#32;
+<anchor xml:id="__s_p_s_8h_source_1l00076"/>00076 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_class_s_p_s_1adf60aae57ef3128652cab3d7c9e9d188">setTrigPin</link>(<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">short</emphasis>&#32;<emphasis role="keywordtype">int</emphasis>&#32;);
+<anchor xml:id="__s_p_s_8h_source_1l00077"/>00077 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_class_s_p_s_1ac755f66267700b1eb976d8cb9e832458">setEchoPin</link>(<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">short</emphasis>&#32;<emphasis role="keywordtype">int</emphasis>&#32;);
+<anchor xml:id="__s_p_s_8h_source_1l00078"/>00078 &#32;&#32;&#32;&#32;
+<anchor xml:id="__s_p_s_8h_source_1l00079"/><link linkend="_class_s_p_s_1ae7953aedbab8656b7c9f11f083e4ee1f">00079</link> &#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_class_s_p_s_1ae7953aedbab8656b7c9f11f083e4ee1f">cyclicEval</link>();
+<anchor xml:id="__s_p_s_8h_source_1l00080"/>00080 &#32;&#32;&#32;&#32;
+<anchor xml:id="__s_p_s_8h_source_1l00081"/>00081 <emphasis role="preprocessor">#pragma&#32;endregion</emphasis>
+<anchor xml:id="__s_p_s_8h_source_1l00082"/>00082 &#32;&#32;&#32;&#32;
+<anchor xml:id="__s_p_s_8h_source_1l00083"/>00083 
+<anchor xml:id="__s_p_s_8h_source_1l00084"/>00084 <emphasis role="comment">/*&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;Private&#32;function&#32;declarations&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;*/</emphasis>
+<anchor xml:id="__s_p_s_8h_source_1l00085"/>00085 
+<anchor xml:id="__s_p_s_8h_source_1l00087"/>00087 <emphasis role="preprocessor">#pragma&#32;region&#32;Private&#32;functions&#32;declarations</emphasis>
+<anchor xml:id="__s_p_s_8h_source_1l00088"/>00088 &#32;&#32;&#32;&#32;
+<anchor xml:id="__s_p_s_8h_source_1l00089"/>00089 <emphasis role="preprocessor">#pragma&#32;endregion</emphasis>
+<anchor xml:id="__s_p_s_8h_source_1l00090"/>00090 
+<anchor xml:id="__s_p_s_8h_source_1l00091"/>00091 };&#32;<emphasis role="comment">//SPS</emphasis>
+<anchor xml:id="__s_p_s_8h_source_1l00092"/>00092 
+<anchor xml:id="__s_p_s_8h_source_1l00093"/>00093 <emphasis role="preprocessor">#pragma&#32;endregion</emphasis>
+<anchor xml:id="__s_p_s_8h_source_1l00094"/>00094 
+<anchor xml:id="__s_p_s_8h_source_1l00095"/>00095 <emphasis role="preprocessor">#endif&#32;</emphasis><emphasis role="comment">//__SPS_H__</emphasis>
+</programlisting></section>

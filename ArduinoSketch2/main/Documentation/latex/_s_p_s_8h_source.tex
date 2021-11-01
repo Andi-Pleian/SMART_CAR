@@ -1,0 +1,88 @@
+\hypertarget{_s_p_s_8h_source}{}\doxysection{SPS.\+h}
+\label{_s_p_s_8h_source}\index{ArduinoSketch2/main/Modules/Sensors/SPS/SPS.h@{ArduinoSketch2/main/Modules/Sensors/SPS/SPS.h}}
+\mbox{\hyperlink{_s_p_s_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00001}00001 \textcolor{comment}{/* }}
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00002}00002 \textcolor{comment}{* SPS.h}}
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00003}00003 \textcolor{comment}{*}}
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00004}00004 \textcolor{comment}{* Smart Parking Sensor}}
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00005}00005 \textcolor{comment}{*}}
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00006}00006 \textcolor{comment}{* Created: 10/7/2021 12:17:58 AM}}
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00007}00007 \textcolor{comment}{* Author: Andi}}
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00008}00008 \textcolor{comment}{*/}}
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00009}00009 }
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00010}00010 \textcolor{preprocessor}{\#ifndef \_\_SPS\_H\_\_}}
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00011}00011 \textcolor{preprocessor}{\#define \_\_SPS\_H\_\_}}
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00012}00012 }
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00013}00013 \textcolor{preprocessor}{\#pragma region Includes}}
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00014}00014 }
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00015}00015 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_s_p_s___config_8h}{SPS\_Config.h}}"{}};}
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00016}00016 }
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00017}00017 \textcolor{preprocessor}{\#pragma endregion}}
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00018}00018 }
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00019}00019 }
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00020}00020 \textcolor{comment}{/*                              Defines                                 */}}
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00021}00021 }
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00023}00023 \textcolor{preprocessor}{\#pragma region Defines}}
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00024}00024 }
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00025}00025 \textcolor{preprocessor}{\#pragma endregion }}
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00026}00026 }
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00027}00027 }
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00028}00028 \textcolor{comment}{/*                         SPS Class Implementation                     */}}
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00029}00029 }
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00031}00031 \textcolor{preprocessor}{\#pragma region SPS Implementation}}
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00032}00032 }
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00038}\mbox{\hyperlink{class_s_p_s}{00038}} \textcolor{keyword}{class }\mbox{\hyperlink{class_s_p_s}{SPS}}}
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00039}00039 \{}
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00040}00040 }
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00041}00041 \textcolor{comment}{/*                         Private Attributes                           */}}
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00042}00042 }
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00044}00044 \textcolor{preprocessor}{\#pragma region Private attributes}}
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00045}00045 }
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00046}00046 \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00048}\mbox{\hyperlink{class_s_p_s_a553b8d744a502577564eac19da2a1479}{00048}}     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} \textcolor{keywordtype}{int}  \mbox{\hyperlink{class_s_p_s_a553b8d744a502577564eac19da2a1479}{trigPin}};}
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00049}00049     }
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00051}\mbox{\hyperlink{class_s_p_s_a8599b95fb322ec9dd2638f643619e6d2}{00051}}     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} \textcolor{keywordtype}{int}  \mbox{\hyperlink{class_s_p_s_a8599b95fb322ec9dd2638f643619e6d2}{echoPin}};}
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00052}00052             }
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00054}00054     \textcolor{comment}{//Buzzer* buzzer;}}
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00055}00055     }
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00056}00056 \textcolor{preprocessor}{\#pragma endregion}}
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00057}00057 }
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00058}00058 }
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00059}00059 \textcolor{comment}{/*                       Public function declarations                   */}}
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00060}00060 }
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00062}00062 \textcolor{preprocessor}{\#pragma region Public functions declarations}}
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00063}00063 }
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00064}00064 \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00065}00065     \mbox{\hyperlink{class_s_p_s_a2d03e5f0ea4268a8bd752db53c3c07a1}{SPS}}();}
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00066}00066     \mbox{\hyperlink{class_s_p_s_ad668b99d9e4e892d1b1a70ed8ae69841}{\string~SPS}}();}
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00067}00067     \textcolor{comment}{//SPS(unsigned short int, unsigned short int, Buzzer );}}
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00068}00068     }
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00069}00069     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_s_p_s_ab1949c9585fd0425060433e0f5eb6389}{getDistanceToObject}}();}
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00070}00070     \textcolor{keywordtype}{long} \mbox{\hyperlink{class_s_p_s_a8a8d0864285e1fad60204ba0965597ee}{getWaveComebackTime}}();}
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00071}00071     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_s_p_s_a9a332ee56500de1cfdf465c7dd5ad9be}{serialPrintDistance}}();}
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00072}00072     }
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00073}00073     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} \textcolor{keywordtype}{int} \mbox{\hyperlink{class_s_p_s_a8461e9636268894118ac81e00776f8ad}{getTrigPin}}();}
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00074}00074     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} \textcolor{keywordtype}{int} \mbox{\hyperlink{class_s_p_s_a099f45c52cce5025a61812e5eae69fd9}{getEchoPin}}();}
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00075}00075     }
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00076}00076     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_s_p_s_adf60aae57ef3128652cab3d7c9e9d188}{setTrigPin}}(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} \textcolor{keywordtype}{int} );}
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00077}00077     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_s_p_s_ac755f66267700b1eb976d8cb9e832458}{setEchoPin}}(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} \textcolor{keywordtype}{int} );}
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00078}00078     }
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00079}\mbox{\hyperlink{class_s_p_s_ae7953aedbab8656b7c9f11f083e4ee1f}{00079}}     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_s_p_s_ae7953aedbab8656b7c9f11f083e4ee1f}{cyclicEval}}();}
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00080}00080     }
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00081}00081 \textcolor{preprocessor}{\#pragma endregion}}
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00082}00082     }
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00083}00083 }
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00084}00084 \textcolor{comment}{/*                       Private function declarations                  */}}
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00085}00085 }
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00087}00087 \textcolor{preprocessor}{\#pragma region Private functions declarations}}
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00088}00088     }
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00089}00089 \textcolor{preprocessor}{\#pragma endregion}}
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00090}00090 }
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00091}00091 \}; \textcolor{comment}{//SPS}}
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00092}00092 }
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00093}00093 \textcolor{preprocessor}{\#pragma endregion}}
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00094}00094 }
+\DoxyCodeLine{\Hypertarget{_s_p_s_8h_source_l00095}00095 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//\_\_SPS\_H\_\_}}
+
+\end{DoxyCode}

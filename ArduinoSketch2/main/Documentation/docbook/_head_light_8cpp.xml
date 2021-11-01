@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="__head_light_8cpp" xml:lang="en-US">
+<title>ArduinoSketch2/main/Modules/Actuators/HeadLight/HeadLight.cpp File Reference</title>
+<indexterm><primary>ArduinoSketch2/main/Modules/Actuators/HeadLight/HeadLight.cpp</primary></indexterm>
+<programlisting linenumbering="unnumbered">#include &quot;HeadLight.h&quot;
+</programlisting></section>

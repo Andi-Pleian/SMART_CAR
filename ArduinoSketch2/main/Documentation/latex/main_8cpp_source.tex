@@ -1,0 +1,59 @@
+\hypertarget{main_8cpp_source}{}\doxysection{main.\+cpp}
+\label{main_8cpp_source}\index{ArduinoSketch2/main/main.cpp@{ArduinoSketch2/main/main.cpp}}
+\mbox{\hyperlink{main_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00001}00001 }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00002}00002 \textcolor{preprocessor}{\#include <Arduino.h>}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00003}00003 \textcolor{comment}{//\#include "{}Modules/Sensors/SPS/SPS.h"{};}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00004}00004 \textcolor{comment}{//\#include "{}Modules/Actuators/Buzzer/Buzzer.h"{};}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00005}00005 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00006}00006 \textcolor{comment}{Buzzer      b1(8);}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00007}00007 \textcolor{comment}{SPS*        s1      = new SPS       (3, 2, b1);}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00008}00008 \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00009}00009 \textcolor{comment}{void setup() \{}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00010}00010 \textcolor{comment}{    Serial.begin(9600);}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00011}00011 \textcolor{comment}{    Serial.print("{}SMART\_CAR SPS TEST STARTED"{});}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00012}00012 \textcolor{comment}{    }}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00013}00013 \textcolor{comment}{    pinMode(s1-\/>getTrigPin(), OUTPUT);}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00014}00014 \textcolor{comment}{    pinMode(s1-\/>getEchoPin(), INPUT);}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00015}00015 \textcolor{comment}{    }}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00016}00016 \textcolor{comment}{    pinMode(b1-\/>getSigPin(), OUTPUT);}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00017}00017 \textcolor{comment}{\}}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00018}00018 \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00019}00019 \textcolor{comment}{void loop() \{}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00020}00020 \textcolor{comment}{    s1-\/>cyclicEval();}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00021}00021 \textcolor{comment}{\}}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00022}00022 \textcolor{comment}{*/}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00023}00023 }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00024}\mbox{\hyperlink{main_8cpp_a18a89135ea173bcea5ade3aa5be0cbb5}{00024}} \textcolor{keywordtype}{int} \mbox{\hyperlink{main_8cpp_a18a89135ea173bcea5ade3aa5be0cbb5}{motor1pin1}} = 2;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00025}\mbox{\hyperlink{main_8cpp_ac28383b5453807508076d466afaa3592}{00025}} \textcolor{keywordtype}{int} \mbox{\hyperlink{main_8cpp_ac28383b5453807508076d466afaa3592}{motor1pin2}} = 3;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00026}00026 }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00027}\mbox{\hyperlink{main_8cpp_a55d27079be6d976f3aa3d09e86b91840}{00027}} \textcolor{keywordtype}{int} \mbox{\hyperlink{main_8cpp_a55d27079be6d976f3aa3d09e86b91840}{motor2pin1}} = 4;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00028}\mbox{\hyperlink{main_8cpp_a90cadfc73d12d5d0d68640e5eb85151c}{00028}} \textcolor{keywordtype}{int} \mbox{\hyperlink{main_8cpp_a90cadfc73d12d5d0d68640e5eb85151c}{motor2pin2}} = 5;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00029}00029 }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00030}\mbox{\hyperlink{main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}{00030}} \textcolor{keywordtype}{void} \mbox{\hyperlink{main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}{setup}}() \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00031}00031     \textcolor{comment}{// put your setup code here, to run once:}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00032}00032     pinMode(\mbox{\hyperlink{main_8cpp_a18a89135ea173bcea5ade3aa5be0cbb5}{motor1pin1}}, OUTPUT);}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00033}00033     pinMode(\mbox{\hyperlink{main_8cpp_ac28383b5453807508076d466afaa3592}{motor1pin2}}, OUTPUT);}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00034}00034     pinMode(\mbox{\hyperlink{main_8cpp_a55d27079be6d976f3aa3d09e86b91840}{motor2pin1}}, OUTPUT);}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00035}00035     pinMode(\mbox{\hyperlink{main_8cpp_a90cadfc73d12d5d0d68640e5eb85151c}{motor2pin2}}, OUTPUT);}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00036}00036 \}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00037}00037 }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00038}\mbox{\hyperlink{main_8cpp_afe461d27b9c48d5921c00d521181f12f}{00038}} \textcolor{keywordtype}{void} \mbox{\hyperlink{main_8cpp_afe461d27b9c48d5921c00d521181f12f}{loop}}() \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00039}00039     \textcolor{comment}{// put your main code here, to run repeatedly:}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00040}00040     digitalWrite(\mbox{\hyperlink{main_8cpp_a18a89135ea173bcea5ade3aa5be0cbb5}{motor1pin1}}, HIGH);}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00041}00041     digitalWrite(\mbox{\hyperlink{main_8cpp_ac28383b5453807508076d466afaa3592}{motor1pin2}}, LOW);}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00042}00042 }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00043}00043     digitalWrite(\mbox{\hyperlink{main_8cpp_a55d27079be6d976f3aa3d09e86b91840}{motor2pin1}}, HIGH);}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00044}00044     digitalWrite(\mbox{\hyperlink{main_8cpp_a90cadfc73d12d5d0d68640e5eb85151c}{motor2pin2}}, LOW);}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00045}00045     delay(1000);}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00046}00046 }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00047}00047     digitalWrite(\mbox{\hyperlink{main_8cpp_a18a89135ea173bcea5ade3aa5be0cbb5}{motor1pin1}}, LOW);}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00048}00048     digitalWrite(\mbox{\hyperlink{main_8cpp_ac28383b5453807508076d466afaa3592}{motor1pin2}}, HIGH);}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00049}00049 }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00050}00050     digitalWrite(\mbox{\hyperlink{main_8cpp_a55d27079be6d976f3aa3d09e86b91840}{motor2pin1}}, LOW);}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00051}00051     digitalWrite(\mbox{\hyperlink{main_8cpp_a90cadfc73d12d5d0d68640e5eb85151c}{motor2pin2}}, HIGH);}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00052}00052     delay(1000);}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00053}00053 \}}
+
+\end{DoxyCode}

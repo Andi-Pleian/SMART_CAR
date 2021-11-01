@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="__buzzer_8cpp_source" xml:lang="en-US">
+<title>Buzzer.cpp</title>
+<indexterm><primary>ArduinoSketch2/main/Modules/Actuators/Buzzer/Buzzer.cpp</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered"><anchor xml:id="__buzzer_8cpp_source_1l00001"/>00001 <emphasis role="comment">/*&#32;</emphasis>
+<anchor xml:id="__buzzer_8cpp_source_1l00002"/>00002 <emphasis role="comment">*&#32;Buzzer.cpp</emphasis>
+<anchor xml:id="__buzzer_8cpp_source_1l00003"/>00003 <emphasis role="comment">*</emphasis>
+<anchor xml:id="__buzzer_8cpp_source_1l00004"/>00004 <emphasis role="comment">*&#32;Created:&#32;10/7/2021&#32;12:21:52&#32;AM</emphasis>
+<anchor xml:id="__buzzer_8cpp_source_1l00005"/>00005 <emphasis role="comment">*&#32;Author:&#32;Andi</emphasis>
+<anchor xml:id="__buzzer_8cpp_source_1l00006"/>00006 <emphasis role="comment">*/</emphasis>
+<anchor xml:id="__buzzer_8cpp_source_1l00007"/>00007 
+<anchor xml:id="__buzzer_8cpp_source_1l00008"/>00008 
+<anchor xml:id="__buzzer_8cpp_source_1l00009"/>00009 <emphasis role="preprocessor">#pragma&#32;region&#32;Includes</emphasis>
+<anchor xml:id="__buzzer_8cpp_source_1l00010"/>00010 
+<anchor xml:id="__buzzer_8cpp_source_1l00011"/>00011 <emphasis role="preprocessor">#include&#32;&quot;<link linkend="__buzzer_8h">Buzzer.h</link>&quot;</emphasis>
+<anchor xml:id="__buzzer_8cpp_source_1l00012"/>00012 <emphasis role="preprocessor">#include&#32;&quot;..\..\..\..\ArduinoCore\include\core\Arduino.h&quot;</emphasis>
+<anchor xml:id="__buzzer_8cpp_source_1l00013"/>00013 
+<anchor xml:id="__buzzer_8cpp_source_1l00014"/>00014 <emphasis role="preprocessor">#pragma&#32;endregion</emphasis>
+<anchor xml:id="__buzzer_8cpp_source_1l00015"/>00015 
+<anchor xml:id="__buzzer_8cpp_source_1l00016"/>00016 
+<anchor xml:id="__buzzer_8cpp_source_1l00017"/>00017 
+<anchor xml:id="__buzzer_8cpp_source_1l00018"/>00018 
+<anchor xml:id="__buzzer_8cpp_source_1l00019"/>00019 <emphasis role="comment">/*&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;Default&#32;Constructors&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;*/</emphasis>
+<anchor xml:id="__buzzer_8cpp_source_1l00020"/>00020 
+<anchor xml:id="__buzzer_8cpp_source_1l00022"/>00022 <emphasis role="preprocessor">#pragma&#32;region&#32;Default&#32;Constructors</emphasis>
+<anchor xml:id="__buzzer_8cpp_source_1l00023"/>00023 
+<anchor xml:id="__buzzer_8cpp_source_1l00027"/><link linkend="_class_buzzer_1a8faf4fbbb7085ebdbb24d3681a727733">00027</link> <link linkend="_class_buzzer_1a8faf4fbbb7085ebdbb24d3681a727733">Buzzer::Buzzer</link>()
+<anchor xml:id="__buzzer_8cpp_source_1l00028"/>00028 {
+<anchor xml:id="__buzzer_8cpp_source_1l00029"/>00029 }&#32;<emphasis role="comment">//Buzzer</emphasis>
+<anchor xml:id="__buzzer_8cpp_source_1l00030"/>00030 
+<anchor xml:id="__buzzer_8cpp_source_1l00034"/><link linkend="_class_buzzer_1a558efd4a386b4b007266a29c82cb8d54">00034</link> <link linkend="_class_buzzer_1a558efd4a386b4b007266a29c82cb8d54">Buzzer::~Buzzer</link>()
+<anchor xml:id="__buzzer_8cpp_source_1l00035"/>00035 {
+<anchor xml:id="__buzzer_8cpp_source_1l00036"/>00036 }&#32;<emphasis role="comment">//~Buzzer//SPS</emphasis>
+<anchor xml:id="__buzzer_8cpp_source_1l00037"/>00037 
+<anchor xml:id="__buzzer_8cpp_source_1l00038"/>00038 <emphasis role="preprocessor">#pragma&#32;endregion</emphasis>
+<anchor xml:id="__buzzer_8cpp_source_1l00039"/>00039 
+<anchor xml:id="__buzzer_8cpp_source_1l00040"/>00040 
+<anchor xml:id="__buzzer_8cpp_source_1l00041"/>00041 <emphasis role="comment">/*&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;Public&#32;Functions&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;*/</emphasis>
+<anchor xml:id="__buzzer_8cpp_source_1l00042"/>00042 
+<anchor xml:id="__buzzer_8cpp_source_1l00044"/>00044 <emphasis role="preprocessor">#pragma&#32;region&#32;Public&#32;Functions</emphasis>
+<anchor xml:id="__buzzer_8cpp_source_1l00045"/>00045 
+<anchor xml:id="__buzzer_8cpp_source_1l00052"/><link linkend="_class_buzzer_1a89e128488c865b40a94fd3a91646f8da">00052</link> &#32;&#32;&#32;&#32;<link linkend="_class_buzzer_1a8faf4fbbb7085ebdbb24d3681a727733">Buzzer::Buzzer</link>(<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">short</emphasis>&#32;<emphasis role="keywordtype">int</emphasis>&#32;sigPin_arg)&#32;{
+<anchor xml:id="__buzzer_8cpp_source_1l00053"/>00053 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;this-&gt;<link linkend="_class_buzzer_1a219785456a8e21b3d51e763ef45e6289">sigPin</link>&#32;=&#32;sigPin_arg;
+<anchor xml:id="__buzzer_8cpp_source_1l00054"/>00054 &#32;&#32;&#32;&#32;}
+<anchor xml:id="__buzzer_8cpp_source_1l00055"/>00055 
+<anchor xml:id="__buzzer_8cpp_source_1l00056"/><link linkend="_class_buzzer_1a060acee3221911a9d7a608b804401cd2">00056</link> &#32;&#32;&#32;&#32;<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">short</emphasis>&#32;<emphasis role="keywordtype">int</emphasis>&#32;<link linkend="_class_buzzer_1a060acee3221911a9d7a608b804401cd2">Buzzer::getSigPin</link>()
+<anchor xml:id="__buzzer_8cpp_source_1l00057"/>00057 &#32;&#32;&#32;&#32;{
+<anchor xml:id="__buzzer_8cpp_source_1l00058"/>00058 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;this-&gt;<link linkend="_class_buzzer_1a219785456a8e21b3d51e763ef45e6289">sigPin</link>;
+<anchor xml:id="__buzzer_8cpp_source_1l00059"/>00059 &#32;&#32;&#32;&#32;}
+<anchor xml:id="__buzzer_8cpp_source_1l00060"/>00060 
+<anchor xml:id="__buzzer_8cpp_source_1l00061"/><link linkend="_class_buzzer_1aa1696dc542753cb2bc87dc0bc61c3bae">00061</link> &#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_class_buzzer_1aa1696dc542753cb2bc87dc0bc61c3bae">Buzzer::setSigPin</link>(<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">short</emphasis>&#32;<emphasis role="keywordtype">int</emphasis>&#32;sigPin_arg)
+<anchor xml:id="__buzzer_8cpp_source_1l00062"/>00062 &#32;&#32;&#32;&#32;{
+<anchor xml:id="__buzzer_8cpp_source_1l00063"/>00063 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;this-&gt;<link linkend="_class_buzzer_1a219785456a8e21b3d51e763ef45e6289">sigPin</link>&#32;=&#32;sigPin_arg;
+<anchor xml:id="__buzzer_8cpp_source_1l00064"/>00064 &#32;&#32;&#32;&#32;}
+<anchor xml:id="__buzzer_8cpp_source_1l00065"/>00065 
+<anchor xml:id="__buzzer_8cpp_source_1l00066"/>00066 <emphasis role="preprocessor">#pragma&#32;endregion</emphasis>
+<anchor xml:id="__buzzer_8cpp_source_1l00067"/>00067 
+<anchor xml:id="__buzzer_8cpp_source_1l00068"/>00068 
+<anchor xml:id="__buzzer_8cpp_source_1l00069"/>00069 <emphasis role="comment">/*&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;Private&#32;Functions&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;*/</emphasis>
+<anchor xml:id="__buzzer_8cpp_source_1l00070"/>00070 
+<anchor xml:id="__buzzer_8cpp_source_1l00072"/>00072 <emphasis role="preprocessor">#pragma&#32;region&#32;Private&#32;Functions</emphasis>
+<anchor xml:id="__buzzer_8cpp_source_1l00073"/>00073 
+<anchor xml:id="__buzzer_8cpp_source_1l00074"/>00074 <emphasis role="preprocessor">#pragma&#32;endregion</emphasis>
+</programlisting></section>

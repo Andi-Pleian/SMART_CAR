@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_main_8cpp_source" xml:lang="en-US">
+<title>main.cpp</title>
+<indexterm><primary>ArduinoSketch2/main/main.cpp</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered"><anchor xml:id="_main_8cpp_source_1l00001"/>00001 
+<anchor xml:id="_main_8cpp_source_1l00002"/>00002 <emphasis role="preprocessor">#include&#32;&lt;Arduino.h&gt;</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00003"/>00003 <emphasis role="comment">//#include&#32;&quot;Modules/Sensors/SPS/SPS.h&quot;;</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00004"/>00004 <emphasis role="comment">//#include&#32;&quot;Modules/Actuators/Buzzer/Buzzer.h&quot;;</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00005"/>00005 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00006"/>00006 <emphasis role="comment">Buzzer&#32;&#32;&#32;&#32;&#32;&#32;b1(8);</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00007"/>00007 <emphasis role="comment">SPS*&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;s1&#32;&#32;&#32;&#32;&#32;&#32;=&#32;new&#32;SPS&#32;&#32;&#32;&#32;&#32;&#32;&#32;(3,&#32;2,&#32;b1);</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00008"/>00008 <emphasis role="comment"></emphasis>
+<anchor xml:id="_main_8cpp_source_1l00009"/>00009 <emphasis role="comment">void&#32;setup()&#32;{</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00010"/>00010 <emphasis role="comment">&#32;&#32;&#32;&#32;Serial.begin(9600);</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00011"/>00011 <emphasis role="comment">&#32;&#32;&#32;&#32;Serial.print(&quot;SMART_CAR&#32;SPS&#32;TEST&#32;STARTED&quot;);</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00012"/>00012 <emphasis role="comment">&#32;&#32;&#32;&#32;</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00013"/>00013 <emphasis role="comment">&#32;&#32;&#32;&#32;pinMode(s1-&gt;getTrigPin(),&#32;OUTPUT);</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00014"/>00014 <emphasis role="comment">&#32;&#32;&#32;&#32;pinMode(s1-&gt;getEchoPin(),&#32;INPUT);</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00015"/>00015 <emphasis role="comment">&#32;&#32;&#32;&#32;</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00016"/>00016 <emphasis role="comment">&#32;&#32;&#32;&#32;pinMode(b1-&gt;getSigPin(),&#32;OUTPUT);</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00017"/>00017 <emphasis role="comment">}</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00018"/>00018 <emphasis role="comment"></emphasis>
+<anchor xml:id="_main_8cpp_source_1l00019"/>00019 <emphasis role="comment">void&#32;loop()&#32;{</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00020"/>00020 <emphasis role="comment">&#32;&#32;&#32;&#32;s1-&gt;cyclicEval();</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00021"/>00021 <emphasis role="comment">}</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00022"/>00022 <emphasis role="comment">*/</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00023"/>00023 
+<anchor xml:id="_main_8cpp_source_1l00024"/><link linkend="_main_8cpp_1a18a89135ea173bcea5ade3aa5be0cbb5">00024</link> <emphasis role="keywordtype">int</emphasis>&#32;<link linkend="_main_8cpp_1a18a89135ea173bcea5ade3aa5be0cbb5">motor1pin1</link>&#32;=&#32;2;
+<anchor xml:id="_main_8cpp_source_1l00025"/><link linkend="_main_8cpp_1ac28383b5453807508076d466afaa3592">00025</link> <emphasis role="keywordtype">int</emphasis>&#32;<link linkend="_main_8cpp_1ac28383b5453807508076d466afaa3592">motor1pin2</link>&#32;=&#32;3;
+<anchor xml:id="_main_8cpp_source_1l00026"/>00026 
+<anchor xml:id="_main_8cpp_source_1l00027"/><link linkend="_main_8cpp_1a55d27079be6d976f3aa3d09e86b91840">00027</link> <emphasis role="keywordtype">int</emphasis>&#32;<link linkend="_main_8cpp_1a55d27079be6d976f3aa3d09e86b91840">motor2pin1</link>&#32;=&#32;4;
+<anchor xml:id="_main_8cpp_source_1l00028"/><link linkend="_main_8cpp_1a90cadfc73d12d5d0d68640e5eb85151c">00028</link> <emphasis role="keywordtype">int</emphasis>&#32;<link linkend="_main_8cpp_1a90cadfc73d12d5d0d68640e5eb85151c">motor2pin2</link>&#32;=&#32;5;
+<anchor xml:id="_main_8cpp_source_1l00029"/>00029 
+<anchor xml:id="_main_8cpp_source_1l00030"/><link linkend="_main_8cpp_1a4fc01d736fe50cf5b977f755b675f11d">00030</link> <emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_main_8cpp_1a4fc01d736fe50cf5b977f755b675f11d">setup</link>()&#32;{
+<anchor xml:id="_main_8cpp_source_1l00031"/>00031 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;put&#32;your&#32;setup&#32;code&#32;here,&#32;to&#32;run&#32;once:</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00032"/>00032 &#32;&#32;&#32;&#32;pinMode(<link linkend="_main_8cpp_1a18a89135ea173bcea5ade3aa5be0cbb5">motor1pin1</link>,&#32;OUTPUT);
+<anchor xml:id="_main_8cpp_source_1l00033"/>00033 &#32;&#32;&#32;&#32;pinMode(<link linkend="_main_8cpp_1ac28383b5453807508076d466afaa3592">motor1pin2</link>,&#32;OUTPUT);
+<anchor xml:id="_main_8cpp_source_1l00034"/>00034 &#32;&#32;&#32;&#32;pinMode(<link linkend="_main_8cpp_1a55d27079be6d976f3aa3d09e86b91840">motor2pin1</link>,&#32;OUTPUT);
+<anchor xml:id="_main_8cpp_source_1l00035"/>00035 &#32;&#32;&#32;&#32;pinMode(<link linkend="_main_8cpp_1a90cadfc73d12d5d0d68640e5eb85151c">motor2pin2</link>,&#32;OUTPUT);
+<anchor xml:id="_main_8cpp_source_1l00036"/>00036 }
+<anchor xml:id="_main_8cpp_source_1l00037"/>00037 
+<anchor xml:id="_main_8cpp_source_1l00038"/><link linkend="_main_8cpp_1afe461d27b9c48d5921c00d521181f12f">00038</link> <emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_main_8cpp_1afe461d27b9c48d5921c00d521181f12f">loop</link>()&#32;{
+<anchor xml:id="_main_8cpp_source_1l00039"/>00039 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;put&#32;your&#32;main&#32;code&#32;here,&#32;to&#32;run&#32;repeatedly:</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00040"/>00040 &#32;&#32;&#32;&#32;digitalWrite(<link linkend="_main_8cpp_1a18a89135ea173bcea5ade3aa5be0cbb5">motor1pin1</link>,&#32;HIGH);
+<anchor xml:id="_main_8cpp_source_1l00041"/>00041 &#32;&#32;&#32;&#32;digitalWrite(<link linkend="_main_8cpp_1ac28383b5453807508076d466afaa3592">motor1pin2</link>,&#32;LOW);
+<anchor xml:id="_main_8cpp_source_1l00042"/>00042 
+<anchor xml:id="_main_8cpp_source_1l00043"/>00043 &#32;&#32;&#32;&#32;digitalWrite(<link linkend="_main_8cpp_1a55d27079be6d976f3aa3d09e86b91840">motor2pin1</link>,&#32;HIGH);
+<anchor xml:id="_main_8cpp_source_1l00044"/>00044 &#32;&#32;&#32;&#32;digitalWrite(<link linkend="_main_8cpp_1a90cadfc73d12d5d0d68640e5eb85151c">motor2pin2</link>,&#32;LOW);
+<anchor xml:id="_main_8cpp_source_1l00045"/>00045 &#32;&#32;&#32;&#32;delay(1000);
+<anchor xml:id="_main_8cpp_source_1l00046"/>00046 
+<anchor xml:id="_main_8cpp_source_1l00047"/>00047 &#32;&#32;&#32;&#32;digitalWrite(<link linkend="_main_8cpp_1a18a89135ea173bcea5ade3aa5be0cbb5">motor1pin1</link>,&#32;LOW);
+<anchor xml:id="_main_8cpp_source_1l00048"/>00048 &#32;&#32;&#32;&#32;digitalWrite(<link linkend="_main_8cpp_1ac28383b5453807508076d466afaa3592">motor1pin2</link>,&#32;HIGH);
+<anchor xml:id="_main_8cpp_source_1l00049"/>00049 
+<anchor xml:id="_main_8cpp_source_1l00050"/>00050 &#32;&#32;&#32;&#32;digitalWrite(<link linkend="_main_8cpp_1a55d27079be6d976f3aa3d09e86b91840">motor2pin1</link>,&#32;LOW);
+<anchor xml:id="_main_8cpp_source_1l00051"/>00051 &#32;&#32;&#32;&#32;digitalWrite(<link linkend="_main_8cpp_1a90cadfc73d12d5d0d68640e5eb85151c">motor2pin2</link>,&#32;HIGH);
+<anchor xml:id="_main_8cpp_source_1l00052"/>00052 &#32;&#32;&#32;&#32;delay(1000);
+<anchor xml:id="_main_8cpp_source_1l00053"/>00053 }
+</programlisting></section>

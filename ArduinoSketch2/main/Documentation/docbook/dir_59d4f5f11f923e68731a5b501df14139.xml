@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_dir_59d4f5f11f923e68731a5b501df14139" xml:lang="en-US">
+<title>main/Modules/Actuators/StopLight Directory Reference</title>
+<indexterm><primary>main/Modules/Actuators/StopLight Directory Reference</primary></indexterm>
+<simplesect>
+    <title>Files    </title>
+        <itemizedlist>
+            <listitem><para>file <link linkend="__stop_light_8cpp">StopLight.cpp</link></para>
+</listitem>
+            <listitem><para>file <link linkend="__stop_light_8h">StopLight.h</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

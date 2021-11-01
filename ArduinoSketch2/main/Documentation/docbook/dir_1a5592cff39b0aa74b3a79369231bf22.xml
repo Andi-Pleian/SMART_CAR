@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_dir_1a5592cff39b0aa74b3a79369231bf22" xml:lang="en-US">
+<title>ArduinoSketch2/main/Debug/Modules/Sensors/TempMeas Directory Reference</title>
+<indexterm><primary>ArduinoSketch2/main/Debug/Modules/Sensors/TempMeas Directory Reference</primary></indexterm>
+<simplesect>
+    <title>Files    </title>
+        <itemizedlist>
+            <listitem><para>file <link linkend="__temp_meas_8d">TempMeas.d</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

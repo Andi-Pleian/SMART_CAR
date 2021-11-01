@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="__smart_parking_sensor_8h" xml:lang="en-US">
+<title>ArduinoSketch2/main/Modules/Sensors/SPS/SmartParkingSensor.h File Reference</title>
+<indexterm><primary>ArduinoSketch2/main/Modules/Sensors/SPS/SmartParkingSensor.h</primary></indexterm>
+<programlisting linenumbering="unnumbered">#include &lt;string.h&gt;
+</programlisting><simplesect>
+    <title>Classes    </title>
+        <itemizedlist>
+            <listitem><para>class <link linkend="_class_s_p_s">SPS</link></para>
+
+<para>Smart Parking Sensor. </para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Macros    </title>
+        <itemizedlist>
+            <listitem><para>#define <link linkend="__smart_parking_sensor_8h_1aab8eac8ee01e0378133e9eb1432a0dd2">SOUND_SPEED_MS</link>   0.034</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Macro Definition Documentation</title>
+<anchor xml:id="__smart_parking_sensor_8h_1aab8eac8ee01e0378133e9eb1432a0dd2"/><section>
+    <title>SOUND_SPEED_MS</title>
+<indexterm><primary>SOUND_SPEED_MS</primary><secondary>SmartParkingSensor.h</secondary></indexterm>
+<indexterm><primary>SmartParkingSensor.h</primary><secondary>SOUND_SPEED_MS</secondary></indexterm>
+<para><computeroutput>#define SOUND_SPEED_MS   0.034</computeroutput></para><para>
+Definition at line <link linkend="__smart_parking_sensor_8h_source_1l00021">21</link> of file <link linkend="__smart_parking_sensor_8h_source">SmartParkingSensor.h</link>.</para>
+</section>
+</section>
+</section>

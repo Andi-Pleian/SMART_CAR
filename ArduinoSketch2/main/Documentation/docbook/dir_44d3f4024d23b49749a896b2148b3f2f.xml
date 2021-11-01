@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_dir_44d3f4024d23b49749a896b2148b3f2f" xml:lang="en-US">
+<title>ArduinoSketch2/main/Modules/Actuators/MotorDriver Directory Reference</title>
+<indexterm><primary>ArduinoSketch2/main/Modules/Actuators/MotorDriver Directory Reference</primary></indexterm>
+<simplesect>
+    <title>Files    </title>
+        <itemizedlist>
+            <listitem><para>file <link linkend="__motor_8cpp">Motor.cpp</link></para>
+</listitem>
+            <listitem><para>file <link linkend="__motor_8h">Motor.h</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_dir_d450a519a9bd031f5a1aa493f4e877e6" xml:lang="en-US">
+<title>main/Modules/Sensors/SPS Directory Reference</title>
+<indexterm><primary>main/Modules/Sensors/SPS Directory Reference</primary></indexterm>
+<simplesect>
+    <title>Files    </title>
+        <itemizedlist>
+            <listitem><para>file <link linkend="__s_p_s_8cpp">SPS.cpp</link></para>
+</listitem>
+            <listitem><para>file <link linkend="__s_p_s_8h">SPS.h</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>
