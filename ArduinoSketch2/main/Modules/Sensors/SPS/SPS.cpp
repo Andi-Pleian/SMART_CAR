@@ -22,8 +22,9 @@
 /************************************************************************/
 
 #pragma region Default Constructors
+
 /**
- *	Default constructor (empty)
+ *	Default constructor (Basic Init)
  */
 SPS::SPS()
 {
@@ -31,6 +32,9 @@ SPS::SPS()
 	this->echoPin = 2;
 } //SPS
 
+/**
+ *	Copy constructor (NOT USED)
+ */
  SPS::SPS(const SPS &s)
  {
 	this->trigPin = s.trigPin;
@@ -38,21 +42,9 @@ SPS::SPS()
 	
 	this->buzzer->setSigPin(s.buzzer->getSigPin());
  }
-/*
-SPS& SPS::operator=(const SPS &s)
-{
-	delete this->trigPin;
-	delete this->echoPin;
-	delete this->buzzer->getSigPin();
-	
-	this->trigPin = s.trigPin;
-	this->echoPin = s.echoPin;
-	this->buzzer->setSigPin(s.buzzer->getSigPin());
-	return *this;
-}*/
 
 /**
- *	Default destructor (empty)
+ *	Default destructor (Empty)
  */
 SPS::~SPS()
 {
@@ -65,6 +57,7 @@ SPS::~SPS()
 /************************************************************************/
 
 #pragma region Public Functions
+
 /**
  *	Custom constructor
  *  used for initializing a new SPS
@@ -74,8 +67,8 @@ SPS::~SPS()
  *	@param[in] tag_arg SPS's tag
  */
 SPS::SPS(unsigned short int trigPin_arg, 
-		unsigned short int echoPin_arg, 
-		unsigned short int buzzerPin_arg) {
+		 unsigned short int echoPin_arg, 
+		 unsigned short int buzzerPin_arg) {
 			
 	this->trigPin			= trigPin_arg;
 	this->echoPin			= echoPin_arg;
@@ -93,12 +86,11 @@ long SPS::getWaveComebackTime() {
 	digitalWrite(this->trigPin, LOW);						
 	delayMicroseconds(2);
 	
-	digitalWrite(trigPin, HIGH);						 
+	digitalWrite(this->trigPin, HIGH);						 
 	delayMicroseconds(10);								
-	digitalWrite(trigPin, LOW);							
-	
-	
-	return pulseIn(echoPin, HIGH);						// Reads the echoPin, returns the sound wave travel time in microseconds
+	digitalWrite(this->trigPin, LOW);							
+		
+	return pulseIn(echoPin, HIGH);						
 }
 
 /**
@@ -113,7 +105,8 @@ int SPS::getDistanceToObject() {
 
 /**
  *	Prints distance to object measured by SPS to Serial COM
- *	
+ *
+ *	(!!!USED FOR SINGLE SPS TESTING!!!)
  */
 void SPS::serialPrintDistance() {
 	Serial.print("Distance: ");
@@ -127,6 +120,8 @@ void SPS::serialPrintDistance() {
  *	This function is used to Check distance to object for each stage and call
  *	Buzzer's Task to react to it.
  *	
+ *	(!!!USED FOR SINGLE SPS TESTING!!!)
+ *
  */
 void SPS::Task() {
 	if ((this->getDistanceToObject() <= SPS_1ST_STAGE_CM) && (this->getDistanceToObject() > SPS_2ST_STAGE_CM)) {

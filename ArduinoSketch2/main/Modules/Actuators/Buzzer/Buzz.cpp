@@ -5,7 +5,6 @@
 * Author: Andi
 */
 
-
 #pragma region Includes
 
 #include "Buzz.h"

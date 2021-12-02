@@ -26,10 +26,11 @@
 /************************************************************************/
 
 #pragma region SPS Implementation
+
 /**
  *	\brief Smart Parking Sensor
  *	
- *	This class is used for implementing the SPS. 
+ *	This class is used for implementing the Smart Parking Sensor
  */
 class SPS
 {
@@ -70,7 +71,6 @@ public:
 	SPS(unsigned short int, unsigned short int, unsigned short int);
 	
 	SPS( const SPS &s );
-	//SPS& operator=( const SPS &s );
 	
 	int getDistanceToObject();
 	long getWaveComebackTime();
@@ -85,16 +85,9 @@ public:
 	void Task();
 	
 #pragma endregion
-	
-/************************************************************************/
-/*                       Private function declarations					*/
-/************************************************************************/
-
-#pragma region Private functions declarations
-	
-#pragma endregion
 
 }; //SPS
+
 #pragma endregion
 
 #endif //__SPS_H__

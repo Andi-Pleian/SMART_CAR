@@ -1,6 +1,8 @@
 /*
  * SPS_Config.cpp
  *
+ * Smart Parking Sensor configuration header
+ *
  * Created: 10/20/2021 10:25:41 PM
  *  Author: Andi
  */ 

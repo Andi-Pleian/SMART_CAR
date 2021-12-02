@@ -623,7 +623,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000     0x18c4
+.text           0x00000000     0x1912
  *(.vectors)
  .vectors       0x00000000       0x68 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega328p/avr5/crtatmega328p.o
                 0x00000000                __vector_default
@@ -764,186 +764,189 @@ END GROUP
  .text._ZN3SPS10getEchoPinEv
                 0x00000368        0x8 Modules/Sensors/SPS/SPS.o
                 0x00000368                _ZN3SPS10getEchoPinEv
- .text.setup    0x00000370       0x6c main.o
-                0x00000370                setup
- .text.loop     0x000003dc        0xc main.o
-                0x000003dc                loop
+ .text._Z8SPS_INITP3SPS
+                0x00000370       0x2e main.o
+                0x00000370                _Z8SPS_INITP3SPS
+ .text.setup    0x0000039e       0x5e main.o
+                0x0000039e                setup
+ .text.loop     0x000003fc       0x18 main.o
+                0x000003fc                loop
  .text.startup._GLOBAL__sub_I_S1
-                0x000003e8       0x2c main.o
+                0x00000414       0x4e main.o
  .text.avr-libc.fplib
-                0x00000414        0xe c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fixsfsi.o)
-                0x00000414                __fixsfsi
+                0x00000462        0xe c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fixsfsi.o)
+                0x00000462                __fixsfsi
  .text.avr-libc.fplib
-                0x00000422       0x5e c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fixunssfsi.o)
-                0x00000422                __fixunssfsi
+                0x00000470       0x5e c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fixunssfsi.o)
+                0x00000470                __fixunssfsi
  .text.avr-libc.fplib
-                0x00000480       0x7a c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(floatsisf.o)
-                0x00000480                __floatunsisf
-                0x00000484                __floatsisf
+                0x000004ce       0x7a c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(floatsisf.o)
+                0x000004ce                __floatunsisf
+                0x000004d2                __floatsisf
  .text.avr-libc.fplib
-                0x000004fa       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_split3.o)
-                0x000004fa                __fp_split3
-                0x0000050a                __fp_splitA
+                0x00000548       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_split3.o)
+                0x00000548                __fp_split3
+                0x00000558                __fp_splitA
  .text.avr-libc.fplib
-                0x0000053e        0xe c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_zero.o)
-                0x0000053e                __fp_zero
-                0x00000540                __fp_szero
+                0x0000058c        0xe c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_zero.o)
+                0x0000058c                __fp_zero
+                0x0000058e                __fp_szero
  .text.avr-libc.fplib
-                0x0000054c        0x8 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(mulsf3.o)
-                0x0000054c                __mulsf3
+                0x0000059a        0x8 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(mulsf3.o)
+                0x0000059a                __mulsf3
  .text.avr-libc.fplib
-                0x00000554       0xd2 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(mulsf3x.o)
-                0x00000572                __mulsf3x
-                0x00000578                __mulsf3_pse
+                0x000005a2       0xd2 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(mulsf3x.o)
+                0x000005c0                __mulsf3x
+                0x000005c6                __mulsf3_pse
  .text.avr-libc.fplib
-                0x00000626        0xc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_inf.o)
-                0x00000626                __fp_inf
+                0x00000674        0xc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_inf.o)
+                0x00000674                __fp_inf
  .text.avr-libc.fplib
-                0x00000632        0x6 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_nan.o)
-                0x00000632                __fp_nan
+                0x00000680        0x6 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_nan.o)
+                0x00000680                __fp_nan
  .text.avr-libc.fplib
-                0x00000638        0xe c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_pscA.o)
-                0x00000638                __fp_pscA
+                0x00000686        0xe c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_pscA.o)
+                0x00000686                __fp_pscA
  .text.avr-libc.fplib
-                0x00000646        0xe c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_pscB.o)
-                0x00000646                __fp_pscB
+                0x00000694        0xe c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_pscB.o)
+                0x00000694                __fp_pscB
  .text.avr-libc.fplib
-                0x00000654       0x22 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_round.o)
-                0x00000654                __fp_round
+                0x000006a2       0x22 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_round.o)
+                0x000006a2                __fp_round
  .text._ZN14HardwareSerial9availableEv
-                0x00000676       0x18 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(HardwareSerial.o)
-                0x00000676                _ZN14HardwareSerial9availableEv
+                0x000006c4       0x18 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(HardwareSerial.o)
+                0x000006c4                _ZN14HardwareSerial9availableEv
  .text._ZN14HardwareSerial4peekEv
-                0x0000068e       0x1c Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(HardwareSerial.o)
-                0x0000068e                _ZN14HardwareSerial4peekEv
+                0x000006dc       0x1c Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(HardwareSerial.o)
+                0x000006dc                _ZN14HardwareSerial4peekEv
  .text._ZN14HardwareSerial4readEv
-                0x000006aa       0x28 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(HardwareSerial.o)
-                0x000006aa                _ZN14HardwareSerial4readEv
+                0x000006f8       0x28 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(HardwareSerial.o)
+                0x000006f8                _ZN14HardwareSerial4readEv
  .text._ZN14HardwareSerial17availableForWriteEv
-                0x000006d2       0x1e Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(HardwareSerial.o)
-                0x000006d2                _ZN14HardwareSerial17availableForWriteEv
+                0x00000720       0x1e Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(HardwareSerial.o)
+                0x00000720                _ZN14HardwareSerial17availableForWriteEv
  .text._Z14serialEventRunv
-                0x000006f0       0x1c Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(HardwareSerial.o)
-                0x000006f0                _Z14serialEventRunv
+                0x0000073e       0x1c Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(HardwareSerial.o)
+                0x0000073e                _Z14serialEventRunv
  .text._ZN14HardwareSerial17_tx_udr_empty_irqEv
-                0x0000070c       0x44 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(HardwareSerial.o)
-                0x0000070c                _ZN14HardwareSerial17_tx_udr_empty_irqEv
+                0x0000075a       0x44 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(HardwareSerial.o)
+                0x0000075a                _ZN14HardwareSerial17_tx_udr_empty_irqEv
  .text._ZN14HardwareSerial5writeEh
-                0x00000750       0x9a Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(HardwareSerial.o)
-                0x00000750                _ZN14HardwareSerial5writeEh
+                0x0000079e       0x9a Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(HardwareSerial.o)
+                0x0000079e                _ZN14HardwareSerial5writeEh
  .text._ZN14HardwareSerial5flushEv
-                0x000007ea       0x44 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(HardwareSerial.o)
-                0x000007ea                _ZN14HardwareSerial5flushEv
+                0x00000838       0x44 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(HardwareSerial.o)
+                0x00000838                _ZN14HardwareSerial5flushEv
  .text._ZN14HardwareSerial5beginEmh
-                0x0000082e       0xca Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(HardwareSerial.o)
-                0x0000082e                _ZN14HardwareSerial5beginEmh
+                0x0000087c       0xca Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(HardwareSerial.o)
+                0x0000087c                _ZN14HardwareSerial5beginEmh
  .text.__vector_18
-                0x000008f8       0x64 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(HardwareSerial0.o)
-                0x000008f8                __vector_18
+                0x00000946       0x64 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(HardwareSerial0.o)
+                0x00000946                __vector_18
  .text.__vector_19
-                0x0000095c       0x4c Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(HardwareSerial0.o)
-                0x0000095c                __vector_19
+                0x000009aa       0x4c Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(HardwareSerial0.o)
+                0x000009aa                __vector_19
  .text._Z17Serial0_availablev
-                0x000009a8       0x14 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(HardwareSerial0.o)
-                0x000009a8                _Z17Serial0_availablev
+                0x000009f6       0x14 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(HardwareSerial0.o)
+                0x000009f6                _Z17Serial0_availablev
  .text.startup._GLOBAL__sub_I___vector_18
-                0x000009bc       0x5a Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(HardwareSerial0.o)
+                0x00000a0a       0x5a Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(HardwareSerial0.o)
  .text.initVariant
-                0x00000a16        0x2 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(main.o)
-                0x00000a16                initVariant
+                0x00000a64        0x2 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(main.o)
+                0x00000a64                initVariant
  .text.startup.main
-                0x00000a18       0x1e Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(main.o)
-                0x00000a18                main
- .text._Znwj    0x00000a36        0x4 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(new.o)
-                0x00000a36                _Znwj
+                0x00000a66       0x1e Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(main.o)
+                0x00000a66                main
+ .text._Znwj    0x00000a84        0x4 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(new.o)
+                0x00000a84                _Znwj
  .text._ZN5Print5writeEPKhj
-                0x00000a3a       0x54 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Print.o)
-                0x00000a3a                _ZN5Print5writeEPKhj
+                0x00000a88       0x54 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Print.o)
+                0x00000a88                _ZN5Print5writeEPKhj
  .text._ZN5Print5writeEPKc
-                0x00000a8e       0x2a Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Print.o)
-                0x00000a8e                _ZN5Print5writeEPKc
+                0x00000adc       0x2a Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Print.o)
+                0x00000adc                _ZN5Print5writeEPKc
  .text._ZN5Print5printEPKc
-                0x00000ab8        0x4 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Print.o)
-                0x00000ab8                _ZN5Print5printEPKc
+                0x00000b06        0x4 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Print.o)
+                0x00000b06                _ZN5Print5printEPKc
  .text._ZN5Print5printEc
-                0x00000abc        0xe Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Print.o)
-                0x00000abc                _ZN5Print5printEc
+                0x00000b0a        0xe Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Print.o)
+                0x00000b0a                _ZN5Print5printEc
  .text._ZN5Print7printlnEv
-                0x00000aca        0x8 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Print.o)
-                0x00000aca                _ZN5Print7printlnEv
+                0x00000b18        0x8 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Print.o)
+                0x00000b18                _ZN5Print7printlnEv
  .text._ZN5Print7printlnEPKc
-                0x00000ad2       0x24 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Print.o)
-                0x00000ad2                _ZN5Print7printlnEPKc
+                0x00000b20       0x24 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Print.o)
+                0x00000b20                _ZN5Print7printlnEPKc
  .text._ZN5Print11printNumberEmh
-                0x00000af6       0x92 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Print.o)
-                0x00000af6                _ZN5Print11printNumberEmh
+                0x00000b44       0x92 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Print.o)
+                0x00000b44                _ZN5Print11printNumberEmh
  .text._ZN5Print5printEli
-                0x00000b88       0x90 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Print.o)
-                0x00000b88                _ZN5Print5printEli
+                0x00000bd6       0x90 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Print.o)
+                0x00000bd6                _ZN5Print5printEli
  .text._ZN5Print5printEii
-                0x00000c18        0xe Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Print.o)
-                0x00000c18                _ZN5Print5printEii
+                0x00000c66        0xe Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Print.o)
+                0x00000c66                _ZN5Print5printEii
  .text._Z4tonehjm
-                0x00000c26      0x504 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Tone.o)
-                0x00000c26                _Z4tonehjm
+                0x00000c74      0x504 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Tone.o)
+                0x00000c74                _Z4tonehjm
  .text._Z12disableTimerh
-                0x0000112a       0x40 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Tone.o)
-                0x0000112a                _Z12disableTimerh
+                0x00001178       0x40 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Tone.o)
+                0x00001178                _Z12disableTimerh
  .text._Z6noToneh
-                0x0000116a       0x2a Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Tone.o)
-                0x0000116a                _Z6noToneh
+                0x000011b8       0x2a Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Tone.o)
+                0x000011b8                _Z6noToneh
  .text.__vector_7
-                0x00001194       0xb8 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Tone.o)
-                0x00001194                __vector_7
+                0x000011e2       0xb8 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Tone.o)
+                0x000011e2                __vector_7
  .text.__vector_16
-                0x0000124c       0x94 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring.o)
-                0x0000124c                __vector_16
- .text.micros   0x000012e0       0x4a Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring.o)
-                0x000012e0                micros
- .text.delay    0x0000132a       0x78 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring.o)
-                0x0000132a                delay
+                0x0000129a       0x94 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring.o)
+                0x0000129a                __vector_16
+ .text.micros   0x0000132e       0x4a Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring.o)
+                0x0000132e                micros
+ .text.delay    0x00001378       0x78 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring.o)
+                0x00001378                delay
  .text.delayMicroseconds
-                0x000013a2       0x16 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring.o)
-                0x000013a2                delayMicroseconds
- .text.init     0x000013b8       0x76 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring.o)
-                0x000013b8                init
+                0x000013f0       0x16 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring.o)
+                0x000013f0                delayMicroseconds
+ .text.init     0x00001406       0x76 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring.o)
+                0x00001406                init
  .text.turnOffPWM
-                0x0000142e       0x52 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring_digital.o)
- .text.pinMode  0x00001480       0x78 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring_digital.o)
-                0x00001480                pinMode
+                0x0000147c       0x52 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring_digital.o)
+ .text.pinMode  0x000014ce       0x78 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring_digital.o)
+                0x000014ce                pinMode
  .text.digitalWrite
-                0x000014f8       0x5e Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring_digital.o)
-                0x000014f8                digitalWrite
- .text.pulseIn  0x00001556       0x64 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring_pulse.o)
-                0x00001556                pulseIn
- .text.__empty  0x000015ba        0x2 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(hooks.o)
-                0x000015ba                yield
+                0x00001546       0x5e Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring_digital.o)
+                0x00001546                digitalWrite
+ .text.pulseIn  0x000015a4       0x64 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring_pulse.o)
+                0x000015a4                pulseIn
+ .text.__empty  0x00001608        0x2 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(hooks.o)
+                0x00001608                yield
  .text.libgcc.div
-                0x000015bc       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodsi4.o)
-                0x000015bc                __udivmodsi4
+                0x0000160a       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodsi4.o)
+                0x0000160a                __udivmodsi4
  .text.libgcc.div
-                0x00001600       0x2e c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_divmodsi4.o)
-                0x00001600                __divmodsi4
+                0x0000164e       0x2e c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_divmodsi4.o)
+                0x0000164e                __divmodsi4
  .text.libgcc.div
-                0x0000162e       0x10 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_negsi2.o)
-                0x0000162e                __negsi2
+                0x0000167c       0x10 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_negsi2.o)
+                0x0000167c                __negsi2
  .text.libgcc.mul
-                0x0000163e       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_muluhisi3.o)
-                0x0000163e                __muluhisi3
- .text.libgcc   0x00001654        0xc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_tablejump2.o)
-                0x00001654                __tablejump2__
+                0x0000168c       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_muluhisi3.o)
+                0x0000168c                __muluhisi3
+ .text.libgcc   0x000016a2        0xc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_tablejump2.o)
+                0x000016a2                __tablejump2__
  .text.libgcc.mul
-                0x00001660       0x1e c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_umulhisi3.o)
-                0x00001660                __umulhisi3
+                0x000016ae       0x1e c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_umulhisi3.o)
+                0x000016ae                __umulhisi3
  .text.avr-libc
-                0x0000167e      0x242 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(malloc.o)
-                0x0000167e                malloc
-                0x000017ae                free
-                0x000018c0                . = ALIGN (0x2)
+                0x000016cc      0x242 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(malloc.o)
+                0x000016cc                malloc
+                0x000017fc                free
+                0x0000190e                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x000018c0        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
-                0x000018c0                _exit
-                0x000018c0                exit
+ .fini9         0x0000190e        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+                0x0000190e                _exit
+                0x0000190e                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -962,11 +965,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x000018c0        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+ .fini0         0x0000190e        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x000018c4                _etext = .
+                0x00001912                _etext = .
 
-.data           0x00800100       0x52 load address 0x000018c4
+.data           0x00800100       0x52 load address 0x00001912
                 0x00800100                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800100        0x6 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(malloc.o)
@@ -993,63 +996,65 @@ END GROUP
                 0x00800152                _edata = .
                 0x00800152                PROVIDE (__data_end, .)
 
-.bss            0x00800152       0xc1
+.bss            0x00800152       0xc3
                 0x00800152                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
- .bss.S1        0x00800152        0x2 main.o
-                0x00800152                S1
- .bss.Serial    0x00800154       0x9d Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(HardwareSerial0.o)
-                0x00800154                Serial
+ .bss.S2        0x00800152        0x2 main.o
+                0x00800152                S2
+ .bss.S1        0x00800154        0x2 main.o
+                0x00800154                S1
+ .bss.Serial    0x00800156       0x9d Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(HardwareSerial0.o)
+                0x00800156                Serial
  .bss.timer2_pin_mask
-                0x008001f1        0x1 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Tone.o)
-                0x008001f1                timer2_pin_mask
+                0x008001f3        0x1 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Tone.o)
+                0x008001f3                timer2_pin_mask
  .bss.timer2_pin_port
-                0x008001f2        0x2 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Tone.o)
-                0x008001f2                timer2_pin_port
+                0x008001f4        0x2 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Tone.o)
+                0x008001f4                timer2_pin_port
  .bss.timer2_toggle_count
-                0x008001f4        0x4 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Tone.o)
-                0x008001f4                timer2_toggle_count
+                0x008001f6        0x4 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Tone.o)
+                0x008001f6                timer2_toggle_count
  .bss.timer1_pin_mask
-                0x008001f8        0x1 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Tone.o)
-                0x008001f8                timer1_pin_mask
+                0x008001fa        0x1 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Tone.o)
+                0x008001fa                timer1_pin_mask
  .bss.timer1_pin_port
-                0x008001f9        0x2 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Tone.o)
-                0x008001f9                timer1_pin_port
+                0x008001fb        0x2 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Tone.o)
+                0x008001fb                timer1_pin_port
  .bss.timer1_toggle_count
-                0x008001fb        0x4 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Tone.o)
-                0x008001fb                timer1_toggle_count
+                0x008001fd        0x4 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Tone.o)
+                0x008001fd                timer1_toggle_count
  .bss.timer0_pin_mask
-                0x008001ff        0x1 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Tone.o)
-                0x008001ff                timer0_pin_mask
+                0x00800201        0x1 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Tone.o)
+                0x00800201                timer0_pin_mask
  .bss.timer0_pin_port
-                0x00800200        0x2 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Tone.o)
-                0x00800200                timer0_pin_port
+                0x00800202        0x2 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Tone.o)
+                0x00800202                timer0_pin_port
  .bss.timer0_toggle_count
-                0x00800202        0x4 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Tone.o)
-                0x00800202                timer0_toggle_count
+                0x00800204        0x4 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Tone.o)
+                0x00800204                timer0_toggle_count
  .bss.timer0_fract
-                0x00800206        0x1 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring.o)
+                0x00800208        0x1 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring.o)
  .bss.timer0_millis
-                0x00800207        0x4 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring.o)
-                0x00800207                timer0_millis
+                0x00800209        0x4 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring.o)
+                0x00800209                timer0_millis
  .bss.timer0_overflow_count
-                0x0080020b        0x4 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring.o)
-                0x0080020b                timer0_overflow_count
+                0x0080020d        0x4 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring.o)
+                0x0080020d                timer0_overflow_count
  *(COMMON)
- COMMON         0x0080020f        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(malloc.o)
-                0x0080020f                __brkval
-                0x00800211                __flp
-                0x00800213                PROVIDE (__bss_end, .)
-                0x000018c4                __data_load_start = LOADADDR (.data)
-                0x00001916                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x00800211        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(malloc.o)
+                0x00800211                __brkval
+                0x00800213                __flp
+                0x00800215                PROVIDE (__bss_end, .)
+                0x00001912                __data_load_start = LOADADDR (.data)
+                0x00001964                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x00800213        0x0
+.noinit         0x00800215        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x00800213                _end = .
-                0x00800213                PROVIDE (__heap_start, .)
+                0x00800215                _end = .
+                0x00800215                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
  *(.eeprom*)
@@ -1126,153 +1131,153 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000      0x420
+.debug_aranges  0x00000000      0x428
  *(.debug_aranges)
  .debug_aranges
                 0x00000000       0x48 Modules/Actuators/Buzzer/Buzz.o
  .debug_aranges
                 0x00000048       0x78 Modules/Sensors/SPS/SPS.o
  .debug_aranges
-                0x000000c0       0x30 main.o
+                0x000000c0       0x38 main.o
  .debug_aranges
-                0x000000f0       0x68 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(HardwareSerial.o)
+                0x000000f8       0x68 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(HardwareSerial.o)
  .debug_aranges
-                0x00000158       0x48 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(HardwareSerial0.o)
+                0x00000160       0x48 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(HardwareSerial0.o)
  .debug_aranges
-                0x000001a0       0x30 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(main.o)
+                0x000001a8       0x30 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(main.o)
  .debug_aranges
-                0x000001d0       0x30 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(new.o)
+                0x000001d8       0x30 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(new.o)
  .debug_aranges
-                0x00000200      0x100 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Print.o)
+                0x00000208      0x100 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Print.o)
  .debug_aranges
-                0x00000300       0x38 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Tone.o)
+                0x00000308       0x38 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Tone.o)
  .debug_aranges
-                0x00000338       0x48 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring.o)
+                0x00000340       0x48 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring.o)
  .debug_aranges
-                0x00000380       0x38 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring_digital.o)
+                0x00000388       0x38 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring_digital.o)
  .debug_aranges
-                0x000003b8       0x28 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring_pulse.o)
+                0x000003c0       0x28 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring_pulse.o)
  .debug_aranges
-                0x000003e0       0x20 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(hooks.o)
+                0x000003e8       0x20 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(hooks.o)
  .debug_aranges
-                0x00000400       0x20 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring_pulse.o)
+                0x00000408       0x20 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring_pulse.o)
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x98b1
+.debug_info     0x00000000     0x998a
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x5f4 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega328p/avr5/crtatmega328p.o
  .debug_info    0x000005f4      0x450 Modules/Actuators/Buzzer/Buzz.o
  .debug_info    0x00000a44      0xab3 Modules/Sensors/SPS/SPS.o
- .debug_info    0x000014f7      0x6cd main.o
- .debug_info    0x00001bc4     0x1f64 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(HardwareSerial.o)
- .debug_info    0x00003b28     0x1b16 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(HardwareSerial0.o)
- .debug_info    0x0000563e      0x237 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(main.o)
- .debug_info    0x00005875      0x15f Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(new.o)
- .debug_info    0x000059d4     0x28ff Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Print.o)
- .debug_info    0x000082d3      0x7ab Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Tone.o)
- .debug_info    0x00008a7e      0x2cb Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring.o)
- .debug_info    0x00008d49      0x5fe Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring_digital.o)
- .debug_info    0x00009347      0x470 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring_pulse.o)
- .debug_info    0x000097b7       0x3e Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(hooks.o)
- .debug_info    0x000097f5       0xbc Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring_pulse.o)
+ .debug_info    0x000014f7      0x7a6 main.o
+ .debug_info    0x00001c9d     0x1f64 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(HardwareSerial.o)
+ .debug_info    0x00003c01     0x1b16 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(HardwareSerial0.o)
+ .debug_info    0x00005717      0x237 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(main.o)
+ .debug_info    0x0000594e      0x15f Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(new.o)
+ .debug_info    0x00005aad     0x28ff Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Print.o)
+ .debug_info    0x000083ac      0x7ab Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Tone.o)
+ .debug_info    0x00008b57      0x2cb Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring.o)
+ .debug_info    0x00008e22      0x5fe Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring_digital.o)
+ .debug_info    0x00009420      0x470 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring_pulse.o)
+ .debug_info    0x00009890       0x3e Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(hooks.o)
+ .debug_info    0x000098ce       0xbc Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring_pulse.o)
 
-.debug_abbrev   0x00000000     0x22be
+.debug_abbrev   0x00000000     0x22f3
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x5a2 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega328p/avr5/crtatmega328p.o
  .debug_abbrev  0x000005a2      0x202 Modules/Actuators/Buzzer/Buzz.o
  .debug_abbrev  0x000007a4      0x2b7 Modules/Sensors/SPS/SPS.o
- .debug_abbrev  0x00000a5b      0x289 main.o
- .debug_abbrev  0x00000ce4      0x4b7 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(HardwareSerial.o)
- .debug_abbrev  0x0000119b      0x3ce Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(HardwareSerial0.o)
- .debug_abbrev  0x00001569      0x12d Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(main.o)
- .debug_abbrev  0x00001696      0x109 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(new.o)
- .debug_abbrev  0x0000179f      0x47a Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Print.o)
- .debug_abbrev  0x00001c19      0x2a5 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Tone.o)
- .debug_abbrev  0x00001ebe      0x146 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring.o)
- .debug_abbrev  0x00002004      0x15b Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring_digital.o)
- .debug_abbrev  0x0000215f      0x121 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring_pulse.o)
- .debug_abbrev  0x00002280       0x2a Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(hooks.o)
- .debug_abbrev  0x000022aa       0x14 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring_pulse.o)
+ .debug_abbrev  0x00000a5b      0x2be main.o
+ .debug_abbrev  0x00000d19      0x4b7 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(HardwareSerial.o)
+ .debug_abbrev  0x000011d0      0x3ce Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(HardwareSerial0.o)
+ .debug_abbrev  0x0000159e      0x12d Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(main.o)
+ .debug_abbrev  0x000016cb      0x109 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(new.o)
+ .debug_abbrev  0x000017d4      0x47a Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Print.o)
+ .debug_abbrev  0x00001c4e      0x2a5 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Tone.o)
+ .debug_abbrev  0x00001ef3      0x146 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring.o)
+ .debug_abbrev  0x00002039      0x15b Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring_digital.o)
+ .debug_abbrev  0x00002194      0x121 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring_pulse.o)
+ .debug_abbrev  0x000022b5       0x2a Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(hooks.o)
+ .debug_abbrev  0x000022df       0x14 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring_pulse.o)
 
-.debug_line     0x00000000     0x26c6
+.debug_line     0x00000000     0x26ff
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x134 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega328p/avr5/crtatmega328p.o
  .debug_line    0x00000134      0x1d2 Modules/Actuators/Buzzer/Buzz.o
  .debug_line    0x00000306      0x427 Modules/Sensors/SPS/SPS.o
- .debug_line    0x0000072d      0x24a main.o
- .debug_line    0x00000977      0x4c4 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(HardwareSerial.o)
- .debug_line    0x00000e3b      0x28c Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(HardwareSerial0.o)
- .debug_line    0x000010c7      0x165 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(main.o)
- .debug_line    0x0000122c      0x145 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(new.o)
- .debug_line    0x00001371      0x685 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Print.o)
- .debug_line    0x000019f6      0x3f8 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Tone.o)
- .debug_line    0x00001dee      0x299 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring.o)
- .debug_line    0x00002087      0x252 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring_digital.o)
- .debug_line    0x000022d9      0x1b6 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring_pulse.o)
- .debug_line    0x0000248f       0x41 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(hooks.o)
- .debug_line    0x000024d0      0x1f6 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring_pulse.o)
+ .debug_line    0x0000072d      0x283 main.o
+ .debug_line    0x000009b0      0x4c4 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(HardwareSerial.o)
+ .debug_line    0x00000e74      0x28c Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(HardwareSerial0.o)
+ .debug_line    0x00001100      0x165 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(main.o)
+ .debug_line    0x00001265      0x145 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(new.o)
+ .debug_line    0x000013aa      0x685 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Print.o)
+ .debug_line    0x00001a2f      0x3f8 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Tone.o)
+ .debug_line    0x00001e27      0x299 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring.o)
+ .debug_line    0x000020c0      0x252 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring_digital.o)
+ .debug_line    0x00002312      0x1b6 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring_pulse.o)
+ .debug_line    0x000024c8       0x41 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(hooks.o)
+ .debug_line    0x00002509      0x1f6 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring_pulse.o)
 
-.debug_frame    0x00000000      0xb18
+.debug_frame    0x00000000      0xb34
  *(.debug_frame)
  .debug_frame   0x00000000       0x80 Modules/Actuators/Buzzer/Buzz.o
  .debug_frame   0x00000080      0x104 Modules/Sensors/SPS/SPS.o
- .debug_frame   0x00000184       0x50 main.o
- .debug_frame   0x000001d4      0x110 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(HardwareSerial.o)
- .debug_frame   0x000002e4       0xe0 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(HardwareSerial0.o)
- .debug_frame   0x000003c4       0x54 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(main.o)
- .debug_frame   0x00000418       0x64 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(new.o)
- .debug_frame   0x0000047c      0x3ac Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Print.o)
- .debug_frame   0x00000828       0xfc Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Tone.o)
- .debug_frame   0x00000924       0xc4 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring.o)
- .debug_frame   0x000009e8       0x7c Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring_digital.o)
- .debug_frame   0x00000a64       0x90 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring_pulse.o)
- .debug_frame   0x00000af4       0x24 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(hooks.o)
+ .debug_frame   0x00000184       0x6c main.o
+ .debug_frame   0x000001f0      0x110 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(HardwareSerial.o)
+ .debug_frame   0x00000300       0xe0 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(HardwareSerial0.o)
+ .debug_frame   0x000003e0       0x54 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(main.o)
+ .debug_frame   0x00000434       0x64 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(new.o)
+ .debug_frame   0x00000498      0x3ac Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Print.o)
+ .debug_frame   0x00000844       0xfc Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Tone.o)
+ .debug_frame   0x00000940       0xc4 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring.o)
+ .debug_frame   0x00000a04       0x7c Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring_digital.o)
+ .debug_frame   0x00000a80       0x90 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring_pulse.o)
+ .debug_frame   0x00000b10       0x24 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(hooks.o)
 
-.debug_str      0x00000000     0x2474
+.debug_str      0x00000000     0x248e
  *(.debug_str)
  .debug_str     0x00000000      0x208 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega328p/avr5/crtatmega328p.o
  .debug_str     0x00000208      0x333 Modules/Actuators/Buzzer/Buzz.o
                                 0x37f (size before relaxing)
  .debug_str     0x0000053b      0x29f Modules/Sensors/SPS/SPS.o
                                 0x5aa (size before relaxing)
- .debug_str     0x000007da       0xd7 main.o
-                                0x5a5 (size before relaxing)
- .debug_str     0x000008b1     0x1342 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(HardwareSerial.o)
+ .debug_str     0x000007da       0xf1 main.o
+                                0x5bf (size before relaxing)
+ .debug_str     0x000008cb     0x1342 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(HardwareSerial.o)
                                0x1625 (size before relaxing)
- .debug_str     0x00001bf3       0x86 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(HardwareSerial0.o)
+ .debug_str     0x00001c0d       0x86 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(HardwareSerial0.o)
                                0x1418 (size before relaxing)
- .debug_str     0x00001c79       0x37 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(main.o)
+ .debug_str     0x00001c93       0x37 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(main.o)
                                 0x2c4 (size before relaxing)
- .debug_str     0x00001cb0       0x5d Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(new.o)
+ .debug_str     0x00001cca       0x5d Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(new.o)
                                 0x1ef (size before relaxing)
- .debug_str     0x00001d0d      0x3a1 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Print.o)
+ .debug_str     0x00001d27      0x3a1 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Print.o)
                                0x1252 (size before relaxing)
- .debug_str     0x000020ae      0x194 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Tone.o)
+ .debug_str     0x000020c8      0x194 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Tone.o)
                                 0x44b (size before relaxing)
- .debug_str     0x00002242      0x141 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring.o)
+ .debug_str     0x0000225c      0x141 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring.o)
                                 0x25a (size before relaxing)
- .debug_str     0x00002383       0x75 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring_digital.o)
+ .debug_str     0x0000239d       0x75 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring_digital.o)
                                 0x2bf (size before relaxing)
- .debug_str     0x000023f8       0x60 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring_pulse.o)
+ .debug_str     0x00002412       0x60 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring_pulse.o)
                                 0x29a (size before relaxing)
- .debug_str     0x00002458       0x1c Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(hooks.o)
+ .debug_str     0x00002472       0x1c Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(hooks.o)
                                 0x14f (size before relaxing)
 
-.debug_loc      0x00000000     0x3ed5
+.debug_loc      0x00000000     0x3f3a
  *(.debug_loc)
  .debug_loc     0x00000000       0xd3 Modules/Actuators/Buzzer/Buzz.o
  .debug_loc     0x000000d3      0x30e Modules/Sensors/SPS/SPS.o
- .debug_loc     0x000003e1       0x6e main.o
- .debug_loc     0x0000044f      0x4dc Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(HardwareSerial.o)
- .debug_loc     0x0000092b      0x1b0 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(HardwareSerial0.o)
- .debug_loc     0x00000adb       0x72 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(new.o)
- .debug_loc     0x00000b4d     0x1c87 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Print.o)
- .debug_loc     0x000027d4      0x9ff Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Tone.o)
- .debug_loc     0x000031d3      0x28d Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring.o)
- .debug_loc     0x00003460      0x5fc Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring_digital.o)
- .debug_loc     0x00003a5c      0x479 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring_pulse.o)
+ .debug_loc     0x000003e1       0xd3 main.o
+ .debug_loc     0x000004b4      0x4dc Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(HardwareSerial.o)
+ .debug_loc     0x00000990      0x1b0 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(HardwareSerial0.o)
+ .debug_loc     0x00000b40       0x72 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(new.o)
+ .debug_loc     0x00000bb2     0x1c87 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Print.o)
+ .debug_loc     0x00002839      0x9ff Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Tone.o)
+ .debug_loc     0x00003238      0x28d Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring.o)
+ .debug_loc     0x000034c5      0x5fc Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring_digital.o)
+ .debug_loc     0x00003ac1      0x479 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring_pulse.o)
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -1292,21 +1297,21 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000      0x390
+.debug_ranges   0x00000000      0x398
  *(.debug_ranges)
  .debug_ranges  0x00000000       0x38 Modules/Actuators/Buzzer/Buzz.o
  .debug_ranges  0x00000038       0x68 Modules/Sensors/SPS/SPS.o
- .debug_ranges  0x000000a0       0x20 main.o
- .debug_ranges  0x000000c0       0x58 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(HardwareSerial.o)
- .debug_ranges  0x00000118       0x38 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(HardwareSerial0.o)
- .debug_ranges  0x00000150       0x20 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(main.o)
- .debug_ranges  0x00000170       0x20 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(new.o)
- .debug_ranges  0x00000190      0x120 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Print.o)
- .debug_ranges  0x000002b0       0x58 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Tone.o)
- .debug_ranges  0x00000308       0x38 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring.o)
- .debug_ranges  0x00000340       0x28 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring_digital.o)
- .debug_ranges  0x00000368       0x18 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring_pulse.o)
- .debug_ranges  0x00000380       0x10 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(hooks.o)
+ .debug_ranges  0x000000a0       0x28 main.o
+ .debug_ranges  0x000000c8       0x58 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(HardwareSerial.o)
+ .debug_ranges  0x00000120       0x38 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(HardwareSerial0.o)
+ .debug_ranges  0x00000158       0x20 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(main.o)
+ .debug_ranges  0x00000178       0x20 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(new.o)
+ .debug_ranges  0x00000198      0x120 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Print.o)
+ .debug_ranges  0x000002b8       0x58 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(Tone.o)
+ .debug_ranges  0x00000310       0x38 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring.o)
+ .debug_ranges  0x00000348       0x28 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring_digital.o)
+ .debug_ranges  0x00000370       0x18 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(wiring_pulse.o)
+ .debug_ranges  0x00000388       0x10 Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a(hooks.o)
 
 .debug_macro
  *(.debug_macro)

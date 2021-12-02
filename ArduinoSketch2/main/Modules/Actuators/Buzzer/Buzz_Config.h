@@ -1,6 +1,8 @@
 /*
  * Buzzer_Config.cpp
  *
+ * Buzzer configuration header
+ *
  * Created: 10/20/2021 11:06:14 PM
  *  Author: Andi
  */ 
@@ -17,7 +19,7 @@
 #define BUZZER_FREQ						1000 
 
 /*
- *	Buzzer default duration
+ *	Buzzer default duration in ms
  */
 #define BUZZER_DEFAULT_DURATION			500
 
@@ -52,4 +54,9 @@
 #define BUZZER_MIN_STAGE_DELAY_MS		100
 
 #pragma endregion
+
+/************************************************************************/
+/*								End of File								*/
+/************************************************************************/
+
 

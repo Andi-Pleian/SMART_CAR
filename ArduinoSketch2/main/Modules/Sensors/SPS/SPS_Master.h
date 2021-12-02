@@ -1,6 +1,8 @@
 /* 
 * SPS_Master.h
 *
+* Smart Parking Sensor Master
+*
 * Created: 11/1/2021 6:08:39 PM
 * Author: Andi
 */
@@ -26,10 +28,11 @@
 /************************************************************************/
 
 #pragma region SPS_Master Implementation
+
 /**
  *	\brief Smart Parking Sensor Master
  *	
- *	This class is used for implementing the SPS_Master. 
+ *	This class is used for implementing the Smart Parking Sensor Master. 
  */
 class SPS_Master
 {
@@ -72,10 +75,17 @@ private:
 
 #pragma region Public functions declarations
 public:
-	SPS_Master(	unsigned short int, unsigned short int, unsigned short int, unsigned short int, unsigned short int, unsigned short int, unsigned short int, unsigned short int, unsigned short int, unsigned short int, unsigned short int, unsigned short int);
+	SPS_Master(	unsigned short int, unsigned short int, 
+				unsigned short int, unsigned short int, 
+				unsigned short int, unsigned short int, 
+				unsigned short int, unsigned short int, 
+				unsigned short int, unsigned short int, 
+				unsigned short int, unsigned short int);
+				
 	~SPS_Master();
 	
 	void Master_Task();
+	
 #pragma endregion
 
 }; //SPS_Master

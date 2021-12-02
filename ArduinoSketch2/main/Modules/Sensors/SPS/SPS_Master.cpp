@@ -20,10 +20,14 @@
 /************************************************************************/
 
 #pragma region Default Constructors
-// default destructor
+
+/*
+ *	Default destructor (Empty)
+ */
 SPS_Master::~SPS_Master()
 {
 } //~SPS_Master
+
 #pragma endregion
 
 /************************************************************************/
@@ -31,6 +35,7 @@ SPS_Master::~SPS_Master()
 /************************************************************************/
 
 #pragma region Public Functions
+
 /**
  *	Custom constructor
  *  used for initializing a new SPS Master
@@ -39,19 +44,12 @@ SPS_Master::~SPS_Master()
  *	@param[in] echoPin_arg EchoPin for each SPS X 4
  *	@param[in] tag_arg BuzzerPin for each SPS X 4
  */
-SPS_Master::SPS_Master(	unsigned short int trigPin_LB_arg,
-						unsigned short int echoPin_LB_arg,
-						unsigned short int buzzerPin_LB_arg,
-						unsigned short int trigPin_RB_arg,
-						unsigned short int echoPin_RB_arg,
-						unsigned short int buzzerPin_RB_arg,
-						unsigned short int trigPin_LF_arg,
-						unsigned short int echoPin_LF_arg,
-						unsigned short int buzzerPin_LF_arg,
-						unsigned short int trigPin_RF_arg,
-						unsigned short int echoPin_RF_arg,
-						unsigned short int buzzerPin_RF_arg)
-{
+SPS_Master::SPS_Master(	unsigned short int trigPin_LB_arg,		unsigned short int echoPin_LB_arg,
+						unsigned short int buzzerPin_LB_arg,	unsigned short int trigPin_RB_arg,
+						unsigned short int echoPin_RB_arg,		unsigned short int buzzerPin_RB_arg,
+						unsigned short int trigPin_LF_arg,		unsigned short int echoPin_LF_arg,
+						unsigned short int buzzerPin_LF_arg,	unsigned short int trigPin_RF_arg,
+						unsigned short int echoPin_RF_arg,		unsigned short int buzzerPin_RF_arg) {
 	
 	this->SPS_LB.setEchoPin(echoPin_LB_arg);
 	this->SPS_LB.setTrigPin(trigPin_LB_arg);
@@ -73,14 +71,21 @@ SPS_Master::SPS_Master(	unsigned short int trigPin_LB_arg,
 	this->SPS_a[1] = SPS_RB;
 	this->SPS_a[2] = SPS_LF;
 	this->SPS_a[3] = SPS_RF;
-} //SPS_Master_Task
+} 
 
+/*
+ *	SPS Master Task
+ *
+ */
 void SPS_Master::Master_Task() {
+	
 	this->SPS_a[0].Task();
 	this->SPS_a[1].Task();
 	this->SPS_a[2].Task();
 	this->SPS_a[3].Task();
-}
+	
+} //SPS_Master_Task
+
 #pragma endregion
 
 /************************************************************************/
