@@ -61,7 +61,7 @@ Buzzer::~Buzzer()
 		this->sigPin = sigPin_arg;
 	}
 
-	void Buzzer::Task(unsigned int buzzDelay_arg)
+	void Buzzer::Buzz(unsigned int buzzDelay_arg)
 	{
 		
 		tone(this->getSigPin(), BUZZER_FREQ, BUZZER_DEFAULT_DURATION);

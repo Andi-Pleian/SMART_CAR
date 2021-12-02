@@ -132,32 +132,32 @@ void SPS::Task() {
 	if ((this->getDistanceToObject() <= SPS_1ST_STAGE_CM) && (this->getDistanceToObject() > SPS_2ST_STAGE_CM)) {
 		
 		this->serialPrintDistance();
-		this->buzzer->Task(BUZZER_1ST_STAGE_DELAY_MS);
+		this->buzzer->Buzz(BUZZER_1ST_STAGE_DELAY_MS);
 		
 	} else if ((this->getDistanceToObject() <= SPS_2ST_STAGE_CM) && (this->getDistanceToObject() > SPS_3ST_STAGE_CM)) {
 		
 		this->serialPrintDistance();
-		this->buzzer->Task(BUZZER_2ST_STAGE_DELAY_MS);
+		this->buzzer->Buzz(BUZZER_2ST_STAGE_DELAY_MS);
 		
 	} else if ((this->getDistanceToObject() <= SPS_3ST_STAGE_CM) && (this->getDistanceToObject() > SPS_4ST_STAGE_CM)) {
 		
 		this->serialPrintDistance();
-		this->buzzer->Task(BUZZER_3ST_STAGE_DELAY_MS);
+		this->buzzer->Buzz(BUZZER_3ST_STAGE_DELAY_MS);
 		
 	} else if ((this->getDistanceToObject() <= SPS_4ST_STAGE_CM) && (this->getDistanceToObject() > SPS_5ST_STAGE_CM)) {
 		
 		this->serialPrintDistance();
-		this->buzzer->Task(BUZZER_4ST_STAGE_DELAY_MS);
+		this->buzzer->Buzz(BUZZER_4ST_STAGE_DELAY_MS);
 		
 	} else if ((this->getDistanceToObject() <= SPS_5ST_STAGE_CM) && (this->getDistanceToObject() > SPS_MIN_DISTANCE_CM)) {
 		
 		this->serialPrintDistance();
-		this->buzzer->Task(BUZZER_5ST_STAGE_DELAY_MS);
+		this->buzzer->Buzz(BUZZER_5ST_STAGE_DELAY_MS);
 		
 	} else if (this->getDistanceToObject() <= SPS_MIN_DISTANCE_CM) {
 		
 		this->serialPrintDistance();
-		this->buzzer->Task(BUZZER_MIN_STAGE_DELAY_MS);
+		this->buzzer->Buzz(BUZZER_MIN_STAGE_DELAY_MS);
 		
 	}
 }

@@ -60,7 +60,7 @@ public:
 	
 	void setSigPin(unsigned short int );
 	
-	void Task(unsigned int);
+	void Buzz(unsigned int);
 	
 #pragma endregion
 

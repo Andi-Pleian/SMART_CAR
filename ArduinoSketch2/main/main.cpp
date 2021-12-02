@@ -27,14 +27,14 @@
 #pragma region Global Declarations and Initializations
 
 SPS*	S1 = new SPS	(3, 2, 8);
-SPS*	S2 = new SPS	(4, 5, 9);
-SPS*	S3 = new SPS	(6, 7, 10);
-SPS*	S4 = new SPS	(11, 12, 13);
+//SPS*	S2 = new SPS	(4, 5, 9);
+//SPS*	S3 = new SPS	(6, 7, 10);
+//SPS*	S4 = new SPS	(11, 12, 13);
 
-SPS_Master s1(	3, 2, 8, 
-				4, 5, 9,
-				6, 7, 10, 
-				11, 12, 13	);
+//SPS_Master s1(	3, 2, 8, 
+//				4, 5, 9,
+//				6, 7, 10, 
+//				11, 12, 13	);
 
 #pragma endregion
 
@@ -51,11 +51,13 @@ void setup() {
 	
 	Serial.begin(9600);
 	Serial.print("SMART_CAR SPS TEST STARTED");
-	
+
 	pinMode		(S1->			getTrigPin(),	OUTPUT);
 	pinMode		(S1->			getEchoPin(),	INPUT);
 	
 	pinMode		(S1->buzzer->	getSigPin(),	OUTPUT);
+	
+	S1->buzzer->Buzz(1000);	
 }
 #pragma endregion
 
