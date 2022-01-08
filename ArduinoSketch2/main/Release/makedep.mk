@@ -4,6 +4,8 @@
 
 Modules\Actuators\Buzzer\Buzz.cpp
 
+Modules\Actuators\MotorControl\Motor_Control.cpp
+
 Modules\Sensors\SPS\SPS.cpp
 
 main.cpp
