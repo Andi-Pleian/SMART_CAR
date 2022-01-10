@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="__i_r_remote_2ir___l_g_8hpp" xml:lang="en-US">
+<title>main/IRRemote/ir_LG.hpp File Reference</title>
+<indexterm><primary>main/IRRemote/ir_LG.hpp</primary></indexterm>
+<programlisting linenumbering="unnumbered">#include &lt;Arduino.h&gt;
+#include &quot;IRremoteInt.h&quot;
+</programlisting>Include dependency graph for ir_LG.hpp:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="_i_r_remote_2ir___l_g_8hpp__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+This graph shows which files directly or indirectly include this file:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="_i_r_remote_2ir___l_g_8hpp__dep__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Macros    </title>
+        <itemizedlist>
+            <listitem><para>#define <link linkend="_group___decoder_1ga195b3b0d3512e9321d7bacc052207852">LG_ADDRESS_BITS</link>   8</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1gadf67f00c097160de2557c969ad6248a8">LG_COMMAND_BITS</link>   16</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga0d92dd1cd56a7f82b6281796042b94b5">LG_CHECKSUM_BITS</link>   4</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1gacaf693c322cb866cec3eafecfbe35b66">LG_BITS</link>   (<link linkend="_group___decoder_1ga195b3b0d3512e9321d7bacc052207852">LG_ADDRESS_BITS</link> + <link linkend="_group___decoder_1gadf67f00c097160de2557c969ad6248a8">LG_COMMAND_BITS</link> + <link linkend="_group___decoder_1ga0d92dd1cd56a7f82b6281796042b94b5">LG_CHECKSUM_BITS</link>)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga677656ae675af73405b65e0228ce6bc9">LG_UNIT</link>   500</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1gae9e8390ffc6850202815112c8493a0f6">LG_HEADER_MARK</link>   (18 * <link linkend="_group___decoder_1ga677656ae675af73405b65e0228ce6bc9">LG_UNIT</link>)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga5eccb52c8ef993ad228c6968953c583c">LG_HEADER_SPACE</link>   4200</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga5867052dc3896b7ec94b9c24a4c89cc8">LG2_HEADER_MARK</link>   (6 * <link linkend="_group___decoder_1ga677656ae675af73405b65e0228ce6bc9">LG_UNIT</link>)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga6d0d031a5d287ef60e683a09b7bf05bc">LG2_HEADER_SPACE</link>   (19 * <link linkend="_group___decoder_1ga677656ae675af73405b65e0228ce6bc9">LG_UNIT</link>)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1gacb12362c8e9ab1034036c4efc20d57f5">LG_BIT_MARK</link>   <link linkend="_group___decoder_1ga677656ae675af73405b65e0228ce6bc9">LG_UNIT</link></para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga5b41314206902e7eec1c396b3999eab9">LG_ONE_SPACE</link>   1580</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga8f7c839827bd908025687a175453f50a">LG_ZERO_SPACE</link>   550</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga98bc79faab54e6927516f308a0a07cb5">LG_REPEAT_HEADER_SPACE</link>   (4 * <link linkend="_group___decoder_1ga677656ae675af73405b65e0228ce6bc9">LG_UNIT</link>)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1gaba4191fd7407de304e799ce93d14ac93">LG_AVERAGE_DURATION</link>   58000</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga4d1e6191572c1154992f1d566556f6a2">LG_REPEAT_DURATION</link>   (<link linkend="_group___decoder_1gae9e8390ffc6850202815112c8493a0f6">LG_HEADER_MARK</link>  + <link linkend="_group___decoder_1ga98bc79faab54e6927516f308a0a07cb5">LG_REPEAT_HEADER_SPACE</link> + <link linkend="_group___decoder_1gacb12362c8e9ab1034036c4efc20d57f5">LG_BIT_MARK</link>)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1gaa478740acb2cb7dd0737a791b90b33fc">LG_REPEAT_PERIOD</link>   110000</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga95abf0b48968f9aa3ce0582282cb53c8">LG_REPEAT_SPACE</link>   (<link linkend="_group___decoder_1gaa478740acb2cb7dd0737a791b90b33fc">LG_REPEAT_PERIOD</link> - <link linkend="_group___decoder_1gaba4191fd7407de304e799ce93d14ac93">LG_AVERAGE_DURATION</link>)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

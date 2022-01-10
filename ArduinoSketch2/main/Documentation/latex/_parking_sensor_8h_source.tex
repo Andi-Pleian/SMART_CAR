@@ -1,0 +1,90 @@
+\hypertarget{_parking_sensor_8h_source}{}\doxysection{Parking\+Sensor.\+h}
+\label{_parking_sensor_8h_source}\index{ArduinoSketch2/main/Modules/Sensors/ParkingSensor/ParkingSensor.h@{ArduinoSketch2/main/Modules/Sensors/ParkingSensor/ParkingSensor.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00001}00001 \textcolor{comment}{/* }}
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00002}00002 \textcolor{comment}{* ParkingSensor.h}}
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00003}00003 \textcolor{comment}{*}}
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00004}00004 \textcolor{comment}{* Parking Sensor}}
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00005}00005 \textcolor{comment}{*}}
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00006}00006 \textcolor{comment}{* Created: 10/7/2021 12:17:58 AM}}
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00007}00007 \textcolor{comment}{* Author: Andi}}
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00008}00008 \textcolor{comment}{*/}}
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00009}00009 }
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00010}00010 \textcolor{preprocessor}{\#ifndef \_\_PS\_H\_\_}}
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00011}00011 \textcolor{preprocessor}{\#define \_\_PS\_H\_\_}}
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00012}00012 }
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00013}00013 }
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00014}00014 \textcolor{comment}{/*                              Includes                                */}}
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00015}00015 }
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00017}00017 \textcolor{preprocessor}{\#pragma region Includes}}
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00018}00018 }
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00019}00019 \textcolor{preprocessor}{\#include "{}ParkingSensor\_Config.h"{}};}
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00020}00020 \textcolor{preprocessor}{\#include <Buzz.h>}}
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00021}00021 }
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00022}00022 \textcolor{preprocessor}{\#pragma endregion}}
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00023}00023 }
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00024}00024 }
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00025}00025 \textcolor{comment}{/*                         ParkingSensor Class Implementation                       */}}
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00026}00026 }
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00028}00028 \textcolor{preprocessor}{\#pragma region ParkingSensor Implementation}}
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00029}00029 }
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00039}\mbox{\hyperlink{class_parking_sensor}{00039}} \textcolor{keyword}{class }\mbox{\hyperlink{class_parking_sensor}{ParkingSensor}}}
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00040}00040 \{}
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00041}00041     }
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00042}00042 }
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00043}00043 \textcolor{comment}{/*                         Public Attributes                            */}}
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00044}00044 }
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00046}00046 \textcolor{preprocessor}{\#pragma region Public attributes}}
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00047}00047 \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00049}\mbox{\hyperlink{class_parking_sensor_abf68f673f81bc141d9fe4de5e7183a61}{00049}}     Buzzer* \mbox{\hyperlink{class_parking_sensor_abf68f673f81bc141d9fe4de5e7183a61}{buzzer}};}
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00050}00050 }
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00051}00051 \textcolor{preprocessor}{\#pragma endregion}}
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00052}00052 }
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00053}00053 }
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00054}00054 \textcolor{comment}{/*                         Private Attributes                           */}}
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00055}00055 }
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00057}00057 \textcolor{preprocessor}{\#pragma region Private attributes}}
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00058}00058 \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00060}\mbox{\hyperlink{class_parking_sensor_adb1d39c112be08cd8e8acf2a4c6a9e76}{00060}}     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} \textcolor{keywordtype}{int}  \mbox{\hyperlink{class_parking_sensor_adb1d39c112be08cd8e8acf2a4c6a9e76}{trigPin}};}
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00061}00061     }
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00063}\mbox{\hyperlink{class_parking_sensor_aa1c2ebc54dbbe12b19a3ea3dd5e25b47}{00063}}     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} \textcolor{keywordtype}{int}  \mbox{\hyperlink{class_parking_sensor_aa1c2ebc54dbbe12b19a3ea3dd5e25b47}{echoPin}};}
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00064}00064     }
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00065}00065 \textcolor{preprocessor}{\#pragma endregion}}
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00066}00066 }
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00067}00067 }
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00068}00068 \textcolor{comment}{/*                       Public function declarations                   */}}
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00069}00069 }
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00071}00071 \textcolor{preprocessor}{\#pragma region Public functions declarations}}
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00072}00072 \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00073}00073     \mbox{\hyperlink{class_parking_sensor_a5f59f713e82968fdb71c9956a3c37f8e}{ParkingSensor}}();}
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00074}00074     \mbox{\hyperlink{class_parking_sensor_a77486ddcba156d5a8768047574963ec4}{\string~ParkingSensor}}();}
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00075}00075     \mbox{\hyperlink{class_parking_sensor_a5f59f713e82968fdb71c9956a3c37f8e}{ParkingSensor}}(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} \textcolor{keywordtype}{int}, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} \textcolor{keywordtype}{int}, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} \textcolor{keywordtype}{int});}
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00076}00076     }
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00077}00077     \mbox{\hyperlink{class_parking_sensor_a5f59f713e82968fdb71c9956a3c37f8e}{ParkingSensor}}( \textcolor{keyword}{const} \mbox{\hyperlink{class_parking_sensor}{ParkingSensor}} \&s );}
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00078}00078     }
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00079}00079     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_parking_sensor_afe9352318215cf3ca634bbd9629eb65b}{getDistanceToObject}}();}
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00080}00080     \textcolor{keywordtype}{long} \mbox{\hyperlink{class_parking_sensor_a54f438a973ae30d67dbf1786f9794982}{getWaveComebackTime}}();}
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00081}00081     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_parking_sensor_a4c630df384e9be608ce86ca5aabef07a}{serialPrintDistance}}();}
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00082}00082     }
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00083}00083     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} \textcolor{keywordtype}{int} getTrigPin();}
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00084}00084     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} \textcolor{keywordtype}{int} getEchoPin();}
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00085}00085     }
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00086}00086     \textcolor{keywordtype}{void} setTrigPin(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} \textcolor{keywordtype}{int} );}
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00087}00087     \textcolor{keywordtype}{void} setEchoPin(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} \textcolor{keywordtype}{int} );}
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00088}00088     }
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00089}00089     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_parking_sensor_a6fb5861e5a5e2918db5810fb396c97f6}{Task}}();}
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00090}00090     }
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00091}00091 \textcolor{preprocessor}{\#pragma endregion}}
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00092}00092 }
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00093}00093 \}; \textcolor{comment}{//ParkingSensor}}
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00094}00094 }
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00095}00095 \textcolor{preprocessor}{\#pragma endregion}}
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00096}00096 }
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00097}00097 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//\_\_PS\_H\_\_}}
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00098}00098 }
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00099}00099 }
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00100}00100 \textcolor{comment}{/*                              End of File                             */}}
+\DoxyCodeLine{\Hypertarget{_parking_sensor_8h_source_l00101}00101 }
+
+\end{DoxyCode}

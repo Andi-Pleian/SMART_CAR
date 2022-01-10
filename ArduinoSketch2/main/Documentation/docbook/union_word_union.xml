@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_union_word_union" xml:lang="en-US">
+<title>WordUnion Union Reference</title>
+<indexterm><primary>WordUnion</primary></indexterm>
+<para>
+<computeroutput>#include &lt;LongUnion.h&gt;</computeroutput>
+</para>
+<simplesect>
+    <title>Public Attributes    </title>
+        <itemizedlist>
+            <listitem><para>struct {</para>
+        <itemizedlist>
+            <listitem><para>   uint8_t <link linkend="_union_word_union_1ade13e75ba3678d0b5b0590906156d9ec">LowByte</link></para>
+</listitem>
+            <listitem><para>   uint8_t <link linkend="_union_word_union_1ae019b50052979f252f4a9f209ed4e618">HighByte</link></para>
+</listitem>
+        </itemizedlist>
+</listitem>
+            <listitem><para>} <link linkend="_union_word_union_1afaa3ed9abb5e76645cc7c1701f6d1af4">UByte</link></para>
+</listitem>
+            <listitem><para>struct {</para>
+        <itemizedlist>
+            <listitem><para>   int8_t <link linkend="_union_word_union_1a7d81b9160cc06e310f7786666b5f680e">LowByte</link></para>
+</listitem>
+            <listitem><para>   int8_t <link linkend="_union_word_union_1a6e8c56fa718517ef9844b272e86e7f4e">HighByte</link></para>
+</listitem>
+        </itemizedlist>
+</listitem>
+            <listitem><para>} <link linkend="_union_word_union_1a0ea747b29213b5e0129cb99ae74be45e">Byte</link></para>
+</listitem>
+            <listitem><para>uint8_t <link linkend="_union_word_union_1a6405b8a8817b44cde3d0f6101d9a74cc">UBytes</link> [2]</para>
+</listitem>
+            <listitem><para>int8_t <link linkend="_union_word_union_1a0e1088e17c9fefa37f9ac54d2151bed3">Bytes</link> [2]</para>
+</listitem>
+            <listitem><para>uint16_t <link linkend="_union_word_union_1ac72da7d551c05ed98fe75c8d239d9e23">UWord</link></para>
+</listitem>
+            <listitem><para>int16_t <link linkend="_union_word_union_1a6a1554f58dff1ec24abca7c3b50f287f">Word</link></para>
+</listitem>
+            <listitem><para>uint8_t * <link linkend="_union_word_union_1a5f3ef81cca525033eda0c46217a09252">BytePointer</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>Union to specify parts / manifestations of a 16 bit Word without casts and shifts. It also supports the compiler generating small code. </para>
+<para>
+Definition at line <link linkend="__long_union_8h_source_1l00034">34</link> of file <link linkend="__long_union_8h_source">LongUnion.h</link>.</para>
+</section>
+<section>
+<title>Member Data Documentation</title>
+<anchor xml:id="_union_word_union_1a0ea747b29213b5e0129cb99ae74be45e"/><section>
+    <title></title>
+<indexterm><primary>Byte</primary><secondary>WordUnion</secondary></indexterm>
+<indexterm><primary>WordUnion</primary><secondary>Byte</secondary></indexterm>
+<para><computeroutput>struct  { ... }  WordUnion::Byte</computeroutput></para></section>
+<anchor xml:id="_union_word_union_1a5f3ef81cca525033eda0c46217a09252"/><section>
+    <title>BytePointer</title>
+<indexterm><primary>BytePointer</primary><secondary>WordUnion</secondary></indexterm>
+<indexterm><primary>WordUnion</primary><secondary>BytePointer</secondary></indexterm>
+<para><computeroutput>uint8_t* WordUnion::BytePointer</computeroutput></para><para>
+Definition at line <link linkend="__long_union_8h_source_1l00047">47</link> of file <link linkend="__long_union_8h_source">LongUnion.h</link>.</para>
+</section>
+<anchor xml:id="_union_word_union_1a0e1088e17c9fefa37f9ac54d2151bed3"/><section>
+    <title>Bytes</title>
+<indexterm><primary>Bytes</primary><secondary>WordUnion</secondary></indexterm>
+<indexterm><primary>WordUnion</primary><secondary>Bytes</secondary></indexterm>
+<para><computeroutput>int8_t WordUnion::Bytes[2]</computeroutput></para><para>
+Definition at line <link linkend="__long_union_8h_source_1l00044">44</link> of file <link linkend="__long_union_8h_source">LongUnion.h</link>.</para>
+</section>
+<anchor xml:id="_union_word_union_1ae019b50052979f252f4a9f209ed4e618"/><section>
+    <title>HighByte<computeroutput>[1/2]</computeroutput></title>
+<indexterm><primary>HighByte</primary><secondary>WordUnion</secondary></indexterm>
+<indexterm><primary>WordUnion</primary><secondary>HighByte</secondary></indexterm>
+<para><computeroutput>uint8_t WordUnion::HighByte</computeroutput></para><para>
+Definition at line <link linkend="__long_union_8h_source_1l00037">37</link> of file <link linkend="__long_union_8h_source">LongUnion.h</link>.</para>
+</section>
+<anchor xml:id="_union_word_union_1a6e8c56fa718517ef9844b272e86e7f4e"/><section>
+    <title>HighByte<computeroutput>[2/2]</computeroutput></title>
+<indexterm><primary>HighByte</primary><secondary>WordUnion</secondary></indexterm>
+<indexterm><primary>WordUnion</primary><secondary>HighByte</secondary></indexterm>
+<para><computeroutput>int8_t WordUnion::HighByte</computeroutput></para><para>
+Definition at line <link linkend="__long_union_8h_source_1l00041">41</link> of file <link linkend="__long_union_8h_source">LongUnion.h</link>.</para>
+</section>
+<anchor xml:id="_union_word_union_1ade13e75ba3678d0b5b0590906156d9ec"/><section>
+    <title>LowByte<computeroutput>[1/2]</computeroutput></title>
+<indexterm><primary>LowByte</primary><secondary>WordUnion</secondary></indexterm>
+<indexterm><primary>WordUnion</primary><secondary>LowByte</secondary></indexterm>
+<para><computeroutput>uint8_t WordUnion::LowByte</computeroutput></para><para>
+Definition at line <link linkend="__long_union_8h_source_1l00036">36</link> of file <link linkend="__long_union_8h_source">LongUnion.h</link>.</para>
+</section>
+<anchor xml:id="_union_word_union_1a7d81b9160cc06e310f7786666b5f680e"/><section>
+    <title>LowByte<computeroutput>[2/2]</computeroutput></title>
+<indexterm><primary>LowByte</primary><secondary>WordUnion</secondary></indexterm>
+<indexterm><primary>WordUnion</primary><secondary>LowByte</secondary></indexterm>
+<para><computeroutput>int8_t WordUnion::LowByte</computeroutput></para><para>
+Definition at line <link linkend="__long_union_8h_source_1l00040">40</link> of file <link linkend="__long_union_8h_source">LongUnion.h</link>.</para>
+</section>
+<anchor xml:id="_union_word_union_1afaa3ed9abb5e76645cc7c1701f6d1af4"/><section>
+    <title></title>
+<indexterm><primary>UByte</primary><secondary>WordUnion</secondary></indexterm>
+<indexterm><primary>WordUnion</primary><secondary>UByte</secondary></indexterm>
+<para><computeroutput>struct  { ... }  WordUnion::UByte</computeroutput></para></section>
+<anchor xml:id="_union_word_union_1a6405b8a8817b44cde3d0f6101d9a74cc"/><section>
+    <title>UBytes</title>
+<indexterm><primary>UBytes</primary><secondary>WordUnion</secondary></indexterm>
+<indexterm><primary>WordUnion</primary><secondary>UBytes</secondary></indexterm>
+<para><computeroutput>uint8_t WordUnion::UBytes[2]</computeroutput></para><para>
+Definition at line <link linkend="__long_union_8h_source_1l00043">43</link> of file <link linkend="__long_union_8h_source">LongUnion.h</link>.</para>
+</section>
+<anchor xml:id="_union_word_union_1ac72da7d551c05ed98fe75c8d239d9e23"/><section>
+    <title>UWord</title>
+<indexterm><primary>UWord</primary><secondary>WordUnion</secondary></indexterm>
+<indexterm><primary>WordUnion</primary><secondary>UWord</secondary></indexterm>
+<para><computeroutput>uint16_t WordUnion::UWord</computeroutput></para><para>
+Definition at line <link linkend="__long_union_8h_source_1l00045">45</link> of file <link linkend="__long_union_8h_source">LongUnion.h</link>.</para>
+</section>
+<anchor xml:id="_union_word_union_1a6a1554f58dff1ec24abca7c3b50f287f"/><section>
+    <title>Word</title>
+<indexterm><primary>Word</primary><secondary>WordUnion</secondary></indexterm>
+<indexterm><primary>WordUnion</primary><secondary>Word</secondary></indexterm>
+<para><computeroutput>int16_t WordUnion::Word</computeroutput></para><para>
+Definition at line <link linkend="__long_union_8h_source_1l00046">46</link> of file <link linkend="__long_union_8h_source">LongUnion.h</link>.</para>
+</section>
+<para>
+The documentation for this union was generated from the following file:</para>
+main/IRRemote_Library/<link linkend="__long_union_8h">LongUnion.h</link></section>
+</section>

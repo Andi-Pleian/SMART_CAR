@@ -1,0 +1,45 @@
+\hypertarget{ir___l_g_8hpp}{}\doxysection{main/\+IRRemote\+\_\+\+Library/ir\+\_\+\+LG.hpp File Reference}
+\label{ir___l_g_8hpp}\index{main/IRRemote\_Library/ir\_LG.hpp@{main/IRRemote\_Library/ir\_LG.hpp}}
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}IRremote\+Int.\+h\char`\"{}}\newline
+Include dependency graph for ir\+\_\+\+LG.\+hpp\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group___decoder_ga195b3b0d3512e9321d7bacc052207852}{LG\+\_\+\+ADDRESS\+\_\+\+BITS}}~8
+\item 
+\#define \mbox{\hyperlink{group___decoder_gadf67f00c097160de2557c969ad6248a8}{LG\+\_\+\+COMMAND\+\_\+\+BITS}}~16
+\item 
+\#define \mbox{\hyperlink{group___decoder_ga0d92dd1cd56a7f82b6281796042b94b5}{LG\+\_\+\+CHECKSUM\+\_\+\+BITS}}~4
+\item 
+\#define \mbox{\hyperlink{group___decoder_gacaf693c322cb866cec3eafecfbe35b66}{LG\+\_\+\+BITS}}~(\mbox{\hyperlink{group___decoder_ga195b3b0d3512e9321d7bacc052207852}{LG\+\_\+\+ADDRESS\+\_\+\+BITS}} + \mbox{\hyperlink{group___decoder_gadf67f00c097160de2557c969ad6248a8}{LG\+\_\+\+COMMAND\+\_\+\+BITS}} + \mbox{\hyperlink{group___decoder_ga0d92dd1cd56a7f82b6281796042b94b5}{LG\+\_\+\+CHECKSUM\+\_\+\+BITS}})
+\item 
+\#define \mbox{\hyperlink{group___decoder_ga677656ae675af73405b65e0228ce6bc9}{LG\+\_\+\+UNIT}}~500
+\item 
+\#define \mbox{\hyperlink{group___decoder_gae9e8390ffc6850202815112c8493a0f6}{LG\+\_\+\+HEADER\+\_\+\+MARK}}~(18 $\ast$ \mbox{\hyperlink{group___decoder_ga677656ae675af73405b65e0228ce6bc9}{LG\+\_\+\+UNIT}})
+\item 
+\#define \mbox{\hyperlink{group___decoder_ga5eccb52c8ef993ad228c6968953c583c}{LG\+\_\+\+HEADER\+\_\+\+SPACE}}~4200
+\item 
+\#define \mbox{\hyperlink{group___decoder_ga5867052dc3896b7ec94b9c24a4c89cc8}{LG2\+\_\+\+HEADER\+\_\+\+MARK}}~(6 $\ast$ \mbox{\hyperlink{group___decoder_ga677656ae675af73405b65e0228ce6bc9}{LG\+\_\+\+UNIT}})
+\item 
+\#define \mbox{\hyperlink{group___decoder_ga6d0d031a5d287ef60e683a09b7bf05bc}{LG2\+\_\+\+HEADER\+\_\+\+SPACE}}~(19 $\ast$ \mbox{\hyperlink{group___decoder_ga677656ae675af73405b65e0228ce6bc9}{LG\+\_\+\+UNIT}})
+\item 
+\#define \mbox{\hyperlink{group___decoder_gacb12362c8e9ab1034036c4efc20d57f5}{LG\+\_\+\+BIT\+\_\+\+MARK}}~\mbox{\hyperlink{group___decoder_ga677656ae675af73405b65e0228ce6bc9}{LG\+\_\+\+UNIT}}
+\item 
+\#define \mbox{\hyperlink{group___decoder_ga5b41314206902e7eec1c396b3999eab9}{LG\+\_\+\+ONE\+\_\+\+SPACE}}~1580
+\item 
+\#define \mbox{\hyperlink{group___decoder_ga8f7c839827bd908025687a175453f50a}{LG\+\_\+\+ZERO\+\_\+\+SPACE}}~550
+\item 
+\#define \mbox{\hyperlink{group___decoder_ga98bc79faab54e6927516f308a0a07cb5}{LG\+\_\+\+REPEAT\+\_\+\+HEADER\+\_\+\+SPACE}}~(4 $\ast$ \mbox{\hyperlink{group___decoder_ga677656ae675af73405b65e0228ce6bc9}{LG\+\_\+\+UNIT}})
+\item 
+\#define \mbox{\hyperlink{group___decoder_gaba4191fd7407de304e799ce93d14ac93}{LG\+\_\+\+AVERAGE\+\_\+\+DURATION}}~58000
+\item 
+\#define \mbox{\hyperlink{group___decoder_ga4d1e6191572c1154992f1d566556f6a2}{LG\+\_\+\+REPEAT\+\_\+\+DURATION}}~(\mbox{\hyperlink{group___decoder_gae9e8390ffc6850202815112c8493a0f6}{LG\+\_\+\+HEADER\+\_\+\+MARK}}  + \mbox{\hyperlink{group___decoder_ga98bc79faab54e6927516f308a0a07cb5}{LG\+\_\+\+REPEAT\+\_\+\+HEADER\+\_\+\+SPACE}} + \mbox{\hyperlink{group___decoder_gacb12362c8e9ab1034036c4efc20d57f5}{LG\+\_\+\+BIT\+\_\+\+MARK}})
+\item 
+\#define \mbox{\hyperlink{group___decoder_gaa478740acb2cb7dd0737a791b90b33fc}{LG\+\_\+\+REPEAT\+\_\+\+PERIOD}}~110000
+\item 
+\#define \mbox{\hyperlink{group___decoder_ga95abf0b48968f9aa3ce0582282cb53c8}{LG\+\_\+\+REPEAT\+\_\+\+SPACE}}~(\mbox{\hyperlink{group___decoder_gaa478740acb2cb7dd0737a791b90b33fc}{LG\+\_\+\+REPEAT\+\_\+\+PERIOD}} -\/ \mbox{\hyperlink{group___decoder_gaba4191fd7407de304e799ce93d14ac93}{LG\+\_\+\+AVERAGE\+\_\+\+DURATION}})
+\end{DoxyCompactItemize}

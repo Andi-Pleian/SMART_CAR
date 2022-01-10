@@ -1,0 +1,96 @@
+\hypertarget{_parking_sensor_8h_source}{}\doxysection{Parking\+Sensor.\+h}
+\label{_parking_sensor_8h_source}\index{Modules/Sensors/ParkingSensor/ParkingSensor.h@{Modules/Sensors/ParkingSensor/ParkingSensor.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/* }}
+\DoxyCodeLine{2 \textcolor{comment}{* ParkingSensor.h}}
+\DoxyCodeLine{3 \textcolor{comment}{*}}
+\DoxyCodeLine{4 \textcolor{comment}{* Parking Sensor}}
+\DoxyCodeLine{5 \textcolor{comment}{*}}
+\DoxyCodeLine{6 \textcolor{comment}{* Created: 10/7/2021 12:17:58 AM}}
+\DoxyCodeLine{7 \textcolor{comment}{* Author: Andi}}
+\DoxyCodeLine{8 \textcolor{comment}{*/}}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#ifndef \_\_PS\_H\_\_}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#define \_\_PS\_H\_\_}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{comment}{/************************************************************************/}}
+\DoxyCodeLine{14 \textcolor{comment}{/*                              Includes                                */}}
+\DoxyCodeLine{15 \textcolor{comment}{/************************************************************************/}}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#pragma region Includes}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include "{}ParkingSensor\_Config.h"{}};}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#include <Buzzer.h>}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#pragma endregion}}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24 \textcolor{comment}{/************************************************************************/}}
+\DoxyCodeLine{25 \textcolor{comment}{/*                         ParkingSensor Class Implementation                       */}}
+\DoxyCodeLine{26 \textcolor{comment}{/************************************************************************/}}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#pragma region ParkingSensor Implementation}}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{39 \textcolor{keyword}{class }\mbox{\hyperlink{class_parking_sensor}{ParkingSensor}}}
+\DoxyCodeLine{40 \{}
+\DoxyCodeLine{41     }
+\DoxyCodeLine{42 \textcolor{comment}{/************************************************************************/}}
+\DoxyCodeLine{43 \textcolor{comment}{/*                         Public Attributes                            */}}
+\DoxyCodeLine{44 \textcolor{comment}{/************************************************************************/}}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46 \textcolor{preprocessor}{\#pragma region Public attributes}}
+\DoxyCodeLine{47 \textcolor{keyword}{public}:}
+\DoxyCodeLine{49     Buzzer* \mbox{\hyperlink{class_parking_sensor_abf68f673f81bc141d9fe4de5e7183a61}{buzzer}};}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51 \textcolor{preprocessor}{\#pragma endregion}}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53 \textcolor{comment}{/************************************************************************/}}
+\DoxyCodeLine{54 \textcolor{comment}{/*                         Private Attributes                           */}}
+\DoxyCodeLine{55 \textcolor{comment}{/************************************************************************/}}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57 \textcolor{preprocessor}{\#pragma region Private attributes}}
+\DoxyCodeLine{58 \textcolor{keyword}{private}:}
+\DoxyCodeLine{60     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} \textcolor{keywordtype}{int}  trigPin;}
+\DoxyCodeLine{61     }
+\DoxyCodeLine{63     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} \textcolor{keywordtype}{int}  echoPin;}
+\DoxyCodeLine{64     }
+\DoxyCodeLine{65 \textcolor{preprocessor}{\#pragma endregion}}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{67 \textcolor{comment}{/************************************************************************/}}
+\DoxyCodeLine{68 \textcolor{comment}{/*                       Public function declarations                   */}}
+\DoxyCodeLine{69 \textcolor{comment}{/************************************************************************/}}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71 \textcolor{preprocessor}{\#pragma region Public functions declarations}}
+\DoxyCodeLine{72 \textcolor{keyword}{public}:}
+\DoxyCodeLine{73     \mbox{\hyperlink{class_parking_sensor_a5f59f713e82968fdb71c9956a3c37f8e}{ParkingSensor}}();}
+\DoxyCodeLine{74     \mbox{\hyperlink{class_parking_sensor_a77486ddcba156d5a8768047574963ec4}{\string~ParkingSensor}}();}
+\DoxyCodeLine{75     \mbox{\hyperlink{class_parking_sensor_a5f59f713e82968fdb71c9956a3c37f8e}{ParkingSensor}}(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} \textcolor{keywordtype}{int}, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} \textcolor{keywordtype}{int}, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} \textcolor{keywordtype}{int});}
+\DoxyCodeLine{76     }
+\DoxyCodeLine{77     \mbox{\hyperlink{class_parking_sensor_a5f59f713e82968fdb71c9956a3c37f8e}{ParkingSensor}}( \textcolor{keyword}{const} \mbox{\hyperlink{class_parking_sensor}{ParkingSensor}} \&s );}
+\DoxyCodeLine{78     }
+\DoxyCodeLine{79     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_parking_sensor_afe9352318215cf3ca634bbd9629eb65b}{getDistanceToObject}}();}
+\DoxyCodeLine{80     \textcolor{keywordtype}{long} \mbox{\hyperlink{class_parking_sensor_a54f438a973ae30d67dbf1786f9794982}{getWaveComebackTime}}();}
+\DoxyCodeLine{81     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_parking_sensor_a4c630df384e9be608ce86ca5aabef07a}{serialPrintDistance}}();}
+\DoxyCodeLine{82     }
+\DoxyCodeLine{83     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} \textcolor{keywordtype}{int} getTrigPin();}
+\DoxyCodeLine{84     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} \textcolor{keywordtype}{int} getEchoPin();}
+\DoxyCodeLine{85     }
+\DoxyCodeLine{86     \textcolor{keywordtype}{void} setTrigPin(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} \textcolor{keywordtype}{int} );}
+\DoxyCodeLine{87     \textcolor{keywordtype}{void} setEchoPin(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} \textcolor{keywordtype}{int} );}
+\DoxyCodeLine{88     }
+\DoxyCodeLine{89     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_parking_sensor_a6fb5861e5a5e2918db5810fb396c97f6}{Task}}();}
+\DoxyCodeLine{90     }
+\DoxyCodeLine{91 \textcolor{preprocessor}{\#pragma endregion}}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{93 \}; \textcolor{comment}{//ParkingSensor}}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{95 \textcolor{preprocessor}{\#pragma endregion}}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{97 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//\_\_PS\_H\_\_}}
+\DoxyCodeLine{98 }
+\DoxyCodeLine{99 \textcolor{comment}{/************************************************************************/}}
+\DoxyCodeLine{100 \textcolor{comment}{/*                              End of File                             */}}
+\DoxyCodeLine{101 \textcolor{comment}{/************************************************************************/}}
+\DoxyCodeLine{102 }
+
+\end{DoxyCode}

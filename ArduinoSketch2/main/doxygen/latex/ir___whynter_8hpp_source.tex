@@ -1,0 +1,84 @@
+\hypertarget{ir___whynter_8hpp_source}{}\doxysection{ir\+\_\+\+Whynter.\+hpp}
+\label{ir___whynter_8hpp_source}\index{IRRemote/ir\_Whynter.hpp@{IRRemote/ir\_Whynter.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef IR\_WHYNTER\_HPP}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define IR\_WHYNTER\_HPP}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <Arduino.h>}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{6 \textcolor{comment}{//\#define DEBUG // Activate this for lots of lovely debug output from this decoder.}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_i_rremote_int_8h}{IRremoteInt.h}}"{}} \textcolor{comment}{// evaluates the DEBUG for IR\_DEBUG\_PRINT}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{12 \textcolor{comment}{//==============================================================================}}
+\DoxyCodeLine{13 \textcolor{comment}{//               W   W  H   H  Y   Y N   N TTTTT EEEEE  RRRRR}}
+\DoxyCodeLine{14 \textcolor{comment}{//               W   W  H   H   Y Y  NN  N   T   E      R   R}}
+\DoxyCodeLine{15 \textcolor{comment}{//               W W W  HHHHH    Y   N N N   T   EEE    RRRR}}
+\DoxyCodeLine{16 \textcolor{comment}{//               W W W  H   H    Y   N  NN   T   E      R  R}}
+\DoxyCodeLine{17 \textcolor{comment}{//                WWW   H   H    Y   N   N   T   EEEEE  R   R}}
+\DoxyCodeLine{18 \textcolor{comment}{//==============================================================================}}
+\DoxyCodeLine{19 \textcolor{comment}{// Whynter A/C ARC-\/110WD added by Francesco Meschia}}
+\DoxyCodeLine{20 \textcolor{comment}{// see https://docs.google.com/spreadsheets/d/1dsr4Jh-\/nzC6xvSKGpLlPBF0NRwvlpyw-\/ozg8eZU813w/edit\#gid=0}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#define WHYNTER\_BITS            32}}
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#define WHYNTER\_HEADER\_MARK   2850}}
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#define WHYNTER\_HEADER\_SPACE  2850}}
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#define WHYNTER\_BIT\_MARK       750}}
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#define WHYNTER\_ONE\_SPACE     2150}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#define WHYNTER\_ZERO\_SPACE     750}}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 \textcolor{comment}{//+=============================================================================}}
+\DoxyCodeLine{30 \textcolor{keywordtype}{void} IRsend::sendWhynter(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} data, \textcolor{keywordtype}{int} nbits) \{}
+\DoxyCodeLine{31     \textcolor{comment}{// Set IR carrier frequency}}
+\DoxyCodeLine{32     \mbox{\hyperlink{group___sending_ga42c04af63d252b320c017ffa2bfc90e5}{enableIROut}}(38);}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34     \textcolor{comment}{// Start}}
+\DoxyCodeLine{35     \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(WHYNTER\_BIT\_MARK);}
+\DoxyCodeLine{36     \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(WHYNTER\_ZERO\_SPACE);}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38     \textcolor{comment}{// Header}}
+\DoxyCodeLine{39     \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(WHYNTER\_HEADER\_MARK);}
+\DoxyCodeLine{40     \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(WHYNTER\_HEADER\_SPACE);}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42     \textcolor{comment}{// Data + stop bit}}
+\DoxyCodeLine{43     \mbox{\hyperlink{group___sending_ga6904a411999a4c9f7306dba49851eb7b}{sendPulseDistanceWidthData}}(WHYNTER\_BIT\_MARK, WHYNTER\_ONE\_SPACE, WHYNTER\_BIT\_MARK, WHYNTER\_ZERO\_SPACE, data, nbits, PROTOCOL\_IS\_MSB\_FIRST,}
+\DoxyCodeLine{44     SEND\_STOP\_BIT);}
+\DoxyCodeLine{45 \}}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47 \textcolor{comment}{//+=============================================================================}}
+\DoxyCodeLine{48 \textcolor{keywordtype}{bool} IRrecv::decodeWhynter() \{}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50     \textcolor{comment}{// Check we have the right amount of data (68). The +4 is for initial gap, start bit mark and space + stop bit mark.}}
+\DoxyCodeLine{51     \textcolor{keywordflow}{if} (decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_af0571ac479d1c38c79502651b0631432}{rawlen}} != (2 * WHYNTER\_BITS) + 4) \{}
+\DoxyCodeLine{52         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{53     \}}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55     \textcolor{comment}{// Sequence begins with a bit mark and a zero space}}
+\DoxyCodeLine{56     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{group___receiving_ga4472564ea96b1ee10b51f594f60d7aeb}{matchMark}}(decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_a7aa7b811dcc0fb5ab0da7c0bddaf97f8}{rawbuf}}[1], WHYNTER\_BIT\_MARK)}
+\DoxyCodeLine{57             || !\mbox{\hyperlink{group___receiving_ga7902b620f6c01463b5b6e50ef604ac8b}{matchSpace}}(decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_a7aa7b811dcc0fb5ab0da7c0bddaf97f8}{rawbuf}}[2], WHYNTER\_HEADER\_SPACE)) \{}
+\DoxyCodeLine{58         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(F(\textcolor{stringliteral}{"{}Whynter: "{}}));}
+\DoxyCodeLine{59         \mbox{\hyperlink{_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(F(\textcolor{stringliteral}{"{}Header mark or space length is wrong"{}}));}
+\DoxyCodeLine{60         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{61     \}}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{group___receiving_gaf8c9cdb5f7280043a552f22265bdb2d5}{decodePulseDistanceData}}(WHYNTER\_BITS, 3, WHYNTER\_BIT\_MARK, WHYNTER\_ONE\_SPACE, WHYNTER\_ZERO\_SPACE, PROTOCOL\_IS\_MSB\_FIRST)) \{}
+\DoxyCodeLine{64         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{65     \}}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{67     \textcolor{comment}{// trailing mark / stop bit}}
+\DoxyCodeLine{68     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{group___receiving_ga4472564ea96b1ee10b51f594f60d7aeb}{matchMark}}(decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_a7aa7b811dcc0fb5ab0da7c0bddaf97f8}{rawbuf}}[3 + (2 * WHYNTER\_BITS)], WHYNTER\_BIT\_MARK)) \{}
+\DoxyCodeLine{69         \mbox{\hyperlink{_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(F(\textcolor{stringliteral}{"{}Stop bit mark length is wrong"{}}));}
+\DoxyCodeLine{70         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{71     \}}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73     \textcolor{comment}{// Success}}
+\DoxyCodeLine{74     decodedIRData.\mbox{\hyperlink{struct_i_r_data_aaaad48fc0d90e5c6daec601987848a51}{flags}} = \mbox{\hyperlink{_i_rremote_int_8h_a7f6872e6f83c0571e3150ba86428af4c}{IRDATA\_FLAGS\_IS\_MSB\_FIRST}};}
+\DoxyCodeLine{75     decodedIRData.\mbox{\hyperlink{struct_i_r_data_a945c41b8463a36cf00b0f38b0aa73200}{numberOfBits}} = WHYNTER\_BITS;}
+\DoxyCodeLine{76     decodedIRData.\mbox{\hyperlink{struct_i_r_data_a703592faec26bab5cbe465f53ef14245}{protocol}} = WHYNTER;}
+\DoxyCodeLine{77     \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{78 \}}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{81 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{82 \textcolor{preprocessor}{\#pragma once}}
+
+\end{DoxyCode}

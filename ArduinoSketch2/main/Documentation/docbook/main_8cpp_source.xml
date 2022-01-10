@@ -2,57 +2,230 @@
 <section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_main_8cpp_source" xml:lang="en-US">
 <title>main.cpp</title>
 <indexterm><primary>ArduinoSketch2/main/main.cpp</primary></indexterm>
-Go to the documentation of this file.<programlisting linenumbering="unnumbered"><anchor xml:id="_main_8cpp_source_1l00001"/>00001 
-<anchor xml:id="_main_8cpp_source_1l00002"/>00002 <emphasis role="preprocessor">#include&#32;&lt;Arduino.h&gt;</emphasis>
-<anchor xml:id="_main_8cpp_source_1l00003"/>00003 <emphasis role="comment">//#include&#32;&quot;Modules/Sensors/SPS/SPS.h&quot;;</emphasis>
-<anchor xml:id="_main_8cpp_source_1l00004"/>00004 <emphasis role="comment">//#include&#32;&quot;Modules/Actuators/Buzzer/Buzzer.h&quot;;</emphasis>
-<anchor xml:id="_main_8cpp_source_1l00005"/>00005 <emphasis role="comment">/*</emphasis>
-<anchor xml:id="_main_8cpp_source_1l00006"/>00006 <emphasis role="comment">Buzzer&#32;&#32;&#32;&#32;&#32;&#32;b1(8);</emphasis>
-<anchor xml:id="_main_8cpp_source_1l00007"/>00007 <emphasis role="comment">SPS*&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;s1&#32;&#32;&#32;&#32;&#32;&#32;=&#32;new&#32;SPS&#32;&#32;&#32;&#32;&#32;&#32;&#32;(3,&#32;2,&#32;b1);</emphasis>
-<anchor xml:id="_main_8cpp_source_1l00008"/>00008 <emphasis role="comment"></emphasis>
-<anchor xml:id="_main_8cpp_source_1l00009"/>00009 <emphasis role="comment">void&#32;setup()&#32;{</emphasis>
-<anchor xml:id="_main_8cpp_source_1l00010"/>00010 <emphasis role="comment">&#32;&#32;&#32;&#32;Serial.begin(9600);</emphasis>
-<anchor xml:id="_main_8cpp_source_1l00011"/>00011 <emphasis role="comment">&#32;&#32;&#32;&#32;Serial.print(&quot;SMART_CAR&#32;SPS&#32;TEST&#32;STARTED&quot;);</emphasis>
-<anchor xml:id="_main_8cpp_source_1l00012"/>00012 <emphasis role="comment">&#32;&#32;&#32;&#32;</emphasis>
-<anchor xml:id="_main_8cpp_source_1l00013"/>00013 <emphasis role="comment">&#32;&#32;&#32;&#32;pinMode(s1-&gt;getTrigPin(),&#32;OUTPUT);</emphasis>
-<anchor xml:id="_main_8cpp_source_1l00014"/>00014 <emphasis role="comment">&#32;&#32;&#32;&#32;pinMode(s1-&gt;getEchoPin(),&#32;INPUT);</emphasis>
-<anchor xml:id="_main_8cpp_source_1l00015"/>00015 <emphasis role="comment">&#32;&#32;&#32;&#32;</emphasis>
-<anchor xml:id="_main_8cpp_source_1l00016"/>00016 <emphasis role="comment">&#32;&#32;&#32;&#32;pinMode(b1-&gt;getSigPin(),&#32;OUTPUT);</emphasis>
-<anchor xml:id="_main_8cpp_source_1l00017"/>00017 <emphasis role="comment">}</emphasis>
-<anchor xml:id="_main_8cpp_source_1l00018"/>00018 <emphasis role="comment"></emphasis>
-<anchor xml:id="_main_8cpp_source_1l00019"/>00019 <emphasis role="comment">void&#32;loop()&#32;{</emphasis>
-<anchor xml:id="_main_8cpp_source_1l00020"/>00020 <emphasis role="comment">&#32;&#32;&#32;&#32;s1-&gt;cyclicEval();</emphasis>
-<anchor xml:id="_main_8cpp_source_1l00021"/>00021 <emphasis role="comment">}</emphasis>
-<anchor xml:id="_main_8cpp_source_1l00022"/>00022 <emphasis role="comment">*/</emphasis>
-<anchor xml:id="_main_8cpp_source_1l00023"/>00023 
-<anchor xml:id="_main_8cpp_source_1l00024"/><link linkend="_main_8cpp_1a18a89135ea173bcea5ade3aa5be0cbb5">00024</link> <emphasis role="keywordtype">int</emphasis>&#32;<link linkend="_main_8cpp_1a18a89135ea173bcea5ade3aa5be0cbb5">motor1pin1</link>&#32;=&#32;2;
-<anchor xml:id="_main_8cpp_source_1l00025"/><link linkend="_main_8cpp_1ac28383b5453807508076d466afaa3592">00025</link> <emphasis role="keywordtype">int</emphasis>&#32;<link linkend="_main_8cpp_1ac28383b5453807508076d466afaa3592">motor1pin2</link>&#32;=&#32;3;
-<anchor xml:id="_main_8cpp_source_1l00026"/>00026 
-<anchor xml:id="_main_8cpp_source_1l00027"/><link linkend="_main_8cpp_1a55d27079be6d976f3aa3d09e86b91840">00027</link> <emphasis role="keywordtype">int</emphasis>&#32;<link linkend="_main_8cpp_1a55d27079be6d976f3aa3d09e86b91840">motor2pin1</link>&#32;=&#32;4;
-<anchor xml:id="_main_8cpp_source_1l00028"/><link linkend="_main_8cpp_1a90cadfc73d12d5d0d68640e5eb85151c">00028</link> <emphasis role="keywordtype">int</emphasis>&#32;<link linkend="_main_8cpp_1a90cadfc73d12d5d0d68640e5eb85151c">motor2pin2</link>&#32;=&#32;5;
-<anchor xml:id="_main_8cpp_source_1l00029"/>00029 
-<anchor xml:id="_main_8cpp_source_1l00030"/><link linkend="_main_8cpp_1a4fc01d736fe50cf5b977f755b675f11d">00030</link> <emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_main_8cpp_1a4fc01d736fe50cf5b977f755b675f11d">setup</link>()&#32;{
-<anchor xml:id="_main_8cpp_source_1l00031"/>00031 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;put&#32;your&#32;setup&#32;code&#32;here,&#32;to&#32;run&#32;once:</emphasis>
-<anchor xml:id="_main_8cpp_source_1l00032"/>00032 &#32;&#32;&#32;&#32;pinMode(<link linkend="_main_8cpp_1a18a89135ea173bcea5ade3aa5be0cbb5">motor1pin1</link>,&#32;OUTPUT);
-<anchor xml:id="_main_8cpp_source_1l00033"/>00033 &#32;&#32;&#32;&#32;pinMode(<link linkend="_main_8cpp_1ac28383b5453807508076d466afaa3592">motor1pin2</link>,&#32;OUTPUT);
-<anchor xml:id="_main_8cpp_source_1l00034"/>00034 &#32;&#32;&#32;&#32;pinMode(<link linkend="_main_8cpp_1a55d27079be6d976f3aa3d09e86b91840">motor2pin1</link>,&#32;OUTPUT);
-<anchor xml:id="_main_8cpp_source_1l00035"/>00035 &#32;&#32;&#32;&#32;pinMode(<link linkend="_main_8cpp_1a90cadfc73d12d5d0d68640e5eb85151c">motor2pin2</link>,&#32;OUTPUT);
-<anchor xml:id="_main_8cpp_source_1l00036"/>00036 }
+<programlisting linenumbering="unnumbered"><anchor xml:id="_main_8cpp_source_1l00001"/>00001 
+<anchor xml:id="_main_8cpp_source_1l00002"/>00002 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00003"/>00003 <emphasis role="comment">*&#32;main.cpp</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00004"/>00004 <emphasis role="comment">*</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00005"/>00005 <emphasis role="comment">*&#32;Main&#32;</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00006"/>00006 <emphasis role="comment">*</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00007"/>00007 <emphasis role="comment">*&#32;Created:&#32;10/7/2021&#32;12:17:58&#32;AM</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00008"/>00008 <emphasis role="comment">*&#32;Author:&#32;Andi</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00009"/>00009 <emphasis role="comment">*/</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00010"/>00010 
+<anchor xml:id="_main_8cpp_source_1l00011"/>00011 
+<anchor xml:id="_main_8cpp_source_1l00012"/>00012 <emphasis role="comment">/*&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;Includes&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;*/</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00013"/>00013 
+<anchor xml:id="_main_8cpp_source_1l00015"/>00015 <emphasis role="preprocessor">#pragma&#32;region&#32;Includes</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00016"/>00016 
+<anchor xml:id="_main_8cpp_source_1l00017"/>00017 <emphasis role="preprocessor">#include&#32;&lt;Arduino.h&gt;</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00018"/>00018 <emphasis role="preprocessor">#include&#32;&quot;IRRemote/IRremote.h&quot;</emphasis>;
+<anchor xml:id="_main_8cpp_source_1l00019"/>00019 <emphasis role="preprocessor">#include&#32;&quot;Modules/Sensors/ParkingSensor/ParkingSensor.h&quot;</emphasis>;
+<anchor xml:id="_main_8cpp_source_1l00020"/>00020 <emphasis role="preprocessor">#include&#32;&quot;Modules/Actuators/Buzzer/Buzz.h&quot;</emphasis>;
+<anchor xml:id="_main_8cpp_source_1l00021"/>00021 <emphasis role="preprocessor">#include&#32;&quot;Modules/Actuators/MotorControl/Motor_Control.h&quot;</emphasis>;
+<anchor xml:id="_main_8cpp_source_1l00022"/>00022 
+<anchor xml:id="_main_8cpp_source_1l00023"/>00023 <emphasis role="preprocessor">#pragma&#32;endregion</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00024"/>00024 
+<anchor xml:id="_main_8cpp_source_1l00025"/>00025 
+<anchor xml:id="_main_8cpp_source_1l00026"/>00026 <emphasis role="comment">/*&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;Global&#32;Declarations&#32;and&#32;Initializations&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;*/</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00027"/>00027 
+<anchor xml:id="_main_8cpp_source_1l00029"/>00029 <emphasis role="preprocessor">#pragma&#32;region&#32;Global&#32;Declarations&#32;and&#32;Initializations</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00030"/>00030 
+<anchor xml:id="_main_8cpp_source_1l00031"/>00031 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00032"/>00032 <emphasis role="comment">&#32;*&#32;&#32;Pin&#32;used&#32;to&#32;reset&#32;the&#32;microprocessor</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00033"/>00033 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00034"/>00034 <emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">short</emphasis>&#32;<emphasis role="keywordtype">int</emphasis>&#32;RESET_PIN&#32;=&#32;12;
+<anchor xml:id="_main_8cpp_source_1l00035"/>00035 
+<anchor xml:id="_main_8cpp_source_1l00036"/>00036 <emphasis role="comment">//void(*&#32;RESET)&#32;(void)&#32;=&#32;0;</emphasis>
 <anchor xml:id="_main_8cpp_source_1l00037"/>00037 
-<anchor xml:id="_main_8cpp_source_1l00038"/><link linkend="_main_8cpp_1afe461d27b9c48d5921c00d521181f12f">00038</link> <emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_main_8cpp_1afe461d27b9c48d5921c00d521181f12f">loop</link>()&#32;{
-<anchor xml:id="_main_8cpp_source_1l00039"/>00039 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;put&#32;your&#32;main&#32;code&#32;here,&#32;to&#32;run&#32;repeatedly:</emphasis>
-<anchor xml:id="_main_8cpp_source_1l00040"/>00040 &#32;&#32;&#32;&#32;digitalWrite(<link linkend="_main_8cpp_1a18a89135ea173bcea5ade3aa5be0cbb5">motor1pin1</link>,&#32;HIGH);
-<anchor xml:id="_main_8cpp_source_1l00041"/>00041 &#32;&#32;&#32;&#32;digitalWrite(<link linkend="_main_8cpp_1ac28383b5453807508076d466afaa3592">motor1pin2</link>,&#32;LOW);
-<anchor xml:id="_main_8cpp_source_1l00042"/>00042 
-<anchor xml:id="_main_8cpp_source_1l00043"/>00043 &#32;&#32;&#32;&#32;digitalWrite(<link linkend="_main_8cpp_1a55d27079be6d976f3aa3d09e86b91840">motor2pin1</link>,&#32;HIGH);
-<anchor xml:id="_main_8cpp_source_1l00044"/>00044 &#32;&#32;&#32;&#32;digitalWrite(<link linkend="_main_8cpp_1a90cadfc73d12d5d0d68640e5eb85151c">motor2pin2</link>,&#32;LOW);
-<anchor xml:id="_main_8cpp_source_1l00045"/>00045 &#32;&#32;&#32;&#32;delay(1000);
-<anchor xml:id="_main_8cpp_source_1l00046"/>00046 
-<anchor xml:id="_main_8cpp_source_1l00047"/>00047 &#32;&#32;&#32;&#32;digitalWrite(<link linkend="_main_8cpp_1a18a89135ea173bcea5ade3aa5be0cbb5">motor1pin1</link>,&#32;LOW);
-<anchor xml:id="_main_8cpp_source_1l00048"/>00048 &#32;&#32;&#32;&#32;digitalWrite(<link linkend="_main_8cpp_1ac28383b5453807508076d466afaa3592">motor1pin2</link>,&#32;HIGH);
-<anchor xml:id="_main_8cpp_source_1l00049"/>00049 
-<anchor xml:id="_main_8cpp_source_1l00050"/>00050 &#32;&#32;&#32;&#32;digitalWrite(<link linkend="_main_8cpp_1a55d27079be6d976f3aa3d09e86b91840">motor2pin1</link>,&#32;LOW);
-<anchor xml:id="_main_8cpp_source_1l00051"/>00051 &#32;&#32;&#32;&#32;digitalWrite(<link linkend="_main_8cpp_1a90cadfc73d12d5d0d68640e5eb85151c">motor2pin2</link>,&#32;HIGH);
-<anchor xml:id="_main_8cpp_source_1l00052"/>00052 &#32;&#32;&#32;&#32;delay(1000);
-<anchor xml:id="_main_8cpp_source_1l00053"/>00053 }
+<anchor xml:id="_main_8cpp_source_1l00038"/>00038 
+<anchor xml:id="_main_8cpp_source_1l00039"/>00039 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00040"/>00040 <emphasis role="comment">&#32;*&#32;&#32;IR&#32;Reciever&#32;PIN</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00041"/>00041 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00042"/>00042 <emphasis role="keyword">const</emphasis>&#32;<emphasis role="keywordtype">int</emphasis>&#32;RECV_PIN&#32;=&#32;7;&#32;
+<anchor xml:id="_main_8cpp_source_1l00043"/>00043 
+<anchor xml:id="_main_8cpp_source_1l00044"/>00044 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00045"/>00045 <emphasis role="comment">&#32;*&#32;&#32;Motor&#32;driver&#32;initialization</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00046"/>00046 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00047"/>00047 <link linkend="_class_motor___control">Motor_Control</link>*&#32;MotorControl&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;<link linkend="_class_motor___control">Motor_Control</link>(6,&#32;8,&#32;2,&#32;3,&#32;4,&#32;5);
+<anchor xml:id="_main_8cpp_source_1l00048"/>00048 
+<anchor xml:id="_main_8cpp_source_1l00049"/>00049 <emphasis role="preprocessor">#pragma&#32;endregion</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00050"/>00050 
+<anchor xml:id="_main_8cpp_source_1l00051"/>00051 
+<anchor xml:id="_main_8cpp_source_1l00052"/>00052 <emphasis role="comment">/*&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;Motor&#32;Functions&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;*/</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00053"/>00053 
+<anchor xml:id="_main_8cpp_source_1l00055"/>00055 <emphasis role="preprocessor">#pragma&#32;region&#32;Motor&#32;Functions</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00056"/>00056 
+<anchor xml:id="_main_8cpp_source_1l00057"/>00057 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00058"/>00058 <emphasis role="comment">&#32;*&#32;&#32;Function&#32;to&#32;move&#32;the&#32;car&#32;forward</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00059"/>00059 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00060"/>00060 <emphasis role="keywordtype">void</emphasis>&#32;forward()
+<anchor xml:id="_main_8cpp_source_1l00061"/>00061 {
+<anchor xml:id="_main_8cpp_source_1l00062"/>00062 &#32;&#32;&#32;&#32;digitalWrite(MotorControl-&gt;leftForward,&#32;HIGH);
+<anchor xml:id="_main_8cpp_source_1l00063"/>00063 &#32;&#32;&#32;&#32;digitalWrite(MotorControl-&gt;rightForward,&#32;HIGH);
+<anchor xml:id="_main_8cpp_source_1l00064"/>00064 &#32;&#32;&#32;&#32;
+<anchor xml:id="_main_8cpp_source_1l00065"/>00065 &#32;&#32;&#32;&#32;digitalWrite(MotorControl-&gt;leftBackward,&#32;LOW);
+<anchor xml:id="_main_8cpp_source_1l00066"/>00066 &#32;&#32;&#32;&#32;digitalWrite(MotorControl-&gt;rightBackward,&#32;LOW);
+<anchor xml:id="_main_8cpp_source_1l00067"/>00067 &#32;&#32;&#32;&#32;delay(1000);
+<anchor xml:id="_main_8cpp_source_1l00068"/>00068 }
+<anchor xml:id="_main_8cpp_source_1l00069"/>00069 
+<anchor xml:id="_main_8cpp_source_1l00070"/>00070 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00071"/>00071 <emphasis role="comment">&#32;*&#32;&#32;Function&#32;to&#32;move&#32;the&#32;car&#32;backward</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00072"/>00072 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00073"/>00073 <emphasis role="keywordtype">void</emphasis>&#32;back()
+<anchor xml:id="_main_8cpp_source_1l00074"/>00074 {
+<anchor xml:id="_main_8cpp_source_1l00075"/>00075 &#32;&#32;&#32;&#32;digitalWrite(MotorControl-&gt;leftBackward,&#32;HIGH);
+<anchor xml:id="_main_8cpp_source_1l00076"/>00076 &#32;&#32;&#32;&#32;digitalWrite(MotorControl-&gt;rightBackward,&#32;HIGH);
+<anchor xml:id="_main_8cpp_source_1l00077"/>00077 &#32;&#32;&#32;&#32;
+<anchor xml:id="_main_8cpp_source_1l00078"/>00078 &#32;&#32;&#32;&#32;digitalWrite(MotorControl-&gt;leftForward,&#32;LOW);
+<anchor xml:id="_main_8cpp_source_1l00079"/>00079 &#32;&#32;&#32;&#32;digitalWrite(MotorControl-&gt;rightForward,&#32;LOW);
+<anchor xml:id="_main_8cpp_source_1l00080"/>00080 &#32;&#32;&#32;&#32;delay(1000);
+<anchor xml:id="_main_8cpp_source_1l00081"/>00081 }
+<anchor xml:id="_main_8cpp_source_1l00082"/>00082 
+<anchor xml:id="_main_8cpp_source_1l00083"/>00083 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00084"/>00084 <emphasis role="comment">&#32;*&#32;&#32;Function&#32;to&#32;move&#32;the&#32;car&#32;left</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00085"/>00085 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00086"/>00086 <emphasis role="keywordtype">void</emphasis>&#32;left()
+<anchor xml:id="_main_8cpp_source_1l00087"/>00087 {
+<anchor xml:id="_main_8cpp_source_1l00088"/>00088 &#32;&#32;&#32;&#32;digitalWrite(MotorControl-&gt;leftForward,&#32;LOW);
+<anchor xml:id="_main_8cpp_source_1l00089"/>00089 &#32;&#32;&#32;&#32;digitalWrite(MotorControl-&gt;rightBackward,&#32;LOW);
+<anchor xml:id="_main_8cpp_source_1l00090"/>00090 &#32;&#32;&#32;&#32;
+<anchor xml:id="_main_8cpp_source_1l00091"/>00091 &#32;&#32;&#32;&#32;digitalWrite(MotorControl-&gt;leftBackward,&#32;HIGH);
+<anchor xml:id="_main_8cpp_source_1l00092"/>00092 &#32;&#32;&#32;&#32;digitalWrite(MotorControl-&gt;rightForward,&#32;HIGH);
+<anchor xml:id="_main_8cpp_source_1l00093"/>00093 }
+<anchor xml:id="_main_8cpp_source_1l00094"/>00094 
+<anchor xml:id="_main_8cpp_source_1l00095"/>00095 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00096"/>00096 <emphasis role="comment">&#32;*&#32;&#32;Function&#32;to&#32;move&#32;the&#32;car&#32;right</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00097"/>00097 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00098"/>00098 <emphasis role="keywordtype">void</emphasis>&#32;right()
+<anchor xml:id="_main_8cpp_source_1l00099"/>00099 {
+<anchor xml:id="_main_8cpp_source_1l00100"/>00100 &#32;&#32;&#32;&#32;digitalWrite(MotorControl-&gt;leftForward,&#32;HIGH);
+<anchor xml:id="_main_8cpp_source_1l00101"/>00101 &#32;&#32;&#32;&#32;digitalWrite(MotorControl-&gt;rightBackward,&#32;HIGH);
+<anchor xml:id="_main_8cpp_source_1l00102"/>00102 &#32;&#32;&#32;&#32;
+<anchor xml:id="_main_8cpp_source_1l00103"/>00103 &#32;&#32;&#32;&#32;digitalWrite(MotorControl-&gt;leftBackward,&#32;LOW);
+<anchor xml:id="_main_8cpp_source_1l00104"/>00104 &#32;&#32;&#32;&#32;digitalWrite(MotorControl-&gt;rightForward,&#32;LOW);
+<anchor xml:id="_main_8cpp_source_1l00105"/>00105 }
+<anchor xml:id="_main_8cpp_source_1l00106"/>00106 
+<anchor xml:id="_main_8cpp_source_1l00107"/>00107 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00108"/>00108 <emphasis role="comment">&#32;*&#32;&#32;Function&#32;to&#32;stop&#32;the&#32;car</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00109"/>00109 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00110"/>00110 <emphasis role="keywordtype">void</emphasis>&#32;Stop()
+<anchor xml:id="_main_8cpp_source_1l00111"/>00111 {
+<anchor xml:id="_main_8cpp_source_1l00112"/>00112 &#32;&#32;&#32;&#32;digitalWrite(MotorControl-&gt;leftForward,&#32;LOW);
+<anchor xml:id="_main_8cpp_source_1l00113"/>00113 &#32;&#32;&#32;&#32;digitalWrite(MotorControl-&gt;rightBackward,&#32;LOW);
+<anchor xml:id="_main_8cpp_source_1l00114"/>00114 &#32;&#32;&#32;&#32;
+<anchor xml:id="_main_8cpp_source_1l00115"/>00115 &#32;&#32;&#32;&#32;digitalWrite(MotorControl-&gt;leftBackward,&#32;LOW);
+<anchor xml:id="_main_8cpp_source_1l00116"/>00116 &#32;&#32;&#32;&#32;digitalWrite(MotorControl-&gt;rightForward,&#32;LOW);
+<anchor xml:id="_main_8cpp_source_1l00117"/>00117 }
+<anchor xml:id="_main_8cpp_source_1l00118"/>00118 
+<anchor xml:id="_main_8cpp_source_1l00119"/>00119 <emphasis role="preprocessor">#pragma&#32;endregion</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00120"/>00120 
+<anchor xml:id="_main_8cpp_source_1l00121"/>00121 
+<anchor xml:id="_main_8cpp_source_1l00122"/>00122 <emphasis role="comment">/*&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;Setup&#32;and&#32;Loop&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;*/</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00123"/>00123 
+<anchor xml:id="_main_8cpp_source_1l00125"/>00125 <emphasis role="preprocessor">#pragma&#32;region&#32;Setup</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00126"/>00126 
+<anchor xml:id="_main_8cpp_source_1l00127"/>00127 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00128"/>00128 <emphasis role="comment">&#32;*&#32;&#32;Setup&#32;Function</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00129"/>00129 <emphasis role="comment">&#32;*&#32;&#32;Called&#32;before&#32;infinite&#32;loop&#32;starts&#32;and&#32;it&#32;runs&#32;only&#32;once&#32;</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00130"/>00130 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00131"/>00131 <emphasis role="keywordtype">void</emphasis>&#32;setup()&#32;{
+<anchor xml:id="_main_8cpp_source_1l00132"/>00132 &#32;&#32;&#32;&#32;<emphasis role="comment">/*</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00133"/>00133 <emphasis role="comment">&#32;&#32;&#32;&#32;&#32;*&#32;&#32;&quot;Initialize&quot;&#32;the&#32;reset&#32;pin</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00134"/>00134 <emphasis role="comment">&#32;&#32;&#32;&#32;&#32;*&#32;&#32;Now&#32;if&#32;the&#32;pin&#32;will&#32;be&#32;set&#32;to&#32;LOW,&#32;the&#32;arduino&#32;will&#32;reset</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00135"/>00135 <emphasis role="comment">&#32;&#32;&#32;&#32;&#32;*/</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00136"/>00136 &#32;&#32;&#32;&#32;digitalWrite(RESET_PIN,&#32;HIGH);
+<anchor xml:id="_main_8cpp_source_1l00137"/>00137 &#32;&#32;&#32;&#32;delay(200);
+<anchor xml:id="_main_8cpp_source_1l00138"/>00138 &#32;&#32;&#32;&#32;pinMode(RESET_PIN,&#32;OUTPUT);
+<anchor xml:id="_main_8cpp_source_1l00139"/>00139 &#32;&#32;&#32;&#32;
+<anchor xml:id="_main_8cpp_source_1l00140"/>00140 &#32;&#32;&#32;&#32;<emphasis role="comment">/*</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00141"/>00141 <emphasis role="comment">&#32;&#32;&#32;&#32;&#32;*&#32;&#32;Initialize&#32;motor&#32;pins&#32;as&#32;OUTPUT</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00142"/>00142 <emphasis role="comment">&#32;&#32;&#32;&#32;&#32;*/</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00143"/>00143 &#32;&#32;&#32;&#32;pinMode(MotorControl-&gt;enA,&#32;OUTPUT);
+<anchor xml:id="_main_8cpp_source_1l00144"/>00144 &#32;&#32;&#32;&#32;pinMode(MotorControl-&gt;enB,&#32;OUTPUT);
+<anchor xml:id="_main_8cpp_source_1l00145"/>00145 &#32;&#32;&#32;&#32;
+<anchor xml:id="_main_8cpp_source_1l00146"/>00146 &#32;&#32;&#32;&#32;<emphasis role="comment">/*</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00147"/>00147 <emphasis role="comment">&#32;&#32;&#32;&#32;&#32;*&#32;&#32;Set&#32;enA&#32;and&#32;enB&#32;pins&#32;to&#32;HIGH</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00148"/>00148 <emphasis role="comment">&#32;&#32;&#32;&#32;&#32;*/</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00149"/>00149 &#32;&#32;&#32;&#32;digitalWrite(MotorControl-&gt;enA,&#32;HIGH);
+<anchor xml:id="_main_8cpp_source_1l00150"/>00150 &#32;&#32;&#32;&#32;digitalWrite(MotorControl-&gt;enB,&#32;HIGH);
+<anchor xml:id="_main_8cpp_source_1l00151"/>00151 &#32;&#32;&#32;&#32;
+<anchor xml:id="_main_8cpp_source_1l00152"/>00152 &#32;&#32;&#32;&#32;pinMode(MotorControl-&gt;rightBackward,&#32;OUTPUT);
+<anchor xml:id="_main_8cpp_source_1l00153"/>00153 &#32;&#32;&#32;&#32;pinMode(MotorControl-&gt;rightForward,&#32;OUTPUT);
+<anchor xml:id="_main_8cpp_source_1l00154"/>00154 &#32;&#32;&#32;&#32;pinMode(MotorControl-&gt;leftForward,&#32;OUTPUT);
+<anchor xml:id="_main_8cpp_source_1l00155"/>00155 &#32;&#32;&#32;&#32;pinMode(MotorControl-&gt;leftBackward,&#32;OUTPUT);
+<anchor xml:id="_main_8cpp_source_1l00156"/>00156 &#32;&#32;&#32;&#32;
+<anchor xml:id="_main_8cpp_source_1l00157"/>00157 &#32;&#32;&#32;&#32;<emphasis role="comment">/*</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00158"/>00158 <emphasis role="comment">&#32;&#32;&#32;&#32;&#32;*&#32;&#32;Set&#32;all&#32;motor&#32;pins&#32;to&#32;LOW</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00159"/>00159 <emphasis role="comment">&#32;&#32;&#32;&#32;&#32;*/</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00160"/>00160 &#32;&#32;&#32;&#32;
+<anchor xml:id="_main_8cpp_source_1l00161"/>00161 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Motor&#32;1&#32;controller</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00162"/>00162 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;If&#32;both&#32;are&#32;high&#32;or&#32;low&#32;the&#32;motor&#32;stops</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00163"/>00163 &#32;&#32;&#32;&#32;digitalWrite(MotorControl-&gt;rightBackward,&#32;LOW);
+<anchor xml:id="_main_8cpp_source_1l00164"/>00164 &#32;&#32;&#32;&#32;digitalWrite(MotorControl-&gt;rightForward,&#32;LOW);
+<anchor xml:id="_main_8cpp_source_1l00165"/>00165 &#32;&#32;&#32;&#32;
+<anchor xml:id="_main_8cpp_source_1l00166"/>00166 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Motor&#32;2&#32;controller</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00167"/>00167 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;If&#32;both&#32;are&#32;high&#32;or&#32;low&#32;the&#32;motor&#32;stops</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00168"/>00168 &#32;&#32;&#32;&#32;digitalWrite(MotorControl-&gt;leftForward,&#32;LOW);
+<anchor xml:id="_main_8cpp_source_1l00169"/>00169 &#32;&#32;&#32;&#32;digitalWrite(MotorControl-&gt;leftBackward,&#32;LOW);
+<anchor xml:id="_main_8cpp_source_1l00170"/>00170 &#32;&#32;&#32;&#32;
+<anchor xml:id="_main_8cpp_source_1l00171"/>00171 &#32;&#32;&#32;&#32;
+<anchor xml:id="_main_8cpp_source_1l00172"/>00172 &#32;&#32;&#32;&#32;<emphasis role="comment">/*</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00173"/>00173 <emphasis role="comment">&#32;&#32;&#32;&#32;&#32;*&#32;Start&#32;the&#32;IR&#32;receiver</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00174"/>00174 <emphasis role="comment">&#32;&#32;&#32;&#32;&#32;*/</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00175"/>00175 &#32;&#32;&#32;&#32;Serial.begin(115200);
+<anchor xml:id="_main_8cpp_source_1l00176"/>00176 &#32;&#32;&#32;&#32;IrReceiver.begin(RECV_PIN,&#32;ENABLE_LED_FEEDBACK);
+<anchor xml:id="_main_8cpp_source_1l00177"/>00177 
+<anchor xml:id="_main_8cpp_source_1l00178"/>00178 &#32;&#32;&#32;&#32;Serial.print((<emphasis role="stringliteral">&quot;Ready&#32;to&#32;receive&#32;IR&#32;signals&#32;at&#32;pin&#32;&quot;</emphasis>));
+<anchor xml:id="_main_8cpp_source_1l00179"/>00179 &#32;&#32;&#32;&#32;Serial.println(RECV_PIN);
+<anchor xml:id="_main_8cpp_source_1l00180"/>00180 
+<anchor xml:id="_main_8cpp_source_1l00181"/>00181 }
+<anchor xml:id="_main_8cpp_source_1l00182"/>00182 
+<anchor xml:id="_main_8cpp_source_1l00183"/>00183 <emphasis role="preprocessor">#pragma&#32;endregion</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00184"/>00184 
+<anchor xml:id="_main_8cpp_source_1l00185"/>00185 <emphasis role="preprocessor">#pragma&#32;region&#32;Infinite&#32;Loop</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00186"/>00186 
+<anchor xml:id="_main_8cpp_source_1l00187"/>00187 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00188"/>00188 <emphasis role="comment">&#32;*&#32;&#32;Loop&#32;Function</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00189"/>00189 <emphasis role="comment">&#32;*&#32;&#32;Used&#32;as&#32;infinite&#32;loop</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00190"/>00190 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00191"/>00191 <emphasis role="keywordtype">void</emphasis>&#32;loop()&#32;{
+<anchor xml:id="_main_8cpp_source_1l00192"/>00192 &#32;&#32;&#32;&#32;
+<anchor xml:id="_main_8cpp_source_1l00193"/>00193 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(IrReceiver.decode())&#32;{
+<anchor xml:id="_main_8cpp_source_1l00194"/>00194 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">/*</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00195"/>00195 <emphasis role="comment">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;*&#32;&#32;keycode&#32;=&gt;&#32;signal&#32;sent&#32;from&#32;ir&#32;remote</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00196"/>00196 <emphasis role="comment">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;*/</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00197"/>00197 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">long</emphasis>&#32;keycode&#32;=&#32;IrReceiver.decodedIRData.command;
+<anchor xml:id="_main_8cpp_source_1l00198"/>00198 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;Serial.println(keycode);
+<anchor xml:id="_main_8cpp_source_1l00199"/>00199 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;
+<anchor xml:id="_main_8cpp_source_1l00200"/>00200 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">switch</emphasis>&#32;(keycode)&#32;{
+<anchor xml:id="_main_8cpp_source_1l00201"/>00201 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;21:&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Move&#32;forward</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00202"/>00202 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;forward();
+<anchor xml:id="_main_8cpp_source_1l00203"/>00203 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+<anchor xml:id="_main_8cpp_source_1l00204"/>00204 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;7:&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Move&#32;backward</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00205"/>00205 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;back();
+<anchor xml:id="_main_8cpp_source_1l00206"/>00206 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+<anchor xml:id="_main_8cpp_source_1l00207"/>00207 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;68:&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Move&#32;left</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00208"/>00208 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;left();
+<anchor xml:id="_main_8cpp_source_1l00209"/>00209 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+<anchor xml:id="_main_8cpp_source_1l00210"/>00210 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;64:&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Move&#32;right</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00211"/>00211 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;right();
+<anchor xml:id="_main_8cpp_source_1l00212"/>00212 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+<anchor xml:id="_main_8cpp_source_1l00213"/>00213 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;9:&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Stop</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00214"/>00214 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;Stop();
+<anchor xml:id="_main_8cpp_source_1l00215"/>00215 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+<anchor xml:id="_main_8cpp_source_1l00216"/>00216 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;71:&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;RESET</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00217"/>00217 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;digitalWrite(RESET_PIN,&#32;LOW);
+<anchor xml:id="_main_8cpp_source_1l00218"/>00218 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+<anchor xml:id="_main_8cpp_source_1l00219"/>00219 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_main_8cpp_source_1l00220"/>00220 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;
+<anchor xml:id="_main_8cpp_source_1l00221"/>00221 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;IrReceiver.resume();
+<anchor xml:id="_main_8cpp_source_1l00222"/>00222 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_main_8cpp_source_1l00223"/>00223 &#32;&#32;&#32;&#32;
+<anchor xml:id="_main_8cpp_source_1l00224"/>00224 }
+<anchor xml:id="_main_8cpp_source_1l00225"/>00225 
+<anchor xml:id="_main_8cpp_source_1l00226"/>00226 <emphasis role="preprocessor">#pragma&#32;endregion</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00227"/>00227 
+<anchor xml:id="_main_8cpp_source_1l00228"/>00228 
+<anchor xml:id="_main_8cpp_source_1l00229"/>00229 <emphasis role="comment">/*&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;End&#32;of&#32;File&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;*/</emphasis>
+<anchor xml:id="_main_8cpp_source_1l00230"/>00230 
 </programlisting></section>

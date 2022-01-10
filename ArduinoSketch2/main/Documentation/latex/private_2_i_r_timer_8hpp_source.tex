@@ -1,0 +1,1272 @@
+\hypertarget{private_2_i_r_timer_8hpp_source}{}\doxysection{IRTimer.\+hpp}
+\label{private_2_i_r_timer_8hpp_source}\index{main/IRRemote/private/IRTimer.hpp@{main/IRRemote/private/IRTimer.hpp}}
+\mbox{\hyperlink{private_2_i_r_timer_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00001}00001 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00032}00032 \textcolor{preprocessor}{\#ifndef IR\_TIMER\_HPP}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00033}00033 \textcolor{preprocessor}{\#define IR\_TIMER\_HPP}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00034}00034 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00035}00035 \textcolor{preprocessor}{\#include "{}IRremoteInt.h"{}}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00042}00042 \textcolor{preprocessor}{\#if defined(SEND\_PWM\_BY\_TIMER) \&\& !defined(ESP32)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00043}00043 \textcolor{preprocessor}{\#undef IR\_SEND\_PIN }\textcolor{comment}{// send pin is determined by timer except for ESP32}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00044}00044 \textcolor{preprocessor}{\#warning Since SEND\_PWM\_BY\_TIMER is defined, the existing value of IR\_SEND\_PIN is discarded and replaced by the value determined by timer used for PWM generation}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00045}00045 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00046}00046 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00047}00047 \textcolor{preprocessor}{\#if defined (DOXYGEN)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00051}00051 \textcolor{preprocessor}{\#define IR\_SEND\_PIN}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00052}00052 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00053}00053 \textcolor{preprocessor}{\#elif defined(\_\_AVR\_\_)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00054}00054 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00059}00059 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00062}00062 \textcolor{comment}{// Arduino Duemilanove, Diecimila, LilyPad, Mini, Fio, Nano, etc}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00063}00063 \textcolor{comment}{// ATmega328 and ATmega88}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00064}00064 \textcolor{preprocessor}{\#if defined(\_\_AVR\_ATmega328P\_\_) || defined(\_\_AVR\_ATmega328PB\_\_) || defined(\_\_AVR\_ATmega168\_\_) || defined(\_\_AVR\_ATmega88P\_\_) || defined(\_\_AVR\_ATmega88PB\_\_)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00065}00065 \textcolor{preprocessor}{\#  if !defined(IR\_USE\_AVR\_TIMER1) \&\& !defined(IR\_USE\_AVR\_TIMER2)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00066}00066 \textcolor{comment}{//\#define IR\_USE\_AVR\_TIMER1   // send pin = pin 9}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00067}00067 \textcolor{preprocessor}{\#define IR\_USE\_AVR\_TIMER2     }\textcolor{comment}{// send pin = pin 3}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00068}00068 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00069}00069 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00070}00070 \textcolor{comment}{// Arduino Mega}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00071}00071 \textcolor{preprocessor}{\#elif defined(\_\_AVR\_ATmega1280\_\_) || defined(\_\_AVR\_ATmega2560\_\_)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00072}00072 \textcolor{preprocessor}{\#  if !defined(IR\_USE\_AVR\_TIMER1) \&\& !defined(IR\_USE\_AVR\_TIMER2) \&\& !defined(IR\_USE\_AVR\_TIMER3) \&\& !defined(IR\_USE\_AVR\_TIMER4) \&\& !defined(IR\_USE\_AVR\_TIMER5)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00073}00073 \textcolor{comment}{//\#define IR\_USE\_AVR\_TIMER1   // send pin = pin 11}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00074}00074 \textcolor{preprocessor}{\#define IR\_USE\_AVR\_TIMER2     }\textcolor{comment}{// send pin = pin 9}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00075}00075 \textcolor{comment}{//\#define IR\_USE\_AVR\_TIMER3   // send pin = pin 5}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00076}00076 \textcolor{comment}{//\#define IR\_USE\_AVR\_TIMER4   // send pin = pin 6}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00077}00077 \textcolor{comment}{//\#define IR\_USE\_AVR\_TIMER5   // send pin = pin 46}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00078}00078 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00079}00079 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00080}00080 \textcolor{comment}{// Leonardo}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00081}00081 \textcolor{preprocessor}{\#elif defined(\_\_AVR\_ATmega32U4\_\_) \&\& ! defined(TEENSYDUINO) \&\& ! defined(ARDUINO\_AVR\_PROMICRO)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00082}00082 \textcolor{preprocessor}{\#  if !defined(IR\_USE\_AVR\_TIMER1) \&\& !defined(IR\_USE\_AVR\_TIMER3) \&\& !defined(IR\_USE\_AVR\_TIMER4\_HS)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00083}00083 \textcolor{comment}{//\#define IR\_USE\_AVR\_TIMER1     // send pin = pin 9}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00084}00084 \textcolor{preprocessor}{\#define IR\_USE\_AVR\_TIMER3       }\textcolor{comment}{// send pin = pin 5}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00085}00085 \textcolor{comment}{//\#define IR\_USE\_AVR\_TIMER4\_HS  // send pin = pin 13}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00086}00086 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00087}00087 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00088}00088 \textcolor{comment}{// Nano Every, Uno WiFi Rev2 and similar}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00089}00089 \textcolor{preprocessor}{\#elif defined(\_\_AVR\_ATmega808\_\_) || defined(\_\_AVR\_ATmega809\_\_) || defined(\_\_AVR\_ATmega3208\_\_) || defined(\_\_AVR\_ATmega3209\_\_) \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00090}00090 \textcolor{preprocessor}{     || defined(\_\_AVR\_ATmega1608\_\_) || defined(\_\_AVR\_ATmega1609\_\_) || defined(\_\_AVR\_ATmega4808\_\_) || defined(\_\_AVR\_ATmega4809\_\_) || defined(\_\_AVR\_ATtiny1604\_\_)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00091}00091 \textcolor{preprocessor}{\#  if !defined(IR\_USE\_AVR\_TIMER\_B)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00092}00092 \textcolor{preprocessor}{\#define IR\_USE\_AVR\_TIMER\_B     }\textcolor{comment}{//  send pin = pin 6 on ATmega4809 1 on ATmega4809}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00093}00093 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00094}00094 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00095}00095 \textcolor{comment}{// ATmega8u2, ATmega16U2, ATmega32U2}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00096}00096 \textcolor{preprocessor}{\#elif defined(\_\_AVR\_ATmega8U2\_\_) || defined(\_\_AVR\_ATmega16U2\_\_)  || defined(\_\_AVR\_ATmega32U2\_\_)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00097}00097 \textcolor{preprocessor}{\#  if !defined(IR\_USE\_AVR\_TIMER1)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00098}00098 \textcolor{preprocessor}{\#define IR\_USE\_AVR\_TIMER1     }\textcolor{comment}{// send pin = pin C6}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00099}00099 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00100}00100 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00101}00101 \textcolor{comment}{// Atmega8}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00102}00102 \textcolor{preprocessor}{\#elif defined(\_\_AVR\_ATmega8\_\_)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00103}00103 \textcolor{preprocessor}{\#  if !defined(IR\_USE\_AVR\_TIMER1)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00104}00104 \textcolor{preprocessor}{\#define IR\_USE\_AVR\_TIMER1     }\textcolor{comment}{// send pin = pin 9}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00105}00105 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00106}00106 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00107}00107 \textcolor{comment}{// ATtiny84}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00108}00108 \textcolor{preprocessor}{\#elif defined(\_\_AVR\_ATtiny84\_\_) || defined(\_\_AVR\_ATtiny88\_\_)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00109}00109 \textcolor{preprocessor}{\#  if !defined(IR\_USE\_AVR\_TIMER1)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00110}00110 \textcolor{preprocessor}{\#define IR\_USE\_AVR\_TIMER1     }\textcolor{comment}{// send pin = pin 6}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00111}00111 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00112}00112 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00113}00113 \textcolor{preprocessor}{\#elif  defined(\_\_AVR\_ATtiny87\_\_) || defined(\_\_AVR\_ATtiny167\_\_)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00114}00114 \textcolor{preprocessor}{\#  if !defined(IR\_USE\_AVR\_TIMER1)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00115}00115 \textcolor{preprocessor}{\#define IR\_USE\_AVR\_TIMER1   }\textcolor{comment}{// send pin = pin PB1 / 8}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00116}00116 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00117}00117 \textcolor{preprocessor}{\#define USE\_TIMER\_CHANNEL\_B}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00118}00118 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00119}00119 \textcolor{comment}{//ATtiny85}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00120}00120 \textcolor{preprocessor}{\#elif defined(\_\_AVR\_ATtiny85\_\_)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00121}00121 \textcolor{preprocessor}{\#  if !defined(IR\_USE\_AVR\_TIMER\_TINY0) \&\& !defined(IR\_USE\_AVR\_TIMER\_TINY1)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00122}00122 \textcolor{preprocessor}{\#    if defined(ARDUINO\_AVR\_DIGISPARK) }\textcolor{comment}{// tested with 16 and 8 MHz}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00123}00123 \textcolor{preprocessor}{\#define IR\_USE\_AVR\_TIMER\_TINY0   }\textcolor{comment}{// send pin = pin 1}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00124}00124 \textcolor{comment}{// standard Digispark settings use timer 1 for millis() and micros()}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00125}00125 \textcolor{preprocessor}{\#    else}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00126}00126 \textcolor{comment}{// standard ATTinyCore settings use timer 0 for millis() and micros()}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00127}00127 \textcolor{preprocessor}{\#define IR\_USE\_AVR\_TIMER\_TINY1   }\textcolor{comment}{// send pin = pin 4}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00128}00128 \textcolor{preprocessor}{\#    endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00129}00129 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00130}00130 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00131}00131 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00134}00134 \textcolor{preprocessor}{\#elif defined(ARDUINO\_AVR\_PROMICRO)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00135}00135 \textcolor{preprocessor}{\#  if !defined(IR\_USE\_AVR\_TIMER1) \&\& !defined(IR\_USE\_AVR\_TIMER3) \&\& !defined(IR\_USE\_AVR\_TIMER4\_HS)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00136}00136 \textcolor{comment}{//\#define IR\_USE\_AVR\_TIMER1     // send pin = pin 9}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00137}00137 \textcolor{preprocessor}{\#define IR\_USE\_AVR\_TIMER3       }\textcolor{comment}{// send pin = pin 5}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00138}00138 \textcolor{comment}{//\#define IR\_USE\_AVR\_TIMER4\_HS  // send pin = pin 13}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00139}00139 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00140}00140 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00141}00141 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00144}00144 \textcolor{comment}{// Teensy 1.0}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00145}00145 \textcolor{preprocessor}{\#elif defined(\_\_AVR\_AT90USB162\_\_)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00146}00146 \textcolor{preprocessor}{\#  if !defined(IR\_USE\_AVR\_TIMER1)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00147}00147 \textcolor{preprocessor}{\#define IR\_USE\_AVR\_TIMER1     }\textcolor{comment}{// send pin = pin 17}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00148}00148 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00149}00149 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00150}00150 \textcolor{comment}{// Teensy++ 1.0 \& 2.0}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00151}00151 \textcolor{preprocessor}{\#elif defined(\_\_AVR\_AT90USB646\_\_) || defined(\_\_AVR\_AT90USB1286\_\_)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00152}00152 \textcolor{preprocessor}{\#  if !defined(IR\_USE\_AVR\_TIMER1) \&\& !defined(IR\_USE\_AVR\_TIMER2) \&\& !defined(IR\_USE\_AVR\_TIMER3)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00153}00153 \textcolor{comment}{//\#define IR\_USE\_AVR\_TIMER1   // send pin = pin 25}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00154}00154 \textcolor{preprocessor}{\#define IR\_USE\_AVR\_TIMER2     }\textcolor{comment}{// send pin = pin 1}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00155}00155 \textcolor{comment}{//\#define IR\_USE\_AVR\_TIMER3   // send pin = pin 16}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00156}00156 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00157}00157 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00158}00158 \textcolor{comment}{// Teensy 2.0}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00159}00159 \textcolor{preprocessor}{\#elif defined(\_\_AVR\_ATmega32U4\_\_) \&\& defined(TEENSYDUINO)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00160}00160 \textcolor{preprocessor}{\#  if !defined(IR\_USE\_AVR\_TIMER1) \&\& !defined(IR\_USE\_AVR\_TIMER3) \&\& !defined(IR\_USE\_AVR\_TIMER4\_HS)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00161}00161 \textcolor{comment}{//\#define IR\_USE\_AVR\_TIMER1     // send pin = pin 14 (Teensy 2.0 -\/ physical pin: B5)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00162}00162 \textcolor{comment}{//\#define IR\_USE\_AVR\_TIMER3     // send pin = pin 9  (Teensy 2.0 -\/ physical pin: C6)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00163}00163 \textcolor{preprocessor}{\#define IR\_USE\_AVR\_TIMER4\_HS    }\textcolor{comment}{// send pin = pin 10 (Teensy 2.0 -\/ physical pin: C7)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00164}00164 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00165}00165 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00166}00166 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00169}00169 \textcolor{comment}{// MegaCore -\/ ATmega64, ATmega128}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00170}00170 \textcolor{preprocessor}{\#elif defined(\_\_AVR\_ATmega64\_\_) || defined(\_\_AVR\_ATmega128\_\_) || defined(\_\_AVR\_ATmega1281\_\_) || defined(\_\_AVR\_ATmega2560\_\_)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00171}00171 \textcolor{preprocessor}{\#  if !defined(IR\_USE\_AVR\_TIMER1)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00172}00172 \textcolor{preprocessor}{\#define IR\_USE\_AVR\_TIMER1     }\textcolor{comment}{// send pin = pin 13}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00173}00173 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00174}00174 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00175}00175 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00178}00178 \textcolor{preprocessor}{\#elif defined(\_\_AVR\_ATmega8515\_\_) || defined(\_\_AVR\_ATmega162\_\_)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00179}00179 \textcolor{preprocessor}{\#  if !defined(IR\_USE\_AVR\_TIMER1) \&\& !defined(IR\_USE\_AVR\_TIMER3)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00180}00180 \textcolor{preprocessor}{\#define IR\_USE\_AVR\_TIMER1     }\textcolor{comment}{// send pin = pin 13}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00181}00181 \textcolor{comment}{//\#define IR\_USE\_AVR\_TIMER3   // send pin = pin 12 -\/ ATmega162 only}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00182}00182 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00183}00183 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00184}00184 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00187}00187 \textcolor{comment}{// MightyCore -\/ ATmega1284}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00188}00188 \textcolor{preprocessor}{\#elif defined(\_\_AVR\_ATmega1284\_\_) || defined(\_\_AVR\_ATmega1284P\_\_)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00189}00189 \textcolor{preprocessor}{\#  if !defined(IR\_USE\_AVR\_TIMER1) \&\& !defined(IR\_USE\_AVR\_TIMER2) \&\& !defined(IR\_USE\_AVR\_TIMER3)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00190}00190 \textcolor{comment}{//\#define IR\_USE\_AVR\_TIMER1   // send pin = pin 13}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00191}00191 \textcolor{preprocessor}{\#define IR\_USE\_AVR\_TIMER2     }\textcolor{comment}{// send pin = pin 14}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00192}00192 \textcolor{comment}{//\#define IR\_USE\_AVR\_TIMER3   // send pin = pin 6}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00193}00193 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00194}00194 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00195}00195 \textcolor{comment}{// MightyCore -\/ ATmega164, ATmega324, ATmega644}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00196}00196 \textcolor{preprocessor}{\#elif defined(\_\_AVR\_ATmega644\_\_) || defined(\_\_AVR\_ATmega644P\_\_) \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00197}00197 \textcolor{preprocessor}{|| defined(\_\_AVR\_ATmega324P\_\_) || defined(\_\_AVR\_ATmega324A\_\_) \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00198}00198 \textcolor{preprocessor}{|| defined(\_\_AVR\_ATmega324PA\_\_) || defined(\_\_AVR\_ATmega164A\_\_) \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00199}00199 \textcolor{preprocessor}{|| defined(\_\_AVR\_ATmega164P\_\_)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00200}00200 \textcolor{preprocessor}{\#  if !defined(IR\_USE\_AVR\_TIMER1) \&\& !defined(IR\_USE\_AVR\_TIMER2)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00201}00201 \textcolor{comment}{//\#define IR\_USE\_AVR\_TIMER1   // send pin = pin 13}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00202}00202 \textcolor{preprocessor}{\#define IR\_USE\_AVR\_TIMER2     }\textcolor{comment}{// send pin = pin 14}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00203}00203 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00204}00204 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00205}00205 \textcolor{comment}{// MightyCore -\/ ATmega8535, ATmega16, ATmega32}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00206}00206 \textcolor{preprocessor}{\#elif defined(\_\_AVR\_ATmega8535\_\_) || defined(\_\_AVR\_ATmega16\_\_) || defined(\_\_AVR\_ATmega32\_\_)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00207}00207 \textcolor{preprocessor}{\#  if !defined(IR\_USE\_AVR\_TIMER1)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00208}00208 \textcolor{preprocessor}{\#define IR\_USE\_AVR\_TIMER1     }\textcolor{comment}{// send pin = pin 13}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00209}00209 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00210}00210 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00211}00211 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00214}00214 \textcolor{preprocessor}{\#elif defined(\_\_AVR\_ATtiny1616\_\_)  || defined(\_\_AVR\_ATtiny3216\_\_) || defined(\_\_AVR\_ATtiny3217\_\_) }\textcolor{comment}{// TinyCore boards}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00215}00215 \textcolor{preprocessor}{\#define IR\_USE\_AVR\_TIMER\_D}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00216}00216 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00217}00217 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// AVR CPU's}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00218}00218 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00221}00221 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00222}00222 \textcolor{comment}{ * AVR Timer1 (16 bits)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00223}00223 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00224}00224 \textcolor{preprocessor}{\#if defined(IR\_USE\_AVR\_TIMER1)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00225}00225 \textcolor{preprocessor}{\#  if defined(SEND\_PWM\_BY\_TIMER)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00226}00226 \textcolor{preprocessor}{\#    if defined(CORE\_OC1A\_PIN)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00227}00227 \textcolor{preprocessor}{\#define IR\_SEND\_PIN  CORE\_OC1A\_PIN  }\textcolor{comment}{// Teensy}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00228}00228 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00229}00229 \textcolor{preprocessor}{\#    elif defined(\_\_AVR\_ATmega1280\_\_) || defined(\_\_AVR\_ATmega2560\_\_)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00230}00230 \textcolor{preprocessor}{\#define IR\_SEND\_PIN  11             }\textcolor{comment}{// Arduino Mega}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00231}00231 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00232}00232 \textcolor{comment}{// MightyCore, MegaCore, MajorCore}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00233}00233 \textcolor{preprocessor}{\#    elif defined(\_\_AVR\_ATmega1284\_\_) || defined(\_\_AVR\_ATmega1284P\_\_) \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00234}00234 \textcolor{preprocessor}{|| defined(\_\_AVR\_ATmega644\_\_) || defined(\_\_AVR\_ATmega644P\_\_) \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00235}00235 \textcolor{preprocessor}{|| defined(\_\_AVR\_ATmega324P\_\_) || defined(\_\_AVR\_ATmega324A\_\_) \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00236}00236 \textcolor{preprocessor}{|| defined(\_\_AVR\_ATmega324PA\_\_) || defined(\_\_AVR\_ATmega164A\_\_) \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00237}00237 \textcolor{preprocessor}{|| defined(\_\_AVR\_ATmega164P\_\_) || defined(\_\_AVR\_ATmega32\_\_) \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00238}00238 \textcolor{preprocessor}{|| defined(\_\_AVR\_ATmega16\_\_) || defined(\_\_AVR\_ATmega8535\_\_) \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00239}00239 \textcolor{preprocessor}{|| defined(\_\_AVR\_ATmega64\_\_) || defined(\_\_AVR\_ATmega128\_\_) \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00240}00240 \textcolor{preprocessor}{|| defined(\_\_AVR\_ATmega1281\_\_) || defined(\_\_AVR\_ATmega2561\_\_) \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00241}00241 \textcolor{preprocessor}{|| defined(\_\_AVR\_ATmega8515\_\_) || defined(\_\_AVR\_ATmega162\_\_)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00242}00242 \textcolor{preprocessor}{\#define IR\_SEND\_PIN  13}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00243}00243 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00244}00244 \textcolor{preprocessor}{\#    elif defined(\_\_AVR\_ATtiny84\_\_)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00245}00245 \textcolor{preprocessor}{\#define IR\_SEND\_PIN  6}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00246}00246 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00247}00247 \textcolor{preprocessor}{\#    elif defined(\_\_AVR\_ATtiny88\_\_)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00248}00248 \textcolor{preprocessor}{\#define IR\_SEND\_PIN  8}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00249}00249 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00250}00250 \textcolor{preprocessor}{\#    elif defined(\_\_AVR\_ATtiny87\_\_) || defined(\_\_AVR\_ATtiny167\_\_)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00251}00251 \textcolor{preprocessor}{\#define IR\_SEND\_PIN  PIN\_PB1 }\textcolor{comment}{// OC1BU / PB1 / Pin8 at ATTinyCore (BU/PB1, BV/PB3, BW/PB5 and BX/PB7 are available) see ENABLE\_SEND\_PWM\_BY\_TIMER}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00252}00252 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00253}00253 \textcolor{preprocessor}{\#    else}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00254}00254 \textcolor{preprocessor}{\#define IR\_SEND\_PIN  9              }\textcolor{comment}{// OC1A Arduino Duemilanove, Diecimila, LilyPad, Sparkfun Pro Micro, Leonardo, MH-\/ET Tiny88 etc.}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00255}00255 \textcolor{preprocessor}{\#    endif }\textcolor{comment}{// defined(CORE\_OC1A\_PIN)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00256}00256 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00257}00257 \textcolor{preprocessor}{\#    if defined(\_\_AVR\_ATtiny87\_\_) || defined(\_\_AVR\_ATtiny167\_\_)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00258}00258 \textcolor{comment}{// Clear OC1A/OC1B on Compare Match when up-\/counting. Set OC1A/OC1B on Compare Match when downcounting.}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00259}00259 \textcolor{preprocessor}{\#define ENABLE\_SEND\_PWM\_BY\_TIMER   TCNT1 = 0;  (TCCR1A |= \_BV(COM1A1); (TCCR1D |= \_BV(OC1BU)) }\textcolor{comment}{// + enable OC1BU as output}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00260}00260 \textcolor{preprocessor}{\#define DISABLE\_SEND\_PWM\_BY\_TIMER  (TCCR1D = 0)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00261}00261 \textcolor{preprocessor}{\#    else}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00262}00262 \textcolor{preprocessor}{\#define ENABLE\_SEND\_PWM\_BY\_TIMER   TCNT1 = 0; (TCCR1A |= \_BV(COM1A1))  }\textcolor{comment}{// Clear OC1A/OC1B on Compare Match when up-\/counting. Set OC1A/OC1B on Compare Match when downcounting.}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00263}00263 \textcolor{preprocessor}{\#define DISABLE\_SEND\_PWM\_BY\_TIMER  (TCCR1A \&= \string~(\_BV(COM1A1)))}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00264}00264 \textcolor{preprocessor}{\#    endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00265}00265 \textcolor{preprocessor}{\#  endif }\textcolor{comment}{// defined(SEND\_PWM\_BY\_TIMER)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00266}00266 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00267}00267 \textcolor{preprocessor}{\#define TIMER\_RESET\_INTR\_PENDING}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00268}00268 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00269}00269 \textcolor{preprocessor}{\#  if defined(\_\_AVR\_ATmega8\_\_) || defined(\_\_AVR\_ATmega8515\_\_) \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00270}00270 \textcolor{preprocessor}{|| defined(\_\_AVR\_ATmega8535\_\_) || defined(\_\_AVR\_ATmega16\_\_) \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00271}00271 \textcolor{preprocessor}{|| defined(\_\_AVR\_ATmega32\_\_) || defined(\_\_AVR\_ATmega64\_\_) \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00272}00272 \textcolor{preprocessor}{|| defined(\_\_AVR\_ATmega128\_\_) || defined(\_\_AVR\_ATmega162\_\_)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00273}00273 \textcolor{preprocessor}{\#define TIMER\_ENABLE\_RECEIVE\_INTR   (TIMSK |= \_BV(OCIE1A))}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00274}00274 \textcolor{preprocessor}{\#define TIMER\_DISABLE\_RECEIVE\_INTR  (TIMSK \&= \string~\_BV(OCIE1A))}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00275}00275 \textcolor{preprocessor}{\#  else}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00276}00276 \textcolor{preprocessor}{\#define TIMER\_ENABLE\_RECEIVE\_INTR   (TIMSK1 = \_BV(OCIE1A))          }\textcolor{comment}{// Timer/Counter1, Output Compare A Match Interrupt Enable}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00277}00277 \textcolor{preprocessor}{\#define TIMER\_DISABLE\_RECEIVE\_INTR  (TIMSK1 = 0)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00278}00278 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00279}00279 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00280}00280 \textcolor{preprocessor}{\#  if defined(USE\_TIMER\_CHANNEL\_B)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00281}00281 \textcolor{preprocessor}{\#    if defined(TIMER1\_COMPB\_vect)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00282}00282 \textcolor{preprocessor}{\#define TIMER\_INTR\_NAME       TIMER1\_COMPB\_vect}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00283}00283 \textcolor{preprocessor}{\#    elif defined(TIM1\_COMPB\_vect)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00284}00284 \textcolor{preprocessor}{\#define TIMER\_INTR\_NAME       TIM1\_COMPB\_vect}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00285}00285 \textcolor{preprocessor}{\#    endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00286}00286 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00287}00287 \textcolor{preprocessor}{\#    if defined(TIMER1\_COMPA\_vect)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00288}00288 \textcolor{preprocessor}{\#define TIMER\_INTR\_NAME       TIMER1\_COMPA\_vect}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00289}00289 \textcolor{preprocessor}{\#    elif defined(TIM1\_COMPA\_vect)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00290}00290 \textcolor{preprocessor}{\#define TIMER\_INTR\_NAME       TIM1\_COMPA\_vect}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00291}00291 \textcolor{preprocessor}{\#    endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00292}00292 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00293}00293 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00294}00294 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___timer_ga45d57d84d5fee327f67afde5f8649e6d}{timerConfigForSend}}(uint8\_t aFrequencyKHz) \{}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00295}00295 \textcolor{preprocessor}{\#  if (((F\_CPU / 2000) / 38) < 256)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00296}00296     \textcolor{keyword}{const} uint16\_t pwmval = (F\_CPU / 2000) / (aFrequencyKHz); \textcolor{comment}{// 210,52 for 38 kHz @16 MHz clock, 2000 instead of 1000 because of Phase Correct PWM}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00297}00297     TCCR1A = \_BV(WGM11);\textcolor{comment}{// PWM, Phase Correct, Top is ICR1}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00298}00298     TCCR1B = \_BV(WGM13) | \_BV(CS10);\textcolor{comment}{// CS10 -\/> no prescaling}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00299}00299     ICR1 = pwmval -\/ 1;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00300}00300 \textcolor{preprocessor}{\#    if defined(USE\_TIMER\_CHANNEL\_B)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00301}00301     OCR1A = ((pwmval * \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_ac534825448d4687e6471c3855bf71cf5}{IR\_SEND\_DUTY\_CYCLE}}) / 100) -\/ 1;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00302}00302 \textcolor{preprocessor}{\#    else}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00303}00303     OCR1A = ((pwmval * \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_ac534825448d4687e6471c3855bf71cf5}{IR\_SEND\_DUTY\_CYCLE}}) / 100) -\/ 1;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00304}00304 \textcolor{preprocessor}{\#    endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00305}00305     TCNT1 = 0;\textcolor{comment}{// not really required, since we have an 8 bit counter, but makes the signal more reproducible}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00306}00306 \textcolor{preprocessor}{\#  else}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00307}00307     \textcolor{keyword}{const} uint16\_t pwmval = ((F\_CPU / 8) / 2000) / (aFrequencyKHz); \textcolor{comment}{// 2000 instead of 1000 because of Phase Correct PWM}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00308}00308     TCCR1A = \_BV(WGM11);\textcolor{comment}{// PWM, Phase Correct, Top is ICR1}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00309}00309     TCCR1B = \_BV(WGM13) | \_BV(CS11);\textcolor{comment}{// CS11 -\/> Prescaling by 8}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00310}00310     ICR1 = pwmval -\/ 1;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00311}00311 \textcolor{preprocessor}{\#    if defined(USE\_TIMER\_CHANNEL\_B)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00312}00312     OCR1A = ((pwmval * \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_ac534825448d4687e6471c3855bf71cf5}{IR\_SEND\_DUTY\_CYCLE}}) / 100) -\/ 1;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00313}00313 \textcolor{preprocessor}{\#    else}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00314}00314     OCR1A = ((pwmval * \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_ac534825448d4687e6471c3855bf71cf5}{IR\_SEND\_DUTY\_CYCLE}}) / 100) -\/ 1;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00315}00315 \textcolor{preprocessor}{\#    endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00316}00316     TCNT1 = 0;\textcolor{comment}{// not really required, since we have an 8 bit counter, but makes the signal more reproducible}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00317}00317 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00318}00318 \}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00319}00319 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00320}00320 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___timer_ga8cca92581b5452eaac5b3075227c6c56}{timerConfigForReceive}}() \{}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00321}00321     TCCR1A = 0;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00322}00322     TCCR1B = \_BV(WGM12) | \_BV(CS10);}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00323}00323     OCR1A = F\_CPU * \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a1c7eebb527483c272812530caa313d20}{MICROS\_PER\_TICK}} / \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_af33c8a218dd35ede965cf20a68a0068d}{MICROS\_IN\_ONE\_SECOND}};}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00324}00324     TCNT1 = 0;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00325}00325 \}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00326}00326 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00327}00327 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00328}00328 \textcolor{comment}{ * AVR Timer2 (8 bits)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00329}00329 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00330}00330 \textcolor{preprocessor}{\#elif defined(IR\_USE\_AVR\_TIMER2)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00331}00331 \textcolor{preprocessor}{\#  if defined(SEND\_PWM\_BY\_TIMER)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00332}00332 \textcolor{preprocessor}{\#    if defined(CORE\_OC2B\_PIN)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00333}00333 \textcolor{preprocessor}{\#define IR\_SEND\_PIN  CORE\_OC2B\_PIN  }\textcolor{comment}{// Teensy}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00334}00334 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00335}00335 \textcolor{preprocessor}{\#    elif defined(\_\_AVR\_ATmega1280\_\_) || defined(\_\_AVR\_ATmega2560\_\_)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00336}00336 \textcolor{preprocessor}{\#define IR\_SEND\_PIN  9              }\textcolor{comment}{// Arduino Mega}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00337}00337 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00338}00338 \textcolor{preprocessor}{\#    elif defined(\_\_AVR\_ATmega1284\_\_) || defined(\_\_AVR\_ATmega1284P\_\_) \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00339}00339 \textcolor{preprocessor}{|| defined(\_\_AVR\_ATmega644\_\_) || defined(\_\_AVR\_ATmega644P\_\_) \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00340}00340 \textcolor{preprocessor}{|| defined(\_\_AVR\_ATmega324P\_\_) || defined(\_\_AVR\_ATmega324A\_\_) \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00341}00341 \textcolor{preprocessor}{|| defined(\_\_AVR\_ATmega324PA\_\_) || defined(\_\_AVR\_ATmega164A\_\_) \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00342}00342 \textcolor{preprocessor}{|| defined(\_\_AVR\_ATmega164P\_\_)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00343}00343 \textcolor{preprocessor}{\#define IR\_SEND\_PIN  14             }\textcolor{comment}{// MightyCore, MegaCore}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00344}00344 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00345}00345 \textcolor{preprocessor}{\#    else}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00346}00346 \textcolor{preprocessor}{\#define IR\_SEND\_PIN  3              }\textcolor{comment}{// Arduino Duemilanove, Diecimila, LilyPad, etc}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00347}00347 \textcolor{preprocessor}{\#    endif }\textcolor{comment}{// defined(CORE\_OC2B\_PIN)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00348}00348 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00349}00349 \textcolor{preprocessor}{\#define ENABLE\_SEND\_PWM\_BY\_TIMER    TCNT2 = 0; (TCCR2A |= \_BV(COM2B1))  }\textcolor{comment}{// Clear OC2B on Compare Match}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00350}00350 \textcolor{preprocessor}{\#define DISABLE\_SEND\_PWM\_BY\_TIMER   (TCCR2A \&= \string~(\_BV(COM2B1)))          }\textcolor{comment}{// Normal port operation, OC2B disconnected.}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00351}00351 \textcolor{preprocessor}{\#  endif }\textcolor{comment}{// defined(SEND\_PWM\_BY\_TIMER)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00352}00352 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00353}00353 \textcolor{preprocessor}{\#define TIMER\_RESET\_INTR\_PENDING}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00354}00354 \textcolor{preprocessor}{\#define TIMER\_ENABLE\_RECEIVE\_INTR   (TIMSK2 = \_BV(OCIE2B))              }\textcolor{comment}{// Output Compare Match A Interrupt Enable}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00355}00355 \textcolor{preprocessor}{\#define TIMER\_DISABLE\_RECEIVE\_INTR  (TIMSK2 = 0)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00356}00356 \textcolor{preprocessor}{\#define TIMER\_INTR\_NAME             TIMER2\_COMPB\_vect                   }\textcolor{comment}{// We use TIMER2\_COMPB\_vect to be compatible with tone() library}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00357}00357 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00358}00358 \textcolor{comment}{// The top value for the timer.  The modulation frequency will be F\_CPU / 2 / OCR2A.}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00359}00359 \textcolor{preprocessor}{\#pragma GCC diagnostic ignored "{}-\/Wunused-\/function"{}}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00360}00360 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00361}00361 \textcolor{comment}{ * timerConfigForSend() is used exclusively by IRsend::enableIROut()}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00362}00362 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00363}00363 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___timer_ga45d57d84d5fee327f67afde5f8649e6d}{timerConfigForSend}}(uint8\_t aFrequencyKHz) \{}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00364}00364 \textcolor{preprocessor}{\#  if (((F\_CPU / 2000) / 38) < 256)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00365}00365     \textcolor{keyword}{const} uint16\_t pwmval = (F\_CPU / 2000) / (aFrequencyKHz); \textcolor{comment}{// 210,52 for 38 kHz @16 MHz clock, 2000 instead of 1000 because of Phase Correct PWM}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00366}00366     TCCR2A = \_BV(WGM20);\textcolor{comment}{// PWM, Phase Correct, Top is OCR2A}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00367}00367     TCCR2B = \_BV(WGM22) | \_BV(CS20);\textcolor{comment}{// CS20 -\/> no prescaling}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00368}00368     OCR2A = pwmval -\/ 1;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00369}00369     OCR2B = ((pwmval * \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_ac534825448d4687e6471c3855bf71cf5}{IR\_SEND\_DUTY\_CYCLE}}) / 100) -\/ 1;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00370}00370     TCNT2 = 0;\textcolor{comment}{// not really required, since we have an 8 bit counter, but makes the signal more reproducible}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00371}00371 \textcolor{preprocessor}{\#  else}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00372}00372     \textcolor{keyword}{const} uint16\_t pwmval = ((F\_CPU / 8) / 2000) / (aFrequencyKHz); \textcolor{comment}{// 2000 instead of 1000 because of Phase Correct PWM}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00373}00373     TCCR2A = \_BV(WGM20);\textcolor{comment}{// PWM, Phase Correct, Top is OCR2A}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00374}00374     TCCR2B = \_BV(WGM22) | \_BV(CS21);\textcolor{comment}{// CS21 -\/> Prescaling by 8}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00375}00375     OCR2A = pwmval -\/ 1;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00376}00376     OCR2B = ((pwmval * \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_ac534825448d4687e6471c3855bf71cf5}{IR\_SEND\_DUTY\_CYCLE}}) / 100) -\/ 1;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00377}00377     TCNT2 = 0;\textcolor{comment}{// not really required, since we have an 8 bit counter, but makes the signal more reproducible}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00378}00378 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00379}00379 \}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00380}00380 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00381}00381 \textcolor{preprocessor}{\#define TIMER\_COUNT\_TOP  (F\_CPU * MICROS\_PER\_TICK / MICROS\_IN\_ONE\_SECOND)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00382}00382 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00383}00383 \textcolor{comment}{ * timerConfigForReceive() is used exclusively by IRrecv::enableIRIn()}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00384}00384 \textcolor{comment}{ * It generates an interrupt each 50 (MICROS\_PER\_TICK) us.}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00385}00385 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00386}00386 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___timer_ga8cca92581b5452eaac5b3075227c6c56}{timerConfigForReceive}}() \{}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00387}00387 \textcolor{preprocessor}{\#  if (TIMER\_COUNT\_TOP < 256)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00388}00388     TCCR2A = \_BV(WGM21);}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00389}00389     TCCR2B = \_BV(CS20);}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00390}00390     OCR2A = TIMER\_COUNT\_TOP;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00391}00391     OCR2B = TIMER\_COUNT\_TOP;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00392}00392     TCNT2 = 0;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00393}00393 \textcolor{preprocessor}{\#  else}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00394}00394     TCCR2A = \_BV(WGM21);}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00395}00395     TCCR2B = \_BV(CS21);}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00396}00396     OCR2A = TIMER\_COUNT\_TOP / 8;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00397}00397     OCR2B = TIMER\_COUNT\_TOP / 8;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00398}00398     TCNT2 = 0;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00399}00399 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00400}00400 \}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00401}00401 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00402}00402 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00403}00403 \textcolor{comment}{ * AVR Timer3 (16 bits)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00404}00404 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00405}00405 \textcolor{preprocessor}{\#elif defined(IR\_USE\_AVR\_TIMER3)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00406}00406 \textcolor{preprocessor}{\#  if defined(SEND\_PWM\_BY\_TIMER)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00407}00407 \textcolor{preprocessor}{\#    if defined(CORE\_OC3A\_PIN)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00408}00408 \textcolor{preprocessor}{\#define IR\_SEND\_PIN  CORE\_OC3A\_PIN  }\textcolor{comment}{// Teensy}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00409}00409 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00410}00410 \textcolor{preprocessor}{\#    elif defined(\_\_AVR\_ATmega1280\_\_) || defined(\_\_AVR\_ATmega2560\_\_) \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00411}00411 \textcolor{preprocessor}{|| defined(\_\_AVR\_ATmega32U4\_\_) || defined(ARDUINO\_AVR\_PROMICRO)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00412}00412 \textcolor{preprocessor}{\#define IR\_SEND\_PIN  5              }\textcolor{comment}{// Arduino Mega, Arduino Leonardo, Sparkfun Pro Micro}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00413}00413 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00414}00414 \textcolor{preprocessor}{\#    elif defined(\_\_AVR\_ATmega1284\_\_) || defined(\_\_AVR\_ATmega1284P\_\_)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00415}00415 \textcolor{preprocessor}{\#define IR\_SEND\_PIN  6              }\textcolor{comment}{// MightyCore, MegaCore}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00416}00416 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00417}00417 \textcolor{preprocessor}{\#    else}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00418}00418 \textcolor{preprocessor}{\#error Please add OC3A pin number here}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00419}00419 \textcolor{preprocessor}{\#    endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00420}00420 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00421}00421 \textcolor{preprocessor}{\#define ENABLE\_SEND\_PWM\_BY\_TIMER    TCNT3 = 0; (TCCR3A |= \_BV(COM3A1))}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00422}00422 \textcolor{preprocessor}{\#define DISABLE\_SEND\_PWM\_BY\_TIMER   (TCCR3A \&= \string~(\_BV(COM3A1)))}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00423}00423 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00424}00424 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00425}00425 \textcolor{preprocessor}{\#define TIMER\_RESET\_INTR\_PENDING}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00426}00426 \textcolor{preprocessor}{\#define TIMER\_ENABLE\_RECEIVE\_INTR   (TIMSK3 = \_BV(OCIE3B))}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00427}00427 \textcolor{preprocessor}{\#define TIMER\_DISABLE\_RECEIVE\_INTR  (TIMSK3 = 0)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00428}00428 \textcolor{preprocessor}{\#define TIMER\_INTR\_NAME             TIMER3\_COMPB\_vect}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00429}00429 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00430}00430 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___timer_ga45d57d84d5fee327f67afde5f8649e6d}{timerConfigForSend}}(uint8\_t aFrequencyKHz) \{}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00431}00431 \textcolor{preprocessor}{\#if defined(SEND\_PWM\_BY\_TIMER) \&\& F\_CPU > 16000000}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00432}00432 \textcolor{preprocessor}{\#error "{}Creating timer PWM with timer 3 is not supported for F\_CPU > 16 MHz"{}}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00433}00433 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00434}00434     \textcolor{keyword}{const} uint16\_t pwmval = (F\_CPU / 2000) / (aFrequencyKHz); \textcolor{comment}{// 210,52 for 38 kHz @16 MHz clock, 2000 instead of 1000 because of Phase Correct PWM}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00435}00435     TCCR3A = \_BV(WGM31);}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00436}00436     TCCR3B = \_BV(WGM33) | \_BV(CS30);\textcolor{comment}{// PWM, Phase Correct, ICRn as TOP, complete period is double of pwmval}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00437}00437     ICR3 = pwmval -\/ 1;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00438}00438     OCR3A = ((pwmval * \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_ac534825448d4687e6471c3855bf71cf5}{IR\_SEND\_DUTY\_CYCLE}}) / 100) -\/ 1;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00439}00439     TCNT3 = 0;\textcolor{comment}{// required, since we have an 16 bit counter}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00440}00440 \}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00441}00441 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00442}00442 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___timer_ga8cca92581b5452eaac5b3075227c6c56}{timerConfigForReceive}}() \{}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00443}00443     TCCR3A = 0;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00444}00444     TCCR3B = \_BV(WGM32) | \_BV(CS30);}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00445}00445     OCR3A = F\_CPU * \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a1c7eebb527483c272812530caa313d20}{MICROS\_PER\_TICK}} / \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_af33c8a218dd35ede965cf20a68a0068d}{MICROS\_IN\_ONE\_SECOND}};}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00446}00446     OCR3B = F\_CPU * \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a1c7eebb527483c272812530caa313d20}{MICROS\_PER\_TICK}} / \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_af33c8a218dd35ede965cf20a68a0068d}{MICROS\_IN\_ONE\_SECOND}};}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00447}00447     TCNT3 = 0;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00448}00448 \}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00449}00449 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00450}00450 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00451}00451 \textcolor{comment}{ * AVR Timer4 (16 bits)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00452}00452 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00453}00453 \textcolor{preprocessor}{\#elif defined(IR\_USE\_AVR\_TIMER4)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00454}00454 \textcolor{preprocessor}{\#  if defined(SEND\_PWM\_BY\_TIMER)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00455}00455 \textcolor{preprocessor}{\#    if defined(CORE\_OC4A\_PIN)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00456}00456 \textcolor{preprocessor}{\#define IR\_SEND\_PIN  CORE\_OC4A\_PIN}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00457}00457 \textcolor{preprocessor}{\#    elif defined(\_\_AVR\_ATmega1280\_\_) || defined(\_\_AVR\_ATmega2560\_\_)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00458}00458 \textcolor{preprocessor}{\#define IR\_SEND\_PIN  6  }\textcolor{comment}{// Arduino Mega}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00459}00459 \textcolor{preprocessor}{\#    else}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00460}00460 \textcolor{preprocessor}{\#error Please add OC4A pin number here}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00461}00461 \textcolor{preprocessor}{\#    endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00462}00462 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00463}00463 \textcolor{preprocessor}{\#define ENABLE\_SEND\_PWM\_BY\_TIMER    TCNT4 = 0; (TCCR4A |= \_BV(COM4A1))}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00464}00464 \textcolor{preprocessor}{\#define DISABLE\_SEND\_PWM\_BY\_TIMER   (TCCR4A \&= \string~(\_BV(COM4A1)))}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00465}00465 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00466}00466 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00467}00467 \textcolor{preprocessor}{\#define TIMER\_RESET\_INTR\_PENDING}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00468}00468 \textcolor{preprocessor}{\#define TIMER\_ENABLE\_RECEIVE\_INTR   (TIMSK4 = \_BV(OCIE4A))}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00469}00469 \textcolor{preprocessor}{\#define TIMER\_DISABLE\_RECEIVE\_INTR  (TIMSK4 = 0)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00470}00470 \textcolor{preprocessor}{\#define TIMER\_INTR\_NAME             TIMER4\_COMPA\_vect}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00471}00471 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00472}00472 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___timer_ga45d57d84d5fee327f67afde5f8649e6d}{timerConfigForSend}}(uint8\_t aFrequencyKHz) \{}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00473}00473 \textcolor{preprocessor}{\#if defined(SEND\_PWM\_BY\_TIMER) \&\& F\_CPU > 16000000}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00474}00474 \textcolor{preprocessor}{\#error "{}Creating timer PWM with timer 4 is not supported for F\_CPU > 16 MHz"{}}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00475}00475 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00476}00476     \textcolor{keyword}{const} uint16\_t pwmval = (F\_CPU / 2000) / (aFrequencyKHz); \textcolor{comment}{// 210,52 for 38 kHz @16 MHz clock, 2000 instead of 1000 because of Phase Correct PWM}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00477}00477     TCCR4A = \_BV(WGM41);}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00478}00478     TCCR4B = \_BV(WGM43) | \_BV(CS40);}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00479}00479     ICR4 = pwmval -\/ 1;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00480}00480     OCR4A = ((pwmval * \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_ac534825448d4687e6471c3855bf71cf5}{IR\_SEND\_DUTY\_CYCLE}}) / 100) -\/ 1;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00481}00481     TCNT4 = 0;\textcolor{comment}{// required, since we have an 16 bit counter}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00482}00482 \}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00483}00483 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00484}00484 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___timer_ga8cca92581b5452eaac5b3075227c6c56}{timerConfigForReceive}}() \{}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00485}00485     TCCR4A = 0;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00486}00486     TCCR4B = \_BV(WGM42) | \_BV(CS40);}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00487}00487     OCR4A = F\_CPU * \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a1c7eebb527483c272812530caa313d20}{MICROS\_PER\_TICK}} / \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_af33c8a218dd35ede965cf20a68a0068d}{MICROS\_IN\_ONE\_SECOND}};}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00488}00488     TCNT4 = 0;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00489}00489 \}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00490}00490 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00491}00491 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00492}00492 \textcolor{comment}{ * AVR Timer4 (10 bits, high speed option)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00493}00493 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00494}00494 \textcolor{preprocessor}{\#elif defined(IR\_USE\_AVR\_TIMER4\_HS)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00495}00495 \textcolor{preprocessor}{\#  if defined(SEND\_PWM\_BY\_TIMER)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00496}00496 \textcolor{preprocessor}{\#    if defined(CORE\_OC4A\_PIN)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00497}00497 \textcolor{preprocessor}{\#define IR\_SEND\_PIN  CORE\_OC4A\_PIN  }\textcolor{comment}{// Teensy 2.0}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00498}00498 \textcolor{preprocessor}{\#    elif defined(ARDUINO\_AVR\_PROMICRO)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00499}00499 \textcolor{preprocessor}{\#define IR\_SEND\_PIN  5              }\textcolor{comment}{// Sparkfun Pro Micro}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00500}00500 \textcolor{preprocessor}{\#    elif defined(\_\_AVR\_ATmega32U4\_\_)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00501}00501 \textcolor{preprocessor}{\#define IR\_SEND\_PIN  13             }\textcolor{comment}{// Leonardo}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00502}00502 \textcolor{preprocessor}{\#    else}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00503}00503 \textcolor{preprocessor}{\#error Please add OC4A pin number here}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00504}00504 \textcolor{preprocessor}{\#    endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00505}00505 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00506}00506 \textcolor{preprocessor}{\#    if defined(ARDUINO\_AVR\_PROMICRO) }\textcolor{comment}{// Sparkfun Pro Micro}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00507}00507 \textcolor{preprocessor}{\#define ENABLE\_SEND\_PWM\_BY\_TIMER    TCNT4 = 0; (TCCR4A |= \_BV(COM4A0))     }\textcolor{comment}{// Use complementary OC4A output on pin 5}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00508}00508 \textcolor{preprocessor}{\#define DISABLE\_SEND\_PWM\_BY\_TIMER   (TCCR4A \&= \string~(\_BV(COM4A0)))  }\textcolor{comment}{// (Pro Micro does not map PC7 (32/ICP3/CLK0/OC4A)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00509}00509 \textcolor{comment}{// of ATmega32U4 )}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00510}00510 \textcolor{preprocessor}{\#    else}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00511}00511 \textcolor{preprocessor}{\#define ENABLE\_SEND\_PWM\_BY\_TIMER    TCNT4 = 0; (TCCR4A |= \_BV(COM4A1)); DDRC |= (1<<7)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00512}00512 \textcolor{preprocessor}{\#define DISABLE\_SEND\_PWM\_BY\_TIMER   (TCCR4A \&= \string~(\_BV(COM4A1)))}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00513}00513 \textcolor{preprocessor}{\#    endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00514}00514 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00515}00515 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00516}00516 \textcolor{preprocessor}{\#define TIMER\_RESET\_INTR\_PENDING}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00517}00517 \textcolor{preprocessor}{\#define TIMER\_ENABLE\_RECEIVE\_INTR   (TIMSK4 = \_BV(TOIE4))}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00518}00518 \textcolor{preprocessor}{\#define TIMER\_DISABLE\_RECEIVE\_INTR  (TIMSK4 = 0)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00519}00519 \textcolor{preprocessor}{\#define TIMER\_INTR\_NAME             TIMER4\_OVF\_vect}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00520}00520 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00521}00521 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___timer_ga45d57d84d5fee327f67afde5f8649e6d}{timerConfigForSend}}(uint8\_t aFrequencyKHz) \{}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00522}00522 \textcolor{preprocessor}{\#if defined(SEND\_PWM\_BY\_TIMER) \&\& F\_CPU > 16000000}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00523}00523 \textcolor{preprocessor}{\#error "{}Creating timer PWM with timer 4 HS is not supported for F\_CPU > 16 MHz"{}}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00524}00524 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00525}00525     \textcolor{keyword}{const} uint16\_t pwmval = ((F\_CPU / 2000) / (aFrequencyKHz)) -\/ 1; \textcolor{comment}{// 210,52 for 38 kHz @16 MHz clock, 2000 instead of 1000 because of Phase Correct PWM}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00526}00526     TCCR4A = (1 << PWM4A);}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00527}00527     TCCR4B = \_BV(CS40);}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00528}00528     TCCR4C = 0;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00529}00529     TCCR4D = (1 << WGM40);}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00530}00530     TCCR4E = 0;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00531}00531     TC4H = pwmval >> 8;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00532}00532     OCR4C = pwmval;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00533}00533     TC4H = (pwmval * \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_ac534825448d4687e6471c3855bf71cf5}{IR\_SEND\_DUTY\_CYCLE}} / 100) >> 8;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00534}00534     OCR4A = (pwmval * \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_ac534825448d4687e6471c3855bf71cf5}{IR\_SEND\_DUTY\_CYCLE}} / 100) \& 255;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00535}00535     TCNT4 = 0;\textcolor{comment}{// not really required, since we have an 8 bit counter, but makes the signal more reproducible}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00536}00536 \}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00537}00537 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00538}00538 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___timer_ga8cca92581b5452eaac5b3075227c6c56}{timerConfigForReceive}}() \{}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00539}00539     TCCR4A = 0;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00540}00540     TCCR4B = \_BV(CS40);}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00541}00541     TCCR4C = 0;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00542}00542     TCCR4D = 0;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00543}00543     TCCR4E = 0;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00544}00544     TC4H = (F\_CPU * \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a1c7eebb527483c272812530caa313d20}{MICROS\_PER\_TICK}} / \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_af33c8a218dd35ede965cf20a68a0068d}{MICROS\_IN\_ONE\_SECOND}}) >> 8;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00545}00545     OCR4C = (F\_CPU * \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a1c7eebb527483c272812530caa313d20}{MICROS\_PER\_TICK}} / \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_af33c8a218dd35ede965cf20a68a0068d}{MICROS\_IN\_ONE\_SECOND}}) \& 255;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00546}00546     TC4H = 0;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00547}00547     TCNT4 = 0;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00548}00548 \}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00549}00549 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00550}00550 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00551}00551 \textcolor{comment}{ * AVR Timer5 (16 bits)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00552}00552 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00553}00553 \textcolor{preprocessor}{\#elif defined(IR\_USE\_AVR\_TIMER5)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00554}00554 \textcolor{preprocessor}{\#  if defined(SEND\_PWM\_BY\_TIMER)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00555}00555 \textcolor{preprocessor}{\#    if defined(CORE\_OC5A\_PIN)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00556}00556 \textcolor{preprocessor}{\#define IR\_SEND\_PIN  CORE\_OC5A\_PIN}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00557}00557 \textcolor{preprocessor}{\#    elif defined(\_\_AVR\_ATmega1280\_\_) || defined(\_\_AVR\_ATmega2560\_\_)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00558}00558 \textcolor{preprocessor}{\#define IR\_SEND\_PIN  46  }\textcolor{comment}{// Arduino Mega}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00559}00559 \textcolor{preprocessor}{\#    else}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00560}00560 \textcolor{preprocessor}{\#error Please add OC5A pin number here}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00561}00561 \textcolor{preprocessor}{\#    endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00562}00562 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00563}00563 \textcolor{preprocessor}{\#define ENABLE\_SEND\_PWM\_BY\_TIMER    TCNT5 = 0; (TCCR5A |= \_BV(COM5A1))}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00564}00564 \textcolor{preprocessor}{\#define DISABLE\_SEND\_PWM\_BY\_TIMER   (TCCR5A \&= \string~(\_BV(COM5A1)))}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00565}00565 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00566}00566 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00567}00567 \textcolor{preprocessor}{\#define TIMER\_RESET\_INTR\_PENDING}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00568}00568 \textcolor{preprocessor}{\#define TIMER\_ENABLE\_RECEIVE\_INTR   (TIMSK5 = \_BV(OCIE5A))}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00569}00569 \textcolor{preprocessor}{\#define TIMER\_DISABLE\_RECEIVE\_INTR  (TIMSK5 = 0)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00570}00570 \textcolor{preprocessor}{\#define TIMER\_INTR\_NAME             TIMER5\_COMPA\_vect}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00571}00571 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00572}00572 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___timer_ga45d57d84d5fee327f67afde5f8649e6d}{timerConfigForSend}}(uint8\_t aFrequencyKHz) \{}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00573}00573 \textcolor{preprocessor}{\#if defined(SEND\_PWM\_BY\_TIMER) \&\& F\_CPU > 16000000}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00574}00574 \textcolor{preprocessor}{\#error "{}Creating timer PWM with timer 5 is not supported for F\_CPU > 16 MHz"{}}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00575}00575 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00576}00576     \textcolor{keyword}{const} uint16\_t pwmval = (F\_CPU / 2000) / (aFrequencyKHz); \textcolor{comment}{// 210,52 for 38 kHz @16 MHz clock, 2000 instead of 1000 because of Phase Correct PWM}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00577}00577     TCCR5A = \_BV(WGM51);}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00578}00578     TCCR5B = \_BV(WGM53) | \_BV(CS50);}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00579}00579     ICR5 = pwmval -\/ 1;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00580}00580     OCR5A = ((pwmval * \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_ac534825448d4687e6471c3855bf71cf5}{IR\_SEND\_DUTY\_CYCLE}}) / 100) -\/ 1;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00581}00581     TCNT5 = 0;\textcolor{comment}{// required, since we have an 16 bit counter}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00582}00582 \}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00583}00583 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00584}00584 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___timer_ga8cca92581b5452eaac5b3075227c6c56}{timerConfigForReceive}}() \{}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00585}00585     TCCR5A = 0;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00586}00586     TCCR5B = \_BV(WGM52) | \_BV(CS50);}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00587}00587     OCR5A = F\_CPU * \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a1c7eebb527483c272812530caa313d20}{MICROS\_PER\_TICK}} / \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_af33c8a218dd35ede965cf20a68a0068d}{MICROS\_IN\_ONE\_SECOND}};}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00588}00588     TCNT5 = 0;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00589}00589 \}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00590}00590 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00591}00591 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00592}00592 \textcolor{comment}{ * AVR Timer0 for ATtinies (8 bits)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00593}00593 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00594}00594 \textcolor{preprocessor}{\#elif defined(IR\_USE\_AVR\_TIMER\_TINY0)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00595}00595 \textcolor{preprocessor}{\#  if defined(SEND\_PWM\_BY\_TIMER)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00596}00596 \textcolor{preprocessor}{\#define IR\_SEND\_PIN        1}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00597}00597 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00598}00598 \textcolor{preprocessor}{\#define ENABLE\_SEND\_PWM\_BY\_TIMER        TCNT0 = 0; (TCCR0A |= \_BV(COM0B1))}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00599}00599 \textcolor{preprocessor}{\#define DISABLE\_SEND\_PWM\_BY\_TIMER       (TCCR0A \&= \string~(\_BV(COM0B1)))}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00600}00600 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00601}00601 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00602}00602 \textcolor{preprocessor}{\#define TIMER\_RESET\_INTR\_PENDING}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00603}00603 \textcolor{preprocessor}{\#define TIMER\_ENABLE\_RECEIVE\_INTR       (TIMSK |= \_BV(OCIE0A))}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00604}00604 \textcolor{preprocessor}{\#define TIMER\_DISABLE\_RECEIVE\_INTR      (TIMSK \&= \string~(\_BV(OCIE0A)))}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00605}00605 \textcolor{preprocessor}{\#define TIMER\_INTR\_NAME                 TIMER0\_COMPA\_vect}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00606}00606 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00607}00607 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___timer_ga45d57d84d5fee327f67afde5f8649e6d}{timerConfigForSend}}(uint8\_t aFrequencyKHz) \{}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00608}00608 \textcolor{preprocessor}{\#if defined(SEND\_PWM\_BY\_TIMER) \&\& F\_CPU > 16000000}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00609}00609 \textcolor{preprocessor}{\#error "{}Creating timer PWM with timer TINY0 is not supported for F\_CPU > 16 MHz"{}}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00610}00610 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00611}00611     \textcolor{keyword}{const} uint16\_t pwmval = (F\_CPU / 2000) / (aFrequencyKHz); \textcolor{comment}{// 210,52 for 38 kHz @16 MHz clock, 2000 instead of 1000 because of Phase Correct PWM}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00612}00612     TCCR0A = \_BV(WGM00);\textcolor{comment}{// PWM, Phase Correct, Top is OCR0A}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00613}00613     TCCR0B = \_BV(WGM02) | \_BV(CS00);\textcolor{comment}{// CS00 -\/> no prescaling}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00614}00614     OCR0A = pwmval -\/ 1;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00615}00615     OCR0B = ((pwmval * \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_ac534825448d4687e6471c3855bf71cf5}{IR\_SEND\_DUTY\_CYCLE}}) / 100) -\/ 1;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00616}00616     TCNT0 = 0;\textcolor{comment}{// not really required, since we have an 8 bit counter, but makes the signal more reproducible}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00617}00617 \}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00618}00618 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00619}00619 \textcolor{preprocessor}{\#define TIMER\_COUNT\_TOP  (F\_CPU * MICROS\_PER\_TICK / MICROS\_IN\_ONE\_SECOND)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00620}00620 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___timer_ga8cca92581b5452eaac5b3075227c6c56}{timerConfigForReceive}}() \{}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00621}00621 \textcolor{preprocessor}{\#  if (TIMER\_COUNT\_TOP < 256)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00622}00622     TCCR0A = \_BV(WGM01); \textcolor{comment}{// CTC, Top is OCR0A}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00623}00623     TCCR0B = \_BV(CS00);\textcolor{comment}{// No prescaling}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00624}00624     OCR0A = TIMER\_COUNT\_TOP;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00625}00625     TCNT0 = 0;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00626}00626 \textcolor{preprocessor}{\#  else}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00627}00627     TCCR0A = \_BV(WGM01);}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00628}00628     TCCR0B = \_BV(CS01); \textcolor{comment}{// prescaling by 8}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00629}00629     OCR0A = TIMER\_COUNT\_TOP / 8;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00630}00630     TCNT0 = 0;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00631}00631 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00632}00632 \}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00633}00633 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00634}00634 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00635}00635 \textcolor{comment}{ * AVR Timer1 for ATtinies (8 bits)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00636}00636 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00637}00637 \textcolor{preprocessor}{\#elif defined(IR\_USE\_AVR\_TIMER\_TINY1)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00638}00638 \textcolor{preprocessor}{\#  if defined(SEND\_PWM\_BY\_TIMER)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00639}00639 \textcolor{preprocessor}{\#define IR\_SEND\_PIN        4}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00640}00640 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00641}00641 \textcolor{preprocessor}{\#define ENABLE\_SEND\_PWM\_BY\_TIMER    TCNT1 = 0; GTCCR |= \_BV(PWM1B) | \_BV(COM1B0) }\textcolor{comment}{// Enable pin 4 PWM output (PB4 -\/ Arduino D4)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00642}00642 \textcolor{preprocessor}{\#define DISABLE\_SEND\_PWM\_BY\_TIMER   (GTCCR \&= \string~(\_BV(PWM1B) | \_BV(COM1B0)))}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00643}00643 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00644}00644 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00645}00645 \textcolor{preprocessor}{\#define TIMER\_RESET\_INTR\_PENDING}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00646}00646 \textcolor{preprocessor}{\#define TIMER\_ENABLE\_RECEIVE\_INTR   (TIMSK |= \_BV(OCIE1B))}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00647}00647 \textcolor{preprocessor}{\#define TIMER\_DISABLE\_RECEIVE\_INTR  (TIMSK \&= \string~(\_BV(OCIE1B)))}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00648}00648 \textcolor{preprocessor}{\#define TIMER\_INTR\_NAME             TIMER1\_COMPB\_vect}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00649}00649 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00650}00650 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___timer_ga45d57d84d5fee327f67afde5f8649e6d}{timerConfigForSend}}(uint8\_t aFrequencyKHz) \{}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00651}00651 \textcolor{preprocessor}{\#  if (((F\_CPU / 1000) / 38) < 256)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00652}00652     \textcolor{keyword}{const} uint16\_t pwmval = (F\_CPU / 1000) / (aFrequencyKHz); \textcolor{comment}{// 421 @16 MHz, 26 @1 MHz and 38 kHz}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00653}00653     TCCR1 = \_BV(CTC1) | \_BV(CS10);\textcolor{comment}{// CTC1 = 1: TOP value set to OCR1C, CS10 No Prescaling}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00654}00654     OCR1C = pwmval -\/ 1;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00655}00655     OCR1B = ((pwmval * \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_ac534825448d4687e6471c3855bf71cf5}{IR\_SEND\_DUTY\_CYCLE}}) / 100) -\/ 1;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00656}00656     TCNT1 = 0;\textcolor{comment}{// not really required, since we have an 8 bit counter, but makes the signal more reproducible}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00657}00657     GTCCR = \_BV(PWM1B) | \_BV(COM1B0);\textcolor{comment}{// PWM1B = 1: Enable PWM for OCR1B, COM1B0 Clear on compare match}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00658}00658 \textcolor{preprocessor}{\#  else}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00659}00659     \textcolor{keyword}{const} uint16\_t pwmval = ((F\_CPU / 2) / 1000) / (aFrequencyKHz); \textcolor{comment}{// 210 for 16 MHz and 38 kHz}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00660}00660     TCCR1 = \_BV(CTC1) | \_BV(CS11);\textcolor{comment}{// CTC1 = 1: TOP value set to OCR1C, CS11 Prescaling by 2}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00661}00661     OCR1C = pwmval -\/ 1;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00662}00662     OCR1B = ((pwmval * \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_ac534825448d4687e6471c3855bf71cf5}{IR\_SEND\_DUTY\_CYCLE}}) / 100) -\/ 1;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00663}00663     TCNT1 = 0;\textcolor{comment}{// not really required, since we have an 8 bit counter, but makes the signal more reproducible}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00664}00664     GTCCR = \_BV(PWM1B) | \_BV(COM1B0);\textcolor{comment}{// PWM1B = 1: Enable PWM for OCR1B, COM1B0 Clear on compare match}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00665}00665 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00666}00666 \}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00667}00667 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00668}00668 \textcolor{preprocessor}{\#define TIMER\_COUNT\_TOP  (F\_CPU * MICROS\_PER\_TICK / MICROS\_IN\_ONE\_SECOND)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00669}00669 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___timer_ga8cca92581b5452eaac5b3075227c6c56}{timerConfigForReceive}}() \{}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00670}00670 \textcolor{preprocessor}{\#  if (TIMER\_COUNT\_TOP < 256)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00671}00671     TCCR1 = \_BV(CTC1) | \_BV(CS10); \textcolor{comment}{// Clear Timer/Counter on Compare Match, Top is OCR1C, No prescaling}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00672}00672     GTCCR = 0; \textcolor{comment}{// normal, non-\/PWM mode}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00673}00673     OCR1C = TIMER\_COUNT\_TOP;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00674}00674     TCNT1 = 0;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00675}00675 \textcolor{preprocessor}{\#  else}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00676}00676     TCCR1 = \_BV(CTC1) | \_BV(CS12); \textcolor{comment}{// Clear Timer/Counter on Compare Match, Top is OCR1C, prescaling by 8}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00677}00677     GTCCR = 0; \textcolor{comment}{// normal, non-\/PWM mode}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00678}00678     OCR1C = TIMER\_COUNT\_TOP / 8;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00679}00679     TCNT1 = 0;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00680}00680 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00681}00681 \}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00682}00682 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00683}00683 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00684}00684 \textcolor{comment}{ * AVR TimerB  (8 bits) for ATmega4809 (Nano Every, Uno WiFi Rev2)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00685}00685 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00686}00686 \textcolor{preprocessor}{\#elif defined(IR\_USE\_AVR\_TIMER\_B)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00687}00687 \textcolor{preprocessor}{\#  if defined(SEND\_PWM\_BY\_TIMER)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00688}00688 \textcolor{preprocessor}{\#    if defined(\_\_AVR\_ATmega4808\_\_) || defined(\_\_AVR\_ATmega4809\_\_)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00689}00689 \textcolor{preprocessor}{\#define IR\_SEND\_PIN        6 }\textcolor{comment}{// PF4 on ATmega4809 / Nano Every (see pins\_arduino.h digital\_pin\_to\_timer)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00690}00690 \textcolor{preprocessor}{\#    else}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00691}00691 \textcolor{preprocessor}{\#error SEND\_PWM\_BY\_TIMER not yet supported for this CPU}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00692}00692 \textcolor{preprocessor}{\#    endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00693}00693 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00694}00694 \textcolor{preprocessor}{\#define ENABLE\_SEND\_PWM\_BY\_TIMER    TCB0.CNT = 0; (TCB0.CTRLB |= TCB\_CCMPEN\_bm) }\textcolor{comment}{// set Compare/Capture Output Enable}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00695}00695 \textcolor{preprocessor}{\#define DISABLE\_SEND\_PWM\_BY\_TIMER   (TCB0.CTRLB \&= \string~(TCB\_CCMPEN\_bm))}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00696}00696 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00697}00697 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00698}00698 \textcolor{comment}{// ATmega4809 TCB0}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00699}00699 \textcolor{preprocessor}{\#define TIMER\_RESET\_INTR\_PENDING    TCB0.INTFLAGS = TCB\_CAPT\_bm}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00700}00700 \textcolor{preprocessor}{\#define TIMER\_ENABLE\_RECEIVE\_INTR   (TCB0.INTCTRL = TCB\_CAPT\_bm)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00701}00701 \textcolor{preprocessor}{\#define TIMER\_DISABLE\_RECEIVE\_INTR  (TCB0.INTCTRL \&= \string~(TCB\_CAPT\_bm))}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00702}00702 \textcolor{preprocessor}{\#define TIMER\_INTR\_NAME             TCB0\_INT\_vect}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00703}00703 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00704}00704 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___timer_ga45d57d84d5fee327f67afde5f8649e6d}{timerConfigForSend}}(uint8\_t aFrequencyKHz) \{}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00705}00705 \textcolor{preprocessor}{\#if defined(SEND\_PWM\_BY\_TIMER) \&\& F\_CPU > 16000000}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00706}00706     \textcolor{comment}{// we have only prescaler 2 or must take clock of timer A (which is non deterministic)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00707}00707 \textcolor{preprocessor}{\#error "{}Creating timer PWM with timer TCB0 is not possible for F\_CPU > 16 MHz"{}}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00708}00708 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00709}00709     \textcolor{keyword}{const} uint16\_t pwmval = (F\_CPU / 2000) / (aFrequencyKHz); \textcolor{comment}{// 210,52 for 38 kHz @16 MHz clock, 2000 instead of 1000 because of using CLK / 2}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00710}00710     TCB0.CTRLB = TCB\_CNTMODE\_PWM8\_gc;   \textcolor{comment}{// 8 bit PWM mode}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00711}00711     TCB0.CCMPL = pwmval -\/ 1;            \textcolor{comment}{// Period of 8 bit PWM}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00712}00712     TCB0.CCMPH = ((pwmval * \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_ac534825448d4687e6471c3855bf71cf5}{IR\_SEND\_DUTY\_CYCLE}}) / 100) -\/ 1; \textcolor{comment}{// Duty cycle of waveform of 8 bit PWM}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00713}00713     TCB0.CTRLA = (TCB\_CLKSEL\_CLKDIV2\_gc) | (TCB\_ENABLE\_bm); \textcolor{comment}{// use CLK / 2}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00714}00714     TCB0.CNT = 0; \textcolor{comment}{// not really required, since we have an 8 bit counter, but makes the signal more reproducible}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00715}00715 \}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00716}00716 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00717}00717 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___timer_ga8cca92581b5452eaac5b3075227c6c56}{timerConfigForReceive}}() \{}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00718}00718     TCB0.CTRLB = (TCB\_CNTMODE\_INT\_gc);  \textcolor{comment}{// Periodic interrupt mode}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00719}00719     TCB0.CCMP = ((F\_CPU * \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a1c7eebb527483c272812530caa313d20}{MICROS\_PER\_TICK}}) / \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_af33c8a218dd35ede965cf20a68a0068d}{MICROS\_IN\_ONE\_SECOND}});}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00720}00720     TCB0.INTFLAGS = TCB\_CAPT\_bm;         \textcolor{comment}{// reset interrupt flags}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00721}00721     TCB0.CTRLA = (TCB\_CLKSEL\_CLKDIV1\_gc) | (TCB\_ENABLE\_bm);}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00722}00722 \}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00723}00723 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00724}00724 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00725}00725 \textcolor{comment}{ * AVR TimerD for TinyCore 32 (16 bits)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00726}00726 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00727}00727 \textcolor{preprocessor}{\#elif defined(IR\_USE\_AVR\_TIMER\_D)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00728}00728 \textcolor{preprocessor}{\#  if defined(SEND\_PWM\_BY\_TIMER)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00729}00729 \textcolor{preprocessor}{\#define IR\_SEND\_PIN 13}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00730}00730 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00731}00731 \textcolor{preprocessor}{\#define ENABLE\_SEND\_PWM\_BY\_TIMER    (timerEnablSendPWM())}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00732}00732 \textcolor{preprocessor}{\#define DISABLE\_SEND\_PWM\_BY\_TIMER   (TCD0.CTRLA = 0) }\textcolor{comment}{// do not disable output, disable complete timer}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00733}00733 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00734}00734 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00735}00735 \textcolor{preprocessor}{\#define TIMER\_RESET\_INTR\_PENDING    (TCD0.INTFLAGS = TCD\_OVF\_bm)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00736}00736 \textcolor{preprocessor}{\#define TIMER\_ENABLE\_RECEIVE\_INTR   (TCD0.INTCTRL = TCD\_OVF\_bm)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00737}00737 \textcolor{preprocessor}{\#define TIMER\_DISABLE\_RECEIVE\_INTR  (TCD0.INTCTRL = 0)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00738}00738 \textcolor{preprocessor}{\#define TIMER\_INTR\_NAME             TCD0\_OVF\_vect}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00739}00739 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00740}00740 \textcolor{keywordtype}{void} timerEnablSendPWM() \{}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00741}00741     TCD0.CTRLA = 0;                                                 \textcolor{comment}{// reset enable bit in order to unprotect the other bits}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00742}00742     \_PROTECTED\_WRITE(TCD0.FAULTCTRL, FUSE\_CMPAEN\_bm);\textcolor{comment}{// enable WOA output at pin 13/PA4}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00743}00743 \textcolor{comment}{//    \_PROTECTED\_WRITE(TCD0.FAULTCTRL, FUSE\_CMPAEN\_bm | FUSE\_CMPBEN\_bm); // enable WOA + WOB output pins at 13/PA4 + 14/PA5}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00744}00744     TCD0.CTRLA = TCD\_ENABLE\_bm | TCD\_CLKSEL\_SYSCLK\_gc| TCD\_CNTPRES\_DIV1\_gc;\textcolor{comment}{// System clock, no prescale, no synchronization prescaler}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00745}00745 \}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00746}00746 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00747}00747 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___timer_ga45d57d84d5fee327f67afde5f8649e6d}{timerConfigForSend}}(uint8\_t aFrequencyKHz) \{}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00748}00748     \textcolor{keyword}{const} uint16\_t pwmval = (F\_CPU / 1000) / (aFrequencyKHz);    \textcolor{comment}{// 526,31 for 38 kHz @20 MHz clock}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00749}00749     \textcolor{comment}{// use one ramp mode and overflow interrupt}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00750}00750     TCD0.CTRLA = 0;\textcolor{comment}{// reset enable bit in order to unprotect the other bits}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00751}00751 \textcolor{comment}{//    while ((TCD0.STATUS \& TCD\_ENRDY\_bm) == 0);                      // Wait for Enable Ready to be high -\/ I guess it is not required}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00752}00752     TCD0.CTRLB = TCD\_WGMODE\_ONERAMP\_gc;\textcolor{comment}{// must be set since it is used by PWM}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00753}00753     TCD0.CTRLC = 0;\textcolor{comment}{// reset WOx output settings}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00754}00754 \textcolor{comment}{//    TCD0.CMPBSET = 80;}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00755}00755     TCD0.CMPBCLR = pwmval -\/ 1;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00756}00756 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00757}00757     \textcolor{comment}{// Generate duty cycle signal for debugging etc.}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00758}00758     TCD0.CMPASET = 0;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00759}00759     TCD0.CMPACLR = (pwmval * \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_ac534825448d4687e6471c3855bf71cf5}{IR\_SEND\_DUTY\_CYCLE}} / 100) -\/ 1;\textcolor{comment}{// duty cycle for WOA}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00760}00760 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00761}00761     TCD0.INTFLAGS = TCD\_OVF\_bm;\textcolor{comment}{// reset interrupt flags}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00762}00762     TCD0.INTCTRL = TCD\_OVF\_bm;\textcolor{comment}{// overflow interrupt}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00763}00763     \textcolor{comment}{// Do not enable timer, this is done at timerEnablSendPWM()}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00764}00764 \}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00765}00765 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00766}00766 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___timer_ga8cca92581b5452eaac5b3075227c6c56}{timerConfigForReceive}}() \{}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00767}00767     TCD0.CTRLA = 0;                                                 \textcolor{comment}{// reset enable bit in order to unprotect the other bits}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00768}00768     TCD0.CTRLB = TCD\_WGMODE\_ONERAMP\_gc;\textcolor{comment}{// must be set since it is used by PWM}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00769}00769 \textcolor{comment}{//    TCD0.CMPBSET = 80;}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00770}00770     TCD0.CMPBCLR = ((F\_CPU * \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a1c7eebb527483c272812530caa313d20}{MICROS\_PER\_TICK}}) / \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_af33c8a218dd35ede965cf20a68a0068d}{MICROS\_IN\_ONE\_SECOND}}) -\/ 1;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00771}00771 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00772}00772     \_PROTECTED\_WRITE(TCD0.FAULTCTRL, 0);\textcolor{comment}{// must disable WOA output at pin 13/PA4}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00773}00773 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00774}00774     TCD0.INTFLAGS = TCD\_OVF\_bm;         \textcolor{comment}{// reset interrupt flags}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00775}00775 \textcolor{comment}{//    TCD0.INTCTRL = TCD\_OVF\_bm;          // overflow interrupt}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00776}00776     \textcolor{comment}{// check enable ready}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00777}00777 \textcolor{comment}{//    while ((TCD0.STATUS \& TCD\_ENRDY\_bm) == 0); // Wait for Enable Ready to be high -\/ I guess it is not required}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00778}00778     \textcolor{comment}{// enable timer -\/ this locks the other bits and static registers and activates values in double buffered registers}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00779}00779     TCD0.CTRLA = TCD\_ENABLE\_bm | TCD\_CLKSEL\_SYSCLK\_gc| TCD\_CNTPRES\_DIV1\_gc;\textcolor{comment}{// System clock, no prescale, no synchronization prescaler}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00780}00780 \}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00781}00781 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00782}00782 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00783}00783 \textcolor{preprocessor}{\#error Internal code configuration error, no timer functions implemented for this AVR CPU / board}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00784}00784 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//defined(IR\_USE\_AVR\_TIMER*)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00785}00785 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00789}00789 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00792}00792 \textcolor{preprocessor}{\#elif defined(\_\_MK20DX128\_\_) || defined(\_\_MK20DX256\_\_) || defined(\_\_MK64FX512\_\_) || defined(\_\_MK66FX1M0\_\_)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00793}00793 \textcolor{preprocessor}{\#  if defined(SEND\_PWM\_BY\_TIMER)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00794}00794 \textcolor{preprocessor}{\#define IR\_SEND\_PIN  5}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00795}00795 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00796}00796 \textcolor{preprocessor}{\#define ENABLE\_SEND\_PWM\_BY\_TIMER    do \{ CORE\_PIN5\_CONFIG = PORT\_PCR\_MUX(2) | PORT\_PCR\_DSE | PORT\_PCR\_SRE; \} while(0)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00797}00797 \textcolor{preprocessor}{\#define DISABLE\_SEND\_PWM\_BY\_TIMER   do \{ CORE\_PIN5\_CONFIG = PORT\_PCR\_MUX(1) | PORT\_PCR\_DSE | PORT\_PCR\_SRE; \} while(0)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00798}00798 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00799}00799 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00800}00800 \textcolor{comment}{// Special carrier modulator timer for Teensy 3.0 / Teensy 3.1}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00801}00801 \textcolor{preprocessor}{\#define TIMER\_RESET\_INTR\_PENDING    uint8\_t tmp \_\_attribute\_\_((unused)) = CMT\_MSC; CMT\_CMD2 = 30}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00802}00802 \textcolor{preprocessor}{\#define TIMER\_ENABLE\_RECEIVE\_INTR   NVIC\_ENABLE\_IRQ(IRQ\_CMT), NVIC\_SET\_PRIORITY(IRQ\_CMT, 48)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00803}00803 \textcolor{preprocessor}{\#define TIMER\_DISABLE\_RECEIVE\_INTR  NVIC\_DISABLE\_IRQ(IRQ\_CMT)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00804}00804 \textcolor{preprocessor}{\#define TIMER\_INTR\_NAME     cmt\_isr}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00805}00805 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00806}00806 \textcolor{preprocessor}{\#  ifdef ISR}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00807}00807 \textcolor{preprocessor}{\#undef ISR}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00808}00808 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00809}00809 \textcolor{preprocessor}{\#define ISR(f) void f(void)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00810}00810 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00811}00811 \textcolor{preprocessor}{\#define CMT\_PPS\_DIV  ((F\_BUS + 7999999) / 8000000)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00812}00812 \textcolor{preprocessor}{\#  if F\_BUS < 8000000}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00813}00813 \textcolor{preprocessor}{\#error IRremote requires at least 8 MHz on Teensy 3.x}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00814}00814 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00815}00815 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00816}00816 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___timer_ga45d57d84d5fee327f67afde5f8649e6d}{timerConfigForSend}}(uint8\_t aFrequencyKHz) \{}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00817}00817     SIM\_SCGC4 |= SIM\_SCGC4\_CMT;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00818}00818     SIM\_SOPT2 |= SIM\_SOPT2\_PTD7PAD;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00819}00819     CMT\_PPS = CMT\_PPS\_DIV -\/ 1;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00820}00820     CMT\_CGH1 = ((F\_BUS / CMT\_PPS\_DIV / 3000) + ((aFrequencyKHz) / 2)) / (aFrequencyKHz);}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00821}00821     CMT\_CGL1 = ((F\_BUS / CMT\_PPS\_DIV / 1500) + ((aFrequencyKHz) / 2)) / (aFrequencyKHz);}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00822}00822     CMT\_CMD1 = 0;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00823}00823     CMT\_CMD2 = 30;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00824}00824     CMT\_CMD3 = 0;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00825}00825     CMT\_CMD4 = 0;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00826}00826     CMT\_OC = 0x60;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00827}00827     CMT\_MSC = 0x01;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00828}00828 \}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00829}00829 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00830}00830 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___timer_ga8cca92581b5452eaac5b3075227c6c56}{timerConfigForReceive}}() \{}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00831}00831     SIM\_SCGC4 |= SIM\_SCGC4\_CMT;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00832}00832     CMT\_PPS = CMT\_PPS\_DIV -\/ 1;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00833}00833     CMT\_CGH1 = 1;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00834}00834     CMT\_CGL1 = 1;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00835}00835     CMT\_CMD1 = 0;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00836}00836     CMT\_CMD2 = 30;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00837}00837     CMT\_CMD3 = 0;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00838}00838     CMT\_CMD4 = (F\_BUS / 160000 + CMT\_PPS\_DIV / 2) / CMT\_PPS\_DIV -\/ 31;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00839}00839     CMT\_OC = 0;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00840}00840     CMT\_MSC = 0x03;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00841}00841 \}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00842}00842 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00843}00843 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00846}00846 \textcolor{preprocessor}{\#elif defined(\_\_MKL26Z64\_\_)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00847}00847 \textcolor{preprocessor}{\#  if defined(SEND\_PWM\_BY\_TIMER)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00848}00848 \textcolor{preprocessor}{\#define IR\_SEND\_PIN        16}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00849}00849 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00850}00850 \textcolor{preprocessor}{\#define ENABLE\_SEND\_PWM\_BY\_TIMER        FTM1\_CNT = 0; CORE\_PIN16\_CONFIG = PORT\_PCR\_MUX(3)|PORT\_PCR\_DSE|PORT\_PCR\_SRE}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00851}00851 \textcolor{preprocessor}{\#define DISABLE\_SEND\_PWM\_BY\_TIMER       CORE\_PIN16\_CONFIG = PORT\_PCR\_MUX(1)|PORT\_PCR\_SRE}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00852}00852 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00853}00853 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00854}00854 \textcolor{comment}{// defines for TPM1 timer on Teensy-\/LC}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00855}00855 \textcolor{preprocessor}{\#define TIMER\_RESET\_INTR\_PENDING        FTM1\_SC |= FTM\_SC\_TOF;}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00856}00856 \textcolor{preprocessor}{\#define TIMER\_ENABLE\_RECEIVE\_INTR       NVIC\_ENABLE\_IRQ(IRQ\_FTM1), NVIC\_SET\_PRIORITY(IRQ\_FTM1, 0)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00857}00857 \textcolor{preprocessor}{\#define TIMER\_DISABLE\_RECEIVE\_INTR      NVIC\_DISABLE\_IRQ(IRQ\_FTM1)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00858}00858 \textcolor{preprocessor}{\#define TIMER\_INTR\_NAME                 ftm1\_isr}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00859}00859 \textcolor{preprocessor}{\#  ifdef ISR}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00860}00860 \textcolor{preprocessor}{\#undef ISR}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00861}00861 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00862}00862 \textcolor{preprocessor}{\#define ISR(f) void f(void)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00863}00863 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00864}00864 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___timer_ga45d57d84d5fee327f67afde5f8649e6d}{timerConfigForSend}}(uint8\_t aFrequencyKHz) \{}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00865}00865     SIM\_SCGC6 |= SIM\_SCGC6\_TPM1;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00866}00866     FTM1\_SC = 0;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00867}00867     FTM1\_CNT = 0;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00868}00868     FTM1\_MOD = ((F\_PLL / 2000) / aFrequencyKHz) -\/ 1;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00869}00869     FTM1\_C0V = ((F\_PLL / 6000) / aFrequencyKHz) -\/ 1;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00870}00870     FTM1\_SC = FTM\_SC\_CLKS(1) | FTM\_SC\_PS(0);}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00871}00871 \}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00872}00872 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00873}00873 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___timer_ga8cca92581b5452eaac5b3075227c6c56}{timerConfigForReceive}}() \{}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00874}00874     SIM\_SCGC6 |= SIM\_SCGC6\_TPM1;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00875}00875     FTM1\_SC = 0;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00876}00876     FTM1\_CNT = 0;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00877}00877     FTM1\_MOD = (F\_PLL / 40000) -\/ 1;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00878}00878     FTM1\_C0V = 0;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00879}00879     FTM1\_SC = FTM\_SC\_CLKS(1) | FTM\_SC\_PS(0) | FTM\_SC\_TOF | FTM\_SC\_TOIE;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00880}00880 \}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00881}00881 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00882}00882 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00885}00885 \textcolor{preprocessor}{\#elif defined(\_\_IMXRT1062\_\_)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00886}00886 \textcolor{preprocessor}{\#  if defined(SEND\_PWM\_BY\_TIMER)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00887}00887 \textcolor{preprocessor}{\#define IR\_SEND\_PIN        7}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00888}00888 \textcolor{preprocessor}{\#define ENABLE\_SEND\_PWM\_BY\_TIMER        FLEXPWM1\_OUTEN |= FLEXPWM\_OUTEN\_PWMA\_EN(8), \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00889}00889 \textcolor{preprocessor}{                                        IOMUXC\_SW\_MUX\_CTL\_PAD\_GPIO\_B1\_00 = 6}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00890}00890 \textcolor{preprocessor}{\#define DISABLE\_SEND\_PWM\_BY\_TIMER       IOMUXC\_SW\_MUX\_CTL\_PAD\_GPIO\_B1\_00 = 5, \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00891}00891 \textcolor{preprocessor}{                                        FLEXPWM1\_OUTEN \&= \string~FLEXPWM\_OUTEN\_PWMA\_EN(8)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00892}00892 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00893}00893 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00894}00894 \textcolor{comment}{// defines for FlexPWM1 timer on Teensy 4}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00895}00895 \textcolor{preprocessor}{\#define TIMER\_RESET\_INTR\_PENDING        FLEXPWM1\_SM3STS = FLEXPWM\_SMSTS\_RF;}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00896}00896 \textcolor{preprocessor}{\#define TIMER\_ENABLE\_RECEIVE\_INTR       attachInterruptVector(IRQ\_FLEXPWM1\_3, pwm1\_3\_isr),\(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00897}00897 \textcolor{preprocessor}{                                        FLEXPWM1\_SM3STS = FLEXPWM\_SMSTS\_RF, \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00898}00898 \textcolor{preprocessor}{                                        FLEXPWM1\_SM3INTEN = FLEXPWM\_SMINTEN\_RIE, \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00899}00899 \textcolor{preprocessor}{                                        NVIC\_ENABLE\_IRQ(IRQ\_FLEXPWM1\_3), \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00900}00900 \textcolor{preprocessor}{                                        NVIC\_SET\_PRIORITY(IRQ\_FLEXPWM1\_3, 48)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00901}00901 \textcolor{preprocessor}{\#define TIMER\_DISABLE\_RECEIVE\_INTR      NVIC\_DISABLE\_IRQ(IRQ\_FLEXPWM1\_3)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00902}00902 \textcolor{preprocessor}{\#define TIMER\_INTR\_NAME                 pwm1\_3\_isr}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00903}00903 \textcolor{preprocessor}{\#  ifdef ISR}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00904}00904 \textcolor{preprocessor}{\#undef ISR}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00905}00905 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00906}00906 \textcolor{preprocessor}{\#define ISR(f) void (f)(void)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00907}00907 \textcolor{keywordtype}{void} pwm1\_3\_isr();}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00908}00908 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00909}00909 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___timer_ga45d57d84d5fee327f67afde5f8649e6d}{timerConfigForSend}}(uint8\_t aFrequencyKHz) \{}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00910}00910     uint32\_t period = (float)F\_BUS\_ACTUAL / (\textcolor{keywordtype}{float})((aFrequencyKHz) * 2000);}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00911}00911     uint32\_t prescale = 0;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00912}00912     \textcolor{keywordflow}{while} (period > 32767) \{}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00913}00913         period = period >> 1;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00914}00914         \textcolor{keywordflow}{if} (prescale < 7) prescale++;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00915}00915     \}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00916}00916     FLEXPWM1\_FCTRL0 |= FLEXPWM\_FCTRL0\_FLVL(8);}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00917}00917     FLEXPWM1\_FSTS0 = 0x0008;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00918}00918     FLEXPWM1\_MCTRL |= FLEXPWM\_MCTRL\_CLDOK(8);}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00919}00919     FLEXPWM1\_SM3CTRL2 = FLEXPWM\_SMCTRL2\_INDEP;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00920}00920     FLEXPWM1\_SM3CTRL = FLEXPWM\_SMCTRL\_HALF | FLEXPWM\_SMCTRL\_PRSC(prescale);}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00921}00921     FLEXPWM1\_SM3INIT = -\/period;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00922}00922     FLEXPWM1\_SM3VAL0 = 0;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00923}00923     FLEXPWM1\_SM3VAL1 = period;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00924}00924     FLEXPWM1\_SM3VAL2 = -\/(period / 3);}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00925}00925     FLEXPWM1\_SM3VAL3 = period / 3;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00926}00926     FLEXPWM1\_SM3VAL4 = 0;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00927}00927     FLEXPWM1\_SM3VAL5 = 0;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00928}00928     FLEXPWM1\_MCTRL |= FLEXPWM\_MCTRL\_LDOK(8) | FLEXPWM\_MCTRL\_RUN(8);}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00929}00929 \}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00930}00930 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00931}00931 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___timer_ga8cca92581b5452eaac5b3075227c6c56}{timerConfigForReceive}}() \{}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00932}00932     uint32\_t period = (float)F\_BUS\_ACTUAL * (\textcolor{keywordtype}{float})(\mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a1c7eebb527483c272812530caa313d20}{MICROS\_PER\_TICK}}) * 0.0000005f;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00933}00933     uint32\_t prescale = 0;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00934}00934     \textcolor{keywordflow}{while} (period > 32767) \{}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00935}00935         period = period >> 1;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00936}00936         \textcolor{keywordflow}{if} (prescale < 7) prescale++;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00937}00937     \}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00938}00938     FLEXPWM1\_FCTRL0 |= FLEXPWM\_FCTRL0\_FLVL(8);}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00939}00939     FLEXPWM1\_FSTS0 = 0x0008;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00940}00940     FLEXPWM1\_MCTRL |= FLEXPWM\_MCTRL\_CLDOK(8);}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00941}00941     FLEXPWM1\_SM3CTRL2 = FLEXPWM\_SMCTRL2\_INDEP;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00942}00942     FLEXPWM1\_SM3CTRL = FLEXPWM\_SMCTRL\_HALF | FLEXPWM\_SMCTRL\_PRSC(prescale);}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00943}00943     FLEXPWM1\_SM3INIT = -\/period;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00944}00944     FLEXPWM1\_SM3VAL0 = 0;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00945}00945     FLEXPWM1\_SM3VAL1 = period;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00946}00946     FLEXPWM1\_SM3VAL2 = 0;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00947}00947     FLEXPWM1\_SM3VAL3 = 0;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00948}00948     FLEXPWM1\_SM3VAL4 = 0;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00949}00949     FLEXPWM1\_SM3VAL5 = 0;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00950}00950     FLEXPWM1\_MCTRL |= FLEXPWM\_MCTRL\_LDOK(8) | FLEXPWM\_MCTRL\_RUN(8);}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00951}00951 \}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00952}00952 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00953}00953 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00954}00954 \textcolor{preprocessor}{\#elif defined(ESP8266)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00955}00955 \textcolor{preprocessor}{\#define TIMER\_RESET\_INTR\_PENDING}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00956}00956 \textcolor{preprocessor}{\#define TIMER\_ENABLE\_RECEIVE\_INTR   timer1\_attachInterrupt(\&IRTimerInterruptHandler) }\textcolor{comment}{// enables interrupt too}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00957}00957 \textcolor{preprocessor}{\#define TIMER\_DISABLE\_RECEIVE\_INTR  timer1\_detachInterrupt() }\textcolor{comment}{// disables interrupt too}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00958}00958 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00959}00959 \textcolor{comment}{// Redefinition of ISR macro which creates a plain function now}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00960}00960 \textcolor{preprocessor}{\#  ifdef ISR}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00961}00961 \textcolor{preprocessor}{\#undef ISR}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00962}00962 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00963}00963 \textcolor{preprocessor}{\#define ISR() IRAM\_ATTR void IRTimerInterruptHandler()}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00964}00964 IRAM\_ATTR \textcolor{keywordtype}{void} IRTimerInterruptHandler();}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00965}00965 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00966}00966 \textcolor{preprocessor}{\#ifdef SEND\_PWM\_BY\_TIMER}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00967}00967 \textcolor{preprocessor}{\#error "{}No support for hardware PWM generation for ESP8266"{}}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00968}00968 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00969}00969 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___timer_ga45d57d84d5fee327f67afde5f8649e6d}{timerConfigForSend}}(uint8\_t aFrequencyKHz) \{}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00970}00970     (void) aFrequencyKHz;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00971}00971 \}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00972}00972 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00973}00973 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00974}00974 \textcolor{comment}{ * Set timer for interrupts every MICROS\_PER\_TICK (50 us)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00975}00975 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00976}00976 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___timer_ga8cca92581b5452eaac5b3075227c6c56}{timerConfigForReceive}}() \{}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00977}00977     timer1\_isr\_init();}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00978}00978     \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00979}00979 \textcolor{comment}{     * TIM\_DIV1 = 0,   //80MHz (80 ticks/us -\/ 104857.588 us max)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00980}00980 \textcolor{comment}{     * TIM\_DIV16 = 1,  //5MHz (5 ticks/us -\/ 1677721.4 us max)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00981}00981 \textcolor{comment}{     * TIM\_DIV256 = 3  //312.5Khz (1 tick = 3.2us -\/ 26843542.4 us max)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00982}00982 \textcolor{comment}{     */}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00983}00983     timer1\_enable(TIM\_DIV16, TIM\_EDGE, TIM\_LOOP);}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00984}00984     timer1\_write((80 / 16) * \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a1c7eebb527483c272812530caa313d20}{MICROS\_PER\_TICK}}); \textcolor{comment}{// 80 for 80 and 160! MHz clock, 16 for TIM\_DIV16 above}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00985}00985 \}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00986}00986 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00987}00987 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00990}00990 \textcolor{preprocessor}{\#elif defined(ESP32)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00991}00991 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00992}00992 \textcolor{preprocessor}{\#  if ! defined(SEND\_AND\_RECEIVE\_TIMER\_LEDC\_CHANNEL)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00993}00993 \textcolor{preprocessor}{\#define SEND\_AND\_RECEIVE\_TIMER\_LEDC\_CHANNEL 0 }\textcolor{comment}{// The channel used for PWM 0 to 7 are high speed PWM channels}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00994}00994 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00995}00995 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00996}00996 \textcolor{preprocessor}{\#  if defined(SEND\_PWM\_BY\_TIMER)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00997}00997 \textcolor{preprocessor}{\#    if !defined(IR\_SEND\_PIN)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00998}00998 \textcolor{preprocessor}{\#define IR\_SEND\_PIN 4 }\textcolor{comment}{// can use any pin, no timer restrictions}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l00999}00999 \textcolor{preprocessor}{\#    endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01000}01000 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01001}01001 \textcolor{preprocessor}{\#define ENABLE\_SEND\_PWM\_BY\_TIMER    ledcWrite(SEND\_AND\_RECEIVE\_TIMER\_LEDC\_CHANNEL, IR\_SEND\_DUTY\_CYCLE) }\textcolor{comment}{// we must use channel here not pin number}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01002}01002 \textcolor{preprocessor}{\#define DISABLE\_SEND\_PWM\_BY\_TIMER   ledcWrite(SEND\_AND\_RECEIVE\_TIMER\_LEDC\_CHANNEL, 0)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01003}01003 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01004}01004 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01005}01005 \textcolor{preprocessor}{\#define TIMER\_RESET\_INTR\_PENDING}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01006}01006 \textcolor{preprocessor}{\#define TIMER\_ENABLE\_RECEIVE\_INTR   timerAlarmEnable(sESP32Timer)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01007}01007 \textcolor{preprocessor}{\#define TIMER\_DISABLE\_RECEIVE\_INTR  if (sESP32Timer != NULL) \{timerEnd(sESP32Timer); timerDetachInterrupt(sESP32Timer);\}}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01008}01008 \textcolor{comment}{// Redefinition of ISR macro which creates a plain function now}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01009}01009 \textcolor{preprocessor}{\#  ifdef ISR}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01010}01010 \textcolor{preprocessor}{\#undef ISR}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01011}01011 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01012}01012 \textcolor{preprocessor}{\#define ISR() IRAM\_ATTR void IRTimerInterruptHandler()}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01013}01013 IRAM\_ATTR \textcolor{keywordtype}{void} IRTimerInterruptHandler();}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01014}01014 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01015}01015 \textcolor{comment}{// Variables specific to the ESP32.}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01016}01016 \textcolor{comment}{// the ledc functions behave like hardware timers for us :-\/), so we do not require our own soft PWM generation code.}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01017}01017 hw\_timer\_t *sESP32Timer;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01018}01018 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01019}01019 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___timer_ga45d57d84d5fee327f67afde5f8649e6d}{timerConfigForSend}}(uint8\_t aFrequencyKHz) \{}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01020}01020     ledcSetup(SEND\_AND\_RECEIVE\_TIMER\_LEDC\_CHANNEL, aFrequencyKHz * 1000, 8);  \textcolor{comment}{// 8 bit PWM resolution}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01021}01021 \textcolor{preprocessor}{\#if defined(IR\_SEND\_PIN)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01022}01022     ledcAttachPin(IR\_SEND\_PIN, SEND\_AND\_RECEIVE\_TIMER\_LEDC\_CHANNEL);\textcolor{comment}{// bind pin to channel}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01023}01023 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01024}01024     ledcAttachPin(\mbox{\hyperlink{group___sending_gafba8232b747be85f72c1c4612780d5cf}{IrSender}}.\mbox{\hyperlink{class_i_rsend_a39f9782dd884b804bcf0034ab71ac202}{sendPin}}, SEND\_AND\_RECEIVE\_TIMER\_LEDC\_CHANNEL);\textcolor{comment}{// bind pin to channel}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01025}01025 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01026}01026 \}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01027}01027 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01028}01028 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01029}01029 \textcolor{comment}{ * Set timer for interrupts every MICROS\_PER\_TICK (50 us)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01030}01030 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01031}01031 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___timer_ga8cca92581b5452eaac5b3075227c6c56}{timerConfigForReceive}}() \{}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01032}01032     \textcolor{comment}{// ESP32 has a proper API to setup timers, no weird chip macros needed}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01033}01033     \textcolor{comment}{// simply call the readable API versions :)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01034}01034     \textcolor{comment}{// 3 timers, choose \#1, 80 divider for microsecond precision @80MHz clock, count\_up = true}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01035}01035     sESP32Timer = timerBegin(1, 80, \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01036}01036     timerAttachInterrupt(sESP32Timer, \&IRTimerInterruptHandler, 1);}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01037}01037     \textcolor{comment}{// every 50 us, autoreload = true}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01038}01038     timerAlarmWrite(sESP32Timer, \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a1c7eebb527483c272812530caa313d20}{MICROS\_PER\_TICK}}, \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01039}01039 \}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01040}01040 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01041}01041 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01044}01044 \textcolor{preprocessor}{\#elif defined(ARDUINO\_ARCH\_SAMD)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01045}01045 \textcolor{preprocessor}{\#  if defined(SEND\_PWM\_BY\_TIMER)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01046}01046 \textcolor{preprocessor}{\#error PWM generation by hardware not implemented for SAMD}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01047}01047 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01048}01048 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01049}01049 \textcolor{comment}{// use Timer TC3 here}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01050}01050 \textcolor{preprocessor}{\#  if !defined(IR\_SAMD\_TIMER)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01051}01051 \textcolor{preprocessor}{\#define IR\_SAMD\_TIMER       TC3}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01052}01052 \textcolor{preprocessor}{\#define IR\_SAMD\_TIMER\_ID    GCLK\_CLKCTRL\_ID\_TCC2\_TC3}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01053}01053 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01054}01054 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01055}01055 \textcolor{preprocessor}{\#define TIMER\_RESET\_INTR\_PENDING}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01056}01056 \textcolor{preprocessor}{\#define TIMER\_ENABLE\_RECEIVE\_INTR   NVIC\_EnableIRQ(TC3\_IRQn)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01057}01057 \textcolor{preprocessor}{\#define TIMER\_DISABLE\_RECEIVE\_INTR  NVIC\_DisableIRQ(TC3\_IRQn) }\textcolor{comment}{// or TC3-\/>COUNT16.CTRLA.reg \&= \string~TC\_CTRLA\_ENABLE;}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01058}01058 \textcolor{comment}{// Redefinition of ISR macro which creates a plain function now}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01059}01059 \textcolor{preprocessor}{\#  ifdef ISR}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01060}01060 \textcolor{preprocessor}{\#undef ISR}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01061}01061 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01062}01062 \textcolor{preprocessor}{\#define ISR(f) void IRTimerInterruptHandler(void)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01063}01063 \textcolor{comment}{// ATSAMD Timer IRQ functions}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01064}01064 \textcolor{keywordtype}{void} IRTimerInterruptHandler();}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01065}01065 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01066}01066 \textcolor{preprocessor}{\#define TIMER\_PRESCALER\_DIV 64}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01067}01067 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01068}01068 \textcolor{keywordtype}{void} setTimerFrequency(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} aFrequencyHz) \{}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01069}01069     \textcolor{keywordtype}{int} compareValue = (F\_CPU / (TIMER\_PRESCALER\_DIV * aFrequencyHz)) -\/ 1;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01070}01070     \textcolor{comment}{//Serial.println(compareValue);}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01071}01071     TcCount16 *TC = (TcCount16*) IR\_SAMD\_TIMER;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01072}01072     TC-\/>COUNT.reg = 0;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01073}01073     TC-\/>CC[0].reg = compareValue;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01074}01074     \textcolor{keywordflow}{while} (TC-\/>STATUS.bit.SYNCBUSY == 1) \{}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01075}01075     \}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01076}01076 \}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01077}01077 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01078}01078 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01079}01079 \textcolor{comment}{ * Set timer for interrupts every MICROS\_PER\_TICK (50 us)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01080}01080 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01081}01081 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___timer_ga8cca92581b5452eaac5b3075227c6c56}{timerConfigForReceive}}() \{}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01082}01082     \textcolor{comment}{// Clock source is Generic clock generator 0; enable}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01083}01083     REG\_GCLK\_CLKCTRL = (uint16\_t) (GCLK\_CLKCTRL\_CLKEN | GCLK\_CLKCTRL\_GEN\_GCLK0 | IR\_SAMD\_TIMER\_ID);}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01084}01084     \textcolor{keywordflow}{while} (GCLK-\/>STATUS.bit.SYNCBUSY == 1) \{}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01085}01085     \}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01086}01086 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01087}01087     TcCount16 *TC = (TcCount16*) IR\_SAMD\_TIMER; \textcolor{comment}{// Timer 3}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01088}01088 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01089}01089     \textcolor{comment}{// The TC should be disabled before the TC is reset in order to avoid undefined behavior.}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01090}01090     TC-\/>CTRLA.reg \&= \string~TC\_CTRLA\_ENABLE;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01091}01091     \textcolor{comment}{// When write-\/synchronization is ongoing for a register, any subsequent write attempts to this register will be discarded, and an error will be reported.}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01092}01092     \textcolor{keywordflow}{while} (TC-\/>STATUS.bit.SYNCBUSY == 1) \{}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01093}01093     \} \textcolor{comment}{// wait for sync}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01094}01094       \textcolor{comment}{// Reset TCx}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01095}01095     TC-\/>CTRLA.reg = TC\_CTRLA\_SWRST;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01096}01096     \textcolor{comment}{// When writing a ‘1’ to the CTRLA.SWRST bit it will immediately read as ‘1’.}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01097}01097     \textcolor{comment}{// CTRL.SWRST will be cleared by hardware when the peripheral has been reset.}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01098}01098     \textcolor{keywordflow}{while} (TC-\/>CTRLA.bit.SWRST) \{}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01099}01099     \}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01100}01100 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01101}01101     \textcolor{comment}{// Use the 16-\/bit timer}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01102}01102     \textcolor{comment}{// Use match mode so that the timer counter resets when the count matches the compare register}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01103}01103     \textcolor{comment}{// Set prescaler to 64}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01104}01104     TC-\/>CTRLA.reg |= TC\_CTRLA\_MODE\_COUNT16 | TC\_CTRLA\_WAVEGEN\_MFRQ | TC\_CTRLA\_PRESCALER\_DIV64 | TC\_CTRLA\_ENABLE;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01105}01105 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01106}01106     setTimerFrequency(\mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_af33c8a218dd35ede965cf20a68a0068d}{MICROS\_IN\_ONE\_SECOND}} / \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a1c7eebb527483c272812530caa313d20}{MICROS\_PER\_TICK}});}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01107}01107 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01108}01108     \textcolor{comment}{// Enable the compare interrupt}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01109}01109     TC-\/>INTENSET.reg = 0;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01110}01110     TC-\/>INTENSET.bit.MC0 = 1;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01111}01111 \}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01112}01112 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01113}01113 \textcolor{keywordtype}{void} TC3\_Handler(\textcolor{keywordtype}{void}) \{}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01114}01114     TcCount16 *TC = (TcCount16*) IR\_SAMD\_TIMER;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01115}01115     \textcolor{comment}{// Check for right interrupt bit}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01116}01116     \textcolor{keywordflow}{if} (TC-\/>INTFLAG.bit.MC0 == 1) \{}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01117}01117         \textcolor{comment}{// reset bit for next turn}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01118}01118         TC-\/>INTFLAG.bit.MC0 = 1;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01119}01119         IRTimerInterruptHandler();}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01120}01120     \}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01121}01121 \}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01122}01122 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01123}01123 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01126}01126 \textcolor{preprocessor}{\#elif defined(ARDUINO\_ARCH\_MBED) }\textcolor{comment}{// Arduino Nano 33 BLE + Sparkfun Apollo3}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01127}01127 \textcolor{preprocessor}{\#include "{}mbed.h"{}}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01128}01128 \textcolor{preprocessor}{\#  if defined(SEND\_PWM\_BY\_TIMER)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01129}01129 \textcolor{preprocessor}{\#error PWM generation by hardware not implemented for MBED}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01130}01130 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01131}01131 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01132}01132 \textcolor{preprocessor}{\#define TIMER\_RESET\_INTR\_PENDING}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01133}01133 \textcolor{preprocessor}{\#define TIMER\_ENABLE\_RECEIVE\_INTR   sMbedTimer.attach(IRTimerInterruptHandler, std::chrono::microseconds(MICROS\_PER\_TICK));}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01134}01134 \textcolor{preprocessor}{\#define TIMER\_DISABLE\_RECEIVE\_INTR  sMbedTimer.detach();}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01135}01135 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01136}01136 \textcolor{comment}{// Redefinition of ISR macro which creates a plain function now}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01137}01137 \textcolor{preprocessor}{\#  ifdef ISR}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01138}01138 \textcolor{preprocessor}{\#undef ISR}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01139}01139 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01140}01140 \textcolor{preprocessor}{\#define ISR() void IRTimerInterruptHandler(void)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01141}01141 \textcolor{keywordtype}{void} IRTimerInterruptHandler();}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01142}01142 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01143}01143 mbed::Ticker sMbedTimer;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01144}01144 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01145}01145 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01146}01146 \textcolor{comment}{ * Set timer for interrupts every MICROS\_PER\_TICK (50 us)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01147}01147 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01148}01148 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___timer_ga8cca92581b5452eaac5b3075227c6c56}{timerConfigForReceive}}() \{}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01149}01149     sMbedTimer.attach(IRTimerInterruptHandler, std::chrono::microseconds(\mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a1c7eebb527483c272812530caa313d20}{MICROS\_PER\_TICK}}));}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01150}01150 \}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01151}01151 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01152}01152 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01155}01155 \textcolor{preprocessor}{\#elif defined(NRF5) || defined(ARDUINO\_ARCH\_NRF52840)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01156}01156 \textcolor{preprocessor}{\#  if defined(SEND\_PWM\_BY\_TIMER)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01157}01157 \textcolor{preprocessor}{\#error PWM generation by hardware not implemented for NRF5}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01158}01158 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01159}01159 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01160}01160 \textcolor{preprocessor}{\#  if defined(SEND\_PWM\_BY\_TIMER)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01161}01161 \textcolor{comment}{// The default pin used used for sending. 3, A0 -\/ left pad}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01162}01162 \textcolor{preprocessor}{\#define IR\_SEND\_PIN   3 }\textcolor{comment}{// dummy since sending not yet supported}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01163}01163 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01164}01164 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01165}01165 \textcolor{preprocessor}{\#define TIMER\_RESET\_INTR\_PENDING}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01166}01166 \textcolor{preprocessor}{\#define TIMER\_ENABLE\_RECEIVE\_INTR   NVIC\_EnableIRQ(TIMER2\_IRQn);}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01167}01167 \textcolor{preprocessor}{\#define TIMER\_DISABLE\_RECEIVE\_INTR  NVIC\_DisableIRQ(TIMER2\_IRQn);}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01168}01168 \textcolor{preprocessor}{\#  ifdef ISR}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01169}01169 \textcolor{preprocessor}{\#undef ISR}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01170}01170 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01171}01171 \textcolor{preprocessor}{\#define ISR(f) void IRTimerInterruptHandler(void)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01172}01172 \textcolor{keywordtype}{void} IRTimerInterruptHandler();}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01173}01173 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01174}01174 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01175}01175 \textcolor{comment}{ * Set timer for interrupts every MICROS\_PER\_TICK (50 us)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01176}01176 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01177}01177 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___timer_ga8cca92581b5452eaac5b3075227c6c56}{timerConfigForReceive}}() \{}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01178}01178     NRF\_TIMER2-\/>MODE = TIMER\_MODE\_MODE\_Timer;              \textcolor{comment}{// Set the timer in Timer Mode}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01179}01179     NRF\_TIMER2-\/>TASKS\_CLEAR = 1;\textcolor{comment}{// clear the task first to be usable for later}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01180}01180     NRF\_TIMER2-\/>PRESCALER = 4;\textcolor{comment}{// f TIMER = 16 MHz / (2 \string^ PRESCALER ) : 4 -\/> 1 MHz, 1 uS}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01181}01181     NRF\_TIMER2-\/>BITMODE = TIMER\_BITMODE\_BITMODE\_16Bit;\textcolor{comment}{//Set counter to 16 bit resolution}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01182}01182     NRF\_TIMER2-\/>CC[0] = \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a1c7eebb527483c272812530caa313d20}{MICROS\_PER\_TICK}};\textcolor{comment}{//Set value for TIMER2 compare register 0, to trigger every 50 uS}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01183}01183     NRF\_TIMER2-\/>CC[1] = 0;\textcolor{comment}{//Set value for TIMER2 compare register 1}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01184}01184 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01185}01185     \textcolor{comment}{// Enable interrupt on Timer 2, for CC[0] compare match events}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01186}01186     NRF\_TIMER2-\/>INTENSET = (TIMER\_INTENSET\_COMPARE0\_Enabled << TIMER\_INTENSET\_COMPARE0\_Pos);}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01187}01187     NRF\_TIMER2-\/>TASKS\_START = 1;\textcolor{comment}{// Start TIMER2}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01188}01188 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01189}01189     \textcolor{comment}{// timerAttachInterrupt(timer, \&IRTimerInterruptHandler, 1);}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01190}01190 \}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01191}01191 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01195}01195 \textcolor{keyword}{extern} \textcolor{stringliteral}{"{}C"{}} \{}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01196}01196     \textcolor{keywordtype}{void} TIMER2\_IRQHandler(\textcolor{keywordtype}{void}) \{}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01197}01197         \textcolor{comment}{// Interrupt Service Routine -\/ Fires every 50uS}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01198}01198         \textcolor{keywordflow}{if} ((NRF\_TIMER2-\/>EVENTS\_COMPARE[0] != 0) \&\& ((NRF\_TIMER2-\/>INTENSET \& TIMER\_INTENSET\_COMPARE0\_Msk) != 0)) \{}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01199}01199             NRF\_TIMER2-\/>EVENTS\_COMPARE[0] = 0;          \textcolor{comment}{//Clear compare register 0 event}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01200}01200             IRTimerInterruptHandler();\textcolor{comment}{// call the IR-\/receive function}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01201}01201             NRF\_TIMER2-\/>CC[0] += 50;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01202}01202         \}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01203}01203     \}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01204}01204 \}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01205}01205 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01206}01206 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01213}01213 \textcolor{preprocessor}{\#elif defined(\_\_STM32F1\_\_) || defined(ARDUINO\_ARCH\_STM32F1)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01214}01214 \textcolor{preprocessor}{\#include <HardwareTimer.h>} \textcolor{comment}{// 4 timers and 4. timer (4.channel) is used for tone()}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01215}01215 \textcolor{preprocessor}{\#  if defined(SEND\_PWM\_BY\_TIMER)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01216}01216 \textcolor{preprocessor}{\#error PWM generation by hardware not implemented for STM32}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01217}01217 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01218}01218 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01219}01219 \textcolor{preprocessor}{\#define TIMER\_RESET\_INTR\_PENDING}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01220}01220 \textcolor{preprocessor}{\#define TIMER\_ENABLE\_RECEIVE\_INTR   sSTM32Timer.resume()}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01221}01221 \textcolor{preprocessor}{\#define TIMER\_DISABLE\_RECEIVE\_INTR  sSTM32Timer.pause()}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01222}01222 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01223}01223 \textcolor{comment}{// Redefinition of ISR macro which creates a plain function now}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01224}01224 \textcolor{preprocessor}{\#  ifdef ISR}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01225}01225 \textcolor{preprocessor}{\#undef ISR}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01226}01226 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01227}01227 \textcolor{preprocessor}{\#define ISR() void IRTimerInterruptHandler(void)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01228}01228 \textcolor{keywordtype}{void} IRTimerInterruptHandler();}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01229}01229 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01230}01230 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01231}01231 \textcolor{comment}{ * Use timer 3 as IR timer.}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01232}01232 \textcolor{comment}{ * Timer 3 blocks PA6, PA7, PB0, PB1, so if you require one of them as tone() or Servo output, you must choose another timer.}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01233}01233 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01234}01234 HardwareTimer sSTM32Timer(3);}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01235}01235 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01236}01236 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01237}01237 \textcolor{comment}{ * Set timer for interrupts every MICROS\_PER\_TICK (50 us)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01238}01238 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01239}01239 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___timer_ga8cca92581b5452eaac5b3075227c6c56}{timerConfigForReceive}}() \{}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01240}01240     sSTM32Timer.setMode(TIMER\_CH1, TIMER\_OUTPUT\_COMPARE);}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01241}01241     sSTM32Timer.setPrescaleFactor(1);}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01242}01242     sSTM32Timer.setOverflow((F\_CPU / \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_af33c8a218dd35ede965cf20a68a0068d}{MICROS\_IN\_ONE\_SECOND}}) * \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a1c7eebb527483c272812530caa313d20}{MICROS\_PER\_TICK}});}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01243}01243     sSTM32Timer.attachInterrupt(TIMER\_CH1, IRTimerInterruptHandler);}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01244}01244     sSTM32Timer.refresh();}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01245}01245 \}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01246}01246 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01247}01247 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01252}01252 \textcolor{preprocessor}{\#elif defined(STM32F1xx) || defined(ARDUINO\_ARCH\_STM32)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01253}01253 \textcolor{preprocessor}{\#include <HardwareTimer.h>} \textcolor{comment}{// 4 timers and 3. timer is used for tone(), 2. for Servo}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01254}01254 \textcolor{preprocessor}{\#  if defined(SEND\_PWM\_BY\_TIMER)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01255}01255 \textcolor{preprocessor}{\#error PWM generation by hardware not implemented for STM32}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01256}01256 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01257}01257 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01258}01258 \textcolor{preprocessor}{\#define TIMER\_RESET\_INTR\_PENDING}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01259}01259 \textcolor{preprocessor}{\#define TIMER\_ENABLE\_RECEIVE\_INTR   sSTM32Timer.resume()}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01260}01260 \textcolor{preprocessor}{\#define TIMER\_DISABLE\_RECEIVE\_INTR  sSTM32Timer.pause()}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01261}01261 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01262}01262 \textcolor{comment}{// Redefinition of ISR macro which creates a plain function now}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01263}01263 \textcolor{preprocessor}{\#  ifdef ISR}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01264}01264 \textcolor{preprocessor}{\#undef ISR}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01265}01265 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01266}01266 \textcolor{preprocessor}{\#define ISR() void IRTimerInterruptHandler(void)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01267}01267 \textcolor{keywordtype}{void} IRTimerInterruptHandler();}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01268}01268 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01269}01269 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01270}01270 \textcolor{comment}{ * Use timer 4 as IR timer.}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01271}01271 \textcolor{comment}{ * Timer 4 blocks PB6, PB7, PB8, PB9, so if you need one them as tone() or Servo output, you must choose another timer.}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01272}01272 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01273}01273 \textcolor{preprocessor}{\#  if defined(TIM4)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01274}01274 HardwareTimer sSTM32Timer(TIM4);}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01275}01275 \textcolor{preprocessor}{\#  else}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01276}01276 HardwareTimer sSTM32Timer(TIM2);}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01277}01277 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01278}01278 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01279}01279 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01280}01280 \textcolor{comment}{ * Set timer for interrupts every MICROS\_PER\_TICK (50 us)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01281}01281 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01282}01282 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___timer_ga8cca92581b5452eaac5b3075227c6c56}{timerConfigForReceive}}() \{}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01283}01283     sSTM32Timer.setOverflow(\mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a1c7eebb527483c272812530caa313d20}{MICROS\_PER\_TICK}}, MICROSEC\_FORMAT); \textcolor{comment}{// 50 uS}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01284}01284     sSTM32Timer.attachInterrupt(IRTimerInterruptHandler);}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01285}01285     sSTM32Timer.resume();}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01286}01286 \}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01287}01287 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01288}01288 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01292}01292 \textcolor{preprocessor}{\#elif defined(PARTICLE)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01293}01293 \textcolor{preprocessor}{\#  ifndef \_\_INTERVALTIMER\_H\_\_}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01294}01294 \textcolor{preprocessor}{\#include "{}SparkIntervalTimer.h"{}} \textcolor{comment}{// SparkIntervalTimer.h is required if PARTICLE is defined.}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01295}01295 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01296}01296 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01297}01297 \textcolor{preprocessor}{\#  if defined(SEND\_PWM\_BY\_TIMER)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01298}01298 \textcolor{preprocessor}{\#define IR\_SEND\_PIN         A5 }\textcolor{comment}{// Particle supports multiple pins}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01299}01299 \textcolor{preprocessor}{\#    if defined(IR\_SEND\_PIN)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01300}01300 \textcolor{preprocessor}{\#define ENABLE\_SEND\_PWM\_BY\_TIMER    analogWrite(IR\_SEND\_PIN, 128, ir\_out\_kHz*1000)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01301}01301 \textcolor{preprocessor}{\#define DISABLE\_SEND\_PWM\_BY\_TIMER   analogWrite(IR\_SEND\_PIN, 0, ir\_out\_kHz*1000)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01302}01302 \textcolor{preprocessor}{\#    else}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01303}01303 \textcolor{preprocessor}{\#define ENABLE\_SEND\_PWM\_BY\_TIMER    analogWrite(IrSender.sendPin, 128, ir\_out\_kHz*1000)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01304}01304 \textcolor{preprocessor}{\#define DISABLE\_SEND\_PWM\_BY\_TIMER   analogWrite(IrSender.sendPin, 0, ir\_out\_kHz*1000)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01305}01305 \textcolor{preprocessor}{\#    endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01306}01306 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01307}01307 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01308}01308 \textcolor{preprocessor}{\#  ifndef IR\_OUT\_KHZ}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01309}01309 \textcolor{preprocessor}{\#define IR\_OUT\_KHZ          38 }\textcolor{comment}{// default set to 38 KHz}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01310}01310 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01311}01311 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01312}01312 \textcolor{keyword}{extern} IntervalTimer timer;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01313}01313 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} ir\_out\_kHz;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01314}01314 \textcolor{comment}{//void IRTimerInterruptHandler();}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01315}01315 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01316}01316 \textcolor{preprocessor}{\#define TIMER\_RESET\_INTR\_PENDING}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01317}01317 \textcolor{preprocessor}{\#define TIMER\_ENABLE\_RECEIVE\_INTR   timer.begin(IRTimerInterruptHandler, MICROS\_PER\_TICK, uSec)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01318}01318 \textcolor{preprocessor}{\#define TIMER\_DISABLE\_RECEIVE\_INTR  timer.end()}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01319}01319 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01320}01320 \textcolor{comment}{// Redefinition of ISR macro which creates a plain function now}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01321}01321 \textcolor{preprocessor}{\#  ifdef ISR}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01322}01322 \textcolor{preprocessor}{\#undef ISR}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01323}01323 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01324}01324 \textcolor{preprocessor}{\#define ISR() void IRTimerInterruptHandler(void)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01325}01325 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01326}01326 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___timer_ga45d57d84d5fee327f67afde5f8649e6d}{timerConfigForSend}}(uint8\_t aFrequencyKHz) \{}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01327}01327     ir\_out\_kHz = aFrequencyKHz;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01328}01328 \}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01329}01329 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01330}01330 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___timer_ga8cca92581b5452eaac5b3075227c6c56}{timerConfigForReceive}}() \{}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01331}01331 \}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01332}01332 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01333}01333 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01336}01336 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01337}01337 \textcolor{preprocessor}{\#error Internal code configuration error, no timer functions implemented for this CPU / board}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01338}01338 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01339}01339 \textcolor{comment}{ * Dummy definitions to avoid more irritating compile errors}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01340}01340 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01341}\mbox{\hyperlink{group___timer_ga56882eeb7842d9b52bb5c36febad0ccd}{01341}} \textcolor{preprocessor}{\#define TIMER\_RESET\_INTR\_PENDING}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01342}\mbox{\hyperlink{group___timer_ga188e83488bfec8bb484bbaa96cfbdc5a}{01342}} \textcolor{preprocessor}{\#define ENABLE\_SEND\_PWM\_BY\_TIMER}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01343}\mbox{\hyperlink{group___timer_ga00c73e29496913c8cff34b1a12c613ab}{01343}} \textcolor{preprocessor}{\#define DISABLE\_SEND\_PWM\_BY\_TIMER}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01344}\mbox{\hyperlink{group___timer_ga3127b57492af4dfc90ddacf40c6162d0}{01344}} \textcolor{preprocessor}{\#define TIMER\_ENABLE\_RECEIVE\_INTR}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01345}\mbox{\hyperlink{group___timer_gaa526c768d410a407fb5433f7662527a7}{01345}} \textcolor{preprocessor}{\#define TIMER\_DISABLE\_RECEIVE\_INTR}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01346}01346 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01347}01347 \textcolor{preprocessor}{\#  ifdef ISR}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01348}01348 \textcolor{preprocessor}{\#undef ISR}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01349}01349 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01350}\mbox{\hyperlink{group___receiving_gaa8c5af507063503eacfa11a27c993a90}{01350}} \textcolor{preprocessor}{\#define ISR() void notImplemented(void)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01351}01351 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01352}\mbox{\hyperlink{group___timer_ga45d57d84d5fee327f67afde5f8649e6d}{01352}} \textcolor{keywordtype}{void} \mbox{\hyperlink{group___timer_ga45d57d84d5fee327f67afde5f8649e6d}{timerConfigForSend}}(uint8\_t aFrequencyKHz) \{}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01353}01353     (void) aFrequencyKHz;}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01354}01354 \}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01355}\mbox{\hyperlink{group___timer_ga8cca92581b5452eaac5b3075227c6c56}{01355}} \textcolor{keywordtype}{void} \mbox{\hyperlink{group___timer_ga8cca92581b5452eaac5b3075227c6c56}{timerConfigForReceive}}() \{}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01356}01356 \}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01357}01357 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// defined(DOXYGEN / CPU\_TYPES)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01358}01358 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01361}01361 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \#ifndef IR\_TIMER\_HPP}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_timer_8hpp_source_l01362}01362 \textcolor{preprocessor}{\#pragma once}}
+
+\end{DoxyCode}

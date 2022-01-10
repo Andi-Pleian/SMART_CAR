@@ -1,0 +1,78 @@
+\hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source}{}\doxysection{IRFeedback\+LEDDefs.\+h}
+\label{private_2_i_r_feedback_l_e_d_defs_8h_source}\index{main/IRRemote/private/IRFeedbackLEDDefs.h@{main/IRRemote/private/IRFeedbackLEDDefs.h}}
+\mbox{\hyperlink{private_2_i_r_feedback_l_e_d_defs_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00001}00001 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00007}00007 \textcolor{preprocessor}{\#ifndef IRFeedbackLEDDefs\_h}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00008}00008 \textcolor{preprocessor}{\#define IRFeedbackLEDDefs\_h}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00009}00009 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00017}00017 \textcolor{preprocessor}{\#ifdef DOXYGEN}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00021}00021 \textcolor{preprocessor}{\#define FEEDBACK\_LED\_ON()   digitalWrite(LED\_BUILTIN, HIGH)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00022}00022 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00026}00026 \textcolor{preprocessor}{\#define FEEDBACK\_LED\_OFF()  digitalWrite(LED\_BUILTIN, LOW)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00027}00027 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00028}00028 \textcolor{comment}{// Sparkfun Pro Micro is \_\_AVR\_ATmega32U4\_\_ but has different external circuit}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00029}00029 \textcolor{preprocessor}{\#elif defined(ARDUINO\_AVR\_PROMICRO)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00030}00030 \textcolor{comment}{// We have no built in LED at pin 13 -\/> reuse RX LED}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00031}00031 \textcolor{preprocessor}{\#undef LED\_BUILTIN}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00032}00032 \textcolor{preprocessor}{\#define LED\_BUILTIN        LED\_BUILTIN\_RX}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00033}00033 \textcolor{preprocessor}{\#define FEEDBACK\_LED\_ON()   RXLED1}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00034}00034 \textcolor{preprocessor}{\#define FEEDBACK\_LED\_OFF()  RXLED0}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00035}00035 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00036}00036 \textcolor{comment}{// Arduino Leonardo + others}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00037}00037 \textcolor{preprocessor}{\#elif defined(\_\_AVR\_ATmega32U4\_\_)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00038}00038 \textcolor{preprocessor}{\#define FEEDBACK\_LED\_ON()   (PORTC |= B10000000)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00039}00039 \textcolor{preprocessor}{\#define FEEDBACK\_LED\_OFF()  (PORTC \&= B01111111)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00040}00040 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00041}00041 \textcolor{comment}{// Arduino Uno, Nano etc}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00042}00042 \textcolor{preprocessor}{\#elif defined(\_\_AVR\_ATmega328P\_\_) || defined(\_\_AVR\_ATmega328PB\_\_) || defined(\_\_AVR\_ATmega168\_\_)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00043}00043 \textcolor{preprocessor}{\#define FEEDBACK\_LED\_ON()   (PORTB |= B00100000)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00044}00044 \textcolor{preprocessor}{\#define FEEDBACK\_LED\_OFF()  (PORTB \&= B11011111)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00045}00045 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00046}00046 \textcolor{preprocessor}{\#elif defined(\_\_AVR\_ATmega1280\_\_) || defined(\_\_AVR\_ATmega2560\_\_)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00047}00047 \textcolor{preprocessor}{\#define LED\_BUILTIN        13}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00048}00048 \textcolor{preprocessor}{\#define FEEDBACK\_LED\_ON()   (PORTB |= B10000000)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00049}00049 \textcolor{preprocessor}{\#define FEEDBACK\_LED\_OFF()  (PORTB \&= B01111111)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00050}00050 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00051}00051 \textcolor{preprocessor}{\#elif defined(\_\_AVR\_ATmega644P\_\_) || defined(\_\_AVR\_ATmega644\_\_) || defined(\_\_AVR\_ATtiny88\_\_)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00052}00052 \textcolor{preprocessor}{\#define LED\_BUILTIN        0}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00053}00053 \textcolor{preprocessor}{\#define FEEDBACK\_LED\_ON()   (PORTD |= B00000001)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00054}00054 \textcolor{preprocessor}{\#define FEEDBACK\_LED\_OFF()  (PORTD \&= B11111110)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00055}00055 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00056}00056 \textcolor{comment}{// TinyCore boards}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00057}00057 \textcolor{preprocessor}{\#elif defined(\_\_AVR\_ATtiny1616\_\_)  || defined(\_\_AVR\_ATtiny3216\_\_) || defined(\_\_AVR\_ATtiny3217\_\_)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00058}00058 \textcolor{comment}{// No LED available on the board, take LED\_BUILTIN which is also the DAC output}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00059}00059 \textcolor{preprocessor}{\#define FEEDBACK\_LED\_ON()   (PORTC.OUTSET = \_BV(6))}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00060}00060 \textcolor{preprocessor}{\#define FEEDBACK\_LED\_OFF()  (PORTC.OUTCLR = \_BV(6))}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00061}00061 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00062}00062 \textcolor{preprocessor}{\#elif defined(PARTICLE)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00063}00063 \textcolor{preprocessor}{\#define LED\_BUILTIN       D7}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00064}00064 \textcolor{preprocessor}{\#define FEEDBACK\_LED\_ON()  digitalWrite(LED\_BUILTIN, 1)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00065}00065 \textcolor{preprocessor}{\#define FEEDBACK\_LED\_OFF() digitalWrite(LED\_BUILTIN, 0)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00066}00066 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00067}00067 \textcolor{comment}{// Arduino Zero and BluePill and ESP8266 have an LED which is active low}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00068}00068 \textcolor{preprocessor}{\#elif defined(\_\_STM32F1\_\_) || defined(STM32F1xx) || defined(ESP8266)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00069}00069 \textcolor{preprocessor}{\#define FEEDBACK\_LED\_ON()   digitalWrite(LED\_BUILTIN, LOW)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00070}00070 \textcolor{preprocessor}{\#define FEEDBACK\_LED\_OFF()  digitalWrite(LED\_BUILTIN, HIGH)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00071}00071 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00072}00072 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00073}00073 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00074}00074 \textcolor{comment}{ * Default case suitable for most boards}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00075}00075 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00076}00076 \textcolor{preprocessor}{\#  if defined(LED\_BUILTIN)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00077}00077 \textcolor{preprocessor}{\#define FEEDBACK\_LED\_ON()   digitalWrite(LED\_BUILTIN, HIGH)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00078}00078 \textcolor{preprocessor}{\#define FEEDBACK\_LED\_OFF()  digitalWrite(LED\_BUILTIN, LOW)}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00079}00079 \textcolor{preprocessor}{\#  else}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00080}00080 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00081}00081 \textcolor{comment}{ * print a warning}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00082}00082 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00083}00083 \textcolor{preprocessor}{\#warning No definition for LED\_BUILTIN for default feedback LED found. Check private/IRFeedbackLEDDefs.h.}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00084}00084 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00085}00085 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00086}00086 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00090}00090 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// ! IRFeedbackLEDDefs\_h}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00091}00091 }
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00092}00092 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{\Hypertarget{private_2_i_r_feedback_l_e_d_defs_8h_source_l00093}00093 }
+
+\end{DoxyCode}

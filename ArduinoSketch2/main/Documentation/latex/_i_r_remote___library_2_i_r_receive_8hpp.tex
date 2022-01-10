@@ -1,0 +1,46 @@
+\hypertarget{_i_r_remote___library_2_i_r_receive_8hpp}{}\doxysection{main/\+IRRemote\+\_\+\+Library/\+IRReceive.hpp File Reference}
+\label{_i_r_remote___library_2_i_r_receive_8hpp}\index{main/IRRemote\_Library/IRReceive.hpp@{main/IRRemote\_Library/IRReceive.hpp}}
+This graph shows which files directly or indirectly include this file\+:
+% FIG 0
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{group___receiving_ga495b7f49ff71cde1289b118fac0f0674}{match\+Ticks}} (uint16\+\_\+t a\+Measured\+Ticks, uint16\+\_\+t a\+Match\+Value\+Micros)
+\item 
+bool \mbox{\hyperlink{group___receiving_ga0f9263ab71af2d2895add92f72a05ee9}{MATCH}} (uint16\+\_\+t measured\+\_\+ticks, uint16\+\_\+t desired\+\_\+us)
+\item 
+bool \mbox{\hyperlink{group___receiving_ga4472564ea96b1ee10b51f594f60d7aeb}{match\+Mark}} (uint16\+\_\+t a\+Measured\+Ticks, uint16\+\_\+t a\+Match\+Value\+Micros)
+\item 
+bool \mbox{\hyperlink{group___receiving_gadab293a71386f20571db6d779d1d84b7}{MATCH\+\_\+\+MARK}} (uint16\+\_\+t measured\+\_\+ticks, uint16\+\_\+t desired\+\_\+us)
+\item 
+bool \mbox{\hyperlink{group___receiving_ga7902b620f6c01463b5b6e50ef604ac8b}{match\+Space}} (uint16\+\_\+t a\+Measured\+Ticks, uint16\+\_\+t a\+Match\+Value\+Micros)
+\item 
+bool \mbox{\hyperlink{group___receiving_gab91e763e3ae44501f7c4f7b7ff8aca0f}{MATCH\+\_\+\+SPACE}} (uint16\+\_\+t measured\+\_\+ticks, uint16\+\_\+t desired\+\_\+us)
+\item 
+int \mbox{\hyperlink{group___receiving_gab1d28d4dd67d6bf808c0328a92e2d863}{get\+Mark\+Excess\+Micros}} ()
+\item 
+void \mbox{\hyperlink{group___receiving_ga0ad570723cf65cad6721117ae1a6d598}{Check\+For\+Record\+Gaps\+Micros}} (Print $\ast$a\+Serial, \mbox{\hyperlink{struct_i_r_data}{IRData}} $\ast$a\+IRData\+Ptr)
+\item 
+void \mbox{\hyperlink{group___receiving_gada0f2fe0704a217c16ee497ba7b3630e}{print\+Active\+IRProtocols}} (Print $\ast$a\+Serial)
+\item 
+void \mbox{\hyperlink{group___receiving_ga545a2c08c0d21af0e95d65b052670bae}{print\+IRResult\+Short}} (Print $\ast$a\+Serial, \mbox{\hyperlink{struct_i_r_data}{IRData}} $\ast$a\+IRData\+Ptr, uint16\+\_\+t a\+Leading\+Space\+Ticks)
+\item 
+const \+\_\+\+\_\+\+Flash\+String\+Helper $\ast$ \mbox{\hyperlink{group___receiving_ga378e691dd082face86f9ae908d0eef2e}{get\+Protocol\+String}} (\mbox{\hyperlink{_i_r_remote_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fad}{decode\+\_\+type\+\_\+t}} a\+Protocol)
+\item 
+\mbox{\hyperlink{group___receiving_gaa8c5af507063503eacfa11a27c993a90}{ISR}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_i_rrecv}{IRrecv}} \mbox{\hyperlink{group___receiving_ga6813a2b456e5359ce674699c85a61cf9}{Ir\+Receiver}}
+\item 
+struct \mbox{\hyperlink{structirparams__struct}{irparams\+\_\+struct}} \mbox{\hyperlink{group___receiving_ga938046a49af083b7d470e61fd77e12ed}{irparams}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{group___receiving_ga3f8125d5a7cde4fca3ece58e361296f9}{s\+Biphase\+Decode\+Rawbuff\+Offset}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{group___receiving_ga800106974e301f9dedf8acb891800e0b}{s\+Current\+Timing\+Intervals}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{group___receiving_ga1b4a7361ca04152a3dd0a8681a721325}{s\+Used\+Timing\+Intervals}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{group___receiving_gae25d907bed7a0f0298f9cf105d89f86f}{s\+Biphase\+Time\+Unit}}
+\end{DoxyCompactItemize}

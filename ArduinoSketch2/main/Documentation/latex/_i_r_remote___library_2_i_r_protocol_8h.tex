@@ -1,0 +1,596 @@
+\hypertarget{_i_r_remote___library_2_i_r_protocol_8h}{}\doxysection{main/\+IRRemote\+\_\+\+Library/\+IRProtocol.h File Reference}
+\label{_i_r_remote___library_2_i_r_protocol_8h}\index{main/IRRemote\_Library/IRProtocol.h@{main/IRRemote\_Library/IRProtocol.h}}
+
+
+Common declarations for receiving and sending.  
+
+
+This graph shows which files directly or indirectly include this file\+:
+% FIG 0
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_a8717702b4019c982727719bd40af7630}{PROTOCOL\+\_\+\+IS\+\_\+\+LSB\+\_\+\+FIRST}}~false
+\item 
+\#define \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_a2db53e8319cd3f5de758337fa08552d0}{PROTOCOL\+\_\+\+IS\+\_\+\+MSB\+\_\+\+FIRST}}~true
+\item 
+\#define \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_a5dcaa6ec48a7a0b663e5de0ce853a541}{SONY\+\_\+\+KHZ}}~40
+\item 
+\#define \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_a5e8586b46bb336ab800f4239b9bc46d1}{BOSEWAVE\+\_\+\+KHZ}}~38
+\item 
+\#define \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_ad2ebee0d7bd6593a38e1998ddd6b0c90}{DENON\+\_\+\+KHZ}}~38
+\item 
+\#define \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_abcc6e2b61050500362daed1341bef91b}{JVC\+\_\+\+KHZ}}~38
+\item 
+\#define \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_ada5cace06e49eefd0eceb54fa57ad824}{LG\+\_\+\+KHZ}}~38
+\item 
+\#define \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_ae1333ec007e3f586daf2b4af76894fc9}{NEC\+\_\+\+KHZ}}~38
+\item 
+\#define \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_ac386480bc33f2fa50193da38a023b8ce}{SAMSUNG\+\_\+\+KHZ}}~38
+\item 
+\#define \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_ae59fcf8145e60472b2b94f7e72a1d441}{KASEIKYO\+\_\+\+KHZ}}~37
+\item 
+\#define \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_a1e8fcd1e00b7fa15e99fae5ea30f35ae}{RC5\+\_\+\+RC6\+\_\+\+KHZ}}~36
+\item 
+\#define \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_a310adca9c81e03bc122d77251a594440}{PANASONIC\+\_\+\+VENDOR\+\_\+\+ID\+\_\+\+CODE}}~0x2002
+\item 
+\#define \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_aeb3d85736eb3f3e60af419edd191e14d}{DENON\+\_\+\+VENDOR\+\_\+\+ID\+\_\+\+CODE}}~0x3254
+\item 
+\#define \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_aca397cf0ba4543c581f0f5bfaf50ef25}{MITSUBISHI\+\_\+\+VENDOR\+\_\+\+ID\+\_\+\+CODE}}~0x\+CB23
+\item 
+\#define \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_a2ee9972dc5425130b659242589ceb098}{SHARP\+\_\+\+VENDOR\+\_\+\+ID\+\_\+\+CODE}}~0x5\+AAA
+\item 
+\#define \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_a3e456885d3a0286f50fb024b0b3f90a2}{JVC\+\_\+\+VENDOR\+\_\+\+ID\+\_\+\+CODE}}~0x0103
+\item 
+\#define \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_a8a2dbf77031a92783a200b9902c8459b}{SIRCS\+\_\+12\+\_\+\+PROTOCOL}}~12
+\item 
+\#define \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_a75fe4989c11b3e3176262acfa9bce2ce}{SIRCS\+\_\+15\+\_\+\+PROTOCOL}}~15
+\item 
+\#define \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_a4014bf0435ac7da04aa0bb1b0949eb8e}{SIRCS\+\_\+20\+\_\+\+PROTOCOL}}~20
+\item 
+\#define \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_acd9e7f1a67b4ac536be4b7754db8da62}{LEGO\+\_\+\+MODE\+\_\+\+EXTENDED}}~0
+\item 
+\#define \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_a47c92bffd09d8ad45b99db6c6eda8e0b}{LEGO\+\_\+\+MODE\+\_\+\+COMBO}}~1
+\item 
+\#define \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_a4b8e451f62edbd13839eec57242fa6bf}{LEGO\+\_\+\+MODE\+\_\+\+SINGLE}}~0x4
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fad}{decode\+\_\+type\+\_\+t}} \{ \newline
+\mbox{\hyperlink{_i_r_remote_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada6ce26a62afab55d7606ad4e92428b30c}{UNKNOWN}} = 0
+, \mbox{\hyperlink{_i_r_remote_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fadab60e0c1f01cfceb2dc9d5f2005f6dfc0}{PULSE\+\_\+\+DISTANCE}}
+, \mbox{\hyperlink{_i_r_remote_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada783253fd89cb09e1dbdb2bcdbc0400e3}{PULSE\+\_\+\+WIDTH}}
+, \mbox{\hyperlink{_i_r_remote_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada2bda37b76abb290d1675c3e027e3c2e1}{DENON}}
+, \newline
+\mbox{\hyperlink{_i_r_remote_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fadac27c6ac38ba872593af8e46ac2fdc85a}{DISH}}
+, \mbox{\hyperlink{_i_r_remote_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada5b6f507fb4bbd70ee70be4e2e0b0371d}{JVC}}
+, \mbox{\hyperlink{_i_r_remote_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fadadf6c249ac7d923229f9e623eff9a61f4}{LG}}
+, \mbox{\hyperlink{_i_r_remote_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada8402547ec0b99b9b0efe97dec65badf9}{LG2}}
+, \newline
+\mbox{\hyperlink{_i_r_remote_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada0811f93a25b0873e21979d569eeac05e}{NEC}}
+, \mbox{\hyperlink{_i_r_remote_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fadaf87c99938d26a1f77d4f082c070d4660}{PANASONIC}}
+, \mbox{\hyperlink{_i_r_remote_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fadaf2d8443e083aa95f191f26d438c6b953}{KASEIKYO}}
+, \mbox{\hyperlink{_i_r_remote_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada6b221b79427a02288ea41683a7d04841}{KASEIKYO\+\_\+\+JVC}}
+, \newline
+\mbox{\hyperlink{_i_r_remote_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada4cb93fe0fe3dbe0681b8764a9294733b}{KASEIKYO\+\_\+\+DENON}}
+, \mbox{\hyperlink{_i_r_remote_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada181746513f88dba0d824c5dfeeec68b6}{KASEIKYO\+\_\+\+SHARP}}
+, \mbox{\hyperlink{_i_r_remote_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada2516be3bdfd7614bb64961800fa49e43}{KASEIKYO\+\_\+\+MITSUBISHI}}
+, \mbox{\hyperlink{_i_r_remote_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fadac3c0a3883a1488209bcd91730ece33b2}{RC5}}
+, \newline
+\mbox{\hyperlink{_i_r_remote_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada7f7247f15587eb3812846f424b941abe}{RC6}}
+, \mbox{\hyperlink{_i_r_remote_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada2b451b6e7bebbf070d0913ec77d5d438}{SAMSUNG}}
+, \mbox{\hyperlink{_i_r_remote_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fadaad63db67a2284cd7e3ffe382b6d6ea82}{SHARP}}
+, \mbox{\hyperlink{_i_r_remote_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada72d58193d4d25517202d22b7e57a65c3}{SONY}}
+, \newline
+\mbox{\hyperlink{_i_r_remote_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada20603784a6e8d35a82b2476366010344}{ONKYO}}
+, \mbox{\hyperlink{_i_r_remote_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada5484ec37ffd1fcffb7aba549a4839910}{APPLE}}
+, \mbox{\hyperlink{_i_r_remote_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada20736b037c0e7444d4dc7ff06e9dea54}{BOSEWAVE}}
+, \mbox{\hyperlink{_i_r_remote_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fadaf47be4dad020b9c36aa255c582e25510}{LEGO\+\_\+\+PF}}
+, \newline
+\mbox{\hyperlink{_i_r_remote_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada3be750ce1687bc1a92fee05b0c511100}{MAGIQUEST}}
+, \mbox{\hyperlink{_i_r_remote_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada458cdd7fa2b29dc8617c694696580c0c}{WHYNTER}}
+, \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada6ce26a62afab55d7606ad4e92428b30c}{UNKNOWN}} = 0
+, \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fadab60e0c1f01cfceb2dc9d5f2005f6dfc0}{PULSE\+\_\+\+DISTANCE}}
+, \newline
+\mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada783253fd89cb09e1dbdb2bcdbc0400e3}{PULSE\+\_\+\+WIDTH}}
+, \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada2bda37b76abb290d1675c3e027e3c2e1}{DENON}}
+, \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fadac27c6ac38ba872593af8e46ac2fdc85a}{DISH}}
+, \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada5b6f507fb4bbd70ee70be4e2e0b0371d}{JVC}}
+, \newline
+\mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fadadf6c249ac7d923229f9e623eff9a61f4}{LG}}
+, \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada8402547ec0b99b9b0efe97dec65badf9}{LG2}}
+, \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada0811f93a25b0873e21979d569eeac05e}{NEC}}
+, \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fadaf87c99938d26a1f77d4f082c070d4660}{PANASONIC}}
+, \newline
+\mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fadaf2d8443e083aa95f191f26d438c6b953}{KASEIKYO}}
+, \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada6b221b79427a02288ea41683a7d04841}{KASEIKYO\+\_\+\+JVC}}
+, \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada4cb93fe0fe3dbe0681b8764a9294733b}{KASEIKYO\+\_\+\+DENON}}
+, \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada181746513f88dba0d824c5dfeeec68b6}{KASEIKYO\+\_\+\+SHARP}}
+, \newline
+\mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada2516be3bdfd7614bb64961800fa49e43}{KASEIKYO\+\_\+\+MITSUBISHI}}
+, \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fadac3c0a3883a1488209bcd91730ece33b2}{RC5}}
+, \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada7f7247f15587eb3812846f424b941abe}{RC6}}
+, \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada2b451b6e7bebbf070d0913ec77d5d438}{SAMSUNG}}
+, \newline
+\mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fadaad63db67a2284cd7e3ffe382b6d6ea82}{SHARP}}
+, \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada72d58193d4d25517202d22b7e57a65c3}{SONY}}
+, \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada20603784a6e8d35a82b2476366010344}{ONKYO}}
+, \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada5484ec37ffd1fcffb7aba549a4839910}{APPLE}}
+, \newline
+\mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada20736b037c0e7444d4dc7ff06e9dea54}{BOSEWAVE}}
+, \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fadaf47be4dad020b9c36aa255c582e25510}{LEGO\+\_\+\+PF}}
+, \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada3be750ce1687bc1a92fee05b0c511100}{MAGIQUEST}}
+, \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada458cdd7fa2b29dc8617c694696580c0c}{WHYNTER}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+const \+\_\+\+\_\+\+Flash\+String\+Helper $\ast$ \mbox{\hyperlink{group___receiving_ga378e691dd082face86f9ae908d0eef2e}{get\+Protocol\+String}} (\mbox{\hyperlink{_i_r_remote_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fad}{decode\+\_\+type\+\_\+t}} a\+Protocol)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Common declarations for receiving and sending. 
+
+This file is part of Arduino-\/\+IRremote \href{https://github.com/Arduino-IRremote/Arduino-IRremote}{\texttt{ https\+://github.\+com/\+Arduino-\/\+IRremote/\+Arduino-\/\+IRremote}}.
+
+MIT License
+
+Copyright (c) 2020-\/2021 Armin Joachimsmeyer
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \char`\"{}\+Software\char`\"{}), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions\+:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED \char`\"{}\+AS IS\char`\"{}, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. 
+
+Definition in file \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_source}{IRProtocol.\+h}}.
+
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_a5e8586b46bb336ab800f4239b9bc46d1}\label{_i_r_remote___library_2_i_r_protocol_8h_a5e8586b46bb336ab800f4239b9bc46d1}} 
+\index{IRProtocol.h@{IRProtocol.h}!BOSEWAVE\_KHZ@{BOSEWAVE\_KHZ}}
+\index{BOSEWAVE\_KHZ@{BOSEWAVE\_KHZ}!IRProtocol.h@{IRProtocol.h}}
+\doxysubsubsection{\texorpdfstring{BOSEWAVE\_KHZ}{BOSEWAVE\_KHZ}}
+{\footnotesize\ttfamily \#define BOSEWAVE\+\_\+\+KHZ~38}
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_source_l00077}{77}} of file \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_source}{IRProtocol.\+h}}.
+
+\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_ad2ebee0d7bd6593a38e1998ddd6b0c90}\label{_i_r_remote___library_2_i_r_protocol_8h_ad2ebee0d7bd6593a38e1998ddd6b0c90}} 
+\index{IRProtocol.h@{IRProtocol.h}!DENON\_KHZ@{DENON\_KHZ}}
+\index{DENON\_KHZ@{DENON\_KHZ}!IRProtocol.h@{IRProtocol.h}}
+\doxysubsubsection{\texorpdfstring{DENON\_KHZ}{DENON\_KHZ}}
+{\footnotesize\ttfamily \#define DENON\+\_\+\+KHZ~38}
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_source_l00078}{78}} of file \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_source}{IRProtocol.\+h}}.
+
+\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_aeb3d85736eb3f3e60af419edd191e14d}\label{_i_r_remote___library_2_i_r_protocol_8h_aeb3d85736eb3f3e60af419edd191e14d}} 
+\index{IRProtocol.h@{IRProtocol.h}!DENON\_VENDOR\_ID\_CODE@{DENON\_VENDOR\_ID\_CODE}}
+\index{DENON\_VENDOR\_ID\_CODE@{DENON\_VENDOR\_ID\_CODE}!IRProtocol.h@{IRProtocol.h}}
+\doxysubsubsection{\texorpdfstring{DENON\_VENDOR\_ID\_CODE}{DENON\_VENDOR\_ID\_CODE}}
+{\footnotesize\ttfamily \#define DENON\+\_\+\+VENDOR\+\_\+\+ID\+\_\+\+CODE~0x3254}
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_source_l00090}{90}} of file \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_source}{IRProtocol.\+h}}.
+
+\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_abcc6e2b61050500362daed1341bef91b}\label{_i_r_remote___library_2_i_r_protocol_8h_abcc6e2b61050500362daed1341bef91b}} 
+\index{IRProtocol.h@{IRProtocol.h}!JVC\_KHZ@{JVC\_KHZ}}
+\index{JVC\_KHZ@{JVC\_KHZ}!IRProtocol.h@{IRProtocol.h}}
+\doxysubsubsection{\texorpdfstring{JVC\_KHZ}{JVC\_KHZ}}
+{\footnotesize\ttfamily \#define JVC\+\_\+\+KHZ~38}
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_source_l00079}{79}} of file \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_source}{IRProtocol.\+h}}.
+
+\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_a3e456885d3a0286f50fb024b0b3f90a2}\label{_i_r_remote___library_2_i_r_protocol_8h_a3e456885d3a0286f50fb024b0b3f90a2}} 
+\index{IRProtocol.h@{IRProtocol.h}!JVC\_VENDOR\_ID\_CODE@{JVC\_VENDOR\_ID\_CODE}}
+\index{JVC\_VENDOR\_ID\_CODE@{JVC\_VENDOR\_ID\_CODE}!IRProtocol.h@{IRProtocol.h}}
+\doxysubsubsection{\texorpdfstring{JVC\_VENDOR\_ID\_CODE}{JVC\_VENDOR\_ID\_CODE}}
+{\footnotesize\ttfamily \#define JVC\+\_\+\+VENDOR\+\_\+\+ID\+\_\+\+CODE~0x0103}
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_source_l00093}{93}} of file \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_source}{IRProtocol.\+h}}.
+
+\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_ae59fcf8145e60472b2b94f7e72a1d441}\label{_i_r_remote___library_2_i_r_protocol_8h_ae59fcf8145e60472b2b94f7e72a1d441}} 
+\index{IRProtocol.h@{IRProtocol.h}!KASEIKYO\_KHZ@{KASEIKYO\_KHZ}}
+\index{KASEIKYO\_KHZ@{KASEIKYO\_KHZ}!IRProtocol.h@{IRProtocol.h}}
+\doxysubsubsection{\texorpdfstring{KASEIKYO\_KHZ}{KASEIKYO\_KHZ}}
+{\footnotesize\ttfamily \#define KASEIKYO\+\_\+\+KHZ~37}
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_source_l00083}{83}} of file \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_source}{IRProtocol.\+h}}.
+
+\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_a47c92bffd09d8ad45b99db6c6eda8e0b}\label{_i_r_remote___library_2_i_r_protocol_8h_a47c92bffd09d8ad45b99db6c6eda8e0b}} 
+\index{IRProtocol.h@{IRProtocol.h}!LEGO\_MODE\_COMBO@{LEGO\_MODE\_COMBO}}
+\index{LEGO\_MODE\_COMBO@{LEGO\_MODE\_COMBO}!IRProtocol.h@{IRProtocol.h}}
+\doxysubsubsection{\texorpdfstring{LEGO\_MODE\_COMBO}{LEGO\_MODE\_COMBO}}
+{\footnotesize\ttfamily \#define LEGO\+\_\+\+MODE\+\_\+\+COMBO~1}
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_source_l00100}{100}} of file \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_source}{IRProtocol.\+h}}.
+
+\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_acd9e7f1a67b4ac536be4b7754db8da62}\label{_i_r_remote___library_2_i_r_protocol_8h_acd9e7f1a67b4ac536be4b7754db8da62}} 
+\index{IRProtocol.h@{IRProtocol.h}!LEGO\_MODE\_EXTENDED@{LEGO\_MODE\_EXTENDED}}
+\index{LEGO\_MODE\_EXTENDED@{LEGO\_MODE\_EXTENDED}!IRProtocol.h@{IRProtocol.h}}
+\doxysubsubsection{\texorpdfstring{LEGO\_MODE\_EXTENDED}{LEGO\_MODE\_EXTENDED}}
+{\footnotesize\ttfamily \#define LEGO\+\_\+\+MODE\+\_\+\+EXTENDED~0}
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_source_l00099}{99}} of file \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_source}{IRProtocol.\+h}}.
+
+\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_a4b8e451f62edbd13839eec57242fa6bf}\label{_i_r_remote___library_2_i_r_protocol_8h_a4b8e451f62edbd13839eec57242fa6bf}} 
+\index{IRProtocol.h@{IRProtocol.h}!LEGO\_MODE\_SINGLE@{LEGO\_MODE\_SINGLE}}
+\index{LEGO\_MODE\_SINGLE@{LEGO\_MODE\_SINGLE}!IRProtocol.h@{IRProtocol.h}}
+\doxysubsubsection{\texorpdfstring{LEGO\_MODE\_SINGLE}{LEGO\_MODE\_SINGLE}}
+{\footnotesize\ttfamily \#define LEGO\+\_\+\+MODE\+\_\+\+SINGLE~0x4}
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_source_l00101}{101}} of file \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_source}{IRProtocol.\+h}}.
+
+\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_ada5cace06e49eefd0eceb54fa57ad824}\label{_i_r_remote___library_2_i_r_protocol_8h_ada5cace06e49eefd0eceb54fa57ad824}} 
+\index{IRProtocol.h@{IRProtocol.h}!LG\_KHZ@{LG\_KHZ}}
+\index{LG\_KHZ@{LG\_KHZ}!IRProtocol.h@{IRProtocol.h}}
+\doxysubsubsection{\texorpdfstring{LG\_KHZ}{LG\_KHZ}}
+{\footnotesize\ttfamily \#define LG\+\_\+\+KHZ~38}
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_source_l00080}{80}} of file \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_source}{IRProtocol.\+h}}.
+
+\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_aca397cf0ba4543c581f0f5bfaf50ef25}\label{_i_r_remote___library_2_i_r_protocol_8h_aca397cf0ba4543c581f0f5bfaf50ef25}} 
+\index{IRProtocol.h@{IRProtocol.h}!MITSUBISHI\_VENDOR\_ID\_CODE@{MITSUBISHI\_VENDOR\_ID\_CODE}}
+\index{MITSUBISHI\_VENDOR\_ID\_CODE@{MITSUBISHI\_VENDOR\_ID\_CODE}!IRProtocol.h@{IRProtocol.h}}
+\doxysubsubsection{\texorpdfstring{MITSUBISHI\_VENDOR\_ID\_CODE}{MITSUBISHI\_VENDOR\_ID\_CODE}}
+{\footnotesize\ttfamily \#define MITSUBISHI\+\_\+\+VENDOR\+\_\+\+ID\+\_\+\+CODE~0x\+CB23}
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_source_l00091}{91}} of file \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_source}{IRProtocol.\+h}}.
+
+\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_ae1333ec007e3f586daf2b4af76894fc9}\label{_i_r_remote___library_2_i_r_protocol_8h_ae1333ec007e3f586daf2b4af76894fc9}} 
+\index{IRProtocol.h@{IRProtocol.h}!NEC\_KHZ@{NEC\_KHZ}}
+\index{NEC\_KHZ@{NEC\_KHZ}!IRProtocol.h@{IRProtocol.h}}
+\doxysubsubsection{\texorpdfstring{NEC\_KHZ}{NEC\_KHZ}}
+{\footnotesize\ttfamily \#define NEC\+\_\+\+KHZ~38}
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_source_l00081}{81}} of file \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_source}{IRProtocol.\+h}}.
+
+\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_a310adca9c81e03bc122d77251a594440}\label{_i_r_remote___library_2_i_r_protocol_8h_a310adca9c81e03bc122d77251a594440}} 
+\index{IRProtocol.h@{IRProtocol.h}!PANASONIC\_VENDOR\_ID\_CODE@{PANASONIC\_VENDOR\_ID\_CODE}}
+\index{PANASONIC\_VENDOR\_ID\_CODE@{PANASONIC\_VENDOR\_ID\_CODE}!IRProtocol.h@{IRProtocol.h}}
+\doxysubsubsection{\texorpdfstring{PANASONIC\_VENDOR\_ID\_CODE}{PANASONIC\_VENDOR\_ID\_CODE}}
+{\footnotesize\ttfamily \#define PANASONIC\+\_\+\+VENDOR\+\_\+\+ID\+\_\+\+CODE~0x2002}
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_source_l00089}{89}} of file \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_source}{IRProtocol.\+h}}.
+
+\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_a8717702b4019c982727719bd40af7630}\label{_i_r_remote___library_2_i_r_protocol_8h_a8717702b4019c982727719bd40af7630}} 
+\index{IRProtocol.h@{IRProtocol.h}!PROTOCOL\_IS\_LSB\_FIRST@{PROTOCOL\_IS\_LSB\_FIRST}}
+\index{PROTOCOL\_IS\_LSB\_FIRST@{PROTOCOL\_IS\_LSB\_FIRST}!IRProtocol.h@{IRProtocol.h}}
+\doxysubsubsection{\texorpdfstring{PROTOCOL\_IS\_LSB\_FIRST}{PROTOCOL\_IS\_LSB\_FIRST}}
+{\footnotesize\ttfamily \#define PROTOCOL\+\_\+\+IS\+\_\+\+LSB\+\_\+\+FIRST~false}
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_source_l00070}{70}} of file \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_source}{IRProtocol.\+h}}.
+
+\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_a2db53e8319cd3f5de758337fa08552d0}\label{_i_r_remote___library_2_i_r_protocol_8h_a2db53e8319cd3f5de758337fa08552d0}} 
+\index{IRProtocol.h@{IRProtocol.h}!PROTOCOL\_IS\_MSB\_FIRST@{PROTOCOL\_IS\_MSB\_FIRST}}
+\index{PROTOCOL\_IS\_MSB\_FIRST@{PROTOCOL\_IS\_MSB\_FIRST}!IRProtocol.h@{IRProtocol.h}}
+\doxysubsubsection{\texorpdfstring{PROTOCOL\_IS\_MSB\_FIRST}{PROTOCOL\_IS\_MSB\_FIRST}}
+{\footnotesize\ttfamily \#define PROTOCOL\+\_\+\+IS\+\_\+\+MSB\+\_\+\+FIRST~true}
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_source_l00071}{71}} of file \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_source}{IRProtocol.\+h}}.
+
+\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_a1e8fcd1e00b7fa15e99fae5ea30f35ae}\label{_i_r_remote___library_2_i_r_protocol_8h_a1e8fcd1e00b7fa15e99fae5ea30f35ae}} 
+\index{IRProtocol.h@{IRProtocol.h}!RC5\_RC6\_KHZ@{RC5\_RC6\_KHZ}}
+\index{RC5\_RC6\_KHZ@{RC5\_RC6\_KHZ}!IRProtocol.h@{IRProtocol.h}}
+\doxysubsubsection{\texorpdfstring{RC5\_RC6\_KHZ}{RC5\_RC6\_KHZ}}
+{\footnotesize\ttfamily \#define RC5\+\_\+\+RC6\+\_\+\+KHZ~36}
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_source_l00084}{84}} of file \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_source}{IRProtocol.\+h}}.
+
+\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_ac386480bc33f2fa50193da38a023b8ce}\label{_i_r_remote___library_2_i_r_protocol_8h_ac386480bc33f2fa50193da38a023b8ce}} 
+\index{IRProtocol.h@{IRProtocol.h}!SAMSUNG\_KHZ@{SAMSUNG\_KHZ}}
+\index{SAMSUNG\_KHZ@{SAMSUNG\_KHZ}!IRProtocol.h@{IRProtocol.h}}
+\doxysubsubsection{\texorpdfstring{SAMSUNG\_KHZ}{SAMSUNG\_KHZ}}
+{\footnotesize\ttfamily \#define SAMSUNG\+\_\+\+KHZ~38}
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_source_l00082}{82}} of file \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_source}{IRProtocol.\+h}}.
+
+\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_a2ee9972dc5425130b659242589ceb098}\label{_i_r_remote___library_2_i_r_protocol_8h_a2ee9972dc5425130b659242589ceb098}} 
+\index{IRProtocol.h@{IRProtocol.h}!SHARP\_VENDOR\_ID\_CODE@{SHARP\_VENDOR\_ID\_CODE}}
+\index{SHARP\_VENDOR\_ID\_CODE@{SHARP\_VENDOR\_ID\_CODE}!IRProtocol.h@{IRProtocol.h}}
+\doxysubsubsection{\texorpdfstring{SHARP\_VENDOR\_ID\_CODE}{SHARP\_VENDOR\_ID\_CODE}}
+{\footnotesize\ttfamily \#define SHARP\+\_\+\+VENDOR\+\_\+\+ID\+\_\+\+CODE~0x5\+AAA}
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_source_l00092}{92}} of file \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_source}{IRProtocol.\+h}}.
+
+\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_a8a2dbf77031a92783a200b9902c8459b}\label{_i_r_remote___library_2_i_r_protocol_8h_a8a2dbf77031a92783a200b9902c8459b}} 
+\index{IRProtocol.h@{IRProtocol.h}!SIRCS\_12\_PROTOCOL@{SIRCS\_12\_PROTOCOL}}
+\index{SIRCS\_12\_PROTOCOL@{SIRCS\_12\_PROTOCOL}!IRProtocol.h@{IRProtocol.h}}
+\doxysubsubsection{\texorpdfstring{SIRCS\_12\_PROTOCOL}{SIRCS\_12\_PROTOCOL}}
+{\footnotesize\ttfamily \#define SIRCS\+\_\+12\+\_\+\+PROTOCOL~12}
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_source_l00095}{95}} of file \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_source}{IRProtocol.\+h}}.
+
+\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_a75fe4989c11b3e3176262acfa9bce2ce}\label{_i_r_remote___library_2_i_r_protocol_8h_a75fe4989c11b3e3176262acfa9bce2ce}} 
+\index{IRProtocol.h@{IRProtocol.h}!SIRCS\_15\_PROTOCOL@{SIRCS\_15\_PROTOCOL}}
+\index{SIRCS\_15\_PROTOCOL@{SIRCS\_15\_PROTOCOL}!IRProtocol.h@{IRProtocol.h}}
+\doxysubsubsection{\texorpdfstring{SIRCS\_15\_PROTOCOL}{SIRCS\_15\_PROTOCOL}}
+{\footnotesize\ttfamily \#define SIRCS\+\_\+15\+\_\+\+PROTOCOL~15}
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_source_l00096}{96}} of file \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_source}{IRProtocol.\+h}}.
+
+\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_a4014bf0435ac7da04aa0bb1b0949eb8e}\label{_i_r_remote___library_2_i_r_protocol_8h_a4014bf0435ac7da04aa0bb1b0949eb8e}} 
+\index{IRProtocol.h@{IRProtocol.h}!SIRCS\_20\_PROTOCOL@{SIRCS\_20\_PROTOCOL}}
+\index{SIRCS\_20\_PROTOCOL@{SIRCS\_20\_PROTOCOL}!IRProtocol.h@{IRProtocol.h}}
+\doxysubsubsection{\texorpdfstring{SIRCS\_20\_PROTOCOL}{SIRCS\_20\_PROTOCOL}}
+{\footnotesize\ttfamily \#define SIRCS\+\_\+20\+\_\+\+PROTOCOL~20}
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_source_l00097}{97}} of file \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_source}{IRProtocol.\+h}}.
+
+\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_a5dcaa6ec48a7a0b663e5de0ce853a541}\label{_i_r_remote___library_2_i_r_protocol_8h_a5dcaa6ec48a7a0b663e5de0ce853a541}} 
+\index{IRProtocol.h@{IRProtocol.h}!SONY\_KHZ@{SONY\_KHZ}}
+\index{SONY\_KHZ@{SONY\_KHZ}!IRProtocol.h@{IRProtocol.h}}
+\doxysubsubsection{\texorpdfstring{SONY\_KHZ}{SONY\_KHZ}}
+{\footnotesize\ttfamily \#define SONY\+\_\+\+KHZ~40}
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_source_l00076}{76}} of file \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_source}{IRProtocol.\+h}}.
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fad}\label{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fad}} 
+\index{IRProtocol.h@{IRProtocol.h}!decode\_type\_t@{decode\_type\_t}}
+\index{decode\_type\_t@{decode\_type\_t}!IRProtocol.h@{IRProtocol.h}}
+\doxysubsubsection{\texorpdfstring{decode\_type\_t}{decode\_type\_t}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{_i_r_remote_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fad}{decode\+\_\+type\+\_\+t}}}
+
+An enum consisting of all supported formats. You do NOT need to remove entries from this list when disabling protocols! \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UNKNOWN@{UNKNOWN}!IRProtocol.h@{IRProtocol.h}}\index{IRProtocol.h@{IRProtocol.h}!UNKNOWN@{UNKNOWN}}}\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada6ce26a62afab55d7606ad4e92428b30c}\label{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada6ce26a62afab55d7606ad4e92428b30c}} 
+UNKNOWN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PULSE\_DISTANCE@{PULSE\_DISTANCE}!IRProtocol.h@{IRProtocol.h}}\index{IRProtocol.h@{IRProtocol.h}!PULSE\_DISTANCE@{PULSE\_DISTANCE}}}\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fadab60e0c1f01cfceb2dc9d5f2005f6dfc0}\label{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fadab60e0c1f01cfceb2dc9d5f2005f6dfc0}} 
+PULSE\+\_\+\+DISTANCE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PULSE\_WIDTH@{PULSE\_WIDTH}!IRProtocol.h@{IRProtocol.h}}\index{IRProtocol.h@{IRProtocol.h}!PULSE\_WIDTH@{PULSE\_WIDTH}}}\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada783253fd89cb09e1dbdb2bcdbc0400e3}\label{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada783253fd89cb09e1dbdb2bcdbc0400e3}} 
+PULSE\+\_\+\+WIDTH&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DENON@{DENON}!IRProtocol.h@{IRProtocol.h}}\index{IRProtocol.h@{IRProtocol.h}!DENON@{DENON}}}\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada2bda37b76abb290d1675c3e027e3c2e1}\label{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada2bda37b76abb290d1675c3e027e3c2e1}} 
+DENON&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DISH@{DISH}!IRProtocol.h@{IRProtocol.h}}\index{IRProtocol.h@{IRProtocol.h}!DISH@{DISH}}}\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fadac27c6ac38ba872593af8e46ac2fdc85a}\label{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fadac27c6ac38ba872593af8e46ac2fdc85a}} 
+DISH&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{JVC@{JVC}!IRProtocol.h@{IRProtocol.h}}\index{IRProtocol.h@{IRProtocol.h}!JVC@{JVC}}}\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada5b6f507fb4bbd70ee70be4e2e0b0371d}\label{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada5b6f507fb4bbd70ee70be4e2e0b0371d}} 
+JVC&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LG@{LG}!IRProtocol.h@{IRProtocol.h}}\index{IRProtocol.h@{IRProtocol.h}!LG@{LG}}}\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fadadf6c249ac7d923229f9e623eff9a61f4}\label{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fadadf6c249ac7d923229f9e623eff9a61f4}} 
+LG&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LG2@{LG2}!IRProtocol.h@{IRProtocol.h}}\index{IRProtocol.h@{IRProtocol.h}!LG2@{LG2}}}\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada8402547ec0b99b9b0efe97dec65badf9}\label{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada8402547ec0b99b9b0efe97dec65badf9}} 
+LG2&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NEC@{NEC}!IRProtocol.h@{IRProtocol.h}}\index{IRProtocol.h@{IRProtocol.h}!NEC@{NEC}}}\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada0811f93a25b0873e21979d569eeac05e}\label{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada0811f93a25b0873e21979d569eeac05e}} 
+NEC&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PANASONIC@{PANASONIC}!IRProtocol.h@{IRProtocol.h}}\index{IRProtocol.h@{IRProtocol.h}!PANASONIC@{PANASONIC}}}\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fadaf87c99938d26a1f77d4f082c070d4660}\label{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fadaf87c99938d26a1f77d4f082c070d4660}} 
+PANASONIC&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KASEIKYO@{KASEIKYO}!IRProtocol.h@{IRProtocol.h}}\index{IRProtocol.h@{IRProtocol.h}!KASEIKYO@{KASEIKYO}}}\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fadaf2d8443e083aa95f191f26d438c6b953}\label{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fadaf2d8443e083aa95f191f26d438c6b953}} 
+KASEIKYO&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KASEIKYO\_JVC@{KASEIKYO\_JVC}!IRProtocol.h@{IRProtocol.h}}\index{IRProtocol.h@{IRProtocol.h}!KASEIKYO\_JVC@{KASEIKYO\_JVC}}}\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada6b221b79427a02288ea41683a7d04841}\label{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada6b221b79427a02288ea41683a7d04841}} 
+KASEIKYO\+\_\+\+JVC&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KASEIKYO\_DENON@{KASEIKYO\_DENON}!IRProtocol.h@{IRProtocol.h}}\index{IRProtocol.h@{IRProtocol.h}!KASEIKYO\_DENON@{KASEIKYO\_DENON}}}\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada4cb93fe0fe3dbe0681b8764a9294733b}\label{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada4cb93fe0fe3dbe0681b8764a9294733b}} 
+KASEIKYO\+\_\+\+DENON&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KASEIKYO\_SHARP@{KASEIKYO\_SHARP}!IRProtocol.h@{IRProtocol.h}}\index{IRProtocol.h@{IRProtocol.h}!KASEIKYO\_SHARP@{KASEIKYO\_SHARP}}}\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada181746513f88dba0d824c5dfeeec68b6}\label{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada181746513f88dba0d824c5dfeeec68b6}} 
+KASEIKYO\+\_\+\+SHARP&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KASEIKYO\_MITSUBISHI@{KASEIKYO\_MITSUBISHI}!IRProtocol.h@{IRProtocol.h}}\index{IRProtocol.h@{IRProtocol.h}!KASEIKYO\_MITSUBISHI@{KASEIKYO\_MITSUBISHI}}}\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada2516be3bdfd7614bb64961800fa49e43}\label{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada2516be3bdfd7614bb64961800fa49e43}} 
+KASEIKYO\+\_\+\+MITSUBISHI&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RC5@{RC5}!IRProtocol.h@{IRProtocol.h}}\index{IRProtocol.h@{IRProtocol.h}!RC5@{RC5}}}\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fadac3c0a3883a1488209bcd91730ece33b2}\label{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fadac3c0a3883a1488209bcd91730ece33b2}} 
+RC5&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RC6@{RC6}!IRProtocol.h@{IRProtocol.h}}\index{IRProtocol.h@{IRProtocol.h}!RC6@{RC6}}}\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada7f7247f15587eb3812846f424b941abe}\label{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada7f7247f15587eb3812846f424b941abe}} 
+RC6&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SAMSUNG@{SAMSUNG}!IRProtocol.h@{IRProtocol.h}}\index{IRProtocol.h@{IRProtocol.h}!SAMSUNG@{SAMSUNG}}}\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada2b451b6e7bebbf070d0913ec77d5d438}\label{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada2b451b6e7bebbf070d0913ec77d5d438}} 
+SAMSUNG&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SHARP@{SHARP}!IRProtocol.h@{IRProtocol.h}}\index{IRProtocol.h@{IRProtocol.h}!SHARP@{SHARP}}}\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fadaad63db67a2284cd7e3ffe382b6d6ea82}\label{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fadaad63db67a2284cd7e3ffe382b6d6ea82}} 
+SHARP&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SONY@{SONY}!IRProtocol.h@{IRProtocol.h}}\index{IRProtocol.h@{IRProtocol.h}!SONY@{SONY}}}\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada72d58193d4d25517202d22b7e57a65c3}\label{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada72d58193d4d25517202d22b7e57a65c3}} 
+SONY&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ONKYO@{ONKYO}!IRProtocol.h@{IRProtocol.h}}\index{IRProtocol.h@{IRProtocol.h}!ONKYO@{ONKYO}}}\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada20603784a6e8d35a82b2476366010344}\label{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada20603784a6e8d35a82b2476366010344}} 
+ONKYO&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{APPLE@{APPLE}!IRProtocol.h@{IRProtocol.h}}\index{IRProtocol.h@{IRProtocol.h}!APPLE@{APPLE}}}\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada5484ec37ffd1fcffb7aba549a4839910}\label{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada5484ec37ffd1fcffb7aba549a4839910}} 
+APPLE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BOSEWAVE@{BOSEWAVE}!IRProtocol.h@{IRProtocol.h}}\index{IRProtocol.h@{IRProtocol.h}!BOSEWAVE@{BOSEWAVE}}}\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada20736b037c0e7444d4dc7ff06e9dea54}\label{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada20736b037c0e7444d4dc7ff06e9dea54}} 
+BOSEWAVE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LEGO\_PF@{LEGO\_PF}!IRProtocol.h@{IRProtocol.h}}\index{IRProtocol.h@{IRProtocol.h}!LEGO\_PF@{LEGO\_PF}}}\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fadaf47be4dad020b9c36aa255c582e25510}\label{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fadaf47be4dad020b9c36aa255c582e25510}} 
+LEGO\+\_\+\+PF&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MAGIQUEST@{MAGIQUEST}!IRProtocol.h@{IRProtocol.h}}\index{IRProtocol.h@{IRProtocol.h}!MAGIQUEST@{MAGIQUEST}}}\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada3be750ce1687bc1a92fee05b0c511100}\label{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada3be750ce1687bc1a92fee05b0c511100}} 
+MAGIQUEST&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{WHYNTER@{WHYNTER}!IRProtocol.h@{IRProtocol.h}}\index{IRProtocol.h@{IRProtocol.h}!WHYNTER@{WHYNTER}}}\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada458cdd7fa2b29dc8617c694696580c0c}\label{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada458cdd7fa2b29dc8617c694696580c0c}} 
+WHYNTER&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UNKNOWN@{UNKNOWN}!IRProtocol.h@{IRProtocol.h}}\index{IRProtocol.h@{IRProtocol.h}!UNKNOWN@{UNKNOWN}}}\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada6ce26a62afab55d7606ad4e92428b30c}\label{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada6ce26a62afab55d7606ad4e92428b30c}} 
+UNKNOWN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PULSE\_DISTANCE@{PULSE\_DISTANCE}!IRProtocol.h@{IRProtocol.h}}\index{IRProtocol.h@{IRProtocol.h}!PULSE\_DISTANCE@{PULSE\_DISTANCE}}}\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fadab60e0c1f01cfceb2dc9d5f2005f6dfc0}\label{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fadab60e0c1f01cfceb2dc9d5f2005f6dfc0}} 
+PULSE\+\_\+\+DISTANCE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PULSE\_WIDTH@{PULSE\_WIDTH}!IRProtocol.h@{IRProtocol.h}}\index{IRProtocol.h@{IRProtocol.h}!PULSE\_WIDTH@{PULSE\_WIDTH}}}\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada783253fd89cb09e1dbdb2bcdbc0400e3}\label{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada783253fd89cb09e1dbdb2bcdbc0400e3}} 
+PULSE\+\_\+\+WIDTH&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DENON@{DENON}!IRProtocol.h@{IRProtocol.h}}\index{IRProtocol.h@{IRProtocol.h}!DENON@{DENON}}}\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada2bda37b76abb290d1675c3e027e3c2e1}\label{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada2bda37b76abb290d1675c3e027e3c2e1}} 
+DENON&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DISH@{DISH}!IRProtocol.h@{IRProtocol.h}}\index{IRProtocol.h@{IRProtocol.h}!DISH@{DISH}}}\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fadac27c6ac38ba872593af8e46ac2fdc85a}\label{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fadac27c6ac38ba872593af8e46ac2fdc85a}} 
+DISH&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{JVC@{JVC}!IRProtocol.h@{IRProtocol.h}}\index{IRProtocol.h@{IRProtocol.h}!JVC@{JVC}}}\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada5b6f507fb4bbd70ee70be4e2e0b0371d}\label{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada5b6f507fb4bbd70ee70be4e2e0b0371d}} 
+JVC&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LG@{LG}!IRProtocol.h@{IRProtocol.h}}\index{IRProtocol.h@{IRProtocol.h}!LG@{LG}}}\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fadadf6c249ac7d923229f9e623eff9a61f4}\label{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fadadf6c249ac7d923229f9e623eff9a61f4}} 
+LG&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LG2@{LG2}!IRProtocol.h@{IRProtocol.h}}\index{IRProtocol.h@{IRProtocol.h}!LG2@{LG2}}}\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada8402547ec0b99b9b0efe97dec65badf9}\label{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada8402547ec0b99b9b0efe97dec65badf9}} 
+LG2&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NEC@{NEC}!IRProtocol.h@{IRProtocol.h}}\index{IRProtocol.h@{IRProtocol.h}!NEC@{NEC}}}\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada0811f93a25b0873e21979d569eeac05e}\label{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada0811f93a25b0873e21979d569eeac05e}} 
+NEC&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PANASONIC@{PANASONIC}!IRProtocol.h@{IRProtocol.h}}\index{IRProtocol.h@{IRProtocol.h}!PANASONIC@{PANASONIC}}}\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fadaf87c99938d26a1f77d4f082c070d4660}\label{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fadaf87c99938d26a1f77d4f082c070d4660}} 
+PANASONIC&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KASEIKYO@{KASEIKYO}!IRProtocol.h@{IRProtocol.h}}\index{IRProtocol.h@{IRProtocol.h}!KASEIKYO@{KASEIKYO}}}\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fadaf2d8443e083aa95f191f26d438c6b953}\label{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fadaf2d8443e083aa95f191f26d438c6b953}} 
+KASEIKYO&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KASEIKYO\_JVC@{KASEIKYO\_JVC}!IRProtocol.h@{IRProtocol.h}}\index{IRProtocol.h@{IRProtocol.h}!KASEIKYO\_JVC@{KASEIKYO\_JVC}}}\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada6b221b79427a02288ea41683a7d04841}\label{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada6b221b79427a02288ea41683a7d04841}} 
+KASEIKYO\+\_\+\+JVC&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KASEIKYO\_DENON@{KASEIKYO\_DENON}!IRProtocol.h@{IRProtocol.h}}\index{IRProtocol.h@{IRProtocol.h}!KASEIKYO\_DENON@{KASEIKYO\_DENON}}}\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada4cb93fe0fe3dbe0681b8764a9294733b}\label{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada4cb93fe0fe3dbe0681b8764a9294733b}} 
+KASEIKYO\+\_\+\+DENON&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KASEIKYO\_SHARP@{KASEIKYO\_SHARP}!IRProtocol.h@{IRProtocol.h}}\index{IRProtocol.h@{IRProtocol.h}!KASEIKYO\_SHARP@{KASEIKYO\_SHARP}}}\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada181746513f88dba0d824c5dfeeec68b6}\label{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada181746513f88dba0d824c5dfeeec68b6}} 
+KASEIKYO\+\_\+\+SHARP&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KASEIKYO\_MITSUBISHI@{KASEIKYO\_MITSUBISHI}!IRProtocol.h@{IRProtocol.h}}\index{IRProtocol.h@{IRProtocol.h}!KASEIKYO\_MITSUBISHI@{KASEIKYO\_MITSUBISHI}}}\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada2516be3bdfd7614bb64961800fa49e43}\label{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada2516be3bdfd7614bb64961800fa49e43}} 
+KASEIKYO\+\_\+\+MITSUBISHI&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RC5@{RC5}!IRProtocol.h@{IRProtocol.h}}\index{IRProtocol.h@{IRProtocol.h}!RC5@{RC5}}}\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fadac3c0a3883a1488209bcd91730ece33b2}\label{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fadac3c0a3883a1488209bcd91730ece33b2}} 
+RC5&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RC6@{RC6}!IRProtocol.h@{IRProtocol.h}}\index{IRProtocol.h@{IRProtocol.h}!RC6@{RC6}}}\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada7f7247f15587eb3812846f424b941abe}\label{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada7f7247f15587eb3812846f424b941abe}} 
+RC6&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SAMSUNG@{SAMSUNG}!IRProtocol.h@{IRProtocol.h}}\index{IRProtocol.h@{IRProtocol.h}!SAMSUNG@{SAMSUNG}}}\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada2b451b6e7bebbf070d0913ec77d5d438}\label{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada2b451b6e7bebbf070d0913ec77d5d438}} 
+SAMSUNG&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SHARP@{SHARP}!IRProtocol.h@{IRProtocol.h}}\index{IRProtocol.h@{IRProtocol.h}!SHARP@{SHARP}}}\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fadaad63db67a2284cd7e3ffe382b6d6ea82}\label{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fadaad63db67a2284cd7e3ffe382b6d6ea82}} 
+SHARP&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SONY@{SONY}!IRProtocol.h@{IRProtocol.h}}\index{IRProtocol.h@{IRProtocol.h}!SONY@{SONY}}}\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada72d58193d4d25517202d22b7e57a65c3}\label{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada72d58193d4d25517202d22b7e57a65c3}} 
+SONY&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ONKYO@{ONKYO}!IRProtocol.h@{IRProtocol.h}}\index{IRProtocol.h@{IRProtocol.h}!ONKYO@{ONKYO}}}\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada20603784a6e8d35a82b2476366010344}\label{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada20603784a6e8d35a82b2476366010344}} 
+ONKYO&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{APPLE@{APPLE}!IRProtocol.h@{IRProtocol.h}}\index{IRProtocol.h@{IRProtocol.h}!APPLE@{APPLE}}}\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada5484ec37ffd1fcffb7aba549a4839910}\label{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada5484ec37ffd1fcffb7aba549a4839910}} 
+APPLE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BOSEWAVE@{BOSEWAVE}!IRProtocol.h@{IRProtocol.h}}\index{IRProtocol.h@{IRProtocol.h}!BOSEWAVE@{BOSEWAVE}}}\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada20736b037c0e7444d4dc7ff06e9dea54}\label{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada20736b037c0e7444d4dc7ff06e9dea54}} 
+BOSEWAVE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LEGO\_PF@{LEGO\_PF}!IRProtocol.h@{IRProtocol.h}}\index{IRProtocol.h@{IRProtocol.h}!LEGO\_PF@{LEGO\_PF}}}\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fadaf47be4dad020b9c36aa255c582e25510}\label{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fadaf47be4dad020b9c36aa255c582e25510}} 
+LEGO\+\_\+\+PF&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MAGIQUEST@{MAGIQUEST}!IRProtocol.h@{IRProtocol.h}}\index{IRProtocol.h@{IRProtocol.h}!MAGIQUEST@{MAGIQUEST}}}\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada3be750ce1687bc1a92fee05b0c511100}\label{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada3be750ce1687bc1a92fee05b0c511100}} 
+MAGIQUEST&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{WHYNTER@{WHYNTER}!IRProtocol.h@{IRProtocol.h}}\index{IRProtocol.h@{IRProtocol.h}!WHYNTER@{WHYNTER}}}\mbox{\Hypertarget{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada458cdd7fa2b29dc8617c694696580c0c}\label{_i_r_remote___library_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada458cdd7fa2b29dc8617c694696580c0c}} 
+WHYNTER&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_source_l00039}{39}} of file \mbox{\hyperlink{_i_r_remote___library_2_i_r_protocol_8h_source}{IRProtocol.\+h}}.
+

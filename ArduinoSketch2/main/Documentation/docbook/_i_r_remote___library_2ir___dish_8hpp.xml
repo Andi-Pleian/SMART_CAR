@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="__i_r_remote___library_2ir___dish_8hpp" xml:lang="en-US">
+<title>main/IRRemote_Library/ir_Dish.hpp File Reference</title>
+<indexterm><primary>main/IRRemote_Library/ir_Dish.hpp</primary></indexterm>
+<programlisting linenumbering="unnumbered">#include &quot;IRremoteInt.h&quot;
+</programlisting>Include dependency graph for ir_Dish.hpp:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="_i_r_remote___library_2ir___dish_8hpp__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+This graph shows which files directly or indirectly include this file:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="_i_r_remote___library_2ir___dish_8hpp__dep__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Macros    </title>
+        <itemizedlist>
+            <listitem><para>#define <link linkend="__i_r_remote___library_2ir___dish_8hpp_1a73ca131b63144028338dad0721dfcb17">DISH_BITS</link>   16</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote___library_2ir___dish_8hpp_1a5a4a46d571cc0eec3aa187259f68f887">DISH_HEADER_MARK</link>   400</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote___library_2ir___dish_8hpp_1a4c65e6ec3bc9ffdce4b169e7ebdefa7a">DISH_HEADER_SPACE</link>   6100</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote___library_2ir___dish_8hpp_1a7d81745417fbe85534e14b11ba18b817">DISH_BIT_MARK</link>   400</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote___library_2ir___dish_8hpp_1a689ee75287838ce80c698313a9c5941f">DISH_ONE_SPACE</link>   1700</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote___library_2ir___dish_8hpp_1aaf3bea58e3c288a99869978697d2e562">DISH_ZERO_SPACE</link>   2800</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote___library_2ir___dish_8hpp_1a70ab8b8d81b426972d8950b1d28730e2">DISH_REPEAT_SPACE</link>   6200</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Macro Definition Documentation</title>
+<anchor xml:id="__i_r_remote___library_2ir___dish_8hpp_1a7d81745417fbe85534e14b11ba18b817"/><section>
+    <title>DISH_BIT_MARK</title>
+<indexterm><primary>DISH_BIT_MARK</primary><secondary>ir_Dish.hpp</secondary></indexterm>
+<indexterm><primary>ir_Dish.hpp</primary><secondary>DISH_BIT_MARK</secondary></indexterm>
+<para><computeroutput>#define DISH_BIT_MARK   400</computeroutput></para><para>
+Definition at line <link linkend="__i_r_remote___library_2ir___dish_8hpp_source_1l00028">28</link> of file <link linkend="__i_r_remote___library_2ir___dish_8hpp_source">ir_Dish.hpp</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote___library_2ir___dish_8hpp_1a73ca131b63144028338dad0721dfcb17"/><section>
+    <title>DISH_BITS</title>
+<indexterm><primary>DISH_BITS</primary><secondary>ir_Dish.hpp</secondary></indexterm>
+<indexterm><primary>ir_Dish.hpp</primary><secondary>DISH_BITS</secondary></indexterm>
+<para><computeroutput>#define DISH_BITS   16</computeroutput></para><para>
+Definition at line <link linkend="__i_r_remote___library_2ir___dish_8hpp_source_1l00025">25</link> of file <link linkend="__i_r_remote___library_2ir___dish_8hpp_source">ir_Dish.hpp</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote___library_2ir___dish_8hpp_1a5a4a46d571cc0eec3aa187259f68f887"/><section>
+    <title>DISH_HEADER_MARK</title>
+<indexterm><primary>DISH_HEADER_MARK</primary><secondary>ir_Dish.hpp</secondary></indexterm>
+<indexterm><primary>ir_Dish.hpp</primary><secondary>DISH_HEADER_MARK</secondary></indexterm>
+<para><computeroutput>#define DISH_HEADER_MARK   400</computeroutput></para><para>
+Definition at line <link linkend="__i_r_remote___library_2ir___dish_8hpp_source_1l00026">26</link> of file <link linkend="__i_r_remote___library_2ir___dish_8hpp_source">ir_Dish.hpp</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote___library_2ir___dish_8hpp_1a4c65e6ec3bc9ffdce4b169e7ebdefa7a"/><section>
+    <title>DISH_HEADER_SPACE</title>
+<indexterm><primary>DISH_HEADER_SPACE</primary><secondary>ir_Dish.hpp</secondary></indexterm>
+<indexterm><primary>ir_Dish.hpp</primary><secondary>DISH_HEADER_SPACE</secondary></indexterm>
+<para><computeroutput>#define DISH_HEADER_SPACE   6100</computeroutput></para><para>
+Definition at line <link linkend="__i_r_remote___library_2ir___dish_8hpp_source_1l00027">27</link> of file <link linkend="__i_r_remote___library_2ir___dish_8hpp_source">ir_Dish.hpp</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote___library_2ir___dish_8hpp_1a689ee75287838ce80c698313a9c5941f"/><section>
+    <title>DISH_ONE_SPACE</title>
+<indexterm><primary>DISH_ONE_SPACE</primary><secondary>ir_Dish.hpp</secondary></indexterm>
+<indexterm><primary>ir_Dish.hpp</primary><secondary>DISH_ONE_SPACE</secondary></indexterm>
+<para><computeroutput>#define DISH_ONE_SPACE   1700</computeroutput></para><para>
+Definition at line <link linkend="__i_r_remote___library_2ir___dish_8hpp_source_1l00029">29</link> of file <link linkend="__i_r_remote___library_2ir___dish_8hpp_source">ir_Dish.hpp</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote___library_2ir___dish_8hpp_1a70ab8b8d81b426972d8950b1d28730e2"/><section>
+    <title>DISH_REPEAT_SPACE</title>
+<indexterm><primary>DISH_REPEAT_SPACE</primary><secondary>ir_Dish.hpp</secondary></indexterm>
+<indexterm><primary>ir_Dish.hpp</primary><secondary>DISH_REPEAT_SPACE</secondary></indexterm>
+<para><computeroutput>#define DISH_REPEAT_SPACE   6200</computeroutput></para><para>
+Definition at line <link linkend="__i_r_remote___library_2ir___dish_8hpp_source_1l00031">31</link> of file <link linkend="__i_r_remote___library_2ir___dish_8hpp_source">ir_Dish.hpp</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote___library_2ir___dish_8hpp_1aaf3bea58e3c288a99869978697d2e562"/><section>
+    <title>DISH_ZERO_SPACE</title>
+<indexterm><primary>DISH_ZERO_SPACE</primary><secondary>ir_Dish.hpp</secondary></indexterm>
+<indexterm><primary>ir_Dish.hpp</primary><secondary>DISH_ZERO_SPACE</secondary></indexterm>
+<para><computeroutput>#define DISH_ZERO_SPACE   2800</computeroutput></para><para>
+Definition at line <link linkend="__i_r_remote___library_2ir___dish_8hpp_source_1l00030">30</link> of file <link linkend="__i_r_remote___library_2ir___dish_8hpp_source">ir_Dish.hpp</link>.</para>
+</section>
+</section>
+</section>

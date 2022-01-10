@@ -1,0 +1,546 @@
+\hypertarget{_tiny_i_r_receiver_8hpp_source}{}\doxysection{Tiny\+IRReceiver.\+hpp}
+\label{_tiny_i_r_receiver_8hpp_source}\index{IRRemote/TinyIRReceiver.hpp@{IRRemote/TinyIRReceiver.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ *  TinyIRReceiver.hpp}}
+\DoxyCodeLine{3 \textcolor{comment}{ *}}
+\DoxyCodeLine{4 \textcolor{comment}{ *  Receives IR protocol data of NEC protocol using pin change interrupts.}}
+\DoxyCodeLine{5 \textcolor{comment}{ *  NEC is the protocol of most cheap remote controls for Arduino.}}
+\DoxyCodeLine{6 \textcolor{comment}{ *}}
+\DoxyCodeLine{7 \textcolor{comment}{ *  No parity check is done!}}
+\DoxyCodeLine{8 \textcolor{comment}{ *  On a completely received IR command, the user function handleReceivedIRData(uint16\_t aAddress, uint8\_t aCommand, bool isRepetition)}}
+\DoxyCodeLine{9 \textcolor{comment}{ *  is called in Interrupt context but with interrupts being enabled to enable use of delay() etc.}}
+\DoxyCodeLine{10 \textcolor{comment}{ *  !!!!!!!!!!!!!!!!!!!!!!}}
+\DoxyCodeLine{11 \textcolor{comment}{ *  Functions called in interrupt context should be running as short as possible,}}
+\DoxyCodeLine{12 \textcolor{comment}{ *  so if you require longer action, save the data (address + command) and handle them in the main loop.}}
+\DoxyCodeLine{13 \textcolor{comment}{ *  !!!!!!!!!!!!!!!!!!!!!}}
+\DoxyCodeLine{14 \textcolor{comment}{ *}}
+\DoxyCodeLine{15 \textcolor{comment}{ *}}
+\DoxyCodeLine{16 \textcolor{comment}{ *  Copyright (C) 2021  Armin Joachimsmeyer}}
+\DoxyCodeLine{17 \textcolor{comment}{ *  armin.joachimsmeyer@gmail.com}}
+\DoxyCodeLine{18 \textcolor{comment}{ *}}
+\DoxyCodeLine{19 \textcolor{comment}{ *  This file is part of IRMP https://github.com/ukw100/IRMP.}}
+\DoxyCodeLine{20 \textcolor{comment}{ *  This file is part of Arduino-\/IRremote https://github.com/Arduino-\/IRremote/Arduino-\/IRremote.}}
+\DoxyCodeLine{21 \textcolor{comment}{ *}}
+\DoxyCodeLine{22 \textcolor{comment}{ *  TinyIRReceiver is free software: you can redistribute it and/or modify}}
+\DoxyCodeLine{23 \textcolor{comment}{ *  it under the terms of the GNU General Public License as published by}}
+\DoxyCodeLine{24 \textcolor{comment}{ *  the Free Software Foundation, either version 3 of the License, or}}
+\DoxyCodeLine{25 \textcolor{comment}{ *  (at your option) any later version.}}
+\DoxyCodeLine{26 \textcolor{comment}{ *}}
+\DoxyCodeLine{27 \textcolor{comment}{ *  This program is distributed in the hope that it will be useful,}}
+\DoxyCodeLine{28 \textcolor{comment}{ *  but WITHOUT ANY WARRANTY; without even the implied warranty of}}
+\DoxyCodeLine{29 \textcolor{comment}{ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the}}
+\DoxyCodeLine{30 \textcolor{comment}{ *  GNU General Public License for more details.}}
+\DoxyCodeLine{31 \textcolor{comment}{ *}}
+\DoxyCodeLine{32 \textcolor{comment}{ *  You should have received a copy of the GNU General Public License}}
+\DoxyCodeLine{33 \textcolor{comment}{ *  along with this program.  If not, see <http://www.gnu.org/licenses/gpl.html>.}}
+\DoxyCodeLine{34 \textcolor{comment}{ *}}
+\DoxyCodeLine{35 \textcolor{comment}{ */}}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37 \textcolor{preprocessor}{\#ifndef TINY\_IR\_RECEIVER\_HPP}}
+\DoxyCodeLine{38 \textcolor{preprocessor}{\#define TINY\_IR\_RECEIVER\_HPP}}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40 \textcolor{preprocessor}{\#include <Arduino.h>}}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42 \textcolor{preprocessor}{\#include "{}TinyIRReceiver.h"{}} \textcolor{comment}{// If not defined, it defines IR\_INPUT\_PIN, IR\_FEEDBACK\_LED\_PIN and TINY\_RECEIVER\_USE\_ARDUINO\_ATTACH\_INTERRUPT}}
+\DoxyCodeLine{43 \textcolor{comment}{//\#define NO\_LED\_FEEDBACK\_CODE   // Activate this if you want to suppress LED feedback or if you do not have a LED. This saves 2 bytes code and 2 clock cycles per interrupt.}}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45 \textcolor{preprocessor}{\#include "{}digitalWriteFast.h"{}}}
+\DoxyCodeLine{50 \textcolor{comment}{//\#define DEBUG // to see if attachInterrupt used}}
+\DoxyCodeLine{51 \textcolor{comment}{//\#define TRACE // to see the state of the ISR state machine}}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53 \textcolor{comment}{//\#define \_IR\_MEASURE\_TIMING        // Activate this if you want to enable internal hardware timing measurement.}}
+\DoxyCodeLine{54 \textcolor{comment}{//\#define \_IR\_TIMING\_TEST\_PIN 7}}
+\DoxyCodeLine{55 \mbox{\hyperlink{struct_tiny_i_r_receiver_struct}{TinyIRReceiverStruct}} TinyIRReceiverControl;}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57 \textcolor{comment}{/*}}
+\DoxyCodeLine{58 \textcolor{comment}{ * Set input pin and output pin definitions etc.}}
+\DoxyCodeLine{59 \textcolor{comment}{ */}}
+\DoxyCodeLine{60 \textcolor{preprocessor}{\#if !defined(IR\_INPUT\_PIN)}}
+\DoxyCodeLine{61 \textcolor{preprocessor}{\#if defined(\_\_AVR\_ATtiny1616\_\_)  || defined(\_\_AVR\_ATtiny3216\_\_) || defined(\_\_AVR\_ATtiny3217\_\_)}}
+\DoxyCodeLine{62 \textcolor{preprocessor}{\#warning "{}IR\_INPUT\_PIN is not defined, so it is set to 10"{}}}
+\DoxyCodeLine{63 \textcolor{preprocessor}{\#define IR\_INPUT\_PIN    10}}
+\DoxyCodeLine{64 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{65 \textcolor{preprocessor}{\#warning "{}IR\_INPUT\_PIN is not defined, so it is set to 2"{}}}
+\DoxyCodeLine{66 \textcolor{preprocessor}{\#define IR\_INPUT\_PIN    2}}
+\DoxyCodeLine{67 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{68 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{70 \textcolor{preprocessor}{\#if !defined(IR\_FEEDBACK\_LED\_PIN) \&\& defined(LED\_BUILTIN)}}
+\DoxyCodeLine{71 \textcolor{preprocessor}{\#define IR\_FEEDBACK\_LED\_PIN    LED\_BUILTIN}}
+\DoxyCodeLine{72 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{74 \textcolor{preprocessor}{\#if !( \(\backslash\)}}
+\DoxyCodeLine{75 \textcolor{preprocessor}{   (defined(\_\_AVR\_ATtiny25\_\_) || defined(\_\_AVR\_ATtiny45\_\_) || defined(\_\_AVR\_ATtiny85\_\_)) }\textcolor{comment}{/* ATtinyX5 */}\textcolor{preprocessor}{ \(\backslash\)}}
+\DoxyCodeLine{76 \textcolor{preprocessor}{|| defined(\_\_AVR\_ATtiny88\_\_) }\textcolor{comment}{/* MH-\/ET LIVE Tiny88 */}\textcolor{preprocessor}{ \(\backslash\)}}
+\DoxyCodeLine{77 \textcolor{preprocessor}{|| defined(\_\_AVR\_ATmega1280\_\_) || defined(\_\_AVR\_ATmega1281\_\_) || defined(\_\_AVR\_ATmega2560\_\_) || defined(\_\_AVR\_ATmega2561\_\_) \(\backslash\)}}
+\DoxyCodeLine{78 \textcolor{preprocessor}{|| defined(\_\_AVR\_ATmega16U4\_\_) || defined(\_\_AVR\_ATmega32U4\_\_) \(\backslash\)}}
+\DoxyCodeLine{79 \textcolor{preprocessor}{|| defined(\_\_AVR\_ATmega8\_\_) || defined(\_\_AVR\_ATmega48\_\_) || defined(\_\_AVR\_ATmega48P\_\_) || defined(\_\_AVR\_ATmega48PB\_\_) || defined(\_\_AVR\_ATmega88P\_\_) || defined(\_\_AVR\_ATmega88PB\_\_) \(\backslash\)}}
+\DoxyCodeLine{80 \textcolor{preprocessor}{|| defined(\_\_AVR\_ATmega168\_\_) || defined(\_\_AVR\_ATmega168PA\_\_) || defined(\_\_AVR\_ATmega168PB\_\_) || defined(\_\_AVR\_ATmega328\_\_) || defined(\_\_AVR\_ATmega328P\_\_) || defined(\_\_AVR\_ATmega328PB\_\_) \(\backslash\)}}
+\DoxyCodeLine{81 \textcolor{preprocessor}{  }\textcolor{comment}{/* ATmegas with ports 0,1,2 above and ATtiny167 only 2 pins below */}\textcolor{preprocessor}{ \(\backslash\)}}
+\DoxyCodeLine{82 \textcolor{preprocessor}{|| ( (defined(\_\_AVR\_ATtiny87\_\_) || defined(\_\_AVR\_ATtiny167\_\_)) \&\& ( (defined(ARDUINO\_AVR\_DIGISPARKPRO) \&\& ((IR\_INPUT\_PIN == 3) || (IR\_INPUT\_PIN == 9))) }\textcolor{comment}{/*ATtinyX7(digisparkpro) and pin 3 or 9 */}\textcolor{preprocessor}{\(\backslash\)}}
+\DoxyCodeLine{83 \textcolor{preprocessor}{        || (! defined(ARDUINO\_AVR\_DIGISPARKPRO) \&\& ((IR\_INPUT\_PIN == 3) || (IR\_INPUT\_PIN == 14)))) ) }\textcolor{comment}{/*ATtinyX7(ATTinyCore) and pin 3 or 14 */}\textcolor{preprocessor}{ \(\backslash\)}}
+\DoxyCodeLine{84 \textcolor{preprocessor}{)}}
+\DoxyCodeLine{85 \textcolor{preprocessor}{\#define TINY\_RECEIVER\_USE\_ARDUINO\_ATTACH\_INTERRUPT }\textcolor{comment}{// Cannot use any static ISR vector here. In other cases we have code provided for generating interrupt on pin change.}}
+\DoxyCodeLine{86 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{92 \textcolor{preprocessor}{\#if defined(ESP8266)}}
+\DoxyCodeLine{93 \textcolor{keywordtype}{void} ICACHE\_RAM\_ATTR \mbox{\hyperlink{group___tiny_receiver_gaf44d26445244a24863cda1636eb8bf97}{handleReceivedIRData}}(uint16\_t aAddress, uint8\_t aCommand, \textcolor{keywordtype}{bool} isRepetition);}
+\DoxyCodeLine{94 \textcolor{preprocessor}{\#elif defined(ESP32)}}
+\DoxyCodeLine{95 \textcolor{keywordtype}{void} IRAM\_ATTR \mbox{\hyperlink{group___tiny_receiver_gaf44d26445244a24863cda1636eb8bf97}{handleReceivedIRData}}(uint16\_t aAddress, uint8\_t aCommand, \textcolor{keywordtype}{bool} isRepetition);}
+\DoxyCodeLine{96 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{97 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___tiny_receiver_gaf44d26445244a24863cda1636eb8bf97}{handleReceivedIRData}}(uint16\_t aAddress, uint8\_t aCommand, \textcolor{keywordtype}{bool} isRepetition);}
+\DoxyCodeLine{98 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{105 \textcolor{preprocessor}{\#if defined(ESP8266) || defined(ESP32)}}
+\DoxyCodeLine{106 \textcolor{keywordtype}{void} IRAM\_ATTR \mbox{\hyperlink{group___tiny_receiver_ga3c3d6703d25dbcc0555823e23eec0e69}{IRPinChangeInterruptHandler}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{107 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{108 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___tiny_receiver_ga3c3d6703d25dbcc0555823e23eec0e69}{IRPinChangeInterruptHandler}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{109 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{110 \{}
+\DoxyCodeLine{111 \textcolor{preprocessor}{\#if defined(\_IR\_MEASURE\_TIMING) \&\& defined(\_IR\_TIMING\_TEST\_PIN)}}
+\DoxyCodeLine{112     digitalWriteFast(\_IR\_TIMING\_TEST\_PIN, HIGH); \textcolor{comment}{// 2 clock cycles}}
+\DoxyCodeLine{113 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{114     \textcolor{comment}{/*}}
+\DoxyCodeLine{115 \textcolor{comment}{     * Save IR input level}}
+\DoxyCodeLine{116 \textcolor{comment}{     * Negative logic, true / HIGH means inactive / IR space, LOW / false means IR mark.}}
+\DoxyCodeLine{117 \textcolor{comment}{     */}}
+\DoxyCodeLine{118     uint\_fast8\_t tIRLevel = digitalReadFast(IR\_INPUT\_PIN);}
+\DoxyCodeLine{119 }
+\DoxyCodeLine{120 \textcolor{preprocessor}{\#if !defined(NO\_LED\_FEEDBACK\_CODE) \&\& defined(IR\_FEEDBACK\_LED\_PIN)}}
+\DoxyCodeLine{121     digitalWriteFast(IR\_FEEDBACK\_LED\_PIN, !tIRLevel);}
+\DoxyCodeLine{122 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{123 }
+\DoxyCodeLine{124     \textcolor{comment}{/*}}
+\DoxyCodeLine{125 \textcolor{comment}{     * 1. compute microseconds after last change}}
+\DoxyCodeLine{126 \textcolor{comment}{     */}}
+\DoxyCodeLine{127     uint32\_t tCurrentMicros = micros();}
+\DoxyCodeLine{128     uint16\_t tMicrosOfMarkOrSpace = tCurrentMicros -\/ TinyIRReceiverControl.\mbox{\hyperlink{struct_tiny_i_r_receiver_struct_a978f2ac480cb3ab428ff3016239413f1}{LastChangeMicros}};}
+\DoxyCodeLine{129     TinyIRReceiverControl.\mbox{\hyperlink{struct_tiny_i_r_receiver_struct_a978f2ac480cb3ab428ff3016239413f1}{LastChangeMicros}} = tCurrentMicros;}
+\DoxyCodeLine{130 }
+\DoxyCodeLine{131     uint8\_t tState = TinyIRReceiverControl.\mbox{\hyperlink{struct_tiny_i_r_receiver_struct_aca59e5c5331a581e0603a59c552fa8c9}{IRReceiverState}};}
+\DoxyCodeLine{132 }
+\DoxyCodeLine{133 \textcolor{preprocessor}{\#ifdef TRACE}}
+\DoxyCodeLine{134     Serial.print(tState);}
+\DoxyCodeLine{135     Serial.print(\textcolor{charliteral}{' '});}
+\DoxyCodeLine{136 \textcolor{comment}{//    Serial.print(F("{} I="{}));}}
+\DoxyCodeLine{137 \textcolor{comment}{//    Serial.print(tIRLevel);}}
+\DoxyCodeLine{138 \textcolor{comment}{//    Serial.print(F("{} D="{}));}}
+\DoxyCodeLine{139 \textcolor{comment}{//    Serial.print(tDeltaMicros);}}
+\DoxyCodeLine{140 \textcolor{comment}{//    Serial.println();}}
+\DoxyCodeLine{141 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{142 }
+\DoxyCodeLine{143     \textcolor{keywordflow}{if} (tIRLevel == LOW)}
+\DoxyCodeLine{144     \{}
+\DoxyCodeLine{145         \textcolor{comment}{/*}}
+\DoxyCodeLine{146 \textcolor{comment}{         * We have a mark here}}
+\DoxyCodeLine{147 \textcolor{comment}{         */}}
+\DoxyCodeLine{148         \textcolor{keywordflow}{if} (tMicrosOfMarkOrSpace > 2 * NEC\_HEADER\_MARK)}
+\DoxyCodeLine{149         \{}
+\DoxyCodeLine{150             \textcolor{comment}{// timeout -\/> must reset state machine}}
+\DoxyCodeLine{151             tState = IR\_RECEIVER\_STATE\_WAITING\_FOR\_START\_MARK;}
+\DoxyCodeLine{152         \}}
+\DoxyCodeLine{153         \textcolor{keywordflow}{if} (tState == IR\_RECEIVER\_STATE\_WAITING\_FOR\_START\_MARK)}
+\DoxyCodeLine{154         \{}
+\DoxyCodeLine{155             \textcolor{comment}{// We are at the beginning of the header mark, check timing at the next transition}}
+\DoxyCodeLine{156             tState = IR\_RECEIVER\_STATE\_WAITING\_FOR\_START\_SPACE;}
+\DoxyCodeLine{157         \}}
+\DoxyCodeLine{158 }
+\DoxyCodeLine{159         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (tState == IR\_RECEIVER\_STATE\_WAITING\_FOR\_FIRST\_DATA\_MARK)}
+\DoxyCodeLine{160         \{}
+\DoxyCodeLine{161             \textcolor{keywordflow}{if} (tMicrosOfMarkOrSpace >= lowerValue25Percent(NEC\_HEADER\_SPACE)}
+\DoxyCodeLine{162                     \&\& tMicrosOfMarkOrSpace <= upperValue25Percent(NEC\_HEADER\_SPACE))}
+\DoxyCodeLine{163             \{}
+\DoxyCodeLine{164                 \textcolor{comment}{/*}}
+\DoxyCodeLine{165 \textcolor{comment}{                 * We have a valid data header space here -\/> initialize data}}
+\DoxyCodeLine{166 \textcolor{comment}{                 */}}
+\DoxyCodeLine{167                 TinyIRReceiverControl.IRRawDataBitCounter = 0;}
+\DoxyCodeLine{168                 TinyIRReceiverControl.IRRawData.ULong = 0;}
+\DoxyCodeLine{169                 TinyIRReceiverControl.IRRawDataMask = 1;}
+\DoxyCodeLine{170                 TinyIRReceiverControl.IRRepeatDetected = \textcolor{keyword}{false};}
+\DoxyCodeLine{171                 tState = IR\_RECEIVER\_STATE\_WAITING\_FOR\_DATA\_SPACE;}
+\DoxyCodeLine{172             \}}
+\DoxyCodeLine{173             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (tMicrosOfMarkOrSpace >= lowerValue25Percent(NEC\_REPEAT\_HEADER\_SPACE)}
+\DoxyCodeLine{174                     \&\& tMicrosOfMarkOrSpace <= upperValue25Percent(NEC\_REPEAT\_HEADER\_SPACE)}
+\DoxyCodeLine{175                     \&\& TinyIRReceiverControl.IRRawDataBitCounter >= NEC\_BITS)}
+\DoxyCodeLine{176             \{}
+\DoxyCodeLine{177                 \textcolor{comment}{/*}}
+\DoxyCodeLine{178 \textcolor{comment}{                 * We have a repeat header here and no broken receive before -\/> set repeat flag}}
+\DoxyCodeLine{179 \textcolor{comment}{                 */}}
+\DoxyCodeLine{180                 TinyIRReceiverControl.IRRepeatDetected = \textcolor{keyword}{true};}
+\DoxyCodeLine{181                 tState = IR\_RECEIVER\_STATE\_WAITING\_FOR\_DATA\_SPACE;}
+\DoxyCodeLine{182             \}}
+\DoxyCodeLine{183             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{184             \{}
+\DoxyCodeLine{185                 \textcolor{comment}{// This parts are optimized by the compiler into jumps to one code :-\/)}}
+\DoxyCodeLine{186                 \textcolor{comment}{// Wrong length -\/> reset state}}
+\DoxyCodeLine{187                 tState = IR\_RECEIVER\_STATE\_WAITING\_FOR\_START\_MARK;}
+\DoxyCodeLine{188             \}}
+\DoxyCodeLine{189         \}}
+\DoxyCodeLine{190 }
+\DoxyCodeLine{191         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (tState == IR\_RECEIVER\_STATE\_WAITING\_FOR\_DATA\_MARK)}
+\DoxyCodeLine{192         \{}
+\DoxyCodeLine{193             \textcolor{comment}{// Check data space length}}
+\DoxyCodeLine{194             \textcolor{keywordflow}{if} (tMicrosOfMarkOrSpace >= lowerValue(NEC\_ZERO\_SPACE) \&\& tMicrosOfMarkOrSpace <= upperValue(NEC\_ONE\_SPACE))}
+\DoxyCodeLine{195             \{}
+\DoxyCodeLine{196                 \textcolor{comment}{// We have a valid bit here}}
+\DoxyCodeLine{197                 tState = IR\_RECEIVER\_STATE\_WAITING\_FOR\_DATA\_SPACE;}
+\DoxyCodeLine{198                 \textcolor{keywordflow}{if} (tMicrosOfMarkOrSpace >= 2 * NEC\_UNIT)}
+\DoxyCodeLine{199                 \{}
+\DoxyCodeLine{200                     \textcolor{comment}{// we received a 1}}
+\DoxyCodeLine{201                     TinyIRReceiverControl.IRRawData.ULong |= TinyIRReceiverControl.IRRawDataMask;}
+\DoxyCodeLine{202                 \}}
+\DoxyCodeLine{203                 \textcolor{keywordflow}{else}}
+\DoxyCodeLine{204                 \{}
+\DoxyCodeLine{205                     \textcolor{comment}{// we received a 0 -\/ empty code for documentation}}
+\DoxyCodeLine{206                 \}}
+\DoxyCodeLine{207                 \textcolor{comment}{// prepare for next bit}}
+\DoxyCodeLine{208                 TinyIRReceiverControl.IRRawDataMask = TinyIRReceiverControl.IRRawDataMask << 1;}
+\DoxyCodeLine{209                 TinyIRReceiverControl.IRRawDataBitCounter++;}
+\DoxyCodeLine{210             \}}
+\DoxyCodeLine{211             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{212             \{}
+\DoxyCodeLine{213                 \textcolor{comment}{// Wrong length -\/> reset state}}
+\DoxyCodeLine{214                 tState = IR\_RECEIVER\_STATE\_WAITING\_FOR\_START\_MARK;}
+\DoxyCodeLine{215             \}}
+\DoxyCodeLine{216         \}}
+\DoxyCodeLine{217         \textcolor{keywordflow}{else}}
+\DoxyCodeLine{218         \{}
+\DoxyCodeLine{219             \textcolor{comment}{// error wrong state for the received level, e.g. if we missed one change interrupt -\/> reset state}}
+\DoxyCodeLine{220             tState = IR\_RECEIVER\_STATE\_WAITING\_FOR\_START\_MARK;}
+\DoxyCodeLine{221         \}}
+\DoxyCodeLine{222     \}}
+\DoxyCodeLine{223 }
+\DoxyCodeLine{224     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{225     \{}
+\DoxyCodeLine{226         \textcolor{comment}{/*}}
+\DoxyCodeLine{227 \textcolor{comment}{         * We have a space here}}
+\DoxyCodeLine{228 \textcolor{comment}{         */}}
+\DoxyCodeLine{229         \textcolor{keywordflow}{if} (tState == IR\_RECEIVER\_STATE\_WAITING\_FOR\_START\_SPACE)}
+\DoxyCodeLine{230         \{}
+\DoxyCodeLine{231             \textcolor{comment}{/*}}
+\DoxyCodeLine{232 \textcolor{comment}{             * Check length of header mark here}}
+\DoxyCodeLine{233 \textcolor{comment}{             */}}
+\DoxyCodeLine{234             \textcolor{keywordflow}{if} (tMicrosOfMarkOrSpace >= lowerValue25Percent(NEC\_HEADER\_MARK)}
+\DoxyCodeLine{235                     \&\& tMicrosOfMarkOrSpace <= upperValue25Percent(NEC\_HEADER\_MARK))}
+\DoxyCodeLine{236             \{}
+\DoxyCodeLine{237                 tState = IR\_RECEIVER\_STATE\_WAITING\_FOR\_FIRST\_DATA\_MARK;}
+\DoxyCodeLine{238             \}}
+\DoxyCodeLine{239             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{240             \{}
+\DoxyCodeLine{241                 \textcolor{comment}{// Wrong length of header mark -\/> reset state}}
+\DoxyCodeLine{242                 tState = IR\_RECEIVER\_STATE\_WAITING\_FOR\_START\_MARK;}
+\DoxyCodeLine{243             \}}
+\DoxyCodeLine{244         \}}
+\DoxyCodeLine{245 }
+\DoxyCodeLine{246         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (tState == IR\_RECEIVER\_STATE\_WAITING\_FOR\_DATA\_SPACE)}
+\DoxyCodeLine{247         \{}
+\DoxyCodeLine{248             \textcolor{comment}{// Check data mark length}}
+\DoxyCodeLine{249             \textcolor{keywordflow}{if} (tMicrosOfMarkOrSpace >= lowerValue(NEC\_BIT\_MARK) \&\& tMicrosOfMarkOrSpace <= upperValue(NEC\_BIT\_MARK))}
+\DoxyCodeLine{250             \{}
+\DoxyCodeLine{251                 \textcolor{comment}{/*}}
+\DoxyCodeLine{252 \textcolor{comment}{                 * We have a valid mark here, check for transmission complete}}
+\DoxyCodeLine{253 \textcolor{comment}{                 */}}
+\DoxyCodeLine{254                 \textcolor{keywordflow}{if} (TinyIRReceiverControl.IRRawDataBitCounter >= NEC\_BITS || TinyIRReceiverControl.IRRepeatDetected)}
+\DoxyCodeLine{255                 \{}
+\DoxyCodeLine{256                     \textcolor{comment}{/*}}
+\DoxyCodeLine{257 \textcolor{comment}{                     * Code complete -\/> call callback, no parity check!}}
+\DoxyCodeLine{258 \textcolor{comment}{                     */}}
+\DoxyCodeLine{259                     \textcolor{comment}{// Reset state for new start}}
+\DoxyCodeLine{260                     tState = IR\_RECEIVER\_STATE\_WAITING\_FOR\_START\_MARK;}
+\DoxyCodeLine{261 \textcolor{preprocessor}{\#if !defined(ARDUINO\_ARCH\_MBED)}}
+\DoxyCodeLine{262                     interrupts();}
+\DoxyCodeLine{263 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{264                     \textcolor{comment}{/*}}
+\DoxyCodeLine{265 \textcolor{comment}{                     * Address reduction to 8 bit}}
+\DoxyCodeLine{266 \textcolor{comment}{                     */}}
+\DoxyCodeLine{267                     \textcolor{keywordflow}{if} (TinyIRReceiverControl.IRRawData.UByte.LowByte}
+\DoxyCodeLine{268                             == (uint8\_t) (\string~TinyIRReceiverControl.IRRawData.UByte.MidLowByte))}
+\DoxyCodeLine{269                     \{}
+\DoxyCodeLine{270                         \textcolor{comment}{// standard 8 bit address NEC protocol}}
+\DoxyCodeLine{271                         TinyIRReceiverControl.IRRawData.UByte.MidLowByte = 0; \textcolor{comment}{// Address is the first 8 bit}}
+\DoxyCodeLine{272                     \}}
+\DoxyCodeLine{273 }
+\DoxyCodeLine{274                     \textcolor{comment}{/*}}
+\DoxyCodeLine{275 \textcolor{comment}{                     * Call user provided callback here}}
+\DoxyCodeLine{276 \textcolor{comment}{                     */}}
+\DoxyCodeLine{277                     handleReceivedTinyIRData(TinyIRReceiverControl.IRRawData.UWord.LowWord,}
+\DoxyCodeLine{278                             TinyIRReceiverControl.IRRawData.UByte.MidHighByte, TinyIRReceiverControl.IRRepeatDetected);}
+\DoxyCodeLine{279 }
+\DoxyCodeLine{280                 \}}
+\DoxyCodeLine{281                 \textcolor{keywordflow}{else}}
+\DoxyCodeLine{282                 \{}
+\DoxyCodeLine{283                     \textcolor{comment}{// not finished yet}}
+\DoxyCodeLine{284                     tState = IR\_RECEIVER\_STATE\_WAITING\_FOR\_DATA\_MARK;}
+\DoxyCodeLine{285                 \}}
+\DoxyCodeLine{286             \}}
+\DoxyCodeLine{287             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{288             \{}
+\DoxyCodeLine{289                 \textcolor{comment}{// Wrong length -\/> reset state}}
+\DoxyCodeLine{290                 tState = IR\_RECEIVER\_STATE\_WAITING\_FOR\_START\_MARK;}
+\DoxyCodeLine{291             \}}
+\DoxyCodeLine{292         \}}
+\DoxyCodeLine{293         \textcolor{keywordflow}{else}}
+\DoxyCodeLine{294         \{}
+\DoxyCodeLine{295             \textcolor{comment}{// error wrong state for the received level, e.g. if we missed one change interrupt -\/> reset state}}
+\DoxyCodeLine{296             tState = IR\_RECEIVER\_STATE\_WAITING\_FOR\_START\_MARK;}
+\DoxyCodeLine{297         \}}
+\DoxyCodeLine{298     \}}
+\DoxyCodeLine{299 }
+\DoxyCodeLine{300     TinyIRReceiverControl.\mbox{\hyperlink{struct_tiny_i_r_receiver_struct_aca59e5c5331a581e0603a59c552fa8c9}{IRReceiverState}} = tState;}
+\DoxyCodeLine{301 \textcolor{preprocessor}{\#ifdef \_IR\_MEASURE\_TIMING}}
+\DoxyCodeLine{302     digitalWriteFast(\_IR\_TIMING\_TEST\_PIN, LOW); \textcolor{comment}{// 2 clock cycles}}
+\DoxyCodeLine{303 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{304 \}}
+\DoxyCodeLine{305 }
+\DoxyCodeLine{306 \textcolor{keywordtype}{bool} isTinyReceiverIdle()}
+\DoxyCodeLine{307 \{}
+\DoxyCodeLine{308     \textcolor{keywordflow}{return} (TinyIRReceiverControl.\mbox{\hyperlink{struct_tiny_i_r_receiver_struct_aca59e5c5331a581e0603a59c552fa8c9}{IRReceiverState}} == IR\_RECEIVER\_STATE\_WAITING\_FOR\_START\_MARK);}
+\DoxyCodeLine{309 \}}
+\DoxyCodeLine{310 }
+\DoxyCodeLine{314 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___tiny_receiver_ga1f3913249343258d738ea0a48f7e1aed}{initPCIInterruptForTinyReceiver}}()}
+\DoxyCodeLine{315 \{}
+\DoxyCodeLine{316     pinModeFast(IR\_INPUT\_PIN, INPUT\_PULLUP);}
+\DoxyCodeLine{317 }
+\DoxyCodeLine{318 \textcolor{preprocessor}{\#if !defined(NO\_LED\_FEEDBACK\_CODE) \&\& defined(IR\_FEEDBACK\_LED\_PIN)}}
+\DoxyCodeLine{319     pinModeFast(IR\_FEEDBACK\_LED\_PIN, OUTPUT);}
+\DoxyCodeLine{320 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{321     \mbox{\hyperlink{group___tiny_receiver_gad23b935e2236a42a070a87379c7c36a4}{enablePCIInterruptForTinyReceiver}}();}
+\DoxyCodeLine{322 \}}
+\DoxyCodeLine{323 }
+\DoxyCodeLine{324 \textcolor{preprocessor}{\#if defined (DEBUG) \&\& !defined(STR)}}
+\DoxyCodeLine{325 \textcolor{comment}{// Helper macro for getting a macro definition as string}}
+\DoxyCodeLine{326 \textcolor{preprocessor}{\#define STR\_HELPER(x) \#x}}
+\DoxyCodeLine{327 \textcolor{preprocessor}{\#define STR(x) STR\_HELPER(x)}}
+\DoxyCodeLine{328 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{332 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___tiny_receiver_gad23b935e2236a42a070a87379c7c36a4}{enablePCIInterruptForTinyReceiver}}()}
+\DoxyCodeLine{333 \{}
+\DoxyCodeLine{334 \textcolor{preprocessor}{\#if defined(\_IR\_MEASURE\_TIMING) \&\& defined(\_IR\_TIMING\_TEST\_PIN)}}
+\DoxyCodeLine{335     pinModeFast(\_IR\_TIMING\_TEST\_PIN, OUTPUT);}
+\DoxyCodeLine{336 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{337 }
+\DoxyCodeLine{338 \textcolor{preprocessor}{\#if defined(\_\_AVR\_ATtiny1616\_\_)  || defined(\_\_AVR\_ATtiny3216\_\_) || defined(\_\_AVR\_ATtiny3217\_\_)}}
+\DoxyCodeLine{339     attachInterrupt(IR\_INPUT\_PIN, \mbox{\hyperlink{group___tiny_receiver_ga3c3d6703d25dbcc0555823e23eec0e69}{IRPinChangeInterruptHandler}}, CHANGE); \textcolor{comment}{// 2.2 us more than version configured with macros and not compatible}}
+\DoxyCodeLine{340 }
+\DoxyCodeLine{341 \textcolor{preprocessor}{\#elif !defined(\_\_AVR\_\_) || defined(TINY\_RECEIVER\_USE\_ARDUINO\_ATTACH\_INTERRUPT)}}
+\DoxyCodeLine{342     \textcolor{comment}{// costs 112 bytes FLASH + 4bytes RAM}}
+\DoxyCodeLine{343     attachInterrupt(digitalPinToInterrupt(IR\_INPUT\_PIN), \mbox{\hyperlink{group___tiny_receiver_ga3c3d6703d25dbcc0555823e23eec0e69}{IRPinChangeInterruptHandler}}, CHANGE);}
+\DoxyCodeLine{344 \textcolor{preprocessor}{\#  ifdef DEBUG}}
+\DoxyCodeLine{345     Serial.println(F(\textcolor{stringliteral}{"{}Use attachInterrupt for pin="{}} STR(IR\_INPUT\_PIN)));}
+\DoxyCodeLine{346 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{347 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{348 \textcolor{preprocessor}{\#  ifdef DEBUG}}
+\DoxyCodeLine{349     Serial.println(F(\textcolor{stringliteral}{"{}Use static interrupt for pin="{}} STR(IR\_INPUT\_PIN)));}
+\DoxyCodeLine{350 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{351 \textcolor{preprocessor}{\#  if defined(\_\_AVR\_ATtiny25\_\_) || defined(\_\_AVR\_ATtiny45\_\_) || defined(\_\_AVR\_ATtiny85\_\_)}}
+\DoxyCodeLine{352     \textcolor{comment}{// use PinChangeInterrupt no INT0 for pin PB2}}
+\DoxyCodeLine{353     PCMSK = \_BV(IR\_INPUT\_PIN);}
+\DoxyCodeLine{354     \textcolor{comment}{// clear interrupt bit}}
+\DoxyCodeLine{355     GIFR |= 1 << PCIF;}
+\DoxyCodeLine{356     \textcolor{comment}{// enable interrupt on next change}}
+\DoxyCodeLine{357     GIMSK |= 1 << PCIE;}
+\DoxyCodeLine{358 }
+\DoxyCodeLine{359 \textcolor{preprocessor}{\#  elif defined(\_\_AVR\_ATtiny87\_\_) || defined(\_\_AVR\_ATtiny167\_\_)}}
+\DoxyCodeLine{360 \textcolor{preprocessor}{\#    if defined(ARDUINO\_AVR\_DIGISPARKPRO)}}
+\DoxyCodeLine{361 \textcolor{preprocessor}{\#      if (IR\_INPUT\_PIN == 3)}}
+\DoxyCodeLine{362     \textcolor{comment}{// interrupt on any logical change}}
+\DoxyCodeLine{363     EICRA |= \_BV(ISC00);}
+\DoxyCodeLine{364     \textcolor{comment}{// clear interrupt bit}}
+\DoxyCodeLine{365     EIFR |= 1 << INTF0;}
+\DoxyCodeLine{366     \textcolor{comment}{// enable interrupt on next change}}
+\DoxyCodeLine{367     EIMSK |= 1 << INT0;}
+\DoxyCodeLine{368 \textcolor{preprocessor}{\#      elif (IR\_INPUT\_PIN == 9)}}
+\DoxyCodeLine{369     EICRA |= \_BV(ISC10);}
+\DoxyCodeLine{370     \textcolor{comment}{// clear interrupt bit}}
+\DoxyCodeLine{371     EIFR |= 1 << INTF1;}
+\DoxyCodeLine{372     \textcolor{comment}{// enable interrupt on next change}}
+\DoxyCodeLine{373     EIMSK |= 1 << INT1;}
+\DoxyCodeLine{374 \textcolor{preprocessor}{\#      else}}
+\DoxyCodeLine{375 \textcolor{preprocessor}{\#        error "{}IR\_INPUT\_PIN must be 9 or 3."{}}}
+\DoxyCodeLine{376 \textcolor{preprocessor}{\#      endif }\textcolor{comment}{// if (IR\_INPUT\_PIN == 9)}}
+\DoxyCodeLine{377 }
+\DoxyCodeLine{378 \textcolor{preprocessor}{\#    else }\textcolor{comment}{// defined(ARDUINO\_AVR\_DIGISPARKPRO)}}
+\DoxyCodeLine{379 \textcolor{preprocessor}{\#      if (IR\_INPUT\_PIN == 14)}}
+\DoxyCodeLine{380     \textcolor{comment}{// interrupt on any logical change}}
+\DoxyCodeLine{381     EICRA |= \_BV(ISC00);}
+\DoxyCodeLine{382     \textcolor{comment}{// clear interrupt bit}}
+\DoxyCodeLine{383     EIFR |= 1 << INTF0;}
+\DoxyCodeLine{384     \textcolor{comment}{// enable interrupt on next change}}
+\DoxyCodeLine{385     EIMSK |= 1 << INT0;}
+\DoxyCodeLine{386 \textcolor{preprocessor}{\#      elif (IR\_INPUT\_PIN == 3)}}
+\DoxyCodeLine{387     EICRA |= \_BV(ISC10);}
+\DoxyCodeLine{388     \textcolor{comment}{// clear interrupt bit}}
+\DoxyCodeLine{389     EIFR |= 1 << INTF1;}
+\DoxyCodeLine{390     \textcolor{comment}{// enable interrupt on next change}}
+\DoxyCodeLine{391     EIMSK |= 1 << INT1;}
+\DoxyCodeLine{392 \textcolor{preprocessor}{\#      else}}
+\DoxyCodeLine{393 \textcolor{preprocessor}{\#        error "{}IR\_INPUT\_PIN must be 14 or 3."{}}}
+\DoxyCodeLine{394 \textcolor{preprocessor}{\#      endif }\textcolor{comment}{// if (IR\_INPUT\_PIN == 14)}}
+\DoxyCodeLine{395 \textcolor{preprocessor}{\#    endif}}
+\DoxyCodeLine{396 }
+\DoxyCodeLine{397 \textcolor{preprocessor}{\#  else }\textcolor{comment}{// defined(\_\_AVR\_ATtiny25\_\_)}}
+\DoxyCodeLine{398     \textcolor{comment}{/*}}
+\DoxyCodeLine{399 \textcolor{comment}{     * ATmegas + ATtiny88 here}}
+\DoxyCodeLine{400 \textcolor{comment}{     */}}
+\DoxyCodeLine{401 \textcolor{preprocessor}{\#    if (IR\_INPUT\_PIN == 2)}}
+\DoxyCodeLine{402     \textcolor{comment}{// interrupt on any logical change}}
+\DoxyCodeLine{403     EICRA |= \_BV(ISC00);}
+\DoxyCodeLine{404     \textcolor{comment}{// clear interrupt bit}}
+\DoxyCodeLine{405     EIFR |= 1 << INTF0;}
+\DoxyCodeLine{406     \textcolor{comment}{// enable interrupt on next change}}
+\DoxyCodeLine{407     EIMSK |= 1 << INT0;}
+\DoxyCodeLine{408 \textcolor{preprocessor}{\#    elif (IR\_INPUT\_PIN == 3)}}
+\DoxyCodeLine{409     EICRA |= \_BV(ISC10);}
+\DoxyCodeLine{410 \textcolor{comment}{// clear interrupt bit}}
+\DoxyCodeLine{411     EIFR |= 1 << INTF1;}
+\DoxyCodeLine{412 \textcolor{comment}{// enable interrupt on next change}}
+\DoxyCodeLine{413     EIMSK |= 1 << INT1;}
+\DoxyCodeLine{414 \textcolor{preprocessor}{\#    elif IR\_INPUT\_PIN == 4 || IR\_INPUT\_PIN == 5 || IR\_INPUT\_PIN == 6 || IR\_INPUT\_PIN == 7}}
+\DoxyCodeLine{415     \textcolor{comment}{//ATmega328 (Uno, Nano ) etc. Enable pin change interrupt 20 to 23 for port PD4 to PD7 (Arduino pin 4 to 7)}}
+\DoxyCodeLine{416         PCICR |= \_BV(PCIE2);}
+\DoxyCodeLine{417         PCMSK2 = digitalPinToBitMask(IR\_INPUT\_PIN);}
+\DoxyCodeLine{418 \textcolor{preprocessor}{\#    elif IR\_INPUT\_PIN == 8 || IR\_INPUT\_PIN == 9 || IR\_INPUT\_PIN == 10 || IR\_INPUT\_PIN == 11 || IR\_INPUT\_PIN == 12 || IR\_INPUT\_PIN == 13}}
+\DoxyCodeLine{419     \textcolor{comment}{//ATmega328 (Uno, Nano ) etc. Enable pin change interrupt 0 to 5 for port PB0 to PB5 (Arduino pin 8 to 13)}}
+\DoxyCodeLine{420         PCICR |= \_BV(PCIE0);}
+\DoxyCodeLine{421         PCMSK0 = digitalPinToBitMask(IR\_INPUT\_PIN);}
+\DoxyCodeLine{422 \textcolor{preprocessor}{\#    elif IR\_INPUT\_PIN == A0 || IR\_INPUT\_PIN == A1 || IR\_INPUT\_PIN == A2 || IR\_INPUT\_PIN == A3 || IR\_INPUT\_PIN == A4 || IR\_INPUT\_PIN == A5}}
+\DoxyCodeLine{423     \textcolor{comment}{//ATmega328 (Uno, Nano ) etc. Enable pin change interrupt 8 to 13 for port PC0 to PC5 (Arduino pin A0 to A5)}}
+\DoxyCodeLine{424         PCICR |= \_BV(PCIE1);}
+\DoxyCodeLine{425         PCMSK1 = digitalPinToBitMask(IR\_INPUT\_PIN);}
+\DoxyCodeLine{426 \textcolor{preprocessor}{\#    else}}
+\DoxyCodeLine{427 \textcolor{preprocessor}{\#      error "{}IR\_INPUT\_PIN not allowed."{}}}
+\DoxyCodeLine{428 \textcolor{preprocessor}{\#    endif }\textcolor{comment}{// if (IR\_INPUT\_PIN == 2)}}
+\DoxyCodeLine{429 \textcolor{preprocessor}{\#  endif }\textcolor{comment}{// defined(\_\_AVR\_ATtiny25\_\_)}}
+\DoxyCodeLine{430 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// ! defined(\_\_AVR\_\_) || defined(TINY\_RECEIVER\_USE\_ARDUINO\_ATTACH\_INTERRUPT)}}
+\DoxyCodeLine{431 \}}
+\DoxyCodeLine{432 }
+\DoxyCodeLine{433 \textcolor{keywordtype}{void} disablePCIInterruptForTinyReceiver()}
+\DoxyCodeLine{434 \{}
+\DoxyCodeLine{435 \textcolor{preprocessor}{\#if defined(\_IR\_MEASURE\_TIMING) \&\& defined(\_IR\_TIMING\_TEST\_PIN)}}
+\DoxyCodeLine{436     pinModeFast(\_IR\_TIMING\_TEST\_PIN, OUTPUT);}
+\DoxyCodeLine{437 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{438 }
+\DoxyCodeLine{439 \textcolor{preprocessor}{\#if defined(\_\_AVR\_ATtiny1616\_\_)  || defined(\_\_AVR\_ATtiny3216\_\_) || defined(\_\_AVR\_ATtiny3217\_\_)}}
+\DoxyCodeLine{440     detachInterrupt(IR\_INPUT\_PIN);}
+\DoxyCodeLine{441 }
+\DoxyCodeLine{442 \textcolor{preprocessor}{\#elif !defined(\_\_AVR\_\_) || defined(TINY\_RECEIVER\_USE\_ARDUINO\_ATTACH\_INTERRUPT)}}
+\DoxyCodeLine{443     \textcolor{comment}{// costs 112 bytes FLASH + 4bytes RAM}}
+\DoxyCodeLine{444     detachInterrupt(digitalPinToInterrupt(IR\_INPUT\_PIN));}
+\DoxyCodeLine{445 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{446 \textcolor{preprocessor}{\#  if defined(\_\_AVR\_ATtiny25\_\_) || defined(\_\_AVR\_ATtiny45\_\_) || defined(\_\_AVR\_ATtiny85\_\_)}}
+\DoxyCodeLine{447     \textcolor{comment}{// clear interrupt bit}}
+\DoxyCodeLine{448     GIFR |= 1 << PCIF;}
+\DoxyCodeLine{449     \textcolor{comment}{// disable interrupt on next change}}
+\DoxyCodeLine{450     GIMSK \&= \string~(1 << PCIE);}
+\DoxyCodeLine{451 }
+\DoxyCodeLine{452 \textcolor{preprocessor}{\#  elif defined(\_\_AVR\_ATtiny87\_\_) || defined(\_\_AVR\_ATtiny167\_\_)}}
+\DoxyCodeLine{453 \textcolor{preprocessor}{\#    if defined(ARDUINO\_AVR\_DIGISPARKPRO)}}
+\DoxyCodeLine{454 \textcolor{preprocessor}{\#      if (IR\_INPUT\_PIN == 3)}}
+\DoxyCodeLine{455     \textcolor{comment}{// clear interrupt bit}}
+\DoxyCodeLine{456     EIFR |= 1 << INTF0;}
+\DoxyCodeLine{457     \textcolor{comment}{// disable interrupt on next change}}
+\DoxyCodeLine{458     EIMSK \&= \string~( 1 << INT0);}
+\DoxyCodeLine{459 \textcolor{preprocessor}{\#      elif (IR\_INPUT\_PIN == 9)}}
+\DoxyCodeLine{460     \textcolor{comment}{// clear interrupt bit}}
+\DoxyCodeLine{461     EIFR |= 1 << INTF1;}
+\DoxyCodeLine{462     \textcolor{comment}{// disable interrupt on next change}}
+\DoxyCodeLine{463     EIMSK \&= \string~(1 << INT1);}
+\DoxyCodeLine{464 \textcolor{preprocessor}{\#      else}}
+\DoxyCodeLine{465 \textcolor{preprocessor}{\#        error "{}IR\_INPUT\_PIN must be 9 or 3."{}}}
+\DoxyCodeLine{466 \textcolor{preprocessor}{\#      endif }\textcolor{comment}{// if (IR\_INPUT\_PIN == 9)}}
+\DoxyCodeLine{467 }
+\DoxyCodeLine{468 \textcolor{preprocessor}{\#    else }\textcolor{comment}{// defined(ARDUINO\_AVR\_DIGISPARKPRO)}}
+\DoxyCodeLine{469 \textcolor{preprocessor}{\#      if (IR\_INPUT\_PIN == 14)}}
+\DoxyCodeLine{470     \textcolor{comment}{// clear interrupt bit}}
+\DoxyCodeLine{471     EIFR |= 1 << INTF0;}
+\DoxyCodeLine{472     \textcolor{comment}{// disable interrupt on next change}}
+\DoxyCodeLine{473     EIMSK \&= \string~(1 << INT0);}
+\DoxyCodeLine{474 \textcolor{preprocessor}{\#      elif (IR\_INPUT\_PIN == 3)}}
+\DoxyCodeLine{475     \textcolor{comment}{// clear interrupt bit}}
+\DoxyCodeLine{476     EIFR |= 1 << INTF1;}
+\DoxyCodeLine{477     \textcolor{comment}{// disable interrupt on next change}}
+\DoxyCodeLine{478     EIMSK \&= \string~(1 << INT1);}
+\DoxyCodeLine{479 \textcolor{preprocessor}{\#      else}}
+\DoxyCodeLine{480 \textcolor{preprocessor}{\#        error "{}IR\_INPUT\_PIN must be 14 or 3."{}}}
+\DoxyCodeLine{481 \textcolor{preprocessor}{\#      endif }\textcolor{comment}{// if (IR\_INPUT\_PIN == 14)}}
+\DoxyCodeLine{482 \textcolor{preprocessor}{\#    endif}}
+\DoxyCodeLine{483 }
+\DoxyCodeLine{484 \textcolor{preprocessor}{\#  else }\textcolor{comment}{// defined(\_\_AVR\_ATtiny25\_\_)}}
+\DoxyCodeLine{485     \textcolor{comment}{/*}}
+\DoxyCodeLine{486 \textcolor{comment}{     * ATmegas + ATtiny88 here}}
+\DoxyCodeLine{487 \textcolor{comment}{     */}}
+\DoxyCodeLine{488 \textcolor{preprocessor}{\#    if (IR\_INPUT\_PIN == 2)}}
+\DoxyCodeLine{489     \textcolor{comment}{// clear interrupt bit}}
+\DoxyCodeLine{490     EIFR |= 1 << INTF0;}
+\DoxyCodeLine{491     \textcolor{comment}{// disable interrupt on next change}}
+\DoxyCodeLine{492     EIMSK \&= \string~(1 << INT0);}
+\DoxyCodeLine{493 \textcolor{preprocessor}{\#    elif (IR\_INPUT\_PIN == 3)}}
+\DoxyCodeLine{494     \textcolor{comment}{// clear interrupt bit}}
+\DoxyCodeLine{495     EIFR |= 1 << INTF1;}
+\DoxyCodeLine{496     \textcolor{comment}{// disable interrupt on next change}}
+\DoxyCodeLine{497     EIMSK \&= \string~(1 << INT1);}
+\DoxyCodeLine{498 \textcolor{preprocessor}{\#    elif IR\_INPUT\_PIN == 4 || IR\_INPUT\_PIN == 5 || IR\_INPUT\_PIN == 6 || IR\_INPUT\_PIN == 7}}
+\DoxyCodeLine{499     \textcolor{comment}{//ATmega328 (Uno, Nano ) etc. disable pin change interrupt 20 to 23 for port PD4 to PD7 (Arduino pin 4 to 7)}}
+\DoxyCodeLine{500         PCICR \&= \string~(\_BV(PCIE2));}
+\DoxyCodeLine{501 \textcolor{preprocessor}{\#    elif IR\_INPUT\_PIN == 8 || IR\_INPUT\_PIN == 9 || IR\_INPUT\_PIN == 10 || IR\_INPUT\_PIN == 11 || IR\_INPUT\_PIN == 12 || IR\_INPUT\_PIN == 13}}
+\DoxyCodeLine{502     \textcolor{comment}{//ATmega328 (Uno, Nano ) etc. disable pin change interrupt 0 to 5 for port PB0 to PB5 (Arduino pin 8 to 13)}}
+\DoxyCodeLine{503         PCICR \&= \string~(\_BV(PCIE0));}
+\DoxyCodeLine{504 \textcolor{preprocessor}{\#    elif IR\_INPUT\_PIN == A0 || IR\_INPUT\_PIN == A1 || IR\_INPUT\_PIN == A2 || IR\_INPUT\_PIN == A3 || IR\_INPUT\_PIN == A4 || IR\_INPUT\_PIN == A5}}
+\DoxyCodeLine{505     \textcolor{comment}{//ATmega328 (Uno, Nano ) etc. disable pin change interrupt 8 to 13 for port PC0 to PC5 (Arduino pin A0 to A5)}}
+\DoxyCodeLine{506         PCICR \&= \string~(\_BV(PCIE1));}
+\DoxyCodeLine{507 \textcolor{preprocessor}{\#    else}}
+\DoxyCodeLine{508 \textcolor{preprocessor}{\#      error "{}IR\_INPUT\_PIN not allowed."{}}}
+\DoxyCodeLine{509 \textcolor{preprocessor}{\#    endif }\textcolor{comment}{// if (IR\_INPUT\_PIN == 2)}}
+\DoxyCodeLine{510 \textcolor{preprocessor}{\#  endif }\textcolor{comment}{// defined(\_\_AVR\_ATtiny25\_\_)}}
+\DoxyCodeLine{511 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// ! defined(\_\_AVR\_\_) || defined(TINY\_RECEIVER\_USE\_ARDUINO\_ATTACH\_INTERRUPT)}}
+\DoxyCodeLine{512 \}}
+\DoxyCodeLine{513 }
+\DoxyCodeLine{514 \textcolor{comment}{/*}}
+\DoxyCodeLine{515 \textcolor{comment}{ * Specify the right INT0, INT1 or PCINT0 interrupt vector according to different pins and cores.}}
+\DoxyCodeLine{516 \textcolor{comment}{ * The default value of TINY\_RECEIVER\_USE\_ARDUINO\_ATTACH\_INTERRUPT is set in TinyIRReceiver.h}}
+\DoxyCodeLine{517 \textcolor{comment}{ */}}
+\DoxyCodeLine{518 \textcolor{preprocessor}{\#if defined(\_\_AVR\_\_) \&\& !defined(TINY\_RECEIVER\_USE\_ARDUINO\_ATTACH\_INTERRUPT)}}
+\DoxyCodeLine{519 \textcolor{preprocessor}{\#  if (IR\_INPUT\_PIN == 2)}}
+\DoxyCodeLine{520 ISR(INT0\_vect) \textcolor{comment}{// Pin 2 global assignment}}
+\DoxyCodeLine{521 }
+\DoxyCodeLine{522 \textcolor{preprocessor}{\#  elif (IR\_INPUT\_PIN == 3)}}
+\DoxyCodeLine{523 \textcolor{preprocessor}{\#    if  defined(ARDUINO\_AVR\_DIGISPARKPRO)}}
+\DoxyCodeLine{524 ISR(INT0\_vect) \textcolor{comment}{//  Pin 3 / PB6 / INT0 is connected to USB+ on DigisparkPro boards}}
+\DoxyCodeLine{525 \textcolor{preprocessor}{\#    else}}
+\DoxyCodeLine{526 ISR(INT1\_vect) \textcolor{comment}{// Pin 3 global assignment}}
+\DoxyCodeLine{527 \textcolor{preprocessor}{\#    endif}}
+\DoxyCodeLine{528 }
+\DoxyCodeLine{529 \textcolor{preprocessor}{\#  elif (IR\_INPUT\_PIN == 9) \&\& defined(ARDUINO\_AVR\_DIGISPARKPRO) }\textcolor{comment}{// Digispark pro}}
+\DoxyCodeLine{530 ISR(INT1\_vect)}
+\DoxyCodeLine{531 }
+\DoxyCodeLine{532 \textcolor{preprocessor}{\#  elif (IR\_INPUT\_PIN == 14) \&\& (defined(\_\_AVR\_ATtiny87\_\_) || defined(\_\_AVR\_ATtiny167\_\_))}\textcolor{comment}{// For AVR\_ATtiny167 INT0 is on pin 14 / PB6}}
+\DoxyCodeLine{533 ISR(INT0\_vect)}
+\DoxyCodeLine{534 }
+\DoxyCodeLine{535 \textcolor{preprocessor}{\#  elif (! defined(ISC10)) || ((defined(\_\_AVR\_ATtiny87\_\_) || defined(\_\_AVR\_ATtiny167\_\_)) \&\& INT1\_PIN != 3)}}
+\DoxyCodeLine{536 \textcolor{comment}{// on ATtinyX5 we do not have a INT1\_vect but we can use the PCINT0\_vect}}
+\DoxyCodeLine{537 ISR(PCINT0\_vect)}
+\DoxyCodeLine{538 }
+\DoxyCodeLine{539 \textcolor{preprocessor}{\#  elif IR\_INPUT\_PIN == 4 || IR\_INPUT\_PIN == 5 || IR\_INPUT\_PIN == 6 || IR\_INPUT\_PIN == 7}}
+\DoxyCodeLine{540 \textcolor{comment}{// PCINT for ATmega328 Arduino pins 4 (PD4) to 7 (PD7) -\/ (PCINT 20 to 23)}}
+\DoxyCodeLine{541 ISR(PCINT2\_vect)}
+\DoxyCodeLine{542 }
+\DoxyCodeLine{543 \textcolor{preprocessor}{\#  elif IR\_INPUT\_PIN == 8 || IR\_INPUT\_PIN == 9 || IR\_INPUT\_PIN == 10 || IR\_INPUT\_PIN == 11 || IR\_INPUT\_PIN == 12 || IR\_INPUT\_PIN == 13}}
+\DoxyCodeLine{544 \textcolor{comment}{// PCINT for ATmega328 Arduino pins 8 (PB0) to 13 (PB5) -\/ (PCINT 0 to 5)}}
+\DoxyCodeLine{545 ISR(PCINT0\_vect)}
+\DoxyCodeLine{546 }
+\DoxyCodeLine{547 \textcolor{preprocessor}{\# elif IR\_INPUT\_PIN == A0 || IR\_INPUT\_PIN == A1 || IR\_INPUT\_PIN == A2 || IR\_INPUT\_PIN == A3 || IR\_INPUT\_PIN == A4 || IR\_INPUT\_PIN == A5}}
+\DoxyCodeLine{548 \textcolor{comment}{// PCINT for ATmega328 Arduino pins A1 (PC0) to A5 (PC5) -\/ (PCINT 8 to 13)}}
+\DoxyCodeLine{549 ISR(PCINT1\_vect)}
+\DoxyCodeLine{550 }
+\DoxyCodeLine{551 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{552 \{}
+\DoxyCodeLine{553     \mbox{\hyperlink{group___tiny_receiver_ga3c3d6703d25dbcc0555823e23eec0e69}{IRPinChangeInterruptHandler}}();}
+\DoxyCodeLine{554 \}}
+\DoxyCodeLine{555 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// defined(\_\_AVR\_\_) \&\& ! defined(TINY\_RECEIVER\_USE\_ARDUINO\_ATTACH\_INTERRUPT)}}
+\DoxyCodeLine{556 }
+\DoxyCodeLine{559 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// TINY\_IR\_RECEIVER\_HPP}}
+\DoxyCodeLine{560 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{561 }
+
+\end{DoxyCode}

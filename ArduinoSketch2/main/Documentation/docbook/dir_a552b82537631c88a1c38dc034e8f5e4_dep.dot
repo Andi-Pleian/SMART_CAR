@@ -1,0 +1,15 @@
+digraph "main/Modules/Sensors" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_1f3340c269d12e8f50ab557a1817aed7 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="Modules" fontname="Helvetica", fontsize="10", URL="dir_1f3340c269d12e8f50ab557a1817aed7.html"]
+  dir_5412c0b10749e0a7303571e7f7593e59 [shape=box label="Actuators" fillcolor="white" style="filled" color="red" URL="dir_5412c0b10749e0a7303571e7f7593e59.html"];
+  subgraph clusterdir_a552b82537631c88a1c38dc034e8f5e4 {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_a552b82537631c88a1c38dc034e8f5e4.html"];
+    dir_a552b82537631c88a1c38dc034e8f5e4 [shape=plaintext label="Sensors"];
+  dir_285db30d7606318ac6e4ffb3de016527 [shape=box label="ParkingSensor" fillcolor="white" style="filled" URL="dir_285db30d7606318ac6e4ffb3de016527.html"];
+  }
+  }
+  dir_285db30d7606318ac6e4ffb3de016527->dir_5412c0b10749e0a7303571e7f7593e59 [headlabel="1", labeldistance=1.5 headhref="dir_000012_000008.html"];
+}

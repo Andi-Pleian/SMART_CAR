@@ -1,0 +1,506 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_digital_write_fast_8h_source" xml:lang="en-US">
+<title>digitalWriteFast.h</title>
+<indexterm><primary>main/IRRemote_Library/digitalWriteFast.h</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered"><anchor xml:id="_digital_write_fast_8h_source_1l00001"/>00001 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00002"/>00002 <emphasis role="comment">&#32;&#32;Optimized&#32;digital&#32;functions&#32;for&#32;AVR&#32;microcontrollers</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00003"/>00003 <emphasis role="comment">&#32;&#32;by&#32;Watterott&#32;electronic&#32;(www.watterott.com)</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00004"/>00004 <emphasis role="comment">&#32;&#32;based&#32;on&#32;http://code.google.com/p/digitalwritefast</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00005"/>00005 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00006"/>00006 
+<anchor xml:id="_digital_write_fast_8h_source_1l00007"/>00007 <emphasis role="preprocessor">#ifndef&#32;__digitalWriteFast_h_</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00008"/>00008 <emphasis role="preprocessor">#define&#32;__digitalWriteFast_h_&#32;1</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00009"/>00009 
+<anchor xml:id="_digital_write_fast_8h_source_1l00010"/>00010 <emphasis role="comment">//#define&#32;SANGUINO_PINOUT&#32;//define&#32;for&#32;Sanguino&#32;pinout</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00011"/>00011 
+<anchor xml:id="_digital_write_fast_8h_source_1l00012"/>00012 <emphasis role="comment">//&#32;general&#32;macros/defines</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00013"/>00013 <emphasis role="preprocessor">#ifndef&#32;BIT_READ</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00014"/><link linkend="_digital_write_fast_8h_1abe4c93bdf909706a57a177f6786af897">00014</link> <emphasis role="preprocessor">#&#32;define&#32;BIT_READ(value,&#32;bit)&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;((value)&#32;&amp;&#32;&#32;&#32;(1UL&#32;&lt;&lt;&#32;(bit)))</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00015"/>00015 <emphasis role="preprocessor">#endif</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00016"/>00016 <emphasis role="preprocessor">#ifndef&#32;BIT_SET</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00017"/><link linkend="_digital_write_fast_8h_1ab94522870cd3d40d76ae0a8778166017">00017</link> <emphasis role="preprocessor">#&#32;define&#32;BIT_SET(value,&#32;bit)&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;((value)&#32;|=&#32;&#32;(1UL&#32;&lt;&lt;&#32;(bit)))</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00018"/>00018 <emphasis role="preprocessor">#endif</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00019"/>00019 <emphasis role="preprocessor">#ifndef&#32;BIT_CLEAR</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00020"/><link linkend="_digital_write_fast_8h_1a00bda5613fe59582e9cd36d07b8f2851">00020</link> <emphasis role="preprocessor">#&#32;define&#32;BIT_CLEAR(value,&#32;bit)&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;((value)&#32;&amp;=&#32;~(1UL&#32;&lt;&lt;&#32;(bit)))</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00021"/>00021 <emphasis role="preprocessor">#endif</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00022"/>00022 <emphasis role="preprocessor">#ifndef&#32;BIT_WRITE</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00023"/><link linkend="_digital_write_fast_8h_1a1c73c74b64f4d1b6538a8de13f95a2e6">00023</link> <emphasis role="preprocessor">#&#32;define&#32;BIT_WRITE(value,&#32;bit,&#32;bitvalue)&#32;(bitvalue&#32;?&#32;BIT_SET(value,&#32;bit)&#32;:&#32;BIT_CLEAR(value,&#32;bit))</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00024"/>00024 <emphasis role="preprocessor">#endif</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00025"/>00025 
+<anchor xml:id="_digital_write_fast_8h_source_1l00026"/>00026 <emphasis role="preprocessor">#ifndef&#32;SWAP</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00027"/><link linkend="_digital_write_fast_8h_1a5d9d454d4b9f2ff8106d5199ac0d0186">00027</link> <emphasis role="preprocessor">#&#32;define&#32;SWAP(x,y)&#32;do{&#32;(x)=(x)^(y);&#32;(y)=(x)^(y);&#32;(x)=(x)^(y);&#32;}while(0)</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00028"/>00028 <emphasis role="preprocessor">#endif</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00029"/>00029 
+<anchor xml:id="_digital_write_fast_8h_source_1l00030"/>00030 <emphasis role="preprocessor">#ifndef&#32;DEC</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00031"/><link linkend="_digital_write_fast_8h_1afe38ec6126e35e40049e27fdf4586ba5">00031</link> <emphasis role="preprocessor">#&#32;define&#32;DEC&#32;(10)</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00032"/>00032 <emphasis role="preprocessor">#endif</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00033"/>00033 <emphasis role="preprocessor">#ifndef&#32;HEX</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00034"/><link linkend="_digital_write_fast_8h_1a9075d93e0ab26ccd6e059fa06aa4e3de">00034</link> <emphasis role="preprocessor">#&#32;define&#32;HEX&#32;(16)</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00035"/>00035 <emphasis role="preprocessor">#endif</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00036"/>00036 <emphasis role="preprocessor">#ifndef&#32;OCT</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00037"/><link linkend="_digital_write_fast_8h_1a904777e8f3d21de0a6679d2c9f0f1eec">00037</link> <emphasis role="preprocessor">#&#32;define&#32;OCT&#32;(8)</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00038"/>00038 <emphasis role="preprocessor">#endif</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00039"/>00039 <emphasis role="preprocessor">#ifndef&#32;BIN</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00040"/><link linkend="_digital_write_fast_8h_1a75267cdfa3fa9e52c7c1f1094f9387b7">00040</link> <emphasis role="preprocessor">#&#32;define&#32;BIN&#32;(2)</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00041"/>00041 <emphasis role="preprocessor">#endif</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00042"/>00042 
+<anchor xml:id="_digital_write_fast_8h_source_1l00043"/>00043 
+<anchor xml:id="_digital_write_fast_8h_source_1l00044"/>00044 <emphasis role="comment">//&#32;workarounds&#32;for&#32;ARM&#32;microcontrollers</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00045"/>00045 <emphasis role="preprocessor">#if&#32;(!defined(__AVR__)&#32;||&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00046"/>00046 <emphasis role="preprocessor">&#32;&#32;&#32;&#32;&#32;defined(ARDUINO_ARCH_SAM)&#32;||&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00047"/>00047 <emphasis role="preprocessor">&#32;&#32;&#32;&#32;&#32;defined(ARDUINO_ARCH_SAMD))</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00048"/>00048 
+<anchor xml:id="_digital_write_fast_8h_source_1l00049"/>00049 <emphasis role="preprocessor">#ifndef&#32;PROGMEM</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00050"/><link linkend="_digital_write_fast_8h_1a75acaba9e781937468d0911423bc0c35">00050</link> <emphasis role="preprocessor">#&#32;define&#32;PROGMEM</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00051"/>00051 <emphasis role="preprocessor">#endif</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00052"/>00052 <emphasis role="preprocessor">#ifndef&#32;PGM_P</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00053"/><link linkend="_digital_write_fast_8h_1a963f816fc88a5d8479c285ed4c630229">00053</link> <emphasis role="preprocessor">#&#32;define&#32;PGM_P&#32;const&#32;char&#32;*</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00054"/>00054 <emphasis role="preprocessor">#endif</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00055"/>00055 <emphasis role="preprocessor">#ifndef&#32;PSTR</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00056"/><link linkend="_digital_write_fast_8h_1a73809107539df84eaf01f6a4dea4fbff">00056</link> <emphasis role="preprocessor">#&#32;define&#32;PSTR(str)&#32;(str)</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00057"/>00057 <emphasis role="preprocessor">#endif</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00058"/>00058 
+<anchor xml:id="_digital_write_fast_8h_source_1l00059"/>00059 <emphasis role="preprocessor">#ifndef&#32;memcpy_P</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00060"/><link linkend="_digital_write_fast_8h_1ae0444ad0cb3250a5778a573dd10f41be">00060</link> <emphasis role="preprocessor">#&#32;define&#32;memcpy_P(dest,&#32;src,&#32;num)&#32;memcpy((dest),&#32;(src),&#32;(num))</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00061"/>00061 <emphasis role="preprocessor">#endif</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00062"/>00062 <emphasis role="preprocessor">#ifndef&#32;strcpy_P</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00063"/><link linkend="_digital_write_fast_8h_1ab00bda73e5853cc61868501fe37fa9b7">00063</link> <emphasis role="preprocessor">#&#32;define&#32;strcpy_P(dst,&#32;src)&#32;&#32;&#32;&#32;&#32;&#32;&#32;strcpy((dst),&#32;(src))</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00064"/>00064 <emphasis role="preprocessor">#endif</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00065"/>00065 <emphasis role="preprocessor">#ifndef&#32;strcat_P</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00066"/><link linkend="_digital_write_fast_8h_1a37c1666c2ccbf210e3829bbebc2b16e4">00066</link> <emphasis role="preprocessor">#&#32;define&#32;strcat_P(dst,&#32;src)&#32;&#32;&#32;&#32;&#32;&#32;&#32;strcat((dst),&#32;(src))</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00067"/>00067 <emphasis role="preprocessor">#endif</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00068"/>00068 <emphasis role="preprocessor">#ifndef&#32;strcmp_P</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00069"/><link linkend="_digital_write_fast_8h_1abbb2cd396dde2d1575948bb16ce2853a">00069</link> <emphasis role="preprocessor">#&#32;define&#32;strcmp_P(a,&#32;b)&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;strcmp((a),&#32;(b))</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00070"/>00070 <emphasis role="preprocessor">#endif</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00071"/>00071 <emphasis role="preprocessor">#ifndef&#32;strcasecmp_P</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00072"/><link linkend="_digital_write_fast_8h_1ae97e89b6ed4b46ade2eca9cafc6abd8d">00072</link> <emphasis role="preprocessor">#&#32;define&#32;strcasecmp_P(a,&#32;b)&#32;&#32;&#32;&#32;&#32;&#32;&#32;strcasecmp((a),&#32;(b))</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00073"/>00073 <emphasis role="preprocessor">#endif</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00074"/>00074 <emphasis role="preprocessor">#ifndef&#32;strncmp_P</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00075"/><link linkend="_digital_write_fast_8h_1a83b1e057d9ee4c5160557575be07c41f">00075</link> <emphasis role="preprocessor">#&#32;define&#32;strncmp_P(a,&#32;b,&#32;n)&#32;&#32;&#32;&#32;&#32;&#32;&#32;strncmp((a),&#32;(b),&#32;(n))</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00076"/>00076 <emphasis role="preprocessor">#endif</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00077"/>00077 <emphasis role="preprocessor">#ifndef&#32;strncasecmp_P</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00078"/><link linkend="_digital_write_fast_8h_1a6986d443d13df0a4f28c6d1b52effb7d">00078</link> <emphasis role="preprocessor">#&#32;define&#32;strncasecmp_P(a,&#32;b,&#32;n)&#32;&#32;&#32;strncasecmp((a),&#32;(b),&#32;(n))</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00079"/>00079 <emphasis role="preprocessor">#endif</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00080"/>00080 <emphasis role="preprocessor">#ifndef&#32;strstr_P</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00081"/><link linkend="_digital_write_fast_8h_1aca1ecbfa8b94eba4b5228f0a6a18a888">00081</link> <emphasis role="preprocessor">#&#32;define&#32;strstr_P(a,&#32;b)&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;strstr((a),&#32;(b))</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00082"/>00082 <emphasis role="preprocessor">#endif</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00083"/>00083 <emphasis role="preprocessor">#ifndef&#32;strlen_P</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00084"/><link linkend="_digital_write_fast_8h_1a76ea3b30093856a6482a978d9214142d">00084</link> <emphasis role="preprocessor">#&#32;define&#32;strlen_P(a)&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;strlen((a))</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00085"/>00085 <emphasis role="preprocessor">#endif</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00086"/>00086 <emphasis role="preprocessor">#ifndef&#32;sprintf_P</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00087"/><link linkend="_digital_write_fast_8h_1a45ba8afa17fe1ae5ab9327dbb6ca05b9">00087</link> <emphasis role="preprocessor">#&#32;define&#32;sprintf_P(s,&#32;f,&#32;...)&#32;&#32;&#32;&#32;&#32;sprintf((s),&#32;(f),&#32;__VA_ARGS__)</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00088"/>00088 <emphasis role="preprocessor">#endif</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00089"/>00089 
+<anchor xml:id="_digital_write_fast_8h_source_1l00090"/>00090 <emphasis role="preprocessor">#ifndef&#32;pgm_read_byte</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00091"/><link linkend="_digital_write_fast_8h_1a48c60b057902adf805797f183286728d">00091</link> <emphasis role="preprocessor">#&#32;define&#32;pgm_read_byte(addr)&#32;&#32;&#32;&#32;&#32;&#32;(*(const&#32;unsigned&#32;char&#32;*)(addr))</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00092"/>00092 <emphasis role="preprocessor">#endif</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00093"/>00093 <emphasis role="preprocessor">#ifndef&#32;pgm_read_word</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00094"/><link linkend="_digital_write_fast_8h_1a910fb5f01313d339d3b835d45e1e5ad0">00094</link> <emphasis role="preprocessor">#&#32;define&#32;pgm_read_word(addr)&#32;&#32;&#32;&#32;&#32;&#32;(*(const&#32;unsigned&#32;short&#32;*)(addr))</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00095"/>00095 <emphasis role="preprocessor">#endif</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00096"/>00096 <emphasis role="preprocessor">#ifndef&#32;pgm_read_dword</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00097"/><link linkend="_digital_write_fast_8h_1a73cf3e57e32321cb193b3cc4b041cc6c">00097</link> <emphasis role="preprocessor">#&#32;define&#32;pgm_read_dword(addr)&#32;&#32;&#32;&#32;&#32;(*(const&#32;unsigned&#32;long&#32;*)(addr))</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00098"/>00098 <emphasis role="preprocessor">#endif</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00099"/>00099 
+<anchor xml:id="_digital_write_fast_8h_source_1l00100"/>00100 <emphasis role="preprocessor">#endif</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00101"/>00101 
+<anchor xml:id="_digital_write_fast_8h_source_1l00102"/>00102 
+<anchor xml:id="_digital_write_fast_8h_source_1l00103"/>00103 <emphasis role="comment">//&#32;digital&#32;functions</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00104"/>00104 <emphasis role="comment">//#ifndef&#32;digitalPinToPortReg</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00105"/><link linkend="_digital_write_fast_8h_1a8e4c6098d073922d247087549c084efd">00105</link> <emphasis role="preprocessor">#define&#32;SPI_SW_SS_PIN&#32;&#32;&#32;(10)&#32;</emphasis><emphasis role="comment">//SS&#32;on&#32;Uno&#32;(for&#32;software&#32;SPI)</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00106"/><link linkend="_digital_write_fast_8h_1a590704782aba04d0b90e20dc2e06bfe1">00106</link> <emphasis role="preprocessor">#define&#32;SPI_SW_MOSI_PIN&#32;(11)&#32;</emphasis><emphasis role="comment">//MOSI&#32;on&#32;Uno&#32;(for&#32;software&#32;SPI)</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00107"/><link linkend="_digital_write_fast_8h_1ad80cac0c04cae5a4106da0daaefe8392">00107</link> <emphasis role="preprocessor">#define&#32;SPI_SW_MISO_PIN&#32;(12)&#32;</emphasis><emphasis role="comment">//MISO&#32;on&#32;Uno&#32;(for&#32;software&#32;SPI)</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00108"/><link linkend="_digital_write_fast_8h_1aaa5382681cbe8124588319a841015562">00108</link> <emphasis role="preprocessor">#define&#32;SPI_SW_SCK_PIN&#32;&#32;(13)&#32;</emphasis><emphasis role="comment">//SCK&#32;on&#32;Uno&#32;(for&#32;software&#32;SPI)</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00109"/>00109 
+<anchor xml:id="_digital_write_fast_8h_source_1l00110"/>00110 
+<anchor xml:id="_digital_write_fast_8h_source_1l00111"/>00111 <emphasis role="comment">//&#32;---&#32;Arduino&#32;Due&#32;and&#32;SAM3X8E&#32;based&#32;boards&#32;---</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00112"/>00112 <emphasis role="preprocessor">#if&#32;(defined(ARDUINO_SAM_DUE)&#32;||&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00113"/>00113 <emphasis role="preprocessor">&#32;&#32;&#32;&#32;&#32;defined(__SAM3X8E__))</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00114"/>00114 
+<anchor xml:id="_digital_write_fast_8h_source_1l00115"/>00115 <emphasis role="preprocessor">#define&#32;UART_RX_PIN&#32;&#32;&#32;&#32;&#32;(0)</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00116"/>00116 <emphasis role="preprocessor">#define&#32;UART_TX_PIN&#32;&#32;&#32;&#32;&#32;(1)</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00117"/>00117 
+<anchor xml:id="_digital_write_fast_8h_source_1l00118"/>00118 <emphasis role="preprocessor">#define&#32;I2C_SDA_PIN&#32;&#32;&#32;&#32;&#32;(20)</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00119"/>00119 <emphasis role="preprocessor">#define&#32;I2C_SCL_PIN&#32;&#32;&#32;&#32;&#32;(21)</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00120"/>00120 
+<anchor xml:id="_digital_write_fast_8h_source_1l00121"/>00121 <emphasis role="preprocessor">#define&#32;SPI_HW_SS_PIN&#32;&#32;&#32;(78)&#32;</emphasis><emphasis role="comment">//SS0:77,&#32;SS1:87,&#32;SS2:86,&#32;SS3:78</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00122"/>00122 <emphasis role="preprocessor">#define&#32;SPI_HW_MOSI_PIN&#32;(75)&#32;</emphasis><emphasis role="comment">//75</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00123"/>00123 <emphasis role="preprocessor">#define&#32;SPI_HW_MISO_PIN&#32;(74)&#32;</emphasis><emphasis role="comment">//74</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00124"/>00124 <emphasis role="preprocessor">#define&#32;SPI_HW_SCK_PIN&#32;&#32;(76)&#32;</emphasis><emphasis role="comment">//76</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00125"/>00125 
+<anchor xml:id="_digital_write_fast_8h_source_1l00126"/>00126 
+<anchor xml:id="_digital_write_fast_8h_source_1l00127"/>00127 <emphasis role="comment">//&#32;---&#32;Arduino&#32;Zero&#32;and&#32;SAMD21G18&#32;based&#32;boards&#32;---</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00128"/>00128 <emphasis role="preprocessor">#elif&#32;(defined(ARDUINO_SAMD_ZERO)&#32;||&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00129"/>00129 <emphasis role="preprocessor">&#32;&#32;&#32;&#32;&#32;&#32;&#32;defined(__SAMD21G18A__))</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00130"/>00130 
+<anchor xml:id="_digital_write_fast_8h_source_1l00131"/>00131 <emphasis role="preprocessor">#define&#32;UART_RX_PIN&#32;&#32;&#32;&#32;&#32;(0)</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00132"/>00132 <emphasis role="preprocessor">#define&#32;UART_TX_PIN&#32;&#32;&#32;&#32;&#32;(1)</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00133"/>00133 
+<anchor xml:id="_digital_write_fast_8h_source_1l00134"/>00134 <emphasis role="preprocessor">#define&#32;I2C_SDA_PIN&#32;&#32;&#32;&#32;&#32;(16)</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00135"/>00135 <emphasis role="preprocessor">#define&#32;I2C_SCL_PIN&#32;&#32;&#32;&#32;&#32;(17)</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00136"/>00136 
+<anchor xml:id="_digital_write_fast_8h_source_1l00137"/>00137 <emphasis role="preprocessor">#define&#32;SPI_HW_SS_PIN&#32;&#32;&#32;(14)&#32;</emphasis><emphasis role="comment">//14</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00138"/>00138 <emphasis role="preprocessor">#define&#32;SPI_HW_MOSI_PIN&#32;(21)&#32;</emphasis><emphasis role="comment">//21</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00139"/>00139 <emphasis role="preprocessor">#define&#32;SPI_HW_MISO_PIN&#32;(18)&#32;</emphasis><emphasis role="comment">//18</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00140"/>00140 <emphasis role="preprocessor">#define&#32;SPI_HW_SCK_PIN&#32;&#32;(20)&#32;</emphasis><emphasis role="comment">//20</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00141"/>00141 
+<anchor xml:id="_digital_write_fast_8h_source_1l00142"/>00142 
+<anchor xml:id="_digital_write_fast_8h_source_1l00143"/>00143 <emphasis role="comment">//&#32;---&#32;Arduino&#32;Mega&#32;and&#32;ATmega128x/256x&#32;based&#32;boards&#32;---</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00144"/>00144 <emphasis role="preprocessor">#elif&#32;(defined(ARDUINO_AVR_MEGA)&#32;||&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00145"/>00145 <emphasis role="preprocessor">&#32;&#32;&#32;&#32;&#32;&#32;&#32;defined(ARDUINO_AVR_MEGA1280)&#32;||&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00146"/>00146 <emphasis role="preprocessor">&#32;&#32;&#32;&#32;&#32;&#32;&#32;defined(ARDUINO_AVR_MEGA2560)&#32;||&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00147"/>00147 <emphasis role="preprocessor">&#32;&#32;&#32;&#32;&#32;&#32;&#32;defined(__AVR_ATmega1280__)&#32;||&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00148"/>00148 <emphasis role="preprocessor">&#32;&#32;&#32;&#32;&#32;&#32;&#32;defined(__AVR_ATmega1281__)&#32;||&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00149"/>00149 <emphasis role="preprocessor">&#32;&#32;&#32;&#32;&#32;&#32;&#32;defined(__AVR_ATmega2560__)&#32;||&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00150"/>00150 <emphasis role="preprocessor">&#32;&#32;&#32;&#32;&#32;&#32;&#32;defined(__AVR_ATmega2561__))</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00151"/>00151 
+<anchor xml:id="_digital_write_fast_8h_source_1l00152"/>00152 <emphasis role="preprocessor">#define&#32;UART_RX_PIN&#32;&#32;&#32;&#32;&#32;(0)&#32;</emphasis><emphasis role="comment">//PE0</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00153"/>00153 <emphasis role="preprocessor">#define&#32;UART_TX_PIN&#32;&#32;&#32;&#32;&#32;(1)&#32;</emphasis><emphasis role="comment">//PE1</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00154"/>00154 
+<anchor xml:id="_digital_write_fast_8h_source_1l00155"/>00155 <emphasis role="preprocessor">#define&#32;I2C_SDA_PIN&#32;&#32;&#32;&#32;&#32;(20)</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00156"/>00156 <emphasis role="preprocessor">#define&#32;I2C_SCL_PIN&#32;&#32;&#32;&#32;&#32;(21)</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00157"/>00157 
+<anchor xml:id="_digital_write_fast_8h_source_1l00158"/>00158 <emphasis role="preprocessor">#define&#32;SPI_HW_SS_PIN&#32;&#32;&#32;(53)&#32;</emphasis><emphasis role="comment">//PB0</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00159"/>00159 <emphasis role="preprocessor">#define&#32;SPI_HW_MOSI_PIN&#32;(51)&#32;</emphasis><emphasis role="comment">//PB2</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00160"/>00160 <emphasis role="preprocessor">#define&#32;SPI_HW_MISO_PIN&#32;(50)&#32;</emphasis><emphasis role="comment">//PB3</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00161"/>00161 <emphasis role="preprocessor">#define&#32;SPI_HW_SCK_PIN&#32;&#32;(52)&#32;</emphasis><emphasis role="comment">//PB1</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00162"/>00162 
+<anchor xml:id="_digital_write_fast_8h_source_1l00163"/>00163 <emphasis role="preprocessor">#define&#32;__digitalPinToPortReg(P)&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00164"/>00164 <emphasis role="preprocessor">(((P)&#32;&gt;=&#32;22&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;29)&#32;?&#32;&amp;PORTA&#32;:&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00165"/>00165 <emphasis role="preprocessor">((((P)&#32;&gt;=&#32;10&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;13)&#32;||&#32;((P)&#32;&gt;=&#32;50&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;53))&#32;?&#32;&amp;PORTB&#32;:&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00166"/>00166 <emphasis role="preprocessor">(((P)&#32;&gt;=&#32;30&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;37)&#32;?&#32;&amp;PORTC&#32;:&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00167"/>00167 <emphasis role="preprocessor">((((P)&#32;&gt;=&#32;18&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;21)&#32;||&#32;(P)&#32;==&#32;38)&#32;?&#32;&amp;PORTD&#32;:&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00168"/>00168 <emphasis role="preprocessor">((((P)&#32;&gt;=&#32;0&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;3)&#32;||&#32;(P)&#32;==&#32;5)&#32;?&#32;&amp;PORTE&#32;:&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00169"/>00169 <emphasis role="preprocessor">(((P)&#32;&gt;=&#32;54&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;61)&#32;?&#32;&amp;PORTF&#32;:&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00170"/>00170 <emphasis role="preprocessor">((((P)&#32;&gt;=&#32;39&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;41)&#32;||&#32;(P)&#32;==&#32;4)&#32;?&#32;&amp;PORTG&#32;:&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00171"/>00171 <emphasis role="preprocessor">((((P)&#32;&gt;=&#32;6&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;9)&#32;||&#32;(P)&#32;==&#32;16&#32;||&#32;(P)&#32;==&#32;17)&#32;?&#32;&amp;PORTH&#32;:&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00172"/>00172 <emphasis role="preprocessor">(((P)&#32;==&#32;14&#32;||&#32;(P)&#32;==&#32;15)&#32;?&#32;&amp;PORTJ&#32;:&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00173"/>00173 <emphasis role="preprocessor">(((P)&#32;&gt;=&#32;62&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;69)&#32;?&#32;&amp;PORTK&#32;:&#32;&amp;PORTL))))))))))</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00174"/>00174 
+<anchor xml:id="_digital_write_fast_8h_source_1l00175"/>00175 <emphasis role="preprocessor">#define&#32;__digitalPinToDDRReg(P)&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00176"/>00176 <emphasis role="preprocessor">(((P)&#32;&gt;=&#32;22&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;29)&#32;?&#32;&amp;DDRA&#32;:&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00177"/>00177 <emphasis role="preprocessor">((((P)&#32;&gt;=&#32;10&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;13)&#32;||&#32;((P)&#32;&gt;=&#32;50&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;53))&#32;?&#32;&amp;DDRB&#32;:&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00178"/>00178 <emphasis role="preprocessor">(((P)&#32;&gt;=&#32;30&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;37)&#32;?&#32;&amp;DDRC&#32;:&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00179"/>00179 <emphasis role="preprocessor">((((P)&#32;&gt;=&#32;18&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;21)&#32;||&#32;(P)&#32;==&#32;38)&#32;?&#32;&amp;DDRD&#32;:&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00180"/>00180 <emphasis role="preprocessor">((((P)&#32;&gt;=&#32;0&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;3)&#32;||&#32;(P)&#32;==&#32;5)&#32;?&#32;&amp;DDRE&#32;:&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00181"/>00181 <emphasis role="preprocessor">(((P)&#32;&gt;=&#32;54&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;61)&#32;?&#32;&amp;DDRF&#32;:&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00182"/>00182 <emphasis role="preprocessor">((((P)&#32;&gt;=&#32;39&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;41)&#32;||&#32;(P)&#32;==&#32;4)&#32;?&#32;&amp;DDRG&#32;:&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00183"/>00183 <emphasis role="preprocessor">((((P)&#32;&gt;=&#32;6&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;9)&#32;||&#32;(P)&#32;==&#32;16&#32;||&#32;(P)&#32;==&#32;17)&#32;?&#32;&amp;DDRH&#32;:&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00184"/>00184 <emphasis role="preprocessor">(((P)&#32;==&#32;14&#32;||&#32;(P)&#32;==&#32;15)&#32;?&#32;&amp;DDRJ&#32;:&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00185"/>00185 <emphasis role="preprocessor">(((P)&#32;&gt;=&#32;62&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;69)&#32;?&#32;&amp;DDRK&#32;:&#32;&amp;DDRL))))))))))</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00186"/>00186 
+<anchor xml:id="_digital_write_fast_8h_source_1l00187"/>00187 <emphasis role="preprocessor">#define&#32;__digitalPinToPINReg(P)&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00188"/>00188 <emphasis role="preprocessor">(((P)&#32;&gt;=&#32;22&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;29)&#32;?&#32;&amp;PINA&#32;:&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00189"/>00189 <emphasis role="preprocessor">((((P)&#32;&gt;=&#32;10&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;13)&#32;||&#32;((P)&#32;&gt;=&#32;50&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;53))&#32;?&#32;&amp;PINB&#32;:&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00190"/>00190 <emphasis role="preprocessor">(((P)&#32;&gt;=&#32;30&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;37)&#32;?&#32;&amp;PINC&#32;:&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00191"/>00191 <emphasis role="preprocessor">((((P)&#32;&gt;=&#32;18&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;21)&#32;||&#32;(P)&#32;==&#32;38)&#32;?&#32;&amp;PIND&#32;:&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00192"/>00192 <emphasis role="preprocessor">((((P)&#32;&gt;=&#32;0&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;3)&#32;||&#32;(P)&#32;==&#32;5)&#32;?&#32;&amp;PINE&#32;:&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00193"/>00193 <emphasis role="preprocessor">(((P)&#32;&gt;=&#32;54&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;61)&#32;?&#32;&amp;PINF&#32;:&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00194"/>00194 <emphasis role="preprocessor">((((P)&#32;&gt;=&#32;39&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;41)&#32;||&#32;(P)&#32;==&#32;4)&#32;?&#32;&amp;PING&#32;:&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00195"/>00195 <emphasis role="preprocessor">((((P)&#32;&gt;=&#32;6&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;9)&#32;||&#32;(P)&#32;==&#32;16&#32;||&#32;(P)&#32;==&#32;17)&#32;?&#32;&amp;PINH&#32;:&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00196"/>00196 <emphasis role="preprocessor">(((P)&#32;==&#32;14&#32;||&#32;(P)&#32;==&#32;15)&#32;?&#32;&amp;PINJ&#32;:&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00197"/>00197 <emphasis role="preprocessor">(((P)&#32;&gt;=&#32;62&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;69)&#32;?&#32;&amp;PINK&#32;:&#32;&amp;PINL))))))))))</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00198"/>00198 
+<anchor xml:id="_digital_write_fast_8h_source_1l00199"/>00199 <emphasis role="preprocessor">#define&#32;__digitalPinToBit(P)&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00200"/>00200 <emphasis role="preprocessor">(((P)&#32;&gt;=&#32;&#32;7&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;&#32;9)&#32;?&#32;(P)&#32;-&#32;3&#32;:&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00201"/>00201 <emphasis role="preprocessor">(((P)&#32;&gt;=&#32;10&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;13)&#32;?&#32;(P)&#32;-&#32;6&#32;:&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00202"/>00202 <emphasis role="preprocessor">(((P)&#32;&gt;=&#32;22&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;29)&#32;?&#32;(P)&#32;-&#32;22&#32;:&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00203"/>00203 <emphasis role="preprocessor">(((P)&#32;&gt;=&#32;30&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;37)&#32;?&#32;37&#32;-&#32;(P)&#32;:&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00204"/>00204 <emphasis role="preprocessor">(((P)&#32;&gt;=&#32;39&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;41)&#32;?&#32;41&#32;-&#32;(P)&#32;:&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00205"/>00205 <emphasis role="preprocessor">(((P)&#32;&gt;=&#32;42&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;49)&#32;?&#32;49&#32;-&#32;(P)&#32;:&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00206"/>00206 <emphasis role="preprocessor">(((P)&#32;&gt;=&#32;50&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;53)&#32;?&#32;53&#32;-&#32;(P)&#32;:&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00207"/>00207 <emphasis role="preprocessor">(((P)&#32;&gt;=&#32;54&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;61)&#32;?&#32;(P)&#32;-&#32;54&#32;:&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00208"/>00208 <emphasis role="preprocessor">(((P)&#32;&gt;=&#32;62&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;69)&#32;?&#32;(P)&#32;-&#32;62&#32;:&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00209"/>00209 <emphasis role="preprocessor">(((P)&#32;==&#32;0&#32;||&#32;(P)&#32;==&#32;15&#32;||&#32;(P)&#32;==&#32;17&#32;||&#32;(P)&#32;==&#32;21)&#32;?&#32;0&#32;:&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00210"/>00210 <emphasis role="preprocessor">(((P)&#32;==&#32;1&#32;||&#32;(P)&#32;==&#32;14&#32;||&#32;(P)&#32;==&#32;16&#32;||&#32;(P)&#32;==&#32;20)&#32;?&#32;1&#32;:&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00211"/>00211 <emphasis role="preprocessor">(((P)&#32;==&#32;19)&#32;?&#32;2&#32;:&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00212"/>00212 <emphasis role="preprocessor">(((P)&#32;==&#32;5&#32;||&#32;(P)&#32;==&#32;6&#32;||&#32;(P)&#32;==&#32;18)&#32;?&#32;3&#32;:&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00213"/>00213 <emphasis role="preprocessor">(((P)&#32;==&#32;2)&#32;?&#32;4&#32;:&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00214"/>00214 <emphasis role="preprocessor">(((P)&#32;==&#32;3&#32;||&#32;(P)&#32;==&#32;4)&#32;?&#32;5&#32;:&#32;7)))))))))))))))</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00215"/>00215 
+<anchor xml:id="_digital_write_fast_8h_source_1l00216"/>00216 
+<anchor xml:id="_digital_write_fast_8h_source_1l00217"/>00217 <emphasis role="comment">//&#32;---&#32;Arduino&#32;MightyCore&#32;standard&#32;pinout&#32;---</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00218"/>00218 <emphasis role="preprocessor">#elif&#32;(defined(__AVR_ATmega1284P__)&#32;||&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00219"/>00219 <emphasis role="preprocessor">&#32;&#32;&#32;&#32;&#32;&#32;&#32;defined(__AVR_ATmega1284__)&#32;&#32;||&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00220"/>00220 <emphasis role="preprocessor">&#32;&#32;&#32;&#32;&#32;&#32;&#32;defined(__AVR_ATmega644P__)&#32;&#32;||&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00221"/>00221 <emphasis role="preprocessor">&#32;&#32;&#32;&#32;&#32;&#32;&#32;defined(__AVR_ATmega644A__)&#32;&#32;||&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00222"/>00222 <emphasis role="preprocessor">&#32;&#32;&#32;&#32;&#32;&#32;&#32;defined(__AVR_ATmega644__)&#32;&#32;&#32;||&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00223"/>00223 <emphasis role="preprocessor">&#32;&#32;&#32;&#32;&#32;&#32;&#32;defined(__AVR_ATmega324PB__)&#32;||&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00224"/>00224 <emphasis role="preprocessor">&#32;&#32;&#32;&#32;&#32;&#32;&#32;defined(__AVR_ATmega324PA__)&#32;||&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00225"/>00225 <emphasis role="preprocessor">&#32;&#32;&#32;&#32;&#32;&#32;&#32;defined(__AVR_ATmega324P__)&#32;&#32;||&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00226"/>00226 <emphasis role="preprocessor">&#32;&#32;&#32;&#32;&#32;&#32;&#32;defined(__AVR_ATmega324A__)&#32;&#32;||&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00227"/>00227 <emphasis role="preprocessor">&#32;&#32;&#32;&#32;&#32;&#32;&#32;defined(__AVR_ATmega164P__)&#32;&#32;||&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00228"/>00228 <emphasis role="preprocessor">&#32;&#32;&#32;&#32;&#32;&#32;&#32;defined(__AVR_ATmega164A__)&#32;&#32;||&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00229"/>00229 <emphasis role="preprocessor">&#32;&#32;&#32;&#32;&#32;&#32;&#32;defined(__AVR_ATmega32__)&#32;&#32;&#32;&#32;||&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00230"/>00230 <emphasis role="preprocessor">&#32;&#32;&#32;&#32;&#32;&#32;&#32;defined(__AVR_ATmega16__)&#32;&#32;&#32;&#32;||&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00231"/>00231 <emphasis role="preprocessor">&#32;&#32;&#32;&#32;&#32;&#32;&#32;defined(__AVR_ATmega8535__))&#32;&#32;&amp;&amp;&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00232"/>00232 <emphasis role="preprocessor">&#32;&#32;&#32;&#32;&#32;&#32;!defined(BOBUINO_PINOUT)</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00233"/>00233 
+<anchor xml:id="_digital_write_fast_8h_source_1l00234"/>00234 <emphasis role="preprocessor">#define&#32;UART_RX_PIN&#32;&#32;&#32;&#32;&#32;(8)&#32;</emphasis><emphasis role="comment">//PD0</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00235"/>00235 <emphasis role="preprocessor">#define&#32;UART_TX_PIN&#32;&#32;&#32;&#32;&#32;(9)&#32;</emphasis><emphasis role="comment">//PD1</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00236"/>00236 
+<anchor xml:id="_digital_write_fast_8h_source_1l00237"/>00237 <emphasis role="preprocessor">#define&#32;I2C_SDA_PIN&#32;&#32;&#32;&#32;&#32;(17)&#32;</emphasis><emphasis role="comment">//PC1</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00238"/>00238 <emphasis role="preprocessor">#define&#32;I2C_SCL_PIN&#32;&#32;&#32;&#32;&#32;(16)&#32;</emphasis><emphasis role="comment">//PC0</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00239"/>00239 
+<anchor xml:id="_digital_write_fast_8h_source_1l00240"/>00240 <emphasis role="preprocessor">#define&#32;SPI_HW_SS_PIN&#32;&#32;&#32;(4)&#32;</emphasis><emphasis role="comment">//PB4</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00241"/>00241 <emphasis role="preprocessor">#define&#32;SPI_HW_MOSI_PIN&#32;(5)&#32;</emphasis><emphasis role="comment">//PB5</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00242"/>00242 <emphasis role="preprocessor">#define&#32;SPI_HW_MISO_PIN&#32;(6)&#32;</emphasis><emphasis role="comment">//PB6</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00243"/>00243 <emphasis role="preprocessor">#define&#32;SPI_HW_SCK_PIN&#32;&#32;(7)&#32;</emphasis><emphasis role="comment">//PB7</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00244"/>00244 
+<anchor xml:id="_digital_write_fast_8h_source_1l00245"/>00245 <emphasis role="preprocessor">#if&#32;defined(__AVR_ATmega324PB__)</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00246"/>00246 <emphasis role="preprocessor">#define&#32;__digitalPinToPortReg(P)&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00247"/>00247 <emphasis role="preprocessor">(((P)&#32;&gt;=&#32;0&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;7)&#32;?&#32;&amp;PORTB&#32;:&#32;(((P)&#32;&gt;=&#32;8&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;15)&#32;?&#32;&amp;PORTD&#32;:&#32;(((P)&#32;&gt;=&#32;16&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;23)&#32;?&#32;&amp;PORTC&#32;:&#32;(((P)&#32;&gt;=&#32;24&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;31)&#32;?&#32;&amp;PORTA&#32;:&#32;&amp;PORTE))))</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00248"/>00248 <emphasis role="preprocessor">#define&#32;__digitalPinToDDRReg(P)&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00249"/>00249 <emphasis role="preprocessor">(((P)&#32;&gt;=&#32;0&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;7)&#32;?&#32;&amp;DDRB&#32;:&#32;(((P)&#32;&gt;=&#32;8&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;15)&#32;?&#32;&amp;DDRD&#32;:&#32;(((P)&#32;&gt;=&#32;16&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;23)&#32;?&#32;&amp;DDRC&#32;:&#32;(((P)&#32;&gt;=&#32;24&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;31)&#32;?&#32;&amp;DDRA&#32;:&#32;&amp;DDRE))))</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00250"/>00250 <emphasis role="preprocessor">#define&#32;__digitalPinToPINReg(P)&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00251"/>00251 <emphasis role="preprocessor">(((P)&#32;&gt;=&#32;0&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;7)&#32;?&#32;&amp;PINB&#32;:&#32;(((P)&#32;&gt;=&#32;8&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;15)&#32;?&#32;&amp;PIND&#32;:&#32;(((P)&#32;&gt;=&#32;16&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;23)&#32;?&#32;&amp;PINC&#32;:&#32;(((P)&#32;&gt;=&#32;24&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;31)&#32;?&#32;&amp;PINA&#32;:&#32;&amp;PINE))))</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00252"/>00252 <emphasis role="preprocessor">#&#32;if&#32;defined(SANGUINO_PINOUT)</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00253"/>00253 <emphasis role="preprocessor">#define&#32;__digitalPinToBit(P)&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00254"/>00254 <emphasis role="preprocessor">(((P)&#32;&gt;=&#32;0&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;7)&#32;?&#32;(P)&#32;:&#32;(((P)&#32;&gt;=&#32;8&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;15)&#32;?&#32;(P)&#32;-&#32;8&#32;:&#32;(((P)&#32;&gt;=&#32;16&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;23)&#32;?&#32;(P)&#32;-&#32;16&#32;:&#32;(((P)&#32;&gt;=&#32;16&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;23)&#32;?&#32;(7&#32;-&#32;((P)&#32;-&#32;24))&#32;:&#32;(P)&#32;-&#32;32))))</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00255"/>00255 <emphasis role="preprocessor">#&#32;else&#32;</emphasis><emphasis role="comment">//MightyCore&#32;Pinout</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00256"/>00256 <emphasis role="preprocessor">#define&#32;__digitalPinToBit(P)&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00257"/>00257 <emphasis role="preprocessor">(((P)&#32;&gt;=&#32;0&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;7)&#32;?&#32;(P)&#32;:&#32;(((P)&#32;&gt;=&#32;8&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;15)&#32;?&#32;(P)&#32;-&#32;8&#32;:&#32;(((P)&#32;&gt;=&#32;16&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;23)&#32;?&#32;(P)&#32;-&#32;16&#32;:&#32;(((P)&#32;&gt;=&#32;16&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;23)&#32;?&#32;(P)&#32;-&#32;24&#32;:&#32;(P)&#32;-&#32;32))))</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00258"/>00258 <emphasis role="preprocessor">#&#32;endif</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00259"/>00259 <emphasis role="preprocessor">#else</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00260"/>00260 <emphasis role="preprocessor">#define&#32;__digitalPinToPortReg(P)&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00261"/>00261 <emphasis role="preprocessor">(((P)&#32;&gt;=&#32;0&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;7)&#32;?&#32;&amp;PORTB&#32;:&#32;(((P)&#32;&gt;=&#32;8&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;15)&#32;?&#32;&amp;PORTD&#32;:&#32;(((P)&#32;&gt;=&#32;16&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;23)&#32;?&#32;&amp;PORTC&#32;:&#32;&amp;PORTA)))</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00262"/>00262 <emphasis role="preprocessor">#define&#32;__digitalPinToDDRReg(P)&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00263"/>00263 <emphasis role="preprocessor">(((P)&#32;&gt;=&#32;0&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;7)&#32;?&#32;&amp;DDRB&#32;:&#32;(((P)&#32;&gt;=&#32;8&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;15)&#32;?&#32;&amp;DDRD&#32;:&#32;(((P)&#32;&gt;=&#32;16&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;23)&#32;?&#32;&amp;DDRC&#32;:&#32;&amp;DDRA)))</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00264"/>00264 <emphasis role="preprocessor">#define&#32;__digitalPinToPINReg(P)&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00265"/>00265 <emphasis role="preprocessor">(((P)&#32;&gt;=&#32;0&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;7)&#32;?&#32;&amp;PINB&#32;:&#32;(((P)&#32;&gt;=&#32;8&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;15)&#32;?&#32;&amp;PIND&#32;:&#32;(((P)&#32;&gt;=&#32;16&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;23)&#32;?&#32;&amp;PINC&#32;:&#32;&amp;PINA)))</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00266"/>00266 <emphasis role="preprocessor">#&#32;if&#32;defined(SANGUINO_PINOUT)</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00267"/>00267 <emphasis role="preprocessor">#define&#32;__digitalPinToBit(P)&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00268"/>00268 <emphasis role="preprocessor">(((P)&#32;&gt;=&#32;0&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;7)&#32;?&#32;(P)&#32;:&#32;(((P)&#32;&gt;=&#32;8&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;15)&#32;?&#32;(P)&#32;-&#32;8&#32;:&#32;(((P)&#32;&gt;=&#32;16&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;23)&#32;?&#32;(P)&#32;-&#32;16&#32;:&#32;(7&#32;-&#32;((P)&#32;-&#32;24)))))</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00269"/>00269 <emphasis role="preprocessor">#&#32;else&#32;</emphasis><emphasis role="comment">//MightyCore&#32;Pinout</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00270"/>00270 <emphasis role="preprocessor">#define&#32;__digitalPinToBit(P)&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00271"/>00271 <emphasis role="preprocessor">(((P)&#32;&gt;=&#32;0&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;7)&#32;?&#32;(P)&#32;:&#32;(((P)&#32;&gt;=&#32;8&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;15)&#32;?&#32;(P)&#32;-&#32;8&#32;:&#32;(((P)&#32;&gt;=&#32;16&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;23)&#32;?&#32;(P)&#32;-&#32;16&#32;:&#32;(P)&#32;-&#32;24)))</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00272"/>00272 <emphasis role="preprocessor">#&#32;endif</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00273"/>00273 <emphasis role="preprocessor">#endif</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00274"/>00274 
+<anchor xml:id="_digital_write_fast_8h_source_1l00275"/>00275 
+<anchor xml:id="_digital_write_fast_8h_source_1l00276"/>00276 <emphasis role="comment">//&#32;---&#32;Arduino&#32;Leonardo&#32;and&#32;ATmega16U4/32U4&#32;based&#32;boards&#32;---</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00277"/>00277 <emphasis role="preprocessor">#elif&#32;(defined(ARDUINO_AVR_LEONARDO)&#32;||&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00278"/>00278 <emphasis role="preprocessor">&#32;&#32;&#32;&#32;&#32;&#32;&#32;defined(__AVR_ATmega16U4__)&#32;||&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00279"/>00279 <emphasis role="preprocessor">&#32;&#32;&#32;&#32;&#32;&#32;&#32;defined(__AVR_ATmega32U4__))</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00280"/>00280 
+<anchor xml:id="_digital_write_fast_8h_source_1l00281"/>00281 <emphasis role="preprocessor">#define&#32;UART_RX_PIN&#32;&#32;&#32;&#32;&#32;(0)&#32;</emphasis><emphasis role="comment">//PD2</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00282"/>00282 <emphasis role="preprocessor">#define&#32;UART_TX_PIN&#32;&#32;&#32;&#32;&#32;(1)&#32;</emphasis><emphasis role="comment">//PD3</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00283"/>00283 
+<anchor xml:id="_digital_write_fast_8h_source_1l00284"/>00284 <emphasis role="preprocessor">#define&#32;I2C_SDA_PIN&#32;&#32;&#32;&#32;&#32;(2)&#32;</emphasis><emphasis role="comment">//PD1</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00285"/>00285 <emphasis role="preprocessor">#define&#32;I2C_SCL_PIN&#32;&#32;&#32;&#32;&#32;(3)&#32;</emphasis><emphasis role="comment">//PD0</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00286"/>00286 
+<anchor xml:id="_digital_write_fast_8h_source_1l00287"/>00287 <emphasis role="preprocessor">#define&#32;SPI_HW_SS_PIN&#32;&#32;&#32;(17)&#32;</emphasis><emphasis role="comment">//PB0</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00288"/>00288 <emphasis role="preprocessor">#define&#32;SPI_HW_MOSI_PIN&#32;(16)&#32;</emphasis><emphasis role="comment">//PB2</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00289"/>00289 <emphasis role="preprocessor">#define&#32;SPI_HW_MISO_PIN&#32;(14)&#32;</emphasis><emphasis role="comment">//PB3</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00290"/>00290 <emphasis role="preprocessor">#define&#32;SPI_HW_SCK_PIN&#32;&#32;(15)&#32;</emphasis><emphasis role="comment">//PB1</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00291"/>00291 
+<anchor xml:id="_digital_write_fast_8h_source_1l00292"/>00292 <emphasis role="preprocessor">#define&#32;__digitalPinToPortReg(P)&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00293"/>00293 <emphasis role="preprocessor">((((P)&#32;&gt;=&#32;0&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;4)&#32;||&#32;(P)&#32;==&#32;6&#32;||&#32;(P)&#32;==&#32;12&#32;||&#32;(P)&#32;==&#32;24&#32;||&#32;(P)&#32;==&#32;25&#32;||&#32;(P)&#32;==&#32;29)&#32;?&#32;&amp;PORTD&#32;:&#32;(((P)&#32;==&#32;5&#32;||&#32;(P)&#32;==&#32;13)&#32;?&#32;&amp;PORTC&#32;:&#32;(((P)&#32;&gt;=&#32;18&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;23))&#32;?&#32;&amp;PORTF&#32;:&#32;(((P)&#32;==&#32;7)&#32;?&#32;&amp;PORTE&#32;:&#32;&amp;PORTB)))</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00294"/>00294 <emphasis role="preprocessor">#define&#32;__digitalPinToDDRReg(P)&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00295"/>00295 <emphasis role="preprocessor">((((P)&#32;&gt;=&#32;0&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;4)&#32;||&#32;(P)&#32;==&#32;6&#32;||&#32;(P)&#32;==&#32;12&#32;||&#32;(P)&#32;==&#32;24&#32;||&#32;(P)&#32;==&#32;25&#32;||&#32;(P)&#32;==&#32;29)&#32;?&#32;&amp;DDRD&#32;:&#32;(((P)&#32;==&#32;5&#32;||&#32;(P)&#32;==&#32;13)&#32;?&#32;&amp;DDRC&#32;:&#32;(((P)&#32;&gt;=&#32;18&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;23))&#32;?&#32;&amp;DDRF&#32;:&#32;(((P)&#32;==&#32;7)&#32;?&#32;&amp;DDRE&#32;:&#32;&amp;DDRB)))</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00296"/>00296 <emphasis role="preprocessor">#define&#32;__digitalPinToPINReg(P)&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00297"/>00297 <emphasis role="preprocessor">((((P)&#32;&gt;=&#32;0&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;4)&#32;||&#32;(P)&#32;==&#32;6&#32;||&#32;(P)&#32;==&#32;12&#32;||&#32;(P)&#32;==&#32;24&#32;||&#32;(P)&#32;==&#32;25&#32;||&#32;(P)&#32;==&#32;29)&#32;?&#32;&amp;PIND&#32;:&#32;(((P)&#32;==&#32;5&#32;||&#32;(P)&#32;==&#32;13)&#32;?&#32;&amp;PINC&#32;:&#32;(((P)&#32;&gt;=&#32;18&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;23))&#32;?&#32;&amp;PINF&#32;:&#32;(((P)&#32;==&#32;7)&#32;?&#32;&amp;PINE&#32;:&#32;&amp;PINB)))</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00298"/>00298 <emphasis role="preprocessor">#define&#32;__digitalPinToBit(P)&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00299"/>00299 <emphasis role="preprocessor">(((P)&#32;&gt;=&#32;8&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;11)&#32;?&#32;(P)&#32;-&#32;4&#32;:&#32;(((P)&#32;&gt;=&#32;18&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;21)&#32;?&#32;25&#32;-&#32;(P)&#32;:&#32;(((P)&#32;==&#32;0)&#32;?&#32;2&#32;:&#32;(((P)&#32;==&#32;1)&#32;?&#32;3&#32;:&#32;(((P)&#32;==&#32;2)&#32;?&#32;1&#32;:&#32;(((P)&#32;==&#32;3)&#32;?&#32;0&#32;:&#32;(((P)&#32;==&#32;4)&#32;?&#32;4&#32;:&#32;(((P)&#32;==&#32;6)&#32;?&#32;7&#32;:&#32;(((P)&#32;==&#32;13)&#32;?&#32;7&#32;:&#32;(((P)&#32;==&#32;14)&#32;?&#32;3&#32;:&#32;(((P)&#32;==&#32;15)&#32;?&#32;1&#32;:&#32;(((P)&#32;==&#32;16)&#32;?&#32;2&#32;:&#32;(((P)&#32;==&#32;17)&#32;?&#32;0&#32;:&#32;(((P)&#32;==&#32;22)&#32;?&#32;1&#32;:&#32;(((P)&#32;==&#32;23)&#32;?&#32;0&#32;:&#32;(((P)&#32;==&#32;24)&#32;?&#32;4&#32;:&#32;(((P)&#32;==&#32;25)&#32;?&#32;7&#32;:&#32;(((P)&#32;==&#32;26)&#32;?&#32;4&#32;:&#32;(((P)&#32;==&#32;27)&#32;?&#32;5&#32;:&#32;6&#32;)))))))))))))))))))</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00300"/>00300 
+<anchor xml:id="_digital_write_fast_8h_source_1l00301"/>00301 
+<anchor xml:id="_digital_write_fast_8h_source_1l00302"/>00302 <emphasis role="comment">//&#32;---&#32;Arduino&#32;Uno&#32;and&#32;ATmega168/328&#32;based&#32;boards&#32;---</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00303"/>00303 <emphasis role="preprocessor">#elif&#32;(defined(ARDUINO_AVR_UNO)&#32;||&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00304"/>00304 <emphasis role="preprocessor">&#32;&#32;&#32;&#32;&#32;&#32;&#32;defined(ARDUINO_AVR_DUEMILANOVE)&#32;||&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00305"/>00305 <emphasis role="preprocessor">&#32;&#32;&#32;&#32;&#32;&#32;&#32;defined(__AVR_ATmega8__)&#32;||&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00306"/>00306 <emphasis role="preprocessor">&#32;&#32;&#32;&#32;&#32;&#32;&#32;defined(__AVR_ATmega48__)&#32;||&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00307"/>00307 <emphasis role="preprocessor">&#32;&#32;&#32;&#32;&#32;&#32;&#32;defined(__AVR_ATmega48P__)&#32;||&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00308"/>00308 <emphasis role="preprocessor">&#32;&#32;&#32;&#32;&#32;&#32;&#32;defined(__AVR_ATmega48PB__)&#32;||&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00309"/>00309 <emphasis role="preprocessor">&#32;&#32;&#32;&#32;&#32;&#32;&#32;defined(__AVR_ATmega88P__)&#32;||&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00310"/>00310 <emphasis role="preprocessor">&#32;&#32;&#32;&#32;&#32;&#32;&#32;defined(__AVR_ATmega88PB__)&#32;||&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00311"/>00311 <emphasis role="preprocessor">&#32;&#32;&#32;&#32;&#32;&#32;&#32;defined(__AVR_ATmega168__)&#32;||&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00312"/>00312 <emphasis role="preprocessor">&#32;&#32;&#32;&#32;&#32;&#32;&#32;defined(__AVR_ATmega168PA__)&#32;||&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00313"/>00313 <emphasis role="preprocessor">&#32;&#32;&#32;&#32;&#32;&#32;&#32;defined(__AVR_ATmega168PB__)&#32;||&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00314"/>00314 <emphasis role="preprocessor">&#32;&#32;&#32;&#32;&#32;&#32;&#32;defined(__AVR_ATmega328__)&#32;||&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00315"/>00315 <emphasis role="preprocessor">&#32;&#32;&#32;&#32;&#32;&#32;&#32;defined(__AVR_ATmega328P__)&#32;||&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00316"/>00316 <emphasis role="preprocessor">&#32;&#32;&#32;&#32;&#32;&#32;&#32;defined(__AVR_ATmega328PB__))</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00317"/>00317 
+<anchor xml:id="_digital_write_fast_8h_source_1l00318"/>00318 <emphasis role="preprocessor">#define&#32;UART_RX_PIN&#32;&#32;&#32;&#32;&#32;(0)&#32;</emphasis><emphasis role="comment">//PD0</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00319"/>00319 <emphasis role="preprocessor">#define&#32;UART_TX_PIN&#32;&#32;&#32;&#32;&#32;(1)&#32;</emphasis><emphasis role="comment">//PD1</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00320"/>00320 
+<anchor xml:id="_digital_write_fast_8h_source_1l00321"/>00321 <emphasis role="preprocessor">#define&#32;I2C_SDA_PIN&#32;&#32;&#32;&#32;&#32;(18)&#32;</emphasis><emphasis role="comment">//A4</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00322"/>00322 <emphasis role="preprocessor">#define&#32;I2C_SCL_PIN&#32;&#32;&#32;&#32;&#32;(19)&#32;</emphasis><emphasis role="comment">//A5</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00323"/>00323 
+<anchor xml:id="_digital_write_fast_8h_source_1l00324"/>00324 <emphasis role="preprocessor">#define&#32;SPI_HW_SS_PIN&#32;&#32;&#32;(10)&#32;</emphasis><emphasis role="comment">//PB0</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00325"/>00325 <emphasis role="preprocessor">#define&#32;SPI_HW_MOSI_PIN&#32;(11)&#32;</emphasis><emphasis role="comment">//PB2</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00326"/>00326 <emphasis role="preprocessor">#define&#32;SPI_HW_MISO_PIN&#32;(12)&#32;</emphasis><emphasis role="comment">//PB3</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00327"/>00327 <emphasis role="preprocessor">#define&#32;SPI_HW_SCK_PIN&#32;&#32;(13)&#32;</emphasis><emphasis role="comment">//PB1</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00328"/>00328 
+<anchor xml:id="_digital_write_fast_8h_source_1l00329"/>00329 <emphasis role="preprocessor">#if&#32;defined(__AVR_ATmega48PB__)&#32;||&#32;defined(__AVR_ATmega88PB__)&#32;||&#32;defined(__AVR_ATmega168PB__)&#32;||&#32;defined(__AVR_ATmega328PB__)</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00330"/>00330 <emphasis role="preprocessor">#define&#32;__digitalPinToPortReg(P)&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00331"/>00331 <emphasis role="preprocessor">(((P)&#32;&gt;=&#32;0&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;7)&#32;?&#32;&amp;PORTD&#32;:&#32;(((P)&#32;&gt;=&#32;8&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;13)&#32;?&#32;&amp;PORTB&#32;:&#32;(((P)&#32;&gt;=&#32;14&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;19)&#32;?&#32;&amp;PORTC&#32;:&#32;&amp;PORTE)))</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00332"/>00332 <emphasis role="preprocessor">#define&#32;__digitalPinToDDRReg(P)&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00333"/>00333 <emphasis role="preprocessor">(((P)&#32;&gt;=&#32;0&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;7)&#32;?&#32;&amp;DDRD&#32;:&#32;(((P)&#32;&gt;=&#32;8&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;13)&#32;?&#32;&amp;DDRB&#32;:&#32;(((P)&#32;&gt;=&#32;14&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;19)&#32;?&#32;&amp;DDRC&#32;:&#32;&amp;DDRE)))</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00334"/>00334 <emphasis role="preprocessor">#define&#32;__digitalPinToPINReg(P)&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00335"/>00335 <emphasis role="preprocessor">(((P)&#32;&gt;=&#32;0&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;7)&#32;?&#32;&amp;PIND&#32;:&#32;(((P)&#32;&gt;=&#32;8&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;13)&#32;?&#32;&amp;PINB&#32;:&#32;(((P)&#32;&gt;=&#32;14&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;19)&#32;?&#32;&amp;PINC&#32;:&#32;&amp;PINE)))</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00336"/>00336 <emphasis role="preprocessor">#define&#32;__digitalPinToBit(P)&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00337"/>00337 <emphasis role="preprocessor">(((P)&#32;&gt;=&#32;0&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;7)&#32;?&#32;(P)&#32;:&#32;(((P)&#32;&gt;=&#32;8&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;13)&#32;?&#32;(P)&#32;-&#32;8&#32;:&#32;(((P)&#32;&gt;=&#32;14&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;19)&#32;?&#32;(P)&#32;-&#32;14&#32;:&#32;(((P)&#32;&gt;=&#32;20&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;21)&#32;?&#32;(P)&#32;-&#32;18&#32;:&#32;(P)&#32;-&#32;22))))</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00338"/>00338 <emphasis role="preprocessor">#else</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00339"/>00339 <emphasis role="preprocessor">#define&#32;__digitalPinToPortReg(P)&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00340"/>00340 <emphasis role="preprocessor">(((P)&#32;&gt;=&#32;0&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;7)&#32;?&#32;&amp;PORTD&#32;:&#32;(((P)&#32;&gt;=&#32;8&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;13)&#32;?&#32;&amp;PORTB&#32;:&#32;&amp;PORTC))</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00341"/>00341 <emphasis role="preprocessor">#define&#32;__digitalPinToDDRReg(P)&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00342"/>00342 <emphasis role="preprocessor">(((P)&#32;&gt;=&#32;0&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;7)&#32;?&#32;&amp;DDRD&#32;:&#32;(((P)&#32;&gt;=&#32;8&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;13)&#32;?&#32;&amp;DDRB&#32;:&#32;&amp;DDRC))</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00343"/>00343 <emphasis role="preprocessor">#define&#32;__digitalPinToPINReg(P)&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00344"/>00344 <emphasis role="preprocessor">(((P)&#32;&gt;=&#32;0&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;7)&#32;?&#32;&amp;PIND&#32;:&#32;(((P)&#32;&gt;=&#32;8&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;13)&#32;?&#32;&amp;PINB&#32;:&#32;&amp;PINC))</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00345"/>00345 <emphasis role="preprocessor">#define&#32;__digitalPinToBit(P)&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00346"/>00346 <emphasis role="preprocessor">(((P)&#32;&gt;=&#32;0&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;7)&#32;?&#32;(P)&#32;:&#32;(((P)&#32;&gt;=&#32;8&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;13)&#32;?&#32;(P)&#32;-&#32;8&#32;:&#32;(P)&#32;-&#32;14))</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00347"/>00347 <emphasis role="preprocessor">#endif</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00348"/>00348 
+<anchor xml:id="_digital_write_fast_8h_source_1l00349"/>00349 
+<anchor xml:id="_digital_write_fast_8h_source_1l00350"/>00350 <emphasis role="comment">//&#32;---&#32;Arduino&#32;Uno&#32;WiFi&#32;Rev&#32;2,&#32;Nano&#32;Every&#32;---</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00351"/>00351 <emphasis role="preprocessor">#elif&#32;defined(__AVR_ATmega4809__)</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00352"/>00352 
+<anchor xml:id="_digital_write_fast_8h_source_1l00353"/>00353 <emphasis role="preprocessor">#define&#32;UART_RX_PIN&#32;&#32;&#32;&#32;&#32;(0)&#32;</emphasis><emphasis role="comment">//PB0</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00354"/>00354 <emphasis role="preprocessor">#define&#32;UART_TX_PIN&#32;&#32;&#32;&#32;&#32;(1)&#32;</emphasis><emphasis role="comment">//PB1</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00355"/>00355 
+<anchor xml:id="_digital_write_fast_8h_source_1l00356"/>00356 <emphasis role="preprocessor">#define&#32;I2C_SDA_PIN&#32;&#32;&#32;&#32;&#32;(22)&#32;</emphasis><emphasis role="comment">//PA2</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00357"/>00357 <emphasis role="preprocessor">#define&#32;I2C_SCL_PIN&#32;&#32;&#32;&#32;&#32;(23)&#32;</emphasis><emphasis role="comment">//PA3</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00358"/>00358 
+<anchor xml:id="_digital_write_fast_8h_source_1l00359"/>00359 <emphasis role="preprocessor">#define&#32;SPI_HW_SS_PIN&#32;&#32;&#32;(8)&#32;&#32;</emphasis><emphasis role="comment">//PE3</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00360"/>00360 <emphasis role="preprocessor">#define&#32;SPI_HW_MOSI_PIN&#32;(11)&#32;</emphasis><emphasis role="comment">//PE0</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00361"/>00361 <emphasis role="preprocessor">#define&#32;SPI_HW_MISO_PIN&#32;(12)&#32;</emphasis><emphasis role="comment">//PE1</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00362"/>00362 <emphasis role="preprocessor">#define&#32;SPI_HW_SCK_PIN&#32;&#32;(13)&#32;</emphasis><emphasis role="comment">//PE2</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00363"/>00363 
+<anchor xml:id="_digital_write_fast_8h_source_1l00364"/>00364 <emphasis role="preprocessor">#define&#32;__digitalPinToPortReg(P)&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00365"/>00365 <emphasis role="preprocessor">(((P)&#32;==&#32;2&#32;||&#32;(P)&#32;==&#32;7&#32;)&#32;?&#32;&amp;VPORTA.OUT&#32;:&#32;((P)&#32;==&#32;5&#32;||&#32;(P)&#32;==&#32;9&#32;||&#32;(P)&#32;==&#32;10)&#32;?&#32;&amp;VPORTB.OUT&#32;:&#32;((P)&#32;==&#32;4)&#32;?&#32;&amp;VPORTC.OUT&#32;:&#32;(((P)&#32;&gt;=&#32;14&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;17)&#32;||&#32;(P)&#32;==&#32;20&#32;||&#32;(P)&#32;==&#32;21)&#32;?&#32;&amp;VPORTD.OUT&#32;:&#32;((P)&#32;==&#32;8&#32;||&#32;(P)&#32;==&#32;11&#32;||&#32;(P)&#32;==&#32;12&#32;||&#32;(P)&#32;==&#32;13)&#32;?&#32;&amp;VPORTE.OUT&#32;:&#32;&amp;VPORTF.OUT)</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00366"/>00366 <emphasis role="preprocessor">#define&#32;__digitalPinToDDRReg(P)&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00367"/>00367 <emphasis role="preprocessor">(((P)&#32;==&#32;2&#32;||&#32;(P)&#32;==&#32;7&#32;)&#32;?&#32;&amp;VPORTA.DIR&#32;:&#32;((P)&#32;==&#32;5&#32;||&#32;(P)&#32;==&#32;9&#32;||&#32;(P)&#32;==&#32;10)&#32;?&#32;&amp;VPORTB.DIR&#32;:&#32;((P)&#32;==&#32;4)&#32;?&#32;&amp;VPORTC.DIR&#32;:&#32;(((P)&#32;&gt;=&#32;14&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;17)&#32;||&#32;(P)&#32;==&#32;20&#32;||&#32;(P)&#32;==&#32;21)&#32;?&#32;&amp;VPORTD.DIR&#32;:&#32;((P)&#32;==&#32;8&#32;||&#32;(P)&#32;==&#32;11&#32;||&#32;(P)&#32;==&#32;12&#32;||&#32;(P)&#32;==&#32;13)&#32;?&#32;&amp;VPORTE.DIR&#32;:&#32;&amp;VPORTF.DIR)</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00368"/>00368 <emphasis role="preprocessor">#define&#32;__digitalPinToPINReg(P)&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00369"/>00369 <emphasis role="preprocessor">(((P)&#32;==&#32;2&#32;||&#32;(P)&#32;==&#32;7&#32;)&#32;?&#32;&amp;VPORTA.IN&#32;:&#32;((P)&#32;==&#32;5&#32;||&#32;(P)&#32;==&#32;9&#32;||&#32;(P)&#32;==&#32;10)&#32;?&#32;&amp;VPORTB.IN&#32;:&#32;((P)&#32;==&#32;4)&#32;?&#32;&amp;VPORTC.IN&#32;:&#32;(((P)&#32;&gt;=&#32;14&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;17)&#32;||&#32;(P)&#32;==&#32;20&#32;||&#32;(P)&#32;==&#32;21)&#32;?&#32;&amp;VPORTD.IN&#32;:&#32;((P)&#32;==&#32;8&#32;||&#32;(P)&#32;==&#32;11&#32;||&#32;(P)&#32;==&#32;12&#32;||&#32;(P)&#32;==&#32;13)&#32;?&#32;&amp;VPORTE.IN&#32;:&#32;&amp;VPORTF.IN)</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00370"/>00370 <emphasis role="preprocessor">#define&#32;__digitalPinToBit(P)&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00371"/>00371 <emphasis role="preprocessor">(((P)&#32;==&#32;2&#32;||&#32;(P)&#32;==&#32;9&#32;||&#32;(P)&#32;==&#32;11&#32;||&#32;(P)&#32;==&#32;17)&#32;?&#32;0&#32;:&#32;((P)&#32;==&#32;7&#32;||&#32;(P)&#32;==&#32;10&#32;||&#32;(P)&#32;==&#32;12&#32;||&#32;(P)&#32;==&#32;16)&#32;?&#32;1&#32;:&#32;((P)&#32;==&#32;5&#32;||&#32;(P)&#32;==&#32;13&#32;||&#32;(P)&#32;==&#32;15&#32;||&#32;(P)&#32;==&#32;18)&#32;?&#32;2&#32;:&#32;((P)&#32;==&#32;9&#32;||&#32;(P)&#32;==&#32;14&#32;||&#32;(P)&#32;==&#32;19)&#32;?&#32;3&#32;:&#32;((P)&#32;==&#32;6&#32;||&#32;(P)&#32;==&#32;20)&#32;?&#32;4&#32;:&#32;((P)&#32;==&#32;3&#32;||&#32;(P)&#32;==&#32;21)&#32;?&#32;5&#32;:&#32;&#32;6&#32;)</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00372"/>00372 
+<anchor xml:id="_digital_write_fast_8h_source_1l00373"/>00373 
+<anchor xml:id="_digital_write_fast_8h_source_1l00374"/>00374 <emphasis role="comment">//&#32;TinyCore</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00375"/>00375 <emphasis role="comment">//&#32;https://raw.githubusercontent.com/xukangmin/TinyCore/master/avr/package/package_tinycore_index.json</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00376"/>00376 <emphasis role="comment">//&#32;https://docs.tinycore.dev/en/latest/</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00377"/>00377 <emphasis role="preprocessor">#elif&#32;&#32;defined(__AVR_ATtiny1616__)&#32;&#32;||&#32;defined(__AVR_ATtiny3216__)&#32;||&#32;defined(__AVR_ATtiny3217__)</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00378"/>00378 <emphasis role="preprocessor">#define&#32;__digitalPinToPortReg(P)&#32;((P)&#32;&lt;=&#32;5&#32;?&#32;&amp;VPORTB.OUT&#32;:&#32;((P)&#32;&lt;=&#32;9&#32;?&#32;&amp;VPORTC.OUT&#32;:&#32;((P)&#32;&lt;=&#32;16&#32;?&#32;&amp;VPORTA.OUT&#32;:&#32;((P)&#32;&lt;=&#32;18&#32;?&#32;&amp;VPORTB.OUT&#32;:&#32;&amp;VPORTC.OUT))))</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00379"/>00379 <emphasis role="preprocessor">#define&#32;__digitalPinToDDRReg(P)&#32;((P)&#32;&lt;=&#32;5&#32;?&#32;&amp;VPORTB.DIR&#32;:&#32;((P)&#32;&lt;=&#32;9&#32;?&#32;&amp;VPORTC.DIR&#32;:&#32;((P)&#32;&lt;=&#32;16&#32;?&#32;&amp;VPORTA.DIR&#32;:&#32;((P)&#32;&lt;=&#32;18&#32;?&#32;&amp;VPORTB.DIR&#32;:&#32;&amp;VPORTC.DIR))))</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00380"/>00380 <emphasis role="preprocessor">#define&#32;__digitalPinToPINReg(P)&#32;((P)&#32;&lt;=&#32;5&#32;?&#32;&amp;VPORTB.IN&#32;:&#32;((P)&#32;&lt;=&#32;9&#32;?&#32;&amp;VPORTC.IN&#32;:&#32;((P)&#32;&lt;=&#32;16&#32;?&#32;&amp;VPORTA.IN&#32;:&#32;((P)&#32;&lt;=&#32;18&#32;?&#32;&amp;VPORTB.IN&#32;:&#32;&amp;VPORTC.IN))))</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00381"/>00381 <emphasis role="preprocessor">#define&#32;__digitalPinToBit(P)&#32;(&#32;(P)&#32;&lt;=&#32;3&#32;?&#32;(3&#32;-&#32;P)&#32;:&#32;((P)&#32;&lt;=&#32;5&#32;?&#32;(P)&#32;:&#32;((P)&#32;&lt;=&#32;9&#32;?&#32;(P&#32;-&#32;6)&#32;:&#32;((P)&#32;&lt;=&#32;16&#32;?&#32;((P)&#32;-&#32;9)&#32;:&#32;((P)&#32;&lt;=&#32;18&#32;?&#32;((P)&#32;-&#32;11)&#32;:&#32;((P)&#32;-&#32;15)))))&#32;)</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00382"/>00382 
+<anchor xml:id="_digital_write_fast_8h_source_1l00383"/>00383 
+<anchor xml:id="_digital_write_fast_8h_source_1l00384"/>00384 <emphasis role="comment">//&#32;---&#32;ATtinyX5&#32;---</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00385"/>00385 <emphasis role="preprocessor">#elif&#32;defined(__AVR_ATtiny25__)&#32;||&#32;defined(__AVR_ATtiny45__)&#32;||&#32;defined(__AVR_ATtiny85__)</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00386"/>00386 <emphasis role="comment">//&#32;we&#32;have&#32;only&#32;PORTB</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00387"/>00387 <emphasis role="preprocessor">#define&#32;__digitalPinToPortReg(P)&#32;(&amp;PORTB)</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00388"/>00388 <emphasis role="preprocessor">#define&#32;__digitalPinToDDRReg(P)&#32;&#32;(&amp;DDRB)</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00389"/>00389 <emphasis role="preprocessor">#define&#32;__digitalPinToPINReg(P)&#32;&#32;(&amp;PINB)</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00390"/>00390 <emphasis role="preprocessor">#define&#32;__digitalPinToBit(P)&#32;&#32;&#32;&#32;&#32;(((P)&#32;&lt;=&#32;7)&#32;?&#32;(P)&#32;:&#32;(((P)&#32;&gt;=&#32;8&#32;&amp;&amp;&#32;(P)&#32;&lt;=&#32;13)&#32;?&#32;(P)&#32;-&#32;8&#32;:&#32;(P)&#32;-&#32;14))</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00391"/>00391 
+<anchor xml:id="_digital_write_fast_8h_source_1l00392"/>00392 
+<anchor xml:id="_digital_write_fast_8h_source_1l00393"/>00393 <emphasis role="comment">//&#32;---&#32;ATtiny88&#32;---</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00394"/>00394 <emphasis role="preprocessor">#elif&#32;defined(__AVR_ATtiny88__)</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00395"/>00395 <emphasis role="preprocessor">#&#32;if&#32;defined(ARDUINO_AVR_DIGISPARKPRO)</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00396"/>00396 <emphasis role="preprocessor">#define&#32;__digitalPinToPortReg(P)&#32;((P)&#32;&lt;=&#32;7&#32;?&#32;&amp;PORTD&#32;:&#32;((P)&#32;&lt;=&#32;14&#32;?&#32;&amp;PORTB&#32;:&#32;((P)&#32;&lt;=&#32;18&#32;?&#32;&amp;PORTA&#32;:&#32;&amp;PORTC)))</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00397"/>00397 <emphasis role="preprocessor">#define&#32;__digitalPinToDDRReg(P)&#32;&#32;((P)&#32;&lt;=&#32;7&#32;?&#32;&amp;DDRD&#32;:&#32;((P)&#32;&lt;=&#32;14&#32;?&#32;&amp;DDRB&#32;:&#32;((P)&#32;&lt;=&#32;18&#32;?&#32;&amp;DDRA&#32;:&#32;&amp;DDRC)))</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00398"/>00398 <emphasis role="preprocessor">#define&#32;__digitalPinToPINReg(P)&#32;&#32;((P)&#32;&lt;=&#32;7&#32;?&#32;&amp;PIND&#32;:&#32;((P)&#32;&lt;=&#32;14&#32;?&#32;&amp;PINB&#32;:&#32;((P)&#32;&lt;=&#32;18&#32;?&#32;&amp;PINA&#32;:&#32;&amp;PINC)))</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00399"/>00399 <emphasis role="preprocessor">#define&#32;__digitalPinToBit(P)&#32;(&#32;(P)&#32;&lt;=&#32;7&#32;?&#32;(P)&#32;:&#32;((P)&#32;&lt;=&#32;13&#32;?&#32;((P)&#32;-&#32;8)&#32;:&#32;((P)&#32;==&#32;14&#32;?&#32;7&#32;:&#32;((P)&#32;&lt;=&#32;16&#32;?&#32;((P)&#32;-&#32;14)&#32;:&#32;((P)&#32;&lt;=&#32;18&#32;?&#32;((P)&#32;-&#32;17)&#32;:&#32;((P)&#32;==&#32;25&#32;?&#32;7&#32;:&#32;((P)&#32;-&#32;19))))))&#32;)</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00400"/>00400 <emphasis role="preprocessor">#&#32;else</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00401"/>00401 <emphasis role="preprocessor">#define&#32;__digitalPinToPortReg(P)&#32;((P)&#32;&lt;=&#32;7&#32;?&#32;&amp;PORTD&#32;:&#32;((P)&#32;&lt;=&#32;15&#32;?&#32;&amp;PORTB&#32;:&#32;((P)&#32;&lt;=&#32;22&#32;?&#32;&amp;PORTC&#32;:&#32;((P)&#32;&lt;=&#32;26&#32;?&#32;&amp;PORTA&#32;:&#32;&amp;PORTC))))</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00402"/>00402 <emphasis role="preprocessor">#define&#32;__digitalPinToDDRReg(P)&#32;((P)&#32;&lt;=&#32;7&#32;?&#32;&amp;DDRD&#32;:&#32;((P)&#32;&lt;=&#32;15&#32;?&#32;&amp;DDRB&#32;:&#32;((P)&#32;&lt;=&#32;22&#32;?&#32;&amp;DDRC&#32;:&#32;((P)&#32;&lt;=&#32;26&#32;?&#32;&amp;DDRA&#32;:&#32;&amp;DDRC))))</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00403"/>00403 <emphasis role="preprocessor">#define&#32;__digitalPinToPINReg(P)&#32;((P)&#32;&lt;=&#32;7&#32;?&#32;&amp;PIND&#32;:&#32;((P)&#32;&lt;=&#32;15&#32;?&#32;&amp;PINB&#32;:&#32;((P)&#32;&lt;=&#32;22&#32;?&#32;&amp;PINC&#32;:&#32;((P)&#32;&lt;=&#32;26&#32;?&#32;&amp;PINA&#32;:&#32;&amp;PINC))))</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00404"/>00404 <emphasis role="preprocessor">#define&#32;__digitalPinToBit(P)&#32;((P)&#32;&lt;=&#32;15&#32;?&#32;((P)&#32;&amp;&#32;0x7)&#32;:&#32;((P)&#32;==&#32;16&#32;?&#32;(7)&#32;:&#32;((P)&#32;&lt;=&#32;22&#32;?&#32;((P)&#32;-&#32;17)&#32;:&#32;((P)&#32;==&#32;27&#32;?&#32;(6)&#32;:&#32;((P)&#32;-&#32;23)))))</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00405"/>00405 <emphasis role="preprocessor">#&#32;endif</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00406"/>00406 
+<anchor xml:id="_digital_write_fast_8h_source_1l00407"/>00407 
+<anchor xml:id="_digital_write_fast_8h_source_1l00408"/>00408 <emphasis role="comment">//&#32;---&#32;ATtinyX4&#32;+&#32;ATtinyX7&#32;---</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00409"/>00409 <emphasis role="preprocessor">#elif&#32;&#32;defined(__AVR_ATtiny24__)&#32;||&#32;defined(__AVR_ATtiny44__)&#32;||&#32;defined(__AVR_ATtiny84__)&#32;||&#32;defined(__AVR_ATtiny87__)&#32;||&#32;defined(__AVR_ATtiny167__)</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00410"/>00410 <emphasis role="preprocessor">#&#32;if&#32;defined(ARDUINO_AVR_DIGISPARKPRO)&#32;||&#32;PIN_PA7&#32;==&#32;5</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00411"/>00411 <emphasis role="comment">//&#32;Strange&#32;enumeration&#32;of&#32;pins&#32;on&#32;Digispark&#32;board&#32;and&#32;core&#32;library</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00412"/>00412 <emphasis role="preprocessor">#define&#32;__digitalPinToPortReg(P)&#32;(((P)&#32;&lt;=&#32;4)&#32;?&#32;&amp;PORTB&#32;:&#32;&amp;PORTA)</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00413"/>00413 <emphasis role="preprocessor">#define&#32;__digitalPinToDDRReg(P)&#32;&#32;(((P)&#32;&lt;=&#32;4)&#32;?&#32;&amp;DDRB&#32;:&#32;&amp;DDRA)</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00414"/>00414 <emphasis role="preprocessor">#define&#32;__digitalPinToPINReg(P)&#32;&#32;(((P)&#32;&lt;=&#32;4)&#32;?&#32;&amp;PINB&#32;:&#32;&amp;PINA)</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00415"/>00415 <emphasis role="preprocessor">#define&#32;__digitalPinToBit(P)&#32;&#32;&#32;&#32;&#32;(((P)&#32;&lt;=&#32;2)&#32;?&#32;(P)&#32;:&#32;(((P)&#32;==&#32;3)&#32;?&#32;6&#32;:&#32;(((P)&#32;==&#32;4)&#32;?&#32;3&#32;:&#32;(((P)&#32;==&#32;5)&#32;?&#32;7&#32;:&#32;(P)&#32;-&#32;6&#32;))))</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00416"/>00416 <emphasis role="preprocessor">#&#32;else</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00417"/>00417 <emphasis role="comment">//&#32;ATtinyX4:&#32;PORTA&#32;for&#32;0&#32;to&#32;7,&#32;PORTB&#32;for&#32;8&#32;to&#32;11</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00418"/>00418 <emphasis role="comment">//&#32;ATtinyX7:&#32;PORTA&#32;for&#32;0&#32;to&#32;7,&#32;PORTB&#32;for&#32;8&#32;to&#32;15</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00419"/>00419 <emphasis role="preprocessor">#define&#32;__digitalPinToPortReg(P)&#32;(((P)&#32;&lt;=&#32;7)&#32;?&#32;&amp;PORTA&#32;:&#32;&amp;PORTB)</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00420"/>00420 <emphasis role="preprocessor">#define&#32;__digitalPinToDDRReg(P)&#32;&#32;(((P)&#32;&lt;=&#32;7)&#32;?&#32;&amp;DDRA&#32;:&#32;&amp;DDRB)</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00421"/>00421 <emphasis role="preprocessor">#define&#32;__digitalPinToPINReg(P)&#32;&#32;(((P)&#32;&lt;=&#32;7)&#32;?&#32;&amp;PINA&#32;:&#32;&amp;PINB)</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00422"/>00422 <emphasis role="preprocessor">#define&#32;__digitalPinToBit(P)&#32;&#32;&#32;&#32;&#32;(((P)&#32;&lt;=&#32;7)&#32;?&#32;(P)&#32;:&#32;(P)&#32;-&#32;8&#32;)</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00423"/>00423 <emphasis role="preprocessor">#&#32;endif</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00424"/>00424 
+<anchor xml:id="_digital_write_fast_8h_source_1l00425"/>00425 <emphasis role="comment">//&#32;---&#32;Other&#32;---</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00426"/>00426 <emphasis role="preprocessor">#else</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00427"/>00427 
+<anchor xml:id="_digital_write_fast_8h_source_1l00428"/><link linkend="_digital_write_fast_8h_1a2cade698267beb86ccaa38c14d35ab0f">00428</link> <emphasis role="preprocessor">#define&#32;I2C_SDA_PIN&#32;&#32;&#32;&#32;&#32;SDA</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00429"/><link linkend="_digital_write_fast_8h_1a0e4e08bab2fb484136d18b067bef372c">00429</link> <emphasis role="preprocessor">#define&#32;I2C_SCL_PIN&#32;&#32;&#32;&#32;&#32;SCL</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00430"/>00430 
+<anchor xml:id="_digital_write_fast_8h_source_1l00431"/><link linkend="_digital_write_fast_8h_1aa48cf672323b7a1784a973d1a4fd891e">00431</link> <emphasis role="preprocessor">#define&#32;SPI_HW_SS_PIN&#32;&#32;&#32;SS</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00432"/><link linkend="_digital_write_fast_8h_1abde5a3df1fb9cf0e46476ea7ac10b48a">00432</link> <emphasis role="preprocessor">#define&#32;SPI_HW_MOSI_PIN&#32;MOSI</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00433"/><link linkend="_digital_write_fast_8h_1a32f0a77e5800213b4d059bb700302d42">00433</link> <emphasis role="preprocessor">#define&#32;SPI_HW_MISO_PIN&#32;MISO</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00434"/><link linkend="_digital_write_fast_8h_1ac26ddd8cd6a7cd10b23f08ea6e8f7032">00434</link> <emphasis role="preprocessor">#define&#32;SPI_HW_SCK_PIN&#32;&#32;SCK</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00435"/>00435 
+<anchor xml:id="_digital_write_fast_8h_source_1l00436"/>00436 
+<anchor xml:id="_digital_write_fast_8h_source_1l00437"/>00437 <emphasis role="preprocessor">#endif</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00438"/>00438 <emphasis role="comment">//#endif&#32;&#32;//#ifndef&#32;digitalPinToPortReg</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00439"/>00439 
+<anchor xml:id="_digital_write_fast_8h_source_1l00440"/>00440 
+<anchor xml:id="_digital_write_fast_8h_source_1l00441"/>00441 <emphasis role="preprocessor">#ifndef&#32;digitalWriteFast</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00442"/>00442 <emphasis role="preprocessor">#if&#32;(defined(__AVR__)&#32;||&#32;defined(ARDUINO_ARCH_AVR))&#32;&amp;&amp;&#32;defined(__digitalPinToPortReg)</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00443"/>00443 <emphasis role="preprocessor">#define&#32;digitalWriteFast(P,&#32;V)&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00444"/>00444 <emphasis role="preprocessor">if&#32;(__builtin_constant_p(P))&#32;{&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00445"/>00445 <emphasis role="preprocessor">&#32;&#32;BIT_WRITE(*__digitalPinToPortReg(P),&#32;__digitalPinToBit(P),&#32;(V));&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00446"/>00446 <emphasis role="preprocessor">}&#32;else&#32;{&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00447"/>00447 <emphasis role="preprocessor">&#32;&#32;digitalWrite((P),&#32;(V));&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00448"/>00448 <emphasis role="preprocessor">}</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00449"/>00449 <emphasis role="preprocessor">#else</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00450"/><link linkend="_digital_write_fast_8h_1a9bef074dfc5a83ffbb27929185ef9597">00450</link> <emphasis role="preprocessor">#define&#32;digitalWriteFast&#32;digitalWrite</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00451"/>00451 <emphasis role="preprocessor">#endif</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00452"/>00452 <emphasis role="preprocessor">#endif</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00453"/>00453 
+<anchor xml:id="_digital_write_fast_8h_source_1l00454"/>00454 
+<anchor xml:id="_digital_write_fast_8h_source_1l00455"/>00455 <emphasis role="preprocessor">#ifndef&#32;pinModeFast</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00456"/>00456 <emphasis role="preprocessor">#if&#32;(defined(__AVR__)&#32;||&#32;defined(ARDUINO_ARCH_AVR))&#32;&amp;&amp;&#32;defined(__digitalPinToPortReg)</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00457"/>00457 <emphasis role="preprocessor">#define&#32;pinModeFast(P,&#32;V)&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00458"/>00458 <emphasis role="preprocessor">if&#32;(__builtin_constant_p(P)&#32;&amp;&amp;&#32;__builtin_constant_p(V))&#32;{&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00459"/>00459 <emphasis role="preprocessor">&#32;&#32;if&#32;(V&#32;==&#32;INPUT_PULLUP)&#32;{\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00460"/>00460 <emphasis role="preprocessor">&#32;&#32;&#32;&#32;BIT_CLEAR(*__digitalPinToDDRReg(P),&#32;__digitalPinToBit(P));&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00461"/>00461 <emphasis role="preprocessor">&#32;&#32;&#32;&#32;BIT_SET(*__digitalPinToPortReg(P),&#32;__digitalPinToBit(P));&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00462"/>00462 <emphasis role="preprocessor">&#32;&#32;}&#32;else&#32;{&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00463"/>00463 <emphasis role="preprocessor">&#32;&#32;&#32;&#32;BIT_WRITE(*__digitalPinToDDRReg(P),&#32;__digitalPinToBit(P),&#32;(V));&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00464"/>00464 <emphasis role="preprocessor">&#32;&#32;}&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00465"/>00465 <emphasis role="preprocessor">}&#32;else&#32;{&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00466"/>00466 <emphasis role="preprocessor">&#32;&#32;pinMode((P),&#32;(V));&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00467"/>00467 <emphasis role="preprocessor">}</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00468"/>00468 <emphasis role="preprocessor">#else</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00469"/><link linkend="_digital_write_fast_8h_1a99fa3e1d72f2f1a9ffba996b06767a39">00469</link> <emphasis role="preprocessor">#define&#32;pinModeFast&#32;pinMode</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00470"/>00470 <emphasis role="preprocessor">#endif</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00471"/>00471 <emphasis role="preprocessor">#endif</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00472"/>00472 
+<anchor xml:id="_digital_write_fast_8h_source_1l00473"/>00473 
+<anchor xml:id="_digital_write_fast_8h_source_1l00474"/>00474 <emphasis role="preprocessor">#ifndef&#32;digitalReadFast</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00475"/>00475 <emphasis role="preprocessor">#if&#32;(defined(__AVR__)&#32;||&#32;defined(ARDUINO_ARCH_AVR))</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00476"/>00476 <emphasis role="preprocessor">#define&#32;digitalReadFast(P)&#32;(&#32;(int)&#32;__digitalReadFast((P))&#32;)</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00477"/>00477 <emphasis role="preprocessor">#define&#32;__digitalReadFast(P&#32;)&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00478"/>00478 <emphasis role="preprocessor">&#32;&#32;(__builtin_constant_p(P)&#32;)&#32;?&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00479"/>00479 <emphasis role="preprocessor">&#32;&#32;((&#32;BIT_READ(*__digitalPinToPINReg(P),&#32;__digitalPinToBit(P)))&#32;?&#32;HIGH:LOW&#32;)&#32;:&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00480"/>00480 <emphasis role="preprocessor">&#32;&#32;digitalRead((P))</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00481"/>00481 <emphasis role="preprocessor">#else</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00482"/><link linkend="_digital_write_fast_8h_1a3d35ce09bbea79b9f4e9fb0c291da92c">00482</link> <emphasis role="preprocessor">#define&#32;digitalReadFast&#32;digitalRead</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00483"/>00483 <emphasis role="preprocessor">#endif</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00484"/>00484 <emphasis role="preprocessor">#endif</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00485"/>00485 
+<anchor xml:id="_digital_write_fast_8h_source_1l00486"/>00486 
+<anchor xml:id="_digital_write_fast_8h_source_1l00487"/>00487 <emphasis role="preprocessor">#ifndef&#32;digitalToggleFast</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00488"/>00488 <emphasis role="preprocessor">#if&#32;(defined(__AVR__)&#32;||&#32;defined(ARDUINO_ARCH_AVR))</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00489"/>00489 <emphasis role="preprocessor">#define&#32;digitalToggleFast(P)&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00490"/>00490 <emphasis role="preprocessor">if&#32;(__builtin_constant_p(P))&#32;{&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00491"/>00491 <emphasis role="preprocessor">&#32;&#32;BIT_SET(*__digitalPinToPINReg(P),&#32;__digitalPinToBit(P));&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00492"/>00492 <emphasis role="preprocessor">}&#32;else&#32;{&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00493"/>00493 <emphasis role="preprocessor">&#32;&#32;digitalWrite(P,&#32;!&#32;digitalRead(P));&#32;\</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00494"/>00494 <emphasis role="preprocessor">}</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00495"/>00495 <emphasis role="preprocessor">#else</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00496"/><link linkend="_digital_write_fast_8h_1a37533a4829c5931c2ea20fe4282bb910">00496</link> <emphasis role="preprocessor">#define&#32;digitalToggleFast(P)&#32;digitalWrite(P,&#32;!&#32;digitalRead(P))</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00497"/>00497 <emphasis role="preprocessor">#endif</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00498"/>00498 <emphasis role="preprocessor">#endif</emphasis>
+<anchor xml:id="_digital_write_fast_8h_source_1l00499"/>00499 
+<anchor xml:id="_digital_write_fast_8h_source_1l00500"/>00500 
+<anchor xml:id="_digital_write_fast_8h_source_1l00501"/>00501 <emphasis role="preprocessor">#endif&#32;</emphasis><emphasis role="comment">//__digitalWriteFast_h_</emphasis>
+</programlisting></section>

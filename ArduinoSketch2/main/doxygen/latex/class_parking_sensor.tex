@@ -1,0 +1,152 @@
+\hypertarget{class_parking_sensor}{}\doxysection{Parking\+Sensor Class Reference}
+\label{class_parking_sensor}\index{ParkingSensor@{ParkingSensor}}
+
+
+Smart Parking Sensor.  
+
+
+
+
+{\ttfamily \#include $<$Parking\+Sensor.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_parking_sensor_a5f59f713e82968fdb71c9956a3c37f8e}{Parking\+Sensor}} ()
+\item 
+\mbox{\hyperlink{class_parking_sensor_a77486ddcba156d5a8768047574963ec4}{$\sim$\+Parking\+Sensor}} ()
+\item 
+\mbox{\hyperlink{class_parking_sensor_a50f7d8db46e89b0a84b10f434fed4ded}{Parking\+Sensor}} (unsigned short int, unsigned short int, unsigned short int)
+\item 
+\mbox{\hyperlink{class_parking_sensor_a1fc5c87cd15800606eda0accc8d2b225}{Parking\+Sensor}} (const \mbox{\hyperlink{class_parking_sensor}{Parking\+Sensor}} \&s)
+\item 
+int \mbox{\hyperlink{class_parking_sensor_afe9352318215cf3ca634bbd9629eb65b}{get\+Distance\+To\+Object}} ()
+\item 
+long \mbox{\hyperlink{class_parking_sensor_a54f438a973ae30d67dbf1786f9794982}{get\+Wave\+Comeback\+Time}} ()
+\item 
+void \mbox{\hyperlink{class_parking_sensor_a4c630df384e9be608ce86ca5aabef07a}{serial\+Print\+Distance}} ()
+\item 
+\mbox{\Hypertarget{class_parking_sensor_a81edd2f2b878d51a0a27c046b1ffc409}\label{class_parking_sensor_a81edd2f2b878d51a0a27c046b1ffc409}} 
+unsigned short int {\bfseries get\+Trig\+Pin} ()
+\item 
+\mbox{\Hypertarget{class_parking_sensor_ae28e23f81f22d8e462d9fce8cd92a18e}\label{class_parking_sensor_ae28e23f81f22d8e462d9fce8cd92a18e}} 
+unsigned short int {\bfseries get\+Echo\+Pin} ()
+\item 
+\mbox{\Hypertarget{class_parking_sensor_adf87bce85f37a86bce44bc322d6fe02a}\label{class_parking_sensor_adf87bce85f37a86bce44bc322d6fe02a}} 
+void {\bfseries set\+Trig\+Pin} (unsigned short int)
+\item 
+\mbox{\Hypertarget{class_parking_sensor_a149ddf442a430e87a079939efa4a740f}\label{class_parking_sensor_a149ddf442a430e87a079939efa4a740f}} 
+void {\bfseries set\+Echo\+Pin} (unsigned short int)
+\item 
+void \mbox{\hyperlink{class_parking_sensor_a6fb5861e5a5e2918db5810fb396c97f6}{Task}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Buzzer $\ast$ \mbox{\hyperlink{class_parking_sensor_abf68f673f81bc141d9fe4de5e7183a61}{buzzer}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Smart Parking Sensor. 
+
+This class is used for implementing the Smart Parking Sensor
+
+The parking sensor consists of\+:
+\begin{DoxyItemize}
+\item one ultrasonic sensor (used for measuring distance to objects)
+\item one piezo buzzer (used to alert us when we are too close to an object) 
+\end{DoxyItemize}
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_parking_sensor_a5f59f713e82968fdb71c9956a3c37f8e}\label{class_parking_sensor_a5f59f713e82968fdb71c9956a3c37f8e}} 
+\index{ParkingSensor@{ParkingSensor}!ParkingSensor@{ParkingSensor}}
+\index{ParkingSensor@{ParkingSensor}!ParkingSensor@{ParkingSensor}}
+\doxysubsubsection{\texorpdfstring{ParkingSensor()}{ParkingSensor()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily Parking\+Sensor\+::\+Parking\+Sensor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Default constructor (Basic Init) \mbox{\Hypertarget{class_parking_sensor_a77486ddcba156d5a8768047574963ec4}\label{class_parking_sensor_a77486ddcba156d5a8768047574963ec4}} 
+\index{ParkingSensor@{ParkingSensor}!````~ParkingSensor@{$\sim$ParkingSensor}}
+\index{````~ParkingSensor@{$\sim$ParkingSensor}!ParkingSensor@{ParkingSensor}}
+\doxysubsubsection{\texorpdfstring{$\sim$ParkingSensor()}{~ParkingSensor()}}
+{\footnotesize\ttfamily Parking\+Sensor\+::$\sim$\+Parking\+Sensor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Default destructor (Empty) \mbox{\Hypertarget{class_parking_sensor_a50f7d8db46e89b0a84b10f434fed4ded}\label{class_parking_sensor_a50f7d8db46e89b0a84b10f434fed4ded}} 
+\index{ParkingSensor@{ParkingSensor}!ParkingSensor@{ParkingSensor}}
+\index{ParkingSensor@{ParkingSensor}!ParkingSensor@{ParkingSensor}}
+\doxysubsubsection{\texorpdfstring{ParkingSensor()}{ParkingSensor()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily Parking\+Sensor\+::\+Parking\+Sensor (\begin{DoxyParamCaption}\item[{unsigned short int}]{trig\+Pin\+\_\+arg,  }\item[{unsigned short int}]{echo\+Pin\+\_\+arg,  }\item[{unsigned short int}]{buzzer\+Pin\+\_\+arg }\end{DoxyParamCaption})}
+
+Custom constructor used for initializing a new \mbox{\hyperlink{class_parking_sensor}{Parking\+Sensor}}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em trig\+Pin\+\_\+arg} & Trigger\+Pin \\
+\hline
+\mbox{\texttt{ in}}  & {\em echo\+Pin\+\_\+arg} & Echo\+Pin \\
+\hline
+\mbox{\texttt{ in}}  & {\em tag\+\_\+arg} & \mbox{\hyperlink{class_parking_sensor}{Parking\+Sensor}}\textquotesingle{}s tag \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_parking_sensor_a1fc5c87cd15800606eda0accc8d2b225}\label{class_parking_sensor_a1fc5c87cd15800606eda0accc8d2b225}} 
+\index{ParkingSensor@{ParkingSensor}!ParkingSensor@{ParkingSensor}}
+\index{ParkingSensor@{ParkingSensor}!ParkingSensor@{ParkingSensor}}
+\doxysubsubsection{\texorpdfstring{ParkingSensor()}{ParkingSensor()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily Parking\+Sensor\+::\+Parking\+Sensor (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_parking_sensor}{Parking\+Sensor}} \&}]{s }\end{DoxyParamCaption})}
+
+Copy constructor (NOT USED) 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_parking_sensor_afe9352318215cf3ca634bbd9629eb65b}\label{class_parking_sensor_afe9352318215cf3ca634bbd9629eb65b}} 
+\index{ParkingSensor@{ParkingSensor}!getDistanceToObject@{getDistanceToObject}}
+\index{getDistanceToObject@{getDistanceToObject}!ParkingSensor@{ParkingSensor}}
+\doxysubsubsection{\texorpdfstring{getDistanceToObject()}{getDistanceToObject()}}
+{\footnotesize\ttfamily int Parking\+Sensor\+::get\+Distance\+To\+Object (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Measures distance (in cm) to object based on ultrasound comeback time, using the following formula\+: Distance = (Time $\ast$ Speed) / 2
+
+\begin{DoxyReturn}{Returns}
+Distance in cm to object 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_parking_sensor_a54f438a973ae30d67dbf1786f9794982}\label{class_parking_sensor_a54f438a973ae30d67dbf1786f9794982}} 
+\index{ParkingSensor@{ParkingSensor}!getWaveComebackTime@{getWaveComebackTime}}
+\index{getWaveComebackTime@{getWaveComebackTime}!ParkingSensor@{ParkingSensor}}
+\doxysubsubsection{\texorpdfstring{getWaveComebackTime()}{getWaveComebackTime()}}
+{\footnotesize\ttfamily long Parking\+Sensor\+::get\+Wave\+Comeback\+Time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+This function sends an ultrasound through trig\+Pin and receives it back in echo\+Pin from where we get the wave travel time with pulse\+In() method
+
+\begin{DoxyReturn}{Returns}
+Sound wave travel time 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_parking_sensor_a4c630df384e9be608ce86ca5aabef07a}\label{class_parking_sensor_a4c630df384e9be608ce86ca5aabef07a}} 
+\index{ParkingSensor@{ParkingSensor}!serialPrintDistance@{serialPrintDistance}}
+\index{serialPrintDistance@{serialPrintDistance}!ParkingSensor@{ParkingSensor}}
+\doxysubsubsection{\texorpdfstring{serialPrintDistance()}{serialPrintDistance()}}
+{\footnotesize\ttfamily void Parking\+Sensor\+::serial\+Print\+Distance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Prints distance to object measured by \mbox{\hyperlink{class_parking_sensor}{Parking\+Sensor}} to Serial COM
+
+(!!!\+USED FOR SINGLE \mbox{\hyperlink{class_parking_sensor}{Parking\+Sensor}} TESTING!!!) \mbox{\Hypertarget{class_parking_sensor_a6fb5861e5a5e2918db5810fb396c97f6}\label{class_parking_sensor_a6fb5861e5a5e2918db5810fb396c97f6}} 
+\index{ParkingSensor@{ParkingSensor}!Task@{Task}}
+\index{Task@{Task}!ParkingSensor@{ParkingSensor}}
+\doxysubsubsection{\texorpdfstring{Task()}{Task()}}
+{\footnotesize\ttfamily void Parking\+Sensor\+::\+Task (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\hyperlink{class_parking_sensor}{Parking\+Sensor}}\textquotesingle{}s Task
+
+This function is used to Check distance to object for each stage and call Buzzer\textquotesingle{}s Task to react to it. 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_parking_sensor_abf68f673f81bc141d9fe4de5e7183a61}\label{class_parking_sensor_abf68f673f81bc141d9fe4de5e7183a61}} 
+\index{ParkingSensor@{ParkingSensor}!buzzer@{buzzer}}
+\index{buzzer@{buzzer}!ParkingSensor@{ParkingSensor}}
+\doxysubsubsection{\texorpdfstring{buzzer}{buzzer}}
+{\footnotesize\ttfamily Buzzer$\ast$ Parking\+Sensor\+::buzzer}
+
+Buzzer associated with this \mbox{\hyperlink{class_parking_sensor}{Parking\+Sensor}} 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Modules/\+Sensors/\+Parking\+Sensor/Parking\+Sensor.\+h\item 
+Modules/\+Sensors/\+Parking\+Sensor/Parking\+Sensor.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,293 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_union_long_union" xml:lang="en-US">
+<title>LongUnion Union Reference</title>
+<indexterm><primary>LongUnion</primary></indexterm>
+<para>
+<computeroutput>#include &lt;LongUnion.h&gt;</computeroutput>
+</para>
+Collaboration diagram for LongUnion:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="union_long_union__coll__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Public Attributes    </title>
+        <itemizedlist>
+            <listitem><para>struct {</para>
+        <itemizedlist>
+            <listitem><para>   uint8_t <link linkend="_union_long_union_1aa41368107679917a1c39f30999f4e9d9">LowByte</link></para>
+</listitem>
+            <listitem><para>   uint8_t <link linkend="_union_long_union_1aeed69e051ef3c5c3d03e0efa260226b1">MidLowByte</link></para>
+</listitem>
+            <listitem><para>   uint8_t <link linkend="_union_long_union_1aba027b17010803cf910996cae9201f32">MidHighByte</link></para>
+</listitem>
+            <listitem><para>   uint8_t <link linkend="_union_long_union_1a67e1514b7a6ccc4d017eb6928c327e5c">HighByte</link></para>
+</listitem>
+        </itemizedlist>
+</listitem>
+            <listitem><para>} <link linkend="_union_long_union_1a1dfe8893e7015a65e9482671c15a099f">UByte</link></para>
+</listitem>
+            <listitem><para>struct {</para>
+        <itemizedlist>
+            <listitem><para>   int8_t <link linkend="_union_long_union_1a953d8a796924426954a56a4a324e35b6">LowByte</link></para>
+</listitem>
+            <listitem><para>   int8_t <link linkend="_union_long_union_1abbb97b234b56a9fc85e675baef650eb2">MidLowByte</link></para>
+</listitem>
+            <listitem><para>   int8_t <link linkend="_union_long_union_1a5404235118006061ae33de167803c70a">MidHighByte</link></para>
+</listitem>
+            <listitem><para>   int8_t <link linkend="_union_long_union_1a9c076778ee637e06ea2ccec3ee6703ec">HighByte</link></para>
+</listitem>
+        </itemizedlist>
+</listitem>
+            <listitem><para>} <link linkend="_union_long_union_1a1c2dae40c6f3cc0a71a7625c71417f21">Byte</link></para>
+</listitem>
+            <listitem><para>struct {</para>
+        <itemizedlist>
+            <listitem><para>   uint8_t <link linkend="_union_long_union_1aa41368107679917a1c39f30999f4e9d9">LowByte</link></para>
+</listitem>
+            <listitem><para>   <link linkend="_union_word_union">WordUnion</link> <link linkend="_union_long_union_1aa4ca6414a8a8f155b113c02995fa2887">MidWord</link></para>
+</listitem>
+            <listitem><para>   uint8_t <link linkend="_union_long_union_1a67e1514b7a6ccc4d017eb6928c327e5c">HighByte</link></para>
+</listitem>
+        </itemizedlist>
+</listitem>
+            <listitem><para>} <link linkend="_union_long_union_1a01dc27d7394fa94bb24a9c0a1e3bf925">ByteWord</link></para>
+</listitem>
+            <listitem><para>struct {</para>
+        <itemizedlist>
+            <listitem><para>   int16_t <link linkend="_union_long_union_1a9c0af1e73f44cf26341485cdac332bd2">LowWord</link></para>
+</listitem>
+            <listitem><para>   int16_t <link linkend="_union_long_union_1a2b12288fe56e397d39ba9085fca70616">HighWord</link></para>
+</listitem>
+        </itemizedlist>
+</listitem>
+            <listitem><para>} <link linkend="_union_long_union_1a38025526d128638a496c4c9f0a9182d0">Word</link></para>
+</listitem>
+            <listitem><para>struct {</para>
+        <itemizedlist>
+            <listitem><para>   <link linkend="_union_word_union">WordUnion</link> <link linkend="_union_long_union_1a45adb668aa3c266c1caa869b64f5110f">LowWord</link></para>
+</listitem>
+            <listitem><para>   <link linkend="_union_word_union">WordUnion</link> <link linkend="_union_long_union_1a5595650293a30be4a2aa52013b953d88">HighWord</link></para>
+</listitem>
+        </itemizedlist>
+</listitem>
+            <listitem><para>} <link linkend="_union_long_union_1a8956cd66850e78483c6bce6056df63c3">WordUnion</link></para>
+</listitem>
+            <listitem><para>struct {</para>
+        <itemizedlist>
+            <listitem><para>   uint16_t <link linkend="_union_long_union_1a05f946f8845eb4dda0407470d34854e2">LowWord</link></para>
+</listitem>
+            <listitem><para>   uint16_t <link linkend="_union_long_union_1afd26d7d3a11130649129850162a7eb39">HighWord</link></para>
+</listitem>
+        </itemizedlist>
+</listitem>
+            <listitem><para>} <link linkend="_union_long_union_1a68a0c249634ca250ca5fdb31a06cbb18">UWord</link></para>
+</listitem>
+            <listitem><para>uint8_t <link linkend="_union_long_union_1a683822101c9e06c7cec0dde475d23ad3">UBytes</link> [4]</para>
+</listitem>
+            <listitem><para>int8_t <link linkend="_union_long_union_1a8c5178886b7c046da66506d996ee6587">Bytes</link> [4]</para>
+</listitem>
+            <listitem><para>uint16_t <link linkend="_union_long_union_1a96deff8963ef4155f33a26390f8f0a4b">UWords</link> [2]</para>
+</listitem>
+            <listitem><para>int16_t <link linkend="_union_long_union_1a67e933c7563c43956226e5db844984d5">Words</link> [2]</para>
+</listitem>
+            <listitem><para>uint32_t <link linkend="_union_long_union_1aaf8815ca810b2d8386b5912f127586a7">ULong</link></para>
+</listitem>
+            <listitem><para>int32_t <link linkend="_union_long_union_1a987b9b0499e30d1ba84f33e38d4cb034">Long</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>Union to specify parts / manifestations of a 32 bit Long without casts and shifts. It also supports the compiler generating small code. </para>
+<para>
+Definition at line <link linkend="__long_union_8h_source_1l00054">54</link> of file <link linkend="__long_union_8h_source">LongUnion.h</link>.</para>
+</section>
+<section>
+<title>Member Data Documentation</title>
+<anchor xml:id="_union_long_union_1a1c2dae40c6f3cc0a71a7625c71417f21"/><section>
+    <title></title>
+<indexterm><primary>Byte</primary><secondary>LongUnion</secondary></indexterm>
+<indexterm><primary>LongUnion</primary><secondary>Byte</secondary></indexterm>
+<para><computeroutput>struct  { ... }  LongUnion::Byte</computeroutput></para></section>
+<anchor xml:id="_union_long_union_1a8c5178886b7c046da66506d996ee6587"/><section>
+    <title>Bytes</title>
+<indexterm><primary>Bytes</primary><secondary>LongUnion</secondary></indexterm>
+<indexterm><primary>LongUnion</primary><secondary>Bytes</secondary></indexterm>
+<para><computeroutput>int8_t LongUnion::Bytes[4]</computeroutput></para><para>
+Definition at line <link linkend="__long_union_8h_source_1l00085">85</link> of file <link linkend="__long_union_8h_source">LongUnion.h</link>.</para>
+</section>
+<anchor xml:id="_union_long_union_1a01dc27d7394fa94bb24a9c0a1e3bf925"/><section>
+    <title></title>
+<indexterm><primary>ByteWord</primary><secondary>LongUnion</secondary></indexterm>
+<indexterm><primary>LongUnion</primary><secondary>ByteWord</secondary></indexterm>
+<para><computeroutput>struct  { ... }  LongUnion::ByteWord</computeroutput></para></section>
+<anchor xml:id="_union_long_union_1a67e1514b7a6ccc4d017eb6928c327e5c"/><section>
+    <title>HighByte<computeroutput>[1/2]</computeroutput></title>
+<indexterm><primary>HighByte</primary><secondary>LongUnion</secondary></indexterm>
+<indexterm><primary>LongUnion</primary><secondary>HighByte</secondary></indexterm>
+<para><computeroutput>uint8_t LongUnion::HighByte</computeroutput></para><para>
+Definition at line <link linkend="__long_union_8h_source_1l00059">59</link> of file <link linkend="__long_union_8h_source">LongUnion.h</link>.</para>
+</section>
+<anchor xml:id="_union_long_union_1a9c076778ee637e06ea2ccec3ee6703ec"/><section>
+    <title>HighByte<computeroutput>[2/2]</computeroutput></title>
+<indexterm><primary>HighByte</primary><secondary>LongUnion</secondary></indexterm>
+<indexterm><primary>LongUnion</primary><secondary>HighByte</secondary></indexterm>
+<para><computeroutput>int8_t LongUnion::HighByte</computeroutput></para><para>
+Definition at line <link linkend="__long_union_8h_source_1l00065">65</link> of file <link linkend="__long_union_8h_source">LongUnion.h</link>.</para>
+</section>
+<anchor xml:id="_union_long_union_1a2b12288fe56e397d39ba9085fca70616"/><section>
+    <title>HighWord<computeroutput>[1/3]</computeroutput></title>
+<indexterm><primary>HighWord</primary><secondary>LongUnion</secondary></indexterm>
+<indexterm><primary>LongUnion</primary><secondary>HighWord</secondary></indexterm>
+<para><computeroutput>int16_t LongUnion::HighWord</computeroutput></para><para>
+Definition at line <link linkend="__long_union_8h_source_1l00074">74</link> of file <link linkend="__long_union_8h_source">LongUnion.h</link>.</para>
+</section>
+<anchor xml:id="_union_long_union_1a5595650293a30be4a2aa52013b953d88"/><section>
+    <title>HighWord<computeroutput>[2/3]</computeroutput></title>
+<indexterm><primary>HighWord</primary><secondary>LongUnion</secondary></indexterm>
+<indexterm><primary>LongUnion</primary><secondary>HighWord</secondary></indexterm>
+<para><computeroutput><link linkend="_union_word_union">WordUnion</link> LongUnion::HighWord</computeroutput></para><para>
+Definition at line <link linkend="__long_union_8h_source_1l00078">78</link> of file <link linkend="__long_union_8h_source">LongUnion.h</link>.</para>
+</section>
+<anchor xml:id="_union_long_union_1afd26d7d3a11130649129850162a7eb39"/><section>
+    <title>HighWord<computeroutput>[3/3]</computeroutput></title>
+<indexterm><primary>HighWord</primary><secondary>LongUnion</secondary></indexterm>
+<indexterm><primary>LongUnion</primary><secondary>HighWord</secondary></indexterm>
+<para><computeroutput>uint16_t LongUnion::HighWord</computeroutput></para><para>
+Definition at line <link linkend="__long_union_8h_source_1l00082">82</link> of file <link linkend="__long_union_8h_source">LongUnion.h</link>.</para>
+</section>
+<anchor xml:id="_union_long_union_1a987b9b0499e30d1ba84f33e38d4cb034"/><section>
+    <title>Long</title>
+<indexterm><primary>Long</primary><secondary>LongUnion</secondary></indexterm>
+<indexterm><primary>LongUnion</primary><secondary>Long</secondary></indexterm>
+<para><computeroutput>int32_t LongUnion::Long</computeroutput></para><para>
+Definition at line <link linkend="__long_union_8h_source_1l00089">89</link> of file <link linkend="__long_union_8h_source">LongUnion.h</link>.</para>
+</section>
+<anchor xml:id="_union_long_union_1aa41368107679917a1c39f30999f4e9d9"/><section>
+    <title>LowByte<computeroutput>[1/2]</computeroutput></title>
+<indexterm><primary>LowByte</primary><secondary>LongUnion</secondary></indexterm>
+<indexterm><primary>LongUnion</primary><secondary>LowByte</secondary></indexterm>
+<para><computeroutput>uint8_t LongUnion::LowByte</computeroutput></para><para>
+Definition at line <link linkend="__long_union_8h_source_1l00056">56</link> of file <link linkend="__long_union_8h_source">LongUnion.h</link>.</para>
+</section>
+<anchor xml:id="_union_long_union_1a953d8a796924426954a56a4a324e35b6"/><section>
+    <title>LowByte<computeroutput>[2/2]</computeroutput></title>
+<indexterm><primary>LowByte</primary><secondary>LongUnion</secondary></indexterm>
+<indexterm><primary>LongUnion</primary><secondary>LowByte</secondary></indexterm>
+<para><computeroutput>int8_t LongUnion::LowByte</computeroutput></para><para>
+Definition at line <link linkend="__long_union_8h_source_1l00062">62</link> of file <link linkend="__long_union_8h_source">LongUnion.h</link>.</para>
+</section>
+<anchor xml:id="_union_long_union_1a9c0af1e73f44cf26341485cdac332bd2"/><section>
+    <title>LowWord<computeroutput>[1/3]</computeroutput></title>
+<indexterm><primary>LowWord</primary><secondary>LongUnion</secondary></indexterm>
+<indexterm><primary>LongUnion</primary><secondary>LowWord</secondary></indexterm>
+<para><computeroutput>int16_t LongUnion::LowWord</computeroutput></para><para>
+Definition at line <link linkend="__long_union_8h_source_1l00073">73</link> of file <link linkend="__long_union_8h_source">LongUnion.h</link>.</para>
+</section>
+<anchor xml:id="_union_long_union_1a45adb668aa3c266c1caa869b64f5110f"/><section>
+    <title>LowWord<computeroutput>[2/3]</computeroutput></title>
+<indexterm><primary>LowWord</primary><secondary>LongUnion</secondary></indexterm>
+<indexterm><primary>LongUnion</primary><secondary>LowWord</secondary></indexterm>
+<para><computeroutput><link linkend="_union_word_union">WordUnion</link> LongUnion::LowWord</computeroutput></para><para>
+Definition at line <link linkend="__long_union_8h_source_1l00077">77</link> of file <link linkend="__long_union_8h_source">LongUnion.h</link>.</para>
+</section>
+<anchor xml:id="_union_long_union_1a05f946f8845eb4dda0407470d34854e2"/><section>
+    <title>LowWord<computeroutput>[3/3]</computeroutput></title>
+<indexterm><primary>LowWord</primary><secondary>LongUnion</secondary></indexterm>
+<indexterm><primary>LongUnion</primary><secondary>LowWord</secondary></indexterm>
+<para><computeroutput>uint16_t LongUnion::LowWord</computeroutput></para><para>
+Definition at line <link linkend="__long_union_8h_source_1l00081">81</link> of file <link linkend="__long_union_8h_source">LongUnion.h</link>.</para>
+</section>
+<anchor xml:id="_union_long_union_1aba027b17010803cf910996cae9201f32"/><section>
+    <title>MidHighByte<computeroutput>[1/2]</computeroutput></title>
+<indexterm><primary>MidHighByte</primary><secondary>LongUnion</secondary></indexterm>
+<indexterm><primary>LongUnion</primary><secondary>MidHighByte</secondary></indexterm>
+<para><computeroutput>uint8_t LongUnion::MidHighByte</computeroutput></para><para>
+Definition at line <link linkend="__long_union_8h_source_1l00058">58</link> of file <link linkend="__long_union_8h_source">LongUnion.h</link>.</para>
+</section>
+<anchor xml:id="_union_long_union_1a5404235118006061ae33de167803c70a"/><section>
+    <title>MidHighByte<computeroutput>[2/2]</computeroutput></title>
+<indexterm><primary>MidHighByte</primary><secondary>LongUnion</secondary></indexterm>
+<indexterm><primary>LongUnion</primary><secondary>MidHighByte</secondary></indexterm>
+<para><computeroutput>int8_t LongUnion::MidHighByte</computeroutput></para><para>
+Definition at line <link linkend="__long_union_8h_source_1l00064">64</link> of file <link linkend="__long_union_8h_source">LongUnion.h</link>.</para>
+</section>
+<anchor xml:id="_union_long_union_1aeed69e051ef3c5c3d03e0efa260226b1"/><section>
+    <title>MidLowByte<computeroutput>[1/2]</computeroutput></title>
+<indexterm><primary>MidLowByte</primary><secondary>LongUnion</secondary></indexterm>
+<indexterm><primary>LongUnion</primary><secondary>MidLowByte</secondary></indexterm>
+<para><computeroutput>uint8_t LongUnion::MidLowByte</computeroutput></para><para>
+Definition at line <link linkend="__long_union_8h_source_1l00057">57</link> of file <link linkend="__long_union_8h_source">LongUnion.h</link>.</para>
+</section>
+<anchor xml:id="_union_long_union_1abbb97b234b56a9fc85e675baef650eb2"/><section>
+    <title>MidLowByte<computeroutput>[2/2]</computeroutput></title>
+<indexterm><primary>MidLowByte</primary><secondary>LongUnion</secondary></indexterm>
+<indexterm><primary>LongUnion</primary><secondary>MidLowByte</secondary></indexterm>
+<para><computeroutput>int8_t LongUnion::MidLowByte</computeroutput></para><para>
+Definition at line <link linkend="__long_union_8h_source_1l00063">63</link> of file <link linkend="__long_union_8h_source">LongUnion.h</link>.</para>
+</section>
+<anchor xml:id="_union_long_union_1aa4ca6414a8a8f155b113c02995fa2887"/><section>
+    <title>MidWord</title>
+<indexterm><primary>MidWord</primary><secondary>LongUnion</secondary></indexterm>
+<indexterm><primary>LongUnion</primary><secondary>MidWord</secondary></indexterm>
+<para><computeroutput><link linkend="_union_word_union">WordUnion</link> LongUnion::MidWord</computeroutput></para><para>
+Definition at line <link linkend="__long_union_8h_source_1l00069">69</link> of file <link linkend="__long_union_8h_source">LongUnion.h</link>.</para>
+</section>
+<anchor xml:id="_union_long_union_1a1dfe8893e7015a65e9482671c15a099f"/><section>
+    <title></title>
+<indexterm><primary>UByte</primary><secondary>LongUnion</secondary></indexterm>
+<indexterm><primary>LongUnion</primary><secondary>UByte</secondary></indexterm>
+<para><computeroutput>struct  { ... }  LongUnion::UByte</computeroutput></para></section>
+<anchor xml:id="_union_long_union_1a683822101c9e06c7cec0dde475d23ad3"/><section>
+    <title>UBytes</title>
+<indexterm><primary>UBytes</primary><secondary>LongUnion</secondary></indexterm>
+<indexterm><primary>LongUnion</primary><secondary>UBytes</secondary></indexterm>
+<para><computeroutput>uint8_t LongUnion::UBytes[4]</computeroutput></para><para>
+Definition at line <link linkend="__long_union_8h_source_1l00084">84</link> of file <link linkend="__long_union_8h_source">LongUnion.h</link>.</para>
+</section>
+<anchor xml:id="_union_long_union_1aaf8815ca810b2d8386b5912f127586a7"/><section>
+    <title>ULong</title>
+<indexterm><primary>ULong</primary><secondary>LongUnion</secondary></indexterm>
+<indexterm><primary>LongUnion</primary><secondary>ULong</secondary></indexterm>
+<para><computeroutput>uint32_t LongUnion::ULong</computeroutput></para><para>
+Definition at line <link linkend="__long_union_8h_source_1l00088">88</link> of file <link linkend="__long_union_8h_source">LongUnion.h</link>.</para>
+</section>
+<anchor xml:id="_union_long_union_1a68a0c249634ca250ca5fdb31a06cbb18"/><section>
+    <title></title>
+<indexterm><primary>UWord</primary><secondary>LongUnion</secondary></indexterm>
+<indexterm><primary>LongUnion</primary><secondary>UWord</secondary></indexterm>
+<para><computeroutput>struct  { ... }  LongUnion::UWord</computeroutput></para></section>
+<anchor xml:id="_union_long_union_1a96deff8963ef4155f33a26390f8f0a4b"/><section>
+    <title>UWords</title>
+<indexterm><primary>UWords</primary><secondary>LongUnion</secondary></indexterm>
+<indexterm><primary>LongUnion</primary><secondary>UWords</secondary></indexterm>
+<para><computeroutput>uint16_t LongUnion::UWords[2]</computeroutput></para><para>
+Definition at line <link linkend="__long_union_8h_source_1l00086">86</link> of file <link linkend="__long_union_8h_source">LongUnion.h</link>.</para>
+</section>
+<anchor xml:id="_union_long_union_1a38025526d128638a496c4c9f0a9182d0"/><section>
+    <title></title>
+<indexterm><primary>Word</primary><secondary>LongUnion</secondary></indexterm>
+<indexterm><primary>LongUnion</primary><secondary>Word</secondary></indexterm>
+<para><computeroutput>struct  { ... }  LongUnion::Word</computeroutput></para></section>
+<anchor xml:id="_union_long_union_1a67e933c7563c43956226e5db844984d5"/><section>
+    <title>Words</title>
+<indexterm><primary>Words</primary><secondary>LongUnion</secondary></indexterm>
+<indexterm><primary>LongUnion</primary><secondary>Words</secondary></indexterm>
+<para><computeroutput>int16_t LongUnion::Words[2]</computeroutput></para><para>
+Definition at line <link linkend="__long_union_8h_source_1l00087">87</link> of file <link linkend="__long_union_8h_source">LongUnion.h</link>.</para>
+</section>
+<anchor xml:id="_union_long_union_1a8956cd66850e78483c6bce6056df63c3"/><section>
+    <title></title>
+<indexterm><primary>WordUnion</primary><secondary>LongUnion</secondary></indexterm>
+<indexterm><primary>LongUnion</primary><secondary>WordUnion</secondary></indexterm>
+<para><computeroutput>struct  { ... }  LongUnion::WordUnion</computeroutput></para></section>
+<para>
+The documentation for this union was generated from the following file:</para>
+main/IRRemote_Library/<link linkend="__long_union_8h">LongUnion.h</link></section>
+</section>

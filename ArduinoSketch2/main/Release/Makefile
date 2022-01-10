@@ -38,20 +38,18 @@ SUBDIRS :=  \
 ../Modules/Actuators \
 ../Modules/Actuators/Buzzer/ \
 ../Modules/Actuators/MotorControl \
-../Modules/RC_Unit \
 ../Modules/Sensors \
-../Modules/Sensors/SPS/ \
+../Modules/Sensors/ParkingSensor \
 ../Documentation \
 ../IRRemote
 
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
-../Modules/Actuators/Buzzer/Buzz.cpp \
+../Modules/Actuators/Buzzer/Buzzer.cpp \
 ../Modules/Actuators/MotorControl/Motor_Control.cpp \
-../Modules/Sensors/SPS/SPS.cpp \
-../main.cpp \
-../Modules/Sensors/SPS/SPS_Master.cpp
+../Modules/Sensors/ParkingSensor/ParkingSensor.cpp \
+../main.cpp
 
 
 PREPROCESSING_SRCS += 
@@ -61,32 +59,28 @@ ASM_SRCS +=
 
 
 OBJS +=  \
-Modules/Actuators/Buzzer/Buzz.o \
+Modules/Actuators/Buzzer/Buzzer.o \
 Modules/Actuators/MotorControl/Motor_Control.o \
-Modules/Sensors/SPS/SPS.o \
-main.o \
-Modules/Sensors/SPS/SPS_Master.o
+Modules/Sensors/ParkingSensor/ParkingSensor.o \
+main.o
 
 OBJS_AS_ARGS +=  \
-Modules/Actuators/Buzzer/Buzz.o \
+Modules/Actuators/Buzzer/Buzzer.o \
 Modules/Actuators/MotorControl/Motor_Control.o \
-Modules/Sensors/SPS/SPS.o \
-main.o \
-Modules/Sensors/SPS/SPS_Master.o
+Modules/Sensors/ParkingSensor/ParkingSensor.o \
+main.o
 
 C_DEPS +=  \
-Modules/Actuators/Buzzer/Buzz.d \
+Modules/Actuators/Buzzer/Buzzer.d \
 Modules/Actuators/MotorControl/Motor_Control.d \
-Modules/Sensors/SPS/SPS.d \
-main.d \
-Modules/Sensors/SPS/SPS_Master.d
+Modules/Sensors/ParkingSensor/ParkingSensor.d \
+main.d
 
 C_DEPS_AS_ARGS +=  \
-Modules/Actuators/Buzzer/Buzz.d \
+Modules/Actuators/Buzzer/Buzzer.d \
 Modules/Actuators/MotorControl/Motor_Control.d \
-Modules/Sensors/SPS/SPS.d \
-main.d \
-Modules/Sensors/SPS/SPS_Master.d
+Modules/Sensors/ParkingSensor/ParkingSensor.d \
+main.d
 
 OUTPUT_FILE_PATH +=main.elf
 
@@ -103,38 +97,31 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
-Modules/Actuators/Buzzer/Buzz.o: ../Modules/Actuators/Buzzer/Buzz.cpp
+Modules/Actuators/Buzzer/Buzzer.o: ../Modules/Actuators/Buzzer/Buzzer.cpp
 	@echo Building file: $<
 	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DNDEBUG -DF_CPU=16000000L -DARDUINO=108013 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -DUSB_VID=0x2341 -DUSB_PID=0x0043 -DUSB_MANUFACTURER="\"Arduino LLC\""  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include" -I"..\\..\ArduinoCore\include\core" -I"..\\..\ArduinoCore\include\variants\standard" -I"../Modules/Actuators/Buzzer" -I"../Modules/Sensors/SPS" -I"../Modules/RC_Unit" -I"../IRRemote"  -Os -fno-threadsafe-statics -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -w -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega328p" -c -std=gnu++11 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DNDEBUG -DF_CPU=16000000L -DARDUINO=108013 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -DUSB_VID=0x2341 -DUSB_PID=0x0043 -DUSB_MANUFACTURER="\"Arduino LLC\""  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include" -I"..\\..\ArduinoCore\include\core" -I"..\\..\ArduinoCore\include\variants\standard" -I"../Modules/Actuators/Buzzer" -I"../Modules/Sensors/SPS" -I"../Modules/RC_Unit" -I"../IRRemote" -I"../Modules/Sensors/ParkingSensor"  -Os -fno-threadsafe-statics -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -w -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega328p" -c -std=gnu++11 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Modules/Actuators/MotorControl/Motor_Control.o: ../Modules/Actuators/MotorControl/Motor_Control.cpp
 	@echo Building file: $<
 	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DNDEBUG -DF_CPU=16000000L -DARDUINO=108013 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -DUSB_VID=0x2341 -DUSB_PID=0x0043 -DUSB_MANUFACTURER="\"Arduino LLC\""  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include" -I"..\\..\ArduinoCore\include\core" -I"..\\..\ArduinoCore\include\variants\standard" -I"../Modules/Actuators/Buzzer" -I"../Modules/Sensors/SPS" -I"../Modules/RC_Unit" -I"../IRRemote"  -Os -fno-threadsafe-statics -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -w -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega328p" -c -std=gnu++11 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DNDEBUG -DF_CPU=16000000L -DARDUINO=108013 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -DUSB_VID=0x2341 -DUSB_PID=0x0043 -DUSB_MANUFACTURER="\"Arduino LLC\""  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include" -I"..\\..\ArduinoCore\include\core" -I"..\\..\ArduinoCore\include\variants\standard" -I"../Modules/Actuators/Buzzer" -I"../Modules/Sensors/SPS" -I"../Modules/RC_Unit" -I"../IRRemote" -I"../Modules/Sensors/ParkingSensor"  -Os -fno-threadsafe-statics -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -w -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega328p" -c -std=gnu++11 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
-Modules/Sensors/SPS/SPS.o: ../Modules/Sensors/SPS/SPS.cpp
+Modules/Sensors/ParkingSensor/ParkingSensor.o: ../Modules/Sensors/ParkingSensor/ParkingSensor.cpp
 	@echo Building file: $<
 	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DNDEBUG -DF_CPU=16000000L -DARDUINO=108013 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -DUSB_VID=0x2341 -DUSB_PID=0x0043 -DUSB_MANUFACTURER="\"Arduino LLC\""  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include" -I"..\\..\ArduinoCore\include\core" -I"..\\..\ArduinoCore\include\variants\standard" -I"../Modules/Actuators/Buzzer" -I"../Modules/Sensors/SPS" -I"../Modules/RC_Unit" -I"../IRRemote"  -Os -fno-threadsafe-statics -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -w -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega328p" -c -std=gnu++11 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DNDEBUG -DF_CPU=16000000L -DARDUINO=108013 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -DUSB_VID=0x2341 -DUSB_PID=0x0043 -DUSB_MANUFACTURER="\"Arduino LLC\""  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include" -I"..\\..\ArduinoCore\include\core" -I"..\\..\ArduinoCore\include\variants\standard" -I"../Modules/Actuators/Buzzer" -I"../Modules/Sensors/SPS" -I"../Modules/RC_Unit" -I"../IRRemote" -I"../Modules/Sensors/ParkingSensor"  -Os -fno-threadsafe-statics -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -w -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega328p" -c -std=gnu++11 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 ./main.o: .././main.cpp
 	@echo Building file: $<
 	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DNDEBUG -DF_CPU=16000000L -DARDUINO=108013 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -DUSB_VID=0x2341 -DUSB_PID=0x0043 -DUSB_MANUFACTURER="\"Arduino LLC\""  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include" -I"..\\..\ArduinoCore\include\core" -I"..\\..\ArduinoCore\include\variants\standard" -I"../Modules/Actuators/Buzzer" -I"../Modules/Sensors/SPS" -I"../Modules/RC_Unit" -I"../IRRemote"  -Os -fno-threadsafe-statics -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -w -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega328p" -c -std=gnu++11 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
-	@echo Finished building: $<
-	
-
-Modules/Sensors/SPS/SPS_Master.o: ../Modules/Sensors/SPS/SPS_Master.cpp
-	@echo Building file: $<
-	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DNDEBUG -DF_CPU=16000000L -DARDUINO=108013 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -DUSB_VID=0x2341 -DUSB_PID=0x0043 -DUSB_MANUFACTURER="\"Arduino LLC\""  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include" -I"..\\..\ArduinoCore\include\core" -I"..\\..\ArduinoCore\include\variants\standard" -I"../Modules/Actuators/Buzzer" -I"../Modules/Sensors/SPS" -I"../Modules/RC_Unit" -I"../IRRemote"  -Os -fno-threadsafe-statics -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -w -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega328p" -c -std=gnu++11 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DNDEBUG -DF_CPU=16000000L -DARDUINO=108013 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -DUSB_VID=0x2341 -DUSB_PID=0x0043 -DUSB_MANUFACTURER="\"Arduino LLC\""  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include" -I"..\\..\ArduinoCore\include\core" -I"..\\..\ArduinoCore\include\variants\standard" -I"../Modules/Actuators/Buzzer" -I"../Modules/Sensors/SPS" -I"../Modules/RC_Unit" -I"../IRRemote" -I"../Modules/Sensors/ParkingSensor"  -Os -fno-threadsafe-statics -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -w -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega328p" -c -std=gnu++11 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 

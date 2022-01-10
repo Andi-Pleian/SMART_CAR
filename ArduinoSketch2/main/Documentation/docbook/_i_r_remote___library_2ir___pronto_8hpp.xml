@@ -1,0 +1,285 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="__i_r_remote___library_2ir___pronto_8hpp" xml:lang="en-US">
+<title>main/IRRemote_Library/ir_Pronto.hpp File Reference</title>
+<indexterm><primary>main/IRRemote_Library/ir_Pronto.hpp</primary></indexterm>
+<programlisting linenumbering="unnumbered">#include &lt;Arduino.h&gt;
+#include &quot;IRremoteInt.h&quot;
+</programlisting>Include dependency graph for ir_Pronto.hpp:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="_i_r_remote___library_2ir___pronto_8hpp__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+This graph shows which files directly or indirectly include this file:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="_i_r_remote___library_2ir___pronto_8hpp__dep__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Functions    </title>
+        <itemizedlist>
+            <listitem><para>static unsigned int <link linkend="__i_r_remote___library_2ir___pronto_8hpp_1ga01388575997ce2531098a606a8a25521">toFrequencyKHz</link> (uint16_t code)</para>
+</listitem>
+            <listitem><para>static uint16_t <link linkend="__i_r_remote___library_2ir___pronto_8hpp_1ga1272f3783a3b8d2cf2241f1e76674c8a">effectiveFrequency</link> (uint16_t frequency)</para>
+</listitem>
+            <listitem><para>static uint16_t <link linkend="__i_r_remote___library_2ir___pronto_8hpp_1ga356fabeed3a4b0a010a35550e86285c5">toTimebase</link> (uint16_t frequency)</para>
+</listitem>
+            <listitem><para>static uint16_t <link linkend="__i_r_remote___library_2ir___pronto_8hpp_1ga155ad672d0494903d7c89e73650879ae">toFrequencyCode</link> (uint16_t frequency)</para>
+</listitem>
+            <listitem><para>static char <link linkend="__i_r_remote___library_2ir___pronto_8hpp_1ga7741bc8892620b5da6c38a29d3d48668">hexDigit</link> (unsigned int x)</para>
+</listitem>
+            <listitem><para>static void <link linkend="__i_r_remote___library_2ir___pronto_8hpp_1gaa82a581fafa8fa2310b7241fe1ded33d">dumpDigit</link> (Print *aSerial, unsigned int number)</para>
+</listitem>
+            <listitem><para>static void <link linkend="__i_r_remote___library_2ir___pronto_8hpp_1ga69048be6384abbbe3c17e3f25432a392">dumpNumber</link> (Print *aSerial, uint16_t number)</para>
+</listitem>
+            <listitem><para>static void <link linkend="__i_r_remote___library_2ir___pronto_8hpp_1ga479fbb18cdfa303a8bc4322123f831df">dumpDuration</link> (Print *aSerial, uint32_t duration, uint16_t timebase)</para>
+</listitem>
+            <listitem><para>static void <link linkend="__i_r_remote___library_2ir___pronto_8hpp_1ga8a8a6b504851150df425d5b490d92640">compensateAndDumpSequence</link> (Print *aSerial, const volatile uint16_t *data, size_t length, uint16_t timebase)</para>
+</listitem>
+            <listitem><para>static bool <link linkend="__i_r_remote___library_2ir___pronto_8hpp_1gab3ca394ad13ba555852f3bb61d488c7b">dumpDigit</link> (String *aString, unsigned int number)</para>
+</listitem>
+            <listitem><para>static size_t <link linkend="__i_r_remote___library_2ir___pronto_8hpp_1gab49c8cfa7e96e3c5b54f9a41edbd33ba">dumpNumber</link> (String *aString, uint16_t number)</para>
+</listitem>
+            <listitem><para>static size_t <link linkend="__i_r_remote___library_2ir___pronto_8hpp_1ga536975baa9f5346484fc32bd48255d07">dumpDuration</link> (String *aString, uint32_t duration, uint16_t timebase)</para>
+</listitem>
+            <listitem><para>static size_t <link linkend="__i_r_remote___library_2ir___pronto_8hpp_1ga0772587b98a7fa0cf332788b7e2bd8e6">compensateAndDumpSequence</link> (String *aString, const volatile uint16_t *data, size_t length, uint16_t timebase)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Function Documentation</title>
+<anchor xml:id="__i_r_remote___library_2ir___pronto_8hpp_1ga8a8a6b504851150df425d5b490d92640"/><section>
+    <title>compensateAndDumpSequence()<computeroutput>[1/2]</computeroutput></title>
+<indexterm><primary>compensateAndDumpSequence</primary><secondary>ir_Pronto.hpp</secondary></indexterm>
+<indexterm><primary>ir_Pronto.hpp</primary><secondary>compensateAndDumpSequence</secondary></indexterm>
+<para><computeroutput>static void compensateAndDumpSequence (Print * aSerial, const volatile uint16_t * data, size_t length, uint16_t timebase)<computeroutput>[static]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="__i_r_remote___library_2ir___pronto_8hpp_source_1l00237">237</link> of file <link linkend="__i_r_remote___library_2ir___pronto_8hpp_source">ir_Pronto.hpp</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="_i_r_remote___library_2ir___pronto_8hpp_ga8a8a6b504851150df425d5b490d92640_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="__i_r_remote___library_2ir___pronto_8hpp_1ga0772587b98a7fa0cf332788b7e2bd8e6"/><section>
+    <title>compensateAndDumpSequence()<computeroutput>[2/2]</computeroutput></title>
+<indexterm><primary>compensateAndDumpSequence</primary><secondary>ir_Pronto.hpp</secondary></indexterm>
+<indexterm><primary>ir_Pronto.hpp</primary><secondary>compensateAndDumpSequence</secondary></indexterm>
+<para><computeroutput>static size_t compensateAndDumpSequence (String * aString, const volatile uint16_t * data, size_t length, uint16_t timebase)<computeroutput>[static]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="__i_r_remote___library_2ir___pronto_8hpp_source_1l00302">302</link> of file <link linkend="__i_r_remote___library_2ir___pronto_8hpp_source">ir_Pronto.hpp</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="_i_r_remote___library_2ir___pronto_8hpp_ga0772587b98a7fa0cf332788b7e2bd8e6_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="__i_r_remote___library_2ir___pronto_8hpp_1gaa82a581fafa8fa2310b7241fe1ded33d"/><section>
+    <title>dumpDigit()<computeroutput>[1/2]</computeroutput></title>
+<indexterm><primary>dumpDigit</primary><secondary>ir_Pronto.hpp</secondary></indexterm>
+<indexterm><primary>ir_Pronto.hpp</primary><secondary>dumpDigit</secondary></indexterm>
+<para><computeroutput>static void dumpDigit (Print * aSerial, unsigned int number)<computeroutput>[static]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="__i_r_remote___library_2ir___pronto_8hpp_source_1l00218">218</link> of file <link linkend="__i_r_remote___library_2ir___pronto_8hpp_source">ir_Pronto.hpp</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="_i_r_remote___library_2ir___pronto_8hpp_gaa82a581fafa8fa2310b7241fe1ded33d_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="_i_r_remote___library_2ir___pronto_8hpp_gaa82a581fafa8fa2310b7241fe1ded33d_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="__i_r_remote___library_2ir___pronto_8hpp_1gab3ca394ad13ba555852f3bb61d488c7b"/><section>
+    <title>dumpDigit()<computeroutput>[2/2]</computeroutput></title>
+<indexterm><primary>dumpDigit</primary><secondary>ir_Pronto.hpp</secondary></indexterm>
+<indexterm><primary>ir_Pronto.hpp</primary><secondary>dumpDigit</secondary></indexterm>
+<para><computeroutput>static bool dumpDigit (String * aString, unsigned int number)<computeroutput>[static]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="__i_r_remote___library_2ir___pronto_8hpp_source_1l00276">276</link> of file <link linkend="__i_r_remote___library_2ir___pronto_8hpp_source">ir_Pronto.hpp</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="_i_r_remote___library_2ir___pronto_8hpp_gab3ca394ad13ba555852f3bb61d488c7b_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="__i_r_remote___library_2ir___pronto_8hpp_1ga479fbb18cdfa303a8bc4322123f831df"/><section>
+    <title>dumpDuration()<computeroutput>[1/2]</computeroutput></title>
+<indexterm><primary>dumpDuration</primary><secondary>ir_Pronto.hpp</secondary></indexterm>
+<indexterm><primary>ir_Pronto.hpp</primary><secondary>dumpDuration</secondary></indexterm>
+<para><computeroutput>static void dumpDuration (Print * aSerial, uint32_t duration, uint16_t timebase)<computeroutput>[static]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="__i_r_remote___library_2ir___pronto_8hpp_source_1l00230">230</link> of file <link linkend="__i_r_remote___library_2ir___pronto_8hpp_source">ir_Pronto.hpp</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="_i_r_remote___library_2ir___pronto_8hpp_ga479fbb18cdfa303a8bc4322123f831df_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="_i_r_remote___library_2ir___pronto_8hpp_ga479fbb18cdfa303a8bc4322123f831df_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="__i_r_remote___library_2ir___pronto_8hpp_1ga536975baa9f5346484fc32bd48255d07"/><section>
+    <title>dumpDuration()<computeroutput>[2/2]</computeroutput></title>
+<indexterm><primary>dumpDuration</primary><secondary>ir_Pronto.hpp</secondary></indexterm>
+<indexterm><primary>ir_Pronto.hpp</primary><secondary>dumpDuration</secondary></indexterm>
+<para><computeroutput>static size_t dumpDuration (String * aString, uint32_t duration, uint16_t timebase)<computeroutput>[static]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="__i_r_remote___library_2ir___pronto_8hpp_source_1l00298">298</link> of file <link linkend="__i_r_remote___library_2ir___pronto_8hpp_source">ir_Pronto.hpp</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="_i_r_remote___library_2ir___pronto_8hpp_ga536975baa9f5346484fc32bd48255d07_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="__i_r_remote___library_2ir___pronto_8hpp_1ga69048be6384abbbe3c17e3f25432a392"/><section>
+    <title>dumpNumber()<computeroutput>[1/2]</computeroutput></title>
+<indexterm><primary>dumpNumber</primary><secondary>ir_Pronto.hpp</secondary></indexterm>
+<indexterm><primary>ir_Pronto.hpp</primary><secondary>dumpNumber</secondary></indexterm>
+<para><computeroutput>static void dumpNumber (Print * aSerial, uint16_t number)<computeroutput>[static]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="__i_r_remote___library_2ir___pronto_8hpp_source_1l00222">222</link> of file <link linkend="__i_r_remote___library_2ir___pronto_8hpp_source">ir_Pronto.hpp</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="_i_r_remote___library_2ir___pronto_8hpp_ga69048be6384abbbe3c17e3f25432a392_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="_i_r_remote___library_2ir___pronto_8hpp_ga69048be6384abbbe3c17e3f25432a392_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="__i_r_remote___library_2ir___pronto_8hpp_1gab49c8cfa7e96e3c5b54f9a41edbd33ba"/><section>
+    <title>dumpNumber()<computeroutput>[2/2]</computeroutput></title>
+<indexterm><primary>dumpNumber</primary><secondary>ir_Pronto.hpp</secondary></indexterm>
+<indexterm><primary>ir_Pronto.hpp</primary><secondary>dumpNumber</secondary></indexterm>
+<para><computeroutput>static size_t dumpNumber (String * aString, uint16_t number)<computeroutput>[static]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="__i_r_remote___library_2ir___pronto_8hpp_source_1l00281">281</link> of file <link linkend="__i_r_remote___library_2ir___pronto_8hpp_source">ir_Pronto.hpp</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="_i_r_remote___library_2ir___pronto_8hpp_gab49c8cfa7e96e3c5b54f9a41edbd33ba_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="__i_r_remote___library_2ir___pronto_8hpp_1ga1272f3783a3b8d2cf2241f1e76674c8a"/><section>
+    <title>effectiveFrequency()</title>
+<indexterm><primary>effectiveFrequency</primary><secondary>ir_Pronto.hpp</secondary></indexterm>
+<indexterm><primary>ir_Pronto.hpp</primary><secondary>effectiveFrequency</secondary></indexterm>
+<para><computeroutput>static uint16_t effectiveFrequency (uint16_t frequency)<computeroutput>[static]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="__i_r_remote___library_2ir___pronto_8hpp_source_1l00202">202</link> of file <link linkend="__i_r_remote___library_2ir___pronto_8hpp_source">ir_Pronto.hpp</link>.</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="_i_r_remote___library_2ir___pronto_8hpp_ga1272f3783a3b8d2cf2241f1e76674c8a_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="__i_r_remote___library_2ir___pronto_8hpp_1ga7741bc8892620b5da6c38a29d3d48668"/><section>
+    <title>hexDigit()</title>
+<indexterm><primary>hexDigit</primary><secondary>ir_Pronto.hpp</secondary></indexterm>
+<indexterm><primary>ir_Pronto.hpp</primary><secondary>hexDigit</secondary></indexterm>
+<para><computeroutput>static char hexDigit (unsigned int x)<computeroutput>[static]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="__i_r_remote___library_2ir___pronto_8hpp_source_1l00214">214</link> of file <link linkend="__i_r_remote___library_2ir___pronto_8hpp_source">ir_Pronto.hpp</link>.</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="_i_r_remote___library_2ir___pronto_8hpp_ga7741bc8892620b5da6c38a29d3d48668_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="__i_r_remote___library_2ir___pronto_8hpp_1ga155ad672d0494903d7c89e73650879ae"/><section>
+    <title>toFrequencyCode()</title>
+<indexterm><primary>toFrequencyCode</primary><secondary>ir_Pronto.hpp</secondary></indexterm>
+<indexterm><primary>ir_Pronto.hpp</primary><secondary>toFrequencyCode</secondary></indexterm>
+<para><computeroutput>static uint16_t toFrequencyCode (uint16_t frequency)<computeroutput>[static]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="__i_r_remote___library_2ir___pronto_8hpp_source_1l00210">210</link> of file <link linkend="__i_r_remote___library_2ir___pronto_8hpp_source">ir_Pronto.hpp</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="_i_r_remote___library_2ir___pronto_8hpp_ga155ad672d0494903d7c89e73650879ae_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="__i_r_remote___library_2ir___pronto_8hpp_1ga01388575997ce2531098a606a8a25521"/><section>
+    <title>toFrequencyKHz()</title>
+<indexterm><primary>toFrequencyKHz</primary><secondary>ir_Pronto.hpp</secondary></indexterm>
+<indexterm><primary>ir_Pronto.hpp</primary><secondary>toFrequencyKHz</secondary></indexterm>
+<para><computeroutput>static unsigned int toFrequencyKHz (uint16_t code)<computeroutput>[static]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="__i_r_remote___library_2ir___pronto_8hpp_source_1l00070">70</link> of file <link linkend="__i_r_remote___library_2ir___pronto_8hpp_source">ir_Pronto.hpp</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote___library_2ir___pronto_8hpp_1ga356fabeed3a4b0a010a35550e86285c5"/><section>
+    <title>toTimebase()</title>
+<indexterm><primary>toTimebase</primary><secondary>ir_Pronto.hpp</secondary></indexterm>
+<indexterm><primary>ir_Pronto.hpp</primary><secondary>toTimebase</secondary></indexterm>
+<para><computeroutput>static uint16_t toTimebase (uint16_t frequency)<computeroutput>[static]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="__i_r_remote___library_2ir___pronto_8hpp_source_1l00206">206</link> of file <link linkend="__i_r_remote___library_2ir___pronto_8hpp_source">ir_Pronto.hpp</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="_i_r_remote___library_2ir___pronto_8hpp_ga356fabeed3a4b0a010a35550e86285c5_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+</section>

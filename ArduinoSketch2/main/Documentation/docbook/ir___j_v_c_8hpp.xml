@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_ir___j_v_c_8hpp" xml:lang="en-US">
+<title>main/IRRemote_Library/ir_JVC.hpp File Reference</title>
+<indexterm><primary>main/IRRemote_Library/ir_JVC.hpp</primary></indexterm>
+<programlisting linenumbering="unnumbered">#include &lt;Arduino.h&gt;
+#include &quot;IRremoteInt.h&quot;
+</programlisting>Include dependency graph for ir_JVC.hpp:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="ir___j_v_c_8hpp__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+This graph shows which files directly or indirectly include this file:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="ir___j_v_c_8hpp__dep__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Macros    </title>
+        <itemizedlist>
+            <listitem><para>#define <link linkend="_group___decoder_1gaede1737ff1f8da95a80c7aa059ba2f13">JVC_ADDRESS_BITS</link>   8</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga6c37ba21b2b04d86a7c5c028dd0edc9e">JVC_COMMAND_BITS</link>   8</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1gafcb4f4e6144a1e3c779b2b8777b8f8ac">JVC_BITS</link>   (<link linkend="_group___decoder_1gaede1737ff1f8da95a80c7aa059ba2f13">JVC_ADDRESS_BITS</link> + <link linkend="_group___decoder_1ga6c37ba21b2b04d86a7c5c028dd0edc9e">JVC_COMMAND_BITS</link>)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1gaa79a9fdad87400415aa367568b9fdb98">JVC_UNIT</link>   526</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1gaec51a5a6206fbaae28a05966a840069d">JVC_HEADER_MARK</link>   (16 * <link linkend="_group___decoder_1gaa79a9fdad87400415aa367568b9fdb98">JVC_UNIT</link>)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga44feb6af98dbbcf234ef970742b511a0">JVC_HEADER_SPACE</link>   (8 * <link linkend="_group___decoder_1gaa79a9fdad87400415aa367568b9fdb98">JVC_UNIT</link>)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga3eb74f5b177f68386ff35bd41e09a33c">JVC_BIT_MARK</link>   <link linkend="_group___decoder_1gaa79a9fdad87400415aa367568b9fdb98">JVC_UNIT</link></para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1gac66f4778d06e0a5eda29695f4a0ad9fa">JVC_ONE_SPACE</link>   (3 * <link linkend="_group___decoder_1gaa79a9fdad87400415aa367568b9fdb98">JVC_UNIT</link>)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga3e161d70fe56f2ed0f76b5421fd5b1b3">JVC_ZERO_SPACE</link>   <link linkend="_group___decoder_1gaa79a9fdad87400415aa367568b9fdb98">JVC_UNIT</link></para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga1dcb7952853b00adb9a6869ce034b7f2">JVC_REPEAT_SPACE</link>   (uint16_t)(45 * <link linkend="_group___decoder_1gaa79a9fdad87400415aa367568b9fdb98">JVC_UNIT</link>)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

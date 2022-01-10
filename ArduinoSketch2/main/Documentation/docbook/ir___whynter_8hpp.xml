@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_ir___whynter_8hpp" xml:lang="en-US">
+<title>main/IRRemote_Library/ir_Whynter.hpp File Reference</title>
+<indexterm><primary>main/IRRemote_Library/ir_Whynter.hpp</primary></indexterm>
+<programlisting linenumbering="unnumbered">#include &lt;Arduino.h&gt;
+#include &quot;IRremoteInt.h&quot;
+</programlisting>Include dependency graph for ir_Whynter.hpp:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="ir___whynter_8hpp__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+This graph shows which files directly or indirectly include this file:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="ir___whynter_8hpp__dep__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Macros    </title>
+        <itemizedlist>
+            <listitem><para>#define <link linkend="_group___decoder_1ga1c501f7c080c2cf8f5593ca1fb2f0b24">WHYNTER_BITS</link>   32</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga27674e95707b010ac4b064524006f80e">WHYNTER_HEADER_MARK</link>   2850</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga516861bba8fb7df36adfcef25f2ae493">WHYNTER_HEADER_SPACE</link>   2850</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga7cd99216d53c9b798c413bb7ff54126f">WHYNTER_BIT_MARK</link>   750</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga2e824e5b2ac1c06adafdbb203091ad2a">WHYNTER_ONE_SPACE</link>   2150</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1gad81c68b306ebd739a90a2162e5afdba8">WHYNTER_ZERO_SPACE</link>   750</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

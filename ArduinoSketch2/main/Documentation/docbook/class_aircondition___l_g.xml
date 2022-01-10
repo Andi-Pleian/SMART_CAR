@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_aircondition___l_g" xml:lang="en-US">
+<title>Aircondition_LG Class Reference</title>
+<indexterm><primary>Aircondition_LG</primary></indexterm>
+<para>
+<computeroutput>#include &lt;ac_LG.h&gt;</computeroutput>
+</para>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para>bool <link linkend="_group___airconditoners_1ga65bba14a0302268cc515831d37e95b7a">sendCommandAndParameter</link> (char aCommand, int aParameter)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___airconditoners_1ga75056e4f4dfa299b6f328df460f3f174">setType</link> (bool aIsWallType)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___airconditoners_1ga0210285f615ce3a1ac9b26fd1af51dd9">printMenu</link> (Print *aSerial)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___airconditoners_1ga113704b3b19c8477635210341163bf9e">sendIRCommand</link> (uint16_t aCommand)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___airconditoners_1ga83d18e2597cc2ea78f25889bc6c060e3">sendTemperatureFanSpeedAndMode</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Public Attributes    </title>
+        <itemizedlist>
+            <listitem><para>bool <link linkend="_class_aircondition___l_g_1aa4afac70cfc80f7915b26bbd1c269bc9">ACIsWallType</link></para>
+</listitem>
+            <listitem><para>bool <link linkend="_class_aircondition___l_g_1a4550e9ef869119bdd82f3bbdbd0a4bf0">PowerIsOn</link></para>
+</listitem>
+            <listitem><para>uint8_t <link linkend="_class_aircondition___l_g_1a285204d81a347cf3017ed98a60621b9e">FanIntensity</link> = 1</para>
+</listitem>
+            <listitem><para>uint8_t <link linkend="_class_aircondition___l_g_1a5339d1ec7928c685eb345a50b0c3781f">Temperature</link> = 22</para>
+</listitem>
+            <listitem><para>uint8_t <link linkend="_class_aircondition___l_g_1a953f8d7dd483a1c406cf808a9c1ffe9a">Mode</link> = <link linkend="_group___airconditoners_1gad40cb179d8947abb261c66c4025d6f5c">AC_MODE_COOLING</link></para>
+</listitem>
+            <listitem><para>bool <link linkend="_class_aircondition___l_g_1a7bfa209facd538812cb0fa89fef89850">useLG2Protocol</link> = false</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+<para>
+Definition at line <link linkend="_ac___l_g_8h_source_1l00115">115</link> of file <link linkend="_ac___l_g_8h_source">ac_LG.h</link>.</para>
+</section>
+<section>
+<title>Member Data Documentation</title>
+<anchor xml:id="_class_aircondition___l_g_1aa4afac70cfc80f7915b26bbd1c269bc9"/><section>
+    <title>ACIsWallType</title>
+<indexterm><primary>ACIsWallType</primary><secondary>Aircondition_LG</secondary></indexterm>
+<indexterm><primary>Aircondition_LG</primary><secondary>ACIsWallType</secondary></indexterm>
+<para><computeroutput>bool Aircondition_LG::ACIsWallType</computeroutput></para><para>
+Definition at line <link linkend="_ac___l_g_8h_source_1l00127">127</link> of file <link linkend="_ac___l_g_8h_source">ac_LG.h</link>.</para>
+</section>
+<anchor xml:id="_class_aircondition___l_g_1a285204d81a347cf3017ed98a60621b9e"/><section>
+    <title>FanIntensity</title>
+<indexterm><primary>FanIntensity</primary><secondary>Aircondition_LG</secondary></indexterm>
+<indexterm><primary>Aircondition_LG</primary><secondary>FanIntensity</secondary></indexterm>
+<para><computeroutput>uint8_t Aircondition_LG::FanIntensity = 1</computeroutput></para><para>
+Definition at line <link linkend="_ac___l_g_8h_source_1l00131">131</link> of file <link linkend="_ac___l_g_8h_source">ac_LG.h</link>.</para>
+</section>
+<anchor xml:id="_class_aircondition___l_g_1a953f8d7dd483a1c406cf808a9c1ffe9a"/><section>
+    <title>Mode</title>
+<indexterm><primary>Mode</primary><secondary>Aircondition_LG</secondary></indexterm>
+<indexterm><primary>Aircondition_LG</primary><secondary>Mode</secondary></indexterm>
+<para><computeroutput>uint8_t Aircondition_LG::Mode = <link linkend="_group___airconditoners_1gad40cb179d8947abb261c66c4025d6f5c">AC_MODE_COOLING</link></computeroutput></para><para>
+Definition at line <link linkend="_ac___l_g_8h_source_1l00133">133</link> of file <link linkend="_ac___l_g_8h_source">ac_LG.h</link>.</para>
+</section>
+<anchor xml:id="_class_aircondition___l_g_1a4550e9ef869119bdd82f3bbdbd0a4bf0"/><section>
+    <title>PowerIsOn</title>
+<indexterm><primary>PowerIsOn</primary><secondary>Aircondition_LG</secondary></indexterm>
+<indexterm><primary>Aircondition_LG</primary><secondary>PowerIsOn</secondary></indexterm>
+<para><computeroutput>bool Aircondition_LG::PowerIsOn</computeroutput></para><para>
+Definition at line <link linkend="_ac___l_g_8h_source_1l00128">128</link> of file <link linkend="_ac___l_g_8h_source">ac_LG.h</link>.</para>
+</section>
+<anchor xml:id="_class_aircondition___l_g_1a5339d1ec7928c685eb345a50b0c3781f"/><section>
+    <title>Temperature</title>
+<indexterm><primary>Temperature</primary><secondary>Aircondition_LG</secondary></indexterm>
+<indexterm><primary>Aircondition_LG</primary><secondary>Temperature</secondary></indexterm>
+<para><computeroutput>uint8_t Aircondition_LG::Temperature = 22</computeroutput></para><para>
+Definition at line <link linkend="_ac___l_g_8h_source_1l00132">132</link> of file <link linkend="_ac___l_g_8h_source">ac_LG.h</link>.</para>
+</section>
+<anchor xml:id="_class_aircondition___l_g_1a7bfa209facd538812cb0fa89fef89850"/><section>
+    <title>useLG2Protocol</title>
+<indexterm><primary>useLG2Protocol</primary><secondary>Aircondition_LG</secondary></indexterm>
+<indexterm><primary>Aircondition_LG</primary><secondary>useLG2Protocol</secondary></indexterm>
+<para><computeroutput>bool Aircondition_LG::useLG2Protocol = false</computeroutput></para><para>
+Definition at line <link linkend="_ac___l_g_8h_source_1l00134">134</link> of file <link linkend="_ac___l_g_8h_source">ac_LG.h</link>.</para>
+</section>
+<para>
+The documentation for this class was generated from the following files:</para>
+main/IRRemote_Library/<link linkend="_ac___l_g_8h">ac_LG.h</link>main/IRRemote_Library/<link linkend="_ac___l_g_8hpp">ac_LG.hpp</link></section>
+</section>

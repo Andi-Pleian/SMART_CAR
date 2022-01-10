@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="__motor___control_8h_source" xml:lang="en-US">
+<title>Motor_Control.h</title>
+<indexterm><primary>ArduinoSketch2/main/Modules/Actuators/MotorControl/Motor_Control.h</primary></indexterm>
+<programlisting linenumbering="unnumbered"><anchor xml:id="__motor___control_8h_source_1l00001"/>00001 <emphasis role="comment">/*&#32;</emphasis>
+<anchor xml:id="__motor___control_8h_source_1l00002"/>00002 <emphasis role="comment">*&#32;Motor_Control.h</emphasis>
+<anchor xml:id="__motor___control_8h_source_1l00003"/>00003 <emphasis role="comment">*</emphasis>
+<anchor xml:id="__motor___control_8h_source_1l00004"/>00004 <emphasis role="comment">*&#32;Created:&#32;1/8/2022&#32;2:48:48&#32;PM</emphasis>
+<anchor xml:id="__motor___control_8h_source_1l00005"/>00005 <emphasis role="comment">*&#32;Author:&#32;Andi</emphasis>
+<anchor xml:id="__motor___control_8h_source_1l00006"/>00006 <emphasis role="comment">*/</emphasis>
+<anchor xml:id="__motor___control_8h_source_1l00007"/>00007 
+<anchor xml:id="__motor___control_8h_source_1l00008"/>00008 
+<anchor xml:id="__motor___control_8h_source_1l00009"/>00009 <emphasis role="preprocessor">#ifndef&#32;__MOTOR_CONTROL_H__</emphasis>
+<anchor xml:id="__motor___control_8h_source_1l00010"/>00010 <emphasis role="preprocessor">#define&#32;__MOTOR_CONTROL_H__</emphasis>
+<anchor xml:id="__motor___control_8h_source_1l00011"/>00011 
+<anchor xml:id="__motor___control_8h_source_1l00012"/>00012 
+<anchor xml:id="__motor___control_8h_source_1l00013"/><link linkend="_class_motor___control">00013</link> <emphasis role="keyword">class&#32;</emphasis><link linkend="_class_motor___control">Motor_Control</link>&#32;{
+<anchor xml:id="__motor___control_8h_source_1l00014"/>00014 <emphasis role="keyword">public</emphasis>:
+<anchor xml:id="__motor___control_8h_source_1l00015"/>00015 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">short</emphasis>&#32;<emphasis role="keywordtype">int</emphasis>&#32;enA;
+<anchor xml:id="__motor___control_8h_source_1l00016"/>00016 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">short</emphasis>&#32;<emphasis role="keywordtype">int</emphasis>&#32;enB;
+<anchor xml:id="__motor___control_8h_source_1l00017"/>00017 &#32;&#32;&#32;&#32;
+<anchor xml:id="__motor___control_8h_source_1l00018"/>00018 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">short</emphasis>&#32;<emphasis role="keywordtype">int</emphasis>&#32;rightBackward;
+<anchor xml:id="__motor___control_8h_source_1l00019"/>00019 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">short</emphasis>&#32;<emphasis role="keywordtype">int</emphasis>&#32;rightForward;
+<anchor xml:id="__motor___control_8h_source_1l00020"/>00020 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">short</emphasis>&#32;<emphasis role="keywordtype">int</emphasis>&#32;leftForward;
+<anchor xml:id="__motor___control_8h_source_1l00021"/>00021 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">short</emphasis>&#32;<emphasis role="keywordtype">int</emphasis>&#32;leftBackward;
+<anchor xml:id="__motor___control_8h_source_1l00022"/>00022 
+<anchor xml:id="__motor___control_8h_source_1l00023"/>00023 <emphasis role="comment">//functions</emphasis>
+<anchor xml:id="__motor___control_8h_source_1l00024"/>00024 <emphasis role="keyword">public</emphasis>:
+<anchor xml:id="__motor___control_8h_source_1l00025"/>00025 &#32;&#32;&#32;&#32;<link linkend="_class_motor___control">Motor_Control</link>();
+<anchor xml:id="__motor___control_8h_source_1l00026"/>00026 &#32;&#32;&#32;&#32;<link linkend="_class_motor___control">Motor_Control</link>(&#32;&#32;<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">short</emphasis>&#32;<emphasis role="keywordtype">int</emphasis>,&#32;<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">short</emphasis>&#32;<emphasis role="keywordtype">int</emphasis>,
+<anchor xml:id="__motor___control_8h_source_1l00027"/>00027 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">short</emphasis>&#32;<emphasis role="keywordtype">int</emphasis>,&#32;<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">short</emphasis>&#32;<emphasis role="keywordtype">int</emphasis>,
+<anchor xml:id="__motor___control_8h_source_1l00028"/>00028 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">short</emphasis>&#32;<emphasis role="keywordtype">int</emphasis>,&#32;<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">short</emphasis>&#32;<emphasis role="keywordtype">int</emphasis>&#32;&#32;);
+<anchor xml:id="__motor___control_8h_source_1l00029"/>00029 &#32;&#32;&#32;&#32;<link linkend="_class_motor___control">~Motor_Control</link>();
+<anchor xml:id="__motor___control_8h_source_1l00030"/>00030 <emphasis role="keyword">protected</emphasis>:
+<anchor xml:id="__motor___control_8h_source_1l00031"/>00031 <emphasis role="keyword">private</emphasis>:
+<anchor xml:id="__motor___control_8h_source_1l00032"/>00032 &#32;&#32;&#32;&#32;<link linkend="_class_motor___control">Motor_Control</link>(&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_motor___control">Motor_Control</link>&#32;&amp;c&#32;);
+<anchor xml:id="__motor___control_8h_source_1l00033"/>00033 &#32;&#32;&#32;&#32;<link linkend="_class_motor___control">Motor_Control</link>&amp;&#32;operator=(&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_motor___control">Motor_Control</link>&#32;&amp;c&#32;);
+<anchor xml:id="__motor___control_8h_source_1l00034"/>00034 
+<anchor xml:id="__motor___control_8h_source_1l00035"/>00035 };&#32;<emphasis role="comment">//Motor_Control</emphasis>
+<anchor xml:id="__motor___control_8h_source_1l00036"/>00036 
+<anchor xml:id="__motor___control_8h_source_1l00037"/>00037 <emphasis role="preprocessor">#endif&#32;</emphasis><emphasis role="comment">//__MOTOR_CONTROL_H__</emphasis>
+</programlisting></section>

@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="__i_r_remote___library_2_long_union_8h_source" xml:lang="en-US">
+<title>LongUnion.h</title>
+<indexterm><primary>main/IRRemote_Library/LongUnion.h</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered"><anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00001"/>00001 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00002"/>00002 <emphasis role="comment">&#32;*&#32;LongUnion.h</emphasis>
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00003"/>00003 <emphasis role="comment">&#32;*</emphasis>
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00004"/>00004 <emphasis role="comment">&#32;*&#32;&#32;Copyright&#32;(C)&#32;2020&#32;&#32;Armin&#32;Joachimsmeyer</emphasis>
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00005"/>00005 <emphasis role="comment">&#32;*&#32;&#32;Email:&#32;armin.joachimsmeyer@gmail.com</emphasis>
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00006"/>00006 <emphasis role="comment">&#32;*</emphasis>
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00007"/>00007 <emphasis role="comment">&#32;*&#32;&#32;This&#32;file&#32;is&#32;part&#32;of&#32;Arduino-Utils&#32;https://github.com/ArminJo/Arduino-Utils.</emphasis>
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00008"/>00008 <emphasis role="comment">&#32;*</emphasis>
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00009"/>00009 <emphasis role="comment">&#32;*&#32;&#32;Arduino-Utils&#32;is&#32;free&#32;software:&#32;you&#32;can&#32;redistribute&#32;it&#32;and/or&#32;modify</emphasis>
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00010"/>00010 <emphasis role="comment">&#32;*&#32;&#32;it&#32;under&#32;the&#32;terms&#32;of&#32;the&#32;GNU&#32;General&#32;Public&#32;License&#32;as&#32;published&#32;by</emphasis>
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00011"/>00011 <emphasis role="comment">&#32;*&#32;&#32;the&#32;Free&#32;Software&#32;Foundation,&#32;either&#32;version&#32;3&#32;of&#32;the&#32;License,&#32;or</emphasis>
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00012"/>00012 <emphasis role="comment">&#32;*&#32;&#32;(at&#32;your&#32;option)&#32;any&#32;later&#32;version.</emphasis>
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00013"/>00013 <emphasis role="comment">&#32;*</emphasis>
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00014"/>00014 <emphasis role="comment">&#32;*&#32;&#32;This&#32;program&#32;is&#32;distributed&#32;in&#32;the&#32;hope&#32;that&#32;it&#32;will&#32;be&#32;useful,</emphasis>
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00015"/>00015 <emphasis role="comment">&#32;*&#32;&#32;but&#32;WITHOUT&#32;ANY&#32;WARRANTY;&#32;without&#32;even&#32;the&#32;implied&#32;warranty&#32;of</emphasis>
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00016"/>00016 <emphasis role="comment">&#32;*&#32;&#32;MERCHANTABILITY&#32;or&#32;FITNESS&#32;FOR&#32;A&#32;PARTICULAR&#32;PURPOSE.&#32;&#32;See&#32;the</emphasis>
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00017"/>00017 <emphasis role="comment">&#32;*&#32;&#32;GNU&#32;General&#32;Public&#32;License&#32;for&#32;more&#32;details.</emphasis>
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00018"/>00018 <emphasis role="comment">&#32;*</emphasis>
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00019"/>00019 <emphasis role="comment">&#32;*&#32;&#32;You&#32;should&#32;have&#32;received&#32;a&#32;copy&#32;of&#32;the&#32;GNU&#32;General&#32;Public&#32;License</emphasis>
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00020"/>00020 <emphasis role="comment">&#32;*&#32;&#32;along&#32;with&#32;this&#32;program.&#32;&#32;If&#32;not,&#32;see&#32;&lt;http://www.gnu.org/licenses/gpl.html&gt;.</emphasis>
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00021"/>00021 <emphasis role="comment">&#32;*</emphasis>
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00022"/>00022 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00023"/>00023 
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00024"/>00024 <emphasis role="preprocessor">#ifndef&#32;LONG_UNION_H</emphasis>
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00025"/>00025 <emphasis role="preprocessor">#define&#32;LONG_UNION_H</emphasis>
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00026"/>00026 
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00027"/>00027 <emphasis role="preprocessor">#include&#32;&lt;Arduino.h&gt;</emphasis>
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00028"/>00028 <emphasis role="preprocessor">#include&#32;&lt;stdint.h&gt;</emphasis>
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00029"/>00029 
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00034"/>00034 <emphasis role="keyword">union&#32;</emphasis><link linkend="_union_word_union">WordUnion</link>&#32;{
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00035"/>00035 &#32;&#32;&#32;&#32;<emphasis role="keyword">struct&#32;</emphasis>{
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00036"/>00036 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;uint8_t&#32;<link linkend="_union_word_union_1ade13e75ba3678d0b5b0590906156d9ec">LowByte</link>;
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00037"/>00037 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;uint8_t&#32;<link linkend="_union_word_union_1ae019b50052979f252f4a9f209ed4e618">HighByte</link>;
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00038"/><link linkend="_union_word_union_1a9ede2050404098b3840e99935d8d91d3">00038</link> &#32;&#32;&#32;&#32;}&#32;<link linkend="_union_word_union_1afaa3ed9abb5e76645cc7c1701f6d1af4">UByte</link>;
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00039"/>00039 &#32;&#32;&#32;&#32;<emphasis role="keyword">struct&#32;</emphasis>{
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00040"/>00040 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;int8_t&#32;<link linkend="_union_word_union_1ade13e75ba3678d0b5b0590906156d9ec">LowByte</link>;
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00041"/>00041 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;int8_t&#32;<link linkend="_union_word_union_1ae019b50052979f252f4a9f209ed4e618">HighByte</link>;
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00042"/><link linkend="_union_word_union_1a3866a17381968ee8948a68ffa3b615a8">00042</link> &#32;&#32;&#32;&#32;}&#32;<link linkend="_union_word_union_1a0ea747b29213b5e0129cb99ae74be45e">Byte</link>;
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00043"/>00043 &#32;&#32;&#32;&#32;uint8_t&#32;<link linkend="_union_word_union_1a55646c1d5596f6b757206c622cabfd66">UBytes</link>[2];
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00044"/>00044 &#32;&#32;&#32;&#32;int8_t&#32;<link linkend="_union_word_union_1a4e8789ba81e0d2cdc3c7d0c8bc6056db">Bytes</link>[2];
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00045"/>00045 &#32;&#32;&#32;&#32;uint16_t&#32;<link linkend="_union_word_union_1ac72da7d551c05ed98fe75c8d239d9e23">UWord</link>;
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00046"/>00046 &#32;&#32;&#32;&#32;int16_t&#32;<link linkend="_union_word_union_1a6a1554f58dff1ec24abca7c3b50f287f">Word</link>;
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00047"/>00047 &#32;&#32;&#32;&#32;uint8_t&#32;*<link linkend="_union_word_union_1af846c868bd52e16150cc207fc8c8fb75">BytePointer</link>;
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00048"/>00048 };
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00049"/>00049 
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00054"/>00054 <emphasis role="keyword">union&#32;</emphasis><link linkend="_union_long_union">LongUnion</link>&#32;{
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00055"/>00055 &#32;&#32;&#32;&#32;<emphasis role="keyword">struct&#32;</emphasis>{
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00056"/>00056 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;uint8_t&#32;<link linkend="_union_long_union_1aa41368107679917a1c39f30999f4e9d9">LowByte</link>;
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00057"/>00057 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;uint8_t&#32;<link linkend="_union_long_union_1aeed69e051ef3c5c3d03e0efa260226b1">MidLowByte</link>;
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00058"/>00058 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;uint8_t&#32;<link linkend="_union_long_union_1aba027b17010803cf910996cae9201f32">MidHighByte</link>;
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00059"/>00059 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;uint8_t&#32;<link linkend="_union_long_union_1a67e1514b7a6ccc4d017eb6928c327e5c">HighByte</link>;
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00060"/><link linkend="_union_long_union_1a45d93af84894f71b303539dfff7146b2">00060</link> &#32;&#32;&#32;&#32;}&#32;<link linkend="_union_long_union_1a1dfe8893e7015a65e9482671c15a099f">UByte</link>;
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00061"/>00061 &#32;&#32;&#32;&#32;<emphasis role="keyword">struct&#32;</emphasis>{
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00062"/>00062 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;int8_t&#32;<link linkend="_union_long_union_1aa41368107679917a1c39f30999f4e9d9">LowByte</link>;
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00063"/>00063 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;int8_t&#32;<link linkend="_union_long_union_1aeed69e051ef3c5c3d03e0efa260226b1">MidLowByte</link>;
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00064"/>00064 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;int8_t&#32;<link linkend="_union_long_union_1aba027b17010803cf910996cae9201f32">MidHighByte</link>;
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00065"/>00065 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;int8_t&#32;<link linkend="_union_long_union_1a67e1514b7a6ccc4d017eb6928c327e5c">HighByte</link>;
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00066"/><link linkend="_union_long_union_1af11d034e4ec0672d0b55618b36befd80">00066</link> &#32;&#32;&#32;&#32;}&#32;<link linkend="_union_long_union_1a1c2dae40c6f3cc0a71a7625c71417f21">Byte</link>;
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00067"/>00067 &#32;&#32;&#32;&#32;<emphasis role="keyword">struct&#32;</emphasis>{
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00068"/>00068 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;uint8_t&#32;<link linkend="_union_long_union_1aa41368107679917a1c39f30999f4e9d9">LowByte</link>;
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00069"/>00069 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_union_word_union">WordUnion</link>&#32;<link linkend="_union_long_union_1aa4ca6414a8a8f155b113c02995fa2887">MidWord</link>;
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00070"/>00070 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;uint8_t&#32;<link linkend="_union_long_union_1a67e1514b7a6ccc4d017eb6928c327e5c">HighByte</link>;
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00071"/><link linkend="_union_long_union_1a1d47b17084e4b347ab2b72c92361cc9e">00071</link> &#32;&#32;&#32;&#32;}&#32;<link linkend="_union_long_union_1a01dc27d7394fa94bb24a9c0a1e3bf925">ByteWord</link>;
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00072"/>00072 &#32;&#32;&#32;&#32;<emphasis role="keyword">struct&#32;</emphasis>{
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00073"/>00073 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;int16_t&#32;<link linkend="_union_long_union_1a9c0af1e73f44cf26341485cdac332bd2">LowWord</link>;
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00074"/>00074 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;int16_t&#32;<link linkend="_union_long_union_1a2b12288fe56e397d39ba9085fca70616">HighWord</link>;
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00075"/><link linkend="_union_long_union_1adbf9b0294c6500fc220a0f81bd7bb8e6">00075</link> &#32;&#32;&#32;&#32;}&#32;<link linkend="_union_long_union_1a38025526d128638a496c4c9f0a9182d0">Word</link>;
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00076"/>00076 &#32;&#32;&#32;&#32;<emphasis role="keyword">struct&#32;</emphasis>{
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00077"/>00077 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_union_word_union">WordUnion</link>&#32;<link linkend="_union_long_union_1a9c0af1e73f44cf26341485cdac332bd2">LowWord</link>;
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00078"/>00078 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_union_word_union">WordUnion</link>&#32;<link linkend="_union_long_union_1a2b12288fe56e397d39ba9085fca70616">HighWord</link>;
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00079"/><link linkend="_union_long_union_1a304c9ac6c5050e2e844e47f08655e755">00079</link> &#32;&#32;&#32;&#32;}&#32;<link linkend="_union_long_union_1a8956cd66850e78483c6bce6056df63c3">WordUnion</link>;
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00080"/>00080 &#32;&#32;&#32;&#32;<emphasis role="keyword">struct&#32;</emphasis>{
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00081"/>00081 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;uint16_t&#32;<link linkend="_union_long_union_1a9c0af1e73f44cf26341485cdac332bd2">LowWord</link>;
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00082"/>00082 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;uint16_t&#32;<link linkend="_union_long_union_1a2b12288fe56e397d39ba9085fca70616">HighWord</link>;
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00083"/><link linkend="_union_long_union_1a55c801abb4d058db399eb6c620e44ad0">00083</link> &#32;&#32;&#32;&#32;}&#32;<link linkend="_union_long_union_1a68a0c249634ca250ca5fdb31a06cbb18">UWord</link>;
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00084"/>00084 &#32;&#32;&#32;&#32;uint8_t&#32;<link linkend="_union_long_union_1a885e9b6c286760603e0376bb3d6fdd29">UBytes</link>[4];&#32;<emphasis role="comment">//&#32;seems&#32;to&#32;have&#32;the&#32;same&#32;code&#32;size&#32;as&#32;using&#32;struct&#32;UByte</emphasis>
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00085"/>00085 &#32;&#32;&#32;&#32;int8_t&#32;<link linkend="_union_long_union_1a9e4193a6ec37d7261b908e36c37f18e8">Bytes</link>[4];
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00086"/>00086 &#32;&#32;&#32;&#32;uint16_t&#32;<link linkend="_union_long_union_1a2de66fce96e01ff0f94f5116dcbbdd59">UWords</link>[2];
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00087"/>00087 &#32;&#32;&#32;&#32;int16_t&#32;<link linkend="_union_long_union_1a65f92a6e4c126beaa411aa6939e08b89">Words</link>[2];
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00088"/>00088 &#32;&#32;&#32;&#32;uint32_t&#32;<link linkend="_union_long_union_1aaf8815ca810b2d8386b5912f127586a7">ULong</link>;
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00089"/>00089 &#32;&#32;&#32;&#32;int32_t&#32;<link linkend="_union_long_union_1a987b9b0499e30d1ba84f33e38d4cb034">Long</link>;
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00090"/>00090 };
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00091"/>00091 
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00092"/>00092 <emphasis role="preprocessor">#endif&#32;</emphasis><emphasis role="comment">//&#32;LONG_UNION_H</emphasis>
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00093"/>00093 
+<anchor xml:id="__i_r_remote___library_2_long_union_8h_source_1l00094"/>00094 <emphasis role="preprocessor">#pragma&#32;once</emphasis>
+</programlisting></section>

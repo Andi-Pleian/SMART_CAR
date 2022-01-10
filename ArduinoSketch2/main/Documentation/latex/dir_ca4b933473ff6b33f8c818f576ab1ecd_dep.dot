@@ -1,0 +1,14 @@
+digraph "main/IRRemote" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_5c982d53a68cdbcd421152b4020263a9 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="main" fontname="Helvetica", fontsize="10", URL="dir_5c982d53a68cdbcd421152b4020263a9.html"]
+  subgraph clusterdir_ca4b933473ff6b33f8c818f576ab1ecd {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_ca4b933473ff6b33f8c818f576ab1ecd.html"];
+    dir_ca4b933473ff6b33f8c818f576ab1ecd [shape=plaintext label="IRRemote"];
+  dir_6cee165160de34c1e3b1ec5717779561 [shape=box label="private" fillcolor="white" style="filled" URL="dir_6cee165160de34c1e3b1ec5717779561.html"];
+  }
+  }
+  dir_ca4b933473ff6b33f8c818f576ab1ecd->dir_6cee165160de34c1e3b1ec5717779561 [headlabel="2", labeldistance=1.5 headhref="dir_000007_000009.html"];
+}

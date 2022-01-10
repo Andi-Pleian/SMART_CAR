@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_structirparams__struct" xml:lang="en-US">
+<title>irparams_struct Struct Reference</title>
+<indexterm><primary>irparams_struct</primary></indexterm>
+<para>
+<computeroutput>#include &lt;IRremoteInt.h&gt;</computeroutput>
+</para>
+<simplesect>
+    <title>Public Attributes    </title>
+        <itemizedlist>
+            <listitem><para>volatile uint8_t <link linkend="_structirparams__struct_1aea7300a6d0cd2e463887a8595c6c1e2e">StateForISR</link></para>
+
+<para>State Machine state. </para>
+</listitem>
+            <listitem><para>uint8_t <link linkend="_structirparams__struct_1aaa76c636723e7d1937edac2f0f197dcb">IRReceivePin</link></para>
+
+<para>Pin connected to IR data from detector. </para>
+</listitem>
+            <listitem><para>uint16_t <link linkend="_structirparams__struct_1ad0b5caeae83ea38517415e7210829b85">TickCounterForISR</link></para>
+
+<para>Counts 50uS ticks. The value is copied into the rawbuf array on every transition. </para>
+</listitem>
+            <listitem><para>bool <link linkend="_structirparams__struct_1add9591d883df748c9ceeb46fa0de1ebc">OverflowFlag</link></para>
+
+<para>Raw buffer OverflowFlag occurred. </para>
+</listitem>
+            <listitem><para>uint8_t <link linkend="_structirparams__struct_1af0571ac479d1c38c79502651b0631432">rawlen</link></para>
+
+<para>counter of entries in rawbuf </para>
+</listitem>
+            <listitem><para>uint16_t <link linkend="_structirparams__struct_1a7aa7b811dcc0fb5ab0da7c0bddaf97f8">rawbuf</link> [<link linkend="__i_rremote_8hpp_1a589aa40429eeb37b6e83a2c09854a47b">RAW_BUFFER_LENGTH</link>]</para>
+
+<para>raw data / tick counts per mark/space, first entry is the length of the gap between previous and current command </para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>This struct contains the data and control used for receiver static functions and the ISR (interrupt service routine) Only StateForISR needs to be volatile. All the other fields are not written by ISR after data available and before start/resume. </para>
+<para>
+Definition at line <link linkend="__i_rremote_int_8h_source_1l00099">99</link> of file <link linkend="__i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<section>
+<title>Member Data Documentation</title>
+<anchor xml:id="_structirparams__struct_1aaa76c636723e7d1937edac2f0f197dcb"/><section>
+    <title>IRReceivePin</title>
+<indexterm><primary>IRReceivePin</primary><secondary>irparams_struct</secondary></indexterm>
+<indexterm><primary>irparams_struct</primary><secondary>IRReceivePin</secondary></indexterm>
+<para><computeroutput>uint8_t irparams_struct::IRReceivePin</computeroutput></para><para>
+
+<para>Pin connected to IR data from detector. </para>
+</para>
+<para>
+Definition at line <link linkend="__i_rremote_int_8h_source_1l00102">102</link> of file <link linkend="__i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<anchor xml:id="_structirparams__struct_1add9591d883df748c9ceeb46fa0de1ebc"/><section>
+    <title>OverflowFlag</title>
+<indexterm><primary>OverflowFlag</primary><secondary>irparams_struct</secondary></indexterm>
+<indexterm><primary>irparams_struct</primary><secondary>OverflowFlag</secondary></indexterm>
+<para><computeroutput>bool irparams_struct::OverflowFlag</computeroutput></para><para>
+
+<para>Raw buffer OverflowFlag occurred. </para>
+</para>
+<para>
+Definition at line <link linkend="__i_rremote_int_8h_source_1l00109">109</link> of file <link linkend="__i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<anchor xml:id="_structirparams__struct_1a7aa7b811dcc0fb5ab0da7c0bddaf97f8"/><section>
+    <title>rawbuf</title>
+<indexterm><primary>rawbuf</primary><secondary>irparams_struct</secondary></indexterm>
+<indexterm><primary>irparams_struct</primary><secondary>rawbuf</secondary></indexterm>
+<para><computeroutput>uint16_t irparams_struct::rawbuf[<link linkend="__i_rremote_8hpp_1a589aa40429eeb37b6e83a2c09854a47b">RAW_BUFFER_LENGTH</link>]</computeroutput></para><para>
+
+<para>raw data / tick counts per mark/space, first entry is the length of the gap between previous and current command </para>
+</para>
+<para>
+Definition at line <link linkend="__i_rremote_int_8h_source_1l00115">115</link> of file <link linkend="__i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<anchor xml:id="_structirparams__struct_1af0571ac479d1c38c79502651b0631432"/><section>
+    <title>rawlen</title>
+<indexterm><primary>rawlen</primary><secondary>irparams_struct</secondary></indexterm>
+<indexterm><primary>irparams_struct</primary><secondary>rawlen</secondary></indexterm>
+<para><computeroutput>uint8_t irparams_struct::rawlen</computeroutput></para><para>
+
+<para>counter of entries in rawbuf </para>
+</para>
+<para>
+Definition at line <link linkend="__i_rremote_int_8h_source_1l00111">111</link> of file <link linkend="__i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<anchor xml:id="_structirparams__struct_1aea7300a6d0cd2e463887a8595c6c1e2e"/><section>
+    <title>StateForISR</title>
+<indexterm><primary>StateForISR</primary><secondary>irparams_struct</secondary></indexterm>
+<indexterm><primary>irparams_struct</primary><secondary>StateForISR</secondary></indexterm>
+<para><computeroutput>volatile uint8_t irparams_struct::StateForISR</computeroutput></para><para>
+
+<para>State Machine state. </para>
+</para>
+<para>
+Definition at line <link linkend="__i_rremote_int_8h_source_1l00101">101</link> of file <link linkend="__i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<anchor xml:id="_structirparams__struct_1ad0b5caeae83ea38517415e7210829b85"/><section>
+    <title>TickCounterForISR</title>
+<indexterm><primary>TickCounterForISR</primary><secondary>irparams_struct</secondary></indexterm>
+<indexterm><primary>irparams_struct</primary><secondary>TickCounterForISR</secondary></indexterm>
+<para><computeroutput>uint16_t irparams_struct::TickCounterForISR</computeroutput></para><para>
+
+<para>Counts 50uS ticks. The value is copied into the rawbuf array on every transition. </para>
+</para>
+<para>
+Definition at line <link linkend="__i_rremote_int_8h_source_1l00107">107</link> of file <link linkend="__i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<para>
+The documentation for this struct was generated from the following file:</para>
+main/IRRemote_Library/<link linkend="__i_rremote_int_8h">IRremoteInt.h</link></section>
+</section>

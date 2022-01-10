@@ -1,0 +1,10 @@
+digraph "enablePCIInterruptForTinyReceiver"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="enablePCIInterruptForTiny\lReceiver",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="initPCIInterruptForTinyReceiver",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group___tiny_receiver.html#ga1f3913249343258d738ea0a48f7e1aed",tooltip=" "];
+}

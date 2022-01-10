@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="__buzz___config_8h_source" xml:lang="en-US">
+<title>Buzz_Config.h</title>
+<indexterm><primary>ArduinoSketch2/main/Modules/Actuators/Buzzer/Buzz_Config.h</primary></indexterm>
+<programlisting linenumbering="unnumbered"><anchor xml:id="__buzz___config_8h_source_1l00001"/>00001 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="__buzz___config_8h_source_1l00002"/>00002 <emphasis role="comment">&#32;*&#32;Buzzer_Config.cpp</emphasis>
+<anchor xml:id="__buzz___config_8h_source_1l00003"/>00003 <emphasis role="comment">&#32;*</emphasis>
+<anchor xml:id="__buzz___config_8h_source_1l00004"/>00004 <emphasis role="comment">&#32;*&#32;Buzzer&#32;configuration&#32;header</emphasis>
+<anchor xml:id="__buzz___config_8h_source_1l00005"/>00005 <emphasis role="comment">&#32;*</emphasis>
+<anchor xml:id="__buzz___config_8h_source_1l00006"/>00006 <emphasis role="comment">&#32;*&#32;Created:&#32;10/20/2021&#32;11:06:14&#32;PM</emphasis>
+<anchor xml:id="__buzz___config_8h_source_1l00007"/>00007 <emphasis role="comment">&#32;*&#32;&#32;Author:&#32;Andi</emphasis>
+<anchor xml:id="__buzz___config_8h_source_1l00008"/>00008 <emphasis role="comment">&#32;*/</emphasis>&#32;
+<anchor xml:id="__buzz___config_8h_source_1l00009"/>00009 
+<anchor xml:id="__buzz___config_8h_source_1l00010"/>00010 
+<anchor xml:id="__buzz___config_8h_source_1l00011"/>00011 <emphasis role="comment">/*&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;Defines&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;*/</emphasis>
+<anchor xml:id="__buzz___config_8h_source_1l00012"/>00012 
+<anchor xml:id="__buzz___config_8h_source_1l00014"/>00014 <emphasis role="preprocessor">#pragma&#32;region&#32;Defines</emphasis>
+<anchor xml:id="__buzz___config_8h_source_1l00015"/>00015 
+<anchor xml:id="__buzz___config_8h_source_1l00016"/>00016 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="__buzz___config_8h_source_1l00017"/>00017 <emphasis role="comment">&#32;*&#32;&#32;Buzzer&#32;frequency</emphasis>
+<anchor xml:id="__buzz___config_8h_source_1l00018"/>00018 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="__buzz___config_8h_source_1l00019"/>00019 <emphasis role="preprocessor">#define&#32;BUZZER_FREQ&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;1000&#32;</emphasis>
+<anchor xml:id="__buzz___config_8h_source_1l00020"/>00020 
+<anchor xml:id="__buzz___config_8h_source_1l00021"/>00021 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="__buzz___config_8h_source_1l00022"/>00022 <emphasis role="comment">&#32;*&#32;&#32;Buzzer&#32;default&#32;duration&#32;in&#32;ms</emphasis>
+<anchor xml:id="__buzz___config_8h_source_1l00023"/>00023 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="__buzz___config_8h_source_1l00024"/>00024 <emphasis role="preprocessor">#define&#32;BUZZER_DEFAULT_DURATION&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;500</emphasis>
+<anchor xml:id="__buzz___config_8h_source_1l00025"/>00025 
+<anchor xml:id="__buzz___config_8h_source_1l00026"/>00026 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="__buzz___config_8h_source_1l00027"/>00027 <emphasis role="comment">&#32;*&#32;&#32;First&#32;distance&#32;stage&#32;(for&#32;20&#32;cm)</emphasis>
+<anchor xml:id="__buzz___config_8h_source_1l00028"/>00028 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="__buzz___config_8h_source_1l00029"/>00029 <emphasis role="preprocessor">#define&#32;BUZZER_1ST_STAGE_DELAY_MS&#32;&#32;&#32;&#32;&#32;&#32;&#32;1000</emphasis>
+<anchor xml:id="__buzz___config_8h_source_1l00030"/>00030 
+<anchor xml:id="__buzz___config_8h_source_1l00031"/>00031 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="__buzz___config_8h_source_1l00032"/>00032 <emphasis role="comment">&#32;*&#32;&#32;Second&#32;distance&#32;stage&#32;(for&#32;15&#32;cm)</emphasis>
+<anchor xml:id="__buzz___config_8h_source_1l00033"/>00033 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="__buzz___config_8h_source_1l00034"/>00034 <emphasis role="preprocessor">#define&#32;BUZZER_2ST_STAGE_DELAY_MS&#32;&#32;&#32;&#32;&#32;&#32;&#32;800</emphasis>
+<anchor xml:id="__buzz___config_8h_source_1l00035"/>00035 
+<anchor xml:id="__buzz___config_8h_source_1l00036"/>00036 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="__buzz___config_8h_source_1l00037"/>00037 <emphasis role="comment">&#32;*&#32;&#32;Third&#32;distance&#32;stage&#32;(for&#32;10&#32;cm)</emphasis>
+<anchor xml:id="__buzz___config_8h_source_1l00038"/>00038 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="__buzz___config_8h_source_1l00039"/>00039 <emphasis role="preprocessor">#define&#32;BUZZER_3ST_STAGE_DELAY_MS&#32;&#32;&#32;&#32;&#32;&#32;&#32;600</emphasis>
+<anchor xml:id="__buzz___config_8h_source_1l00040"/>00040 
+<anchor xml:id="__buzz___config_8h_source_1l00041"/>00041 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="__buzz___config_8h_source_1l00042"/>00042 <emphasis role="comment">&#32;*&#32;&#32;Fourth&#32;distance&#32;stage&#32;(for&#32;5&#32;cm)</emphasis>
+<anchor xml:id="__buzz___config_8h_source_1l00043"/>00043 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="__buzz___config_8h_source_1l00044"/>00044 <emphasis role="preprocessor">#define&#32;BUZZER_4ST_STAGE_DELAY_MS&#32;&#32;&#32;&#32;&#32;&#32;&#32;400</emphasis>
+<anchor xml:id="__buzz___config_8h_source_1l00045"/>00045 
+<anchor xml:id="__buzz___config_8h_source_1l00046"/>00046 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="__buzz___config_8h_source_1l00047"/>00047 <emphasis role="comment">&#32;*&#32;&#32;Fifth&#32;distance&#32;stage&#32;(for&#32;2&#32;cm)</emphasis>
+<anchor xml:id="__buzz___config_8h_source_1l00048"/>00048 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="__buzz___config_8h_source_1l00049"/>00049 <emphasis role="preprocessor">#define&#32;BUZZER_5ST_STAGE_DELAY_MS&#32;&#32;&#32;&#32;&#32;&#32;&#32;200</emphasis>
+<anchor xml:id="__buzz___config_8h_source_1l00050"/>00050 
+<anchor xml:id="__buzz___config_8h_source_1l00051"/>00051 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="__buzz___config_8h_source_1l00052"/>00052 <emphasis role="comment">&#32;*&#32;&#32;Min&#32;distance&#32;stage&#32;(less&#32;then&#32;1&#32;cm)</emphasis>
+<anchor xml:id="__buzz___config_8h_source_1l00053"/>00053 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="__buzz___config_8h_source_1l00054"/>00054 <emphasis role="preprocessor">#define&#32;BUZZER_MIN_STAGE_DELAY_MS&#32;&#32;&#32;&#32;&#32;&#32;&#32;100</emphasis>
+<anchor xml:id="__buzz___config_8h_source_1l00055"/>00055 
+<anchor xml:id="__buzz___config_8h_source_1l00056"/>00056 <emphasis role="preprocessor">#pragma&#32;endregion</emphasis>
+<anchor xml:id="__buzz___config_8h_source_1l00057"/>00057 
+<anchor xml:id="__buzz___config_8h_source_1l00058"/>00058 
+<anchor xml:id="__buzz___config_8h_source_1l00059"/>00059 <emphasis role="comment">/*&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;End&#32;of&#32;File&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;*/</emphasis>
+<anchor xml:id="__buzz___config_8h_source_1l00060"/>00060 
+</programlisting></section>

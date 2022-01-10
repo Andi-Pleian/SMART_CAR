@@ -1,0 +1,315 @@
+\hypertarget{ir___kaseikyo_8hpp_source}{}\doxysection{ir\+\_\+\+Kaseikyo.\+hpp}
+\label{ir___kaseikyo_8hpp_source}\index{IRRemote/ir\_Kaseikyo.hpp@{IRRemote/ir\_Kaseikyo.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * ir\_Kaseikyo.hpp}}
+\DoxyCodeLine{3 \textcolor{comment}{ *}}
+\DoxyCodeLine{4 \textcolor{comment}{ *  Contains functions for receiving and sending Kaseikyo/Panasonic IR Protocol in "{}raw"{} and standard format with 16 bit address + 8 bit command}}
+\DoxyCodeLine{5 \textcolor{comment}{ *}}
+\DoxyCodeLine{6 \textcolor{comment}{ *  This file is part of Arduino-\/IRremote https://github.com/Arduino-\/IRremote/Arduino-\/IRremote.}}
+\DoxyCodeLine{7 \textcolor{comment}{ *}}
+\DoxyCodeLine{8 \textcolor{comment}{ ************************************************************************************}}
+\DoxyCodeLine{9 \textcolor{comment}{ * MIT License}}
+\DoxyCodeLine{10 \textcolor{comment}{ *}}
+\DoxyCodeLine{11 \textcolor{comment}{ * Copyright (c) 2020-\/2021 Armin Joachimsmeyer}}
+\DoxyCodeLine{12 \textcolor{comment}{ *}}
+\DoxyCodeLine{13 \textcolor{comment}{ * Permission is hereby granted, free of charge, to any person obtaining a copy}}
+\DoxyCodeLine{14 \textcolor{comment}{ * of this software and associated documentation files (the "{}Software"{}), to deal}}
+\DoxyCodeLine{15 \textcolor{comment}{ * in the Software without restriction, including without limitation the rights}}
+\DoxyCodeLine{16 \textcolor{comment}{ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell}}
+\DoxyCodeLine{17 \textcolor{comment}{ * copies of the Software, and to permit persons to whom the Software is furnished}}
+\DoxyCodeLine{18 \textcolor{comment}{ * to do so, subject to the following conditions:}}
+\DoxyCodeLine{19 \textcolor{comment}{ *}}
+\DoxyCodeLine{20 \textcolor{comment}{ * The above copyright notice and this permission notice shall be included in all}}
+\DoxyCodeLine{21 \textcolor{comment}{ * copies or substantial portions of the Software.}}
+\DoxyCodeLine{22 \textcolor{comment}{ *}}
+\DoxyCodeLine{23 \textcolor{comment}{ * THE SOFTWARE IS PROVIDED "{}AS IS"{}, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,}}
+\DoxyCodeLine{24 \textcolor{comment}{ * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A}}
+\DoxyCodeLine{25 \textcolor{comment}{ * PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT}}
+\DoxyCodeLine{26 \textcolor{comment}{ * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF}}
+\DoxyCodeLine{27 \textcolor{comment}{ * CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE}}
+\DoxyCodeLine{28 \textcolor{comment}{ * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.}}
+\DoxyCodeLine{29 \textcolor{comment}{ *}}
+\DoxyCodeLine{30 \textcolor{comment}{ ************************************************************************************}}
+\DoxyCodeLine{31 \textcolor{comment}{ */}}
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#ifndef IR\_KASEIKYO\_HPP}}
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#define IR\_KASEIKYO\_HPP}}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35 \textcolor{preprocessor}{\#include <Arduino.h>}}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37 \textcolor{comment}{//\#define DEBUG // Activate this for lots of lovely debug output from this decoder.}}
+\DoxyCodeLine{38 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_i_rremote_int_8h}{IRremoteInt.h}}"{}} \textcolor{comment}{// evaluates the DEBUG for IR\_DEBUG\_PRINT}}
+\DoxyCodeLine{39 \textcolor{preprocessor}{\#include "{}LongUnion.h"{}}}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{44 \textcolor{comment}{//==============================================================================}}
+\DoxyCodeLine{45 \textcolor{comment}{//       PPPP    AAA   N   N   AAA    SSSS   OOO   N   N  IIIII   CCCC}}
+\DoxyCodeLine{46 \textcolor{comment}{//       P   P  A   A  NN  N  A   A  S      O   O  NN  N    I    C}}
+\DoxyCodeLine{47 \textcolor{comment}{//       PPPP   AAAAA  N N N  AAAAA   SSS   O   O  N N N    I    C}}
+\DoxyCodeLine{48 \textcolor{comment}{//       P      A   A  N  NN  A   A      S  O   O  N  NN    I    C}}
+\DoxyCodeLine{49 \textcolor{comment}{//       P      A   A  N   N  A   A  SSSS    OOO   N   N  IIIII   CCCC}}
+\DoxyCodeLine{50 \textcolor{comment}{//==============================================================================}}
+\DoxyCodeLine{51 \textcolor{comment}{// see: http://www.hifi-\/remote.com/johnsfine/DecodeIR.html\#Panasonic and http://www.hifi-\/remote.com/johnsfine/DecodeIR.html\#Kaseikyo}}
+\DoxyCodeLine{52 \textcolor{comment}{// IRP notation: \{37k,432\}<1,-\/1|1,-\/3>(8,-\/4,M:8,N:8,X:4,D:4,S:8,F:8,G:8,1,-\/173)+ \{X=M:4:0\string^M:4:4\string^N:4:0\string^N:4:4\}}}
+\DoxyCodeLine{53 \textcolor{comment}{// see: http://www.remotecentral.com/cgi-\/bin/mboard/rc-\/pronto/thread.cgi?26152}}
+\DoxyCodeLine{54 \textcolor{comment}{// The first two (8-\/bit) bytes are always 2 and 32 (These identify Panasonic within the Kaseikyo standard)}}
+\DoxyCodeLine{55 \textcolor{comment}{// The next two bytes are 4 independent 4-\/bit fields or Device and Subdevice}}
+\DoxyCodeLine{56 \textcolor{comment}{// The second to last byte is the function and the last byte is xor of the three bytes before it.}}
+\DoxyCodeLine{57 \textcolor{comment}{// 0\_\_\_\_\_\_\_ 1\_\_\_\_\_\_\_  2\_\_\_\_\_\_ 3\_\_\_\_\_\_\_ 4\_\_\_\_\_\_\_ 5}}
+\DoxyCodeLine{58 \textcolor{comment}{// 76543210 76543210 76543210 76543210 76543210 76543210}}
+\DoxyCodeLine{59 \textcolor{comment}{// 00000010 00100000 Dev\_\_\_\_  Sub Dev  Fun\_\_\_\_  XOR( B2, B3, B4)}}
+\DoxyCodeLine{60 \textcolor{comment}{// LSB first, start bit + 16 Vendor + 4 Parity(of vendor) + 4 Genre1 + 4 Genre2 + 10 Command + 2 ID + 8 Parity + stop bit}}
+\DoxyCodeLine{61 \textcolor{comment}{// We reduce it to: start bit + 16 Vendor + 16 Address + 8 Command + 8 Parity + stop bit}}
+\DoxyCodeLine{62 \textcolor{comment}{//}}
+\DoxyCodeLine{63 \textcolor{preprocessor}{\#define KASEIKYO\_VENDOR\_ID\_BITS     16}}
+\DoxyCodeLine{64 \textcolor{preprocessor}{\#define KASEIKYO\_VENDOR\_ID\_PARITY\_BITS   4}}
+\DoxyCodeLine{65 \textcolor{preprocessor}{\#define KASEIKYO\_ADDRESS\_BITS       12}}
+\DoxyCodeLine{66 \textcolor{preprocessor}{\#define KASEIKYO\_COMMAND\_BITS       8}}
+\DoxyCodeLine{67 \textcolor{preprocessor}{\#define KASEIKYO\_PARITY\_BITS        8}}
+\DoxyCodeLine{68 \textcolor{preprocessor}{\#define KASEIKYO\_BITS               (KASEIKYO\_VENDOR\_ID\_BITS + KASEIKYO\_VENDOR\_ID\_PARITY\_BITS + KASEIKYO\_ADDRESS\_BITS + KASEIKYO\_COMMAND\_BITS + KASEIKYO\_PARITY\_BITS)}}
+\DoxyCodeLine{69 \textcolor{preprocessor}{\#define KASEIKYO\_UNIT               432 }\textcolor{comment}{// 16 pulses of 37 kHz (432,432432)  -\/ Pronto 0x70 / 0x10}}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71 \textcolor{preprocessor}{\#define KASEIKYO\_HEADER\_MARK        (8 * KASEIKYO\_UNIT) }\textcolor{comment}{// 3456}}
+\DoxyCodeLine{72 \textcolor{preprocessor}{\#define KASEIKYO\_HEADER\_SPACE       (4 * KASEIKYO\_UNIT) }\textcolor{comment}{// 1728}}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{74 \textcolor{preprocessor}{\#define KASEIKYO\_BIT\_MARK           KASEIKYO\_UNIT}}
+\DoxyCodeLine{75 \textcolor{preprocessor}{\#define KASEIKYO\_ONE\_SPACE          (3 * KASEIKYO\_UNIT) }\textcolor{comment}{// 1296}}
+\DoxyCodeLine{76 \textcolor{preprocessor}{\#define KASEIKYO\_ZERO\_SPACE         KASEIKYO\_UNIT}}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{78 \textcolor{preprocessor}{\#define KASEIKYO\_AVERAGE\_DURATION   56000}}
+\DoxyCodeLine{79 \textcolor{preprocessor}{\#define KASEIKYO\_REPEAT\_PERIOD      130000}}
+\DoxyCodeLine{80 \textcolor{preprocessor}{\#define KASEIKYO\_REPEAT\_SPACE       (KASEIKYO\_REPEAT\_PERIOD -\/ KASEIKYO\_AVERAGE\_DURATION) }\textcolor{comment}{// 74 ms}}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{82 \textcolor{comment}{// for old decoder}}
+\DoxyCodeLine{83 \textcolor{preprocessor}{\#define KASEIKYO\_DATA\_BITS          32}}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{85 \textcolor{comment}{//+=============================================================================}}
+\DoxyCodeLine{86 \textcolor{comment}{/*}}
+\DoxyCodeLine{87 \textcolor{comment}{ * Send with LSB first}}
+\DoxyCodeLine{88 \textcolor{comment}{ * Address is sub-\/device << 8 + device}}
+\DoxyCodeLine{89 \textcolor{comment}{ */}}
+\DoxyCodeLine{90 \textcolor{keywordtype}{void} IRsend::sendKaseikyo(uint16\_t aAddress, uint8\_t aCommand, uint\_fast8\_t aNumberOfRepeats, uint16\_t aVendorCode) \{}
+\DoxyCodeLine{91     \textcolor{comment}{// Set IR carrier frequency}}
+\DoxyCodeLine{92     \mbox{\hyperlink{group___sending_ga42c04af63d252b320c017ffa2bfc90e5}{enableIROut}}(KASEIKYO\_KHZ); \textcolor{comment}{// 37 kHz}}
+\DoxyCodeLine{93 }
+\DoxyCodeLine{94     uint\_fast8\_t tNumberOfCommands = aNumberOfRepeats + 1;}
+\DoxyCodeLine{95     \textcolor{keywordflow}{while} (tNumberOfCommands > 0) \{}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{97         \textcolor{comment}{// Header}}
+\DoxyCodeLine{98         \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(KASEIKYO\_HEADER\_MARK);}
+\DoxyCodeLine{99         \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(KASEIKYO\_HEADER\_SPACE);}
+\DoxyCodeLine{100 }
+\DoxyCodeLine{101         \textcolor{comment}{// Vendor ID}}
+\DoxyCodeLine{102         \mbox{\hyperlink{group___sending_ga6904a411999a4c9f7306dba49851eb7b}{sendPulseDistanceWidthData}}(KASEIKYO\_BIT\_MARK, KASEIKYO\_ONE\_SPACE, KASEIKYO\_BIT\_MARK, KASEIKYO\_ZERO\_SPACE, aVendorCode,}
+\DoxyCodeLine{103         KASEIKYO\_VENDOR\_ID\_BITS, PROTOCOL\_IS\_LSB\_FIRST);}
+\DoxyCodeLine{104 }
+\DoxyCodeLine{105         \textcolor{comment}{// Vendor Parity}}
+\DoxyCodeLine{106         uint8\_t tVendorParity = aVendorCode \string^ (aVendorCode >> 8);}
+\DoxyCodeLine{107         tVendorParity = (tVendorParity \string^ (tVendorParity >> 4)) \& 0xF;}
+\DoxyCodeLine{108 }
+\DoxyCodeLine{109         \mbox{\hyperlink{union_long_union}{LongUnion}} tSendValue;}
+\DoxyCodeLine{110         tSendValue.UWord.LowWord = aAddress << KASEIKYO\_VENDOR\_ID\_PARITY\_BITS;}
+\DoxyCodeLine{111         tSendValue.UByte.LowByte |= tVendorParity; \textcolor{comment}{// set low nibble to parity}}
+\DoxyCodeLine{112         tSendValue.UByte.MidHighByte = aCommand;}
+\DoxyCodeLine{113         tSendValue.UByte.HighByte = aCommand \string^ tSendValue.UByte.LowByte \string^ tSendValue.UByte.MidLowByte; \textcolor{comment}{// Parity}}
+\DoxyCodeLine{114 }
+\DoxyCodeLine{115         \textcolor{comment}{// Send address (device and subdevice) + command + parity + Stop bit}}
+\DoxyCodeLine{116         \mbox{\hyperlink{group___sending_ga6904a411999a4c9f7306dba49851eb7b}{sendPulseDistanceWidthData}}(KASEIKYO\_BIT\_MARK, KASEIKYO\_ONE\_SPACE, KASEIKYO\_BIT\_MARK, KASEIKYO\_ZERO\_SPACE, tSendValue.ULong,}
+\DoxyCodeLine{117         KASEIKYO\_ADDRESS\_BITS + KASEIKYO\_VENDOR\_ID\_PARITY\_BITS + KASEIKYO\_COMMAND\_BITS + KASEIKYO\_PARITY\_BITS,}
+\DoxyCodeLine{118         PROTOCOL\_IS\_LSB\_FIRST, SEND\_STOP\_BIT);}
+\DoxyCodeLine{119 }
+\DoxyCodeLine{120         tNumberOfCommands-\/-\/;}
+\DoxyCodeLine{121         \textcolor{comment}{// skip last delay!}}
+\DoxyCodeLine{122         \textcolor{keywordflow}{if} (tNumberOfCommands > 0) \{}
+\DoxyCodeLine{123             \textcolor{comment}{// send repeated command in a fixed raster}}
+\DoxyCodeLine{124             delay(KASEIKYO\_REPEAT\_SPACE / MICROS\_IN\_ONE\_MILLI);}
+\DoxyCodeLine{125         \}}
+\DoxyCodeLine{126     \}}
+\DoxyCodeLine{127 \}}
+\DoxyCodeLine{128 }
+\DoxyCodeLine{132 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___decoder_gad3a14e1a94a402a4cbe0eeeded312173}{IRsend::sendPanasonic}}(uint16\_t aAddress, uint8\_t aCommand, uint\_fast8\_t aNumberOfRepeats) \{}
+\DoxyCodeLine{133     sendKaseikyo(aAddress, aCommand, aNumberOfRepeats, PANASONIC\_VENDOR\_ID\_CODE);}
+\DoxyCodeLine{134 \}}
+\DoxyCodeLine{135 }
+\DoxyCodeLine{139 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___decoder_ga9c3687ea0ab26ce088bd2a8a0aa1f1c8}{IRsend::sendKaseikyo\_Denon}}(uint16\_t aAddress, uint8\_t aCommand, uint\_fast8\_t aNumberOfRepeats) \{}
+\DoxyCodeLine{140     sendKaseikyo(aAddress, aCommand, aNumberOfRepeats, DENON\_VENDOR\_ID\_CODE);}
+\DoxyCodeLine{141 \}}
+\DoxyCodeLine{142 }
+\DoxyCodeLine{146 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___decoder_gaf42f22f1d83211811b4ec765d4dc0a7f}{IRsend::sendKaseikyo\_Mitsubishi}}(uint16\_t aAddress, uint8\_t aCommand, uint\_fast8\_t aNumberOfRepeats) \{}
+\DoxyCodeLine{147     sendKaseikyo(aAddress, aCommand, aNumberOfRepeats, MITSUBISHI\_VENDOR\_ID\_CODE);}
+\DoxyCodeLine{148 \}}
+\DoxyCodeLine{149 }
+\DoxyCodeLine{153 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___decoder_ga6fee66f189ae46afac1ebe876ffbbf58}{IRsend::sendKaseikyo\_Sharp}}(uint16\_t aAddress, uint8\_t aCommand, uint\_fast8\_t aNumberOfRepeats) \{}
+\DoxyCodeLine{154     sendKaseikyo(aAddress, aCommand, aNumberOfRepeats, SHARP\_VENDOR\_ID\_CODE);}
+\DoxyCodeLine{155 \}}
+\DoxyCodeLine{156 }
+\DoxyCodeLine{160 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___decoder_ga43bf86aaaa216292f8eb7d0941731241}{IRsend::sendKaseikyo\_JVC}}(uint16\_t aAddress, uint8\_t aCommand, uint\_fast8\_t aNumberOfRepeats) \{}
+\DoxyCodeLine{161     sendKaseikyo(aAddress, aCommand, aNumberOfRepeats, JVC\_VENDOR\_ID\_CODE);}
+\DoxyCodeLine{162 \}}
+\DoxyCodeLine{163 }
+\DoxyCodeLine{164 \textcolor{comment}{/*}}
+\DoxyCodeLine{165 \textcolor{comment}{ * Tested with my Panasonic DVD/TV remote}}
+\DoxyCodeLine{166 \textcolor{comment}{ */}}
+\DoxyCodeLine{167 \textcolor{keywordtype}{bool} IRrecv::decodeKaseikyo() \{}
+\DoxyCodeLine{168 }
+\DoxyCodeLine{169     \mbox{\hyperlink{_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fad}{decode\_type\_t}} tProtocol;}
+\DoxyCodeLine{170     \textcolor{comment}{// Check we have enough data (100)-\/ +4 for initial gap, start bit mark and space + stop bit mark}}
+\DoxyCodeLine{171     \textcolor{keywordflow}{if} (decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_af0571ac479d1c38c79502651b0631432}{rawlen}} != ((2 * KASEIKYO\_BITS) + 4)) \{}
+\DoxyCodeLine{172         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(F(\textcolor{stringliteral}{"{}Kaseikyo: "{}}));}
+\DoxyCodeLine{173         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(\textcolor{stringliteral}{"{}Data length="{}});}
+\DoxyCodeLine{174         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_af0571ac479d1c38c79502651b0631432}{rawlen}});}
+\DoxyCodeLine{175         \mbox{\hyperlink{_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{} is not 100"{}});}
+\DoxyCodeLine{176         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{177     \}}
+\DoxyCodeLine{178 }
+\DoxyCodeLine{179     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{group___receiving_ga4472564ea96b1ee10b51f594f60d7aeb}{matchMark}}(decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_a7aa7b811dcc0fb5ab0da7c0bddaf97f8}{rawbuf}}[1], KASEIKYO\_HEADER\_MARK)) \{}
+\DoxyCodeLine{180         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(\textcolor{stringliteral}{"{}Kaseikyo: "{}});}
+\DoxyCodeLine{181         \mbox{\hyperlink{_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}Header mark length is wrong"{}});}
+\DoxyCodeLine{182         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{183     \}}
+\DoxyCodeLine{184 }
+\DoxyCodeLine{185     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{group___receiving_ga4472564ea96b1ee10b51f594f60d7aeb}{matchMark}}(decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_a7aa7b811dcc0fb5ab0da7c0bddaf97f8}{rawbuf}}[2], KASEIKYO\_HEADER\_SPACE)) \{}
+\DoxyCodeLine{186         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(\textcolor{stringliteral}{"{}Kaseikyo: "{}});}
+\DoxyCodeLine{187         \mbox{\hyperlink{_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}Header space length is wrong"{}});}
+\DoxyCodeLine{188         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{189     \}}
+\DoxyCodeLine{190 }
+\DoxyCodeLine{191     \textcolor{comment}{// decode Vendor ID}}
+\DoxyCodeLine{192     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{group___receiving_gaf8c9cdb5f7280043a552f22265bdb2d5}{decodePulseDistanceData}}(KASEIKYO\_VENDOR\_ID\_BITS, 3, KASEIKYO\_BIT\_MARK, KASEIKYO\_ONE\_SPACE, KASEIKYO\_ZERO\_SPACE,}
+\DoxyCodeLine{193     PROTOCOL\_IS\_LSB\_FIRST)) \{}
+\DoxyCodeLine{194         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(\textcolor{stringliteral}{"{}Kaseikyo: "{}});}
+\DoxyCodeLine{195         \mbox{\hyperlink{_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}Vendor ID decode failed"{}});}
+\DoxyCodeLine{196         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{197     \}}
+\DoxyCodeLine{198 }
+\DoxyCodeLine{199     uint16\_t tVendorId = decodedIRData.\mbox{\hyperlink{struct_i_r_data_aeca55ebf36bf919312a933597b8734d8}{decodedRawData}};}
+\DoxyCodeLine{200     \textcolor{keywordflow}{if} (tVendorId == PANASONIC\_VENDOR\_ID\_CODE) \{}
+\DoxyCodeLine{201         tProtocol = PANASONIC;}
+\DoxyCodeLine{202     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (tVendorId == SHARP\_VENDOR\_ID\_CODE) \{}
+\DoxyCodeLine{203         tProtocol = KASEIKYO\_SHARP;}
+\DoxyCodeLine{204     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (tVendorId == DENON\_VENDOR\_ID\_CODE) \{}
+\DoxyCodeLine{205         tProtocol = KASEIKYO\_DENON;}
+\DoxyCodeLine{206     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (tVendorId == JVC\_VENDOR\_ID\_CODE) \{}
+\DoxyCodeLine{207         tProtocol = KASEIKYO\_JVC;}
+\DoxyCodeLine{208     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (tVendorId == MITSUBISHI\_VENDOR\_ID\_CODE) \{}
+\DoxyCodeLine{209         tProtocol = KASEIKYO\_MITSUBISHI;}
+\DoxyCodeLine{210     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{211         tProtocol = KASEIKYO;}
+\DoxyCodeLine{212     \}}
+\DoxyCodeLine{213 }
+\DoxyCodeLine{214     \textcolor{comment}{// Vendor Parity}}
+\DoxyCodeLine{215     uint8\_t tVendorParity = tVendorId \string^ (tVendorId >> 8);}
+\DoxyCodeLine{216     tVendorParity = (tVendorParity \string^ (tVendorParity >> 4)) \& 0xF;}
+\DoxyCodeLine{217 }
+\DoxyCodeLine{218     \textcolor{comment}{// decode address (device and subdevice) + command + parity}}
+\DoxyCodeLine{219     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{group___receiving_gaf8c9cdb5f7280043a552f22265bdb2d5}{decodePulseDistanceData}}(}
+\DoxyCodeLine{220     KASEIKYO\_VENDOR\_ID\_PARITY\_BITS + KASEIKYO\_ADDRESS\_BITS + KASEIKYO\_COMMAND\_BITS + KASEIKYO\_PARITY\_BITS,}
+\DoxyCodeLine{221             3 + (2 * KASEIKYO\_VENDOR\_ID\_BITS), KASEIKYO\_BIT\_MARK, KASEIKYO\_ONE\_SPACE,}
+\DoxyCodeLine{222             KASEIKYO\_ZERO\_SPACE, PROTOCOL\_IS\_LSB\_FIRST)) \{}
+\DoxyCodeLine{223         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(\textcolor{stringliteral}{"{}Kaseikyo: "{}});}
+\DoxyCodeLine{224         \mbox{\hyperlink{_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}Address, command + parity decode failed"{}});}
+\DoxyCodeLine{225         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{226     \}}
+\DoxyCodeLine{227 }
+\DoxyCodeLine{228     \textcolor{comment}{// Success}}
+\DoxyCodeLine{229 \textcolor{comment}{//    decodedIRData.flags = IRDATA\_FLAGS\_IS\_LSB\_FIRST; // Not required, since this is the start value}}
+\DoxyCodeLine{230     \mbox{\hyperlink{union_long_union}{LongUnion}} tValue;}
+\DoxyCodeLine{231     tValue.ULong = decodedIRData.\mbox{\hyperlink{struct_i_r_data_aeca55ebf36bf919312a933597b8734d8}{decodedRawData}};}
+\DoxyCodeLine{232     decodedIRData.\mbox{\hyperlink{struct_i_r_data_a1255a5b7d704d34fda83dcabcb903d4c}{address}} = (tValue.UWord.LowWord >> KASEIKYO\_VENDOR\_ID\_PARITY\_BITS); \textcolor{comment}{// remove vendor parity}}
+\DoxyCodeLine{233     decodedIRData.\mbox{\hyperlink{struct_i_r_data_ab0ce2b36765ea429e8c4bfa0706a45e7}{command}} = tValue.UByte.MidHighByte;}
+\DoxyCodeLine{234     uint8\_t tParity = tValue.UByte.LowByte \string^ tValue.UByte.MidLowByte \string^ tValue.UByte.MidHighByte;}
+\DoxyCodeLine{235 }
+\DoxyCodeLine{236     \textcolor{keywordflow}{if} (tVendorParity != (tValue.UByte.LowByte \& 0xF)) \{}
+\DoxyCodeLine{237         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(\textcolor{stringliteral}{"{}Kaseikyo: "{}});}
+\DoxyCodeLine{238         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(\textcolor{stringliteral}{"{}4 bit VendorID Parity is not correct. expected=0x"{}});}
+\DoxyCodeLine{239         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(tVendorParity, HEX);}
+\DoxyCodeLine{240         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(\textcolor{stringliteral}{"{} received=0x"{}});}
+\DoxyCodeLine{241         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(decodedIRData.\mbox{\hyperlink{struct_i_r_data_aeca55ebf36bf919312a933597b8734d8}{decodedRawData}}, HEX);}
+\DoxyCodeLine{242         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(\textcolor{stringliteral}{"{} VendorID=0x"{}});}
+\DoxyCodeLine{243         \mbox{\hyperlink{_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(tVendorId, HEX);}
+\DoxyCodeLine{244         decodedIRData.\mbox{\hyperlink{struct_i_r_data_aaaad48fc0d90e5c6daec601987848a51}{flags}} = \mbox{\hyperlink{_i_rremote_int_8h_a1a60f95f0885b1865dc5514ddd80e093}{IRDATA\_FLAGS\_PARITY\_FAILED}} | IRDATA\_FLAGS\_IS\_LSB\_FIRST;}
+\DoxyCodeLine{245     \}}
+\DoxyCodeLine{246 }
+\DoxyCodeLine{247     \textcolor{keywordflow}{if} (tProtocol != KASEIKYO) \{}
+\DoxyCodeLine{248         decodedIRData.\mbox{\hyperlink{struct_i_r_data_aaaad48fc0d90e5c6daec601987848a51}{flags}} |= \mbox{\hyperlink{_i_rremote_int_8h_abf3b16f9ab35f4e4b95c8c362aca2d71}{IRDATA\_FLAGS\_EXTRA\_INFO}};}
+\DoxyCodeLine{249         \textcolor{comment}{// Include vendor ID in address}}
+\DoxyCodeLine{250         decodedIRData.\mbox{\hyperlink{struct_i_r_data_a0b71fa1a17e3ab0ae9bc9462b795213f}{extra}} |= tVendorId;}
+\DoxyCodeLine{251     \}}
+\DoxyCodeLine{252 }
+\DoxyCodeLine{253     \textcolor{keywordflow}{if} (tValue.UByte.HighByte != tParity) \{}
+\DoxyCodeLine{254         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(\textcolor{stringliteral}{"{}Kaseikyo: "{}});}
+\DoxyCodeLine{255         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(\textcolor{stringliteral}{"{}8 bit Parity is not correct. expected=0x"{}});}
+\DoxyCodeLine{256         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(tParity, HEX);}
+\DoxyCodeLine{257         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(\textcolor{stringliteral}{"{} received=0x"{}});}
+\DoxyCodeLine{258         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(decodedIRData.\mbox{\hyperlink{struct_i_r_data_aeca55ebf36bf919312a933597b8734d8}{decodedRawData}} >> KASEIKYO\_COMMAND\_BITS, HEX);}
+\DoxyCodeLine{259         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(\textcolor{stringliteral}{"{} address=0x"{}});}
+\DoxyCodeLine{260         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(decodedIRData.\mbox{\hyperlink{struct_i_r_data_a1255a5b7d704d34fda83dcabcb903d4c}{address}}, HEX);}
+\DoxyCodeLine{261         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(\textcolor{stringliteral}{"{} command=0x"{}});}
+\DoxyCodeLine{262         \mbox{\hyperlink{_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(decodedIRData.\mbox{\hyperlink{struct_i_r_data_ab0ce2b36765ea429e8c4bfa0706a45e7}{command}}, HEX);}
+\DoxyCodeLine{263         decodedIRData.\mbox{\hyperlink{struct_i_r_data_aaaad48fc0d90e5c6daec601987848a51}{flags}} |= \mbox{\hyperlink{_i_rremote_int_8h_a1a60f95f0885b1865dc5514ddd80e093}{IRDATA\_FLAGS\_PARITY\_FAILED}};}
+\DoxyCodeLine{264     \}}
+\DoxyCodeLine{265 }
+\DoxyCodeLine{266     \textcolor{comment}{// check for repeat}}
+\DoxyCodeLine{267     \textcolor{keywordflow}{if} (decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_a7aa7b811dcc0fb5ab0da7c0bddaf97f8}{rawbuf}}[0] < (KASEIKYO\_REPEAT\_PERIOD / \mbox{\hyperlink{_i_rremote_int_8h_a1c7eebb527483c272812530caa313d20}{MICROS\_PER\_TICK}})) \{}
+\DoxyCodeLine{268         decodedIRData.\mbox{\hyperlink{struct_i_r_data_aaaad48fc0d90e5c6daec601987848a51}{flags}} |= IRDATA\_FLAGS\_IS\_REPEAT;}
+\DoxyCodeLine{269     \}}
+\DoxyCodeLine{270 }
+\DoxyCodeLine{271     decodedIRData.\mbox{\hyperlink{struct_i_r_data_a703592faec26bab5cbe465f53ef14245}{protocol}} = tProtocol;}
+\DoxyCodeLine{272 }
+\DoxyCodeLine{273     decodedIRData.\mbox{\hyperlink{struct_i_r_data_a945c41b8463a36cf00b0f38b0aa73200}{numberOfBits}} = KASEIKYO\_BITS;}
+\DoxyCodeLine{274 }
+\DoxyCodeLine{275     \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{276 \}}
+\DoxyCodeLine{277 }
+\DoxyCodeLine{281 \textcolor{keywordtype}{bool} \mbox{\hyperlink{group___decoder_ga5b0375df7166d1b6b1886891768a9379}{IRrecv::decodePanasonicMSB}}(\mbox{\hyperlink{structdecode__results}{decode\_results}} *aResults) \{}
+\DoxyCodeLine{282     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} offset = 1;}
+\DoxyCodeLine{283 }
+\DoxyCodeLine{284     \textcolor{keywordflow}{if} (aResults-\/>rawlen < (2 * KASEIKYO\_BITS) + 2) \{}
+\DoxyCodeLine{285         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{286     \}}
+\DoxyCodeLine{287 }
+\DoxyCodeLine{288     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{group___receiving_ga4472564ea96b1ee10b51f594f60d7aeb}{matchMark}}(aResults-\/>rawbuf[offset], KASEIKYO\_HEADER\_MARK)) \{}
+\DoxyCodeLine{289         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{290     \}}
+\DoxyCodeLine{291     offset++;}
+\DoxyCodeLine{292     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{group___receiving_ga4472564ea96b1ee10b51f594f60d7aeb}{matchMark}}(aResults-\/>rawbuf[offset], KASEIKYO\_HEADER\_SPACE)) \{}
+\DoxyCodeLine{293         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{294     \}}
+\DoxyCodeLine{295     offset++;}
+\DoxyCodeLine{296 }
+\DoxyCodeLine{297     \textcolor{comment}{// decode address}}
+\DoxyCodeLine{298     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{group___receiving_gaf8c9cdb5f7280043a552f22265bdb2d5}{decodePulseDistanceData}}(KASEIKYO\_ADDRESS\_BITS + KASEIKYO\_DATA\_BITS, offset, KASEIKYO\_BIT\_MARK, KASEIKYO\_ONE\_SPACE,}
+\DoxyCodeLine{299     KASEIKYO\_ZERO\_SPACE, PROTOCOL\_IS\_MSB\_FIRST)) \{}
+\DoxyCodeLine{300         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{301     \}}
+\DoxyCodeLine{302 }
+\DoxyCodeLine{303     aResults-\/>bits = KASEIKYO\_BITS;}
+\DoxyCodeLine{304     aResults-\/>value = decodedIRData.\mbox{\hyperlink{struct_i_r_data_aeca55ebf36bf919312a933597b8734d8}{decodedRawData}};}
+\DoxyCodeLine{305     aResults-\/>\mbox{\hyperlink{structdecode__results_a63091d6d39138248dd2c3bc35ca8ab46}{address}} = PANASONIC\_VENDOR\_ID\_CODE;}
+\DoxyCodeLine{306     aResults-\/>decode\_type = PANASONIC;}
+\DoxyCodeLine{307     decodedIRData.\mbox{\hyperlink{struct_i_r_data_a703592faec26bab5cbe465f53ef14245}{protocol}} = PANASONIC;}
+\DoxyCodeLine{308 }
+\DoxyCodeLine{309     \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{310 \}}
+\DoxyCodeLine{311 }
+\DoxyCodeLine{315 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___decoder_gad3a14e1a94a402a4cbe0eeeded312173}{IRsend::sendPanasonic}}(uint16\_t aAddress, uint32\_t aData) \{}
+\DoxyCodeLine{316     \textcolor{comment}{// Set IR carrier frequency}}
+\DoxyCodeLine{317     \mbox{\hyperlink{group___sending_ga42c04af63d252b320c017ffa2bfc90e5}{enableIROut}}(KASEIKYO\_KHZ); \textcolor{comment}{// 36.7kHz is the correct frequency}}
+\DoxyCodeLine{318 }
+\DoxyCodeLine{319     \textcolor{comment}{// Header}}
+\DoxyCodeLine{320     \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(KASEIKYO\_HEADER\_MARK);}
+\DoxyCodeLine{321     \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(KASEIKYO\_HEADER\_SPACE);}
+\DoxyCodeLine{322 }
+\DoxyCodeLine{323     \textcolor{comment}{// Old version with MSB first Data Address}}
+\DoxyCodeLine{324     \mbox{\hyperlink{group___sending_ga6904a411999a4c9f7306dba49851eb7b}{sendPulseDistanceWidthData}}(KASEIKYO\_BIT\_MARK, KASEIKYO\_ONE\_SPACE, KASEIKYO\_BIT\_MARK, KASEIKYO\_ZERO\_SPACE, aAddress,}
+\DoxyCodeLine{325     KASEIKYO\_ADDRESS\_BITS, PROTOCOL\_IS\_MSB\_FIRST);}
+\DoxyCodeLine{326 }
+\DoxyCodeLine{327     \textcolor{comment}{// Old version with MSB first Data Data + stop bit}}
+\DoxyCodeLine{328     \mbox{\hyperlink{group___sending_ga6904a411999a4c9f7306dba49851eb7b}{sendPulseDistanceWidthData}}(KASEIKYO\_BIT\_MARK, KASEIKYO\_ONE\_SPACE, KASEIKYO\_BIT\_MARK, KASEIKYO\_ZERO\_SPACE, aData,}
+\DoxyCodeLine{329     KASEIKYO\_DATA\_BITS, PROTOCOL\_IS\_MSB\_FIRST);}
+\DoxyCodeLine{330 \}}
+\DoxyCodeLine{331 }
+\DoxyCodeLine{333 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{334 \textcolor{preprocessor}{\#pragma once}}
+
+\end{DoxyCode}

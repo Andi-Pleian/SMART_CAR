@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="__tiny_i_r_receiver_8h_source" xml:lang="en-US">
+<title>TinyIRReceiver.h</title>
+<indexterm><primary>main/IRRemote_Library/TinyIRReceiver.h</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered"><anchor xml:id="__tiny_i_r_receiver_8h_source_1l00001"/>00001 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00002"/>00002 <emphasis role="comment">&#32;*&#32;&#32;TinyIRReceiver.h</emphasis>
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00003"/>00003 <emphasis role="comment">&#32;*</emphasis>
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00004"/>00004 <emphasis role="comment">&#32;*</emphasis>
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00005"/>00005 <emphasis role="comment">&#32;*&#32;&#32;Copyright&#32;(C)&#32;2021&#32;&#32;Armin&#32;Joachimsmeyer</emphasis>
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00006"/>00006 <emphasis role="comment">&#32;*&#32;&#32;armin.joachimsmeyer@gmail.com</emphasis>
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00007"/>00007 <emphasis role="comment">&#32;*</emphasis>
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00008"/>00008 <emphasis role="comment">&#32;*&#32;&#32;This&#32;file&#32;is&#32;part&#32;of&#32;IRMP&#32;https://github.com/ukw100/IRMP.</emphasis>
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00009"/>00009 <emphasis role="comment">&#32;*&#32;&#32;This&#32;file&#32;is&#32;part&#32;of&#32;Arduino-IRremote&#32;https://github.com/Arduino-IRremote/Arduino-IRremote.</emphasis>
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00010"/>00010 <emphasis role="comment">&#32;*</emphasis>
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00011"/>00011 <emphasis role="comment">&#32;*&#32;&#32;TinyIRReceiver&#32;is&#32;free&#32;software:&#32;you&#32;can&#32;redistribute&#32;it&#32;and/or&#32;modify</emphasis>
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00012"/>00012 <emphasis role="comment">&#32;*&#32;&#32;it&#32;under&#32;the&#32;terms&#32;of&#32;the&#32;GNU&#32;General&#32;Public&#32;License&#32;as&#32;published&#32;by</emphasis>
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00013"/>00013 <emphasis role="comment">&#32;*&#32;&#32;the&#32;Free&#32;Software&#32;Foundation,&#32;either&#32;version&#32;3&#32;of&#32;the&#32;License,&#32;or</emphasis>
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00014"/>00014 <emphasis role="comment">&#32;*&#32;&#32;(at&#32;your&#32;option)&#32;any&#32;later&#32;version.</emphasis>
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00015"/>00015 <emphasis role="comment">&#32;*</emphasis>
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00016"/>00016 <emphasis role="comment">&#32;*&#32;&#32;This&#32;program&#32;is&#32;distributed&#32;in&#32;the&#32;hope&#32;that&#32;it&#32;will&#32;be&#32;useful,</emphasis>
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00017"/>00017 <emphasis role="comment">&#32;*&#32;&#32;but&#32;WITHOUT&#32;ANY&#32;WARRANTY;&#32;without&#32;even&#32;the&#32;implied&#32;warranty&#32;of</emphasis>
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00018"/>00018 <emphasis role="comment">&#32;*&#32;&#32;MERCHANTABILITY&#32;or&#32;FITNESS&#32;FOR&#32;A&#32;PARTICULAR&#32;PURPOSE.&#32;&#32;See&#32;the</emphasis>
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00019"/>00019 <emphasis role="comment">&#32;*&#32;&#32;GNU&#32;General&#32;Public&#32;License&#32;for&#32;more&#32;details.</emphasis>
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00020"/>00020 <emphasis role="comment">&#32;*</emphasis>
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00021"/>00021 <emphasis role="comment">&#32;*&#32;&#32;You&#32;should&#32;have&#32;received&#32;a&#32;copy&#32;of&#32;the&#32;GNU&#32;General&#32;Public&#32;License</emphasis>
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00022"/>00022 <emphasis role="comment">&#32;*&#32;&#32;along&#32;with&#32;this&#32;program.&#32;&#32;If&#32;not,&#32;see&#32;&lt;http://www.gnu.org/licenses/gpl.html&gt;.</emphasis>
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00023"/>00023 <emphasis role="comment">&#32;*</emphasis>
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00024"/>00024 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00025"/>00025 
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00026"/>00026 <emphasis role="preprocessor">#ifndef&#32;TINY_IR_RECEIVER_H</emphasis>
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00027"/>00027 <emphasis role="preprocessor">#define&#32;TINY_IR_RECEIVER_H</emphasis>
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00028"/>00028 
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00029"/>00029 <emphasis role="preprocessor">#include&#32;&lt;Arduino.h&gt;</emphasis>
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00030"/>00030 
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00031"/>00031 <emphasis role="preprocessor">#include&#32;&quot;<link linkend="__long_union_8h">LongUnion.h</link>&quot;</emphasis>
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00032"/>00032 
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00037"/>00037 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00038"/>00038 <emphasis role="comment">&#32;*&#32;This&#32;function&#32;is&#32;called&#32;if&#32;a&#32;complete&#32;command&#32;was&#32;received&#32;and&#32;must&#32;be&#32;implemented&#32;by&#32;the&#32;including&#32;file&#32;(user&#32;code)</emphasis>
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00039"/>00039 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00040"/><link linkend="_group___tiny_receiver_1ga5c751ad19033cb8c209d7253dccf34e7">00040</link> <emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_group___tiny_receiver_1ga5c751ad19033cb8c209d7253dccf34e7">handleReceivedTinyIRData</link>(uint16_t&#32;aAddress,&#32;uint8_t&#32;aCommand,&#32;<emphasis role="keywordtype">bool</emphasis>&#32;isRepeat);
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00041"/>00041 
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00042"/>00042 <emphasis role="comment">//&#32;LSB&#32;first,&#32;1&#32;start&#32;bit&#32;+&#32;16&#32;bit&#32;address&#32;+&#32;8&#32;bit&#32;data&#32;+&#32;8&#32;bit&#32;inverted&#32;data&#32;+&#32;1&#32;stop&#32;bit.</emphasis>
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00043"/>00043 <emphasis role="comment">//&#32;see:&#32;https://www.sbprojects.net/knowledge/ir/nec.php</emphasis>
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00044"/>00044 
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00045"/><link linkend="_group___tiny_receiver_1ga2ab110e480a4b16fe516c2afd16a1ea2">00045</link> <emphasis role="preprocessor">#define&#32;NEC_ADDRESS_BITS&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;16&#32;</emphasis><emphasis role="comment">//&#32;16&#32;bit&#32;address&#32;or&#32;8&#32;bit&#32;address&#32;and&#32;8&#32;bit&#32;inverted&#32;address</emphasis>
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00046"/><link linkend="_group___tiny_receiver_1ga07e295da53565eb7146072bdfeb2ed32">00046</link> <emphasis role="preprocessor">#define&#32;NEC_COMMAND_BITS&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;16&#32;</emphasis><emphasis role="comment">//&#32;Command&#32;and&#32;inverted&#32;command</emphasis>
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00047"/>00047 
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00048"/><link linkend="_group___tiny_receiver_1gaa82c77bc0131ac28bc3534b8cf3422bc">00048</link> <emphasis role="preprocessor">#define&#32;NEC_BITS&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;(NEC_ADDRESS_BITS&#32;+&#32;NEC_COMMAND_BITS)</emphasis>
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00049"/><link linkend="_group___tiny_receiver_1gaf3317b0cf5cf7d3063addbaa0a256158">00049</link> <emphasis role="preprocessor">#define&#32;NEC_UNIT&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;560</emphasis>
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00050"/>00050 
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00051"/><link linkend="_group___tiny_receiver_1ga8d393b95d8df4dfa15873aec6a37965e">00051</link> <emphasis role="preprocessor">#define&#32;NEC_HEADER_MARK&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;(16&#32;*&#32;NEC_UNIT)&#32;</emphasis><emphasis role="comment">//&#32;9000</emphasis>
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00052"/><link linkend="_group___tiny_receiver_1ga5c728ed320ffee624e26767be0a80404">00052</link> <emphasis role="preprocessor">#define&#32;NEC_HEADER_SPACE&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;(8&#32;*&#32;NEC_UNIT)&#32;&#32;</emphasis><emphasis role="comment">//&#32;4500</emphasis>
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00053"/>00053 
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00054"/><link linkend="_group___tiny_receiver_1ga3abbe30ef3781c1cf2490003e1c1443a">00054</link> <emphasis role="preprocessor">#define&#32;NEC_BIT_MARK&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;NEC_UNIT</emphasis>
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00055"/><link linkend="_group___tiny_receiver_1ga5ac04ec8b2185c9fb257d39c472733b1">00055</link> <emphasis role="preprocessor">#define&#32;NEC_ONE_SPACE&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;(3&#32;*&#32;NEC_UNIT)&#32;&#32;</emphasis><emphasis role="comment">//&#32;1690</emphasis>
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00056"/><link linkend="_group___tiny_receiver_1ga5ee46914e98bf7f87f32a7104843b243">00056</link> <emphasis role="preprocessor">#define&#32;NEC_ZERO_SPACE&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;NEC_UNIT</emphasis>
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00057"/>00057 
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00058"/><link linkend="_group___tiny_receiver_1ga91880ffa0b09391f2c827d3a1c565abf">00058</link> <emphasis role="preprocessor">#define&#32;NEC_REPEAT_HEADER_SPACE&#32;(4&#32;*&#32;NEC_UNIT)&#32;&#32;</emphasis><emphasis role="comment">//&#32;2250</emphasis>
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00059"/><link linkend="_group___tiny_receiver_1gac2dab5c4a22f8c4915217d3ee4676f08">00059</link> <emphasis role="preprocessor">#define&#32;NEC_REPEAT_PERIOD&#32;&#32;&#32;&#32;&#32;&#32;&#32;110000&#32;</emphasis><emphasis role="comment">//&#32;Not&#32;used&#32;yet&#32;-&#32;Commands&#32;are&#32;repeated&#32;every&#32;110&#32;ms&#32;(measured&#32;from&#32;start&#32;to&#32;start)&#32;for&#32;as&#32;long&#32;as&#32;the&#32;key&#32;on&#32;the&#32;remote&#32;control&#32;is&#32;held&#32;down.</emphasis>
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00060"/>00060 
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00061"/>00061 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00062"/>00062 <emphasis role="comment">&#32;*&#32;Macros&#32;for&#32;comparing&#32;timing&#32;values</emphasis>
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00063"/>00063 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00064"/><link linkend="_group___tiny_receiver_1ga02b97ed6af9381a224ea3be0cab054a0">00064</link> <emphasis role="preprocessor">#define&#32;lowerValue25Percent(aDuration)&#32;&#32;&#32;(aDuration&#32;-&#32;(aDuration&#32;/&#32;4))</emphasis>
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00065"/><link linkend="_group___tiny_receiver_1ga22a6cd77d395a6c06686eafdf9aa2b52">00065</link> <emphasis role="preprocessor">#define&#32;upperValue25Percent(aDuration)&#32;&#32;&#32;(aDuration&#32;+&#32;(aDuration&#32;/&#32;4))</emphasis>
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00066"/><link linkend="_group___tiny_receiver_1gadc6908665014a0bef4442c7769ed5054">00066</link> <emphasis role="preprocessor">#define&#32;lowerValue(aDuration)&#32;&#32;&#32;(aDuration&#32;-&#32;(aDuration&#32;/&#32;2))</emphasis>
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00067"/><link linkend="_group___tiny_receiver_1gaf6134d81e390f1e3dcd60e2aca9c9143">00067</link> <emphasis role="preprocessor">#define&#32;upperValue(aDuration)&#32;&#32;&#32;(aDuration&#32;+&#32;(aDuration&#32;/&#32;2))</emphasis>
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00068"/>00068 
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00069"/>00069 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00070"/>00070 <emphasis role="comment">&#32;*&#32;The&#32;states&#32;for&#32;the&#32;state&#32;machine</emphasis>
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00071"/>00071 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00072"/><link linkend="_group___tiny_receiver_1ga2535b0f1ae380b696c6a37ffa69b3df3">00072</link> <emphasis role="preprocessor">#define&#32;IR_RECEIVER_STATE_WAITING_FOR_START_MARK&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;0</emphasis>
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00073"/><link linkend="_group___tiny_receiver_1ga43017cba7c72b3f0d45265f417e5195d">00073</link> <emphasis role="preprocessor">#define&#32;IR_RECEIVER_STATE_WAITING_FOR_START_SPACE&#32;&#32;&#32;&#32;&#32;&#32;&#32;1</emphasis>
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00074"/><link linkend="_group___tiny_receiver_1gaecf505182d1fa2aa885fcde6cd4160bf">00074</link> <emphasis role="preprocessor">#define&#32;IR_RECEIVER_STATE_WAITING_FOR_FIRST_DATA_MARK&#32;&#32;&#32;2</emphasis>
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00075"/><link linkend="_group___tiny_receiver_1gad3b7237c2aa120840c0eed233d5c627e">00075</link> <emphasis role="preprocessor">#define&#32;IR_RECEIVER_STATE_WAITING_FOR_DATA_SPACE&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;3</emphasis>
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00076"/><link linkend="_group___tiny_receiver_1gae237abb240b59b9c8dd7d853fc3c76b1">00076</link> <emphasis role="preprocessor">#define&#32;IR_RECEIVER_STATE_WAITING_FOR_DATA_MARK&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;4</emphasis>
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00077"/><link linkend="_group___tiny_receiver_1ga2f6f17e18c7b5f1ef4b9cfc907d086e4">00077</link> <emphasis role="preprocessor">#define&#32;IR_RECEIVER_STATE_WAITING_FOR_STOP_MARK&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;5</emphasis>
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00081"/><link linkend="_struct_tiny_i_r_receiver_struct">00081</link> <emphasis role="keyword">struct&#32;</emphasis><link linkend="_struct_tiny_i_r_receiver_struct">TinyIRReceiverStruct</link>&#32;{
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00082"/>00082 &#32;&#32;&#32;&#32;<emphasis role="comment">/*</emphasis>
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00083"/>00083 <emphasis role="comment">&#32;&#32;&#32;&#32;&#32;*&#32;State&#32;machine</emphasis>
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00084"/>00084 <emphasis role="comment">&#32;&#32;&#32;&#32;&#32;*/</emphasis>
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00085"/><link linkend="_struct_tiny_i_r_receiver_struct_1a978f2ac480cb3ab428ff3016239413f1">00085</link> &#32;&#32;&#32;&#32;uint32_t&#32;<link linkend="_struct_tiny_i_r_receiver_struct_1a978f2ac480cb3ab428ff3016239413f1">LastChangeMicros</link>;&#32;&#32;&#32;&#32;&#32;&#32;
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00086"/><link linkend="_struct_tiny_i_r_receiver_struct_1aca59e5c5331a581e0603a59c552fa8c9">00086</link> &#32;&#32;&#32;&#32;uint8_t&#32;<link linkend="_struct_tiny_i_r_receiver_struct_1aca59e5c5331a581e0603a59c552fa8c9">IRReceiverState</link>;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00087"/><link linkend="_struct_tiny_i_r_receiver_struct_1accdf38f518f17dfaf1a8aa870d77ce91">00087</link> &#32;&#32;&#32;&#32;uint8_t&#32;<link linkend="_struct_tiny_i_r_receiver_struct_1accdf38f518f17dfaf1a8aa870d77ce91">IRRawDataBitCounter</link>;
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00088"/>00088 &#32;&#32;&#32;&#32;<emphasis role="comment">/*</emphasis>
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00089"/>00089 <emphasis role="comment">&#32;&#32;&#32;&#32;&#32;*&#32;Data</emphasis>
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00090"/>00090 <emphasis role="comment">&#32;&#32;&#32;&#32;&#32;*/</emphasis>
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00091"/><link linkend="_struct_tiny_i_r_receiver_struct_1aa6f580c1bf0c11c37edefd255283361a">00091</link> &#32;&#32;&#32;&#32;uint32_t&#32;<link linkend="_struct_tiny_i_r_receiver_struct_1aa6f580c1bf0c11c37edefd255283361a">IRRawDataMask</link>;
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00092"/><link linkend="_struct_tiny_i_r_receiver_struct_1a6277ed6c719314aef883af018f886056">00092</link> &#32;&#32;&#32;&#32;<link linkend="_union_long_union">LongUnion</link>&#32;<link linkend="_struct_tiny_i_r_receiver_struct_1a6277ed6c719314aef883af018f886056">IRRawData</link>;
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00093"/><link linkend="_struct_tiny_i_r_receiver_struct_1a003e482629350aaee549b482dd653922">00093</link> &#32;&#32;&#32;&#32;<emphasis role="keywordtype">bool</emphasis>&#32;<link linkend="_struct_tiny_i_r_receiver_struct_1a003e482629350aaee549b482dd653922">IRRepeatDetected</link>;
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00094"/>00094 };
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00095"/>00095 
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00096"/>00096 <emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_group___tiny_receiver_1ga1f3913249343258d738ea0a48f7e1aed">initPCIInterruptForTinyReceiver</link>();
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00097"/>00097 <emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_group___tiny_receiver_1gad23b935e2236a42a070a87379c7c36a4">enablePCIInterruptForTinyReceiver</link>();
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00098"/>00098 <emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_group___tiny_receiver_1ga4217cae1ded4a9b2ed54bc3a1e8cd86e">disablePCIInterruptForTinyReceiver</link>();
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00099"/>00099 <emphasis role="keywordtype">bool</emphasis>&#32;<link linkend="_group___tiny_receiver_1gab65e33fe496d3bee4af897e5d8bd9420">isTinyReceiverIdle</link>();
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00100"/>00100 
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00103"/>00103 <emphasis role="preprocessor">#endif&#32;</emphasis><emphasis role="comment">//&#32;TINY_IR_RECEIVER_H</emphasis>
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00104"/>00104 
+<anchor xml:id="__tiny_i_r_receiver_8h_source_1l00105"/>00105 <emphasis role="preprocessor">#pragma&#32;once</emphasis>
+</programlisting></section>

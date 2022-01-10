@@ -1,0 +1,138 @@
+\hypertarget{ir___bose_wave_8hpp_source}{}\doxysection{ir\+\_\+\+Bose\+Wave.\+hpp}
+\label{ir___bose_wave_8hpp_source}\index{IRRemote/ir\_BoseWave.hpp@{IRRemote/ir\_BoseWave.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * ir\_BoseWave.cpp}}
+\DoxyCodeLine{3 \textcolor{comment}{ *}}
+\DoxyCodeLine{4 \textcolor{comment}{ *  Contains functions for receiving and sending Bose IR Protocol}}
+\DoxyCodeLine{5 \textcolor{comment}{ *}}
+\DoxyCodeLine{6 \textcolor{comment}{ *  This file is part of Arduino-\/IRremote https://github.com/Arduino-\/IRremote/Arduino-\/IRremote.}}
+\DoxyCodeLine{7 \textcolor{comment}{ *}}
+\DoxyCodeLine{8 \textcolor{comment}{ */}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#ifndef IR\_BOSEWAVE\_HPP}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#define IR\_BOSEWAVE\_HPP}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <Arduino.h>}}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{comment}{//\#define DEBUG // Activate this for lots of lovely debug output from this decoder.}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_i_rremote_int_8h}{IRremoteInt.h}}"{}} \textcolor{comment}{// evaluates the DEBUG for IR\_DEBUG\_PRINT}}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{20 \textcolor{comment}{//==============================================================================}}
+\DoxyCodeLine{21 \textcolor{comment}{//                           BBBB    OOO    SSSS  EEEEE}}
+\DoxyCodeLine{22 \textcolor{comment}{//                           B   B  O   O  S      E}}
+\DoxyCodeLine{23 \textcolor{comment}{//                           BB B   O   O   SSS   EEEE}}
+\DoxyCodeLine{24 \textcolor{comment}{//                           B   B  O   O      S  E}}
+\DoxyCodeLine{25 \textcolor{comment}{//                           BBBB    OOO   SSSS   EEEEE}}
+\DoxyCodeLine{26 \textcolor{comment}{//==============================================================================}}
+\DoxyCodeLine{27 \textcolor{comment}{// see http://lirc.sourceforge.net/remotes/bose/WAVERADIO}}
+\DoxyCodeLine{28 \textcolor{comment}{//}}
+\DoxyCodeLine{29 \textcolor{comment}{// Support for Bose Wave Radio CD initially provided by https://github.com/uvotguy.}}
+\DoxyCodeLine{30 \textcolor{comment}{//}}
+\DoxyCodeLine{31 \textcolor{comment}{// As seen on my trusty oscilloscope, there is no repeat code.  Instead, when I}}
+\DoxyCodeLine{32 \textcolor{comment}{// press and hold a button on my remote, it sends a command, makes a 51.2ms space,}}
+\DoxyCodeLine{33 \textcolor{comment}{// and resends the command, etc, etc.}}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35 \textcolor{comment}{// LSB first, 1 start bit + 8 bit data + 8 bit inverted data + 1 stop bit.}}
+\DoxyCodeLine{36 \textcolor{preprocessor}{\#define BOSEWAVE\_BITS             16 }\textcolor{comment}{// Command and inverted command}}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38 \textcolor{preprocessor}{\#define BOSEWAVE\_HEADER\_MARK    1060}}
+\DoxyCodeLine{39 \textcolor{preprocessor}{\#define BOSEWAVE\_HEADER\_SPACE   1450}}
+\DoxyCodeLine{40 \textcolor{preprocessor}{\#define BOSEWAVE\_BIT\_MARK        534}}
+\DoxyCodeLine{41 \textcolor{preprocessor}{\#define BOSEWAVE\_ONE\_SPACE       468}}
+\DoxyCodeLine{42 \textcolor{preprocessor}{\#define BOSEWAVE\_ZERO\_SPACE     1447}}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44 \textcolor{preprocessor}{\#define BOSEWAVE\_REPEAT\_SPACE  52000}}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46 \textcolor{comment}{//+=============================================================================}}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48 \textcolor{keywordtype}{void} IRsend::sendBoseWave(uint8\_t aCommand, uint\_fast8\_t aNumberOfRepeats) \{}
+\DoxyCodeLine{49     \textcolor{comment}{// Set IR carrier frequency}}
+\DoxyCodeLine{50     \mbox{\hyperlink{group___sending_ga42c04af63d252b320c017ffa2bfc90e5}{enableIROut}}(BOSEWAVE\_KHZ); \textcolor{comment}{// 38 kHz}}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52     uint\_fast8\_t tNumberOfCommands = aNumberOfRepeats + 1;}
+\DoxyCodeLine{53     \textcolor{keywordflow}{while} (tNumberOfCommands > 0) \{}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55         \textcolor{comment}{// Header}}
+\DoxyCodeLine{56         \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(BOSEWAVE\_HEADER\_MARK);}
+\DoxyCodeLine{57         \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(BOSEWAVE\_HEADER\_SPACE);}
+\DoxyCodeLine{58         \textcolor{comment}{// send 8 command bits and then 8 inverted command bits LSB first}}
+\DoxyCodeLine{59         uint16\_t tData = ((\string~aCommand) << 8) | aCommand;}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61         \mbox{\hyperlink{group___sending_ga6904a411999a4c9f7306dba49851eb7b}{sendPulseDistanceWidthData}}(BOSEWAVE\_BIT\_MARK, BOSEWAVE\_ONE\_SPACE, BOSEWAVE\_BIT\_MARK, BOSEWAVE\_ZERO\_SPACE, tData,}
+\DoxyCodeLine{62         BOSEWAVE\_BITS, PROTOCOL\_IS\_LSB\_FIRST, SEND\_STOP\_BIT);}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64         tNumberOfCommands-\/-\/;}
+\DoxyCodeLine{65         \textcolor{comment}{// skip last delay!}}
+\DoxyCodeLine{66         \textcolor{keywordflow}{if} (tNumberOfCommands > 0) \{}
+\DoxyCodeLine{67             \textcolor{comment}{// send repeated command with a fixed space gap}}
+\DoxyCodeLine{68             delay( BOSEWAVE\_REPEAT\_SPACE / MICROS\_IN\_ONE\_MILLI);}
+\DoxyCodeLine{69         \}}
+\DoxyCodeLine{70     \}}
+\DoxyCodeLine{71 \}}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73 \textcolor{comment}{//+=============================================================================}}
+\DoxyCodeLine{74 \textcolor{keywordtype}{bool} IRrecv::decodeBoseWave() \{}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{76     \textcolor{comment}{// Check header "{}mark"{}}}
+\DoxyCodeLine{77     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{group___receiving_ga4472564ea96b1ee10b51f594f60d7aeb}{matchMark}}(decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_a7aa7b811dcc0fb5ab0da7c0bddaf97f8}{rawbuf}}[1], BOSEWAVE\_HEADER\_MARK)) \{}
+\DoxyCodeLine{78         \textcolor{comment}{// no debug output, since this check is mainly to determine the received protocol}}
+\DoxyCodeLine{79         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{80     \}}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{82     \textcolor{comment}{// Check we have enough data +4 for initial gap, start bit mark and space + stop bit mark}}
+\DoxyCodeLine{83     \textcolor{keywordflow}{if} (decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_af0571ac479d1c38c79502651b0631432}{rawlen}} != (2 * BOSEWAVE\_BITS) + 4) \{}
+\DoxyCodeLine{84         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(\textcolor{stringliteral}{"{}Bose: "{}});}
+\DoxyCodeLine{85         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(\textcolor{stringliteral}{"{}Data length="{}});}
+\DoxyCodeLine{86         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_af0571ac479d1c38c79502651b0631432}{rawlen}});}
+\DoxyCodeLine{87         \mbox{\hyperlink{_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{} is not 36"{}});}
+\DoxyCodeLine{88         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{89     \}}
+\DoxyCodeLine{90     \textcolor{comment}{// Check header "{}space"{}}}
+\DoxyCodeLine{91     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{group___receiving_ga7902b620f6c01463b5b6e50ef604ac8b}{matchSpace}}(decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_a7aa7b811dcc0fb5ab0da7c0bddaf97f8}{rawbuf}}[2], BOSEWAVE\_HEADER\_SPACE)) \{}
+\DoxyCodeLine{92         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(\textcolor{stringliteral}{"{}Bose: "{}});}
+\DoxyCodeLine{93         \mbox{\hyperlink{_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}Header space length is wrong"{}});}
+\DoxyCodeLine{94         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{95     \}}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{97     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{group___receiving_gaf8c9cdb5f7280043a552f22265bdb2d5}{decodePulseDistanceData}}(BOSEWAVE\_BITS, 3, BOSEWAVE\_BIT\_MARK, BOSEWAVE\_ONE\_SPACE, BOSEWAVE\_ZERO\_SPACE, PROTOCOL\_IS\_LSB\_FIRST)) \{}
+\DoxyCodeLine{98         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(\textcolor{stringliteral}{"{}Bose: "{}});}
+\DoxyCodeLine{99         \mbox{\hyperlink{_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}Decode failed"{}});}
+\DoxyCodeLine{100         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{101     \}}
+\DoxyCodeLine{102 }
+\DoxyCodeLine{103     \textcolor{comment}{// Stop bit}}
+\DoxyCodeLine{104     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{group___receiving_ga4472564ea96b1ee10b51f594f60d7aeb}{matchMark}}(decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_a7aa7b811dcc0fb5ab0da7c0bddaf97f8}{rawbuf}}[3 + (2 * BOSEWAVE\_BITS)], BOSEWAVE\_BIT\_MARK)) \{}
+\DoxyCodeLine{105         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(\textcolor{stringliteral}{"{}Bose: "{}});}
+\DoxyCodeLine{106         \mbox{\hyperlink{_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(F(\textcolor{stringliteral}{"{}Stop bit mark length is wrong"{}}));}
+\DoxyCodeLine{107         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{108     \}}
+\DoxyCodeLine{109 }
+\DoxyCodeLine{110     \textcolor{comment}{// Success}}
+\DoxyCodeLine{111 \textcolor{comment}{//    decodedIRData.flags = IRDATA\_FLAGS\_IS\_LSB\_FIRST; // Not required, since this is the start value}}
+\DoxyCodeLine{112     uint16\_t tDecodedValue = decodedIRData.\mbox{\hyperlink{struct_i_r_data_aeca55ebf36bf919312a933597b8734d8}{decodedRawData}};}
+\DoxyCodeLine{113     uint8\_t tCommandNotInverted = tDecodedValue \& 0xFF;}
+\DoxyCodeLine{114     uint8\_t tCommandInverted = tDecodedValue >> 8;}
+\DoxyCodeLine{115     \textcolor{comment}{// parity check for command. Use this variant to avoid compiler warning "{}comparison of promoted \string~unsigned with unsigned [-\/Wsign-\/compare]"{}}}
+\DoxyCodeLine{116     \textcolor{keywordflow}{if} ((tCommandNotInverted \string^ tCommandInverted) != 0xFF) \{}
+\DoxyCodeLine{117         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(\textcolor{stringliteral}{"{}Bose: "{}});}
+\DoxyCodeLine{118         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(\textcolor{stringliteral}{"{}Command and inverted command check failed"{}});}
+\DoxyCodeLine{119         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{120     \}}
+\DoxyCodeLine{121 }
+\DoxyCodeLine{122     \textcolor{comment}{// check for repeat}}
+\DoxyCodeLine{123     \textcolor{keywordflow}{if} (decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_a7aa7b811dcc0fb5ab0da7c0bddaf97f8}{rawbuf}}[0] < ((BOSEWAVE\_REPEAT\_SPACE + (BOSEWAVE\_REPEAT\_SPACE / 4)) / \mbox{\hyperlink{_i_rremote_int_8h_a1c7eebb527483c272812530caa313d20}{MICROS\_PER\_TICK}})) \{}
+\DoxyCodeLine{124         decodedIRData.\mbox{\hyperlink{struct_i_r_data_aaaad48fc0d90e5c6daec601987848a51}{flags}} = IRDATA\_FLAGS\_IS\_REPEAT | IRDATA\_FLAGS\_IS\_LSB\_FIRST;}
+\DoxyCodeLine{125     \}}
+\DoxyCodeLine{126 }
+\DoxyCodeLine{127     decodedIRData.\mbox{\hyperlink{struct_i_r_data_ab0ce2b36765ea429e8c4bfa0706a45e7}{command}} = tCommandNotInverted;}
+\DoxyCodeLine{128     decodedIRData.\mbox{\hyperlink{struct_i_r_data_a703592faec26bab5cbe465f53ef14245}{protocol}} = BOSEWAVE;}
+\DoxyCodeLine{129     decodedIRData.\mbox{\hyperlink{struct_i_r_data_a945c41b8463a36cf00b0f38b0aa73200}{numberOfBits}} = BOSEWAVE\_BITS;}
+\DoxyCodeLine{130 }
+\DoxyCodeLine{131     \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{132 \}}
+\DoxyCodeLine{133 }
+\DoxyCodeLine{135 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \#ifndef IR\_BOSEWAVE\_HPP}}
+\DoxyCodeLine{136 \textcolor{preprocessor}{\#pragma once}}
+
+\end{DoxyCode}

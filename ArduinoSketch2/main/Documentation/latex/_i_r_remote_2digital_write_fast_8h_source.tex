@@ -1,0 +1,507 @@
+\hypertarget{_i_r_remote_2digital_write_fast_8h_source}{}\doxysection{digital\+Write\+Fast.\+h}
+\label{_i_r_remote_2digital_write_fast_8h_source}\index{main/IRRemote/digitalWriteFast.h@{main/IRRemote/digitalWriteFast.h}}
+\mbox{\hyperlink{_i_r_remote_2digital_write_fast_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00001}00001 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00002}00002 \textcolor{comment}{  Optimized digital functions for AVR microcontrollers}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00003}00003 \textcolor{comment}{  by Watterott electronic (www.watterott.com)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00004}00004 \textcolor{comment}{  based on http://code.google.com/p/digitalwritefast}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00005}00005 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00006}00006 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00007}00007 \textcolor{preprocessor}{\#ifndef \_\_digitalWriteFast\_h\_}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00008}00008 \textcolor{preprocessor}{\#define \_\_digitalWriteFast\_h\_ 1}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00009}00009 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00010}00010 \textcolor{comment}{//\#define SANGUINO\_PINOUT //define for Sanguino pinout}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00011}00011 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00012}00012 \textcolor{comment}{// general macros/defines}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00013}00013 \textcolor{preprocessor}{\#ifndef BIT\_READ}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00014}\mbox{\hyperlink{_i_r_remote_2digital_write_fast_8h_abe4c93bdf909706a57a177f6786af897}{00014}} \textcolor{preprocessor}{\# define BIT\_READ(value, bit)            ((value) \&   (1UL << (bit)))}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00015}00015 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00016}00016 \textcolor{preprocessor}{\#ifndef BIT\_SET}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00017}\mbox{\hyperlink{_i_r_remote_2digital_write_fast_8h_ab94522870cd3d40d76ae0a8778166017}{00017}} \textcolor{preprocessor}{\# define BIT\_SET(value, bit)             ((value) |=  (1UL << (bit)))}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00018}00018 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00019}00019 \textcolor{preprocessor}{\#ifndef BIT\_CLEAR}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00020}\mbox{\hyperlink{_i_r_remote_2digital_write_fast_8h_a00bda5613fe59582e9cd36d07b8f2851}{00020}} \textcolor{preprocessor}{\# define BIT\_CLEAR(value, bit)           ((value) \&= \string~(1UL << (bit)))}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00021}00021 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00022}00022 \textcolor{preprocessor}{\#ifndef BIT\_WRITE}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00023}\mbox{\hyperlink{_i_r_remote_2digital_write_fast_8h_a1c73c74b64f4d1b6538a8de13f95a2e6}{00023}} \textcolor{preprocessor}{\# define BIT\_WRITE(value, bit, bitvalue) (bitvalue ? BIT\_SET(value, bit) : BIT\_CLEAR(value, bit))}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00024}00024 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00025}00025 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00026}00026 \textcolor{preprocessor}{\#ifndef SWAP}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00027}\mbox{\hyperlink{_i_r_remote_2digital_write_fast_8h_a5d9d454d4b9f2ff8106d5199ac0d0186}{00027}} \textcolor{preprocessor}{\# define SWAP(x,y) do\{ (x)=(x)\string^(y); (y)=(x)\string^(y); (x)=(x)\string^(y); \}while(0)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00028}00028 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00029}00029 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00030}00030 \textcolor{preprocessor}{\#ifndef DEC}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00031}\mbox{\hyperlink{_i_r_remote_2digital_write_fast_8h_afe38ec6126e35e40049e27fdf4586ba5}{00031}} \textcolor{preprocessor}{\# define DEC (10)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00032}00032 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00033}00033 \textcolor{preprocessor}{\#ifndef HEX}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00034}\mbox{\hyperlink{_i_r_remote_2digital_write_fast_8h_a9075d93e0ab26ccd6e059fa06aa4e3de}{00034}} \textcolor{preprocessor}{\# define HEX (16)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00035}00035 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00036}00036 \textcolor{preprocessor}{\#ifndef OCT}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00037}\mbox{\hyperlink{_i_r_remote_2digital_write_fast_8h_a904777e8f3d21de0a6679d2c9f0f1eec}{00037}} \textcolor{preprocessor}{\# define OCT (8)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00038}00038 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00039}00039 \textcolor{preprocessor}{\#ifndef BIN}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00040}\mbox{\hyperlink{_i_r_remote_2digital_write_fast_8h_a75267cdfa3fa9e52c7c1f1094f9387b7}{00040}} \textcolor{preprocessor}{\# define BIN (2)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00041}00041 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00042}00042 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00043}00043 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00044}00044 \textcolor{comment}{// workarounds for ARM microcontrollers}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00045}00045 \textcolor{preprocessor}{\#if (!defined(\_\_AVR\_\_) || \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00046}00046 \textcolor{preprocessor}{     defined(ARDUINO\_ARCH\_SAM) || \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00047}00047 \textcolor{preprocessor}{     defined(ARDUINO\_ARCH\_SAMD))}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00048}00048 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00049}00049 \textcolor{preprocessor}{\#ifndef PROGMEM}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00050}\mbox{\hyperlink{_i_r_remote_2digital_write_fast_8h_a75acaba9e781937468d0911423bc0c35}{00050}} \textcolor{preprocessor}{\# define PROGMEM}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00051}00051 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00052}00052 \textcolor{preprocessor}{\#ifndef PGM\_P}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00053}\mbox{\hyperlink{_i_r_remote_2digital_write_fast_8h_a963f816fc88a5d8479c285ed4c630229}{00053}} \textcolor{preprocessor}{\# define PGM\_P const char *}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00054}00054 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00055}00055 \textcolor{preprocessor}{\#ifndef PSTR}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00056}\mbox{\hyperlink{_i_r_remote_2digital_write_fast_8h_a73809107539df84eaf01f6a4dea4fbff}{00056}} \textcolor{preprocessor}{\# define PSTR(str) (str)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00057}00057 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00058}00058 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00059}00059 \textcolor{preprocessor}{\#ifndef memcpy\_P}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00060}\mbox{\hyperlink{_i_r_remote_2digital_write_fast_8h_ae0444ad0cb3250a5778a573dd10f41be}{00060}} \textcolor{preprocessor}{\# define memcpy\_P(dest, src, num) memcpy((dest), (src), (num))}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00061}00061 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00062}00062 \textcolor{preprocessor}{\#ifndef strcpy\_P}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00063}\mbox{\hyperlink{_i_r_remote_2digital_write_fast_8h_ab00bda73e5853cc61868501fe37fa9b7}{00063}} \textcolor{preprocessor}{\# define strcpy\_P(dst, src)       strcpy((dst), (src))}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00064}00064 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00065}00065 \textcolor{preprocessor}{\#ifndef strcat\_P}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00066}\mbox{\hyperlink{_i_r_remote_2digital_write_fast_8h_a37c1666c2ccbf210e3829bbebc2b16e4}{00066}} \textcolor{preprocessor}{\# define strcat\_P(dst, src)       strcat((dst), (src))}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00067}00067 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00068}00068 \textcolor{preprocessor}{\#ifndef strcmp\_P}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00069}\mbox{\hyperlink{_i_r_remote_2digital_write_fast_8h_abbb2cd396dde2d1575948bb16ce2853a}{00069}} \textcolor{preprocessor}{\# define strcmp\_P(a, b)           strcmp((a), (b))}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00070}00070 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00071}00071 \textcolor{preprocessor}{\#ifndef strcasecmp\_P}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00072}\mbox{\hyperlink{_i_r_remote_2digital_write_fast_8h_ae97e89b6ed4b46ade2eca9cafc6abd8d}{00072}} \textcolor{preprocessor}{\# define strcasecmp\_P(a, b)       strcasecmp((a), (b))}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00073}00073 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00074}00074 \textcolor{preprocessor}{\#ifndef strncmp\_P}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00075}\mbox{\hyperlink{_i_r_remote_2digital_write_fast_8h_a83b1e057d9ee4c5160557575be07c41f}{00075}} \textcolor{preprocessor}{\# define strncmp\_P(a, b, n)       strncmp((a), (b), (n))}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00076}00076 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00077}00077 \textcolor{preprocessor}{\#ifndef strncasecmp\_P}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00078}\mbox{\hyperlink{_i_r_remote_2digital_write_fast_8h_a6986d443d13df0a4f28c6d1b52effb7d}{00078}} \textcolor{preprocessor}{\# define strncasecmp\_P(a, b, n)   strncasecmp((a), (b), (n))}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00079}00079 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00080}00080 \textcolor{preprocessor}{\#ifndef strstr\_P}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00081}\mbox{\hyperlink{_i_r_remote_2digital_write_fast_8h_aca1ecbfa8b94eba4b5228f0a6a18a888}{00081}} \textcolor{preprocessor}{\# define strstr\_P(a, b)           strstr((a), (b))}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00082}00082 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00083}00083 \textcolor{preprocessor}{\#ifndef strlen\_P}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00084}\mbox{\hyperlink{_i_r_remote_2digital_write_fast_8h_a76ea3b30093856a6482a978d9214142d}{00084}} \textcolor{preprocessor}{\# define strlen\_P(a)              strlen((a))}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00085}00085 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00086}00086 \textcolor{preprocessor}{\#ifndef sprintf\_P}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00087}\mbox{\hyperlink{_i_r_remote_2digital_write_fast_8h_a45ba8afa17fe1ae5ab9327dbb6ca05b9}{00087}} \textcolor{preprocessor}{\# define sprintf\_P(s, f, ...)     sprintf((s), (f), \_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00088}00088 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00089}00089 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00090}00090 \textcolor{preprocessor}{\#ifndef pgm\_read\_byte}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00091}\mbox{\hyperlink{_i_r_remote_2digital_write_fast_8h_a48c60b057902adf805797f183286728d}{00091}} \textcolor{preprocessor}{\# define pgm\_read\_byte(addr)      (*(const unsigned char *)(addr))}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00092}00092 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00093}00093 \textcolor{preprocessor}{\#ifndef pgm\_read\_word}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00094}\mbox{\hyperlink{_i_r_remote_2digital_write_fast_8h_a910fb5f01313d339d3b835d45e1e5ad0}{00094}} \textcolor{preprocessor}{\# define pgm\_read\_word(addr)      (*(const unsigned short *)(addr))}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00095}00095 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00096}00096 \textcolor{preprocessor}{\#ifndef pgm\_read\_dword}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00097}\mbox{\hyperlink{_i_r_remote_2digital_write_fast_8h_a73cf3e57e32321cb193b3cc4b041cc6c}{00097}} \textcolor{preprocessor}{\# define pgm\_read\_dword(addr)     (*(const unsigned long *)(addr))}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00098}00098 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00099}00099 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00100}00100 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00101}00101 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00102}00102 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00103}00103 \textcolor{comment}{// digital functions}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00104}00104 \textcolor{comment}{//\#ifndef digitalPinToPortReg}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00105}\mbox{\hyperlink{_i_r_remote_2digital_write_fast_8h_a8e4c6098d073922d247087549c084efd}{00105}} \textcolor{preprocessor}{\#define SPI\_SW\_SS\_PIN   (10) }\textcolor{comment}{//SS on Uno (for software SPI)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00106}\mbox{\hyperlink{_i_r_remote_2digital_write_fast_8h_a590704782aba04d0b90e20dc2e06bfe1}{00106}} \textcolor{preprocessor}{\#define SPI\_SW\_MOSI\_PIN (11) }\textcolor{comment}{//MOSI on Uno (for software SPI)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00107}\mbox{\hyperlink{_i_r_remote_2digital_write_fast_8h_ad80cac0c04cae5a4106da0daaefe8392}{00107}} \textcolor{preprocessor}{\#define SPI\_SW\_MISO\_PIN (12) }\textcolor{comment}{//MISO on Uno (for software SPI)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00108}\mbox{\hyperlink{_i_r_remote_2digital_write_fast_8h_aaa5382681cbe8124588319a841015562}{00108}} \textcolor{preprocessor}{\#define SPI\_SW\_SCK\_PIN  (13) }\textcolor{comment}{//SCK on Uno (for software SPI)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00109}00109 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00110}00110 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00111}00111 \textcolor{comment}{// -\/-\/-\/ Arduino Due and SAM3X8E based boards -\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00112}00112 \textcolor{preprocessor}{\#if (defined(ARDUINO\_SAM\_DUE) || \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00113}00113 \textcolor{preprocessor}{     defined(\_\_SAM3X8E\_\_))}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00114}00114 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00115}00115 \textcolor{preprocessor}{\#define UART\_RX\_PIN     (0)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00116}00116 \textcolor{preprocessor}{\#define UART\_TX\_PIN     (1)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00117}00117 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00118}00118 \textcolor{preprocessor}{\#define I2C\_SDA\_PIN     (20)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00119}00119 \textcolor{preprocessor}{\#define I2C\_SCL\_PIN     (21)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00120}00120 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00121}00121 \textcolor{preprocessor}{\#define SPI\_HW\_SS\_PIN   (78) }\textcolor{comment}{//SS0:77, SS1:87, SS2:86, SS3:78}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00122}00122 \textcolor{preprocessor}{\#define SPI\_HW\_MOSI\_PIN (75) }\textcolor{comment}{//75}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00123}00123 \textcolor{preprocessor}{\#define SPI\_HW\_MISO\_PIN (74) }\textcolor{comment}{//74}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00124}00124 \textcolor{preprocessor}{\#define SPI\_HW\_SCK\_PIN  (76) }\textcolor{comment}{//76}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00125}00125 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00126}00126 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00127}00127 \textcolor{comment}{// -\/-\/-\/ Arduino Zero and SAMD21G18 based boards -\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00128}00128 \textcolor{preprocessor}{\#elif (defined(ARDUINO\_SAMD\_ZERO) || \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00129}00129 \textcolor{preprocessor}{       defined(\_\_SAMD21G18A\_\_))}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00130}00130 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00131}00131 \textcolor{preprocessor}{\#define UART\_RX\_PIN     (0)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00132}00132 \textcolor{preprocessor}{\#define UART\_TX\_PIN     (1)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00133}00133 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00134}00134 \textcolor{preprocessor}{\#define I2C\_SDA\_PIN     (16)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00135}00135 \textcolor{preprocessor}{\#define I2C\_SCL\_PIN     (17)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00136}00136 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00137}00137 \textcolor{preprocessor}{\#define SPI\_HW\_SS\_PIN   (14) }\textcolor{comment}{//14}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00138}00138 \textcolor{preprocessor}{\#define SPI\_HW\_MOSI\_PIN (21) }\textcolor{comment}{//21}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00139}00139 \textcolor{preprocessor}{\#define SPI\_HW\_MISO\_PIN (18) }\textcolor{comment}{//18}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00140}00140 \textcolor{preprocessor}{\#define SPI\_HW\_SCK\_PIN  (20) }\textcolor{comment}{//20}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00141}00141 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00142}00142 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00143}00143 \textcolor{comment}{// -\/-\/-\/ Arduino Mega and ATmega128x/256x based boards -\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00144}00144 \textcolor{preprocessor}{\#elif (defined(ARDUINO\_AVR\_MEGA) || \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00145}00145 \textcolor{preprocessor}{       defined(ARDUINO\_AVR\_MEGA1280) || \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00146}00146 \textcolor{preprocessor}{       defined(ARDUINO\_AVR\_MEGA2560) || \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00147}00147 \textcolor{preprocessor}{       defined(\_\_AVR\_ATmega1280\_\_) || \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00148}00148 \textcolor{preprocessor}{       defined(\_\_AVR\_ATmega1281\_\_) || \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00149}00149 \textcolor{preprocessor}{       defined(\_\_AVR\_ATmega2560\_\_) || \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00150}00150 \textcolor{preprocessor}{       defined(\_\_AVR\_ATmega2561\_\_))}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00151}00151 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00152}00152 \textcolor{preprocessor}{\#define UART\_RX\_PIN     (0) }\textcolor{comment}{//PE0}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00153}00153 \textcolor{preprocessor}{\#define UART\_TX\_PIN     (1) }\textcolor{comment}{//PE1}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00154}00154 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00155}00155 \textcolor{preprocessor}{\#define I2C\_SDA\_PIN     (20)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00156}00156 \textcolor{preprocessor}{\#define I2C\_SCL\_PIN     (21)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00157}00157 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00158}00158 \textcolor{preprocessor}{\#define SPI\_HW\_SS\_PIN   (53) }\textcolor{comment}{//PB0}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00159}00159 \textcolor{preprocessor}{\#define SPI\_HW\_MOSI\_PIN (51) }\textcolor{comment}{//PB2}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00160}00160 \textcolor{preprocessor}{\#define SPI\_HW\_MISO\_PIN (50) }\textcolor{comment}{//PB3}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00161}00161 \textcolor{preprocessor}{\#define SPI\_HW\_SCK\_PIN  (52) }\textcolor{comment}{//PB1}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00162}00162 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00163}00163 \textcolor{preprocessor}{\#define \_\_digitalPinToPortReg(P) \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00164}00164 \textcolor{preprocessor}{(((P) >= 22 \&\& (P) <= 29) ? \&PORTA : \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00165}00165 \textcolor{preprocessor}{((((P) >= 10 \&\& (P) <= 13) || ((P) >= 50 \&\& (P) <= 53)) ? \&PORTB : \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00166}00166 \textcolor{preprocessor}{(((P) >= 30 \&\& (P) <= 37) ? \&PORTC : \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00167}00167 \textcolor{preprocessor}{((((P) >= 18 \&\& (P) <= 21) || (P) == 38) ? \&PORTD : \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00168}00168 \textcolor{preprocessor}{((((P) >= 0 \&\& (P) <= 3) || (P) == 5) ? \&PORTE : \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00169}00169 \textcolor{preprocessor}{(((P) >= 54 \&\& (P) <= 61) ? \&PORTF : \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00170}00170 \textcolor{preprocessor}{((((P) >= 39 \&\& (P) <= 41) || (P) == 4) ? \&PORTG : \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00171}00171 \textcolor{preprocessor}{((((P) >= 6 \&\& (P) <= 9) || (P) == 16 || (P) == 17) ? \&PORTH : \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00172}00172 \textcolor{preprocessor}{(((P) == 14 || (P) == 15) ? \&PORTJ : \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00173}00173 \textcolor{preprocessor}{(((P) >= 62 \&\& (P) <= 69) ? \&PORTK : \&PORTL))))))))))}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00174}00174 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00175}00175 \textcolor{preprocessor}{\#define \_\_digitalPinToDDRReg(P) \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00176}00176 \textcolor{preprocessor}{(((P) >= 22 \&\& (P) <= 29) ? \&DDRA : \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00177}00177 \textcolor{preprocessor}{((((P) >= 10 \&\& (P) <= 13) || ((P) >= 50 \&\& (P) <= 53)) ? \&DDRB : \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00178}00178 \textcolor{preprocessor}{(((P) >= 30 \&\& (P) <= 37) ? \&DDRC : \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00179}00179 \textcolor{preprocessor}{((((P) >= 18 \&\& (P) <= 21) || (P) == 38) ? \&DDRD : \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00180}00180 \textcolor{preprocessor}{((((P) >= 0 \&\& (P) <= 3) || (P) == 5) ? \&DDRE : \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00181}00181 \textcolor{preprocessor}{(((P) >= 54 \&\& (P) <= 61) ? \&DDRF : \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00182}00182 \textcolor{preprocessor}{((((P) >= 39 \&\& (P) <= 41) || (P) == 4) ? \&DDRG : \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00183}00183 \textcolor{preprocessor}{((((P) >= 6 \&\& (P) <= 9) || (P) == 16 || (P) == 17) ? \&DDRH : \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00184}00184 \textcolor{preprocessor}{(((P) == 14 || (P) == 15) ? \&DDRJ : \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00185}00185 \textcolor{preprocessor}{(((P) >= 62 \&\& (P) <= 69) ? \&DDRK : \&DDRL))))))))))}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00186}00186 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00187}00187 \textcolor{preprocessor}{\#define \_\_digitalPinToPINReg(P) \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00188}00188 \textcolor{preprocessor}{(((P) >= 22 \&\& (P) <= 29) ? \&PINA : \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00189}00189 \textcolor{preprocessor}{((((P) >= 10 \&\& (P) <= 13) || ((P) >= 50 \&\& (P) <= 53)) ? \&PINB : \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00190}00190 \textcolor{preprocessor}{(((P) >= 30 \&\& (P) <= 37) ? \&PINC : \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00191}00191 \textcolor{preprocessor}{((((P) >= 18 \&\& (P) <= 21) || (P) == 38) ? \&PIND : \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00192}00192 \textcolor{preprocessor}{((((P) >= 0 \&\& (P) <= 3) || (P) == 5) ? \&PINE : \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00193}00193 \textcolor{preprocessor}{(((P) >= 54 \&\& (P) <= 61) ? \&PINF : \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00194}00194 \textcolor{preprocessor}{((((P) >= 39 \&\& (P) <= 41) || (P) == 4) ? \&PING : \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00195}00195 \textcolor{preprocessor}{((((P) >= 6 \&\& (P) <= 9) || (P) == 16 || (P) == 17) ? \&PINH : \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00196}00196 \textcolor{preprocessor}{(((P) == 14 || (P) == 15) ? \&PINJ : \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00197}00197 \textcolor{preprocessor}{(((P) >= 62 \&\& (P) <= 69) ? \&PINK : \&PINL))))))))))}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00198}00198 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00199}00199 \textcolor{preprocessor}{\#define \_\_digitalPinToBit(P) \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00200}00200 \textcolor{preprocessor}{(((P) >=  7 \&\& (P) <=  9) ? (P) -\/ 3 : \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00201}00201 \textcolor{preprocessor}{(((P) >= 10 \&\& (P) <= 13) ? (P) -\/ 6 : \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00202}00202 \textcolor{preprocessor}{(((P) >= 22 \&\& (P) <= 29) ? (P) -\/ 22 : \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00203}00203 \textcolor{preprocessor}{(((P) >= 30 \&\& (P) <= 37) ? 37 -\/ (P) : \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00204}00204 \textcolor{preprocessor}{(((P) >= 39 \&\& (P) <= 41) ? 41 -\/ (P) : \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00205}00205 \textcolor{preprocessor}{(((P) >= 42 \&\& (P) <= 49) ? 49 -\/ (P) : \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00206}00206 \textcolor{preprocessor}{(((P) >= 50 \&\& (P) <= 53) ? 53 -\/ (P) : \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00207}00207 \textcolor{preprocessor}{(((P) >= 54 \&\& (P) <= 61) ? (P) -\/ 54 : \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00208}00208 \textcolor{preprocessor}{(((P) >= 62 \&\& (P) <= 69) ? (P) -\/ 62 : \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00209}00209 \textcolor{preprocessor}{(((P) == 0 || (P) == 15 || (P) == 17 || (P) == 21) ? 0 : \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00210}00210 \textcolor{preprocessor}{(((P) == 1 || (P) == 14 || (P) == 16 || (P) == 20) ? 1 : \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00211}00211 \textcolor{preprocessor}{(((P) == 19) ? 2 : \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00212}00212 \textcolor{preprocessor}{(((P) == 5 || (P) == 6 || (P) == 18) ? 3 : \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00213}00213 \textcolor{preprocessor}{(((P) == 2) ? 4 : \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00214}00214 \textcolor{preprocessor}{(((P) == 3 || (P) == 4) ? 5 : 7)))))))))))))))}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00215}00215 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00216}00216 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00217}00217 \textcolor{comment}{// -\/-\/-\/ Arduino MightyCore standard pinout -\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00218}00218 \textcolor{preprocessor}{\#elif (defined(\_\_AVR\_ATmega1284P\_\_) || \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00219}00219 \textcolor{preprocessor}{       defined(\_\_AVR\_ATmega1284\_\_)  || \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00220}00220 \textcolor{preprocessor}{       defined(\_\_AVR\_ATmega644P\_\_)  || \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00221}00221 \textcolor{preprocessor}{       defined(\_\_AVR\_ATmega644A\_\_)  || \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00222}00222 \textcolor{preprocessor}{       defined(\_\_AVR\_ATmega644\_\_)   || \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00223}00223 \textcolor{preprocessor}{       defined(\_\_AVR\_ATmega324PB\_\_) || \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00224}00224 \textcolor{preprocessor}{       defined(\_\_AVR\_ATmega324PA\_\_) || \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00225}00225 \textcolor{preprocessor}{       defined(\_\_AVR\_ATmega324P\_\_)  || \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00226}00226 \textcolor{preprocessor}{       defined(\_\_AVR\_ATmega324A\_\_)  || \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00227}00227 \textcolor{preprocessor}{       defined(\_\_AVR\_ATmega164P\_\_)  || \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00228}00228 \textcolor{preprocessor}{       defined(\_\_AVR\_ATmega164A\_\_)  || \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00229}00229 \textcolor{preprocessor}{       defined(\_\_AVR\_ATmega32\_\_)    || \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00230}00230 \textcolor{preprocessor}{       defined(\_\_AVR\_ATmega16\_\_)    || \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00231}00231 \textcolor{preprocessor}{       defined(\_\_AVR\_ATmega8535\_\_))  \&\& \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00232}00232 \textcolor{preprocessor}{      !defined(BOBUINO\_PINOUT)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00233}00233 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00234}00234 \textcolor{preprocessor}{\#define UART\_RX\_PIN     (8) }\textcolor{comment}{//PD0}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00235}00235 \textcolor{preprocessor}{\#define UART\_TX\_PIN     (9) }\textcolor{comment}{//PD1}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00236}00236 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00237}00237 \textcolor{preprocessor}{\#define I2C\_SDA\_PIN     (17) }\textcolor{comment}{//PC1}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00238}00238 \textcolor{preprocessor}{\#define I2C\_SCL\_PIN     (16) }\textcolor{comment}{//PC0}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00239}00239 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00240}00240 \textcolor{preprocessor}{\#define SPI\_HW\_SS\_PIN   (4) }\textcolor{comment}{//PB4}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00241}00241 \textcolor{preprocessor}{\#define SPI\_HW\_MOSI\_PIN (5) }\textcolor{comment}{//PB5}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00242}00242 \textcolor{preprocessor}{\#define SPI\_HW\_MISO\_PIN (6) }\textcolor{comment}{//PB6}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00243}00243 \textcolor{preprocessor}{\#define SPI\_HW\_SCK\_PIN  (7) }\textcolor{comment}{//PB7}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00244}00244 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00245}00245 \textcolor{preprocessor}{\#if defined(\_\_AVR\_ATmega324PB\_\_)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00246}00246 \textcolor{preprocessor}{\#define \_\_digitalPinToPortReg(P) \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00247}00247 \textcolor{preprocessor}{(((P) >= 0 \&\& (P) <= 7) ? \&PORTB : (((P) >= 8 \&\& (P) <= 15) ? \&PORTD : (((P) >= 16 \&\& (P) <= 23) ? \&PORTC : (((P) >= 24 \&\& (P) <= 31) ? \&PORTA : \&PORTE))))}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00248}00248 \textcolor{preprocessor}{\#define \_\_digitalPinToDDRReg(P) \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00249}00249 \textcolor{preprocessor}{(((P) >= 0 \&\& (P) <= 7) ? \&DDRB : (((P) >= 8 \&\& (P) <= 15) ? \&DDRD : (((P) >= 16 \&\& (P) <= 23) ? \&DDRC : (((P) >= 24 \&\& (P) <= 31) ? \&DDRA : \&DDRE))))}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00250}00250 \textcolor{preprocessor}{\#define \_\_digitalPinToPINReg(P) \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00251}00251 \textcolor{preprocessor}{(((P) >= 0 \&\& (P) <= 7) ? \&PINB : (((P) >= 8 \&\& (P) <= 15) ? \&PIND : (((P) >= 16 \&\& (P) <= 23) ? \&PINC : (((P) >= 24 \&\& (P) <= 31) ? \&PINA : \&PINE))))}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00252}00252 \textcolor{preprocessor}{\# if defined(SANGUINO\_PINOUT)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00253}00253 \textcolor{preprocessor}{\#define \_\_digitalPinToBit(P) \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00254}00254 \textcolor{preprocessor}{(((P) >= 0 \&\& (P) <= 7) ? (P) : (((P) >= 8 \&\& (P) <= 15) ? (P) -\/ 8 : (((P) >= 16 \&\& (P) <= 23) ? (P) -\/ 16 : (((P) >= 16 \&\& (P) <= 23) ? (7 -\/ ((P) -\/ 24)) : (P) -\/ 32))))}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00255}00255 \textcolor{preprocessor}{\# else }\textcolor{comment}{//MightyCore Pinout}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00256}00256 \textcolor{preprocessor}{\#define \_\_digitalPinToBit(P) \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00257}00257 \textcolor{preprocessor}{(((P) >= 0 \&\& (P) <= 7) ? (P) : (((P) >= 8 \&\& (P) <= 15) ? (P) -\/ 8 : (((P) >= 16 \&\& (P) <= 23) ? (P) -\/ 16 : (((P) >= 16 \&\& (P) <= 23) ? (P) -\/ 24 : (P) -\/ 32))))}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00258}00258 \textcolor{preprocessor}{\# endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00259}00259 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00260}00260 \textcolor{preprocessor}{\#define \_\_digitalPinToPortReg(P) \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00261}00261 \textcolor{preprocessor}{(((P) >= 0 \&\& (P) <= 7) ? \&PORTB : (((P) >= 8 \&\& (P) <= 15) ? \&PORTD : (((P) >= 16 \&\& (P) <= 23) ? \&PORTC : \&PORTA)))}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00262}00262 \textcolor{preprocessor}{\#define \_\_digitalPinToDDRReg(P) \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00263}00263 \textcolor{preprocessor}{(((P) >= 0 \&\& (P) <= 7) ? \&DDRB : (((P) >= 8 \&\& (P) <= 15) ? \&DDRD : (((P) >= 16 \&\& (P) <= 23) ? \&DDRC : \&DDRA)))}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00264}00264 \textcolor{preprocessor}{\#define \_\_digitalPinToPINReg(P) \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00265}00265 \textcolor{preprocessor}{(((P) >= 0 \&\& (P) <= 7) ? \&PINB : (((P) >= 8 \&\& (P) <= 15) ? \&PIND : (((P) >= 16 \&\& (P) <= 23) ? \&PINC : \&PINA)))}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00266}00266 \textcolor{preprocessor}{\# if defined(SANGUINO\_PINOUT)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00267}00267 \textcolor{preprocessor}{\#define \_\_digitalPinToBit(P) \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00268}00268 \textcolor{preprocessor}{(((P) >= 0 \&\& (P) <= 7) ? (P) : (((P) >= 8 \&\& (P) <= 15) ? (P) -\/ 8 : (((P) >= 16 \&\& (P) <= 23) ? (P) -\/ 16 : (7 -\/ ((P) -\/ 24)))))}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00269}00269 \textcolor{preprocessor}{\# else }\textcolor{comment}{//MightyCore Pinout}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00270}00270 \textcolor{preprocessor}{\#define \_\_digitalPinToBit(P) \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00271}00271 \textcolor{preprocessor}{(((P) >= 0 \&\& (P) <= 7) ? (P) : (((P) >= 8 \&\& (P) <= 15) ? (P) -\/ 8 : (((P) >= 16 \&\& (P) <= 23) ? (P) -\/ 16 : (P) -\/ 24)))}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00272}00272 \textcolor{preprocessor}{\# endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00273}00273 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00274}00274 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00275}00275 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00276}00276 \textcolor{comment}{// -\/-\/-\/ Arduino Leonardo and ATmega16U4/32U4 based boards -\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00277}00277 \textcolor{preprocessor}{\#elif (defined(ARDUINO\_AVR\_LEONARDO) || \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00278}00278 \textcolor{preprocessor}{       defined(\_\_AVR\_ATmega16U4\_\_) || \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00279}00279 \textcolor{preprocessor}{       defined(\_\_AVR\_ATmega32U4\_\_))}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00280}00280 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00281}00281 \textcolor{preprocessor}{\#define UART\_RX\_PIN     (0) }\textcolor{comment}{//PD2}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00282}00282 \textcolor{preprocessor}{\#define UART\_TX\_PIN     (1) }\textcolor{comment}{//PD3}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00283}00283 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00284}00284 \textcolor{preprocessor}{\#define I2C\_SDA\_PIN     (2) }\textcolor{comment}{//PD1}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00285}00285 \textcolor{preprocessor}{\#define I2C\_SCL\_PIN     (3) }\textcolor{comment}{//PD0}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00286}00286 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00287}00287 \textcolor{preprocessor}{\#define SPI\_HW\_SS\_PIN   (17) }\textcolor{comment}{//PB0}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00288}00288 \textcolor{preprocessor}{\#define SPI\_HW\_MOSI\_PIN (16) }\textcolor{comment}{//PB2}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00289}00289 \textcolor{preprocessor}{\#define SPI\_HW\_MISO\_PIN (14) }\textcolor{comment}{//PB3}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00290}00290 \textcolor{preprocessor}{\#define SPI\_HW\_SCK\_PIN  (15) }\textcolor{comment}{//PB1}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00291}00291 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00292}00292 \textcolor{preprocessor}{\#define \_\_digitalPinToPortReg(P) \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00293}00293 \textcolor{preprocessor}{((((P) >= 0 \&\& (P) <= 4) || (P) == 6 || (P) == 12 || (P) == 24 || (P) == 25 || (P) == 29) ? \&PORTD : (((P) == 5 || (P) == 13) ? \&PORTC : (((P) >= 18 \&\& (P) <= 23)) ? \&PORTF : (((P) == 7) ? \&PORTE : \&PORTB)))}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00294}00294 \textcolor{preprocessor}{\#define \_\_digitalPinToDDRReg(P) \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00295}00295 \textcolor{preprocessor}{((((P) >= 0 \&\& (P) <= 4) || (P) == 6 || (P) == 12 || (P) == 24 || (P) == 25 || (P) == 29) ? \&DDRD : (((P) == 5 || (P) == 13) ? \&DDRC : (((P) >= 18 \&\& (P) <= 23)) ? \&DDRF : (((P) == 7) ? \&DDRE : \&DDRB)))}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00296}00296 \textcolor{preprocessor}{\#define \_\_digitalPinToPINReg(P) \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00297}00297 \textcolor{preprocessor}{((((P) >= 0 \&\& (P) <= 4) || (P) == 6 || (P) == 12 || (P) == 24 || (P) == 25 || (P) == 29) ? \&PIND : (((P) == 5 || (P) == 13) ? \&PINC : (((P) >= 18 \&\& (P) <= 23)) ? \&PINF : (((P) == 7) ? \&PINE : \&PINB)))}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00298}00298 \textcolor{preprocessor}{\#define \_\_digitalPinToBit(P) \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00299}00299 \textcolor{preprocessor}{(((P) >= 8 \&\& (P) <= 11) ? (P) -\/ 4 : (((P) >= 18 \&\& (P) <= 21) ? 25 -\/ (P) : (((P) == 0) ? 2 : (((P) == 1) ? 3 : (((P) == 2) ? 1 : (((P) == 3) ? 0 : (((P) == 4) ? 4 : (((P) == 6) ? 7 : (((P) == 13) ? 7 : (((P) == 14) ? 3 : (((P) == 15) ? 1 : (((P) == 16) ? 2 : (((P) == 17) ? 0 : (((P) == 22) ? 1 : (((P) == 23) ? 0 : (((P) == 24) ? 4 : (((P) == 25) ? 7 : (((P) == 26) ? 4 : (((P) == 27) ? 5 : 6 )))))))))))))))))))}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00300}00300 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00301}00301 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00302}00302 \textcolor{comment}{// -\/-\/-\/ Arduino Uno and ATmega168/328 based boards -\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00303}00303 \textcolor{preprocessor}{\#elif (defined(ARDUINO\_AVR\_UNO) || \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00304}00304 \textcolor{preprocessor}{       defined(ARDUINO\_AVR\_DUEMILANOVE) || \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00305}00305 \textcolor{preprocessor}{       defined(\_\_AVR\_ATmega8\_\_) || \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00306}00306 \textcolor{preprocessor}{       defined(\_\_AVR\_ATmega48\_\_) || \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00307}00307 \textcolor{preprocessor}{       defined(\_\_AVR\_ATmega48P\_\_) || \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00308}00308 \textcolor{preprocessor}{       defined(\_\_AVR\_ATmega48PB\_\_) || \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00309}00309 \textcolor{preprocessor}{       defined(\_\_AVR\_ATmega88P\_\_) || \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00310}00310 \textcolor{preprocessor}{       defined(\_\_AVR\_ATmega88PB\_\_) || \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00311}00311 \textcolor{preprocessor}{       defined(\_\_AVR\_ATmega168\_\_) || \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00312}00312 \textcolor{preprocessor}{       defined(\_\_AVR\_ATmega168PA\_\_) || \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00313}00313 \textcolor{preprocessor}{       defined(\_\_AVR\_ATmega168PB\_\_) || \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00314}00314 \textcolor{preprocessor}{       defined(\_\_AVR\_ATmega328\_\_) || \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00315}00315 \textcolor{preprocessor}{       defined(\_\_AVR\_ATmega328P\_\_) || \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00316}00316 \textcolor{preprocessor}{       defined(\_\_AVR\_ATmega328PB\_\_))}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00317}00317 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00318}00318 \textcolor{preprocessor}{\#define UART\_RX\_PIN     (0) }\textcolor{comment}{//PD0}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00319}00319 \textcolor{preprocessor}{\#define UART\_TX\_PIN     (1) }\textcolor{comment}{//PD1}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00320}00320 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00321}00321 \textcolor{preprocessor}{\#define I2C\_SDA\_PIN     (18) }\textcolor{comment}{//A4}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00322}00322 \textcolor{preprocessor}{\#define I2C\_SCL\_PIN     (19) }\textcolor{comment}{//A5}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00323}00323 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00324}00324 \textcolor{preprocessor}{\#define SPI\_HW\_SS\_PIN   (10) }\textcolor{comment}{//PB0}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00325}00325 \textcolor{preprocessor}{\#define SPI\_HW\_MOSI\_PIN (11) }\textcolor{comment}{//PB2}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00326}00326 \textcolor{preprocessor}{\#define SPI\_HW\_MISO\_PIN (12) }\textcolor{comment}{//PB3}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00327}00327 \textcolor{preprocessor}{\#define SPI\_HW\_SCK\_PIN  (13) }\textcolor{comment}{//PB1}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00328}00328 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00329}00329 \textcolor{preprocessor}{\#if defined(\_\_AVR\_ATmega48PB\_\_) || defined(\_\_AVR\_ATmega88PB\_\_) || defined(\_\_AVR\_ATmega168PB\_\_) || defined(\_\_AVR\_ATmega328PB\_\_)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00330}00330 \textcolor{preprocessor}{\#define \_\_digitalPinToPortReg(P) \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00331}00331 \textcolor{preprocessor}{(((P) >= 0 \&\& (P) <= 7) ? \&PORTD : (((P) >= 8 \&\& (P) <= 13) ? \&PORTB : (((P) >= 14 \&\& (P) <= 19) ? \&PORTC : \&PORTE)))}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00332}00332 \textcolor{preprocessor}{\#define \_\_digitalPinToDDRReg(P) \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00333}00333 \textcolor{preprocessor}{(((P) >= 0 \&\& (P) <= 7) ? \&DDRD : (((P) >= 8 \&\& (P) <= 13) ? \&DDRB : (((P) >= 14 \&\& (P) <= 19) ? \&DDRC : \&DDRE)))}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00334}00334 \textcolor{preprocessor}{\#define \_\_digitalPinToPINReg(P) \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00335}00335 \textcolor{preprocessor}{(((P) >= 0 \&\& (P) <= 7) ? \&PIND : (((P) >= 8 \&\& (P) <= 13) ? \&PINB : (((P) >= 14 \&\& (P) <= 19) ? \&PINC : \&PINE)))}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00336}00336 \textcolor{preprocessor}{\#define \_\_digitalPinToBit(P) \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00337}00337 \textcolor{preprocessor}{(((P) >= 0 \&\& (P) <= 7) ? (P) : (((P) >= 8 \&\& (P) <= 13) ? (P) -\/ 8 : (((P) >= 14 \&\& (P) <= 19) ? (P) -\/ 14 : (((P) >= 20 \&\& (P) <= 21) ? (P) -\/ 18 : (P) -\/ 22))))}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00338}00338 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00339}00339 \textcolor{preprocessor}{\#define \_\_digitalPinToPortReg(P) \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00340}00340 \textcolor{preprocessor}{(((P) >= 0 \&\& (P) <= 7) ? \&PORTD : (((P) >= 8 \&\& (P) <= 13) ? \&PORTB : \&PORTC))}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00341}00341 \textcolor{preprocessor}{\#define \_\_digitalPinToDDRReg(P) \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00342}00342 \textcolor{preprocessor}{(((P) >= 0 \&\& (P) <= 7) ? \&DDRD : (((P) >= 8 \&\& (P) <= 13) ? \&DDRB : \&DDRC))}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00343}00343 \textcolor{preprocessor}{\#define \_\_digitalPinToPINReg(P) \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00344}00344 \textcolor{preprocessor}{(((P) >= 0 \&\& (P) <= 7) ? \&PIND : (((P) >= 8 \&\& (P) <= 13) ? \&PINB : \&PINC))}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00345}00345 \textcolor{preprocessor}{\#define \_\_digitalPinToBit(P) \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00346}00346 \textcolor{preprocessor}{(((P) >= 0 \&\& (P) <= 7) ? (P) : (((P) >= 8 \&\& (P) <= 13) ? (P) -\/ 8 : (P) -\/ 14))}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00347}00347 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00348}00348 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00349}00349 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00350}00350 \textcolor{comment}{// -\/-\/-\/ Arduino Uno WiFi Rev 2, Nano Every -\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00351}00351 \textcolor{preprocessor}{\#elif defined(\_\_AVR\_ATmega4809\_\_)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00352}00352 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00353}00353 \textcolor{preprocessor}{\#define UART\_RX\_PIN     (0) }\textcolor{comment}{//PB0}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00354}00354 \textcolor{preprocessor}{\#define UART\_TX\_PIN     (1) }\textcolor{comment}{//PB1}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00355}00355 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00356}00356 \textcolor{preprocessor}{\#define I2C\_SDA\_PIN     (22) }\textcolor{comment}{//PA2}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00357}00357 \textcolor{preprocessor}{\#define I2C\_SCL\_PIN     (23) }\textcolor{comment}{//PA3}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00358}00358 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00359}00359 \textcolor{preprocessor}{\#define SPI\_HW\_SS\_PIN   (8)  }\textcolor{comment}{//PE3}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00360}00360 \textcolor{preprocessor}{\#define SPI\_HW\_MOSI\_PIN (11) }\textcolor{comment}{//PE0}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00361}00361 \textcolor{preprocessor}{\#define SPI\_HW\_MISO\_PIN (12) }\textcolor{comment}{//PE1}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00362}00362 \textcolor{preprocessor}{\#define SPI\_HW\_SCK\_PIN  (13) }\textcolor{comment}{//PE2}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00363}00363 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00364}00364 \textcolor{preprocessor}{\#define \_\_digitalPinToPortReg(P) \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00365}00365 \textcolor{preprocessor}{(((P) == 2 || (P) == 7 ) ? \&VPORTA.OUT : ((P) == 5 || (P) == 9 || (P) == 10) ? \&VPORTB.OUT : ((P) == 4) ? \&VPORTC.OUT : (((P) >= 14 \&\& (P) <= 17) || (P) == 20 || (P) == 21) ? \&VPORTD.OUT : ((P) == 8 || (P) == 11 || (P) == 12 || (P) == 13) ? \&VPORTE.OUT : \&VPORTF.OUT)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00366}00366 \textcolor{preprocessor}{\#define \_\_digitalPinToDDRReg(P) \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00367}00367 \textcolor{preprocessor}{(((P) == 2 || (P) == 7 ) ? \&VPORTA.DIR : ((P) == 5 || (P) == 9 || (P) == 10) ? \&VPORTB.DIR : ((P) == 4) ? \&VPORTC.DIR : (((P) >= 14 \&\& (P) <= 17) || (P) == 20 || (P) == 21) ? \&VPORTD.DIR : ((P) == 8 || (P) == 11 || (P) == 12 || (P) == 13) ? \&VPORTE.DIR : \&VPORTF.DIR)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00368}00368 \textcolor{preprocessor}{\#define \_\_digitalPinToPINReg(P) \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00369}00369 \textcolor{preprocessor}{(((P) == 2 || (P) == 7 ) ? \&VPORTA.IN : ((P) == 5 || (P) == 9 || (P) == 10) ? \&VPORTB.IN : ((P) == 4) ? \&VPORTC.IN : (((P) >= 14 \&\& (P) <= 17) || (P) == 20 || (P) == 21) ? \&VPORTD.IN : ((P) == 8 || (P) == 11 || (P) == 12 || (P) == 13) ? \&VPORTE.IN : \&VPORTF.IN)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00370}00370 \textcolor{preprocessor}{\#define \_\_digitalPinToBit(P) \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00371}00371 \textcolor{preprocessor}{(((P) == 2 || (P) == 9 || (P) == 11 || (P) == 17) ? 0 : ((P) == 7 || (P) == 10 || (P) == 12 || (P) == 16) ? 1 : ((P) == 5 || (P) == 13 || (P) == 15 || (P) == 18) ? 2 : ((P) == 9 || (P) == 14 || (P) == 19) ? 3 : ((P) == 6 || (P) == 20) ? 4 : ((P) == 3 || (P) == 21) ? 5 :  6 )}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00372}00372 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00373}00373 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00374}00374 \textcolor{comment}{// TinyCore}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00375}00375 \textcolor{comment}{// https://raw.githubusercontent.com/xukangmin/TinyCore/master/avr/package/package\_tinycore\_index.json}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00376}00376 \textcolor{comment}{// https://docs.tinycore.dev/en/latest/}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00377}00377 \textcolor{preprocessor}{\#elif  defined(\_\_AVR\_ATtiny1616\_\_)  || defined(\_\_AVR\_ATtiny3216\_\_) || defined(\_\_AVR\_ATtiny3217\_\_)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00378}00378 \textcolor{preprocessor}{\#define \_\_digitalPinToPortReg(P) ((P) <= 5 ? \&VPORTB.OUT : ((P) <= 9 ? \&VPORTC.OUT : ((P) <= 16 ? \&VPORTA.OUT : ((P) <= 18 ? \&VPORTB.OUT : \&VPORTC.OUT))))}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00379}00379 \textcolor{preprocessor}{\#define \_\_digitalPinToDDRReg(P) ((P) <= 5 ? \&VPORTB.DIR : ((P) <= 9 ? \&VPORTC.DIR : ((P) <= 16 ? \&VPORTA.DIR : ((P) <= 18 ? \&VPORTB.DIR : \&VPORTC.DIR))))}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00380}00380 \textcolor{preprocessor}{\#define \_\_digitalPinToPINReg(P) ((P) <= 5 ? \&VPORTB.IN : ((P) <= 9 ? \&VPORTC.IN : ((P) <= 16 ? \&VPORTA.IN : ((P) <= 18 ? \&VPORTB.IN : \&VPORTC.IN))))}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00381}00381 \textcolor{preprocessor}{\#define \_\_digitalPinToBit(P) ( (P) <= 3 ? (3 -\/ P) : ((P) <= 5 ? (P) : ((P) <= 9 ? (P -\/ 6) : ((P) <= 16 ? ((P) -\/ 9) : ((P) <= 18 ? ((P) -\/ 11) : ((P) -\/ 15))))) )}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00382}00382 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00383}00383 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00384}00384 \textcolor{comment}{// -\/-\/-\/ ATtinyX5 -\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00385}00385 \textcolor{preprocessor}{\#elif defined(\_\_AVR\_ATtiny25\_\_) || defined(\_\_AVR\_ATtiny45\_\_) || defined(\_\_AVR\_ATtiny85\_\_)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00386}00386 \textcolor{comment}{// we have only PORTB}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00387}00387 \textcolor{preprocessor}{\#define \_\_digitalPinToPortReg(P) (\&PORTB)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00388}00388 \textcolor{preprocessor}{\#define \_\_digitalPinToDDRReg(P)  (\&DDRB)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00389}00389 \textcolor{preprocessor}{\#define \_\_digitalPinToPINReg(P)  (\&PINB)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00390}00390 \textcolor{preprocessor}{\#define \_\_digitalPinToBit(P)     (((P) <= 7) ? (P) : (((P) >= 8 \&\& (P) <= 13) ? (P) -\/ 8 : (P) -\/ 14))}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00391}00391 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00392}00392 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00393}00393 \textcolor{comment}{// -\/-\/-\/ ATtiny88 -\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00394}00394 \textcolor{preprocessor}{\#elif defined(\_\_AVR\_ATtiny88\_\_)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00395}00395 \textcolor{preprocessor}{\# if defined(ARDUINO\_AVR\_DIGISPARKPRO)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00396}00396 \textcolor{preprocessor}{\#define \_\_digitalPinToPortReg(P) ((P) <= 7 ? \&PORTD : ((P) <= 14 ? \&PORTB : ((P) <= 18 ? \&PORTA : \&PORTC)))}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00397}00397 \textcolor{preprocessor}{\#define \_\_digitalPinToDDRReg(P)  ((P) <= 7 ? \&DDRD : ((P) <= 14 ? \&DDRB : ((P) <= 18 ? \&DDRA : \&DDRC)))}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00398}00398 \textcolor{preprocessor}{\#define \_\_digitalPinToPINReg(P)  ((P) <= 7 ? \&PIND : ((P) <= 14 ? \&PINB : ((P) <= 18 ? \&PINA : \&PINC)))}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00399}00399 \textcolor{preprocessor}{\#define \_\_digitalPinToBit(P) ( (P) <= 7 ? (P) : ((P) <= 13 ? ((P) -\/ 8) : ((P) == 14 ? 7 : ((P) <= 16 ? ((P) -\/ 14) : ((P) <= 18 ? ((P) -\/ 17) : ((P) == 25 ? 7 : ((P) -\/ 19)))))) )}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00400}00400 \textcolor{preprocessor}{\# else}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00401}00401 \textcolor{preprocessor}{\#define \_\_digitalPinToPortReg(P) ((P) <= 7 ? \&PORTD : ((P) <= 15 ? \&PORTB : ((P) <= 22 ? \&PORTC : ((P) <= 26 ? \&PORTA : \&PORTC))))}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00402}00402 \textcolor{preprocessor}{\#define \_\_digitalPinToDDRReg(P) ((P) <= 7 ? \&DDRD : ((P) <= 15 ? \&DDRB : ((P) <= 22 ? \&DDRC : ((P) <= 26 ? \&DDRA : \&DDRC))))}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00403}00403 \textcolor{preprocessor}{\#define \_\_digitalPinToPINReg(P) ((P) <= 7 ? \&PIND : ((P) <= 15 ? \&PINB : ((P) <= 22 ? \&PINC : ((P) <= 26 ? \&PINA : \&PINC))))}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00404}00404 \textcolor{preprocessor}{\#define \_\_digitalPinToBit(P) ((P) <= 15 ? ((P) \& 0x7) : ((P) == 16 ? (7) : ((P) <= 22 ? ((P) -\/ 17) : ((P) == 27 ? (6) : ((P) -\/ 23)))))}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00405}00405 \textcolor{preprocessor}{\# endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00406}00406 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00407}00407 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00408}00408 \textcolor{comment}{// -\/-\/-\/ ATtinyX4 + ATtinyX7 -\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00409}00409 \textcolor{preprocessor}{\#elif  defined(\_\_AVR\_ATtiny24\_\_) || defined(\_\_AVR\_ATtiny44\_\_) || defined(\_\_AVR\_ATtiny84\_\_) || defined(\_\_AVR\_ATtiny87\_\_) || defined(\_\_AVR\_ATtiny167\_\_)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00410}00410 \textcolor{preprocessor}{\# if defined(ARDUINO\_AVR\_DIGISPARKPRO) || PIN\_PA7 == 5}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00411}00411 \textcolor{comment}{// Strange enumeration of pins on Digispark board and core library}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00412}00412 \textcolor{preprocessor}{\#define \_\_digitalPinToPortReg(P) (((P) <= 4) ? \&PORTB : \&PORTA)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00413}00413 \textcolor{preprocessor}{\#define \_\_digitalPinToDDRReg(P)  (((P) <= 4) ? \&DDRB : \&DDRA)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00414}00414 \textcolor{preprocessor}{\#define \_\_digitalPinToPINReg(P)  (((P) <= 4) ? \&PINB : \&PINA)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00415}00415 \textcolor{preprocessor}{\#define \_\_digitalPinToBit(P)     (((P) <= 2) ? (P) : (((P) == 3) ? 6 : (((P) == 4) ? 3 : (((P) == 5) ? 7 : (P) -\/ 6 ))))}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00416}00416 \textcolor{preprocessor}{\# else}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00417}00417 \textcolor{comment}{// ATtinyX4: PORTA for 0 to 7, PORTB for 8 to 11}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00418}00418 \textcolor{comment}{// ATtinyX7: PORTA for 0 to 7, PORTB for 8 to 15}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00419}00419 \textcolor{preprocessor}{\#define \_\_digitalPinToPortReg(P) (((P) <= 7) ? \&PORTA : \&PORTB)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00420}00420 \textcolor{preprocessor}{\#define \_\_digitalPinToDDRReg(P)  (((P) <= 7) ? \&DDRA : \&DDRB)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00421}00421 \textcolor{preprocessor}{\#define \_\_digitalPinToPINReg(P)  (((P) <= 7) ? \&PINA : \&PINB)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00422}00422 \textcolor{preprocessor}{\#define \_\_digitalPinToBit(P)     (((P) <= 7) ? (P) : (P) -\/ 8 )}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00423}00423 \textcolor{preprocessor}{\# endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00424}00424 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00425}00425 \textcolor{comment}{// -\/-\/-\/ Other -\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00426}00426 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00427}00427 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00428}\mbox{\hyperlink{_i_r_remote_2digital_write_fast_8h_a2cade698267beb86ccaa38c14d35ab0f}{00428}} \textcolor{preprocessor}{\#define I2C\_SDA\_PIN     SDA}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00429}\mbox{\hyperlink{_i_r_remote_2digital_write_fast_8h_a0e4e08bab2fb484136d18b067bef372c}{00429}} \textcolor{preprocessor}{\#define I2C\_SCL\_PIN     SCL}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00430}00430 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00431}\mbox{\hyperlink{_i_r_remote_2digital_write_fast_8h_aa48cf672323b7a1784a973d1a4fd891e}{00431}} \textcolor{preprocessor}{\#define SPI\_HW\_SS\_PIN   SS}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00432}\mbox{\hyperlink{_i_r_remote_2digital_write_fast_8h_abde5a3df1fb9cf0e46476ea7ac10b48a}{00432}} \textcolor{preprocessor}{\#define SPI\_HW\_MOSI\_PIN MOSI}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00433}\mbox{\hyperlink{_i_r_remote_2digital_write_fast_8h_a32f0a77e5800213b4d059bb700302d42}{00433}} \textcolor{preprocessor}{\#define SPI\_HW\_MISO\_PIN MISO}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00434}\mbox{\hyperlink{_i_r_remote_2digital_write_fast_8h_ac26ddd8cd6a7cd10b23f08ea6e8f7032}{00434}} \textcolor{preprocessor}{\#define SPI\_HW\_SCK\_PIN  SCK}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00435}00435 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00436}00436 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00437}00437 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00438}00438 \textcolor{comment}{//\#endif  //\#ifndef digitalPinToPortReg}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00439}00439 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00440}00440 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00441}00441 \textcolor{preprocessor}{\#ifndef digitalWriteFast}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00442}00442 \textcolor{preprocessor}{\#if (defined(\_\_AVR\_\_) || defined(ARDUINO\_ARCH\_AVR)) \&\& defined(\_\_digitalPinToPortReg)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00443}00443 \textcolor{preprocessor}{\#define digitalWriteFast(P, V) \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00444}00444 \textcolor{preprocessor}{if (\_\_builtin\_constant\_p(P)) \{ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00445}00445 \textcolor{preprocessor}{  BIT\_WRITE(*\_\_digitalPinToPortReg(P), \_\_digitalPinToBit(P), (V)); \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00446}00446 \textcolor{preprocessor}{\} else \{ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00447}00447 \textcolor{preprocessor}{  digitalWrite((P), (V)); \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00448}00448 \textcolor{preprocessor}{\}}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00449}00449 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00450}\mbox{\hyperlink{_i_r_remote_2digital_write_fast_8h_a9bef074dfc5a83ffbb27929185ef9597}{00450}} \textcolor{preprocessor}{\#define digitalWriteFast digitalWrite}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00451}00451 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00452}00452 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00453}00453 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00454}00454 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00455}00455 \textcolor{preprocessor}{\#ifndef pinModeFast}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00456}00456 \textcolor{preprocessor}{\#if (defined(\_\_AVR\_\_) || defined(ARDUINO\_ARCH\_AVR)) \&\& defined(\_\_digitalPinToPortReg)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00457}00457 \textcolor{preprocessor}{\#define pinModeFast(P, V) \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00458}00458 \textcolor{preprocessor}{if (\_\_builtin\_constant\_p(P) \&\& \_\_builtin\_constant\_p(V)) \{ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00459}00459 \textcolor{preprocessor}{  if (V == INPUT\_PULLUP) \{\(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00460}00460 \textcolor{preprocessor}{    BIT\_CLEAR(*\_\_digitalPinToDDRReg(P), \_\_digitalPinToBit(P)); \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00461}00461 \textcolor{preprocessor}{    BIT\_SET(*\_\_digitalPinToPortReg(P), \_\_digitalPinToBit(P)); \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00462}00462 \textcolor{preprocessor}{  \} else \{ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00463}00463 \textcolor{preprocessor}{    BIT\_WRITE(*\_\_digitalPinToDDRReg(P), \_\_digitalPinToBit(P), (V)); \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00464}00464 \textcolor{preprocessor}{  \} \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00465}00465 \textcolor{preprocessor}{\} else \{ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00466}00466 \textcolor{preprocessor}{  pinMode((P), (V)); \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00467}00467 \textcolor{preprocessor}{\}}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00468}00468 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00469}\mbox{\hyperlink{_i_r_remote_2digital_write_fast_8h_a99fa3e1d72f2f1a9ffba996b06767a39}{00469}} \textcolor{preprocessor}{\#define pinModeFast pinMode}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00470}00470 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00471}00471 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00472}00472 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00473}00473 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00474}00474 \textcolor{preprocessor}{\#ifndef digitalReadFast}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00475}00475 \textcolor{preprocessor}{\#if (defined(\_\_AVR\_\_) || defined(ARDUINO\_ARCH\_AVR))}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00476}00476 \textcolor{preprocessor}{\#define digitalReadFast(P) ( (int) \_\_digitalReadFast((P)) )}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00477}00477 \textcolor{preprocessor}{\#define \_\_digitalReadFast(P ) \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00478}00478 \textcolor{preprocessor}{  (\_\_builtin\_constant\_p(P) ) ? \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00479}00479 \textcolor{preprocessor}{  (( BIT\_READ(*\_\_digitalPinToPINReg(P), \_\_digitalPinToBit(P))) ? HIGH:LOW ) : \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00480}00480 \textcolor{preprocessor}{  digitalRead((P))}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00481}00481 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00482}\mbox{\hyperlink{_i_r_remote_2digital_write_fast_8h_a3d35ce09bbea79b9f4e9fb0c291da92c}{00482}} \textcolor{preprocessor}{\#define digitalReadFast digitalRead}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00483}00483 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00484}00484 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00485}00485 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00486}00486 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00487}00487 \textcolor{preprocessor}{\#ifndef digitalToggleFast}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00488}00488 \textcolor{preprocessor}{\#if (defined(\_\_AVR\_\_) || defined(ARDUINO\_ARCH\_AVR))}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00489}00489 \textcolor{preprocessor}{\#define digitalToggleFast(P) \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00490}00490 \textcolor{preprocessor}{if (\_\_builtin\_constant\_p(P)) \{ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00491}00491 \textcolor{preprocessor}{  BIT\_SET(*\_\_digitalPinToPINReg(P), \_\_digitalPinToBit(P)); \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00492}00492 \textcolor{preprocessor}{\} else \{ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00493}00493 \textcolor{preprocessor}{  digitalWrite(P, ! digitalRead(P)); \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00494}00494 \textcolor{preprocessor}{\}}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00495}00495 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00496}\mbox{\hyperlink{_i_r_remote_2digital_write_fast_8h_a37533a4829c5931c2ea20fe4282bb910}{00496}} \textcolor{preprocessor}{\#define digitalToggleFast(P) digitalWrite(P, ! digitalRead(P))}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00497}00497 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00498}00498 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00499}00499 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00500}00500 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2digital_write_fast_8h_source_l00501}00501 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//\_\_digitalWriteFast\_h\_}}
+
+\end{DoxyCode}

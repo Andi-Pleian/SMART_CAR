@@ -1,0 +1,200 @@
+\hypertarget{_i_r_remote___library_2ir___pronto_8hpp}{}\doxysection{main/\+IRRemote\+\_\+\+Library/ir\+\_\+\+Pronto.hpp File Reference}
+\label{_i_r_remote___library_2ir___pronto_8hpp}\index{main/IRRemote\_Library/ir\_Pronto.hpp@{main/IRRemote\_Library/ir\_Pronto.hpp}}
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}IRremote\+Int.\+h\char`\"{}}\newline
+Include dependency graph for ir\+\_\+\+Pronto.\+hpp\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static unsigned int \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_ga01388575997ce2531098a606a8a25521}{to\+Frequency\+KHz}} (uint16\+\_\+t code)
+\item 
+static uint16\+\_\+t \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_ga1272f3783a3b8d2cf2241f1e76674c8a}{effective\+Frequency}} (uint16\+\_\+t frequency)
+\item 
+static uint16\+\_\+t \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_ga356fabeed3a4b0a010a35550e86285c5}{to\+Timebase}} (uint16\+\_\+t frequency)
+\item 
+static uint16\+\_\+t \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_ga155ad672d0494903d7c89e73650879ae}{to\+Frequency\+Code}} (uint16\+\_\+t frequency)
+\item 
+static char \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_ga7741bc8892620b5da6c38a29d3d48668}{hex\+Digit}} (unsigned int x)
+\item 
+static void \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_gaa82a581fafa8fa2310b7241fe1ded33d}{dump\+Digit}} (Print $\ast$a\+Serial, unsigned int number)
+\item 
+static void \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_ga69048be6384abbbe3c17e3f25432a392}{dump\+Number}} (Print $\ast$a\+Serial, uint16\+\_\+t number)
+\item 
+static void \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_ga479fbb18cdfa303a8bc4322123f831df}{dump\+Duration}} (Print $\ast$a\+Serial, uint32\+\_\+t duration, uint16\+\_\+t timebase)
+\item 
+static void \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_ga8a8a6b504851150df425d5b490d92640}{compensate\+And\+Dump\+Sequence}} (Print $\ast$a\+Serial, const volatile uint16\+\_\+t $\ast$data, size\+\_\+t length, uint16\+\_\+t timebase)
+\item 
+static bool \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_gab3ca394ad13ba555852f3bb61d488c7b}{dump\+Digit}} (String $\ast$a\+String, unsigned int number)
+\item 
+static size\+\_\+t \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_gab49c8cfa7e96e3c5b54f9a41edbd33ba}{dump\+Number}} (String $\ast$a\+String, uint16\+\_\+t number)
+\item 
+static size\+\_\+t \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_ga536975baa9f5346484fc32bd48255d07}{dump\+Duration}} (String $\ast$a\+String, uint32\+\_\+t duration, uint16\+\_\+t timebase)
+\item 
+static size\+\_\+t \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_ga0772587b98a7fa0cf332788b7e2bd8e6}{compensate\+And\+Dump\+Sequence}} (String $\ast$a\+String, const volatile uint16\+\_\+t $\ast$data, size\+\_\+t length, uint16\+\_\+t timebase)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_ga8a8a6b504851150df425d5b490d92640}\label{_i_r_remote___library_2ir___pronto_8hpp_ga8a8a6b504851150df425d5b490d92640}} 
+\index{ir\_Pronto.hpp@{ir\_Pronto.hpp}!compensateAndDumpSequence@{compensateAndDumpSequence}}
+\index{compensateAndDumpSequence@{compensateAndDumpSequence}!ir\_Pronto.hpp@{ir\_Pronto.hpp}}
+\doxysubsubsection{\texorpdfstring{compensateAndDumpSequence()}{compensateAndDumpSequence()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily static void compensate\+And\+Dump\+Sequence (\begin{DoxyParamCaption}\item[{Print $\ast$}]{a\+Serial,  }\item[{const volatile uint16\+\_\+t $\ast$}]{data,  }\item[{size\+\_\+t}]{length,  }\item[{uint16\+\_\+t}]{timebase }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_source_l00237}{237}} of file \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_source}{ir\+\_\+\+Pronto.\+hpp}}.
+
+Here is the call graph for this function\+:
+% FIG 2
+\mbox{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_ga0772587b98a7fa0cf332788b7e2bd8e6}\label{_i_r_remote___library_2ir___pronto_8hpp_ga0772587b98a7fa0cf332788b7e2bd8e6}} 
+\index{ir\_Pronto.hpp@{ir\_Pronto.hpp}!compensateAndDumpSequence@{compensateAndDumpSequence}}
+\index{compensateAndDumpSequence@{compensateAndDumpSequence}!ir\_Pronto.hpp@{ir\_Pronto.hpp}}
+\doxysubsubsection{\texorpdfstring{compensateAndDumpSequence()}{compensateAndDumpSequence()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily static size\+\_\+t compensate\+And\+Dump\+Sequence (\begin{DoxyParamCaption}\item[{String $\ast$}]{a\+String,  }\item[{const volatile uint16\+\_\+t $\ast$}]{data,  }\item[{size\+\_\+t}]{length,  }\item[{uint16\+\_\+t}]{timebase }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_source_l00302}{302}} of file \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_source}{ir\+\_\+\+Pronto.\+hpp}}.
+
+Here is the call graph for this function\+:
+% FIG 3
+\mbox{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_gaa82a581fafa8fa2310b7241fe1ded33d}\label{_i_r_remote___library_2ir___pronto_8hpp_gaa82a581fafa8fa2310b7241fe1ded33d}} 
+\index{ir\_Pronto.hpp@{ir\_Pronto.hpp}!dumpDigit@{dumpDigit}}
+\index{dumpDigit@{dumpDigit}!ir\_Pronto.hpp@{ir\_Pronto.hpp}}
+\doxysubsubsection{\texorpdfstring{dumpDigit()}{dumpDigit()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily static void dump\+Digit (\begin{DoxyParamCaption}\item[{Print $\ast$}]{a\+Serial,  }\item[{unsigned int}]{number }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_source_l00218}{218}} of file \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_source}{ir\+\_\+\+Pronto.\+hpp}}.
+
+Here is the call graph for this function\+:
+% FIG 4
+Here is the caller graph for this function\+:
+% FIG 5
+\mbox{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_gab3ca394ad13ba555852f3bb61d488c7b}\label{_i_r_remote___library_2ir___pronto_8hpp_gab3ca394ad13ba555852f3bb61d488c7b}} 
+\index{ir\_Pronto.hpp@{ir\_Pronto.hpp}!dumpDigit@{dumpDigit}}
+\index{dumpDigit@{dumpDigit}!ir\_Pronto.hpp@{ir\_Pronto.hpp}}
+\doxysubsubsection{\texorpdfstring{dumpDigit()}{dumpDigit()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily static bool dump\+Digit (\begin{DoxyParamCaption}\item[{String $\ast$}]{a\+String,  }\item[{unsigned int}]{number }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_source_l00276}{276}} of file \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_source}{ir\+\_\+\+Pronto.\+hpp}}.
+
+Here is the call graph for this function\+:
+% FIG 6
+\mbox{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_ga479fbb18cdfa303a8bc4322123f831df}\label{_i_r_remote___library_2ir___pronto_8hpp_ga479fbb18cdfa303a8bc4322123f831df}} 
+\index{ir\_Pronto.hpp@{ir\_Pronto.hpp}!dumpDuration@{dumpDuration}}
+\index{dumpDuration@{dumpDuration}!ir\_Pronto.hpp@{ir\_Pronto.hpp}}
+\doxysubsubsection{\texorpdfstring{dumpDuration()}{dumpDuration()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily static void dump\+Duration (\begin{DoxyParamCaption}\item[{Print $\ast$}]{a\+Serial,  }\item[{uint32\+\_\+t}]{duration,  }\item[{uint16\+\_\+t}]{timebase }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_source_l00230}{230}} of file \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_source}{ir\+\_\+\+Pronto.\+hpp}}.
+
+Here is the call graph for this function\+:
+% FIG 7
+Here is the caller graph for this function\+:
+% FIG 8
+\mbox{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_ga536975baa9f5346484fc32bd48255d07}\label{_i_r_remote___library_2ir___pronto_8hpp_ga536975baa9f5346484fc32bd48255d07}} 
+\index{ir\_Pronto.hpp@{ir\_Pronto.hpp}!dumpDuration@{dumpDuration}}
+\index{dumpDuration@{dumpDuration}!ir\_Pronto.hpp@{ir\_Pronto.hpp}}
+\doxysubsubsection{\texorpdfstring{dumpDuration()}{dumpDuration()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily static size\+\_\+t dump\+Duration (\begin{DoxyParamCaption}\item[{String $\ast$}]{a\+String,  }\item[{uint32\+\_\+t}]{duration,  }\item[{uint16\+\_\+t}]{timebase }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_source_l00298}{298}} of file \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_source}{ir\+\_\+\+Pronto.\+hpp}}.
+
+Here is the call graph for this function\+:
+% FIG 9
+\mbox{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_ga69048be6384abbbe3c17e3f25432a392}\label{_i_r_remote___library_2ir___pronto_8hpp_ga69048be6384abbbe3c17e3f25432a392}} 
+\index{ir\_Pronto.hpp@{ir\_Pronto.hpp}!dumpNumber@{dumpNumber}}
+\index{dumpNumber@{dumpNumber}!ir\_Pronto.hpp@{ir\_Pronto.hpp}}
+\doxysubsubsection{\texorpdfstring{dumpNumber()}{dumpNumber()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily static void dump\+Number (\begin{DoxyParamCaption}\item[{Print $\ast$}]{a\+Serial,  }\item[{uint16\+\_\+t}]{number }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_source_l00222}{222}} of file \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_source}{ir\+\_\+\+Pronto.\+hpp}}.
+
+Here is the call graph for this function\+:
+% FIG 10
+Here is the caller graph for this function\+:
+% FIG 11
+\mbox{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_gab49c8cfa7e96e3c5b54f9a41edbd33ba}\label{_i_r_remote___library_2ir___pronto_8hpp_gab49c8cfa7e96e3c5b54f9a41edbd33ba}} 
+\index{ir\_Pronto.hpp@{ir\_Pronto.hpp}!dumpNumber@{dumpNumber}}
+\index{dumpNumber@{dumpNumber}!ir\_Pronto.hpp@{ir\_Pronto.hpp}}
+\doxysubsubsection{\texorpdfstring{dumpNumber()}{dumpNumber()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily static size\+\_\+t dump\+Number (\begin{DoxyParamCaption}\item[{String $\ast$}]{a\+String,  }\item[{uint16\+\_\+t}]{number }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_source_l00281}{281}} of file \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_source}{ir\+\_\+\+Pronto.\+hpp}}.
+
+Here is the call graph for this function\+:
+% FIG 12
+\mbox{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_ga1272f3783a3b8d2cf2241f1e76674c8a}\label{_i_r_remote___library_2ir___pronto_8hpp_ga1272f3783a3b8d2cf2241f1e76674c8a}} 
+\index{ir\_Pronto.hpp@{ir\_Pronto.hpp}!effectiveFrequency@{effectiveFrequency}}
+\index{effectiveFrequency@{effectiveFrequency}!ir\_Pronto.hpp@{ir\_Pronto.hpp}}
+\doxysubsubsection{\texorpdfstring{effectiveFrequency()}{effectiveFrequency()}}
+{\footnotesize\ttfamily static uint16\+\_\+t effective\+Frequency (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{frequency }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_source_l00202}{202}} of file \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_source}{ir\+\_\+\+Pronto.\+hpp}}.
+
+Here is the caller graph for this function\+:
+% FIG 13
+\mbox{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_ga7741bc8892620b5da6c38a29d3d48668}\label{_i_r_remote___library_2ir___pronto_8hpp_ga7741bc8892620b5da6c38a29d3d48668}} 
+\index{ir\_Pronto.hpp@{ir\_Pronto.hpp}!hexDigit@{hexDigit}}
+\index{hexDigit@{hexDigit}!ir\_Pronto.hpp@{ir\_Pronto.hpp}}
+\doxysubsubsection{\texorpdfstring{hexDigit()}{hexDigit()}}
+{\footnotesize\ttfamily static char hex\+Digit (\begin{DoxyParamCaption}\item[{unsigned int}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_source_l00214}{214}} of file \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_source}{ir\+\_\+\+Pronto.\+hpp}}.
+
+Here is the caller graph for this function\+:
+% FIG 14
+\mbox{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_ga155ad672d0494903d7c89e73650879ae}\label{_i_r_remote___library_2ir___pronto_8hpp_ga155ad672d0494903d7c89e73650879ae}} 
+\index{ir\_Pronto.hpp@{ir\_Pronto.hpp}!toFrequencyCode@{toFrequencyCode}}
+\index{toFrequencyCode@{toFrequencyCode}!ir\_Pronto.hpp@{ir\_Pronto.hpp}}
+\doxysubsubsection{\texorpdfstring{toFrequencyCode()}{toFrequencyCode()}}
+{\footnotesize\ttfamily static uint16\+\_\+t to\+Frequency\+Code (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{frequency }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_source_l00210}{210}} of file \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_source}{ir\+\_\+\+Pronto.\+hpp}}.
+
+Here is the call graph for this function\+:
+% FIG 15
+\mbox{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_ga01388575997ce2531098a606a8a25521}\label{_i_r_remote___library_2ir___pronto_8hpp_ga01388575997ce2531098a606a8a25521}} 
+\index{ir\_Pronto.hpp@{ir\_Pronto.hpp}!toFrequencyKHz@{toFrequencyKHz}}
+\index{toFrequencyKHz@{toFrequencyKHz}!ir\_Pronto.hpp@{ir\_Pronto.hpp}}
+\doxysubsubsection{\texorpdfstring{toFrequencyKHz()}{toFrequencyKHz()}}
+{\footnotesize\ttfamily static unsigned int to\+Frequency\+KHz (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{code }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_source_l00070}{70}} of file \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_source}{ir\+\_\+\+Pronto.\+hpp}}.
+
+\mbox{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_ga356fabeed3a4b0a010a35550e86285c5}\label{_i_r_remote___library_2ir___pronto_8hpp_ga356fabeed3a4b0a010a35550e86285c5}} 
+\index{ir\_Pronto.hpp@{ir\_Pronto.hpp}!toTimebase@{toTimebase}}
+\index{toTimebase@{toTimebase}!ir\_Pronto.hpp@{ir\_Pronto.hpp}}
+\doxysubsubsection{\texorpdfstring{toTimebase()}{toTimebase()}}
+{\footnotesize\ttfamily static uint16\+\_\+t to\+Timebase (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{frequency }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_source_l00206}{206}} of file \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_source}{ir\+\_\+\+Pronto.\+hpp}}.
+
+Here is the call graph for this function\+:
+% FIG 16

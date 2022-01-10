@@ -1,0 +1,255 @@
+\hypertarget{class_parking_sensor}{}\doxysection{Parking\+Sensor Class Reference}
+\label{class_parking_sensor}\index{ParkingSensor@{ParkingSensor}}
+
+
+Smart Parking Sensor.  
+
+
+
+
+{\ttfamily \#include $<$Parking\+Sensor.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_parking_sensor_a5f59f713e82968fdb71c9956a3c37f8e}{Parking\+Sensor}} ()
+\item 
+\mbox{\hyperlink{class_parking_sensor_a77486ddcba156d5a8768047574963ec4}{$\sim$\+Parking\+Sensor}} ()
+\item 
+\mbox{\hyperlink{class_parking_sensor_a50f7d8db46e89b0a84b10f434fed4ded}{Parking\+Sensor}} (unsigned short int, unsigned short int, unsigned short int)
+\item 
+\mbox{\hyperlink{class_parking_sensor_a1fc5c87cd15800606eda0accc8d2b225}{Parking\+Sensor}} (const \mbox{\hyperlink{class_parking_sensor}{Parking\+Sensor}} \&s)
+\item 
+int \mbox{\hyperlink{class_parking_sensor_afe9352318215cf3ca634bbd9629eb65b}{get\+Distance\+To\+Object}} ()
+\item 
+long \mbox{\hyperlink{class_parking_sensor_a54f438a973ae30d67dbf1786f9794982}{get\+Wave\+Comeback\+Time}} ()
+\item 
+void \mbox{\hyperlink{class_parking_sensor_a4c630df384e9be608ce86ca5aabef07a}{serial\+Print\+Distance}} ()
+\item 
+unsigned short int \mbox{\hyperlink{class_parking_sensor_a81edd2f2b878d51a0a27c046b1ffc409}{get\+Trig\+Pin}} ()
+\item 
+unsigned short int \mbox{\hyperlink{class_parking_sensor_ae28e23f81f22d8e462d9fce8cd92a18e}{get\+Echo\+Pin}} ()
+\item 
+void \mbox{\hyperlink{class_parking_sensor_adf87bce85f37a86bce44bc322d6fe02a}{set\+Trig\+Pin}} (unsigned short int)
+\item 
+void \mbox{\hyperlink{class_parking_sensor_a149ddf442a430e87a079939efa4a740f}{set\+Echo\+Pin}} (unsigned short int)
+\item 
+void \mbox{\hyperlink{class_parking_sensor_a6fb5861e5a5e2918db5810fb396c97f6}{Task}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Buzzer $\ast$ \mbox{\hyperlink{class_parking_sensor_abf68f673f81bc141d9fe4de5e7183a61}{buzzer}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+unsigned short int \mbox{\hyperlink{class_parking_sensor_adb1d39c112be08cd8e8acf2a4c6a9e76}{trig\+Pin}}
+\item 
+unsigned short int \mbox{\hyperlink{class_parking_sensor_aa1c2ebc54dbbe12b19a3ea3dd5e25b47}{echo\+Pin}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Smart Parking Sensor. 
+
+This class is used for implementing the Smart Parking Sensor
+
+The parking sensor consists of\+:
+\begin{DoxyItemize}
+\item one ultrasonic sensor (used for measuring distance to objects)
+\item one piezo buzzer (used to alert us when we are too close to an object) 
+\end{DoxyItemize}
+
+Definition at line \mbox{\hyperlink{_parking_sensor_8h_source_l00039}{39}} of file \mbox{\hyperlink{_parking_sensor_8h_source}{Parking\+Sensor.\+h}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_parking_sensor_a5f59f713e82968fdb71c9956a3c37f8e}\label{class_parking_sensor_a5f59f713e82968fdb71c9956a3c37f8e}} 
+\index{ParkingSensor@{ParkingSensor}!ParkingSensor@{ParkingSensor}}
+\index{ParkingSensor@{ParkingSensor}!ParkingSensor@{ParkingSensor}}
+\doxysubsubsection{\texorpdfstring{ParkingSensor()}{ParkingSensor()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily Parking\+Sensor\+::\+Parking\+Sensor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Default constructor (Basic Init) 
+
+Definition at line \mbox{\hyperlink{_parking_sensor_8cpp_source_l00029}{29}} of file \mbox{\hyperlink{_parking_sensor_8cpp_source}{Parking\+Sensor.\+cpp}}.
+
+\mbox{\Hypertarget{class_parking_sensor_a77486ddcba156d5a8768047574963ec4}\label{class_parking_sensor_a77486ddcba156d5a8768047574963ec4}} 
+\index{ParkingSensor@{ParkingSensor}!````~ParkingSensor@{$\sim$ParkingSensor}}
+\index{````~ParkingSensor@{$\sim$ParkingSensor}!ParkingSensor@{ParkingSensor}}
+\doxysubsubsection{\texorpdfstring{$\sim$ParkingSensor()}{~ParkingSensor()}}
+{\footnotesize\ttfamily Parking\+Sensor\+::$\sim$\+Parking\+Sensor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Default destructor (Empty) 
+
+Definition at line \mbox{\hyperlink{_parking_sensor_8cpp_source_l00049}{49}} of file \mbox{\hyperlink{_parking_sensor_8cpp_source}{Parking\+Sensor.\+cpp}}.
+
+\mbox{\Hypertarget{class_parking_sensor_a50f7d8db46e89b0a84b10f434fed4ded}\label{class_parking_sensor_a50f7d8db46e89b0a84b10f434fed4ded}} 
+\index{ParkingSensor@{ParkingSensor}!ParkingSensor@{ParkingSensor}}
+\index{ParkingSensor@{ParkingSensor}!ParkingSensor@{ParkingSensor}}
+\doxysubsubsection{\texorpdfstring{ParkingSensor()}{ParkingSensor()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily Parking\+Sensor\+::\+Parking\+Sensor (\begin{DoxyParamCaption}\item[{unsigned short int}]{trig\+Pin\+\_\+arg,  }\item[{unsigned short int}]{echo\+Pin\+\_\+arg,  }\item[{unsigned short int}]{buzzer\+Pin\+\_\+arg }\end{DoxyParamCaption})}
+
+Custom constructor used for initializing a new \mbox{\hyperlink{class_parking_sensor}{Parking\+Sensor}}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em trig\+Pin\+\_\+arg} & Trigger\+Pin \\
+\hline
+\mbox{\texttt{ in}}  & {\em echo\+Pin\+\_\+arg} & Echo\+Pin \\
+\hline
+\mbox{\texttt{ in}}  & {\em tag\+\_\+arg} & \mbox{\hyperlink{class_parking_sensor}{Parking\+Sensor}}\textquotesingle{}s tag \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_parking_sensor_8cpp_source_l00069}{69}} of file \mbox{\hyperlink{_parking_sensor_8cpp_source}{Parking\+Sensor.\+cpp}}.
+
+\mbox{\Hypertarget{class_parking_sensor_a1fc5c87cd15800606eda0accc8d2b225}\label{class_parking_sensor_a1fc5c87cd15800606eda0accc8d2b225}} 
+\index{ParkingSensor@{ParkingSensor}!ParkingSensor@{ParkingSensor}}
+\index{ParkingSensor@{ParkingSensor}!ParkingSensor@{ParkingSensor}}
+\doxysubsubsection{\texorpdfstring{ParkingSensor()}{ParkingSensor()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily Parking\+Sensor\+::\+Parking\+Sensor (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_parking_sensor}{Parking\+Sensor}} \&}]{s }\end{DoxyParamCaption})}
+
+Copy constructor (NOT USED) 
+
+Definition at line \mbox{\hyperlink{_parking_sensor_8cpp_source_l00038}{38}} of file \mbox{\hyperlink{_parking_sensor_8cpp_source}{Parking\+Sensor.\+cpp}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_parking_sensor_afe9352318215cf3ca634bbd9629eb65b}\label{class_parking_sensor_afe9352318215cf3ca634bbd9629eb65b}} 
+\index{ParkingSensor@{ParkingSensor}!getDistanceToObject@{getDistanceToObject}}
+\index{getDistanceToObject@{getDistanceToObject}!ParkingSensor@{ParkingSensor}}
+\doxysubsubsection{\texorpdfstring{getDistanceToObject()}{getDistanceToObject()}}
+{\footnotesize\ttfamily int Parking\+Sensor\+::get\+Distance\+To\+Object (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Measures distance (in cm) to object based on ultrasound comeback time, using the following formula\+: Distance = (Time $\ast$ Speed) / 2
+
+\begin{DoxyReturn}{Returns}
+Distance in cm to object 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_parking_sensor_8cpp_source_l00102}{102}} of file \mbox{\hyperlink{_parking_sensor_8cpp_source}{Parking\+Sensor.\+cpp}}.
+
+\mbox{\Hypertarget{class_parking_sensor_ae28e23f81f22d8e462d9fce8cd92a18e}\label{class_parking_sensor_ae28e23f81f22d8e462d9fce8cd92a18e}} 
+\index{ParkingSensor@{ParkingSensor}!getEchoPin@{getEchoPin}}
+\index{getEchoPin@{getEchoPin}!ParkingSensor@{ParkingSensor}}
+\doxysubsubsection{\texorpdfstring{getEchoPin()}{getEchoPin()}}
+{\footnotesize\ttfamily unsigned short int Parking\+Sensor\+::get\+Echo\+Pin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_parking_sensor_8cpp_source_l00157}{157}} of file \mbox{\hyperlink{_parking_sensor_8cpp_source}{Parking\+Sensor.\+cpp}}.
+
+\mbox{\Hypertarget{class_parking_sensor_a81edd2f2b878d51a0a27c046b1ffc409}\label{class_parking_sensor_a81edd2f2b878d51a0a27c046b1ffc409}} 
+\index{ParkingSensor@{ParkingSensor}!getTrigPin@{getTrigPin}}
+\index{getTrigPin@{getTrigPin}!ParkingSensor@{ParkingSensor}}
+\doxysubsubsection{\texorpdfstring{getTrigPin()}{getTrigPin()}}
+{\footnotesize\ttfamily unsigned short int Parking\+Sensor\+::get\+Trig\+Pin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_parking_sensor_8cpp_source_l00149}{149}} of file \mbox{\hyperlink{_parking_sensor_8cpp_source}{Parking\+Sensor.\+cpp}}.
+
+\mbox{\Hypertarget{class_parking_sensor_a54f438a973ae30d67dbf1786f9794982}\label{class_parking_sensor_a54f438a973ae30d67dbf1786f9794982}} 
+\index{ParkingSensor@{ParkingSensor}!getWaveComebackTime@{getWaveComebackTime}}
+\index{getWaveComebackTime@{getWaveComebackTime}!ParkingSensor@{ParkingSensor}}
+\doxysubsubsection{\texorpdfstring{getWaveComebackTime()}{getWaveComebackTime()}}
+{\footnotesize\ttfamily long Parking\+Sensor\+::get\+Wave\+Comeback\+Time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+This function sends an ultrasound through trig\+Pin and receives it back in echo\+Pin from where we get the wave travel time with pulse\+In() method
+
+\begin{DoxyReturn}{Returns}
+Sound wave travel time 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_parking_sensor_8cpp_source_l00085}{85}} of file \mbox{\hyperlink{_parking_sensor_8cpp_source}{Parking\+Sensor.\+cpp}}.
+
+\mbox{\Hypertarget{class_parking_sensor_a4c630df384e9be608ce86ca5aabef07a}\label{class_parking_sensor_a4c630df384e9be608ce86ca5aabef07a}} 
+\index{ParkingSensor@{ParkingSensor}!serialPrintDistance@{serialPrintDistance}}
+\index{serialPrintDistance@{serialPrintDistance}!ParkingSensor@{ParkingSensor}}
+\doxysubsubsection{\texorpdfstring{serialPrintDistance()}{serialPrintDistance()}}
+{\footnotesize\ttfamily void Parking\+Sensor\+::serial\+Print\+Distance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Prints distance to object measured by \mbox{\hyperlink{class_parking_sensor}{Parking\+Sensor}} to Serial COM
+
+(!!!\+USED FOR SINGLE \mbox{\hyperlink{class_parking_sensor}{Parking\+Sensor}} TESTING!!!) 
+
+Definition at line \mbox{\hyperlink{_parking_sensor_8cpp_source_l00111}{111}} of file \mbox{\hyperlink{_parking_sensor_8cpp_source}{Parking\+Sensor.\+cpp}}.
+
+\mbox{\Hypertarget{class_parking_sensor_a149ddf442a430e87a079939efa4a740f}\label{class_parking_sensor_a149ddf442a430e87a079939efa4a740f}} 
+\index{ParkingSensor@{ParkingSensor}!setEchoPin@{setEchoPin}}
+\index{setEchoPin@{setEchoPin}!ParkingSensor@{ParkingSensor}}
+\doxysubsubsection{\texorpdfstring{setEchoPin()}{setEchoPin()}}
+{\footnotesize\ttfamily void Parking\+Sensor\+::set\+Echo\+Pin (\begin{DoxyParamCaption}\item[{unsigned short int}]{echo\+Pin\+\_\+arg }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_parking_sensor_8cpp_source_l00173}{173}} of file \mbox{\hyperlink{_parking_sensor_8cpp_source}{Parking\+Sensor.\+cpp}}.
+
+\mbox{\Hypertarget{class_parking_sensor_adf87bce85f37a86bce44bc322d6fe02a}\label{class_parking_sensor_adf87bce85f37a86bce44bc322d6fe02a}} 
+\index{ParkingSensor@{ParkingSensor}!setTrigPin@{setTrigPin}}
+\index{setTrigPin@{setTrigPin}!ParkingSensor@{ParkingSensor}}
+\doxysubsubsection{\texorpdfstring{setTrigPin()}{setTrigPin()}}
+{\footnotesize\ttfamily void Parking\+Sensor\+::set\+Trig\+Pin (\begin{DoxyParamCaption}\item[{unsigned short int}]{trig\+Pin\+\_\+arg }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_parking_sensor_8cpp_source_l00165}{165}} of file \mbox{\hyperlink{_parking_sensor_8cpp_source}{Parking\+Sensor.\+cpp}}.
+
+\mbox{\Hypertarget{class_parking_sensor_a6fb5861e5a5e2918db5810fb396c97f6}\label{class_parking_sensor_a6fb5861e5a5e2918db5810fb396c97f6}} 
+\index{ParkingSensor@{ParkingSensor}!Task@{Task}}
+\index{Task@{Task}!ParkingSensor@{ParkingSensor}}
+\doxysubsubsection{\texorpdfstring{Task()}{Task()}}
+{\footnotesize\ttfamily void Parking\+Sensor\+::\+Task (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\hyperlink{class_parking_sensor}{Parking\+Sensor}}\textquotesingle{}s Task
+
+This function is used to Check distance to object for each stage and call Buzzer\textquotesingle{}s Task to react to it. 
+
+Definition at line \mbox{\hyperlink{_parking_sensor_8cpp_source_l00124}{124}} of file \mbox{\hyperlink{_parking_sensor_8cpp_source}{Parking\+Sensor.\+cpp}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_parking_sensor_abf68f673f81bc141d9fe4de5e7183a61}\label{class_parking_sensor_abf68f673f81bc141d9fe4de5e7183a61}} 
+\index{ParkingSensor@{ParkingSensor}!buzzer@{buzzer}}
+\index{buzzer@{buzzer}!ParkingSensor@{ParkingSensor}}
+\doxysubsubsection{\texorpdfstring{buzzer}{buzzer}}
+{\footnotesize\ttfamily Buzzer$\ast$ Parking\+Sensor\+::buzzer}
+
+Buzzer associated with this \mbox{\hyperlink{class_parking_sensor}{Parking\+Sensor}} 
+
+Definition at line \mbox{\hyperlink{_parking_sensor_8h_source_l00049}{49}} of file \mbox{\hyperlink{_parking_sensor_8h_source}{Parking\+Sensor.\+h}}.
+
+\mbox{\Hypertarget{class_parking_sensor_aa1c2ebc54dbbe12b19a3ea3dd5e25b47}\label{class_parking_sensor_aa1c2ebc54dbbe12b19a3ea3dd5e25b47}} 
+\index{ParkingSensor@{ParkingSensor}!echoPin@{echoPin}}
+\index{echoPin@{echoPin}!ParkingSensor@{ParkingSensor}}
+\doxysubsubsection{\texorpdfstring{echoPin}{echoPin}}
+{\footnotesize\ttfamily unsigned short int Parking\+Sensor\+::echo\+Pin\hspace{0.3cm}{\ttfamily [private]}}
+
+Echo pin 
+
+Definition at line \mbox{\hyperlink{_parking_sensor_8h_source_l00063}{63}} of file \mbox{\hyperlink{_parking_sensor_8h_source}{Parking\+Sensor.\+h}}.
+
+\mbox{\Hypertarget{class_parking_sensor_adb1d39c112be08cd8e8acf2a4c6a9e76}\label{class_parking_sensor_adb1d39c112be08cd8e8acf2a4c6a9e76}} 
+\index{ParkingSensor@{ParkingSensor}!trigPin@{trigPin}}
+\index{trigPin@{trigPin}!ParkingSensor@{ParkingSensor}}
+\doxysubsubsection{\texorpdfstring{trigPin}{trigPin}}
+{\footnotesize\ttfamily unsigned short int Parking\+Sensor\+::trig\+Pin\hspace{0.3cm}{\ttfamily [private]}}
+
+Trigger pin 
+
+Definition at line \mbox{\hyperlink{_parking_sensor_8h_source_l00060}{60}} of file \mbox{\hyperlink{_parking_sensor_8h_source}{Parking\+Sensor.\+h}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Arduino\+Sketch2/main/\+Modules/\+Sensors/\+Parking\+Sensor/Parking\+Sensor.\+h\item 
+Arduino\+Sketch2/main/\+Modules/\+Sensors/\+Parking\+Sensor/Parking\+Sensor.\+cpp\end{DoxyCompactItemize}

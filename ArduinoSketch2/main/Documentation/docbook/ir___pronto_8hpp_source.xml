@@ -1,0 +1,314 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_ir___pronto_8hpp_source" xml:lang="en-US">
+<title>ir_Pronto.hpp</title>
+<indexterm><primary>main/IRRemote_Library/ir_Pronto.hpp</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered"><anchor xml:id="_ir___pronto_8hpp_source_1l00001"/>00001 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00002"/>00002 <emphasis role="comment">&#32;*&#32;@file&#32;ir_Pronto.hpp</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00003"/>00003 <emphasis role="comment">&#32;*&#32;@brief&#32;In&#32;this&#32;file,&#32;the&#32;functions&#32;IRrecv::compensateAndPrintPronto&#32;and&#32;IRsend::sendPronto&#32;are&#32;defined.</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00004"/>00004 <emphasis role="comment">&#32;*</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00005"/>00005 <emphasis role="comment">&#32;*&#32;See&#32;http://www.harctoolbox.org/Glossary.html#ProntoSemantics</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00006"/>00006 <emphasis role="comment">&#32;*&#32;Pronto&#32;database&#32;http://www.remotecentral.com/search.htm</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00007"/>00007 <emphasis role="comment">&#32;*</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00008"/>00008 <emphasis role="comment">&#32;*&#32;&#32;This&#32;file&#32;is&#32;part&#32;of&#32;Arduino-IRremote&#32;https://github.com/Arduino-IRremote/Arduino-IRremote.</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00009"/>00009 <emphasis role="comment">&#32;*</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00010"/>00010 <emphasis role="comment">&#32;************************************************************************************</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00011"/>00011 <emphasis role="comment">&#32;*&#32;MIT&#32;License</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00012"/>00012 <emphasis role="comment">&#32;*</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00013"/>00013 <emphasis role="comment">&#32;*&#32;Copyright&#32;(c)&#32;2020&#32;Bengt&#32;Martensson</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00014"/>00014 <emphasis role="comment">&#32;*</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00015"/>00015 <emphasis role="comment">&#32;*&#32;Permission&#32;is&#32;hereby&#32;granted,&#32;free&#32;of&#32;charge,&#32;to&#32;any&#32;person&#32;obtaining&#32;a&#32;copy</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00016"/>00016 <emphasis role="comment">&#32;*&#32;of&#32;this&#32;software&#32;and&#32;associated&#32;documentation&#32;files&#32;(the&#32;&quot;Software&quot;),&#32;to&#32;deal</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00017"/>00017 <emphasis role="comment">&#32;*&#32;in&#32;the&#32;Software&#32;without&#32;restriction,&#32;including&#32;without&#32;limitation&#32;the&#32;rights</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00018"/>00018 <emphasis role="comment">&#32;*&#32;to&#32;use,&#32;copy,&#32;modify,&#32;merge,&#32;publish,&#32;distribute,&#32;sublicense,&#32;and/or&#32;sell</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00019"/>00019 <emphasis role="comment">&#32;*&#32;copies&#32;of&#32;the&#32;Software,&#32;and&#32;to&#32;permit&#32;persons&#32;to&#32;whom&#32;the&#32;Software&#32;is&#32;furnished</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00020"/>00020 <emphasis role="comment">&#32;*&#32;to&#32;do&#32;so,&#32;subject&#32;to&#32;the&#32;following&#32;conditions:</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00021"/>00021 <emphasis role="comment">&#32;*</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00022"/>00022 <emphasis role="comment">&#32;*&#32;The&#32;above&#32;copyright&#32;notice&#32;and&#32;this&#32;permission&#32;notice&#32;shall&#32;be&#32;included&#32;in&#32;all</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00023"/>00023 <emphasis role="comment">&#32;*&#32;copies&#32;or&#32;substantial&#32;portions&#32;of&#32;the&#32;Software.</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00024"/>00024 <emphasis role="comment">&#32;*</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00025"/>00025 <emphasis role="comment">&#32;*&#32;THE&#32;SOFTWARE&#32;IS&#32;PROVIDED&#32;&quot;AS&#32;IS&quot;,&#32;WITHOUT&#32;WARRANTY&#32;OF&#32;ANY&#32;KIND,&#32;EXPRESS&#32;OR&#32;IMPLIED,</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00026"/>00026 <emphasis role="comment">&#32;*&#32;INCLUDING&#32;BUT&#32;NOT&#32;LIMITED&#32;TO&#32;THE&#32;WARRANTIES&#32;OF&#32;MERCHANTABILITY,&#32;FITNESS&#32;FOR&#32;A</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00027"/>00027 <emphasis role="comment">&#32;*&#32;PARTICULAR&#32;PURPOSE&#32;AND&#32;NONINFRINGEMENT.&#32;IN&#32;NO&#32;EVENT&#32;SHALL&#32;THE&#32;AUTHORS&#32;OR&#32;COPYRIGHT</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00028"/>00028 <emphasis role="comment">&#32;*&#32;HOLDERS&#32;BE&#32;LIABLE&#32;FOR&#32;ANY&#32;CLAIM,&#32;DAMAGES&#32;OR&#32;OTHER&#32;LIABILITY,&#32;WHETHER&#32;IN&#32;AN&#32;ACTION&#32;OF</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00029"/>00029 <emphasis role="comment">&#32;*&#32;CONTRACT,&#32;TORT&#32;OR&#32;OTHERWISE,&#32;ARISING&#32;FROM,&#32;OUT&#32;OF&#32;OR&#32;IN&#32;CONNECTION&#32;WITH&#32;THE&#32;SOFTWARE</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00030"/>00030 <emphasis role="comment">&#32;*&#32;OR&#32;THE&#32;USE&#32;OR&#32;OTHER&#32;DEALINGS&#32;IN&#32;THE&#32;SOFTWARE.</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00031"/>00031 <emphasis role="comment">&#32;*</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00032"/>00032 <emphasis role="comment">&#32;************************************************************************************</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00033"/>00033 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00034"/>00034 <emphasis role="preprocessor">#ifndef&#32;IR_PRONTO_HPP</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00035"/>00035 <emphasis role="preprocessor">#define&#32;IR_PRONTO_HPP</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00036"/>00036 
+<anchor xml:id="_ir___pronto_8hpp_source_1l00037"/>00037 <emphasis role="comment">//&#32;The&#32;first&#32;number,&#32;here&#32;0000,&#32;denotes&#32;the&#32;type&#32;of&#32;the&#32;signal.&#32;0000&#32;denotes&#32;a&#32;raw&#32;IR&#32;signal&#32;with&#32;modulation,</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00038"/>00038 <emphasis role="comment">//&#32;The&#32;second&#32;number,&#32;here&#32;006C,&#32;denotes&#32;a&#32;frequency&#32;code</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00039"/>00039 <emphasis role="preprocessor">#include&#32;&lt;Arduino.h&gt;</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00040"/>00040 
+<anchor xml:id="_ir___pronto_8hpp_source_1l00041"/>00041 <emphasis role="comment">//#define&#32;DEBUG&#32;//&#32;Activate&#32;this&#32;for&#32;lots&#32;of&#32;lovely&#32;debug&#32;output&#32;from&#32;this&#32;decoder.</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00042"/>00042 <emphasis role="preprocessor">#include&#32;&quot;<link linkend="__i_rremote_int_8h">IRremoteInt.h</link>&quot;</emphasis>&#32;<emphasis role="comment">//&#32;evaluates&#32;the&#32;DEBUG&#32;for&#32;IR_DEBUG_PRINT&quot;</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00043"/>00043 
+<anchor xml:id="_ir___pronto_8hpp_source_1l00048"/>00048 <emphasis role="comment">//&#32;TODO&#32;remove&#32;6/2021</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00049"/>00049 <emphasis role="preprocessor">#if&#32;defined(__STM32F1__)&#32;||&#32;defined(ARDUINO_ARCH_STM32F1)&#32;</emphasis><emphasis role="comment">//&#32;Recommended&#32;original&#32;Arduino_STM32&#32;by&#32;Roger&#32;Clark.</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00050"/>00050 <emphasis role="preprocessor">#&#32;&#32;if&#32;!defined(strncpy_P)</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00051"/>00051 <emphasis role="comment">//&#32;this&#32;define&#32;is&#32;not&#32;included&#32;in&#32;the&#32;pgmspace.h&#32;file&#32;see&#32;https://github.com/rogerclarkmelbourne/Arduino_STM32/issues/852</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00052"/>00052 <emphasis role="preprocessor">#define&#32;strncpy_P(dest,&#32;src,&#32;size)&#32;strncpy((dest),&#32;(src),&#32;(size))</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00053"/>00053 <emphasis role="preprocessor">#&#32;&#32;endif</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00054"/>00054 <emphasis role="preprocessor">#endif</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00055"/>00055 
+<anchor xml:id="_ir___pronto_8hpp_source_1l00057"/>00057 <emphasis role="comment">//&#32;DO&#32;NOT&#32;EXPORT&#32;from&#32;this&#32;file</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00058"/>00058 <emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">const</emphasis>&#32;uint16_t&#32;learnedToken&#32;=&#32;0x0000U;
+<anchor xml:id="_ir___pronto_8hpp_source_1l00059"/>00059 <emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">const</emphasis>&#32;uint16_t&#32;learnedNonModulatedToken&#32;=&#32;0x0100U;
+<anchor xml:id="_ir___pronto_8hpp_source_1l00060"/>00060 <emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">const</emphasis>&#32;<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">int</emphasis>&#32;bitsInHexadecimal&#32;=&#32;4U;
+<anchor xml:id="_ir___pronto_8hpp_source_1l00061"/>00061 <emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">const</emphasis>&#32;<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">int</emphasis>&#32;digitsInProntoNumber&#32;=&#32;4U;
+<anchor xml:id="_ir___pronto_8hpp_source_1l00062"/>00062 <emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">const</emphasis>&#32;<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">int</emphasis>&#32;numbersInPreamble&#32;=&#32;4U;
+<anchor xml:id="_ir___pronto_8hpp_source_1l00063"/>00063 <emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">const</emphasis>&#32;<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">int</emphasis>&#32;hexMask&#32;=&#32;0xFU;
+<anchor xml:id="_ir___pronto_8hpp_source_1l00064"/>00064 <emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">const</emphasis>&#32;uint32_t&#32;referenceFrequency&#32;=&#32;4145146UL;
+<anchor xml:id="_ir___pronto_8hpp_source_1l00065"/>00065 <emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">const</emphasis>&#32;uint16_t&#32;fallbackFrequency&#32;=&#32;64767U;&#32;<emphasis role="comment">//&#32;To&#32;use&#32;with&#32;frequency&#32;=&#32;0;</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00066"/>00066 <emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">const</emphasis>&#32;uint32_t&#32;microsecondsInSeconds&#32;=&#32;1000000UL;
+<anchor xml:id="_ir___pronto_8hpp_source_1l00067"/>00067 <emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">const</emphasis>&#32;uint16_t&#32;PRONTO_DEFAULT_GAP&#32;=&#32;45000;
+<anchor xml:id="_ir___pronto_8hpp_source_1l00069"/>00069 
+<anchor xml:id="_ir___pronto_8hpp_source_1l00070"/><link linkend="_group___decoder_1ga01388575997ce2531098a606a8a25521">00070</link> <emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">int</emphasis>&#32;<link linkend="_group___decoder_1ga01388575997ce2531098a606a8a25521">toFrequencyKHz</link>(uint16_t&#32;code)&#32;{
+<anchor xml:id="_ir___pronto_8hpp_source_1l00071"/>00071 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;((referenceFrequency&#32;/&#32;code)&#32;+&#32;500)&#32;/&#32;1000;
+<anchor xml:id="_ir___pronto_8hpp_source_1l00072"/>00072 }
+<anchor xml:id="_ir___pronto_8hpp_source_1l00073"/>00073 
+<anchor xml:id="_ir___pronto_8hpp_source_1l00074"/>00074 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00075"/>00075 <emphasis role="comment">&#32;*&#32;Parse&#32;the&#32;string&#32;given&#32;as&#32;Pronto&#32;Hex,&#32;and&#32;send&#32;it&#32;a&#32;number&#32;of&#32;times&#32;given&#32;as&#32;argument.</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00076"/>00076 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00077"/><link linkend="_group___decoder_1ga4f221f872371078dd6d4f3ffa87b7b10">00077</link> <emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_group___decoder_1ga26830e1c38ef9caa1caedeb9e7dabb7a">IRsend::sendPronto</link>(<emphasis role="keyword">const</emphasis>&#32;uint16_t&#32;*data,&#32;<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">int</emphasis>&#32;length,&#32;uint_fast8_t&#32;aNumberOfRepeats)&#32;{
+<anchor xml:id="_ir___pronto_8hpp_source_1l00078"/>00078 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">int</emphasis>&#32;timebase&#32;=&#32;(microsecondsInSeconds&#32;*&#32;data[1]&#32;+&#32;referenceFrequency&#32;/&#32;2)&#32;/&#32;referenceFrequency;
+<anchor xml:id="_ir___pronto_8hpp_source_1l00079"/>00079 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">int</emphasis>&#32;khz;
+<anchor xml:id="_ir___pronto_8hpp_source_1l00080"/>00080 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">switch</emphasis>&#32;(data[0])&#32;{
+<anchor xml:id="_ir___pronto_8hpp_source_1l00081"/>00081 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;learnedToken:&#32;<emphasis role="comment">//&#32;normal,&#32;&quot;learned&quot;</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00082"/>00082 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;khz&#32;=&#32;<link linkend="_group___decoder_1ga01388575997ce2531098a606a8a25521">toFrequencyKHz</link>(data[1]);
+<anchor xml:id="_ir___pronto_8hpp_source_1l00083"/>00083 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+<anchor xml:id="_ir___pronto_8hpp_source_1l00084"/>00084 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;learnedNonModulatedToken:&#32;<emphasis role="comment">//&#32;non-demodulated,&#32;&quot;learned&quot;</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00085"/>00085 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;khz&#32;=&#32;0U;
+<anchor xml:id="_ir___pronto_8hpp_source_1l00086"/>00086 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+<anchor xml:id="_ir___pronto_8hpp_source_1l00087"/>00087 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">default</emphasis>:
+<anchor xml:id="_ir___pronto_8hpp_source_1l00088"/>00088 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>;&#32;<emphasis role="comment">//&#32;There&#32;are&#32;other&#32;types,&#32;but&#32;they&#32;are&#32;not&#32;handled&#32;yet.</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00089"/>00089 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_ir___pronto_8hpp_source_1l00090"/>00090 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">int</emphasis>&#32;intros&#32;=&#32;2&#32;*&#32;data[2];
+<anchor xml:id="_ir___pronto_8hpp_source_1l00091"/>00091 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">int</emphasis>&#32;repeats&#32;=&#32;2&#32;*&#32;data[3];
+<anchor xml:id="_ir___pronto_8hpp_source_1l00092"/>00092 &#32;&#32;&#32;&#32;<link linkend="__i_rremote_int_8h_1a093a1c04e9dd4d6845a48163554143a0">IR_DEBUG_PRINT</link>(F(<emphasis role="stringliteral">&quot;sendPronto&#32;intros=&quot;</emphasis>));
+<anchor xml:id="_ir___pronto_8hpp_source_1l00093"/>00093 &#32;&#32;&#32;&#32;<link linkend="__i_rremote_int_8h_1a093a1c04e9dd4d6845a48163554143a0">IR_DEBUG_PRINT</link>(intros);
+<anchor xml:id="_ir___pronto_8hpp_source_1l00094"/>00094 &#32;&#32;&#32;&#32;<link linkend="__i_rremote_int_8h_1a093a1c04e9dd4d6845a48163554143a0">IR_DEBUG_PRINT</link>(F(<emphasis role="stringliteral">&quot;&#32;repeats=&quot;</emphasis>));
+<anchor xml:id="_ir___pronto_8hpp_source_1l00095"/>00095 &#32;&#32;&#32;&#32;<link linkend="__i_rremote_int_8h_1aebf95fa57eb370cfe65ce6a9728b6e1f">IR_DEBUG_PRINTLN</link>(repeats);
+<anchor xml:id="_ir___pronto_8hpp_source_1l00096"/>00096 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(numbersInPreamble&#32;+&#32;intros&#32;+&#32;repeats&#32;!=&#32;length)&#32;{&#32;<emphasis role="comment">//&#32;inconsistent&#32;sizes</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00097"/>00097 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>;
+<anchor xml:id="_ir___pronto_8hpp_source_1l00098"/>00098 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_ir___pronto_8hpp_source_1l00099"/>00099 
+<anchor xml:id="_ir___pronto_8hpp_source_1l00100"/>00100 &#32;&#32;&#32;&#32;<emphasis role="comment">/*</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00101"/>00101 <emphasis role="comment">&#32;&#32;&#32;&#32;&#32;*&#32;Generate&#32;a&#32;new&#32;microseconds&#32;timing&#32;array&#32;for&#32;sendRaw.</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00102"/>00102 <emphasis role="comment">&#32;&#32;&#32;&#32;&#32;*&#32;If&#32;recorded&#32;by&#32;IRremote,&#32;intro&#32;contains&#32;the&#32;whole&#32;IR&#32;data&#32;and&#32;repeat&#32;is&#32;empty</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00103"/>00103 <emphasis role="comment">&#32;&#32;&#32;&#32;&#32;*/</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00104"/>00104 &#32;&#32;&#32;&#32;uint16_t&#32;durations[intros&#32;+&#32;repeats];
+<anchor xml:id="_ir___pronto_8hpp_source_1l00105"/>00105 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">for</emphasis>&#32;(<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">int</emphasis>&#32;i&#32;=&#32;0;&#32;i&#32;&lt;&#32;intros&#32;+&#32;repeats;&#32;i++)&#32;{
+<anchor xml:id="_ir___pronto_8hpp_source_1l00106"/>00106 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;uint32_t&#32;duration&#32;=&#32;((uint32_t)&#32;data[i&#32;+&#32;numbersInPreamble])&#32;*&#32;timebase;
+<anchor xml:id="_ir___pronto_8hpp_source_1l00107"/>00107 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;durations[i]&#32;=&#32;(<emphasis role="keywordtype">unsigned</emphasis>&#32;int)&#32;((duration&#32;&lt;=&#32;__UINT16_MAX__)&#32;?&#32;duration&#32;:&#32;__UINT16_MAX__);
+<anchor xml:id="_ir___pronto_8hpp_source_1l00108"/>00108 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_ir___pronto_8hpp_source_1l00109"/>00109 
+<anchor xml:id="_ir___pronto_8hpp_source_1l00110"/>00110 &#32;&#32;&#32;&#32;<emphasis role="comment">/*</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00111"/>00111 <emphasis role="comment">&#32;&#32;&#32;&#32;&#32;*&#32;Send&#32;the&#32;intro.&#32;intros&#32;is&#32;even.</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00112"/>00112 <emphasis role="comment">&#32;&#32;&#32;&#32;&#32;*&#32;Do&#32;not&#32;send&#32;the&#32;trailing&#32;space&#32;here,&#32;send&#32;it&#32;if&#32;repeats&#32;are&#32;requested</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00113"/>00113 <emphasis role="comment">&#32;&#32;&#32;&#32;&#32;*/</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00114"/>00114 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(intros&#32;&gt;=&#32;2)&#32;{
+<anchor xml:id="_ir___pronto_8hpp_source_1l00115"/>00115 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_group___sending_1ga1c9027bc86e6a726295219ac11e06a1b">sendRaw</link>(durations,&#32;intros&#32;-&#32;1,&#32;khz);
+<anchor xml:id="_ir___pronto_8hpp_source_1l00116"/>00116 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_ir___pronto_8hpp_source_1l00117"/>00117 
+<anchor xml:id="_ir___pronto_8hpp_source_1l00118"/>00118 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(repeats&#32;==&#32;0&#32;||&#32;<link linkend="_class_i_rsend_1aff233b57d2382a713926797ce5da0fd3">aNumberOfRepeats</link>&#32;==&#32;0)&#32;{
+<anchor xml:id="_ir___pronto_8hpp_source_1l00119"/>00119 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;only&#32;send&#32;intro&#32;once</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00120"/>00120 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>;
+<anchor xml:id="_ir___pronto_8hpp_source_1l00121"/>00121 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_ir___pronto_8hpp_source_1l00122"/>00122 
+<anchor xml:id="_ir___pronto_8hpp_source_1l00123"/>00123 &#32;&#32;&#32;&#32;<emphasis role="comment">/*</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00124"/>00124 <emphasis role="comment">&#32;&#32;&#32;&#32;&#32;*&#32;Now&#32;send&#32;the&#32;trailing&#32;space/gap&#32;of&#32;the&#32;intro&#32;and&#32;all&#32;the&#32;repeats</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00125"/>00125 <emphasis role="comment">&#32;&#32;&#32;&#32;&#32;*/</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00126"/>00126 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(intros&#32;&gt;=&#32;2)&#32;{
+<anchor xml:id="_ir___pronto_8hpp_source_1l00127"/>00127 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;delay(durations[intros&#32;-&#32;1]&#32;/&#32;<link linkend="__i_rremote_int_8h_1ae9ba0b7dd556e22688f7da01019bba68">MICROS_IN_ONE_MILLI</link>);&#32;<emphasis role="comment">//&#32;equivalent&#32;to&#32;space(durations[intros&#32;-&#32;1]);&#32;but&#32;allow&#32;bigger&#32;values&#32;for&#32;the&#32;gap</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00128"/>00128 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_ir___pronto_8hpp_source_1l00129"/>00129 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">for</emphasis>&#32;(<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">int</emphasis>&#32;i&#32;=&#32;0;&#32;i&#32;&lt;&#32;<link linkend="_class_i_rsend_1aff233b57d2382a713926797ce5da0fd3">aNumberOfRepeats</link>;&#32;i++)&#32;{
+<anchor xml:id="_ir___pronto_8hpp_source_1l00130"/>00130 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_group___sending_1ga1c9027bc86e6a726295219ac11e06a1b">sendRaw</link>(durations&#32;+&#32;intros,&#32;repeats&#32;-&#32;1,&#32;khz);
+<anchor xml:id="_ir___pronto_8hpp_source_1l00131"/>00131 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;((i&#32;+&#32;1)&#32;&lt;&#32;<link linkend="_class_i_rsend_1aff233b57d2382a713926797ce5da0fd3">aNumberOfRepeats</link>)&#32;{&#32;<emphasis role="comment">//&#32;skip&#32;last&#32;trailing&#32;space/gap,&#32;see&#32;above</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00132"/>00132 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;delay(durations[intros&#32;+&#32;repeats&#32;-&#32;1]&#32;/&#32;<link linkend="__i_rremote_int_8h_1ae9ba0b7dd556e22688f7da01019bba68">MICROS_IN_ONE_MILLI</link>);
+<anchor xml:id="_ir___pronto_8hpp_source_1l00133"/>00133 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_ir___pronto_8hpp_source_1l00134"/>00134 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_ir___pronto_8hpp_source_1l00135"/>00135 }
+<anchor xml:id="_ir___pronto_8hpp_source_1l00136"/>00136 
+<anchor xml:id="_ir___pronto_8hpp_source_1l00154"/><link linkend="_group___decoder_1ga5174f63b73d3ba9fe997bdb98a4af0c5">00154</link> <emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_group___decoder_1ga26830e1c38ef9caa1caedeb9e7dabb7a">IRsend::sendPronto</link>(<emphasis role="keyword">const</emphasis>&#32;<emphasis role="keywordtype">char</emphasis>&#32;*str,&#32;uint_fast8_t&#32;aNumberOfRepeats)&#32;{
+<anchor xml:id="_ir___pronto_8hpp_source_1l00155"/>00155 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">size_t</emphasis>&#32;len&#32;=&#32;strlen(str)&#32;/&#32;(digitsInProntoNumber&#32;+&#32;1)&#32;+&#32;1;
+<anchor xml:id="_ir___pronto_8hpp_source_1l00156"/>00156 &#32;&#32;&#32;&#32;uint16_t&#32;data[len];
+<anchor xml:id="_ir___pronto_8hpp_source_1l00157"/>00157 &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<emphasis role="keywordtype">char</emphasis>&#32;*p&#32;=&#32;str;
+<anchor xml:id="_ir___pronto_8hpp_source_1l00158"/>00158 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">char</emphasis>&#32;*endptr[1];
+<anchor xml:id="_ir___pronto_8hpp_source_1l00159"/>00159 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">for</emphasis>&#32;(<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">int</emphasis>&#32;i&#32;=&#32;0;&#32;i&#32;&lt;&#32;len;&#32;i++)&#32;{
+<anchor xml:id="_ir___pronto_8hpp_source_1l00160"/>00160 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">long</emphasis>&#32;x&#32;=&#32;strtol(p,&#32;endptr,&#32;16);
+<anchor xml:id="_ir___pronto_8hpp_source_1l00161"/>00161 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(x&#32;==&#32;0&#32;&amp;&amp;&#32;i&#32;&gt;=&#32;numbersInPreamble)&#32;{
+<anchor xml:id="_ir___pronto_8hpp_source_1l00162"/>00162 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Alignment&#32;error?,&#32;bail&#32;immediately&#32;(often&#32;right&#32;result).</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00163"/>00163 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;len&#32;=&#32;i;
+<anchor xml:id="_ir___pronto_8hpp_source_1l00164"/>00164 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+<anchor xml:id="_ir___pronto_8hpp_source_1l00165"/>00165 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_ir___pronto_8hpp_source_1l00166"/>00166 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;data[i]&#32;=&#32;<emphasis role="keyword">static_cast&lt;</emphasis>uint16_t<emphasis role="keyword">&gt;</emphasis>(x);&#32;<emphasis role="comment">//&#32;If&#32;input&#32;is&#32;conforming,&#32;there&#32;can&#32;be&#32;no&#32;overflow!</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00167"/>00167 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;p&#32;=&#32;*endptr;
+<anchor xml:id="_ir___pronto_8hpp_source_1l00168"/>00168 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_ir___pronto_8hpp_source_1l00169"/>00169 &#32;&#32;&#32;&#32;<link linkend="_group___decoder_1ga26830e1c38ef9caa1caedeb9e7dabb7a">sendPronto</link>(data,&#32;len,&#32;<link linkend="_class_i_rsend_1aff233b57d2382a713926797ce5da0fd3">aNumberOfRepeats</link>);
+<anchor xml:id="_ir___pronto_8hpp_source_1l00170"/>00170 }
+<anchor xml:id="_ir___pronto_8hpp_source_1l00171"/>00171 
+<anchor xml:id="_ir___pronto_8hpp_source_1l00172"/>00172 <emphasis role="preprocessor">#if&#32;defined(__AVR__)</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00178"/>00178 <emphasis role="comment">//far&#32;pointer&#32;(?&#32;for&#32;ATMega2560&#32;etc.)</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00179"/>00179 <emphasis role="keywordtype">void</emphasis>&#32;IRsend::sendPronto_PF(uint_farptr_t&#32;str,&#32;uint_fast8_t&#32;aNumberOfRepeats)&#32;{
+<anchor xml:id="_ir___pronto_8hpp_source_1l00180"/>00180 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">size_t</emphasis>&#32;len&#32;=&#32;strlen_PF(str);
+<anchor xml:id="_ir___pronto_8hpp_source_1l00181"/>00181 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">char</emphasis>&#32;work[len&#32;+&#32;1];
+<anchor xml:id="_ir___pronto_8hpp_source_1l00182"/>00182 &#32;&#32;&#32;&#32;strncpy_PF(work,&#32;str,&#32;len);
+<anchor xml:id="_ir___pronto_8hpp_source_1l00183"/>00183 &#32;&#32;&#32;&#32;<link linkend="_group___decoder_1ga26830e1c38ef9caa1caedeb9e7dabb7a">sendPronto</link>(work,&#32;<link linkend="_class_i_rsend_1aff233b57d2382a713926797ce5da0fd3">aNumberOfRepeats</link>);
+<anchor xml:id="_ir___pronto_8hpp_source_1l00184"/>00184 }
+<anchor xml:id="_ir___pronto_8hpp_source_1l00185"/>00185 
+<anchor xml:id="_ir___pronto_8hpp_source_1l00186"/>00186 <emphasis role="comment">//standard&#32;pointer</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00187"/>00187 <emphasis role="keywordtype">void</emphasis>&#32;IRsend::sendPronto_P(<emphasis role="keyword">const</emphasis>&#32;<emphasis role="keywordtype">char</emphasis>&#32;*str,&#32;uint_fast8_t&#32;aNumberOfRepeats)&#32;{
+<anchor xml:id="_ir___pronto_8hpp_source_1l00188"/>00188 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">size_t</emphasis>&#32;len&#32;=&#32;<link linkend="_digital_write_fast_8h_1a76ea3b30093856a6482a978d9214142d">strlen_P</link>(str);
+<anchor xml:id="_ir___pronto_8hpp_source_1l00189"/>00189 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">char</emphasis>&#32;work[len&#32;+&#32;1];
+<anchor xml:id="_ir___pronto_8hpp_source_1l00190"/>00190 &#32;&#32;&#32;&#32;strncpy_P(work,&#32;str,&#32;len);
+<anchor xml:id="_ir___pronto_8hpp_source_1l00191"/>00191 &#32;&#32;&#32;&#32;<link linkend="_group___decoder_1ga26830e1c38ef9caa1caedeb9e7dabb7a">sendPronto</link>(work,&#32;<link linkend="_class_i_rsend_1aff233b57d2382a713926797ce5da0fd3">aNumberOfRepeats</link>);
+<anchor xml:id="_ir___pronto_8hpp_source_1l00192"/>00192 }
+<anchor xml:id="_ir___pronto_8hpp_source_1l00193"/>00193 <emphasis role="preprocessor">#endif</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00194"/>00194 
+<anchor xml:id="_ir___pronto_8hpp_source_1l00195"/><link linkend="_group___decoder_1ga26830e1c38ef9caa1caedeb9e7dabb7a">00195</link> <emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_group___decoder_1ga26830e1c38ef9caa1caedeb9e7dabb7a">IRsend::sendPronto</link>(<emphasis role="keyword">const</emphasis>&#32;__FlashStringHelper&#32;*str,&#32;uint_fast8_t&#32;aNumberOfRepeats)&#32;{
+<anchor xml:id="_ir___pronto_8hpp_source_1l00196"/>00196 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">size_t</emphasis>&#32;len&#32;=&#32;<link linkend="_digital_write_fast_8h_1a76ea3b30093856a6482a978d9214142d">strlen_P</link>(<emphasis role="keyword">reinterpret_cast&lt;</emphasis><emphasis role="keyword">const&#32;</emphasis><emphasis role="keywordtype">char</emphasis>*<emphasis role="keyword">&gt;</emphasis>(str));
+<anchor xml:id="_ir___pronto_8hpp_source_1l00197"/>00197 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">char</emphasis>&#32;work[len&#32;+&#32;1];
+<anchor xml:id="_ir___pronto_8hpp_source_1l00198"/>00198 &#32;&#32;&#32;&#32;strncpy_P(work,&#32;<emphasis role="keyword">reinterpret_cast&lt;</emphasis><emphasis role="keyword">const&#32;</emphasis><emphasis role="keywordtype">char</emphasis>*<emphasis role="keyword">&gt;</emphasis>(str),&#32;len);
+<anchor xml:id="_ir___pronto_8hpp_source_1l00199"/>00199 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_group___decoder_1ga26830e1c38ef9caa1caedeb9e7dabb7a">sendPronto</link>(work,&#32;<link linkend="_class_i_rsend_1aff233b57d2382a713926797ce5da0fd3">aNumberOfRepeats</link>);
+<anchor xml:id="_ir___pronto_8hpp_source_1l00200"/>00200 }
+<anchor xml:id="_ir___pronto_8hpp_source_1l00201"/>00201 
+<anchor xml:id="_ir___pronto_8hpp_source_1l00202"/><link linkend="_group___decoder_1ga1272f3783a3b8d2cf2241f1e76674c8a">00202</link> <emphasis role="keyword">static</emphasis>&#32;uint16_t&#32;<link linkend="_group___decoder_1ga1272f3783a3b8d2cf2241f1e76674c8a">effectiveFrequency</link>(uint16_t&#32;frequency)&#32;{
+<anchor xml:id="_ir___pronto_8hpp_source_1l00203"/>00203 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;frequency&#32;&gt;&#32;0&#32;?&#32;frequency&#32;:&#32;fallbackFrequency;
+<anchor xml:id="_ir___pronto_8hpp_source_1l00204"/>00204 }
+<anchor xml:id="_ir___pronto_8hpp_source_1l00205"/>00205 
+<anchor xml:id="_ir___pronto_8hpp_source_1l00206"/><link linkend="_group___decoder_1ga356fabeed3a4b0a010a35550e86285c5">00206</link> <emphasis role="keyword">static</emphasis>&#32;uint16_t&#32;<link linkend="_group___decoder_1ga356fabeed3a4b0a010a35550e86285c5">toTimebase</link>(uint16_t&#32;frequency)&#32;{
+<anchor xml:id="_ir___pronto_8hpp_source_1l00207"/>00207 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;microsecondsInSeconds&#32;/&#32;<link linkend="_group___decoder_1ga1272f3783a3b8d2cf2241f1e76674c8a">effectiveFrequency</link>(frequency);
+<anchor xml:id="_ir___pronto_8hpp_source_1l00208"/>00208 }
+<anchor xml:id="_ir___pronto_8hpp_source_1l00209"/>00209 
+<anchor xml:id="_ir___pronto_8hpp_source_1l00210"/><link linkend="_group___decoder_1ga155ad672d0494903d7c89e73650879ae">00210</link> <emphasis role="keyword">static</emphasis>&#32;uint16_t&#32;<link linkend="_group___decoder_1ga155ad672d0494903d7c89e73650879ae">toFrequencyCode</link>(uint16_t&#32;frequency)&#32;{
+<anchor xml:id="_ir___pronto_8hpp_source_1l00211"/>00211 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;referenceFrequency&#32;/&#32;<link linkend="_group___decoder_1ga1272f3783a3b8d2cf2241f1e76674c8a">effectiveFrequency</link>(frequency);
+<anchor xml:id="_ir___pronto_8hpp_source_1l00212"/>00212 }
+<anchor xml:id="_ir___pronto_8hpp_source_1l00213"/>00213 
+<anchor xml:id="_ir___pronto_8hpp_source_1l00214"/><link linkend="_group___decoder_1ga7741bc8892620b5da6c38a29d3d48668">00214</link> <emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">char</emphasis>&#32;<link linkend="_group___decoder_1ga7741bc8892620b5da6c38a29d3d48668">hexDigit</link>(<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">int</emphasis>&#32;x)&#32;{
+<anchor xml:id="_ir___pronto_8hpp_source_1l00215"/>00215 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;(<emphasis role="keywordtype">char</emphasis>)&#32;(x&#32;&lt;=&#32;9&#32;?&#32;(<emphasis role="charliteral">&apos;0&apos;</emphasis>&#32;+&#32;x)&#32;:&#32;(<emphasis role="charliteral">&apos;A&apos;</emphasis>&#32;+&#32;(x&#32;-&#32;10)));
+<anchor xml:id="_ir___pronto_8hpp_source_1l00216"/>00216 }
+<anchor xml:id="_ir___pronto_8hpp_source_1l00217"/>00217 
+<anchor xml:id="_ir___pronto_8hpp_source_1l00218"/><link linkend="_group___decoder_1gaa82a581fafa8fa2310b7241fe1ded33d">00218</link> <emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_group___decoder_1gaa82a581fafa8fa2310b7241fe1ded33d">dumpDigit</link>(Print&#32;*aSerial,&#32;<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">int</emphasis>&#32;number)&#32;{
+<anchor xml:id="_ir___pronto_8hpp_source_1l00219"/>00219 &#32;&#32;&#32;&#32;aSerial-&gt;print(<link linkend="_group___decoder_1ga7741bc8892620b5da6c38a29d3d48668">hexDigit</link>(number));
+<anchor xml:id="_ir___pronto_8hpp_source_1l00220"/>00220 }
+<anchor xml:id="_ir___pronto_8hpp_source_1l00221"/>00221 
+<anchor xml:id="_ir___pronto_8hpp_source_1l00222"/><link linkend="_group___decoder_1ga69048be6384abbbe3c17e3f25432a392">00222</link> <emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_group___decoder_1ga69048be6384abbbe3c17e3f25432a392">dumpNumber</link>(Print&#32;*aSerial,&#32;uint16_t&#32;number)&#32;{
+<anchor xml:id="_ir___pronto_8hpp_source_1l00223"/>00223 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">for</emphasis>&#32;(<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">int</emphasis>&#32;i&#32;=&#32;0;&#32;i&#32;&lt;&#32;digitsInProntoNumber;&#32;i++)&#32;{
+<anchor xml:id="_ir___pronto_8hpp_source_1l00224"/>00224 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">int</emphasis>&#32;shifts&#32;=&#32;bitsInHexadecimal&#32;*&#32;(digitsInProntoNumber&#32;-&#32;1&#32;-&#32;i);
+<anchor xml:id="_ir___pronto_8hpp_source_1l00225"/>00225 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_group___decoder_1gaa82a581fafa8fa2310b7241fe1ded33d">dumpDigit</link>(aSerial,&#32;(number&#32;&gt;&gt;&#32;shifts)&#32;&amp;&#32;hexMask);
+<anchor xml:id="_ir___pronto_8hpp_source_1l00226"/>00226 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_ir___pronto_8hpp_source_1l00227"/>00227 &#32;&#32;&#32;&#32;aSerial-&gt;print(<emphasis role="charliteral">&apos;&#32;&apos;</emphasis>);
+<anchor xml:id="_ir___pronto_8hpp_source_1l00228"/>00228 }
+<anchor xml:id="_ir___pronto_8hpp_source_1l00229"/>00229 
+<anchor xml:id="_ir___pronto_8hpp_source_1l00230"/><link linkend="_group___decoder_1ga479fbb18cdfa303a8bc4322123f831df">00230</link> <emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_group___decoder_1ga479fbb18cdfa303a8bc4322123f831df">dumpDuration</link>(Print&#32;*aSerial,&#32;uint32_t&#32;duration,&#32;uint16_t&#32;timebase)&#32;{
+<anchor xml:id="_ir___pronto_8hpp_source_1l00231"/>00231 &#32;&#32;&#32;&#32;<link linkend="_group___decoder_1ga69048be6384abbbe3c17e3f25432a392">dumpNumber</link>(aSerial,&#32;(duration&#32;+&#32;timebase&#32;/&#32;2)&#32;/&#32;timebase);
+<anchor xml:id="_ir___pronto_8hpp_source_1l00232"/>00232 }
+<anchor xml:id="_ir___pronto_8hpp_source_1l00233"/>00233 
+<anchor xml:id="_ir___pronto_8hpp_source_1l00234"/>00234 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00235"/>00235 <emphasis role="comment">&#32;*&#32;Compensate&#32;received&#32;values&#32;by&#32;MARK_EXCESS_MICROS,&#32;like&#32;it&#32;is&#32;done&#32;for&#32;decoding!</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00236"/>00236 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00237"/><link linkend="_group___decoder_1ga8a8a6b504851150df425d5b490d92640">00237</link> <emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_group___decoder_1ga8a8a6b504851150df425d5b490d92640">compensateAndDumpSequence</link>(Print&#32;*aSerial,&#32;<emphasis role="keyword">const</emphasis>&#32;<emphasis role="keyword">volatile</emphasis>&#32;uint16_t&#32;*data,&#32;<emphasis role="keywordtype">size_t</emphasis>&#32;length,&#32;uint16_t&#32;timebase)&#32;{
+<anchor xml:id="_ir___pronto_8hpp_source_1l00238"/>00238 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">for</emphasis>&#32;(<emphasis role="keywordtype">size_t</emphasis>&#32;i&#32;=&#32;0;&#32;i&#32;&lt;&#32;length;&#32;i++)&#32;{
+<anchor xml:id="_ir___pronto_8hpp_source_1l00239"/>00239 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;uint32_t&#32;tDuration&#32;=&#32;data[i]&#32;*&#32;<link linkend="__i_rremote_int_8h_1a1c7eebb527483c272812530caa313d20">MICROS_PER_TICK</link>;
+<anchor xml:id="_ir___pronto_8hpp_source_1l00240"/>00240 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(i&#32;&amp;&#32;1)&#32;{
+<anchor xml:id="_ir___pronto_8hpp_source_1l00241"/>00241 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Mark</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00242"/>00242 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;tDuration&#32;-=&#32;<link linkend="_group___receiving_1gab1d28d4dd67d6bf808c0328a92e2d863">getMarkExcessMicros</link>();
+<anchor xml:id="_ir___pronto_8hpp_source_1l00243"/>00243 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+<anchor xml:id="_ir___pronto_8hpp_source_1l00244"/>00244 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;tDuration&#32;+=&#32;<link linkend="_group___receiving_1gab1d28d4dd67d6bf808c0328a92e2d863">getMarkExcessMicros</link>();
+<anchor xml:id="_ir___pronto_8hpp_source_1l00245"/>00245 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_ir___pronto_8hpp_source_1l00246"/>00246 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_group___decoder_1ga479fbb18cdfa303a8bc4322123f831df">dumpDuration</link>(aSerial,&#32;tDuration,&#32;timebase);
+<anchor xml:id="_ir___pronto_8hpp_source_1l00247"/>00247 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_ir___pronto_8hpp_source_1l00248"/>00248 
+<anchor xml:id="_ir___pronto_8hpp_source_1l00249"/>00249 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;append&#32;a&#32;gap</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00250"/>00250 &#32;&#32;&#32;&#32;<link linkend="_group___decoder_1ga479fbb18cdfa303a8bc4322123f831df">dumpDuration</link>(aSerial,&#32;PRONTO_DEFAULT_GAP,&#32;timebase);
+<anchor xml:id="_ir___pronto_8hpp_source_1l00251"/>00251 }
+<anchor xml:id="_ir___pronto_8hpp_source_1l00252"/>00252 
+<anchor xml:id="_ir___pronto_8hpp_source_1l00259"/><link linkend="_group___decoder_1gaa701711c860c8ff58d332c4567e7ff89">00259</link> <emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_group___decoder_1gaa701711c860c8ff58d332c4567e7ff89">IRrecv::compensateAndPrintIRResultAsPronto</link>(Print&#32;*aSerial,&#32;<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">int</emphasis>&#32;aFrequencyHertz)&#32;{
+<anchor xml:id="_ir___pronto_8hpp_source_1l00260"/>00260 &#32;&#32;&#32;&#32;aSerial-&gt;println(F(<emphasis role="stringliteral">&quot;Pronto&#32;Hex&#32;as&#32;string&quot;</emphasis>));
+<anchor xml:id="_ir___pronto_8hpp_source_1l00261"/>00261 &#32;&#32;&#32;&#32;aSerial-&gt;print(F(<emphasis role="stringliteral">&quot;char&#32;prontoData[]&#32;=&#32;\&quot;&quot;</emphasis>));
+<anchor xml:id="_ir___pronto_8hpp_source_1l00262"/>00262 &#32;&#32;&#32;&#32;<link linkend="_group___decoder_1ga69048be6384abbbe3c17e3f25432a392">dumpNumber</link>(aSerial,&#32;aFrequencyHertz&#32;&gt;&#32;0&#32;?&#32;learnedToken&#32;:&#32;learnedNonModulatedToken);
+<anchor xml:id="_ir___pronto_8hpp_source_1l00263"/>00263 &#32;&#32;&#32;&#32;<link linkend="_group___decoder_1ga69048be6384abbbe3c17e3f25432a392">dumpNumber</link>(aSerial,&#32;<link linkend="_group___decoder_1ga155ad672d0494903d7c89e73650879ae">toFrequencyCode</link>(aFrequencyHertz));
+<anchor xml:id="_ir___pronto_8hpp_source_1l00264"/>00264 &#32;&#32;&#32;&#32;<link linkend="_group___decoder_1ga69048be6384abbbe3c17e3f25432a392">dumpNumber</link>(aSerial,&#32;(<link linkend="_class_i_rrecv_1a19d71758b1b0e1fbee948ad917c5b828">decodedIRData</link>.<link linkend="_struct_i_r_data_1a8d7c987d63874731ff2e1120b21a1a08">rawDataPtr</link>-&gt;<link linkend="_structirparams__struct_1af0571ac479d1c38c79502651b0631432">rawlen</link>&#32;+&#32;1)&#32;/&#32;2);
+<anchor xml:id="_ir___pronto_8hpp_source_1l00265"/>00265 &#32;&#32;&#32;&#32;<link linkend="_group___decoder_1ga69048be6384abbbe3c17e3f25432a392">dumpNumber</link>(aSerial,&#32;0);
+<anchor xml:id="_ir___pronto_8hpp_source_1l00266"/>00266 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">int</emphasis>&#32;timebase&#32;=&#32;<link linkend="_group___decoder_1ga356fabeed3a4b0a010a35550e86285c5">toTimebase</link>(aFrequencyHertz);
+<anchor xml:id="_ir___pronto_8hpp_source_1l00267"/>00267 &#32;&#32;&#32;&#32;<link linkend="_group___decoder_1ga8a8a6b504851150df425d5b490d92640">compensateAndDumpSequence</link>(aSerial,&#32;&amp;<link linkend="_class_i_rrecv_1a19d71758b1b0e1fbee948ad917c5b828">decodedIRData</link>.<link linkend="_struct_i_r_data_1a8d7c987d63874731ff2e1120b21a1a08">rawDataPtr</link>-&gt;<link linkend="_structirparams__struct_1a7aa7b811dcc0fb5ab0da7c0bddaf97f8">rawbuf</link>[1],&#32;<link linkend="_class_i_rrecv_1a19d71758b1b0e1fbee948ad917c5b828">decodedIRData</link>.<link linkend="_struct_i_r_data_1a8d7c987d63874731ff2e1120b21a1a08">rawDataPtr</link>-&gt;<link linkend="_structirparams__struct_1af0571ac479d1c38c79502651b0631432">rawlen</link>&#32;-&#32;1,&#32;timebase);&#32;<emphasis role="comment">//&#32;skip&#32;leading&#32;space</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00268"/>00268 &#32;&#32;&#32;&#32;aSerial-&gt;println(<emphasis role="stringliteral">&quot;\&quot;;&quot;</emphasis>);
+<anchor xml:id="_ir___pronto_8hpp_source_1l00269"/>00269 }
+<anchor xml:id="_ir___pronto_8hpp_source_1l00270"/>00270 
+<anchor xml:id="_ir___pronto_8hpp_source_1l00271"/>00271 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00272"/>00272 <emphasis role="comment">&#32;*&#32;Functions&#32;for&#32;dumping&#32;Pronto&#32;to&#32;a&#32;String.&#32;This&#32;is&#32;not&#32;very&#32;time&#32;and&#32;space&#32;efficient</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00273"/>00273 <emphasis role="comment">&#32;*&#32;and&#32;can&#32;lead&#32;to&#32;resource&#32;problems&#32;especially&#32;on&#32;small&#32;processors&#32;like&#32;AVR&apos;s</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00274"/>00274 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00275"/>00275 
+<anchor xml:id="_ir___pronto_8hpp_source_1l00276"/><link linkend="_group___decoder_1gab3ca394ad13ba555852f3bb61d488c7b">00276</link> <emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">bool</emphasis>&#32;<link linkend="_group___decoder_1gaa82a581fafa8fa2310b7241fe1ded33d">dumpDigit</link>(String&#32;*aString,&#32;<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">int</emphasis>&#32;number)&#32;{
+<anchor xml:id="_ir___pronto_8hpp_source_1l00277"/>00277 &#32;&#32;&#32;&#32;aString-&gt;concat(<link linkend="_group___decoder_1ga7741bc8892620b5da6c38a29d3d48668">hexDigit</link>(number));
+<anchor xml:id="_ir___pronto_8hpp_source_1l00278"/>00278 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;number;
+<anchor xml:id="_ir___pronto_8hpp_source_1l00279"/>00279 }
+<anchor xml:id="_ir___pronto_8hpp_source_1l00280"/>00280 
+<anchor xml:id="_ir___pronto_8hpp_source_1l00281"/><link linkend="_group___decoder_1gab49c8cfa7e96e3c5b54f9a41edbd33ba">00281</link> <emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">size_t</emphasis>&#32;<link linkend="_group___decoder_1ga69048be6384abbbe3c17e3f25432a392">dumpNumber</link>(String&#32;*aString,&#32;uint16_t&#32;number)&#32;{
+<anchor xml:id="_ir___pronto_8hpp_source_1l00282"/>00282 
+<anchor xml:id="_ir___pronto_8hpp_source_1l00283"/>00283 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">size_t</emphasis>&#32;size&#32;=&#32;0;
+<anchor xml:id="_ir___pronto_8hpp_source_1l00284"/>00284 
+<anchor xml:id="_ir___pronto_8hpp_source_1l00285"/>00285 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">for</emphasis>&#32;(<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">int</emphasis>&#32;i&#32;=&#32;0;&#32;i&#32;&lt;&#32;digitsInProntoNumber;&#32;i++)&#32;{
+<anchor xml:id="_ir___pronto_8hpp_source_1l00286"/>00286 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">int</emphasis>&#32;shifts&#32;=&#32;bitsInHexadecimal&#32;*&#32;(digitsInProntoNumber&#32;-&#32;1&#32;-&#32;i);
+<anchor xml:id="_ir___pronto_8hpp_source_1l00287"/>00287 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;size&#32;+=&#32;<link linkend="_group___decoder_1gaa82a581fafa8fa2310b7241fe1ded33d">dumpDigit</link>(aString,&#32;(number&#32;&gt;&gt;&#32;shifts)&#32;&amp;&#32;hexMask);
+<anchor xml:id="_ir___pronto_8hpp_source_1l00288"/>00288 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_ir___pronto_8hpp_source_1l00289"/>00289 &#32;&#32;&#32;&#32;aString-&gt;concat(<emphasis role="charliteral">&apos;&#32;&apos;</emphasis>);
+<anchor xml:id="_ir___pronto_8hpp_source_1l00290"/>00290 &#32;&#32;&#32;&#32;size++;
+<anchor xml:id="_ir___pronto_8hpp_source_1l00291"/>00291 
+<anchor xml:id="_ir___pronto_8hpp_source_1l00292"/>00292 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;size;
+<anchor xml:id="_ir___pronto_8hpp_source_1l00293"/>00293 }
+<anchor xml:id="_ir___pronto_8hpp_source_1l00294"/>00294 
+<anchor xml:id="_ir___pronto_8hpp_source_1l00295"/>00295 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00296"/>00296 <emphasis role="comment">&#32;*&#32;Compensate&#32;received&#32;values&#32;by&#32;MARK_EXCESS_MICROS,&#32;like&#32;it&#32;is&#32;done&#32;for&#32;decoding!</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00297"/>00297 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00298"/><link linkend="_group___decoder_1ga536975baa9f5346484fc32bd48255d07">00298</link> <emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">size_t</emphasis>&#32;<link linkend="_group___decoder_1ga479fbb18cdfa303a8bc4322123f831df">dumpDuration</link>(String&#32;*aString,&#32;uint32_t&#32;duration,&#32;uint16_t&#32;timebase)&#32;{
+<anchor xml:id="_ir___pronto_8hpp_source_1l00299"/>00299 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_group___decoder_1ga69048be6384abbbe3c17e3f25432a392">dumpNumber</link>(aString,&#32;(duration&#32;+&#32;timebase&#32;/&#32;2)&#32;/&#32;timebase);
+<anchor xml:id="_ir___pronto_8hpp_source_1l00300"/>00300 }
+<anchor xml:id="_ir___pronto_8hpp_source_1l00301"/>00301 
+<anchor xml:id="_ir___pronto_8hpp_source_1l00302"/><link linkend="_group___decoder_1ga0772587b98a7fa0cf332788b7e2bd8e6">00302</link> <emphasis role="keyword">static</emphasis>&#32;<emphasis role="keywordtype">size_t</emphasis>&#32;<link linkend="_group___decoder_1ga8a8a6b504851150df425d5b490d92640">compensateAndDumpSequence</link>(String&#32;*aString,&#32;<emphasis role="keyword">const</emphasis>&#32;<emphasis role="keyword">volatile</emphasis>&#32;uint16_t&#32;*data,&#32;<emphasis role="keywordtype">size_t</emphasis>&#32;length,&#32;uint16_t&#32;timebase)&#32;{
+<anchor xml:id="_ir___pronto_8hpp_source_1l00303"/>00303 
+<anchor xml:id="_ir___pronto_8hpp_source_1l00304"/>00304 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">size_t</emphasis>&#32;size&#32;=&#32;0;
+<anchor xml:id="_ir___pronto_8hpp_source_1l00305"/>00305 
+<anchor xml:id="_ir___pronto_8hpp_source_1l00306"/>00306 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">for</emphasis>&#32;(<emphasis role="keywordtype">size_t</emphasis>&#32;i&#32;=&#32;0;&#32;i&#32;&lt;&#32;length;&#32;i++)&#32;{
+<anchor xml:id="_ir___pronto_8hpp_source_1l00307"/>00307 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;uint32_t&#32;tDuration&#32;=&#32;data[i]&#32;*&#32;<link linkend="__i_rremote_int_8h_1a1c7eebb527483c272812530caa313d20">MICROS_PER_TICK</link>;
+<anchor xml:id="_ir___pronto_8hpp_source_1l00308"/>00308 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(i&#32;&amp;&#32;1)&#32;{
+<anchor xml:id="_ir___pronto_8hpp_source_1l00309"/>00309 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Mark</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00310"/>00310 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;tDuration&#32;-=&#32;<link linkend="_group___receiving_1gab1d28d4dd67d6bf808c0328a92e2d863">getMarkExcessMicros</link>();
+<anchor xml:id="_ir___pronto_8hpp_source_1l00311"/>00311 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+<anchor xml:id="_ir___pronto_8hpp_source_1l00312"/>00312 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;tDuration&#32;+=&#32;<link linkend="_group___receiving_1gab1d28d4dd67d6bf808c0328a92e2d863">getMarkExcessMicros</link>();
+<anchor xml:id="_ir___pronto_8hpp_source_1l00313"/>00313 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_ir___pronto_8hpp_source_1l00314"/>00314 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;size&#32;+=&#32;<link linkend="_group___decoder_1ga479fbb18cdfa303a8bc4322123f831df">dumpDuration</link>(aString,&#32;tDuration,&#32;timebase);
+<anchor xml:id="_ir___pronto_8hpp_source_1l00315"/>00315 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_ir___pronto_8hpp_source_1l00316"/>00316 
+<anchor xml:id="_ir___pronto_8hpp_source_1l00317"/>00317 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;append&#32;minimum&#32;gap</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00318"/>00318 &#32;&#32;&#32;&#32;size&#32;+=&#32;<link linkend="_group___decoder_1ga479fbb18cdfa303a8bc4322123f831df">dumpDuration</link>(aString,&#32;PRONTO_DEFAULT_GAP,&#32;timebase);
+<anchor xml:id="_ir___pronto_8hpp_source_1l00319"/>00319 
+<anchor xml:id="_ir___pronto_8hpp_source_1l00320"/>00320 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;size;
+<anchor xml:id="_ir___pronto_8hpp_source_1l00321"/>00321 }
+<anchor xml:id="_ir___pronto_8hpp_source_1l00322"/>00322 
+<anchor xml:id="_ir___pronto_8hpp_source_1l00323"/>00323 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00324"/>00324 <emphasis role="comment">&#32;*&#32;Writes&#32;Pronto&#32;HEX&#32;to&#32;a&#32;String&#32;object.</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00325"/>00325 <emphasis role="comment">&#32;*&#32;Returns&#32;the&#32;amount&#32;of&#32;characters&#32;added&#32;to&#32;the&#32;string.(360&#32;characters&#32;for&#32;a&#32;NEC&#32;code!)</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00326"/>00326 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00327"/><link linkend="_group___decoder_1ga48195517ee0e2cd73788c7956e413014">00327</link> <emphasis role="keywordtype">size_t</emphasis>&#32;<link linkend="_group___decoder_1ga48195517ee0e2cd73788c7956e413014">IRrecv::compensateAndStorePronto</link>(String&#32;*aString,&#32;<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">int</emphasis>&#32;frequency)&#32;{
+<anchor xml:id="_ir___pronto_8hpp_source_1l00328"/>00328 
+<anchor xml:id="_ir___pronto_8hpp_source_1l00329"/>00329 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">size_t</emphasis>&#32;size&#32;=&#32;0;
+<anchor xml:id="_ir___pronto_8hpp_source_1l00330"/>00330 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">int</emphasis>&#32;timebase&#32;=&#32;<link linkend="_group___decoder_1ga356fabeed3a4b0a010a35550e86285c5">toTimebase</link>(frequency);
+<anchor xml:id="_ir___pronto_8hpp_source_1l00331"/>00331 
+<anchor xml:id="_ir___pronto_8hpp_source_1l00332"/>00332 &#32;&#32;&#32;&#32;size&#32;+=&#32;<link linkend="_group___decoder_1ga69048be6384abbbe3c17e3f25432a392">dumpNumber</link>(aString,&#32;frequency&#32;&gt;&#32;0&#32;?&#32;learnedToken&#32;:&#32;learnedNonModulatedToken);
+<anchor xml:id="_ir___pronto_8hpp_source_1l00333"/>00333 &#32;&#32;&#32;&#32;size&#32;+=&#32;<link linkend="_group___decoder_1ga69048be6384abbbe3c17e3f25432a392">dumpNumber</link>(aString,&#32;<link linkend="_group___decoder_1ga155ad672d0494903d7c89e73650879ae">toFrequencyCode</link>(frequency));
+<anchor xml:id="_ir___pronto_8hpp_source_1l00334"/>00334 &#32;&#32;&#32;&#32;size&#32;+=&#32;<link linkend="_group___decoder_1ga69048be6384abbbe3c17e3f25432a392">dumpNumber</link>(aString,&#32;(<link linkend="_class_i_rrecv_1a19d71758b1b0e1fbee948ad917c5b828">decodedIRData</link>.<link linkend="_struct_i_r_data_1a8d7c987d63874731ff2e1120b21a1a08">rawDataPtr</link>-&gt;<link linkend="_structirparams__struct_1af0571ac479d1c38c79502651b0631432">rawlen</link>&#32;+&#32;1)&#32;/&#32;2);
+<anchor xml:id="_ir___pronto_8hpp_source_1l00335"/>00335 &#32;&#32;&#32;&#32;size&#32;+=&#32;<link linkend="_group___decoder_1ga69048be6384abbbe3c17e3f25432a392">dumpNumber</link>(aString,&#32;0);
+<anchor xml:id="_ir___pronto_8hpp_source_1l00336"/>00336 &#32;&#32;&#32;&#32;size&#32;+=&#32;<link linkend="_group___decoder_1ga8a8a6b504851150df425d5b490d92640">compensateAndDumpSequence</link>(aString,&#32;&amp;<link linkend="_class_i_rrecv_1a19d71758b1b0e1fbee948ad917c5b828">decodedIRData</link>.<link linkend="_struct_i_r_data_1a8d7c987d63874731ff2e1120b21a1a08">rawDataPtr</link>-&gt;<link linkend="_structirparams__struct_1a7aa7b811dcc0fb5ab0da7c0bddaf97f8">rawbuf</link>[1],&#32;<link linkend="_class_i_rrecv_1a19d71758b1b0e1fbee948ad917c5b828">decodedIRData</link>.<link linkend="_struct_i_r_data_1a8d7c987d63874731ff2e1120b21a1a08">rawDataPtr</link>-&gt;<link linkend="_structirparams__struct_1af0571ac479d1c38c79502651b0631432">rawlen</link>&#32;-&#32;1,
+<anchor xml:id="_ir___pronto_8hpp_source_1l00337"/>00337 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;timebase);&#32;<emphasis role="comment">//&#32;skip&#32;leading&#32;space</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00338"/>00338 
+<anchor xml:id="_ir___pronto_8hpp_source_1l00339"/>00339 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;size;
+<anchor xml:id="_ir___pronto_8hpp_source_1l00340"/>00340 }
+<anchor xml:id="_ir___pronto_8hpp_source_1l00341"/>00341 
+<anchor xml:id="_ir___pronto_8hpp_source_1l00343"/>00343 <emphasis role="preprocessor">#endif</emphasis>
+<anchor xml:id="_ir___pronto_8hpp_source_1l00344"/>00344 <emphasis role="preprocessor">#pragma&#32;once</emphasis>
+</programlisting></section>

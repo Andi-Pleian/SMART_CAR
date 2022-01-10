@@ -1,0 +1,92 @@
+\hypertarget{_i_r_remote_2_long_union_8h_source}{}\doxysection{Long\+Union.\+h}
+\label{_i_r_remote_2_long_union_8h_source}\index{main/IRRemote/LongUnion.h@{main/IRRemote/LongUnion.h}}
+\mbox{\hyperlink{_i_r_remote_2_long_union_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00001}00001 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00002}00002 \textcolor{comment}{ * LongUnion.h}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00003}00003 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00004}00004 \textcolor{comment}{ *  Copyright (C) 2020  Armin Joachimsmeyer}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00005}00005 \textcolor{comment}{ *  Email: armin.joachimsmeyer@gmail.com}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00006}00006 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00007}00007 \textcolor{comment}{ *  This file is part of Arduino-\/Utils https://github.com/ArminJo/Arduino-\/Utils.}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00008}00008 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00009}00009 \textcolor{comment}{ *  Arduino-\/Utils is free software: you can redistribute it and/or modify}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00010}00010 \textcolor{comment}{ *  it under the terms of the GNU General Public License as published by}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00011}00011 \textcolor{comment}{ *  the Free Software Foundation, either version 3 of the License, or}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00012}00012 \textcolor{comment}{ *  (at your option) any later version.}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00013}00013 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00014}00014 \textcolor{comment}{ *  This program is distributed in the hope that it will be useful,}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00015}00015 \textcolor{comment}{ *  but WITHOUT ANY WARRANTY; without even the implied warranty of}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00016}00016 \textcolor{comment}{ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00017}00017 \textcolor{comment}{ *  GNU General Public License for more details.}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00018}00018 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00019}00019 \textcolor{comment}{ *  You should have received a copy of the GNU General Public License}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00020}00020 \textcolor{comment}{ *  along with this program.  If not, see <http://www.gnu.org/licenses/gpl.html>.}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00021}00021 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00022}00022 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00023}00023 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00024}00024 \textcolor{preprocessor}{\#ifndef LONG\_UNION\_H}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00025}00025 \textcolor{preprocessor}{\#define LONG\_UNION\_H}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00026}00026 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00027}00027 \textcolor{preprocessor}{\#include <Arduino.h>}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00028}00028 \textcolor{preprocessor}{\#include <stdint.h>}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00029}00029 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00034}\mbox{\hyperlink{union_word_union}{00034}} \textcolor{keyword}{union }\mbox{\hyperlink{union_word_union}{WordUnion}} \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00035}00035     \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00036}\mbox{\hyperlink{union_word_union_ade13e75ba3678d0b5b0590906156d9ec}{00036}}         uint8\_t \mbox{\hyperlink{union_word_union_ade13e75ba3678d0b5b0590906156d9ec}{LowByte}};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00037}\mbox{\hyperlink{union_word_union_ae019b50052979f252f4a9f209ed4e618}{00037}}         uint8\_t \mbox{\hyperlink{union_word_union_ae019b50052979f252f4a9f209ed4e618}{HighByte}};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00038}\mbox{\hyperlink{union_word_union_afaa3ed9abb5e76645cc7c1701f6d1af4}{00038}}     \} \mbox{\hyperlink{union_word_union_afaa3ed9abb5e76645cc7c1701f6d1af4}{UByte}};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00039}00039     \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00040}\mbox{\hyperlink{union_word_union_a7d81b9160cc06e310f7786666b5f680e}{00040}}         int8\_t \mbox{\hyperlink{union_word_union_a7d81b9160cc06e310f7786666b5f680e}{LowByte}};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00041}\mbox{\hyperlink{union_word_union_a6e8c56fa718517ef9844b272e86e7f4e}{00041}}         int8\_t \mbox{\hyperlink{union_word_union_a6e8c56fa718517ef9844b272e86e7f4e}{HighByte}};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00042}\mbox{\hyperlink{union_word_union_a0ea747b29213b5e0129cb99ae74be45e}{00042}}     \} \mbox{\hyperlink{union_word_union_a0ea747b29213b5e0129cb99ae74be45e}{Byte}};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00043}\mbox{\hyperlink{union_word_union_a55646c1d5596f6b757206c622cabfd66}{00043}}     uint8\_t \mbox{\hyperlink{union_word_union_a55646c1d5596f6b757206c622cabfd66}{UBytes}}[2];}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00044}\mbox{\hyperlink{union_word_union_a4e8789ba81e0d2cdc3c7d0c8bc6056db}{00044}}     int8\_t \mbox{\hyperlink{union_word_union_a4e8789ba81e0d2cdc3c7d0c8bc6056db}{Bytes}}[2];}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00045}\mbox{\hyperlink{union_word_union_ac72da7d551c05ed98fe75c8d239d9e23}{00045}}     uint16\_t \mbox{\hyperlink{union_word_union_ac72da7d551c05ed98fe75c8d239d9e23}{UWord}};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00046}\mbox{\hyperlink{union_word_union_a6a1554f58dff1ec24abca7c3b50f287f}{00046}}     int16\_t \mbox{\hyperlink{union_word_union_a6a1554f58dff1ec24abca7c3b50f287f}{Word}};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00047}\mbox{\hyperlink{union_word_union_af846c868bd52e16150cc207fc8c8fb75}{00047}}     uint8\_t *\mbox{\hyperlink{union_word_union_af846c868bd52e16150cc207fc8c8fb75}{BytePointer}};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00048}00048 \};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00049}00049 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00054}\mbox{\hyperlink{union_long_union}{00054}} \textcolor{keyword}{union }\mbox{\hyperlink{union_long_union}{LongUnion}} \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00055}00055     \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00056}\mbox{\hyperlink{union_long_union_aa41368107679917a1c39f30999f4e9d9}{00056}}         uint8\_t \mbox{\hyperlink{union_long_union_aa41368107679917a1c39f30999f4e9d9}{LowByte}};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00057}\mbox{\hyperlink{union_long_union_aeed69e051ef3c5c3d03e0efa260226b1}{00057}}         uint8\_t \mbox{\hyperlink{union_long_union_aeed69e051ef3c5c3d03e0efa260226b1}{MidLowByte}};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00058}\mbox{\hyperlink{union_long_union_aba027b17010803cf910996cae9201f32}{00058}}         uint8\_t \mbox{\hyperlink{union_long_union_aba027b17010803cf910996cae9201f32}{MidHighByte}};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00059}\mbox{\hyperlink{union_long_union_a67e1514b7a6ccc4d017eb6928c327e5c}{00059}}         uint8\_t \mbox{\hyperlink{union_long_union_a67e1514b7a6ccc4d017eb6928c327e5c}{HighByte}};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00060}\mbox{\hyperlink{union_long_union_a1dfe8893e7015a65e9482671c15a099f}{00060}}     \} \mbox{\hyperlink{union_long_union_a1dfe8893e7015a65e9482671c15a099f}{UByte}};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00061}00061     \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00062}\mbox{\hyperlink{union_long_union_a953d8a796924426954a56a4a324e35b6}{00062}}         int8\_t \mbox{\hyperlink{union_long_union_a953d8a796924426954a56a4a324e35b6}{LowByte}};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00063}\mbox{\hyperlink{union_long_union_abbb97b234b56a9fc85e675baef650eb2}{00063}}         int8\_t \mbox{\hyperlink{union_long_union_abbb97b234b56a9fc85e675baef650eb2}{MidLowByte}};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00064}\mbox{\hyperlink{union_long_union_a5404235118006061ae33de167803c70a}{00064}}         int8\_t \mbox{\hyperlink{union_long_union_a5404235118006061ae33de167803c70a}{MidHighByte}};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00065}\mbox{\hyperlink{union_long_union_a9c076778ee637e06ea2ccec3ee6703ec}{00065}}         int8\_t \mbox{\hyperlink{union_long_union_a9c076778ee637e06ea2ccec3ee6703ec}{HighByte}};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00066}\mbox{\hyperlink{union_long_union_a1c2dae40c6f3cc0a71a7625c71417f21}{00066}}     \} \mbox{\hyperlink{union_long_union_a1c2dae40c6f3cc0a71a7625c71417f21}{Byte}};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00067}00067     \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00068}00068         uint8\_t \mbox{\hyperlink{union_long_union_aa41368107679917a1c39f30999f4e9d9}{LowByte}};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00069}\mbox{\hyperlink{union_long_union_aa4ca6414a8a8f155b113c02995fa2887}{00069}}         \mbox{\hyperlink{union_word_union}{WordUnion}} \mbox{\hyperlink{union_long_union_aa4ca6414a8a8f155b113c02995fa2887}{MidWord}};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00070}00070         uint8\_t \mbox{\hyperlink{union_long_union_a67e1514b7a6ccc4d017eb6928c327e5c}{HighByte}};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00071}\mbox{\hyperlink{union_long_union_a01dc27d7394fa94bb24a9c0a1e3bf925}{00071}}     \} \mbox{\hyperlink{union_long_union_a01dc27d7394fa94bb24a9c0a1e3bf925}{ByteWord}};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00072}00072     \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00073}\mbox{\hyperlink{union_long_union_a9c0af1e73f44cf26341485cdac332bd2}{00073}}         int16\_t \mbox{\hyperlink{union_long_union_a9c0af1e73f44cf26341485cdac332bd2}{LowWord}};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00074}\mbox{\hyperlink{union_long_union_a2b12288fe56e397d39ba9085fca70616}{00074}}         int16\_t \mbox{\hyperlink{union_long_union_a2b12288fe56e397d39ba9085fca70616}{HighWord}};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00075}\mbox{\hyperlink{union_long_union_a38025526d128638a496c4c9f0a9182d0}{00075}}     \} \mbox{\hyperlink{union_long_union_a38025526d128638a496c4c9f0a9182d0}{Word}};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00076}00076     \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00077}\mbox{\hyperlink{union_long_union_a45adb668aa3c266c1caa869b64f5110f}{00077}}         \mbox{\hyperlink{union_word_union}{WordUnion}} \mbox{\hyperlink{union_long_union_a45adb668aa3c266c1caa869b64f5110f}{LowWord}};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00078}\mbox{\hyperlink{union_long_union_a5595650293a30be4a2aa52013b953d88}{00078}}         \mbox{\hyperlink{union_word_union}{WordUnion}} \mbox{\hyperlink{union_long_union_a5595650293a30be4a2aa52013b953d88}{HighWord}};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00079}\mbox{\hyperlink{union_long_union_a8956cd66850e78483c6bce6056df63c3}{00079}}     \} \mbox{\hyperlink{union_long_union_a8956cd66850e78483c6bce6056df63c3}{WordUnion}};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00080}00080     \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00081}\mbox{\hyperlink{union_long_union_a05f946f8845eb4dda0407470d34854e2}{00081}}         uint16\_t \mbox{\hyperlink{union_long_union_a05f946f8845eb4dda0407470d34854e2}{LowWord}};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00082}\mbox{\hyperlink{union_long_union_afd26d7d3a11130649129850162a7eb39}{00082}}         uint16\_t \mbox{\hyperlink{union_long_union_afd26d7d3a11130649129850162a7eb39}{HighWord}};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00083}\mbox{\hyperlink{union_long_union_a68a0c249634ca250ca5fdb31a06cbb18}{00083}}     \} \mbox{\hyperlink{union_long_union_a68a0c249634ca250ca5fdb31a06cbb18}{UWord}};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00084}\mbox{\hyperlink{union_long_union_a885e9b6c286760603e0376bb3d6fdd29}{00084}}     uint8\_t \mbox{\hyperlink{union_long_union_a885e9b6c286760603e0376bb3d6fdd29}{UBytes}}[4]; \textcolor{comment}{// seems to have the same code size as using struct UByte}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00085}\mbox{\hyperlink{union_long_union_a9e4193a6ec37d7261b908e36c37f18e8}{00085}}     int8\_t \mbox{\hyperlink{union_long_union_a9e4193a6ec37d7261b908e36c37f18e8}{Bytes}}[4];}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00086}\mbox{\hyperlink{union_long_union_a2de66fce96e01ff0f94f5116dcbbdd59}{00086}}     uint16\_t \mbox{\hyperlink{union_long_union_a2de66fce96e01ff0f94f5116dcbbdd59}{UWords}}[2];}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00087}\mbox{\hyperlink{union_long_union_a65f92a6e4c126beaa411aa6939e08b89}{00087}}     int16\_t \mbox{\hyperlink{union_long_union_a65f92a6e4c126beaa411aa6939e08b89}{Words}}[2];}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00088}\mbox{\hyperlink{union_long_union_aaf8815ca810b2d8386b5912f127586a7}{00088}}     uint32\_t \mbox{\hyperlink{union_long_union_aaf8815ca810b2d8386b5912f127586a7}{ULong}};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00089}\mbox{\hyperlink{union_long_union_a987b9b0499e30d1ba84f33e38d4cb034}{00089}}     int32\_t \mbox{\hyperlink{union_long_union_a987b9b0499e30d1ba84f33e38d4cb034}{Long}};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00090}00090 \};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00091}00091 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00092}00092 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// LONG\_UNION\_H}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00093}00093 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_long_union_8h_source_l00094}00094 \textcolor{preprocessor}{\#pragma once}}
+
+\end{DoxyCode}

@@ -1,0 +1,77 @@
+\hypertarget{_i_r_protocol_8h_source}{}\doxysection{IRProtocol.\+h}
+\label{_i_r_protocol_8h_source}\index{IRRemote/IRProtocol.h@{IRRemote/IRProtocol.h}}
+\mbox{\hyperlink{_i_r_protocol_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#ifndef IR\_PROTOCOL\_H}}
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#define IR\_PROTOCOL\_H}}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{39 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{40     UNKNOWN = 0,}
+\DoxyCodeLine{41     PULSE\_DISTANCE,}
+\DoxyCodeLine{42     PULSE\_WIDTH,}
+\DoxyCodeLine{43     DENON,}
+\DoxyCodeLine{44     DISH,}
+\DoxyCodeLine{45     JVC,}
+\DoxyCodeLine{46     LG,}
+\DoxyCodeLine{47     LG2,}
+\DoxyCodeLine{48     NEC,}
+\DoxyCodeLine{49     PANASONIC,}
+\DoxyCodeLine{50     KASEIKYO,}
+\DoxyCodeLine{51     KASEIKYO\_JVC,}
+\DoxyCodeLine{52     KASEIKYO\_DENON,}
+\DoxyCodeLine{53     KASEIKYO\_SHARP,}
+\DoxyCodeLine{54     KASEIKYO\_MITSUBISHI,}
+\DoxyCodeLine{55     RC5,}
+\DoxyCodeLine{56     RC6,}
+\DoxyCodeLine{57     SAMSUNG,}
+\DoxyCodeLine{58     SHARP,}
+\DoxyCodeLine{59     SONY,}
+\DoxyCodeLine{60     ONKYO,}
+\DoxyCodeLine{61     APPLE,}
+\DoxyCodeLine{62     BOSEWAVE,}
+\DoxyCodeLine{63     LEGO\_PF,}
+\DoxyCodeLine{64     MAGIQUEST,}
+\DoxyCodeLine{65     WHYNTER,}
+\DoxyCodeLine{66 \} \mbox{\hyperlink{_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fad}{decode\_type\_t}};}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68 \textcolor{keyword}{const} \_\_FlashStringHelper* getProtocolString(\mbox{\hyperlink{_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fad}{decode\_type\_t}} aProtocol);}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{70 \textcolor{preprocessor}{\#define PROTOCOL\_IS\_LSB\_FIRST false}}
+\DoxyCodeLine{71 \textcolor{preprocessor}{\#define PROTOCOL\_IS\_MSB\_FIRST true}}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73 \textcolor{comment}{/*}}
+\DoxyCodeLine{74 \textcolor{comment}{ * Carrier frequencies for various protocols}}
+\DoxyCodeLine{75 \textcolor{comment}{ */}}
+\DoxyCodeLine{76 \textcolor{preprocessor}{\#define SONY\_KHZ        40}}
+\DoxyCodeLine{77 \textcolor{preprocessor}{\#define BOSEWAVE\_KHZ    38}}
+\DoxyCodeLine{78 \textcolor{preprocessor}{\#define DENON\_KHZ       38}}
+\DoxyCodeLine{79 \textcolor{preprocessor}{\#define JVC\_KHZ         38}}
+\DoxyCodeLine{80 \textcolor{preprocessor}{\#define LG\_KHZ          38}}
+\DoxyCodeLine{81 \textcolor{preprocessor}{\#define NEC\_KHZ         38}}
+\DoxyCodeLine{82 \textcolor{preprocessor}{\#define SAMSUNG\_KHZ     38}}
+\DoxyCodeLine{83 \textcolor{preprocessor}{\#define KASEIKYO\_KHZ    37}}
+\DoxyCodeLine{84 \textcolor{preprocessor}{\#define RC5\_RC6\_KHZ     36}}
+\DoxyCodeLine{85 }
+\DoxyCodeLine{86 \textcolor{comment}{/*}}
+\DoxyCodeLine{87 \textcolor{comment}{ * Constants for some protocols}}
+\DoxyCodeLine{88 \textcolor{comment}{ */}}
+\DoxyCodeLine{89 \textcolor{preprocessor}{\#define PANASONIC\_VENDOR\_ID\_CODE    0x2002}}
+\DoxyCodeLine{90 \textcolor{preprocessor}{\#define DENON\_VENDOR\_ID\_CODE        0x3254}}
+\DoxyCodeLine{91 \textcolor{preprocessor}{\#define MITSUBISHI\_VENDOR\_ID\_CODE   0xCB23}}
+\DoxyCodeLine{92 \textcolor{preprocessor}{\#define SHARP\_VENDOR\_ID\_CODE        0x5AAA}}
+\DoxyCodeLine{93 \textcolor{preprocessor}{\#define JVC\_VENDOR\_ID\_CODE          0x0103}}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{95 \textcolor{preprocessor}{\#define SIRCS\_12\_PROTOCOL       12}}
+\DoxyCodeLine{96 \textcolor{preprocessor}{\#define SIRCS\_15\_PROTOCOL       15}}
+\DoxyCodeLine{97 \textcolor{preprocessor}{\#define SIRCS\_20\_PROTOCOL       20}}
+\DoxyCodeLine{98 }
+\DoxyCodeLine{99 \textcolor{preprocessor}{\#define LEGO\_MODE\_EXTENDED  0}}
+\DoxyCodeLine{100 \textcolor{preprocessor}{\#define LEGO\_MODE\_COMBO     1}}
+\DoxyCodeLine{101 \textcolor{preprocessor}{\#define LEGO\_MODE\_SINGLE    0x4 }\textcolor{comment}{// here the 2 LSB have meanings like Output A / Output B}}
+\DoxyCodeLine{102 }
+\DoxyCodeLine{103 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// IR\_PROTOCOL\_H}}
+\DoxyCodeLine{104 }
+\DoxyCodeLine{105 \textcolor{preprocessor}{\#pragma once}}
+
+\end{DoxyCode}

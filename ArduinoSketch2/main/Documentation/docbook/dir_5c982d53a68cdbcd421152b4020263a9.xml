@@ -2,10 +2,23 @@
 <section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_dir_5c982d53a68cdbcd421152b4020263a9" xml:lang="en-US">
 <title>main Directory Reference</title>
 <indexterm><primary>main Directory Reference</primary></indexterm>
+Directory dependency graph for main:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="dir_5c982d53a68cdbcd421152b4020263a9_dep.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
 <simplesect>
     <title>Directories    </title>
         <itemizedlist>
+            <listitem><para>directory <link linkend="_dir_5fe727caca61f1cc1183025fd6e96719">Debug</link></para>
+</listitem>
             <listitem><para>directory <link linkend="_dir_1f3340c269d12e8f50ab557a1817aed7">Modules</link></para>
+</listitem>
+            <listitem><para>directory <link linkend="_dir_e39430909dd37eb8d0f69965d1ea8db1">Release</link></para>
 </listitem>
         </itemizedlist>
 </simplesect>

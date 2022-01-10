@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_struct_feedback_l_e_d_control_struct" xml:lang="en-US">
+<title>FeedbackLEDControlStruct Struct Reference</title>
+<indexterm><primary>FeedbackLEDControlStruct</primary></indexterm>
+<para>
+<computeroutput>#include &lt;IRFeedbackLED.hpp&gt;</computeroutput>
+</para>
+<simplesect>
+    <title>Public Attributes    </title>
+        <itemizedlist>
+            <listitem><para>uint8_t <link linkend="_struct_feedback_l_e_d_control_struct_1a759f018b8bdb93695bd4ebb0d61a3c4c">FeedbackLEDPin</link></para>
+
+<para>if 0, then take board specific FEEDBACK_LED_ON() and FEEDBACK_LED_OFF() functions </para>
+</listitem>
+            <listitem><para>bool <link linkend="_struct_feedback_l_e_d_control_struct_1a49467187b92e40e5122b14d82a9fa500">LedFeedbackEnabled</link></para>
+
+<para>true -&gt; enable blinking of pin on IR processing </para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>Contains pin number and enable status of the feedback LED </para>
+<para>
+Definition at line <link linkend="__i_r_feedback_l_e_d_8hpp_source_1l00043">43</link> of file <link linkend="__i_r_feedback_l_e_d_8hpp_source">IRFeedbackLED.hpp</link>.</para>
+</section>
+<section>
+<title>Member Data Documentation</title>
+<anchor xml:id="_struct_feedback_l_e_d_control_struct_1a759f018b8bdb93695bd4ebb0d61a3c4c"/><section>
+    <title>FeedbackLEDPin</title>
+<indexterm><primary>FeedbackLEDPin</primary><secondary>FeedbackLEDControlStruct</secondary></indexterm>
+<indexterm><primary>FeedbackLEDControlStruct</primary><secondary>FeedbackLEDPin</secondary></indexterm>
+<para><computeroutput>uint8_t FeedbackLEDControlStruct::FeedbackLEDPin</computeroutput></para><para>
+
+<para>if 0, then take board specific FEEDBACK_LED_ON() and FEEDBACK_LED_OFF() functions </para>
+</para>
+<para>
+Definition at line <link linkend="__i_r_feedback_l_e_d_8hpp_source_1l00044">44</link> of file <link linkend="__i_r_feedback_l_e_d_8hpp_source">IRFeedbackLED.hpp</link>.</para>
+</section>
+<anchor xml:id="_struct_feedback_l_e_d_control_struct_1a49467187b92e40e5122b14d82a9fa500"/><section>
+    <title>LedFeedbackEnabled</title>
+<indexterm><primary>LedFeedbackEnabled</primary><secondary>FeedbackLEDControlStruct</secondary></indexterm>
+<indexterm><primary>FeedbackLEDControlStruct</primary><secondary>LedFeedbackEnabled</secondary></indexterm>
+<para><computeroutput>bool FeedbackLEDControlStruct::LedFeedbackEnabled</computeroutput></para><para>
+
+<para>true -&gt; enable blinking of pin on IR processing </para>
+</para>
+<para>
+Definition at line <link linkend="__i_r_feedback_l_e_d_8hpp_source_1l00045">45</link> of file <link linkend="__i_r_feedback_l_e_d_8hpp_source">IRFeedbackLED.hpp</link>.</para>
+</section>
+<para>
+The documentation for this struct was generated from the following file:</para>
+main/IRRemote_Library/<link linkend="__i_r_feedback_l_e_d_8hpp">IRFeedbackLED.hpp</link></section>
+</section>

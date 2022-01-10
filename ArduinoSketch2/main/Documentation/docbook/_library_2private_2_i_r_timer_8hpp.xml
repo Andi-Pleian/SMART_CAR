@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="__library_2private_2_i_r_timer_8hpp" xml:lang="en-US">
+<title>main/IRRemote_Library/private/IRTimer.hpp File Reference</title>
+<indexterm><primary>main/IRRemote_Library/private/IRTimer.hpp</primary></indexterm>
+<para>
+
+<para>All timer specific definitions are contained in this file. </para>
+ 
+</para>
+<programlisting linenumbering="unnumbered">#include &quot;IRremoteInt.h&quot;
+</programlisting>Include dependency graph for IRTimer.hpp:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="_library_2private_2_i_r_timer_8hpp__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+This graph shows which files directly or indirectly include this file:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="_library_2private_2_i_r_timer_8hpp__dep__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Macros    </title>
+        <itemizedlist>
+            <listitem><para>#define <link linkend="_group___timer_1ga56882eeb7842d9b52bb5c36febad0ccd">TIMER_RESET_INTR_PENDING</link></para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___timer_1ga188e83488bfec8bb484bbaa96cfbdc5a">ENABLE_SEND_PWM_BY_TIMER</link></para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___timer_1ga00c73e29496913c8cff34b1a12c613ab">DISABLE_SEND_PWM_BY_TIMER</link></para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___timer_1ga3127b57492af4dfc90ddacf40c6162d0">TIMER_ENABLE_RECEIVE_INTR</link></para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___timer_1gaa526c768d410a407fb5433f7662527a7">TIMER_DISABLE_RECEIVE_INTR</link></para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___timer_1ga301c12193509807588b4db8e1b4ad5e7">ISR</link>()   void notImplemented(void)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Functions    </title>
+        <itemizedlist>
+            <listitem><para>void <link linkend="_group___timer_1ga45d57d84d5fee327f67afde5f8649e6d">timerConfigForSend</link> (uint8_t aFrequencyKHz)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___timer_1ga8cca92581b5452eaac5b3075227c6c56">timerConfigForReceive</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>All timer specific definitions are contained in this file. </para>
+
+<para>This file is part of Arduino-IRremote <link xlink:href="https://github.com/Arduino-IRremote/Arduino-IRremote">https://github.com/Arduino-IRremote/Arduino-IRremote</link>.</para>
+
+<para>MIT License</para>
+
+<para>Copyright (c) 2021 Armin Joachimsmeyer</para>
+
+<para>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</para>
+
+<para>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</para>
+
+<para>THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. </para>
+<para>
+Definition in file <link linkend="__library_2private_2_i_r_timer_8hpp_source">IRTimer.hpp</link>.</para>
+</section>
+</section>

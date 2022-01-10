@@ -1,0 +1,376 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_group___tiny_receiver" xml:lang="en-US">
+<title>Minimal receiver for NEC protocol</title>
+<indexterm><primary>Minimal receiver for NEC protocol</primary></indexterm>
+<simplesect>
+    <title>Classes    </title>
+        <itemizedlist>
+            <listitem><para>struct <link linkend="_struct_tiny_i_r_receiver_struct">TinyIRReceiverStruct</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Macros    </title>
+        <itemizedlist>
+            <listitem><para>#define <link linkend="_group___tiny_receiver_1ga2ab110e480a4b16fe516c2afd16a1ea2">NEC_ADDRESS_BITS</link>   16</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___tiny_receiver_1ga07e295da53565eb7146072bdfeb2ed32">NEC_COMMAND_BITS</link>   16</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___tiny_receiver_1gaa82c77bc0131ac28bc3534b8cf3422bc">NEC_BITS</link>   (<link linkend="_group___tiny_receiver_1ga2ab110e480a4b16fe516c2afd16a1ea2">NEC_ADDRESS_BITS</link> + <link linkend="_group___tiny_receiver_1ga07e295da53565eb7146072bdfeb2ed32">NEC_COMMAND_BITS</link>)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___tiny_receiver_1gaf3317b0cf5cf7d3063addbaa0a256158">NEC_UNIT</link>   560</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___tiny_receiver_1ga8d393b95d8df4dfa15873aec6a37965e">NEC_HEADER_MARK</link>   (16 * <link linkend="_group___tiny_receiver_1gaf3317b0cf5cf7d3063addbaa0a256158">NEC_UNIT</link>)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___tiny_receiver_1ga5c728ed320ffee624e26767be0a80404">NEC_HEADER_SPACE</link>   (8 * <link linkend="_group___tiny_receiver_1gaf3317b0cf5cf7d3063addbaa0a256158">NEC_UNIT</link>)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___tiny_receiver_1ga3abbe30ef3781c1cf2490003e1c1443a">NEC_BIT_MARK</link>   <link linkend="_group___tiny_receiver_1gaf3317b0cf5cf7d3063addbaa0a256158">NEC_UNIT</link></para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___tiny_receiver_1ga5ac04ec8b2185c9fb257d39c472733b1">NEC_ONE_SPACE</link>   (3 * <link linkend="_group___tiny_receiver_1gaf3317b0cf5cf7d3063addbaa0a256158">NEC_UNIT</link>)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___tiny_receiver_1ga5ee46914e98bf7f87f32a7104843b243">NEC_ZERO_SPACE</link>   <link linkend="_group___tiny_receiver_1gaf3317b0cf5cf7d3063addbaa0a256158">NEC_UNIT</link></para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___tiny_receiver_1ga91880ffa0b09391f2c827d3a1c565abf">NEC_REPEAT_HEADER_SPACE</link>   (4 * <link linkend="_group___tiny_receiver_1gaf3317b0cf5cf7d3063addbaa0a256158">NEC_UNIT</link>)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___tiny_receiver_1gac2dab5c4a22f8c4915217d3ee4676f08">NEC_REPEAT_PERIOD</link>   110000</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___tiny_receiver_1ga02b97ed6af9381a224ea3be0cab054a0">lowerValue25Percent</link>(aDuration)   (aDuration - (aDuration / 4))</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___tiny_receiver_1ga22a6cd77d395a6c06686eafdf9aa2b52">upperValue25Percent</link>(aDuration)   (aDuration + (aDuration / 4))</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___tiny_receiver_1gadc6908665014a0bef4442c7769ed5054">lowerValue</link>(aDuration)   (aDuration - (aDuration / 2))</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___tiny_receiver_1gaf6134d81e390f1e3dcd60e2aca9c9143">upperValue</link>(aDuration)   (aDuration + (aDuration / 2))</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___tiny_receiver_1ga2535b0f1ae380b696c6a37ffa69b3df3">IR_RECEIVER_STATE_WAITING_FOR_START_MARK</link>   0</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___tiny_receiver_1ga43017cba7c72b3f0d45265f417e5195d">IR_RECEIVER_STATE_WAITING_FOR_START_SPACE</link>   1</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___tiny_receiver_1gaecf505182d1fa2aa885fcde6cd4160bf">IR_RECEIVER_STATE_WAITING_FOR_FIRST_DATA_MARK</link>   2</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___tiny_receiver_1gad3b7237c2aa120840c0eed233d5c627e">IR_RECEIVER_STATE_WAITING_FOR_DATA_SPACE</link>   3</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___tiny_receiver_1gae237abb240b59b9c8dd7d853fc3c76b1">IR_RECEIVER_STATE_WAITING_FOR_DATA_MARK</link>   4</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___tiny_receiver_1ga2f6f17e18c7b5f1ef4b9cfc907d086e4">IR_RECEIVER_STATE_WAITING_FOR_STOP_MARK</link>   5</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___tiny_receiver_1ga57d0c5b7d83f10557910205596d66dfb">IR_INPUT_PIN</link>   2</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___tiny_receiver_1gae7054616db7e69e979dfcd5ad38fb968">TINY_RECEIVER_USE_ARDUINO_ATTACH_INTERRUPT</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Functions    </title>
+        <itemizedlist>
+            <listitem><para>void <link linkend="_group___tiny_receiver_1ga5c751ad19033cb8c209d7253dccf34e7">handleReceivedTinyIRData</link> (uint16_t aAddress, uint8_t aCommand, bool isRepeat)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___tiny_receiver_1ga1f3913249343258d738ea0a48f7e1aed">initPCIInterruptForTinyReceiver</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___tiny_receiver_1gad23b935e2236a42a070a87379c7c36a4">enablePCIInterruptForTinyReceiver</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___tiny_receiver_1ga4217cae1ded4a9b2ed54bc3a1e8cd86e">disablePCIInterruptForTinyReceiver</link> ()</para>
+</listitem>
+            <listitem><para>bool <link linkend="_group___tiny_receiver_1gab65e33fe496d3bee4af897e5d8bd9420">isTinyReceiverIdle</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___tiny_receiver_1gaf44d26445244a24863cda1636eb8bf97">handleReceivedIRData</link> (uint16_t aAddress, uint8_t aCommand, bool isRepetition)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___tiny_receiver_1ga3c3d6703d25dbcc0555823e23eec0e69">IRPinChangeInterruptHandler</link> (void)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Variables    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_struct_tiny_i_r_receiver_struct">TinyIRReceiverStruct</link> <link linkend="_group___tiny_receiver_1ga30567324f26c2fae24bb11592262b6d3">TinyIRReceiverControl</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+</section>
+<section>
+<title>Macro Definition Documentation</title>
+<anchor xml:id="_group___tiny_receiver_1ga57d0c5b7d83f10557910205596d66dfb"/><section>
+    <title>IR_INPUT_PIN</title>
+<indexterm><primary>IR_INPUT_PIN</primary><secondary>Minimal receiver for NEC protocol</secondary></indexterm>
+<indexterm><primary>Minimal receiver for NEC protocol</primary><secondary>IR_INPUT_PIN</secondary></indexterm>
+<para><computeroutput>#define IR_INPUT_PIN   2</computeroutput></para><para>
+Definition at line <link linkend="__tiny_i_r_receiver_8hpp_source_1l00066">66</link> of file <link linkend="__tiny_i_r_receiver_8hpp_source">TinyIRReceiver.hpp</link>.</para>
+</section>
+<anchor xml:id="_group___tiny_receiver_1gae237abb240b59b9c8dd7d853fc3c76b1"/><section>
+    <title>IR_RECEIVER_STATE_WAITING_FOR_DATA_MARK</title>
+<indexterm><primary>IR_RECEIVER_STATE_WAITING_FOR_DATA_MARK</primary><secondary>Minimal receiver for NEC protocol</secondary></indexterm>
+<indexterm><primary>Minimal receiver for NEC protocol</primary><secondary>IR_RECEIVER_STATE_WAITING_FOR_DATA_MARK</secondary></indexterm>
+<para><computeroutput>#define IR_RECEIVER_STATE_WAITING_FOR_DATA_MARK   4</computeroutput></para><para>
+Definition at line <link linkend="__tiny_i_r_receiver_8h_source_1l00076">76</link> of file <link linkend="__tiny_i_r_receiver_8h_source">TinyIRReceiver.h</link>.</para>
+</section>
+<anchor xml:id="_group___tiny_receiver_1gad3b7237c2aa120840c0eed233d5c627e"/><section>
+    <title>IR_RECEIVER_STATE_WAITING_FOR_DATA_SPACE</title>
+<indexterm><primary>IR_RECEIVER_STATE_WAITING_FOR_DATA_SPACE</primary><secondary>Minimal receiver for NEC protocol</secondary></indexterm>
+<indexterm><primary>Minimal receiver for NEC protocol</primary><secondary>IR_RECEIVER_STATE_WAITING_FOR_DATA_SPACE</secondary></indexterm>
+<para><computeroutput>#define IR_RECEIVER_STATE_WAITING_FOR_DATA_SPACE   3</computeroutput></para><para>
+Definition at line <link linkend="__tiny_i_r_receiver_8h_source_1l00075">75</link> of file <link linkend="__tiny_i_r_receiver_8h_source">TinyIRReceiver.h</link>.</para>
+</section>
+<anchor xml:id="_group___tiny_receiver_1gaecf505182d1fa2aa885fcde6cd4160bf"/><section>
+    <title>IR_RECEIVER_STATE_WAITING_FOR_FIRST_DATA_MARK</title>
+<indexterm><primary>IR_RECEIVER_STATE_WAITING_FOR_FIRST_DATA_MARK</primary><secondary>Minimal receiver for NEC protocol</secondary></indexterm>
+<indexterm><primary>Minimal receiver for NEC protocol</primary><secondary>IR_RECEIVER_STATE_WAITING_FOR_FIRST_DATA_MARK</secondary></indexterm>
+<para><computeroutput>#define IR_RECEIVER_STATE_WAITING_FOR_FIRST_DATA_MARK   2</computeroutput></para><para>
+Definition at line <link linkend="__tiny_i_r_receiver_8h_source_1l00074">74</link> of file <link linkend="__tiny_i_r_receiver_8h_source">TinyIRReceiver.h</link>.</para>
+</section>
+<anchor xml:id="_group___tiny_receiver_1ga2535b0f1ae380b696c6a37ffa69b3df3"/><section>
+    <title>IR_RECEIVER_STATE_WAITING_FOR_START_MARK</title>
+<indexterm><primary>IR_RECEIVER_STATE_WAITING_FOR_START_MARK</primary><secondary>Minimal receiver for NEC protocol</secondary></indexterm>
+<indexterm><primary>Minimal receiver for NEC protocol</primary><secondary>IR_RECEIVER_STATE_WAITING_FOR_START_MARK</secondary></indexterm>
+<para><computeroutput>#define IR_RECEIVER_STATE_WAITING_FOR_START_MARK   0</computeroutput></para><para>
+Definition at line <link linkend="__tiny_i_r_receiver_8h_source_1l00072">72</link> of file <link linkend="__tiny_i_r_receiver_8h_source">TinyIRReceiver.h</link>.</para>
+</section>
+<anchor xml:id="_group___tiny_receiver_1ga43017cba7c72b3f0d45265f417e5195d"/><section>
+    <title>IR_RECEIVER_STATE_WAITING_FOR_START_SPACE</title>
+<indexterm><primary>IR_RECEIVER_STATE_WAITING_FOR_START_SPACE</primary><secondary>Minimal receiver for NEC protocol</secondary></indexterm>
+<indexterm><primary>Minimal receiver for NEC protocol</primary><secondary>IR_RECEIVER_STATE_WAITING_FOR_START_SPACE</secondary></indexterm>
+<para><computeroutput>#define IR_RECEIVER_STATE_WAITING_FOR_START_SPACE   1</computeroutput></para><para>
+Definition at line <link linkend="__tiny_i_r_receiver_8h_source_1l00073">73</link> of file <link linkend="__tiny_i_r_receiver_8h_source">TinyIRReceiver.h</link>.</para>
+</section>
+<anchor xml:id="_group___tiny_receiver_1ga2f6f17e18c7b5f1ef4b9cfc907d086e4"/><section>
+    <title>IR_RECEIVER_STATE_WAITING_FOR_STOP_MARK</title>
+<indexterm><primary>IR_RECEIVER_STATE_WAITING_FOR_STOP_MARK</primary><secondary>Minimal receiver for NEC protocol</secondary></indexterm>
+<indexterm><primary>Minimal receiver for NEC protocol</primary><secondary>IR_RECEIVER_STATE_WAITING_FOR_STOP_MARK</secondary></indexterm>
+<para><computeroutput>#define IR_RECEIVER_STATE_WAITING_FOR_STOP_MARK   5</computeroutput></para><para>
+Definition at line <link linkend="__tiny_i_r_receiver_8h_source_1l00077">77</link> of file <link linkend="__tiny_i_r_receiver_8h_source">TinyIRReceiver.h</link>.</para>
+</section>
+<anchor xml:id="_group___tiny_receiver_1gadc6908665014a0bef4442c7769ed5054"/><section>
+    <title>lowerValue</title>
+<indexterm><primary>lowerValue</primary><secondary>Minimal receiver for NEC protocol</secondary></indexterm>
+<indexterm><primary>Minimal receiver for NEC protocol</primary><secondary>lowerValue</secondary></indexterm>
+<para><computeroutput>#define lowerValue( aDuration)   (aDuration - (aDuration / 2))</computeroutput></para><para>
+Definition at line <link linkend="__tiny_i_r_receiver_8h_source_1l00066">66</link> of file <link linkend="__tiny_i_r_receiver_8h_source">TinyIRReceiver.h</link>.</para>
+</section>
+<anchor xml:id="_group___tiny_receiver_1ga02b97ed6af9381a224ea3be0cab054a0"/><section>
+    <title>lowerValue25Percent</title>
+<indexterm><primary>lowerValue25Percent</primary><secondary>Minimal receiver for NEC protocol</secondary></indexterm>
+<indexterm><primary>Minimal receiver for NEC protocol</primary><secondary>lowerValue25Percent</secondary></indexterm>
+<para><computeroutput>#define lowerValue25Percent( aDuration)   (aDuration - (aDuration / 4))</computeroutput></para><para>
+Definition at line <link linkend="__tiny_i_r_receiver_8h_source_1l00064">64</link> of file <link linkend="__tiny_i_r_receiver_8h_source">TinyIRReceiver.h</link>.</para>
+</section>
+<anchor xml:id="_group___tiny_receiver_1ga2ab110e480a4b16fe516c2afd16a1ea2"/><section>
+    <title>NEC_ADDRESS_BITS</title>
+<indexterm><primary>NEC_ADDRESS_BITS</primary><secondary>Minimal receiver for NEC protocol</secondary></indexterm>
+<indexterm><primary>Minimal receiver for NEC protocol</primary><secondary>NEC_ADDRESS_BITS</secondary></indexterm>
+<para><computeroutput>#define NEC_ADDRESS_BITS   16</computeroutput></para><para>
+Definition at line <link linkend="__tiny_i_r_receiver_8h_source_1l00045">45</link> of file <link linkend="__tiny_i_r_receiver_8h_source">TinyIRReceiver.h</link>.</para>
+</section>
+<anchor xml:id="_group___tiny_receiver_1ga3abbe30ef3781c1cf2490003e1c1443a"/><section>
+    <title>NEC_BIT_MARK</title>
+<indexterm><primary>NEC_BIT_MARK</primary><secondary>Minimal receiver for NEC protocol</secondary></indexterm>
+<indexterm><primary>Minimal receiver for NEC protocol</primary><secondary>NEC_BIT_MARK</secondary></indexterm>
+<para><computeroutput>#define NEC_BIT_MARK   <link linkend="_group___tiny_receiver_1gaf3317b0cf5cf7d3063addbaa0a256158">NEC_UNIT</link></computeroutput></para><para>
+Definition at line <link linkend="__tiny_i_r_receiver_8h_source_1l00054">54</link> of file <link linkend="__tiny_i_r_receiver_8h_source">TinyIRReceiver.h</link>.</para>
+</section>
+<anchor xml:id="_group___tiny_receiver_1gaa82c77bc0131ac28bc3534b8cf3422bc"/><section>
+    <title>NEC_BITS</title>
+<indexterm><primary>NEC_BITS</primary><secondary>Minimal receiver for NEC protocol</secondary></indexterm>
+<indexterm><primary>Minimal receiver for NEC protocol</primary><secondary>NEC_BITS</secondary></indexterm>
+<para><computeroutput>#define NEC_BITS   (<link linkend="_group___tiny_receiver_1ga2ab110e480a4b16fe516c2afd16a1ea2">NEC_ADDRESS_BITS</link> + <link linkend="_group___tiny_receiver_1ga07e295da53565eb7146072bdfeb2ed32">NEC_COMMAND_BITS</link>)</computeroutput></para><para>
+Definition at line <link linkend="__tiny_i_r_receiver_8h_source_1l00048">48</link> of file <link linkend="__tiny_i_r_receiver_8h_source">TinyIRReceiver.h</link>.</para>
+</section>
+<anchor xml:id="_group___tiny_receiver_1ga07e295da53565eb7146072bdfeb2ed32"/><section>
+    <title>NEC_COMMAND_BITS</title>
+<indexterm><primary>NEC_COMMAND_BITS</primary><secondary>Minimal receiver for NEC protocol</secondary></indexterm>
+<indexterm><primary>Minimal receiver for NEC protocol</primary><secondary>NEC_COMMAND_BITS</secondary></indexterm>
+<para><computeroutput>#define NEC_COMMAND_BITS   16</computeroutput></para><para>
+Definition at line <link linkend="__tiny_i_r_receiver_8h_source_1l00046">46</link> of file <link linkend="__tiny_i_r_receiver_8h_source">TinyIRReceiver.h</link>.</para>
+</section>
+<anchor xml:id="_group___tiny_receiver_1ga8d393b95d8df4dfa15873aec6a37965e"/><section>
+    <title>NEC_HEADER_MARK</title>
+<indexterm><primary>NEC_HEADER_MARK</primary><secondary>Minimal receiver for NEC protocol</secondary></indexterm>
+<indexterm><primary>Minimal receiver for NEC protocol</primary><secondary>NEC_HEADER_MARK</secondary></indexterm>
+<para><computeroutput>#define NEC_HEADER_MARK   (16 * <link linkend="_group___tiny_receiver_1gaf3317b0cf5cf7d3063addbaa0a256158">NEC_UNIT</link>)</computeroutput></para><para>
+Definition at line <link linkend="__tiny_i_r_receiver_8h_source_1l00051">51</link> of file <link linkend="__tiny_i_r_receiver_8h_source">TinyIRReceiver.h</link>.</para>
+</section>
+<anchor xml:id="_group___tiny_receiver_1ga5c728ed320ffee624e26767be0a80404"/><section>
+    <title>NEC_HEADER_SPACE</title>
+<indexterm><primary>NEC_HEADER_SPACE</primary><secondary>Minimal receiver for NEC protocol</secondary></indexterm>
+<indexterm><primary>Minimal receiver for NEC protocol</primary><secondary>NEC_HEADER_SPACE</secondary></indexterm>
+<para><computeroutput>#define NEC_HEADER_SPACE   (8 * <link linkend="_group___tiny_receiver_1gaf3317b0cf5cf7d3063addbaa0a256158">NEC_UNIT</link>)</computeroutput></para><para>
+Definition at line <link linkend="__tiny_i_r_receiver_8h_source_1l00052">52</link> of file <link linkend="__tiny_i_r_receiver_8h_source">TinyIRReceiver.h</link>.</para>
+</section>
+<anchor xml:id="_group___tiny_receiver_1ga5ac04ec8b2185c9fb257d39c472733b1"/><section>
+    <title>NEC_ONE_SPACE</title>
+<indexterm><primary>NEC_ONE_SPACE</primary><secondary>Minimal receiver for NEC protocol</secondary></indexterm>
+<indexterm><primary>Minimal receiver for NEC protocol</primary><secondary>NEC_ONE_SPACE</secondary></indexterm>
+<para><computeroutput>#define NEC_ONE_SPACE   (3 * <link linkend="_group___tiny_receiver_1gaf3317b0cf5cf7d3063addbaa0a256158">NEC_UNIT</link>)</computeroutput></para><para>
+Definition at line <link linkend="__tiny_i_r_receiver_8h_source_1l00055">55</link> of file <link linkend="__tiny_i_r_receiver_8h_source">TinyIRReceiver.h</link>.</para>
+</section>
+<anchor xml:id="_group___tiny_receiver_1ga91880ffa0b09391f2c827d3a1c565abf"/><section>
+    <title>NEC_REPEAT_HEADER_SPACE</title>
+<indexterm><primary>NEC_REPEAT_HEADER_SPACE</primary><secondary>Minimal receiver for NEC protocol</secondary></indexterm>
+<indexterm><primary>Minimal receiver for NEC protocol</primary><secondary>NEC_REPEAT_HEADER_SPACE</secondary></indexterm>
+<para><computeroutput>#define NEC_REPEAT_HEADER_SPACE   (4 * <link linkend="_group___tiny_receiver_1gaf3317b0cf5cf7d3063addbaa0a256158">NEC_UNIT</link>)</computeroutput></para><para>
+Definition at line <link linkend="__tiny_i_r_receiver_8h_source_1l00058">58</link> of file <link linkend="__tiny_i_r_receiver_8h_source">TinyIRReceiver.h</link>.</para>
+</section>
+<anchor xml:id="_group___tiny_receiver_1gac2dab5c4a22f8c4915217d3ee4676f08"/><section>
+    <title>NEC_REPEAT_PERIOD</title>
+<indexterm><primary>NEC_REPEAT_PERIOD</primary><secondary>Minimal receiver for NEC protocol</secondary></indexterm>
+<indexterm><primary>Minimal receiver for NEC protocol</primary><secondary>NEC_REPEAT_PERIOD</secondary></indexterm>
+<para><computeroutput>#define NEC_REPEAT_PERIOD   110000</computeroutput></para><para>
+Definition at line <link linkend="__tiny_i_r_receiver_8h_source_1l00059">59</link> of file <link linkend="__tiny_i_r_receiver_8h_source">TinyIRReceiver.h</link>.</para>
+</section>
+<anchor xml:id="_group___tiny_receiver_1gaf3317b0cf5cf7d3063addbaa0a256158"/><section>
+    <title>NEC_UNIT</title>
+<indexterm><primary>NEC_UNIT</primary><secondary>Minimal receiver for NEC protocol</secondary></indexterm>
+<indexterm><primary>Minimal receiver for NEC protocol</primary><secondary>NEC_UNIT</secondary></indexterm>
+<para><computeroutput>#define NEC_UNIT   560</computeroutput></para><para>
+Definition at line <link linkend="__tiny_i_r_receiver_8h_source_1l00049">49</link> of file <link linkend="__tiny_i_r_receiver_8h_source">TinyIRReceiver.h</link>.</para>
+</section>
+<anchor xml:id="_group___tiny_receiver_1ga5ee46914e98bf7f87f32a7104843b243"/><section>
+    <title>NEC_ZERO_SPACE</title>
+<indexterm><primary>NEC_ZERO_SPACE</primary><secondary>Minimal receiver for NEC protocol</secondary></indexterm>
+<indexterm><primary>Minimal receiver for NEC protocol</primary><secondary>NEC_ZERO_SPACE</secondary></indexterm>
+<para><computeroutput>#define NEC_ZERO_SPACE   <link linkend="_group___tiny_receiver_1gaf3317b0cf5cf7d3063addbaa0a256158">NEC_UNIT</link></computeroutput></para><para>
+Definition at line <link linkend="__tiny_i_r_receiver_8h_source_1l00056">56</link> of file <link linkend="__tiny_i_r_receiver_8h_source">TinyIRReceiver.h</link>.</para>
+</section>
+<anchor xml:id="_group___tiny_receiver_1gae7054616db7e69e979dfcd5ad38fb968"/><section>
+    <title>TINY_RECEIVER_USE_ARDUINO_ATTACH_INTERRUPT</title>
+<indexterm><primary>TINY_RECEIVER_USE_ARDUINO_ATTACH_INTERRUPT</primary><secondary>Minimal receiver for NEC protocol</secondary></indexterm>
+<indexterm><primary>Minimal receiver for NEC protocol</primary><secondary>TINY_RECEIVER_USE_ARDUINO_ATTACH_INTERRUPT</secondary></indexterm>
+<para><computeroutput>#define TINY_RECEIVER_USE_ARDUINO_ATTACH_INTERRUPT</computeroutput></para><para>
+Definition at line <link linkend="__tiny_i_r_receiver_8hpp_source_1l00085">85</link> of file <link linkend="__tiny_i_r_receiver_8hpp_source">TinyIRReceiver.hpp</link>.</para>
+</section>
+<anchor xml:id="_group___tiny_receiver_1gaf6134d81e390f1e3dcd60e2aca9c9143"/><section>
+    <title>upperValue</title>
+<indexterm><primary>upperValue</primary><secondary>Minimal receiver for NEC protocol</secondary></indexterm>
+<indexterm><primary>Minimal receiver for NEC protocol</primary><secondary>upperValue</secondary></indexterm>
+<para><computeroutput>#define upperValue( aDuration)   (aDuration + (aDuration / 2))</computeroutput></para><para>
+Definition at line <link linkend="__tiny_i_r_receiver_8h_source_1l00067">67</link> of file <link linkend="__tiny_i_r_receiver_8h_source">TinyIRReceiver.h</link>.</para>
+</section>
+<anchor xml:id="_group___tiny_receiver_1ga22a6cd77d395a6c06686eafdf9aa2b52"/><section>
+    <title>upperValue25Percent</title>
+<indexterm><primary>upperValue25Percent</primary><secondary>Minimal receiver for NEC protocol</secondary></indexterm>
+<indexterm><primary>Minimal receiver for NEC protocol</primary><secondary>upperValue25Percent</secondary></indexterm>
+<para><computeroutput>#define upperValue25Percent( aDuration)   (aDuration + (aDuration / 4))</computeroutput></para><para>
+Definition at line <link linkend="__tiny_i_r_receiver_8h_source_1l00065">65</link> of file <link linkend="__tiny_i_r_receiver_8h_source">TinyIRReceiver.h</link>.</para>
+</section>
+</section>
+<section>
+<title>Function Documentation</title>
+<anchor xml:id="_group___tiny_receiver_1ga4217cae1ded4a9b2ed54bc3a1e8cd86e"/><section>
+    <title>disablePCIInterruptForTinyReceiver()</title>
+<indexterm><primary>disablePCIInterruptForTinyReceiver</primary><secondary>Minimal receiver for NEC protocol</secondary></indexterm>
+<indexterm><primary>Minimal receiver for NEC protocol</primary><secondary>disablePCIInterruptForTinyReceiver</secondary></indexterm>
+<para><computeroutput>void disablePCIInterruptForTinyReceiver ( )</computeroutput></para><para>
+Definition at line <link linkend="__tiny_i_r_receiver_8hpp_source_1l00433">433</link> of file <link linkend="__tiny_i_r_receiver_8hpp_source">TinyIRReceiver.hpp</link>.</para>
+</section>
+<anchor xml:id="_group___tiny_receiver_1gad23b935e2236a42a070a87379c7c36a4"/><section>
+    <title>enablePCIInterruptForTinyReceiver()</title>
+<indexterm><primary>enablePCIInterruptForTinyReceiver</primary><secondary>Minimal receiver for NEC protocol</secondary></indexterm>
+<indexterm><primary>Minimal receiver for NEC protocol</primary><secondary>enablePCIInterruptForTinyReceiver</secondary></indexterm>
+<para><computeroutput>void enablePCIInterruptForTinyReceiver ( )</computeroutput></para>
+<para>Initializes hardware interrupt generation according to IR_INPUT_PIN or use attachInterrupt() function. </para>
+<para>
+Definition at line <link linkend="__tiny_i_r_receiver_8hpp_source_1l00332">332</link> of file <link linkend="__tiny_i_r_receiver_8hpp_source">TinyIRReceiver.hpp</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="group___tiny_receiver_gad23b935e2236a42a070a87379c7c36a4_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="group___tiny_receiver_gad23b935e2236a42a070a87379c7c36a4_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_group___tiny_receiver_1gaf44d26445244a24863cda1636eb8bf97"/><section>
+    <title>handleReceivedIRData()</title>
+<indexterm><primary>handleReceivedIRData</primary><secondary>Minimal receiver for NEC protocol</secondary></indexterm>
+<indexterm><primary>Minimal receiver for NEC protocol</primary><secondary>handleReceivedIRData</secondary></indexterm>
+<para><computeroutput>void handleReceivedIRData (uint16_t aAddress, uint8_t aCommand, bool isRepetition)</computeroutput></para>
+<para>Declaration of the callback function provided by the user application. It is called every time a complete IR command or repeat was received. </para>
+</section>
+<anchor xml:id="_group___tiny_receiver_1ga5c751ad19033cb8c209d7253dccf34e7"/><section>
+    <title>handleReceivedTinyIRData()</title>
+<indexterm><primary>handleReceivedTinyIRData</primary><secondary>Minimal receiver for NEC protocol</secondary></indexterm>
+<indexterm><primary>Minimal receiver for NEC protocol</primary><secondary>handleReceivedTinyIRData</secondary></indexterm>
+<para><computeroutput>void handleReceivedTinyIRData (uint16_t aAddress, uint8_t aCommand, bool isRepeat)</computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="group___tiny_receiver_ga5c751ad19033cb8c209d7253dccf34e7_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_group___tiny_receiver_1ga1f3913249343258d738ea0a48f7e1aed"/><section>
+    <title>initPCIInterruptForTinyReceiver()</title>
+<indexterm><primary>initPCIInterruptForTinyReceiver</primary><secondary>Minimal receiver for NEC protocol</secondary></indexterm>
+<indexterm><primary>Minimal receiver for NEC protocol</primary><secondary>initPCIInterruptForTinyReceiver</secondary></indexterm>
+<para><computeroutput>void initPCIInterruptForTinyReceiver ( )</computeroutput></para>
+<para>Sets IR_INPUT_PIN mode to INPUT_PULLUP, if required, sets feedback LED output mode and call <link linkend="_group___tiny_receiver_1gad23b935e2236a42a070a87379c7c36a4">enablePCIInterruptForTinyReceiver()</link> </para>
+<para>
+Definition at line <link linkend="__tiny_i_r_receiver_8hpp_source_1l00314">314</link> of file <link linkend="__tiny_i_r_receiver_8hpp_source">TinyIRReceiver.hpp</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="group___tiny_receiver_ga1f3913249343258d738ea0a48f7e1aed_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_group___tiny_receiver_1ga3c3d6703d25dbcc0555823e23eec0e69"/><section>
+    <title>IRPinChangeInterruptHandler()</title>
+<indexterm><primary>IRPinChangeInterruptHandler</primary><secondary>Minimal receiver for NEC protocol</secondary></indexterm>
+<indexterm><primary>Minimal receiver for NEC protocol</primary><secondary>IRPinChangeInterruptHandler</secondary></indexterm>
+<para><computeroutput>void IRPinChangeInterruptHandler (void )</computeroutput></para>
+<para>The ISR of TinyIRRreceiver. It handles the NEC protocol decoding and calls the user callback function on complete. 5 us + 3 us for push + pop for a 16MHz ATmega </para>
+<para>
+Definition at line <link linkend="__tiny_i_r_receiver_8hpp_source_1l00108">108</link> of file <link linkend="__tiny_i_r_receiver_8hpp_source">TinyIRReceiver.hpp</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="group___tiny_receiver_ga3c3d6703d25dbcc0555823e23eec0e69_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="group___tiny_receiver_ga3c3d6703d25dbcc0555823e23eec0e69_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_group___tiny_receiver_1gab65e33fe496d3bee4af897e5d8bd9420"/><section>
+    <title>isTinyReceiverIdle()</title>
+<indexterm><primary>isTinyReceiverIdle</primary><secondary>Minimal receiver for NEC protocol</secondary></indexterm>
+<indexterm><primary>Minimal receiver for NEC protocol</primary><secondary>isTinyReceiverIdle</secondary></indexterm>
+<para><computeroutput>bool isTinyReceiverIdle ( )</computeroutput></para><para>
+Definition at line <link linkend="__tiny_i_r_receiver_8hpp_source_1l00306">306</link> of file <link linkend="__tiny_i_r_receiver_8hpp_source">TinyIRReceiver.hpp</link>.</para>
+</section>
+</section>
+<section>
+<title>Variable Documentation</title>
+<anchor xml:id="_group___tiny_receiver_1ga30567324f26c2fae24bb11592262b6d3"/><section>
+    <title>TinyIRReceiverControl</title>
+<indexterm><primary>TinyIRReceiverControl</primary><secondary>Minimal receiver for NEC protocol</secondary></indexterm>
+<indexterm><primary>Minimal receiver for NEC protocol</primary><secondary>TinyIRReceiverControl</secondary></indexterm>
+<para><computeroutput><link linkend="_struct_tiny_i_r_receiver_struct">TinyIRReceiverStruct</link> TinyIRReceiverControl</computeroutput></para><para>
+Definition at line <link linkend="__tiny_i_r_receiver_8hpp_source_1l00055">55</link> of file <link linkend="__tiny_i_r_receiver_8hpp_source">TinyIRReceiver.hpp</link>.</para>
+</section>
+</section>
+</section>

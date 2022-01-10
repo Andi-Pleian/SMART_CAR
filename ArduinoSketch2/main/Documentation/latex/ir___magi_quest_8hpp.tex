@@ -1,0 +1,151 @@
+\hypertarget{ir___magi_quest_8hpp}{}\doxysection{main/\+IRRemote\+\_\+\+Library/ir\+\_\+\+Magi\+Quest.hpp File Reference}
+\label{ir___magi_quest_8hpp}\index{main/IRRemote\_Library/ir\_MagiQuest.hpp@{main/IRRemote\_Library/ir\_MagiQuest.hpp}}
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}IRremote\+Int.\+h\char`\"{}}\newline
+Include dependency graph for ir\+\_\+\+Magi\+Quest.\+hpp\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+union \mbox{\hyperlink{unionmagiquest__t}{magiquest\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{ir___magi_quest_8hpp_a64aeb7e87d7a2f844ca6ec967e6bdf34}{MAGIQUEST\+\_\+\+MAGNITUDE\+\_\+\+BITS}}~(sizeof(uint16\+\_\+t) $\ast$ 8)
+\item 
+\#define \mbox{\hyperlink{ir___magi_quest_8hpp_a6f9ee212ff850e280f9c241c5143cee5}{MAGIQUEST\+\_\+\+WAND\+\_\+\+ID\+\_\+\+BITS}}~(sizeof(uint32\+\_\+t) $\ast$ 8)
+\item 
+\#define \mbox{\hyperlink{ir___magi_quest_8hpp_a8488d2b8be79a7b84056d215c8fa83f0}{MAGIQUEST\+\_\+\+PADDING\+\_\+\+BITS}}~(sizeof(uint8\+\_\+t) $\ast$ 8)
+\item 
+\#define \mbox{\hyperlink{ir___magi_quest_8hpp_a4816f5fc6dfc00a7f07213eff150652e}{MAGIQUEST\+\_\+\+PERIOD}}~1150
+\item 
+\#define \mbox{\hyperlink{ir___magi_quest_8hpp_a5ad7278bb378f828e4ef743ce1611734}{MAGIQUEST\+\_\+\+BITS}}~(\mbox{\hyperlink{ir___magi_quest_8hpp_a64aeb7e87d7a2f844ca6ec967e6bdf34}{MAGIQUEST\+\_\+\+MAGNITUDE\+\_\+\+BITS}} + \mbox{\hyperlink{ir___magi_quest_8hpp_a6f9ee212ff850e280f9c241c5143cee5}{MAGIQUEST\+\_\+\+WAND\+\_\+\+ID\+\_\+\+BITS}})
+\item 
+\#define \mbox{\hyperlink{ir___magi_quest_8hpp_ab0e21cd13f5bde3d08248afbc05ccffc}{MAGIQUEST\+\_\+\+PACKET\+\_\+\+SIZE}}~(2 $\ast$ (\mbox{\hyperlink{ir___magi_quest_8hpp_a5ad7278bb378f828e4ef743ce1611734}{MAGIQUEST\+\_\+\+BITS}} + \mbox{\hyperlink{ir___magi_quest_8hpp_a8488d2b8be79a7b84056d215c8fa83f0}{MAGIQUEST\+\_\+\+PADDING\+\_\+\+BITS}}))
+\item 
+\#define \mbox{\hyperlink{ir___magi_quest_8hpp_ab55a5562099370a536d44962ad2db98a}{MAGIQUEST\+\_\+\+UNIT}}~(\mbox{\hyperlink{ir___magi_quest_8hpp_a4816f5fc6dfc00a7f07213eff150652e}{MAGIQUEST\+\_\+\+PERIOD}} / 4)
+\item 
+\#define \mbox{\hyperlink{ir___magi_quest_8hpp_ab75301149b3c053390e08668e270574e}{MAGIQUEST\+\_\+\+ONE\+\_\+\+MARK}}~(2 $\ast$ \mbox{\hyperlink{ir___magi_quest_8hpp_ab55a5562099370a536d44962ad2db98a}{MAGIQUEST\+\_\+\+UNIT}})
+\item 
+\#define \mbox{\hyperlink{ir___magi_quest_8hpp_a1965f9aa88f57ed564f46654f8247103}{MAGIQUEST\+\_\+\+ONE\+\_\+\+SPACE}}~(2 $\ast$ \mbox{\hyperlink{ir___magi_quest_8hpp_ab55a5562099370a536d44962ad2db98a}{MAGIQUEST\+\_\+\+UNIT}})
+\item 
+\#define \mbox{\hyperlink{ir___magi_quest_8hpp_ac1bc4e99d5e1b697df724d180357095d}{MAGIQUEST\+\_\+\+ZERO\+\_\+\+MARK}}~\mbox{\hyperlink{ir___magi_quest_8hpp_ab55a5562099370a536d44962ad2db98a}{MAGIQUEST\+\_\+\+UNIT}}
+\item 
+\#define \mbox{\hyperlink{ir___magi_quest_8hpp_a95ff1854b629d4e2dce95224f470f031}{MAGIQUEST\+\_\+\+ZERO\+\_\+\+SPACE}}~(3 $\ast$ \mbox{\hyperlink{ir___magi_quest_8hpp_ab55a5562099370a536d44962ad2db98a}{MAGIQUEST\+\_\+\+UNIT}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{ir___magi_quest_8hpp_a5ad7278bb378f828e4ef743ce1611734}\label{ir___magi_quest_8hpp_a5ad7278bb378f828e4ef743ce1611734}} 
+\index{ir\_MagiQuest.hpp@{ir\_MagiQuest.hpp}!MAGIQUEST\_BITS@{MAGIQUEST\_BITS}}
+\index{MAGIQUEST\_BITS@{MAGIQUEST\_BITS}!ir\_MagiQuest.hpp@{ir\_MagiQuest.hpp}}
+\doxysubsubsection{\texorpdfstring{MAGIQUEST\_BITS}{MAGIQUEST\_BITS}}
+{\footnotesize\ttfamily \#define MAGIQUEST\+\_\+\+BITS~(\mbox{\hyperlink{ir___magi_quest_8hpp_a64aeb7e87d7a2f844ca6ec967e6bdf34}{MAGIQUEST\+\_\+\+MAGNITUDE\+\_\+\+BITS}} + \mbox{\hyperlink{ir___magi_quest_8hpp_a6f9ee212ff850e280f9c241c5143cee5}{MAGIQUEST\+\_\+\+WAND\+\_\+\+ID\+\_\+\+BITS}})}
+
+
+
+Definition at line \mbox{\hyperlink{ir___magi_quest_8hpp_source_l00066}{66}} of file \mbox{\hyperlink{ir___magi_quest_8hpp_source}{ir\+\_\+\+Magi\+Quest.\+hpp}}.
+
+\mbox{\Hypertarget{ir___magi_quest_8hpp_a64aeb7e87d7a2f844ca6ec967e6bdf34}\label{ir___magi_quest_8hpp_a64aeb7e87d7a2f844ca6ec967e6bdf34}} 
+\index{ir\_MagiQuest.hpp@{ir\_MagiQuest.hpp}!MAGIQUEST\_MAGNITUDE\_BITS@{MAGIQUEST\_MAGNITUDE\_BITS}}
+\index{MAGIQUEST\_MAGNITUDE\_BITS@{MAGIQUEST\_MAGNITUDE\_BITS}!ir\_MagiQuest.hpp@{ir\_MagiQuest.hpp}}
+\doxysubsubsection{\texorpdfstring{MAGIQUEST\_MAGNITUDE\_BITS}{MAGIQUEST\_MAGNITUDE\_BITS}}
+{\footnotesize\ttfamily \#define MAGIQUEST\+\_\+\+MAGNITUDE\+\_\+\+BITS~(sizeof(uint16\+\_\+t) $\ast$ 8)}
+
+
+
+Definition at line \mbox{\hyperlink{ir___magi_quest_8hpp_source_l00061}{61}} of file \mbox{\hyperlink{ir___magi_quest_8hpp_source}{ir\+\_\+\+Magi\+Quest.\+hpp}}.
+
+\mbox{\Hypertarget{ir___magi_quest_8hpp_ab75301149b3c053390e08668e270574e}\label{ir___magi_quest_8hpp_ab75301149b3c053390e08668e270574e}} 
+\index{ir\_MagiQuest.hpp@{ir\_MagiQuest.hpp}!MAGIQUEST\_ONE\_MARK@{MAGIQUEST\_ONE\_MARK}}
+\index{MAGIQUEST\_ONE\_MARK@{MAGIQUEST\_ONE\_MARK}!ir\_MagiQuest.hpp@{ir\_MagiQuest.hpp}}
+\doxysubsubsection{\texorpdfstring{MAGIQUEST\_ONE\_MARK}{MAGIQUEST\_ONE\_MARK}}
+{\footnotesize\ttfamily \#define MAGIQUEST\+\_\+\+ONE\+\_\+\+MARK~(2 $\ast$ \mbox{\hyperlink{ir___magi_quest_8hpp_ab55a5562099370a536d44962ad2db98a}{MAGIQUEST\+\_\+\+UNIT}})}
+
+
+
+Definition at line \mbox{\hyperlink{ir___magi_quest_8hpp_source_l00081}{81}} of file \mbox{\hyperlink{ir___magi_quest_8hpp_source}{ir\+\_\+\+Magi\+Quest.\+hpp}}.
+
+\mbox{\Hypertarget{ir___magi_quest_8hpp_a1965f9aa88f57ed564f46654f8247103}\label{ir___magi_quest_8hpp_a1965f9aa88f57ed564f46654f8247103}} 
+\index{ir\_MagiQuest.hpp@{ir\_MagiQuest.hpp}!MAGIQUEST\_ONE\_SPACE@{MAGIQUEST\_ONE\_SPACE}}
+\index{MAGIQUEST\_ONE\_SPACE@{MAGIQUEST\_ONE\_SPACE}!ir\_MagiQuest.hpp@{ir\_MagiQuest.hpp}}
+\doxysubsubsection{\texorpdfstring{MAGIQUEST\_ONE\_SPACE}{MAGIQUEST\_ONE\_SPACE}}
+{\footnotesize\ttfamily \#define MAGIQUEST\+\_\+\+ONE\+\_\+\+SPACE~(2 $\ast$ \mbox{\hyperlink{ir___magi_quest_8hpp_ab55a5562099370a536d44962ad2db98a}{MAGIQUEST\+\_\+\+UNIT}})}
+
+
+
+Definition at line \mbox{\hyperlink{ir___magi_quest_8hpp_source_l00082}{82}} of file \mbox{\hyperlink{ir___magi_quest_8hpp_source}{ir\+\_\+\+Magi\+Quest.\+hpp}}.
+
+\mbox{\Hypertarget{ir___magi_quest_8hpp_ab0e21cd13f5bde3d08248afbc05ccffc}\label{ir___magi_quest_8hpp_ab0e21cd13f5bde3d08248afbc05ccffc}} 
+\index{ir\_MagiQuest.hpp@{ir\_MagiQuest.hpp}!MAGIQUEST\_PACKET\_SIZE@{MAGIQUEST\_PACKET\_SIZE}}
+\index{MAGIQUEST\_PACKET\_SIZE@{MAGIQUEST\_PACKET\_SIZE}!ir\_MagiQuest.hpp@{ir\_MagiQuest.hpp}}
+\doxysubsubsection{\texorpdfstring{MAGIQUEST\_PACKET\_SIZE}{MAGIQUEST\_PACKET\_SIZE}}
+{\footnotesize\ttfamily \#define MAGIQUEST\+\_\+\+PACKET\+\_\+\+SIZE~(2 $\ast$ (\mbox{\hyperlink{ir___magi_quest_8hpp_a5ad7278bb378f828e4ef743ce1611734}{MAGIQUEST\+\_\+\+BITS}} + \mbox{\hyperlink{ir___magi_quest_8hpp_a8488d2b8be79a7b84056d215c8fa83f0}{MAGIQUEST\+\_\+\+PADDING\+\_\+\+BITS}}))}
+
+
+
+Definition at line \mbox{\hyperlink{ir___magi_quest_8hpp_source_l00069}{69}} of file \mbox{\hyperlink{ir___magi_quest_8hpp_source}{ir\+\_\+\+Magi\+Quest.\+hpp}}.
+
+\mbox{\Hypertarget{ir___magi_quest_8hpp_a8488d2b8be79a7b84056d215c8fa83f0}\label{ir___magi_quest_8hpp_a8488d2b8be79a7b84056d215c8fa83f0}} 
+\index{ir\_MagiQuest.hpp@{ir\_MagiQuest.hpp}!MAGIQUEST\_PADDING\_BITS@{MAGIQUEST\_PADDING\_BITS}}
+\index{MAGIQUEST\_PADDING\_BITS@{MAGIQUEST\_PADDING\_BITS}!ir\_MagiQuest.hpp@{ir\_MagiQuest.hpp}}
+\doxysubsubsection{\texorpdfstring{MAGIQUEST\_PADDING\_BITS}{MAGIQUEST\_PADDING\_BITS}}
+{\footnotesize\ttfamily \#define MAGIQUEST\+\_\+\+PADDING\+\_\+\+BITS~(sizeof(uint8\+\_\+t) $\ast$ 8)}
+
+
+
+Definition at line \mbox{\hyperlink{ir___magi_quest_8hpp_source_l00063}{63}} of file \mbox{\hyperlink{ir___magi_quest_8hpp_source}{ir\+\_\+\+Magi\+Quest.\+hpp}}.
+
+\mbox{\Hypertarget{ir___magi_quest_8hpp_a4816f5fc6dfc00a7f07213eff150652e}\label{ir___magi_quest_8hpp_a4816f5fc6dfc00a7f07213eff150652e}} 
+\index{ir\_MagiQuest.hpp@{ir\_MagiQuest.hpp}!MAGIQUEST\_PERIOD@{MAGIQUEST\_PERIOD}}
+\index{MAGIQUEST\_PERIOD@{MAGIQUEST\_PERIOD}!ir\_MagiQuest.hpp@{ir\_MagiQuest.hpp}}
+\doxysubsubsection{\texorpdfstring{MAGIQUEST\_PERIOD}{MAGIQUEST\_PERIOD}}
+{\footnotesize\ttfamily \#define MAGIQUEST\+\_\+\+PERIOD~1150}
+
+
+
+Definition at line \mbox{\hyperlink{ir___magi_quest_8hpp_source_l00065}{65}} of file \mbox{\hyperlink{ir___magi_quest_8hpp_source}{ir\+\_\+\+Magi\+Quest.\+hpp}}.
+
+\mbox{\Hypertarget{ir___magi_quest_8hpp_ab55a5562099370a536d44962ad2db98a}\label{ir___magi_quest_8hpp_ab55a5562099370a536d44962ad2db98a}} 
+\index{ir\_MagiQuest.hpp@{ir\_MagiQuest.hpp}!MAGIQUEST\_UNIT@{MAGIQUEST\_UNIT}}
+\index{MAGIQUEST\_UNIT@{MAGIQUEST\_UNIT}!ir\_MagiQuest.hpp@{ir\_MagiQuest.hpp}}
+\doxysubsubsection{\texorpdfstring{MAGIQUEST\_UNIT}{MAGIQUEST\_UNIT}}
+{\footnotesize\ttfamily \#define MAGIQUEST\+\_\+\+UNIT~(\mbox{\hyperlink{ir___magi_quest_8hpp_a4816f5fc6dfc00a7f07213eff150652e}{MAGIQUEST\+\_\+\+PERIOD}} / 4)}
+
+
+
+Definition at line \mbox{\hyperlink{ir___magi_quest_8hpp_source_l00079}{79}} of file \mbox{\hyperlink{ir___magi_quest_8hpp_source}{ir\+\_\+\+Magi\+Quest.\+hpp}}.
+
+\mbox{\Hypertarget{ir___magi_quest_8hpp_a6f9ee212ff850e280f9c241c5143cee5}\label{ir___magi_quest_8hpp_a6f9ee212ff850e280f9c241c5143cee5}} 
+\index{ir\_MagiQuest.hpp@{ir\_MagiQuest.hpp}!MAGIQUEST\_WAND\_ID\_BITS@{MAGIQUEST\_WAND\_ID\_BITS}}
+\index{MAGIQUEST\_WAND\_ID\_BITS@{MAGIQUEST\_WAND\_ID\_BITS}!ir\_MagiQuest.hpp@{ir\_MagiQuest.hpp}}
+\doxysubsubsection{\texorpdfstring{MAGIQUEST\_WAND\_ID\_BITS}{MAGIQUEST\_WAND\_ID\_BITS}}
+{\footnotesize\ttfamily \#define MAGIQUEST\+\_\+\+WAND\+\_\+\+ID\+\_\+\+BITS~(sizeof(uint32\+\_\+t) $\ast$ 8)}
+
+
+
+Definition at line \mbox{\hyperlink{ir___magi_quest_8hpp_source_l00062}{62}} of file \mbox{\hyperlink{ir___magi_quest_8hpp_source}{ir\+\_\+\+Magi\+Quest.\+hpp}}.
+
+\mbox{\Hypertarget{ir___magi_quest_8hpp_ac1bc4e99d5e1b697df724d180357095d}\label{ir___magi_quest_8hpp_ac1bc4e99d5e1b697df724d180357095d}} 
+\index{ir\_MagiQuest.hpp@{ir\_MagiQuest.hpp}!MAGIQUEST\_ZERO\_MARK@{MAGIQUEST\_ZERO\_MARK}}
+\index{MAGIQUEST\_ZERO\_MARK@{MAGIQUEST\_ZERO\_MARK}!ir\_MagiQuest.hpp@{ir\_MagiQuest.hpp}}
+\doxysubsubsection{\texorpdfstring{MAGIQUEST\_ZERO\_MARK}{MAGIQUEST\_ZERO\_MARK}}
+{\footnotesize\ttfamily \#define MAGIQUEST\+\_\+\+ZERO\+\_\+\+MARK~\mbox{\hyperlink{ir___magi_quest_8hpp_ab55a5562099370a536d44962ad2db98a}{MAGIQUEST\+\_\+\+UNIT}}}
+
+
+
+Definition at line \mbox{\hyperlink{ir___magi_quest_8hpp_source_l00083}{83}} of file \mbox{\hyperlink{ir___magi_quest_8hpp_source}{ir\+\_\+\+Magi\+Quest.\+hpp}}.
+
+\mbox{\Hypertarget{ir___magi_quest_8hpp_a95ff1854b629d4e2dce95224f470f031}\label{ir___magi_quest_8hpp_a95ff1854b629d4e2dce95224f470f031}} 
+\index{ir\_MagiQuest.hpp@{ir\_MagiQuest.hpp}!MAGIQUEST\_ZERO\_SPACE@{MAGIQUEST\_ZERO\_SPACE}}
+\index{MAGIQUEST\_ZERO\_SPACE@{MAGIQUEST\_ZERO\_SPACE}!ir\_MagiQuest.hpp@{ir\_MagiQuest.hpp}}
+\doxysubsubsection{\texorpdfstring{MAGIQUEST\_ZERO\_SPACE}{MAGIQUEST\_ZERO\_SPACE}}
+{\footnotesize\ttfamily \#define MAGIQUEST\+\_\+\+ZERO\+\_\+\+SPACE~(3 $\ast$ \mbox{\hyperlink{ir___magi_quest_8hpp_ab55a5562099370a536d44962ad2db98a}{MAGIQUEST\+\_\+\+UNIT}})}
+
+
+
+Definition at line \mbox{\hyperlink{ir___magi_quest_8hpp_source_l00084}{84}} of file \mbox{\hyperlink{ir___magi_quest_8hpp_source}{ir\+\_\+\+Magi\+Quest.\+hpp}}.
+

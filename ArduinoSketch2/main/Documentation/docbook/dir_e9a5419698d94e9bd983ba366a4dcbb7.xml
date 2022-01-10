@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_dir_e9a5419698d94e9bd983ba366a4dcbb7" xml:lang="en-US">
+<title>main/Debug/Modules/Actuators Directory Reference</title>
+<indexterm><primary>main/Debug/Modules/Actuators Directory Reference</primary></indexterm>
+<simplesect>
+    <title>Directories    </title>
+        <itemizedlist>
+            <listitem><para>directory <link linkend="_dir_62d8974aef2ca07328f6457289517e8b">Buzzer</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

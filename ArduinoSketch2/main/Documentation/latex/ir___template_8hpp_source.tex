@@ -1,0 +1,258 @@
+\hypertarget{ir___template_8hpp_source}{}\doxysection{ir\+\_\+\+Template.\+hpp}
+\label{ir___template_8hpp_source}\index{main/IRRemote\_Library/ir\_Template.hpp@{main/IRRemote\_Library/ir\_Template.hpp}}
+\mbox{\hyperlink{ir___template_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00001}00001 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00002}00002 \textcolor{comment}{ Assuming the protocol we are adding is for the (imaginary) manufacturer:  Shuzu}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00003}00003 \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00004}00004 \textcolor{comment}{ Our fantasy protocol is a standard protocol, so we can use this standard}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00005}00005 \textcolor{comment}{ template without too much work. Some protocols are quite unique and will require}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00006}00006 \textcolor{comment}{ considerably more work in this file! It is way beyond the scope of this text to}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00007}00007 \textcolor{comment}{ explain how to reverse engineer "{}unusual"{} IR protocols. But, unless you own an}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00008}00008 \textcolor{comment}{ oscilloscope, the starting point is probably to use the rawDump.ino sketch and}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00009}00009 \textcolor{comment}{ try to spot the pattern!}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00010}00010 \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00011}00011 \textcolor{comment}{ Before you start, make sure the IR library is working OK:}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00012}00012 \textcolor{comment}{ \# Open up the Arduino IDE}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00013}00013 \textcolor{comment}{ \# Load up the rawDump.ino example sketch}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00014}00014 \textcolor{comment}{ \# Run it}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00015}00015 \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00016}00016 \textcolor{comment}{ Now we can start to add our new protocol...}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00017}00017 \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00018}00018 \textcolor{comment}{ 1. Copy this file to : ir\_Shuzu.cpp}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00019}00019 \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00020}00020 \textcolor{comment}{ 2. Replace all occurrences of "{}Shuzu"{} with the name of your protocol.}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00021}00021 \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00022}00022 \textcolor{comment}{ 3. Tweak the \#defines to suit your protocol.}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00023}00023 \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00024}00024 \textcolor{comment}{ 4. If you're lucky, tweaking the \#defines will make the default send() function}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00025}00025 \textcolor{comment}{ work.}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00026}00026 \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00027}00027 \textcolor{comment}{ 5. Again, if you're lucky, tweaking the \#defines will have made the default}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00028}00028 \textcolor{comment}{ decode() function work.}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00029}00029 \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00030}00030 \textcolor{comment}{ You have written the code to support your new protocol!}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00031}00031 \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00032}00032 \textcolor{comment}{ Now you must do a few things to add it to the IRremote system:}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00033}00033 \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00034}00034 \textcolor{comment}{ 1. Open IRremote.h and make the following change:}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00035}00035 \textcolor{comment}{ REMEMBER to change occurrences of "{}SHUZU"{} with the name of your protocol}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00036}00036 \textcolor{comment}{ At the top, in the section "{}Supported Protocols"{}, add:}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00037}00037 \textcolor{comment}{ \#define DECODE\_SHUZU  1}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00038}00038 \textcolor{comment}{ \#define SEND\_SHUZU    1}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00039}00039 \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00040}00040 \textcolor{comment}{ 2. Open IRProtocol.h and make the following change:}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00041}00041 \textcolor{comment}{ In the section "{}An enum consisting of all supported formats"{}, add:}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00042}00042 \textcolor{comment}{ SHUZU,}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00043}00043 \textcolor{comment}{ to the end of the list (notice there is a comma after the protocol name)}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00044}00044 \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00045}00045 \textcolor{comment}{ 3. Open IRremoteInt.h and make the following changes:}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00046}00046 \textcolor{comment}{ A. Further down in "{}Main class for receiving IR"{}, add:}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00047}00047 \textcolor{comment}{ //......................................................................}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00048}00048 \textcolor{comment}{ \#if DECODE\_SHUZU}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00049}00049 \textcolor{comment}{ bool  decodeShuzu () ;}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00050}00050 \textcolor{comment}{ \#endif}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00051}00051 \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00052}00052 \textcolor{comment}{ B. Further down in "{}Main class for sending IR"{}, add:}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00053}00053 \textcolor{comment}{ //......................................................................}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00054}00054 \textcolor{comment}{ \#if SEND\_SHUZU}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00055}00055 \textcolor{comment}{ void  sendShuzuStandard (uint16\_t aAddress, uint8\_t aCommand, uint\_fast8\_t aNumberOfRepeats) ;}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00056}00056 \textcolor{comment}{ \#endif}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00057}00057 \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00058}00058 \textcolor{comment}{ 4. Save your changes and close the files}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00059}00059 \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00060}00060 \textcolor{comment}{ 5. Now open IRReceive.hpp and make the following change:}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00061}00061 \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00062}00062 \textcolor{comment}{ A. In the function IRrecv::decode(), add:}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00063}00063 \textcolor{comment}{ \#ifdef DECODE\_SHUZU}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00064}00064 \textcolor{comment}{ IR\_DEBUG\_PRINTLN("{}Attempting Shuzu decode"{});}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00065}00065 \textcolor{comment}{ if (decodeShuzu())  return true ;}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00066}00066 \textcolor{comment}{ \#endif}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00067}00067 \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00068}00068 \textcolor{comment}{ B. In the function getProtocolString(), add}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00069}00069 \textcolor{comment}{ case SHUZU:}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00070}00070 \textcolor{comment}{ return ("{}Shuzu"{});}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00071}00071 \textcolor{comment}{ break;}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00072}00072 \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00073}00073 \textcolor{comment}{ C. Save your changes and close the file}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00074}00074 \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00075}00075 \textcolor{comment}{ 6. Now open the Arduino IDE, load up the rawDump.ino sketch, and run it.}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00076}00076 \textcolor{comment}{ Hopefully it will compile and upload.}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00077}00077 \textcolor{comment}{ If it doesn't, you've done something wrong. Check your work.}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00078}00078 \textcolor{comment}{ If you can't get it to work -\/ seek help from somewhere.}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00079}00079 \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00080}00080 \textcolor{comment}{ If you get this far, I will assume you have successfully added your new protocol}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00081}00081 \textcolor{comment}{ There is one last thing to do.}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00082}00082 \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00083}00083 \textcolor{comment}{ 7. Delete this giant instructional comment.}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00084}00084 \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00085}00085 \textcolor{comment}{ 8. Send a copy of your work to us so we can include it in the library and}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00086}00086 \textcolor{comment}{ others may benefit from your hard work and maybe even write a song about how}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00087}00087 \textcolor{comment}{ great you are for helping them! :)}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00088}00088 \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00089}00089 \textcolor{comment}{ Regards,}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00090}00090 \textcolor{comment}{ BlueChip}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00091}00091 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00092}00092 }
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00093}00093 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00094}00094 \textcolor{comment}{ * ir\_Shuzu.cpp}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00095}00095 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00096}00096 \textcolor{comment}{ *  Contains functions for receiving and sending Shuzu IR Protocol ...}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00097}00097 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00098}00098 \textcolor{comment}{ *  Copyright (C) 2021  Shuzu Guru}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00099}00099 \textcolor{comment}{ *  shuzu.guru@gmail.com}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00100}00100 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00101}00101 \textcolor{comment}{ *  This file is part of Arduino-\/IRremote https://github.com/Arduino-\/IRremote/Arduino-\/IRremote.}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00102}00102 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00103}00103 \textcolor{comment}{ ************************************************************************************}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00104}00104 \textcolor{comment}{ * MIT License}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00105}00105 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00106}00106 \textcolor{comment}{ * Copyright (c) 2017-\/2021 Unknown Contributor :-\/)}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00107}00107 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00108}00108 \textcolor{comment}{ * Permission is hereby granted, free of charge, to any person obtaining a copy}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00109}00109 \textcolor{comment}{ * of this software and associated documentation files (the "{}Software"{}), to deal}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00110}00110 \textcolor{comment}{ * in the Software without restriction, including without limitation the rights}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00111}00111 \textcolor{comment}{ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00112}00112 \textcolor{comment}{ * copies of the Software, and to permit persons to whom the Software is furnished}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00113}00113 \textcolor{comment}{ * to do so, subject to the following conditions:}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00114}00114 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00115}00115 \textcolor{comment}{ * The above copyright notice and this permission notice shall be included in all}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00116}00116 \textcolor{comment}{ * copies or substantial portions of the Software.}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00117}00117 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00118}00118 \textcolor{comment}{ * THE SOFTWARE IS PROVIDED "{}AS IS"{}, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00119}00119 \textcolor{comment}{ * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00120}00120 \textcolor{comment}{ * PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00121}00121 \textcolor{comment}{ * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00122}00122 \textcolor{comment}{ * CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00123}00123 \textcolor{comment}{ * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00124}00124 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00125}00125 \textcolor{comment}{ ************************************************************************************}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00126}00126 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00127}00127 \textcolor{preprocessor}{\#ifndef IR\_SHUZU\_HPP}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00128}00128 \textcolor{preprocessor}{\#define IR\_SHUZU\_HPP}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00129}00129 }
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00130}00130 \textcolor{preprocessor}{\#include <Arduino.h>}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00131}00131 }
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00132}00132 \textcolor{comment}{//\#define DEBUG // Activate this for lots of lovely debug output from this decoder.}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00133}00133 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_i_rremote_int_8h}{IRremoteInt.h}}"{}} \textcolor{comment}{// evaluates the DEBUG for IR\_DEBUG\_PRINT}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00134}00134 }
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00135}00135 \textcolor{comment}{//\#define SEND\_SHUZU  1 // for testing}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00136}00136 \textcolor{comment}{//\#define DECODE\_SHUZU  1 // for testing}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00137}00137 \textcolor{comment}{//==============================================================================}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00138}00138 \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00139}00139 \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00140}00140 \textcolor{comment}{//                              S H U Z U}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00141}00141 \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00142}00142 \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00143}00143 \textcolor{comment}{//==============================================================================}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00144}00144 \textcolor{comment}{// see: https://www....}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00145}00145 }
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00146}00146 \textcolor{comment}{// LSB first, 1 start bit + 16 bit address + 8 bit command + 1 stop bit.}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00147}\mbox{\hyperlink{ir___template_8hpp_a1cd4a04cfda39d641d390d62fdb4c333}{00147}} \textcolor{preprocessor}{\#define SHUZU\_ADDRESS\_BITS      16 }\textcolor{comment}{// 16 bit address}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00148}\mbox{\hyperlink{ir___template_8hpp_a9a8c4e633bbd0b23d6147c1764e5d583}{00148}} \textcolor{preprocessor}{\#define SHUZU\_COMMAND\_BITS      8 }\textcolor{comment}{// Command}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00149}00149 }
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00150}\mbox{\hyperlink{ir___template_8hpp_a9f3f74d73db0c979182d61ae7bb0e7d6}{00150}} \textcolor{preprocessor}{\#define SHUZU\_BITS              (SHUZU\_ADDRESS\_BITS + SHUZU\_COMMAND\_BITS) }\textcolor{comment}{// The number of bits in the protocol}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00151}\mbox{\hyperlink{ir___template_8hpp_acf7de30311a6d14db0d1aa23a829f39e}{00151}} \textcolor{preprocessor}{\#define SHUZU\_UNIT              560}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00152}00152 }
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00153}\mbox{\hyperlink{ir___template_8hpp_a59bf3ec6d3a251bf9e5b6910f4511fca}{00153}} \textcolor{preprocessor}{\#define SHUZU\_HEADER\_MARK       (16 * SHUZU\_UNIT) }\textcolor{comment}{// The length of the Header:Mark}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00154}\mbox{\hyperlink{ir___template_8hpp_ac5f6d4bb7069fe2403be52fec8ec1672}{00154}} \textcolor{preprocessor}{\#define SHUZU\_HEADER\_SPACE      (8 * SHUZU\_UNIT)  }\textcolor{comment}{// The length of the Header:Space}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00155}00155 }
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00156}\mbox{\hyperlink{ir___template_8hpp_afb0642173138e267a4583c4c0f2bc35f}{00156}} \textcolor{preprocessor}{\#define SHUZU\_BIT\_MARK          SHUZU\_UNIT        }\textcolor{comment}{// The length of a Bit:Mark}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00157}\mbox{\hyperlink{ir___template_8hpp_a8234daa08e0a133eef5a3a4fca4d43b0}{00157}} \textcolor{preprocessor}{\#define SHUZU\_ONE\_SPACE         (3 * SHUZU\_UNIT)  }\textcolor{comment}{// The length of a Bit:Space for 1's}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00158}\mbox{\hyperlink{ir___template_8hpp_a8290df35f477610944f6e8cc9a53869d}{00158}} \textcolor{preprocessor}{\#define SHUZU\_ZERO\_SPACE        SHUZU\_UNIT        }\textcolor{comment}{// The length of a Bit:Space for 0's}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00159}00159 }
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00160}\mbox{\hyperlink{ir___template_8hpp_a867779572885cb61bf370ae339fe01d2}{00160}} \textcolor{preprocessor}{\#define SHUZU\_REPEAT\_HEADER\_SPACE (4 * SHUZU\_UNIT)  }\textcolor{comment}{// 2250}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00161}00161 }
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00162}\mbox{\hyperlink{ir___template_8hpp_a2813fb0cb54aa7fe986f3ceadb73d74c}{00162}} \textcolor{preprocessor}{\#define SHUZU\_REPEAT\_SPACE      45000}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00163}00163 }
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00164}\mbox{\hyperlink{ir___template_8hpp_aadf4f80ceb0d1ad4407496eec01cd4cc}{00164}} \textcolor{preprocessor}{\#define SHUZU\_OTHER             1234  }\textcolor{comment}{// Other things you may need to define}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00165}00165 }
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00166}00166 \textcolor{comment}{//+=============================================================================}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00167}00167 \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00168}\mbox{\hyperlink{class_i_rsend_a1d8036a6e498c052b291a2871a3b1b94}{00168}} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_i_rsend_a1d8036a6e498c052b291a2871a3b1b94}{IRsend::sendShuzu}}(uint16\_t aAddress, uint8\_t aCommand, uint\_fast8\_t aNumberOfRepeats) \{}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00169}00169     \textcolor{comment}{// Set IR carrier frequency}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00170}00170     \mbox{\hyperlink{group___sending_ga42c04af63d252b320c017ffa2bfc90e5}{enableIROut}}(38);}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00171}00171 }
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00172}00172     uint\_fast8\_t tNumberOfCommands = \mbox{\hyperlink{class_i_rsend_aff233b57d2382a713926797ce5da0fd3}{aNumberOfRepeats}} + 1;}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00173}00173     \textcolor{keywordflow}{while} (tNumberOfCommands > 0) \{}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00174}00174 }
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00175}00175         \textcolor{comment}{// Header}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00176}00176         \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(\mbox{\hyperlink{ir___template_8hpp_a59bf3ec6d3a251bf9e5b6910f4511fca}{SHUZU\_HEADER\_MARK}});}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00177}00177         \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(\mbox{\hyperlink{ir___template_8hpp_ac5f6d4bb7069fe2403be52fec8ec1672}{SHUZU\_HEADER\_SPACE}});}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00178}00178 }
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00179}00179         \textcolor{comment}{// Address (device and subdevice)}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00180}00180         \mbox{\hyperlink{group___sending_ga6904a411999a4c9f7306dba49851eb7b}{sendPulseDistanceWidthData}}(\mbox{\hyperlink{ir___template_8hpp_afb0642173138e267a4583c4c0f2bc35f}{SHUZU\_BIT\_MARK}}, \mbox{\hyperlink{ir___template_8hpp_a8234daa08e0a133eef5a3a4fca4d43b0}{SHUZU\_ONE\_SPACE}}, \mbox{\hyperlink{ir___template_8hpp_afb0642173138e267a4583c4c0f2bc35f}{SHUZU\_BIT\_MARK}}, \mbox{\hyperlink{ir___template_8hpp_a8290df35f477610944f6e8cc9a53869d}{SHUZU\_ZERO\_SPACE}}, aAddress,}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00181}00181         \mbox{\hyperlink{ir___template_8hpp_a1cd4a04cfda39d641d390d62fdb4c333}{SHUZU\_ADDRESS\_BITS}}, \mbox{\hyperlink{_i_r_protocol_8h_a8717702b4019c982727719bd40af7630}{PROTOCOL\_IS\_LSB\_FIRST}}); \textcolor{comment}{// false -\/> LSB first}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00182}00182 }
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00183}00183         \textcolor{comment}{// Command + stop bit}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00184}00184         \mbox{\hyperlink{group___sending_ga6904a411999a4c9f7306dba49851eb7b}{sendPulseDistanceWidthData}}(\mbox{\hyperlink{ir___template_8hpp_afb0642173138e267a4583c4c0f2bc35f}{SHUZU\_BIT\_MARK}}, \mbox{\hyperlink{ir___template_8hpp_a8234daa08e0a133eef5a3a4fca4d43b0}{SHUZU\_ONE\_SPACE}}, \mbox{\hyperlink{ir___template_8hpp_afb0642173138e267a4583c4c0f2bc35f}{SHUZU\_BIT\_MARK}}, \mbox{\hyperlink{ir___template_8hpp_a8290df35f477610944f6e8cc9a53869d}{SHUZU\_ZERO\_SPACE}}, \mbox{\hyperlink{class_i_rsend_a5f5d819c72ce2f74395d14166e77c7cc}{aCommand}},}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00185}00185         \mbox{\hyperlink{ir___template_8hpp_a9a8c4e633bbd0b23d6147c1764e5d583}{SHUZU\_COMMAND\_BITS}}, \mbox{\hyperlink{_i_r_protocol_8h_a8717702b4019c982727719bd40af7630}{PROTOCOL\_IS\_LSB\_FIRST}}, \mbox{\hyperlink{_i_rremote_int_8h_a48e176b38988494bc725ac4fa98c534a}{SEND\_STOP\_BIT}}); \textcolor{comment}{// false, true -\/> LSB first, stop bit}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00186}00186 }
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00187}00187         tNumberOfCommands-\/-\/;}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00188}00188         \textcolor{comment}{// skip last delay!}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00189}00189         \textcolor{keywordflow}{if} (tNumberOfCommands > 0) \{}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00190}00190             \textcolor{comment}{// send repeated command in a fixed raster}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00191}00191             delay(\mbox{\hyperlink{ir___template_8hpp_a2813fb0cb54aa7fe986f3ceadb73d74c}{SHUZU\_REPEAT\_SPACE}} / \mbox{\hyperlink{_i_rremote_int_8h_ae9ba0b7dd556e22688f7da01019bba68}{MICROS\_IN\_ONE\_MILLI}});}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00192}00192         \}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00193}00193     \}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00194}00194 \}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00195}00195 }
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00196}00196 \textcolor{comment}{//+=============================================================================}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00197}00197 \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00198}00198 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00199}00199 \textcolor{comment}{ * First check for right data length}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00200}00200 \textcolor{comment}{ * Next check start bit}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00201}00201 \textcolor{comment}{ * Next try the decode}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00202}00202 \textcolor{comment}{ * Last check stop bit}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00203}00203 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00204}\mbox{\hyperlink{class_i_rrecv_a6207eb34d90c00db7d8d6c79e53e721d}{00204}} \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_i_rrecv_a6207eb34d90c00db7d8d6c79e53e721d}{IRrecv::decodeShuzu}}() \{}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00205}00205 }
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00206}00206     \textcolor{comment}{// Check we have the right amount of data (28). The +4 is for initial gap, start bit mark and space + stop bit mark}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00207}00207     \textcolor{keywordflow}{if} (\mbox{\hyperlink{class_i_rrecv_a19d71758b1b0e1fbee948ad917c5b828}{decodedIRData}}.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_af0571ac479d1c38c79502651b0631432}{rawlen}} != (2 * \mbox{\hyperlink{ir___template_8hpp_a9f3f74d73db0c979182d61ae7bb0e7d6}{SHUZU\_BITS}}) + 4) \{}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00208}00208         \textcolor{comment}{// no debug output, since this check is mainly to determine the received protocol}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00209}00209         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00210}00210     \}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00211}00211 }
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00212}00212     \textcolor{comment}{// Check header "{}space"{}}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00213}00213     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{group___receiving_ga4472564ea96b1ee10b51f594f60d7aeb}{matchMark}}(\mbox{\hyperlink{class_i_rrecv_a19d71758b1b0e1fbee948ad917c5b828}{decodedIRData}}.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_a7aa7b811dcc0fb5ab0da7c0bddaf97f8}{rawbuf}}[1], \mbox{\hyperlink{ir___template_8hpp_a59bf3ec6d3a251bf9e5b6910f4511fca}{SHUZU\_HEADER\_MARK}}) || !\mbox{\hyperlink{group___receiving_ga7902b620f6c01463b5b6e50ef604ac8b}{matchSpace}}(\mbox{\hyperlink{class_i_rrecv_a19d71758b1b0e1fbee948ad917c5b828}{decodedIRData}}.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_a7aa7b811dcc0fb5ab0da7c0bddaf97f8}{rawbuf}}[2], \mbox{\hyperlink{ir___template_8hpp_ac5f6d4bb7069fe2403be52fec8ec1672}{SHUZU\_HEADER\_SPACE}})) \{}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00214}00214         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(\textcolor{stringliteral}{"{}Shuzu: "{}});}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00215}00215         \mbox{\hyperlink{_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}Header mark or space length is wrong"{}});}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00216}00216         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00217}00217     \}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00218}00218 }
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00219}00219     \textcolor{comment}{// false -\/> LSB first}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00220}00220     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{group___receiving_gaf8c9cdb5f7280043a552f22265bdb2d5}{decodePulseDistanceData}}(\mbox{\hyperlink{ir___template_8hpp_a9f3f74d73db0c979182d61ae7bb0e7d6}{SHUZU\_BITS}}, 3, \mbox{\hyperlink{ir___template_8hpp_afb0642173138e267a4583c4c0f2bc35f}{SHUZU\_BIT\_MARK}}, \mbox{\hyperlink{ir___template_8hpp_a8234daa08e0a133eef5a3a4fca4d43b0}{SHUZU\_ONE\_SPACE}}, \mbox{\hyperlink{ir___template_8hpp_a8290df35f477610944f6e8cc9a53869d}{SHUZU\_ZERO\_SPACE}}, \mbox{\hyperlink{_i_r_protocol_8h_a8717702b4019c982727719bd40af7630}{PROTOCOL\_IS\_LSB\_FIRST}})) \{}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00221}00221         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(F(\textcolor{stringliteral}{"{}Shuzu: "{}}));}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00222}00222         \mbox{\hyperlink{_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(F(\textcolor{stringliteral}{"{}Decode failed"{}}));}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00223}00223         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00224}00224     \}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00225}00225 }
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00226}00226     \textcolor{comment}{// Stop bit}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00227}00227     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{group___receiving_ga4472564ea96b1ee10b51f594f60d7aeb}{matchMark}}(\mbox{\hyperlink{class_i_rrecv_a19d71758b1b0e1fbee948ad917c5b828}{decodedIRData}}.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_a7aa7b811dcc0fb5ab0da7c0bddaf97f8}{rawbuf}}[3 + (2 * \mbox{\hyperlink{ir___template_8hpp_a9f3f74d73db0c979182d61ae7bb0e7d6}{SHUZU\_BITS}})], \mbox{\hyperlink{ir___template_8hpp_afb0642173138e267a4583c4c0f2bc35f}{SHUZU\_BIT\_MARK}})) \{}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00228}00228         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(F(\textcolor{stringliteral}{"{}Shuzu: "{}}));}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00229}00229         \mbox{\hyperlink{_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(F(\textcolor{stringliteral}{"{}Stop bit mark length is wrong"{}}));}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00230}00230         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00231}00231     \}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00232}00232 }
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00233}00233     \textcolor{comment}{// Success}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00234}00234 \textcolor{comment}{//    decodedIRData.flags = IRDATA\_FLAGS\_IS\_LSB\_FIRST; // Not required, since this is the start value}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00235}00235     uint8\_t tCommand = \mbox{\hyperlink{class_i_rrecv_a19d71758b1b0e1fbee948ad917c5b828}{decodedIRData}}.\mbox{\hyperlink{struct_i_r_data_aeca55ebf36bf919312a933597b8734d8}{decodedRawData}} >> \mbox{\hyperlink{ir___template_8hpp_a1cd4a04cfda39d641d390d62fdb4c333}{SHUZU\_ADDRESS\_BITS}};  \textcolor{comment}{// upper 8 bits of LSB first value}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00236}00236     uint8\_t tAddress = \mbox{\hyperlink{class_i_rrecv_a19d71758b1b0e1fbee948ad917c5b828}{decodedIRData}}.\mbox{\hyperlink{struct_i_r_data_aeca55ebf36bf919312a933597b8734d8}{decodedRawData}} \& 0xFFFF;    \textcolor{comment}{// lowest 16 bit of LSB first value}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00237}00237 }
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00238}00238     \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00239}00239 \textcolor{comment}{     *  Check for repeat}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00240}00240 \textcolor{comment}{     */}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00241}00241     \textcolor{keywordflow}{if} (\mbox{\hyperlink{class_i_rrecv_a19d71758b1b0e1fbee948ad917c5b828}{decodedIRData}}.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_a7aa7b811dcc0fb5ab0da7c0bddaf97f8}{rawbuf}}[0] < ((\mbox{\hyperlink{ir___template_8hpp_a2813fb0cb54aa7fe986f3ceadb73d74c}{SHUZU\_REPEAT\_SPACE}} + (\mbox{\hyperlink{ir___template_8hpp_a2813fb0cb54aa7fe986f3ceadb73d74c}{SHUZU\_REPEAT\_SPACE}} / 4)) / \mbox{\hyperlink{_i_rremote_int_8h_a1c7eebb527483c272812530caa313d20}{MICROS\_PER\_TICK}})) \{}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00242}00242         \mbox{\hyperlink{class_i_rrecv_a19d71758b1b0e1fbee948ad917c5b828}{decodedIRData}}.\mbox{\hyperlink{struct_i_r_data_aaaad48fc0d90e5c6daec601987848a51}{flags}} = \mbox{\hyperlink{_i_rremote_int_8h_aaa9952cd64b58083c28873484c494abf}{IRDATA\_FLAGS\_IS\_REPEAT}} | \mbox{\hyperlink{_i_rremote_int_8h_a035e96118f9daf6d8e5152a1ae466538}{IRDATA\_FLAGS\_IS\_LSB\_FIRST}};}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00243}00243     \}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00244}00244     \mbox{\hyperlink{class_i_rrecv_a19d71758b1b0e1fbee948ad917c5b828}{decodedIRData}}.\mbox{\hyperlink{struct_i_r_data_ab0ce2b36765ea429e8c4bfa0706a45e7}{command}} = tCommand;}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00245}00245     \mbox{\hyperlink{class_i_rrecv_a19d71758b1b0e1fbee948ad917c5b828}{decodedIRData}}.\mbox{\hyperlink{struct_i_r_data_a1255a5b7d704d34fda83dcabcb903d4c}{address}} = tAddress;}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00246}00246     \mbox{\hyperlink{class_i_rrecv_a19d71758b1b0e1fbee948ad917c5b828}{decodedIRData}}.\mbox{\hyperlink{struct_i_r_data_a945c41b8463a36cf00b0f38b0aa73200}{numberOfBits}} = \mbox{\hyperlink{ir___template_8hpp_a9f3f74d73db0c979182d61ae7bb0e7d6}{SHUZU\_BITS}};}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00247}00247     \mbox{\hyperlink{class_i_rrecv_a19d71758b1b0e1fbee948ad917c5b828}{decodedIRData}}.\mbox{\hyperlink{struct_i_r_data_a703592faec26bab5cbe465f53ef14245}{protocol}} = \mbox{\hyperlink{_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fadadf6c249ac7d923229f9e623eff9a61f4}{LG}}; \textcolor{comment}{// we have no SHUZU code}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00248}00248 }
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00249}00249     \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00250}00250 \}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00251}00251 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \#ifndef IR\_SHUZU\_HPP}}
+\DoxyCodeLine{\Hypertarget{ir___template_8hpp_source_l00252}00252 \textcolor{preprocessor}{\#pragma once}}
+
+\end{DoxyCode}

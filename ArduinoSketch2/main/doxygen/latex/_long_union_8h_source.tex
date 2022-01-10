@@ -1,0 +1,92 @@
+\hypertarget{_long_union_8h_source}{}\doxysection{Long\+Union.\+h}
+\label{_long_union_8h_source}\index{IRRemote/LongUnion.h@{IRRemote/LongUnion.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * LongUnion.h}}
+\DoxyCodeLine{3 \textcolor{comment}{ *}}
+\DoxyCodeLine{4 \textcolor{comment}{ *  Copyright (C) 2020  Armin Joachimsmeyer}}
+\DoxyCodeLine{5 \textcolor{comment}{ *  Email: armin.joachimsmeyer@gmail.com}}
+\DoxyCodeLine{6 \textcolor{comment}{ *}}
+\DoxyCodeLine{7 \textcolor{comment}{ *  This file is part of Arduino-\/Utils https://github.com/ArminJo/Arduino-\/Utils.}}
+\DoxyCodeLine{8 \textcolor{comment}{ *}}
+\DoxyCodeLine{9 \textcolor{comment}{ *  Arduino-\/Utils is free software: you can redistribute it and/or modify}}
+\DoxyCodeLine{10 \textcolor{comment}{ *  it under the terms of the GNU General Public License as published by}}
+\DoxyCodeLine{11 \textcolor{comment}{ *  the Free Software Foundation, either version 3 of the License, or}}
+\DoxyCodeLine{12 \textcolor{comment}{ *  (at your option) any later version.}}
+\DoxyCodeLine{13 \textcolor{comment}{ *}}
+\DoxyCodeLine{14 \textcolor{comment}{ *  This program is distributed in the hope that it will be useful,}}
+\DoxyCodeLine{15 \textcolor{comment}{ *  but WITHOUT ANY WARRANTY; without even the implied warranty of}}
+\DoxyCodeLine{16 \textcolor{comment}{ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the}}
+\DoxyCodeLine{17 \textcolor{comment}{ *  GNU General Public License for more details.}}
+\DoxyCodeLine{18 \textcolor{comment}{ *}}
+\DoxyCodeLine{19 \textcolor{comment}{ *  You should have received a copy of the GNU General Public License}}
+\DoxyCodeLine{20 \textcolor{comment}{ *  along with this program.  If not, see <http://www.gnu.org/licenses/gpl.html>.}}
+\DoxyCodeLine{21 \textcolor{comment}{ *}}
+\DoxyCodeLine{22 \textcolor{comment}{ */}}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#ifndef LONG\_UNION\_H}}
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#define LONG\_UNION\_H}}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#include <Arduino.h>}}
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#include <stdint.h>}}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{34 \textcolor{keyword}{union }\mbox{\hyperlink{union_word_union}{WordUnion}} \{}
+\DoxyCodeLine{35     \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{36         uint8\_t LowByte;}
+\DoxyCodeLine{37         uint8\_t HighByte;}
+\DoxyCodeLine{38     \} UByte;}
+\DoxyCodeLine{39     \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{40         int8\_t LowByte;}
+\DoxyCodeLine{41         int8\_t HighByte;}
+\DoxyCodeLine{42     \} Byte;}
+\DoxyCodeLine{43     uint8\_t UBytes[2];}
+\DoxyCodeLine{44     int8\_t Bytes[2];}
+\DoxyCodeLine{45     uint16\_t UWord;}
+\DoxyCodeLine{46     int16\_t Word;}
+\DoxyCodeLine{47     uint8\_t *BytePointer;}
+\DoxyCodeLine{48 \};}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{54 \textcolor{keyword}{union }\mbox{\hyperlink{union_long_union}{LongUnion}} \{}
+\DoxyCodeLine{55     \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{56         uint8\_t LowByte;}
+\DoxyCodeLine{57         uint8\_t MidLowByte;}
+\DoxyCodeLine{58         uint8\_t MidHighByte;}
+\DoxyCodeLine{59         uint8\_t HighByte;}
+\DoxyCodeLine{60     \} UByte;}
+\DoxyCodeLine{61     \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{62         int8\_t LowByte;}
+\DoxyCodeLine{63         int8\_t MidLowByte;}
+\DoxyCodeLine{64         int8\_t MidHighByte;}
+\DoxyCodeLine{65         int8\_t HighByte;}
+\DoxyCodeLine{66     \} Byte;}
+\DoxyCodeLine{67     \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{68         uint8\_t LowByte;}
+\DoxyCodeLine{69         \mbox{\hyperlink{union_word_union}{WordUnion}} MidWord;}
+\DoxyCodeLine{70         uint8\_t HighByte;}
+\DoxyCodeLine{71     \} ByteWord;}
+\DoxyCodeLine{72     \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{73         int16\_t LowWord;}
+\DoxyCodeLine{74         int16\_t HighWord;}
+\DoxyCodeLine{75     \} Word;}
+\DoxyCodeLine{76     \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{77         \mbox{\hyperlink{union_word_union}{WordUnion}} LowWord;}
+\DoxyCodeLine{78         \mbox{\hyperlink{union_word_union}{WordUnion}} HighWord;}
+\DoxyCodeLine{79     \} \mbox{\hyperlink{union_word_union}{WordUnion}};}
+\DoxyCodeLine{80     \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{81         uint16\_t LowWord;}
+\DoxyCodeLine{82         uint16\_t HighWord;}
+\DoxyCodeLine{83     \} UWord;}
+\DoxyCodeLine{84     uint8\_t UBytes[4]; \textcolor{comment}{// seems to have the same code size as using struct UByte}}
+\DoxyCodeLine{85     int8\_t Bytes[4];}
+\DoxyCodeLine{86     uint16\_t UWords[2];}
+\DoxyCodeLine{87     int16\_t Words[2];}
+\DoxyCodeLine{88     uint32\_t ULong;}
+\DoxyCodeLine{89     int32\_t Long;}
+\DoxyCodeLine{90 \};}
+\DoxyCodeLine{91 }
+\DoxyCodeLine{92 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// LONG\_UNION\_H}}
+\DoxyCodeLine{93 }
+\DoxyCodeLine{94 \textcolor{preprocessor}{\#pragma once}}
+
+\end{DoxyCode}

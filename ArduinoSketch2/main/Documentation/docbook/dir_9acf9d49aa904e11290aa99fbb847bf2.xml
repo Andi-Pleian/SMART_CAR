@@ -5,9 +5,11 @@
 <simplesect>
     <title>Files    </title>
         <itemizedlist>
-            <listitem><para>file <link linkend="__buzzer_8cpp">Buzzer.cpp</link></para>
+            <listitem><para>file <link linkend="__buzz_8cpp">Buzz.cpp</link></para>
 </listitem>
-            <listitem><para>file <link linkend="__buzzer_8h">Buzzer.h</link></para>
+            <listitem><para>file <link linkend="__buzz_8h">Buzz.h</link></para>
+</listitem>
+            <listitem><para>file <link linkend="__buzz___config_8h">Buzz_Config.h</link></para>
 </listitem>
         </itemizedlist>
 </simplesect>

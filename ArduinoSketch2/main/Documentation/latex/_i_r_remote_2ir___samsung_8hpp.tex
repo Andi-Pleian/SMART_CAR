@@ -1,0 +1,40 @@
+\hypertarget{_i_r_remote_2ir___samsung_8hpp}{}\doxysection{main/\+IRRemote/ir\+\_\+\+Samsung.hpp File Reference}
+\label{_i_r_remote_2ir___samsung_8hpp}\index{main/IRRemote/ir\_Samsung.hpp@{main/IRRemote/ir\_Samsung.hpp}}
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}IRremote\+Int.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Long\+Union.\+h\char`\"{}}\newline
+Include dependency graph for ir\+\_\+\+Samsung.\+hpp\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group___decoder_ga283d6e91f30293b52d3b0d7aeb11c2cb}{SAMSUNG\+\_\+\+ADDRESS\+\_\+\+BITS}}~16
+\item 
+\#define \mbox{\hyperlink{group___decoder_ga12d540662f0eaef3297b2fee1be653b9}{SAMSUNG\+\_\+\+COMMAND16\+\_\+\+BITS}}~16
+\item 
+\#define \mbox{\hyperlink{group___decoder_gab7035588b69b6a1c30dd496a1e8351c0}{SAMSUNG\+\_\+\+COMMAND32\+\_\+\+BITS}}~32
+\item 
+\#define \mbox{\hyperlink{group___decoder_gafc27510b737f1ce90042bee6ef245592}{SAMSUNG\+\_\+\+BITS}}~(\mbox{\hyperlink{group___decoder_ga283d6e91f30293b52d3b0d7aeb11c2cb}{SAMSUNG\+\_\+\+ADDRESS\+\_\+\+BITS}} + \mbox{\hyperlink{group___decoder_ga12d540662f0eaef3297b2fee1be653b9}{SAMSUNG\+\_\+\+COMMAND16\+\_\+\+BITS}})
+\item 
+\#define \mbox{\hyperlink{group___decoder_gac442c5511ca3736cafc683e2507db6b4}{SAMSUNG48\+\_\+\+BITS}}~(\mbox{\hyperlink{group___decoder_ga283d6e91f30293b52d3b0d7aeb11c2cb}{SAMSUNG\+\_\+\+ADDRESS\+\_\+\+BITS}} + \mbox{\hyperlink{group___decoder_gab7035588b69b6a1c30dd496a1e8351c0}{SAMSUNG\+\_\+\+COMMAND32\+\_\+\+BITS}})
+\item 
+\#define \mbox{\hyperlink{group___decoder_ga651bd895c4ad553171399aebcc7297ea}{SAMSUNG\+\_\+\+UNIT}}~553
+\item 
+\#define \mbox{\hyperlink{group___decoder_gaba5b0346e4a7aca7a202768a6abf7cae}{SAMSUNG\+\_\+\+HEADER\+\_\+\+MARK}}~(8 $\ast$ \mbox{\hyperlink{group___decoder_ga651bd895c4ad553171399aebcc7297ea}{SAMSUNG\+\_\+\+UNIT}})
+\item 
+\#define \mbox{\hyperlink{group___decoder_ga22d50c9e05c2de32c73cda0a9b05a8c4}{SAMSUNG\+\_\+\+HEADER\+\_\+\+SPACE}}~(8 $\ast$ \mbox{\hyperlink{group___decoder_ga651bd895c4ad553171399aebcc7297ea}{SAMSUNG\+\_\+\+UNIT}})
+\item 
+\#define \mbox{\hyperlink{group___decoder_ga838b0e3727e67fd3b986d2f3b77ffb7c}{SAMSUNG\+\_\+\+BIT\+\_\+\+MARK}}~\mbox{\hyperlink{group___decoder_ga651bd895c4ad553171399aebcc7297ea}{SAMSUNG\+\_\+\+UNIT}}
+\item 
+\#define \mbox{\hyperlink{group___decoder_ga139bb990e482496d098c49c6409047bf}{SAMSUNG\+\_\+\+ONE\+\_\+\+SPACE}}~(3 $\ast$ \mbox{\hyperlink{group___decoder_ga651bd895c4ad553171399aebcc7297ea}{SAMSUNG\+\_\+\+UNIT}})
+\item 
+\#define \mbox{\hyperlink{group___decoder_ga47aa3d1eeb1f86ee48a8c9a9e2c1e4d2}{SAMSUNG\+\_\+\+ZERO\+\_\+\+SPACE}}~\mbox{\hyperlink{group___decoder_ga651bd895c4ad553171399aebcc7297ea}{SAMSUNG\+\_\+\+UNIT}}
+\item 
+\#define \mbox{\hyperlink{group___decoder_gad3410f25a216ddb5a2a975d3aa33fdcd}{SAMSUNG\+\_\+\+AVERAGE\+\_\+\+DURATION}}~55000
+\item 
+\#define \mbox{\hyperlink{group___decoder_ga2d02df520e7d312e045090f6f1e62897}{SAMSUNG\+\_\+\+REPEAT\+\_\+\+DURATION}}~(\mbox{\hyperlink{group___decoder_gaba5b0346e4a7aca7a202768a6abf7cae}{SAMSUNG\+\_\+\+HEADER\+\_\+\+MARK}}  + \mbox{\hyperlink{group___decoder_ga22d50c9e05c2de32c73cda0a9b05a8c4}{SAMSUNG\+\_\+\+HEADER\+\_\+\+SPACE}} + \mbox{\hyperlink{group___decoder_ga838b0e3727e67fd3b986d2f3b77ffb7c}{SAMSUNG\+\_\+\+BIT\+\_\+\+MARK}} + \mbox{\hyperlink{group___decoder_ga47aa3d1eeb1f86ee48a8c9a9e2c1e4d2}{SAMSUNG\+\_\+\+ZERO\+\_\+\+SPACE}} + \mbox{\hyperlink{group___decoder_ga838b0e3727e67fd3b986d2f3b77ffb7c}{SAMSUNG\+\_\+\+BIT\+\_\+\+MARK}})
+\item 
+\#define \mbox{\hyperlink{group___decoder_ga7611f37500fda881b03220c8a7fd9d74}{SAMSUNG\+\_\+\+REPEAT\+\_\+\+PERIOD}}~110000
+\end{DoxyCompactItemize}

@@ -1,0 +1,557 @@
+\hypertarget{_i_r_remote___library_2_i_rremote_int_8h}{}\doxysection{main/\+IRRemote\+\_\+\+Library/\+IRremote\+Int.h File Reference}
+\label{_i_r_remote___library_2_i_rremote_int_8h}\index{main/IRRemote\_Library/IRremoteInt.h@{main/IRRemote\_Library/IRremoteInt.h}}
+
+
+Contains all declarations required for the interface to IRremote. Could not be named IRremote.\+h, since this has another semantic (it must include all $\ast$.hpp files) for old example code found in the wild.  
+
+
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}IRProtocol.\+h\char`\"{}}\newline
+Include dependency graph for IRremote\+Int.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structirparams__struct}{irparams\+\_\+struct}}
+\item 
+struct \mbox{\hyperlink{struct_i_r_data}{IRData}}
+\item 
+struct \mbox{\hyperlink{structdecode__results}{decode\+\_\+results}}
+\item 
+class \mbox{\hyperlink{class_i_rrecv}{IRrecv}}
+\item 
+class \mbox{\hyperlink{class_i_rsend}{IRsend}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_abeb214368f7f34cff98de9047aa6eb2f}{MARK}}~1
+\item 
+\#define \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_a5ff6e798033f03e74730e99f01936f84}{SPACE}}~0
+\item 
+\#define \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_a551a361e5f7fbdcf8ec8e9679976b462}{MILLIS\+\_\+\+IN\+\_\+\+ONE\+\_\+\+SECOND}}~1000L
+\item 
+\#define \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_af33c8a218dd35ede965cf20a68a0068d}{MICROS\+\_\+\+IN\+\_\+\+ONE\+\_\+\+SECOND}}~1000000L
+\item 
+\#define \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_ae9ba0b7dd556e22688f7da01019bba68}{MICROS\+\_\+\+IN\+\_\+\+ONE\+\_\+\+MILLI}}~1000L
+\item 
+\#define \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_a3033a7d78620f2d895d7268ceb685129}{DISABLE\+\_\+\+LED\+\_\+\+FEEDBACK}}~false
+\item 
+\#define \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_a2072e6070907411d00d0e5ca5ae1a9b2}{ENABLE\+\_\+\+LED\+\_\+\+FEEDBACK}}~true
+\item 
+\#define \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_a575e74508c30d1ccf92f7e142a43dd3d}{USE\+\_\+\+DEFAULT\+\_\+\+FEEDBACK\+\_\+\+LED\+\_\+\+PIN}}~0
+\item 
+\#define \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_a92edad56cde0f027e20711dcf83da843}{IR\+\_\+\+REC\+\_\+\+STATE\+\_\+\+IDLE}}~0
+\item 
+\#define \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_a1a419691eae4534ee2472565b9aff95a}{IR\+\_\+\+REC\+\_\+\+STATE\+\_\+\+MARK}}~1
+\item 
+\#define \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_acabdaf864f20981cb6d749b043490c94}{IR\+\_\+\+REC\+\_\+\+STATE\+\_\+\+SPACE}}~2
+\item 
+\#define \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_a1b1bdb2048293ad4cd31ff2705dec64c}{IR\+\_\+\+REC\+\_\+\+STATE\+\_\+\+STOP}}~3
+\item 
+\#define \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_aba66faba11cfd0d64b57de6d734f3d74}{IR\+\_\+\+INFO\+\_\+\+PRINT}}(...)~void()
+\item 
+\#define \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_ac118c2eff8dfdd56b2be1b5b839ad5e9}{IR\+\_\+\+INFO\+\_\+\+PRINTLN}}(...)~void()
+\item 
+\#define \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\+\_\+\+DEBUG\+\_\+\+PRINT}}(...)~void()
+\item 
+\#define \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\+\_\+\+DEBUG\+\_\+\+PRINTLN}}(...)~void()
+\item 
+\#define \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_af7b7c32d41d80a578f482d2828b05326}{IR\+\_\+\+TRACE\+\_\+\+PRINT}}(...)~void()
+\item 
+\#define \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_a5eafde7d90e22ca8caed5fa952448228}{IR\+\_\+\+TRACE\+\_\+\+PRINTLN}}(...)~void()
+\item 
+\#define \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_ad670ce496c4a3352cb9929284db11928}{IRDATA\+\_\+\+FLAGS\+\_\+\+EMPTY}}~0x00
+\item 
+\#define \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_aaa9952cd64b58083c28873484c494abf}{IRDATA\+\_\+\+FLAGS\+\_\+\+IS\+\_\+\+REPEAT}}~0x01
+\item 
+\#define \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_a5c5e6ae69aa440bfa132550d120ace08}{IRDATA\+\_\+\+FLAGS\+\_\+\+IS\+\_\+\+AUTO\+\_\+\+REPEAT}}~0x02
+\item 
+\#define \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_a1a60f95f0885b1865dc5514ddd80e093}{IRDATA\+\_\+\+FLAGS\+\_\+\+PARITY\+\_\+\+FAILED}}~0x04
+\begin{DoxyCompactList}\small\item\em the current (autorepeat) frame violated parity check \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_a6a8eaa19dc6174814fedc9d5b495560c}{IRDATA\+\_\+\+TOGGLE\+\_\+\+BIT\+\_\+\+MASK}}~0x08
+\item 
+\#define \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_abf3b16f9ab35f4e4b95c8c362aca2d71}{IRDATA\+\_\+\+FLAGS\+\_\+\+EXTRA\+\_\+\+INFO}}~0x10
+\begin{DoxyCompactList}\small\item\em there is unexpected extra info not contained in address and data (e.\+g. Kaseikyo unknown vendor ID) \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_a1acaa14d5a437ad317e17489e845f401}{IRDATA\+\_\+\+FLAGS\+\_\+\+WAS\+\_\+\+OVERFLOW}}~0x40
+\begin{DoxyCompactList}\small\item\em irparams.\+rawlen is 0 in this case to avoid endless Overflow\+Flag \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_a035e96118f9daf6d8e5152a1ae466538}{IRDATA\+\_\+\+FLAGS\+\_\+\+IS\+\_\+\+LSB\+\_\+\+FIRST}}~0x00
+\item 
+\#define \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_a7f6872e6f83c0571e3150ba86428af4c}{IRDATA\+\_\+\+FLAGS\+\_\+\+IS\+\_\+\+MSB\+\_\+\+FIRST}}~0x80
+\begin{DoxyCompactList}\small\item\em Just for info. Value is simply determined by the protocol. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_a1c7eebb527483c272812530caa313d20}{MICROS\+\_\+\+PER\+\_\+\+TICK}}~50
+\item 
+\#define \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_a30c17564229ec2e37dfea9c6c9ad643e}{TOLERANCE}}~25
+\item 
+\#define \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_abd2c46e5e893c0f5fd23fe9fed2ae49a}{LTOL}}~(100 -\/ \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_a30c17564229ec2e37dfea9c6c9ad643e}{TOLERANCE}})
+\item 
+\#define \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_ad3a18e82bb4b51badb0727fce56a7557}{UTOL}}~(100 + \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_a30c17564229ec2e37dfea9c6c9ad643e}{TOLERANCE}})
+\item 
+\#define \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_a92632ec97aa1c7a60a990811744a6902}{TICKS\+\_\+\+LOW}}(us)~((us)/67 )
+\item 
+\#define \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_ac0d006cd9c029a2e6c4bd513ee5e7951}{TICKS\+\_\+\+HIGH}}(us)~((us)/40 + 1)
+\item 
+\#define \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_a5d35fb37031b53f0083f8b88ae3cf2c2}{NO\+\_\+\+REPEATS}}~0
+\item 
+\#define \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_a48e176b38988494bc725ac4fa98c534a}{SEND\+\_\+\+STOP\+\_\+\+BIT}}~true
+\item 
+\#define \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_a1c39eebb08a1d9a2462580ce00a89acd}{SEND\+\_\+\+REPEAT\+\_\+\+COMMAND}}~true
+\begin{DoxyCompactList}\small\item\em used for e.\+g. NEC, where a repeat is different from just repeating the data. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_ac534825448d4687e6471c3855bf71cf5}{IR\+\_\+\+SEND\+\_\+\+DUTY\+\_\+\+CYCLE}}~30
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{group___receiving_ga495b7f49ff71cde1289b118fac0f0674}{match\+Ticks}} (uint16\+\_\+t a\+Measured\+Ticks, uint16\+\_\+t a\+Match\+Value\+Micros)
+\item 
+bool \mbox{\hyperlink{group___receiving_ga4472564ea96b1ee10b51f594f60d7aeb}{match\+Mark}} (uint16\+\_\+t a\+Measured\+Ticks, uint16\+\_\+t a\+Match\+Value\+Micros)
+\item 
+bool \mbox{\hyperlink{group___receiving_ga7902b620f6c01463b5b6e50ef604ac8b}{match\+Space}} (uint16\+\_\+t a\+Measured\+Ticks, uint16\+\_\+t a\+Match\+Value\+Micros)
+\item 
+bool \mbox{\hyperlink{group___receiving_ga0f9263ab71af2d2895add92f72a05ee9}{MATCH}} (uint16\+\_\+t measured, uint16\+\_\+t desired)
+\item 
+bool \mbox{\hyperlink{group___receiving_gadab293a71386f20571db6d779d1d84b7}{MATCH\+\_\+\+MARK}} (uint16\+\_\+t measured\+\_\+ticks, uint16\+\_\+t desired\+\_\+us)
+\item 
+bool \mbox{\hyperlink{group___receiving_gab91e763e3ae44501f7c4f7b7ff8aca0f}{MATCH\+\_\+\+SPACE}} (uint16\+\_\+t measured\+\_\+ticks, uint16\+\_\+t desired\+\_\+us)
+\item 
+int \mbox{\hyperlink{group___receiving_gab1d28d4dd67d6bf808c0328a92e2d863}{get\+Mark\+Excess\+Micros}} ()
+\item 
+void \mbox{\hyperlink{group___receiving_gada0f2fe0704a217c16ee497ba7b3630e}{print\+Active\+IRProtocols}} (Print $\ast$a\+Serial)
+\item 
+void \mbox{\hyperlink{group___receiving_ga545a2c08c0d21af0e95d65b052670bae}{print\+IRResult\+Short}} (Print $\ast$a\+Serial, \mbox{\hyperlink{struct_i_r_data}{IRData}} $\ast$a\+IRData\+Ptr, uint16\+\_\+t a\+Leading\+Space\+Duration=0)
+\item 
+void \mbox{\hyperlink{group___feedback_l_e_d_functions_ga072624eeba964d8aa105822da00090ba}{set\+Feedback\+LED}} (bool a\+Switch\+Led\+On)
+\item 
+void \mbox{\hyperlink{group___feedback_l_e_d_functions_gaa5949b509ec061d9239867caa628cfec}{set\+LEDFeedback}} (uint8\+\_\+t a\+Feedback\+LEDPin, bool a\+Enable\+LEDFeedback)
+\item 
+void \mbox{\hyperlink{group___feedback_l_e_d_functions_ga53e5ec641a900f2c572c8bffd42da921}{set\+LEDFeedback}} (bool a\+Enable\+LEDFeedback)
+\item 
+void \mbox{\hyperlink{group___feedback_l_e_d_functions_ga1150b1e371cd7d424d53dbcae6619e54}{enable\+LEDFeedback}} ()
+\item 
+void \mbox{\hyperlink{group___feedback_l_e_d_functions_gab72e6123a449de7feaaa1c3dcb9f8630}{disable\+LEDFeedback}} ()
+\item 
+void \mbox{\hyperlink{group___feedback_l_e_d_functions_ga5f1d479f43dcd56febf146e97a3904db}{set\+Blink\+Pin}} (uint8\+\_\+t a\+Feedback\+LEDPin) \+\_\+\+\_\+attribute\+\_\+\+\_\+((deprecated(\char`\"{}Please use \mbox{\hyperlink{group___feedback_l_e_d_functions_ga53e5ec641a900f2c572c8bffd42da921}{set\+LEDFeedback}}().\char`\"{})))
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{group___receiving_ga3f8125d5a7cde4fca3ece58e361296f9}{s\+Biphase\+Decode\+Rawbuff\+Offset}}
+\item 
+\mbox{\hyperlink{class_i_rrecv}{IRrecv}} \mbox{\hyperlink{group___receiving_ga6813a2b456e5359ce674699c85a61cf9}{Ir\+Receiver}}
+\item 
+\mbox{\hyperlink{class_i_rsend}{IRsend}} \mbox{\hyperlink{group___sending_gafba8232b747be85f72c1c4612780d5cf}{Ir\+Sender}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Contains all declarations required for the interface to IRremote. Could not be named IRremote.\+h, since this has another semantic (it must include all $\ast$.hpp files) for old example code found in the wild. 
+
+This file is part of Arduino-\/\+IRremote \href{https://github.com/Arduino-IRremote/Arduino-IRremote}{\texttt{ https\+://github.\+com/\+Arduino-\/\+IRremote/\+Arduino-\/\+IRremote}}.
+
+MIT License
+
+Copyright (c) 2015-\/2021 Ken Shirriff \href{http://www.righto.com}{\texttt{ http\+://www.\+righto.\+com}}, Rafi Khan, Armin Joachimsmeyer
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \char`\"{}\+Software\char`\"{}), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions\+:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED \char`\"{}\+AS IS\char`\"{}, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. 
+
+Definition in file \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source}{IRremote\+Int.\+h}}.
+
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{_i_r_remote___library_2_i_rremote_int_8h_a3033a7d78620f2d895d7268ceb685129}\label{_i_r_remote___library_2_i_rremote_int_8h_a3033a7d78620f2d895d7268ceb685129}} 
+\index{IRremoteInt.h@{IRremoteInt.h}!DISABLE\_LED\_FEEDBACK@{DISABLE\_LED\_FEEDBACK}}
+\index{DISABLE\_LED\_FEEDBACK@{DISABLE\_LED\_FEEDBACK}!IRremoteInt.h@{IRremoteInt.h}}
+\doxysubsubsection{\texorpdfstring{DISABLE\_LED\_FEEDBACK}{DISABLE\_LED\_FEEDBACK}}
+{\footnotesize\ttfamily \#define DISABLE\+\_\+\+LED\+\_\+\+FEEDBACK~false}
+
+For better readability of code 
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source_l00080}{80}} of file \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source}{IRremote\+Int.\+h}}.
+
+\mbox{\Hypertarget{_i_r_remote___library_2_i_rremote_int_8h_a2072e6070907411d00d0e5ca5ae1a9b2}\label{_i_r_remote___library_2_i_rremote_int_8h_a2072e6070907411d00d0e5ca5ae1a9b2}} 
+\index{IRremoteInt.h@{IRremoteInt.h}!ENABLE\_LED\_FEEDBACK@{ENABLE\_LED\_FEEDBACK}}
+\index{ENABLE\_LED\_FEEDBACK@{ENABLE\_LED\_FEEDBACK}!IRremoteInt.h@{IRremoteInt.h}}
+\doxysubsubsection{\texorpdfstring{ENABLE\_LED\_FEEDBACK}{ENABLE\_LED\_FEEDBACK}}
+{\footnotesize\ttfamily \#define ENABLE\+\_\+\+LED\+\_\+\+FEEDBACK~true}
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source_l00081}{81}} of file \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source}{IRremote\+Int.\+h}}.
+
+\mbox{\Hypertarget{_i_r_remote___library_2_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}\label{_i_r_remote___library_2_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}} 
+\index{IRremoteInt.h@{IRremoteInt.h}!IR\_DEBUG\_PRINT@{IR\_DEBUG\_PRINT}}
+\index{IR\_DEBUG\_PRINT@{IR\_DEBUG\_PRINT}!IRremoteInt.h@{IRremoteInt.h}}
+\doxysubsubsection{\texorpdfstring{IR\_DEBUG\_PRINT}{IR\_DEBUG\_PRINT}}
+{\footnotesize\ttfamily \#define IR\+\_\+\+DEBUG\+\_\+\+PRINT(\begin{DoxyParamCaption}\item[{}]{... }\end{DoxyParamCaption})~void()}
+
+If DEBUG, print the arguments, otherwise do nothing. 
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source_l00146}{146}} of file \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source}{IRremote\+Int.\+h}}.
+
+\mbox{\Hypertarget{_i_r_remote___library_2_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}\label{_i_r_remote___library_2_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}} 
+\index{IRremoteInt.h@{IRremoteInt.h}!IR\_DEBUG\_PRINTLN@{IR\_DEBUG\_PRINTLN}}
+\index{IR\_DEBUG\_PRINTLN@{IR\_DEBUG\_PRINTLN}!IRremoteInt.h@{IRremoteInt.h}}
+\doxysubsubsection{\texorpdfstring{IR\_DEBUG\_PRINTLN}{IR\_DEBUG\_PRINTLN}}
+{\footnotesize\ttfamily \#define IR\+\_\+\+DEBUG\+\_\+\+PRINTLN(\begin{DoxyParamCaption}\item[{}]{... }\end{DoxyParamCaption})~void()}
+
+If DEBUG, print the arguments as a line, otherwise do nothing. 
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source_l00150}{150}} of file \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source}{IRremote\+Int.\+h}}.
+
+\mbox{\Hypertarget{_i_r_remote___library_2_i_rremote_int_8h_aba66faba11cfd0d64b57de6d734f3d74}\label{_i_r_remote___library_2_i_rremote_int_8h_aba66faba11cfd0d64b57de6d734f3d74}} 
+\index{IRremoteInt.h@{IRremoteInt.h}!IR\_INFO\_PRINT@{IR\_INFO\_PRINT}}
+\index{IR\_INFO\_PRINT@{IR\_INFO\_PRINT}!IRremoteInt.h@{IRremoteInt.h}}
+\doxysubsubsection{\texorpdfstring{IR\_INFO\_PRINT}{IR\_INFO\_PRINT}}
+{\footnotesize\ttfamily \#define IR\+\_\+\+INFO\+\_\+\+PRINT(\begin{DoxyParamCaption}\item[{}]{... }\end{DoxyParamCaption})~void()}
+
+If INFO, print the arguments, otherwise do nothing. 
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source_l00129}{129}} of file \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source}{IRremote\+Int.\+h}}.
+
+\mbox{\Hypertarget{_i_r_remote___library_2_i_rremote_int_8h_ac118c2eff8dfdd56b2be1b5b839ad5e9}\label{_i_r_remote___library_2_i_rremote_int_8h_ac118c2eff8dfdd56b2be1b5b839ad5e9}} 
+\index{IRremoteInt.h@{IRremoteInt.h}!IR\_INFO\_PRINTLN@{IR\_INFO\_PRINTLN}}
+\index{IR\_INFO\_PRINTLN@{IR\_INFO\_PRINTLN}!IRremoteInt.h@{IRremoteInt.h}}
+\doxysubsubsection{\texorpdfstring{IR\_INFO\_PRINTLN}{IR\_INFO\_PRINTLN}}
+{\footnotesize\ttfamily \#define IR\+\_\+\+INFO\+\_\+\+PRINTLN(\begin{DoxyParamCaption}\item[{}]{... }\end{DoxyParamCaption})~void()}
+
+If INFO, print the arguments as a line, otherwise do nothing. 
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source_l00133}{133}} of file \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source}{IRremote\+Int.\+h}}.
+
+\mbox{\Hypertarget{_i_r_remote___library_2_i_rremote_int_8h_a92edad56cde0f027e20711dcf83da843}\label{_i_r_remote___library_2_i_rremote_int_8h_a92edad56cde0f027e20711dcf83da843}} 
+\index{IRremoteInt.h@{IRremoteInt.h}!IR\_REC\_STATE\_IDLE@{IR\_REC\_STATE\_IDLE}}
+\index{IR\_REC\_STATE\_IDLE@{IR\_REC\_STATE\_IDLE}!IRremoteInt.h@{IRremoteInt.h}}
+\doxysubsubsection{\texorpdfstring{IR\_REC\_STATE\_IDLE}{IR\_REC\_STATE\_IDLE}}
+{\footnotesize\ttfamily \#define IR\+\_\+\+REC\+\_\+\+STATE\+\_\+\+IDLE~0}
+
+Declarations for the receiver Interrupt Service Routine 
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source_l00090}{90}} of file \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source}{IRremote\+Int.\+h}}.
+
+\mbox{\Hypertarget{_i_r_remote___library_2_i_rremote_int_8h_a1a419691eae4534ee2472565b9aff95a}\label{_i_r_remote___library_2_i_rremote_int_8h_a1a419691eae4534ee2472565b9aff95a}} 
+\index{IRremoteInt.h@{IRremoteInt.h}!IR\_REC\_STATE\_MARK@{IR\_REC\_STATE\_MARK}}
+\index{IR\_REC\_STATE\_MARK@{IR\_REC\_STATE\_MARK}!IRremoteInt.h@{IRremoteInt.h}}
+\doxysubsubsection{\texorpdfstring{IR\_REC\_STATE\_MARK}{IR\_REC\_STATE\_MARK}}
+{\footnotesize\ttfamily \#define IR\+\_\+\+REC\+\_\+\+STATE\+\_\+\+MARK~1}
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source_l00091}{91}} of file \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source}{IRremote\+Int.\+h}}.
+
+\mbox{\Hypertarget{_i_r_remote___library_2_i_rremote_int_8h_acabdaf864f20981cb6d749b043490c94}\label{_i_r_remote___library_2_i_rremote_int_8h_acabdaf864f20981cb6d749b043490c94}} 
+\index{IRremoteInt.h@{IRremoteInt.h}!IR\_REC\_STATE\_SPACE@{IR\_REC\_STATE\_SPACE}}
+\index{IR\_REC\_STATE\_SPACE@{IR\_REC\_STATE\_SPACE}!IRremoteInt.h@{IRremoteInt.h}}
+\doxysubsubsection{\texorpdfstring{IR\_REC\_STATE\_SPACE}{IR\_REC\_STATE\_SPACE}}
+{\footnotesize\ttfamily \#define IR\+\_\+\+REC\+\_\+\+STATE\+\_\+\+SPACE~2}
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source_l00092}{92}} of file \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source}{IRremote\+Int.\+h}}.
+
+\mbox{\Hypertarget{_i_r_remote___library_2_i_rremote_int_8h_a1b1bdb2048293ad4cd31ff2705dec64c}\label{_i_r_remote___library_2_i_rremote_int_8h_a1b1bdb2048293ad4cd31ff2705dec64c}} 
+\index{IRremoteInt.h@{IRremoteInt.h}!IR\_REC\_STATE\_STOP@{IR\_REC\_STATE\_STOP}}
+\index{IR\_REC\_STATE\_STOP@{IR\_REC\_STATE\_STOP}!IRremoteInt.h@{IRremoteInt.h}}
+\doxysubsubsection{\texorpdfstring{IR\_REC\_STATE\_STOP}{IR\_REC\_STATE\_STOP}}
+{\footnotesize\ttfamily \#define IR\+\_\+\+REC\+\_\+\+STATE\+\_\+\+STOP~3}
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source_l00093}{93}} of file \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source}{IRremote\+Int.\+h}}.
+
+\mbox{\Hypertarget{_i_r_remote___library_2_i_rremote_int_8h_ac534825448d4687e6471c3855bf71cf5}\label{_i_r_remote___library_2_i_rremote_int_8h_ac534825448d4687e6471c3855bf71cf5}} 
+\index{IRremoteInt.h@{IRremoteInt.h}!IR\_SEND\_DUTY\_CYCLE@{IR\_SEND\_DUTY\_CYCLE}}
+\index{IR\_SEND\_DUTY\_CYCLE@{IR\_SEND\_DUTY\_CYCLE}!IRremoteInt.h@{IRremoteInt.h}}
+\doxysubsubsection{\texorpdfstring{IR\_SEND\_DUTY\_CYCLE}{IR\_SEND\_DUTY\_CYCLE}}
+{\footnotesize\ttfamily \#define IR\+\_\+\+SEND\+\_\+\+DUTY\+\_\+\+CYCLE~30}
+
+Duty cycle in percent for sent signals. 
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source_l00421}{421}} of file \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source}{IRremote\+Int.\+h}}.
+
+\mbox{\Hypertarget{_i_r_remote___library_2_i_rremote_int_8h_af7b7c32d41d80a578f482d2828b05326}\label{_i_r_remote___library_2_i_rremote_int_8h_af7b7c32d41d80a578f482d2828b05326}} 
+\index{IRremoteInt.h@{IRremoteInt.h}!IR\_TRACE\_PRINT@{IR\_TRACE\_PRINT}}
+\index{IR\_TRACE\_PRINT@{IR\_TRACE\_PRINT}!IRremoteInt.h@{IRremoteInt.h}}
+\doxysubsubsection{\texorpdfstring{IR\_TRACE\_PRINT}{IR\_TRACE\_PRINT}}
+{\footnotesize\ttfamily \#define IR\+\_\+\+TRACE\+\_\+\+PRINT(\begin{DoxyParamCaption}\item[{}]{... }\end{DoxyParamCaption})~void()}
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source_l00157}{157}} of file \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source}{IRremote\+Int.\+h}}.
+
+\mbox{\Hypertarget{_i_r_remote___library_2_i_rremote_int_8h_a5eafde7d90e22ca8caed5fa952448228}\label{_i_r_remote___library_2_i_rremote_int_8h_a5eafde7d90e22ca8caed5fa952448228}} 
+\index{IRremoteInt.h@{IRremoteInt.h}!IR\_TRACE\_PRINTLN@{IR\_TRACE\_PRINTLN}}
+\index{IR\_TRACE\_PRINTLN@{IR\_TRACE\_PRINTLN}!IRremoteInt.h@{IRremoteInt.h}}
+\doxysubsubsection{\texorpdfstring{IR\_TRACE\_PRINTLN}{IR\_TRACE\_PRINTLN}}
+{\footnotesize\ttfamily \#define IR\+\_\+\+TRACE\+\_\+\+PRINTLN(\begin{DoxyParamCaption}\item[{}]{... }\end{DoxyParamCaption})~void()}
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source_l00158}{158}} of file \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source}{IRremote\+Int.\+h}}.
+
+\mbox{\Hypertarget{_i_r_remote___library_2_i_rremote_int_8h_ad670ce496c4a3352cb9929284db11928}\label{_i_r_remote___library_2_i_rremote_int_8h_ad670ce496c4a3352cb9929284db11928}} 
+\index{IRremoteInt.h@{IRremoteInt.h}!IRDATA\_FLAGS\_EMPTY@{IRDATA\_FLAGS\_EMPTY}}
+\index{IRDATA\_FLAGS\_EMPTY@{IRDATA\_FLAGS\_EMPTY}!IRremoteInt.h@{IRremoteInt.h}}
+\doxysubsubsection{\texorpdfstring{IRDATA\_FLAGS\_EMPTY}{IRDATA\_FLAGS\_EMPTY}}
+{\footnotesize\ttfamily \#define IRDATA\+\_\+\+FLAGS\+\_\+\+EMPTY~0x00}
+
+RECEIVING 
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source_l00167}{167}} of file \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source}{IRremote\+Int.\+h}}.
+
+\mbox{\Hypertarget{_i_r_remote___library_2_i_rremote_int_8h_abf3b16f9ab35f4e4b95c8c362aca2d71}\label{_i_r_remote___library_2_i_rremote_int_8h_abf3b16f9ab35f4e4b95c8c362aca2d71}} 
+\index{IRremoteInt.h@{IRremoteInt.h}!IRDATA\_FLAGS\_EXTRA\_INFO@{IRDATA\_FLAGS\_EXTRA\_INFO}}
+\index{IRDATA\_FLAGS\_EXTRA\_INFO@{IRDATA\_FLAGS\_EXTRA\_INFO}!IRremoteInt.h@{IRremoteInt.h}}
+\doxysubsubsection{\texorpdfstring{IRDATA\_FLAGS\_EXTRA\_INFO}{IRDATA\_FLAGS\_EXTRA\_INFO}}
+{\footnotesize\ttfamily \#define IRDATA\+\_\+\+FLAGS\+\_\+\+EXTRA\+\_\+\+INFO~0x10}
+
+
+
+there is unexpected extra info not contained in address and data (e.\+g. Kaseikyo unknown vendor ID) 
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source_l00172}{172}} of file \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source}{IRremote\+Int.\+h}}.
+
+\mbox{\Hypertarget{_i_r_remote___library_2_i_rremote_int_8h_a5c5e6ae69aa440bfa132550d120ace08}\label{_i_r_remote___library_2_i_rremote_int_8h_a5c5e6ae69aa440bfa132550d120ace08}} 
+\index{IRremoteInt.h@{IRremoteInt.h}!IRDATA\_FLAGS\_IS\_AUTO\_REPEAT@{IRDATA\_FLAGS\_IS\_AUTO\_REPEAT}}
+\index{IRDATA\_FLAGS\_IS\_AUTO\_REPEAT@{IRDATA\_FLAGS\_IS\_AUTO\_REPEAT}!IRremoteInt.h@{IRremoteInt.h}}
+\doxysubsubsection{\texorpdfstring{IRDATA\_FLAGS\_IS\_AUTO\_REPEAT}{IRDATA\_FLAGS\_IS\_AUTO\_REPEAT}}
+{\footnotesize\ttfamily \#define IRDATA\+\_\+\+FLAGS\+\_\+\+IS\+\_\+\+AUTO\+\_\+\+REPEAT~0x02}
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source_l00169}{169}} of file \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source}{IRremote\+Int.\+h}}.
+
+\mbox{\Hypertarget{_i_r_remote___library_2_i_rremote_int_8h_a035e96118f9daf6d8e5152a1ae466538}\label{_i_r_remote___library_2_i_rremote_int_8h_a035e96118f9daf6d8e5152a1ae466538}} 
+\index{IRremoteInt.h@{IRremoteInt.h}!IRDATA\_FLAGS\_IS\_LSB\_FIRST@{IRDATA\_FLAGS\_IS\_LSB\_FIRST}}
+\index{IRDATA\_FLAGS\_IS\_LSB\_FIRST@{IRDATA\_FLAGS\_IS\_LSB\_FIRST}!IRremoteInt.h@{IRremoteInt.h}}
+\doxysubsubsection{\texorpdfstring{IRDATA\_FLAGS\_IS\_LSB\_FIRST}{IRDATA\_FLAGS\_IS\_LSB\_FIRST}}
+{\footnotesize\ttfamily \#define IRDATA\+\_\+\+FLAGS\+\_\+\+IS\+\_\+\+LSB\+\_\+\+FIRST~0x00}
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source_l00174}{174}} of file \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source}{IRremote\+Int.\+h}}.
+
+\mbox{\Hypertarget{_i_r_remote___library_2_i_rremote_int_8h_a7f6872e6f83c0571e3150ba86428af4c}\label{_i_r_remote___library_2_i_rremote_int_8h_a7f6872e6f83c0571e3150ba86428af4c}} 
+\index{IRremoteInt.h@{IRremoteInt.h}!IRDATA\_FLAGS\_IS\_MSB\_FIRST@{IRDATA\_FLAGS\_IS\_MSB\_FIRST}}
+\index{IRDATA\_FLAGS\_IS\_MSB\_FIRST@{IRDATA\_FLAGS\_IS\_MSB\_FIRST}!IRremoteInt.h@{IRremoteInt.h}}
+\doxysubsubsection{\texorpdfstring{IRDATA\_FLAGS\_IS\_MSB\_FIRST}{IRDATA\_FLAGS\_IS\_MSB\_FIRST}}
+{\footnotesize\ttfamily \#define IRDATA\+\_\+\+FLAGS\+\_\+\+IS\+\_\+\+MSB\+\_\+\+FIRST~0x80}
+
+
+
+Just for info. Value is simply determined by the protocol. 
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source_l00175}{175}} of file \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source}{IRremote\+Int.\+h}}.
+
+\mbox{\Hypertarget{_i_r_remote___library_2_i_rremote_int_8h_aaa9952cd64b58083c28873484c494abf}\label{_i_r_remote___library_2_i_rremote_int_8h_aaa9952cd64b58083c28873484c494abf}} 
+\index{IRremoteInt.h@{IRremoteInt.h}!IRDATA\_FLAGS\_IS\_REPEAT@{IRDATA\_FLAGS\_IS\_REPEAT}}
+\index{IRDATA\_FLAGS\_IS\_REPEAT@{IRDATA\_FLAGS\_IS\_REPEAT}!IRremoteInt.h@{IRremoteInt.h}}
+\doxysubsubsection{\texorpdfstring{IRDATA\_FLAGS\_IS\_REPEAT}{IRDATA\_FLAGS\_IS\_REPEAT}}
+{\footnotesize\ttfamily \#define IRDATA\+\_\+\+FLAGS\+\_\+\+IS\+\_\+\+REPEAT~0x01}
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source_l00168}{168}} of file \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source}{IRremote\+Int.\+h}}.
+
+\mbox{\Hypertarget{_i_r_remote___library_2_i_rremote_int_8h_a1a60f95f0885b1865dc5514ddd80e093}\label{_i_r_remote___library_2_i_rremote_int_8h_a1a60f95f0885b1865dc5514ddd80e093}} 
+\index{IRremoteInt.h@{IRremoteInt.h}!IRDATA\_FLAGS\_PARITY\_FAILED@{IRDATA\_FLAGS\_PARITY\_FAILED}}
+\index{IRDATA\_FLAGS\_PARITY\_FAILED@{IRDATA\_FLAGS\_PARITY\_FAILED}!IRremoteInt.h@{IRremoteInt.h}}
+\doxysubsubsection{\texorpdfstring{IRDATA\_FLAGS\_PARITY\_FAILED}{IRDATA\_FLAGS\_PARITY\_FAILED}}
+{\footnotesize\ttfamily \#define IRDATA\+\_\+\+FLAGS\+\_\+\+PARITY\+\_\+\+FAILED~0x04}
+
+
+
+the current (autorepeat) frame violated parity check 
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source_l00170}{170}} of file \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source}{IRremote\+Int.\+h}}.
+
+\mbox{\Hypertarget{_i_r_remote___library_2_i_rremote_int_8h_a1acaa14d5a437ad317e17489e845f401}\label{_i_r_remote___library_2_i_rremote_int_8h_a1acaa14d5a437ad317e17489e845f401}} 
+\index{IRremoteInt.h@{IRremoteInt.h}!IRDATA\_FLAGS\_WAS\_OVERFLOW@{IRDATA\_FLAGS\_WAS\_OVERFLOW}}
+\index{IRDATA\_FLAGS\_WAS\_OVERFLOW@{IRDATA\_FLAGS\_WAS\_OVERFLOW}!IRremoteInt.h@{IRremoteInt.h}}
+\doxysubsubsection{\texorpdfstring{IRDATA\_FLAGS\_WAS\_OVERFLOW}{IRDATA\_FLAGS\_WAS\_OVERFLOW}}
+{\footnotesize\ttfamily \#define IRDATA\+\_\+\+FLAGS\+\_\+\+WAS\+\_\+\+OVERFLOW~0x40}
+
+
+
+irparams.\+rawlen is 0 in this case to avoid endless Overflow\+Flag 
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source_l00173}{173}} of file \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source}{IRremote\+Int.\+h}}.
+
+\mbox{\Hypertarget{_i_r_remote___library_2_i_rremote_int_8h_a6a8eaa19dc6174814fedc9d5b495560c}\label{_i_r_remote___library_2_i_rremote_int_8h_a6a8eaa19dc6174814fedc9d5b495560c}} 
+\index{IRremoteInt.h@{IRremoteInt.h}!IRDATA\_TOGGLE\_BIT\_MASK@{IRDATA\_TOGGLE\_BIT\_MASK}}
+\index{IRDATA\_TOGGLE\_BIT\_MASK@{IRDATA\_TOGGLE\_BIT\_MASK}!IRremoteInt.h@{IRremoteInt.h}}
+\doxysubsubsection{\texorpdfstring{IRDATA\_TOGGLE\_BIT\_MASK}{IRDATA\_TOGGLE\_BIT\_MASK}}
+{\footnotesize\ttfamily \#define IRDATA\+\_\+\+TOGGLE\+\_\+\+BIT\+\_\+\+MASK~0x08}
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source_l00171}{171}} of file \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source}{IRremote\+Int.\+h}}.
+
+\mbox{\Hypertarget{_i_r_remote___library_2_i_rremote_int_8h_abd2c46e5e893c0f5fd23fe9fed2ae49a}\label{_i_r_remote___library_2_i_rremote_int_8h_abd2c46e5e893c0f5fd23fe9fed2ae49a}} 
+\index{IRremoteInt.h@{IRremoteInt.h}!LTOL@{LTOL}}
+\index{LTOL@{LTOL}!IRremoteInt.h@{IRremoteInt.h}}
+\doxysubsubsection{\texorpdfstring{LTOL}{LTOL}}
+{\footnotesize\ttfamily \#define LTOL~(100 -\/ \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_a30c17564229ec2e37dfea9c6c9ad643e}{TOLERANCE}})}
+
+Lower tolerance for comparison of measured data 
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source_l00386}{386}} of file \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source}{IRremote\+Int.\+h}}.
+
+\mbox{\Hypertarget{_i_r_remote___library_2_i_rremote_int_8h_abeb214368f7f34cff98de9047aa6eb2f}\label{_i_r_remote___library_2_i_rremote_int_8h_abeb214368f7f34cff98de9047aa6eb2f}} 
+\index{IRremoteInt.h@{IRremoteInt.h}!MARK@{MARK}}
+\index{MARK@{MARK}!IRremoteInt.h@{IRremoteInt.h}}
+\doxysubsubsection{\texorpdfstring{MARK}{MARK}}
+{\footnotesize\ttfamily \#define MARK~1}
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source_l00046}{46}} of file \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source}{IRremote\+Int.\+h}}.
+
+\mbox{\Hypertarget{_i_r_remote___library_2_i_rremote_int_8h_ae9ba0b7dd556e22688f7da01019bba68}\label{_i_r_remote___library_2_i_rremote_int_8h_ae9ba0b7dd556e22688f7da01019bba68}} 
+\index{IRremoteInt.h@{IRremoteInt.h}!MICROS\_IN\_ONE\_MILLI@{MICROS\_IN\_ONE\_MILLI}}
+\index{MICROS\_IN\_ONE\_MILLI@{MICROS\_IN\_ONE\_MILLI}!IRremoteInt.h@{IRremoteInt.h}}
+\doxysubsubsection{\texorpdfstring{MICROS\_IN\_ONE\_MILLI}{MICROS\_IN\_ONE\_MILLI}}
+{\footnotesize\ttfamily \#define MICROS\+\_\+\+IN\+\_\+\+ONE\+\_\+\+MILLI~1000L}
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source_l00051}{51}} of file \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source}{IRremote\+Int.\+h}}.
+
+\mbox{\Hypertarget{_i_r_remote___library_2_i_rremote_int_8h_af33c8a218dd35ede965cf20a68a0068d}\label{_i_r_remote___library_2_i_rremote_int_8h_af33c8a218dd35ede965cf20a68a0068d}} 
+\index{IRremoteInt.h@{IRremoteInt.h}!MICROS\_IN\_ONE\_SECOND@{MICROS\_IN\_ONE\_SECOND}}
+\index{MICROS\_IN\_ONE\_SECOND@{MICROS\_IN\_ONE\_SECOND}!IRremoteInt.h@{IRremoteInt.h}}
+\doxysubsubsection{\texorpdfstring{MICROS\_IN\_ONE\_SECOND}{MICROS\_IN\_ONE\_SECOND}}
+{\footnotesize\ttfamily \#define MICROS\+\_\+\+IN\+\_\+\+ONE\+\_\+\+SECOND~1000000L}
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source_l00050}{50}} of file \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source}{IRremote\+Int.\+h}}.
+
+\mbox{\Hypertarget{_i_r_remote___library_2_i_rremote_int_8h_a1c7eebb527483c272812530caa313d20}\label{_i_r_remote___library_2_i_rremote_int_8h_a1c7eebb527483c272812530caa313d20}} 
+\index{IRremoteInt.h@{IRremoteInt.h}!MICROS\_PER\_TICK@{MICROS\_PER\_TICK}}
+\index{MICROS\_PER\_TICK@{MICROS\_PER\_TICK}!IRremoteInt.h@{IRremoteInt.h}}
+\doxysubsubsection{\texorpdfstring{MICROS\_PER\_TICK}{MICROS\_PER\_TICK}}
+{\footnotesize\ttfamily \#define MICROS\+\_\+\+PER\+\_\+\+TICK~50}
+
+microseconds per clock interrupt tick 
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source_l00373}{373}} of file \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source}{IRremote\+Int.\+h}}.
+
+\mbox{\Hypertarget{_i_r_remote___library_2_i_rremote_int_8h_a551a361e5f7fbdcf8ec8e9679976b462}\label{_i_r_remote___library_2_i_rremote_int_8h_a551a361e5f7fbdcf8ec8e9679976b462}} 
+\index{IRremoteInt.h@{IRremoteInt.h}!MILLIS\_IN\_ONE\_SECOND@{MILLIS\_IN\_ONE\_SECOND}}
+\index{MILLIS\_IN\_ONE\_SECOND@{MILLIS\_IN\_ONE\_SECOND}!IRremoteInt.h@{IRremoteInt.h}}
+\doxysubsubsection{\texorpdfstring{MILLIS\_IN\_ONE\_SECOND}{MILLIS\_IN\_ONE\_SECOND}}
+{\footnotesize\ttfamily \#define MILLIS\+\_\+\+IN\+\_\+\+ONE\+\_\+\+SECOND~1000L}
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source_l00049}{49}} of file \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source}{IRremote\+Int.\+h}}.
+
+\mbox{\Hypertarget{_i_r_remote___library_2_i_rremote_int_8h_a5d35fb37031b53f0083f8b88ae3cf2c2}\label{_i_r_remote___library_2_i_rremote_int_8h_a5d35fb37031b53f0083f8b88ae3cf2c2}} 
+\index{IRremoteInt.h@{IRremoteInt.h}!NO\_REPEATS@{NO\_REPEATS}}
+\index{NO\_REPEATS@{NO\_REPEATS}!IRremoteInt.h@{IRremoteInt.h}}
+\doxysubsubsection{\texorpdfstring{NO\_REPEATS}{NO\_REPEATS}}
+{\footnotesize\ttfamily \#define NO\+\_\+\+REPEATS~0}
+
+SENDING Just for better readability of code 
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source_l00413}{413}} of file \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source}{IRremote\+Int.\+h}}.
+
+\mbox{\Hypertarget{_i_r_remote___library_2_i_rremote_int_8h_a1c39eebb08a1d9a2462580ce00a89acd}\label{_i_r_remote___library_2_i_rremote_int_8h_a1c39eebb08a1d9a2462580ce00a89acd}} 
+\index{IRremoteInt.h@{IRremoteInt.h}!SEND\_REPEAT\_COMMAND@{SEND\_REPEAT\_COMMAND}}
+\index{SEND\_REPEAT\_COMMAND@{SEND\_REPEAT\_COMMAND}!IRremoteInt.h@{IRremoteInt.h}}
+\doxysubsubsection{\texorpdfstring{SEND\_REPEAT\_COMMAND}{SEND\_REPEAT\_COMMAND}}
+{\footnotesize\ttfamily \#define SEND\+\_\+\+REPEAT\+\_\+\+COMMAND~true}
+
+
+
+used for e.\+g. NEC, where a repeat is different from just repeating the data. 
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source_l00415}{415}} of file \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source}{IRremote\+Int.\+h}}.
+
+\mbox{\Hypertarget{_i_r_remote___library_2_i_rremote_int_8h_a48e176b38988494bc725ac4fa98c534a}\label{_i_r_remote___library_2_i_rremote_int_8h_a48e176b38988494bc725ac4fa98c534a}} 
+\index{IRremoteInt.h@{IRremoteInt.h}!SEND\_STOP\_BIT@{SEND\_STOP\_BIT}}
+\index{SEND\_STOP\_BIT@{SEND\_STOP\_BIT}!IRremoteInt.h@{IRremoteInt.h}}
+\doxysubsubsection{\texorpdfstring{SEND\_STOP\_BIT}{SEND\_STOP\_BIT}}
+{\footnotesize\ttfamily \#define SEND\+\_\+\+STOP\+\_\+\+BIT~true}
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source_l00414}{414}} of file \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source}{IRremote\+Int.\+h}}.
+
+\mbox{\Hypertarget{_i_r_remote___library_2_i_rremote_int_8h_a5ff6e798033f03e74730e99f01936f84}\label{_i_r_remote___library_2_i_rremote_int_8h_a5ff6e798033f03e74730e99f01936f84}} 
+\index{IRremoteInt.h@{IRremoteInt.h}!SPACE@{SPACE}}
+\index{SPACE@{SPACE}!IRremoteInt.h@{IRremoteInt.h}}
+\doxysubsubsection{\texorpdfstring{SPACE}{SPACE}}
+{\footnotesize\ttfamily \#define SPACE~0}
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source_l00047}{47}} of file \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source}{IRremote\+Int.\+h}}.
+
+\mbox{\Hypertarget{_i_r_remote___library_2_i_rremote_int_8h_ac0d006cd9c029a2e6c4bd513ee5e7951}\label{_i_r_remote___library_2_i_rremote_int_8h_ac0d006cd9c029a2e6c4bd513ee5e7951}} 
+\index{IRremoteInt.h@{IRremoteInt.h}!TICKS\_HIGH@{TICKS\_HIGH}}
+\index{TICKS\_HIGH@{TICKS\_HIGH}!IRremoteInt.h@{IRremoteInt.h}}
+\doxysubsubsection{\texorpdfstring{TICKS\_HIGH}{TICKS\_HIGH}}
+{\footnotesize\ttfamily \#define TICKS\+\_\+\+HIGH(\begin{DoxyParamCaption}\item[{}]{us }\end{DoxyParamCaption})~((us)/40 + 1)}
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source_l00395}{395}} of file \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source}{IRremote\+Int.\+h}}.
+
+\mbox{\Hypertarget{_i_r_remote___library_2_i_rremote_int_8h_a92632ec97aa1c7a60a990811744a6902}\label{_i_r_remote___library_2_i_rremote_int_8h_a92632ec97aa1c7a60a990811744a6902}} 
+\index{IRremoteInt.h@{IRremoteInt.h}!TICKS\_LOW@{TICKS\_LOW}}
+\index{TICKS\_LOW@{TICKS\_LOW}!IRremoteInt.h@{IRremoteInt.h}}
+\doxysubsubsection{\texorpdfstring{TICKS\_LOW}{TICKS\_LOW}}
+{\footnotesize\ttfamily \#define TICKS\+\_\+\+LOW(\begin{DoxyParamCaption}\item[{}]{us }\end{DoxyParamCaption})~((us)/67 )}
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source_l00394}{394}} of file \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source}{IRremote\+Int.\+h}}.
+
+\mbox{\Hypertarget{_i_r_remote___library_2_i_rremote_int_8h_a30c17564229ec2e37dfea9c6c9ad643e}\label{_i_r_remote___library_2_i_rremote_int_8h_a30c17564229ec2e37dfea9c6c9ad643e}} 
+\index{IRremoteInt.h@{IRremoteInt.h}!TOLERANCE@{TOLERANCE}}
+\index{TOLERANCE@{TOLERANCE}!IRremoteInt.h@{IRremoteInt.h}}
+\doxysubsubsection{\texorpdfstring{TOLERANCE}{TOLERANCE}}
+{\footnotesize\ttfamily \#define TOLERANCE~25}
+
+Relative tolerance (in percent) for some comparisons on measured data. 
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source_l00382}{382}} of file \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source}{IRremote\+Int.\+h}}.
+
+\mbox{\Hypertarget{_i_r_remote___library_2_i_rremote_int_8h_a575e74508c30d1ccf92f7e142a43dd3d}\label{_i_r_remote___library_2_i_rremote_int_8h_a575e74508c30d1ccf92f7e142a43dd3d}} 
+\index{IRremoteInt.h@{IRremoteInt.h}!USE\_DEFAULT\_FEEDBACK\_LED\_PIN@{USE\_DEFAULT\_FEEDBACK\_LED\_PIN}}
+\index{USE\_DEFAULT\_FEEDBACK\_LED\_PIN@{USE\_DEFAULT\_FEEDBACK\_LED\_PIN}!IRremoteInt.h@{IRremoteInt.h}}
+\doxysubsubsection{\texorpdfstring{USE\_DEFAULT\_FEEDBACK\_LED\_PIN}{USE\_DEFAULT\_FEEDBACK\_LED\_PIN}}
+{\footnotesize\ttfamily \#define USE\+\_\+\+DEFAULT\+\_\+\+FEEDBACK\+\_\+\+LED\+\_\+\+PIN~0}
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source_l00082}{82}} of file \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source}{IRremote\+Int.\+h}}.
+
+\mbox{\Hypertarget{_i_r_remote___library_2_i_rremote_int_8h_ad3a18e82bb4b51badb0727fce56a7557}\label{_i_r_remote___library_2_i_rremote_int_8h_ad3a18e82bb4b51badb0727fce56a7557}} 
+\index{IRremoteInt.h@{IRremoteInt.h}!UTOL@{UTOL}}
+\index{UTOL@{UTOL}!IRremoteInt.h@{IRremoteInt.h}}
+\doxysubsubsection{\texorpdfstring{UTOL}{UTOL}}
+{\footnotesize\ttfamily \#define UTOL~(100 + \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_a30c17564229ec2e37dfea9c6c9ad643e}{TOLERANCE}})}
+
+Upper tolerance for comparison of measured data 
+
+Definition at line \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source_l00389}{389}} of file \mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h_source}{IRremote\+Int.\+h}}.
+

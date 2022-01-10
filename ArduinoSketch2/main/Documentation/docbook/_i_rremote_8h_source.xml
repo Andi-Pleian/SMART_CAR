@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="__i_rremote_8h_source" xml:lang="en-US">
+<title>IRremote.h</title>
+<indexterm><primary>main/IRRemote_Library/IRremote.h</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered"><anchor xml:id="__i_rremote_8h_source_1l00001"/>00001 
+<anchor xml:id="__i_rremote_8h_source_1l00007"/>00007 <emphasis role="preprocessor">#ifndef&#32;IRremote_h</emphasis>
+<anchor xml:id="__i_rremote_8h_source_1l00008"/>00008 <emphasis role="preprocessor">#define&#32;IRremote_h</emphasis>
+<anchor xml:id="__i_rremote_8h_source_1l00009"/>00009 
+<anchor xml:id="__i_rremote_8h_source_1l00010"/>00010 <emphasis role="preprocessor">#include&#32;&quot;<link linkend="__i_rremote_8hpp">IRremote.hpp</link>&quot;</emphasis>
+<anchor xml:id="__i_rremote_8h_source_1l00011"/>00011 
+<anchor xml:id="__i_rremote_8h_source_1l00012"/>00012 <emphasis role="preprocessor">#endif&#32;</emphasis><emphasis role="comment">//&#32;IRremote_h</emphasis>
+<anchor xml:id="__i_rremote_8h_source_1l00013"/>00013 <emphasis role="preprocessor">#pragma&#32;once</emphasis>
+<anchor xml:id="__i_rremote_8h_source_1l00014"/>00014 
+</programlisting></section>

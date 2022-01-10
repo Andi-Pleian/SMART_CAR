@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="__motor___control_8cpp" xml:lang="en-US">
+<title>main/Modules/Actuators/MotorControl/Motor_Control.cpp File Reference</title>
+<indexterm><primary>main/Modules/Actuators/MotorControl/Motor_Control.cpp</primary></indexterm>
+<programlisting linenumbering="unnumbered">#include &quot;Motor_Control.h&quot;
+</programlisting>Include dependency graph for Motor_Control.cpp:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="_motor___control_8cpp__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>

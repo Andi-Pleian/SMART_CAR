@@ -1,0 +1,315 @@
+\hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source}{}\doxysection{ir\+\_\+\+Pronto.\+hpp}
+\label{_i_r_remote___library_2ir___pronto_8hpp_source}\index{main/IRRemote\_Library/ir\_Pronto.hpp@{main/IRRemote\_Library/ir\_Pronto.hpp}}
+\mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00001}00001 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00002}00002 \textcolor{comment}{ * @file ir\_Pronto.hpp}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00003}00003 \textcolor{comment}{ * @brief In this file, the functions IRrecv::compensateAndPrintPronto and IRsend::sendPronto are defined.}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00004}00004 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00005}00005 \textcolor{comment}{ * See http://www.harctoolbox.org/Glossary.html\#ProntoSemantics}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00006}00006 \textcolor{comment}{ * Pronto database http://www.remotecentral.com/search.htm}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00007}00007 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00008}00008 \textcolor{comment}{ *  This file is part of Arduino-\/IRremote https://github.com/Arduino-\/IRremote/Arduino-\/IRremote.}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00009}00009 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00010}00010 \textcolor{comment}{ ************************************************************************************}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00011}00011 \textcolor{comment}{ * MIT License}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00012}00012 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00013}00013 \textcolor{comment}{ * Copyright (c) 2020 Bengt Martensson}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00014}00014 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00015}00015 \textcolor{comment}{ * Permission is hereby granted, free of charge, to any person obtaining a copy}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00016}00016 \textcolor{comment}{ * of this software and associated documentation files (the "{}Software"{}), to deal}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00017}00017 \textcolor{comment}{ * in the Software without restriction, including without limitation the rights}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00018}00018 \textcolor{comment}{ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00019}00019 \textcolor{comment}{ * copies of the Software, and to permit persons to whom the Software is furnished}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00020}00020 \textcolor{comment}{ * to do so, subject to the following conditions:}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00021}00021 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00022}00022 \textcolor{comment}{ * The above copyright notice and this permission notice shall be included in all}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00023}00023 \textcolor{comment}{ * copies or substantial portions of the Software.}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00024}00024 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00025}00025 \textcolor{comment}{ * THE SOFTWARE IS PROVIDED "{}AS IS"{}, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00026}00026 \textcolor{comment}{ * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00027}00027 \textcolor{comment}{ * PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00028}00028 \textcolor{comment}{ * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00029}00029 \textcolor{comment}{ * CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00030}00030 \textcolor{comment}{ * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00031}00031 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00032}00032 \textcolor{comment}{ ************************************************************************************}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00033}00033 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00034}00034 \textcolor{preprocessor}{\#ifndef IR\_PRONTO\_HPP}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00035}00035 \textcolor{preprocessor}{\#define IR\_PRONTO\_HPP}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00036}00036 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00037}00037 \textcolor{comment}{// The first number, here 0000, denotes the type of the signal. 0000 denotes a raw IR signal with modulation,}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00038}00038 \textcolor{comment}{// The second number, here 006C, denotes a frequency code}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00039}00039 \textcolor{preprocessor}{\#include <Arduino.h>}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00040}00040 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00041}00041 \textcolor{comment}{//\#define DEBUG // Activate this for lots of lovely debug output from this decoder.}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00042}00042 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h}{IRremoteInt.h}}"{}} \textcolor{comment}{// evaluates the DEBUG for IR\_DEBUG\_PRINT"{}}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00043}00043 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00048}00048 \textcolor{comment}{// TODO remove 6/2021}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00049}00049 \textcolor{preprocessor}{\#if defined(\_\_STM32F1\_\_) || defined(ARDUINO\_ARCH\_STM32F1) }\textcolor{comment}{// Recommended original Arduino\_STM32 by Roger Clark.}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00050}00050 \textcolor{preprocessor}{\#  if !defined(strncpy\_P)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00051}00051 \textcolor{comment}{// this define is not included in the pgmspace.h file see https://github.com/rogerclarkmelbourne/Arduino\_STM32/issues/852}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00052}00052 \textcolor{preprocessor}{\#define strncpy\_P(dest, src, size) strncpy((dest), (src), (size))}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00053}00053 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00054}00054 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00055}00055 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00057}00057 \textcolor{comment}{// DO NOT EXPORT from this file}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00058}00058 \textcolor{keyword}{static} \textcolor{keyword}{const} uint16\_t learnedToken = 0x0000U;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00059}00059 \textcolor{keyword}{static} \textcolor{keyword}{const} uint16\_t learnedNonModulatedToken = 0x0100U;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00060}00060 \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} bitsInHexadecimal = 4U;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00061}00061 \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} digitsInProntoNumber = 4U;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00062}00062 \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} numbersInPreamble = 4U;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00063}00063 \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} hexMask = 0xFU;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00064}00064 \textcolor{keyword}{static} \textcolor{keyword}{const} uint32\_t referenceFrequency = 4145146UL;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00065}00065 \textcolor{keyword}{static} \textcolor{keyword}{const} uint16\_t fallbackFrequency = 64767U; \textcolor{comment}{// To use with frequency = 0;}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00066}00066 \textcolor{keyword}{static} \textcolor{keyword}{const} uint32\_t microsecondsInSeconds = 1000000UL;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00067}00067 \textcolor{keyword}{static} \textcolor{keyword}{const} uint16\_t PRONTO\_DEFAULT\_GAP = 45000;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00069}00069 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00070}\mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_ga01388575997ce2531098a606a8a25521}{00070}} \textcolor{keyword}{static} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_ga01388575997ce2531098a606a8a25521}{toFrequencyKHz}}(uint16\_t code) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00071}00071     \textcolor{keywordflow}{return} ((referenceFrequency / code) + 500) / 1000;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00072}00072 \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00073}00073 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00074}00074 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00075}00075 \textcolor{comment}{ * Parse the string given as Pronto Hex, and send it a number of times given as argument.}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00076}00076 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00077}00077 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___decoder_ga26830e1c38ef9caa1caedeb9e7dabb7a}{IRsend::sendPronto}}(\textcolor{keyword}{const} uint16\_t *data, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} length, uint\_fast8\_t aNumberOfRepeats) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00078}00078     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} timebase = (microsecondsInSeconds * data[1] + referenceFrequency / 2) / referenceFrequency;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00079}00079     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} khz;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00080}00080     \textcolor{keywordflow}{switch} (data[0]) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00081}00081     \textcolor{keywordflow}{case} learnedToken: \textcolor{comment}{// normal, "{}learned"{}}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00082}00082         khz = \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_ga01388575997ce2531098a606a8a25521}{toFrequencyKHz}}(data[1]);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00083}00083         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00084}00084     \textcolor{keywordflow}{case} learnedNonModulatedToken: \textcolor{comment}{// non-\/demodulated, "{}learned"{}}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00085}00085         khz = 0U;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00086}00086         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00087}00087     \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00088}00088         \textcolor{keywordflow}{return}; \textcolor{comment}{// There are other types, but they are not handled yet.}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00089}00089     \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00090}00090     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} intros = 2 * data[2];}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00091}00091     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} repeats = 2 * data[3];}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00092}00092     \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(F(\textcolor{stringliteral}{"{}sendPronto intros="{}}));}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00093}00093     \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(intros);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00094}00094     \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(F(\textcolor{stringliteral}{"{} repeats="{}}));}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00095}00095     \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(repeats);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00096}00096     \textcolor{keywordflow}{if} (numbersInPreamble + intros + repeats != length) \{ \textcolor{comment}{// inconsistent sizes}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00097}00097         \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00098}00098     \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00099}00099 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00100}00100     \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00101}00101 \textcolor{comment}{     * Generate a new microseconds timing array for sendRaw.}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00102}00102 \textcolor{comment}{     * If recorded by IRremote, intro contains the whole IR data and repeat is empty}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00103}00103 \textcolor{comment}{     */}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00104}00104     uint16\_t durations[intros + repeats];}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00105}00105     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i = 0; i < intros + repeats; i++) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00106}00106         uint32\_t duration = ((uint32\_t) data[i + numbersInPreamble]) * timebase;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00107}00107         durations[i] = (\textcolor{keywordtype}{unsigned} int) ((duration <= \_\_UINT16\_MAX\_\_) ? duration : \_\_UINT16\_MAX\_\_);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00108}00108     \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00109}00109 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00110}00110     \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00111}00111 \textcolor{comment}{     * Send the intro. intros is even.}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00112}00112 \textcolor{comment}{     * Do not send the trailing space here, send it if repeats are requested}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00113}00113 \textcolor{comment}{     */}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00114}00114     \textcolor{keywordflow}{if} (intros >= 2) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00115}00115         \mbox{\hyperlink{group___sending_ga1c9027bc86e6a726295219ac11e06a1b}{sendRaw}}(durations, intros -\/ 1, khz);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00116}00116     \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00117}00117 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00118}00118     \textcolor{keywordflow}{if} (repeats == 0 || \mbox{\hyperlink{class_i_rsend_aff233b57d2382a713926797ce5da0fd3}{aNumberOfRepeats}} == 0) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00119}00119         \textcolor{comment}{// only send intro once}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00120}00120         \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00121}00121     \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00122}00122 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00123}00123     \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00124}00124 \textcolor{comment}{     * Now send the trailing space/gap of the intro and all the repeats}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00125}00125 \textcolor{comment}{     */}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00126}00126     \textcolor{keywordflow}{if} (intros >= 2) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00127}00127         delay(durations[intros -\/ 1] / \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_ae9ba0b7dd556e22688f7da01019bba68}{MICROS\_IN\_ONE\_MILLI}}); \textcolor{comment}{// equivalent to space(durations[intros -\/ 1]); but allow bigger values for the gap}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00128}00128     \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00129}00129     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i = 0; i < \mbox{\hyperlink{class_i_rsend_aff233b57d2382a713926797ce5da0fd3}{aNumberOfRepeats}}; i++) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00130}00130         \mbox{\hyperlink{group___sending_ga1c9027bc86e6a726295219ac11e06a1b}{sendRaw}}(durations + intros, repeats -\/ 1, khz);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00131}00131         \textcolor{keywordflow}{if} ((i + 1) < \mbox{\hyperlink{class_i_rsend_aff233b57d2382a713926797ce5da0fd3}{aNumberOfRepeats}}) \{ \textcolor{comment}{// skip last trailing space/gap, see above}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00132}00132             delay(durations[intros + repeats -\/ 1] / \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_ae9ba0b7dd556e22688f7da01019bba68}{MICROS\_IN\_ONE\_MILLI}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00133}00133         \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00134}00134     \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00135}00135 \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00136}00136 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00154}00154 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___decoder_ga26830e1c38ef9caa1caedeb9e7dabb7a}{IRsend::sendPronto}}(\textcolor{keyword}{const} \textcolor{keywordtype}{char} *str, uint\_fast8\_t aNumberOfRepeats) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00155}00155     \textcolor{keywordtype}{size\_t} len = strlen(str) / (digitsInProntoNumber + 1) + 1;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00156}00156     uint16\_t data[len];}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00157}00157     \textcolor{keyword}{const} \textcolor{keywordtype}{char} *p = str;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00158}00158     \textcolor{keywordtype}{char} *endptr[1];}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00159}00159     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i = 0; i < len; i++) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00160}00160         \textcolor{keywordtype}{long} x = strtol(p, endptr, 16);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00161}00161         \textcolor{keywordflow}{if} (x == 0 \&\& i >= numbersInPreamble) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00162}00162             \textcolor{comment}{// Alignment error?, bail immediately (often right result).}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00163}00163             len = i;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00164}00164             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00165}00165         \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00166}00166         data[i] = \textcolor{keyword}{static\_cast<}uint16\_t\textcolor{keyword}{>}(x); \textcolor{comment}{// If input is conforming, there can be no overflow!}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00167}00167         p = *endptr;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00168}00168     \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00169}00169     \mbox{\hyperlink{group___decoder_ga26830e1c38ef9caa1caedeb9e7dabb7a}{sendPronto}}(data, len, \mbox{\hyperlink{class_i_rsend_aff233b57d2382a713926797ce5da0fd3}{aNumberOfRepeats}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00170}00170 \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00171}00171 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00172}00172 \textcolor{preprocessor}{\#if defined(\_\_AVR\_\_)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00178}00178 \textcolor{comment}{//far pointer (? for ATMega2560 etc.)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00179}00179 \textcolor{keywordtype}{void} IRsend::sendPronto\_PF(uint\_farptr\_t str, uint\_fast8\_t aNumberOfRepeats) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00180}00180     \textcolor{keywordtype}{size\_t} len = strlen\_PF(str);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00181}00181     \textcolor{keywordtype}{char} work[len + 1];}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00182}00182     strncpy\_PF(work, str, len);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00183}00183     \mbox{\hyperlink{group___decoder_ga26830e1c38ef9caa1caedeb9e7dabb7a}{sendPronto}}(work, \mbox{\hyperlink{class_i_rsend_aff233b57d2382a713926797ce5da0fd3}{aNumberOfRepeats}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00184}00184 \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00185}00185 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00186}00186 \textcolor{comment}{//standard pointer}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00187}00187 \textcolor{keywordtype}{void} IRsend::sendPronto\_P(\textcolor{keyword}{const} \textcolor{keywordtype}{char} *str, uint\_fast8\_t aNumberOfRepeats) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00188}00188     \textcolor{keywordtype}{size\_t} len = \mbox{\hyperlink{_i_r_remote_2digital_write_fast_8h_a76ea3b30093856a6482a978d9214142d}{strlen\_P}}(str);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00189}00189     \textcolor{keywordtype}{char} work[len + 1];}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00190}00190     strncpy\_P(work, str, len);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00191}00191     \mbox{\hyperlink{group___decoder_ga26830e1c38ef9caa1caedeb9e7dabb7a}{sendPronto}}(work, \mbox{\hyperlink{class_i_rsend_aff233b57d2382a713926797ce5da0fd3}{aNumberOfRepeats}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00192}00192 \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00193}00193 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00194}00194 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00195}00195 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___decoder_ga26830e1c38ef9caa1caedeb9e7dabb7a}{IRsend::sendPronto}}(\textcolor{keyword}{const} \_\_FlashStringHelper *str, uint\_fast8\_t aNumberOfRepeats) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00196}00196     \textcolor{keywordtype}{size\_t} len = \mbox{\hyperlink{_i_r_remote_2digital_write_fast_8h_a76ea3b30093856a6482a978d9214142d}{strlen\_P}}(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const }\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(str));}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00197}00197     \textcolor{keywordtype}{char} work[len + 1];}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00198}00198     strncpy\_P(work, \textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const }\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(str), len);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00199}00199     \textcolor{keywordflow}{return} \mbox{\hyperlink{group___decoder_ga26830e1c38ef9caa1caedeb9e7dabb7a}{sendPronto}}(work, \mbox{\hyperlink{class_i_rsend_aff233b57d2382a713926797ce5da0fd3}{aNumberOfRepeats}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00200}00200 \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00201}00201 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00202}\mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_ga1272f3783a3b8d2cf2241f1e76674c8a}{00202}} \textcolor{keyword}{static} uint16\_t \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_ga1272f3783a3b8d2cf2241f1e76674c8a}{effectiveFrequency}}(uint16\_t frequency) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00203}00203     \textcolor{keywordflow}{return} frequency > 0 ? frequency : fallbackFrequency;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00204}00204 \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00205}00205 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00206}\mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_ga356fabeed3a4b0a010a35550e86285c5}{00206}} \textcolor{keyword}{static} uint16\_t \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_ga356fabeed3a4b0a010a35550e86285c5}{toTimebase}}(uint16\_t frequency) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00207}00207     \textcolor{keywordflow}{return} microsecondsInSeconds / \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_ga1272f3783a3b8d2cf2241f1e76674c8a}{effectiveFrequency}}(frequency);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00208}00208 \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00209}00209 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00210}\mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_ga155ad672d0494903d7c89e73650879ae}{00210}} \textcolor{keyword}{static} uint16\_t \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_ga155ad672d0494903d7c89e73650879ae}{toFrequencyCode}}(uint16\_t frequency) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00211}00211     \textcolor{keywordflow}{return} referenceFrequency / \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_ga1272f3783a3b8d2cf2241f1e76674c8a}{effectiveFrequency}}(frequency);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00212}00212 \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00213}00213 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00214}\mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_ga7741bc8892620b5da6c38a29d3d48668}{00214}} \textcolor{keyword}{static} \textcolor{keywordtype}{char} \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_ga7741bc8892620b5da6c38a29d3d48668}{hexDigit}}(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} x) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00215}00215     \textcolor{keywordflow}{return} (\textcolor{keywordtype}{char}) (x <= 9 ? (\textcolor{charliteral}{'0'} + x) : (\textcolor{charliteral}{'A'} + (x -\/ 10)));}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00216}00216 \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00217}00217 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00218}\mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_gaa82a581fafa8fa2310b7241fe1ded33d}{00218}} \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_gaa82a581fafa8fa2310b7241fe1ded33d}{dumpDigit}}(Print *aSerial, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} number) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00219}00219     aSerial-\/>print(\mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_ga7741bc8892620b5da6c38a29d3d48668}{hexDigit}}(number));}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00220}00220 \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00221}00221 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00222}\mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_ga69048be6384abbbe3c17e3f25432a392}{00222}} \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_ga69048be6384abbbe3c17e3f25432a392}{dumpNumber}}(Print *aSerial, uint16\_t number) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00223}00223     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i = 0; i < digitsInProntoNumber; i++) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00224}00224         \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} shifts = bitsInHexadecimal * (digitsInProntoNumber -\/ 1 -\/ i);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00225}00225         \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_gaa82a581fafa8fa2310b7241fe1ded33d}{dumpDigit}}(aSerial, (number >> shifts) \& hexMask);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00226}00226     \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00227}00227     aSerial-\/>print(\textcolor{charliteral}{' '});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00228}00228 \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00229}00229 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00230}\mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_ga479fbb18cdfa303a8bc4322123f831df}{00230}} \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_ga479fbb18cdfa303a8bc4322123f831df}{dumpDuration}}(Print *aSerial, uint32\_t duration, uint16\_t timebase) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00231}00231     \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_ga69048be6384abbbe3c17e3f25432a392}{dumpNumber}}(aSerial, (duration + timebase / 2) / timebase);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00232}00232 \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00233}00233 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00234}00234 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00235}00235 \textcolor{comment}{ * Compensate received values by MARK\_EXCESS\_MICROS, like it is done for decoding!}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00236}00236 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00237}\mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_ga8a8a6b504851150df425d5b490d92640}{00237}} \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_ga8a8a6b504851150df425d5b490d92640}{compensateAndDumpSequence}}(Print *aSerial, \textcolor{keyword}{const} \textcolor{keyword}{volatile} uint16\_t *data, \textcolor{keywordtype}{size\_t} length, uint16\_t timebase) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00238}00238     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < length; i++) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00239}00239         uint32\_t tDuration = data[i] * \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a1c7eebb527483c272812530caa313d20}{MICROS\_PER\_TICK}};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00240}00240         \textcolor{keywordflow}{if} (i \& 1) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00241}00241             \textcolor{comment}{// Mark}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00242}00242             tDuration -\/= \mbox{\hyperlink{group___receiving_gab1d28d4dd67d6bf808c0328a92e2d863}{getMarkExcessMicros}}();}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00243}00243         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00244}00244             tDuration += \mbox{\hyperlink{group___receiving_gab1d28d4dd67d6bf808c0328a92e2d863}{getMarkExcessMicros}}();}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00245}00245         \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00246}00246         \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_ga479fbb18cdfa303a8bc4322123f831df}{dumpDuration}}(aSerial, tDuration, timebase);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00247}00247     \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00248}00248 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00249}00249     \textcolor{comment}{// append a gap}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00250}00250     \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_ga479fbb18cdfa303a8bc4322123f831df}{dumpDuration}}(aSerial, PRONTO\_DEFAULT\_GAP, timebase);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00251}00251 \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00252}00252 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00259}00259 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___decoder_gaa701711c860c8ff58d332c4567e7ff89}{IRrecv::compensateAndPrintIRResultAsPronto}}(Print *aSerial, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} aFrequencyHertz) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00260}00260     aSerial-\/>println(F(\textcolor{stringliteral}{"{}Pronto Hex as string"{}}));}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00261}00261     aSerial-\/>print(F(\textcolor{stringliteral}{"{}char prontoData[] = \(\backslash\)"{}"{}}));}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00262}00262     \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_ga69048be6384abbbe3c17e3f25432a392}{dumpNumber}}(aSerial, aFrequencyHertz > 0 ? learnedToken : learnedNonModulatedToken);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00263}00263     \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_ga69048be6384abbbe3c17e3f25432a392}{dumpNumber}}(aSerial, \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_ga155ad672d0494903d7c89e73650879ae}{toFrequencyCode}}(aFrequencyHertz));}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00264}00264     \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_ga69048be6384abbbe3c17e3f25432a392}{dumpNumber}}(aSerial, (\mbox{\hyperlink{class_i_rrecv_a19d71758b1b0e1fbee948ad917c5b828}{decodedIRData}}.\mbox{\hyperlink{struct_i_r_data_aea978b2fc583715678eb92ac96aac8fe}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_af0571ac479d1c38c79502651b0631432}{rawlen}} + 1) / 2);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00265}00265     \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_ga69048be6384abbbe3c17e3f25432a392}{dumpNumber}}(aSerial, 0);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00266}00266     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} timebase = \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_ga356fabeed3a4b0a010a35550e86285c5}{toTimebase}}(aFrequencyHertz);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00267}00267     \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_ga8a8a6b504851150df425d5b490d92640}{compensateAndDumpSequence}}(aSerial, \&\mbox{\hyperlink{class_i_rrecv_a19d71758b1b0e1fbee948ad917c5b828}{decodedIRData}}.\mbox{\hyperlink{struct_i_r_data_aea978b2fc583715678eb92ac96aac8fe}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_a24c9f838f5442649b9655dd53e4b029c}{rawbuf}}[1], \mbox{\hyperlink{class_i_rrecv_a19d71758b1b0e1fbee948ad917c5b828}{decodedIRData}}.\mbox{\hyperlink{struct_i_r_data_aea978b2fc583715678eb92ac96aac8fe}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_af0571ac479d1c38c79502651b0631432}{rawlen}} -\/ 1, timebase); \textcolor{comment}{// skip leading space}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00268}00268     aSerial-\/>println(\textcolor{stringliteral}{"{}\(\backslash\)"{};"{}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00269}00269 \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00270}00270 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00271}00271 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00272}00272 \textcolor{comment}{ * Functions for dumping Pronto to a String. This is not very time and space efficient}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00273}00273 \textcolor{comment}{ * and can lead to resource problems especially on small processors like AVR's}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00274}00274 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00275}00275 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00276}\mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_gab3ca394ad13ba555852f3bb61d488c7b}{00276}} \textcolor{keyword}{static} \textcolor{keywordtype}{bool} \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_gaa82a581fafa8fa2310b7241fe1ded33d}{dumpDigit}}(String *aString, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} number) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00277}00277     aString-\/>concat(\mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_ga7741bc8892620b5da6c38a29d3d48668}{hexDigit}}(number));}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00278}00278     \textcolor{keywordflow}{return} number;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00279}00279 \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00280}00280 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00281}\mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_gab49c8cfa7e96e3c5b54f9a41edbd33ba}{00281}} \textcolor{keyword}{static} \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_ga69048be6384abbbe3c17e3f25432a392}{dumpNumber}}(String *aString, uint16\_t number) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00282}00282 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00283}00283     \textcolor{keywordtype}{size\_t} size = 0;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00284}00284 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00285}00285     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i = 0; i < digitsInProntoNumber; i++) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00286}00286         \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} shifts = bitsInHexadecimal * (digitsInProntoNumber -\/ 1 -\/ i);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00287}00287         size += \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_gaa82a581fafa8fa2310b7241fe1ded33d}{dumpDigit}}(aString, (number >> shifts) \& hexMask);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00288}00288     \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00289}00289     aString-\/>concat(\textcolor{charliteral}{' '});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00290}00290     size++;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00291}00291 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00292}00292     \textcolor{keywordflow}{return} size;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00293}00293 \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00294}00294 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00295}00295 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00296}00296 \textcolor{comment}{ * Compensate received values by MARK\_EXCESS\_MICROS, like it is done for decoding!}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00297}00297 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00298}\mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_ga536975baa9f5346484fc32bd48255d07}{00298}} \textcolor{keyword}{static} \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_ga479fbb18cdfa303a8bc4322123f831df}{dumpDuration}}(String *aString, uint32\_t duration, uint16\_t timebase) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00299}00299     \textcolor{keywordflow}{return} \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_ga69048be6384abbbe3c17e3f25432a392}{dumpNumber}}(aString, (duration + timebase / 2) / timebase);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00300}00300 \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00301}00301 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00302}\mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_ga0772587b98a7fa0cf332788b7e2bd8e6}{00302}} \textcolor{keyword}{static} \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_ga8a8a6b504851150df425d5b490d92640}{compensateAndDumpSequence}}(String *aString, \textcolor{keyword}{const} \textcolor{keyword}{volatile} uint16\_t *data, \textcolor{keywordtype}{size\_t} length, uint16\_t timebase) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00303}00303 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00304}00304     \textcolor{keywordtype}{size\_t} size = 0;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00305}00305 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00306}00306     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < length; i++) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00307}00307         uint32\_t tDuration = data[i] * \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a1c7eebb527483c272812530caa313d20}{MICROS\_PER\_TICK}};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00308}00308         \textcolor{keywordflow}{if} (i \& 1) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00309}00309             \textcolor{comment}{// Mark}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00310}00310             tDuration -\/= \mbox{\hyperlink{group___receiving_gab1d28d4dd67d6bf808c0328a92e2d863}{getMarkExcessMicros}}();}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00311}00311         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00312}00312             tDuration += \mbox{\hyperlink{group___receiving_gab1d28d4dd67d6bf808c0328a92e2d863}{getMarkExcessMicros}}();}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00313}00313         \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00314}00314         size += \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_ga479fbb18cdfa303a8bc4322123f831df}{dumpDuration}}(aString, tDuration, timebase);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00315}00315     \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00316}00316 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00317}00317     \textcolor{comment}{// append minimum gap}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00318}00318     size += \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_ga479fbb18cdfa303a8bc4322123f831df}{dumpDuration}}(aString, PRONTO\_DEFAULT\_GAP, timebase);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00319}00319 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00320}00320     \textcolor{keywordflow}{return} size;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00321}00321 \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00322}00322 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00323}00323 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00324}00324 \textcolor{comment}{ * Writes Pronto HEX to a String object.}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00325}00325 \textcolor{comment}{ * Returns the amount of characters added to the string.(360 characters for a NEC code!)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00326}00326 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00327}00327 \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{group___decoder_ga48195517ee0e2cd73788c7956e413014}{IRrecv::compensateAndStorePronto}}(String *aString, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} frequency) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00328}00328 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00329}00329     \textcolor{keywordtype}{size\_t} size = 0;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00330}00330     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} timebase = \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_ga356fabeed3a4b0a010a35550e86285c5}{toTimebase}}(frequency);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00331}00331 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00332}00332     size += \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_ga69048be6384abbbe3c17e3f25432a392}{dumpNumber}}(aString, frequency > 0 ? learnedToken : learnedNonModulatedToken);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00333}00333     size += \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_ga69048be6384abbbe3c17e3f25432a392}{dumpNumber}}(aString, \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_ga155ad672d0494903d7c89e73650879ae}{toFrequencyCode}}(frequency));}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00334}00334     size += \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_ga69048be6384abbbe3c17e3f25432a392}{dumpNumber}}(aString, (\mbox{\hyperlink{class_i_rrecv_a19d71758b1b0e1fbee948ad917c5b828}{decodedIRData}}.\mbox{\hyperlink{struct_i_r_data_aea978b2fc583715678eb92ac96aac8fe}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_af0571ac479d1c38c79502651b0631432}{rawlen}} + 1) / 2);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00335}00335     size += \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_ga69048be6384abbbe3c17e3f25432a392}{dumpNumber}}(aString, 0);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00336}00336     size += \mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp_ga8a8a6b504851150df425d5b490d92640}{compensateAndDumpSequence}}(aString, \&\mbox{\hyperlink{class_i_rrecv_a19d71758b1b0e1fbee948ad917c5b828}{decodedIRData}}.\mbox{\hyperlink{struct_i_r_data_aea978b2fc583715678eb92ac96aac8fe}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_a24c9f838f5442649b9655dd53e4b029c}{rawbuf}}[1], \mbox{\hyperlink{class_i_rrecv_a19d71758b1b0e1fbee948ad917c5b828}{decodedIRData}}.\mbox{\hyperlink{struct_i_r_data_aea978b2fc583715678eb92ac96aac8fe}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_af0571ac479d1c38c79502651b0631432}{rawlen}} -\/ 1,}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00337}00337             timebase); \textcolor{comment}{// skip leading space}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00338}00338 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00339}00339     \textcolor{keywordflow}{return} size;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00340}00340 \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00341}00341 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00343}00343 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote___library_2ir___pronto_8hpp_source_l00344}00344 \textcolor{preprocessor}{\#pragma once}}
+
+\end{DoxyCode}

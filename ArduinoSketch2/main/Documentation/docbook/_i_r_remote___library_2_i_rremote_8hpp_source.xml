@@ -1,0 +1,194 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="__i_r_remote___library_2_i_rremote_8hpp_source" xml:lang="en-US">
+<title>IRremote.hpp</title>
+<indexterm><primary>main/IRRemote_Library/IRremote.hpp</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered"><anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00001"/>00001 
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00043"/>00043 <emphasis role="preprocessor">#ifndef&#32;IRremote_hpp</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00044"/>00044 <emphasis role="preprocessor">#define&#32;IRremote_hpp</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00045"/>00045 
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00046"/><link linkend="__i_r_remote___library_2_i_rremote_8hpp_1ad9f03906065f749788cc9e3f68fb6253">00046</link> <emphasis role="preprocessor">#define&#32;VERSION_IRREMOTE&#32;&quot;3.5.0&quot;</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00047"/><link linkend="__i_r_remote___library_2_i_rremote_8hpp_1a5fccc9834ba25cd17b7ca45e14aa7751">00047</link> <emphasis role="preprocessor">#define&#32;VERSION_IRREMOTE_MAJOR&#32;3</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00048"/><link linkend="__i_r_remote___library_2_i_rremote_8hpp_1a824e2f61336bde09dd9b835e8606683f">00048</link> <emphasis role="preprocessor">#define&#32;VERSION_IRREMOTE_MINOR&#32;5</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00049"/>00049 
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00050"/>00050 <emphasis role="comment">//&#32;activate&#32;it&#32;for&#32;all&#32;cores&#32;that&#32;does&#32;not&#32;use&#32;the&#32;-flto&#32;flag,&#32;if&#32;you&#32;get&#32;false&#32;error&#32;messages&#32;regarding&#32;begin()&#32;during&#32;compilation.</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00051"/>00051 <emphasis role="comment">//#define&#32;SUPPRESS_ERROR_MESSAGE_FOR_BEGIN</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00052"/>00052 
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00053"/>00053 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00054"/>00054 <emphasis role="comment">&#32;*&#32;If&#32;activated,&#32;BOSEWAVE,&#32;MAGIQUEST,WHYNTER&#32;and&#32;LEGO_PF&#32;are&#32;excluded&#32;in&#32;decoding&#32;and&#32;in&#32;sending&#32;with&#32;IrSender.write</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00055"/>00055 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00056"/>00056 <emphasis role="comment">//#define&#32;EXCLUDE_EXOTIC_PROTOCOLS</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00057"/>00057 
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00060"/>00060 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00061"/>00061 <emphasis role="comment">&#32;*&#32;Supported&#32;IR&#32;protocols</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00062"/>00062 <emphasis role="comment">&#32;*&#32;Each&#32;protocol&#32;you&#32;include&#32;costs&#32;memory&#32;and,&#32;during&#32;decode,&#32;costs&#32;time</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00063"/>00063 <emphasis role="comment">&#32;*&#32;Copy&#32;the&#32;lines&#32;with&#32;the&#32;protocols&#32;you&#32;need&#32;in&#32;your&#32;program&#32;before&#32;the&#32;&#32;#include&#32;&lt;IRremote.hpp&gt;&#32;line</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00064"/>00064 <emphasis role="comment">&#32;*&#32;See&#32;also&#32;SimpleReceiver&#32;example</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00065"/>00065 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00066"/>00066 
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00067"/>00067 <emphasis role="preprocessor">#if&#32;!defined(NO_DECODER)&#32;</emphasis><emphasis role="comment">//&#32;for&#32;sending&#32;raw&#32;only</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00068"/>00068 <emphasis role="preprocessor">#if&#32;(!(defined(DECODE_DENON)&#32;||&#32;defined(DECODE_JVC)&#32;||&#32;defined(DECODE_KASEIKYO)&#32;\</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00069"/>00069 <emphasis role="preprocessor">||&#32;defined(DECODE_PANASONIC)&#32;||&#32;defined(DECODE_LG)&#32;||&#32;defined(DECODE_NEC)&#32;||&#32;defined(DECODE_SAMSUNG)&#32;\</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00070"/>00070 <emphasis role="preprocessor">||&#32;defined(DECODE_SONY)&#32;||&#32;defined(DECODE_RC5)&#32;||&#32;defined(DECODE_RC6)&#32;||&#32;defined(DECODE_HASH)&#32;\</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00071"/>00071 <emphasis role="preprocessor">||&#32;defined(DECODE_BOSEWAVE)&#32;||&#32;defined(DECODE_LEGO_PF)&#32;||&#32;defined(DECODE_WHYNTER)))</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00072"/><link linkend="__i_r_remote___library_2_i_rremote_8hpp_1a589c5f91ad251aff0cbdc179a5faaa60">00072</link> <emphasis role="preprocessor">#define&#32;DECODE_DENON&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;</emphasis><emphasis role="comment">//&#32;Includes&#32;Sharp</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00073"/><link linkend="__i_r_remote___library_2_i_rremote_8hpp_1ac1f2b013768a77943b002953197cb573">00073</link> <emphasis role="preprocessor">#define&#32;DECODE_JVC</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00074"/><link linkend="__i_r_remote___library_2_i_rremote_8hpp_1acd46d28198948511f9c8b97328b5fdde">00074</link> <emphasis role="preprocessor">#define&#32;DECODE_KASEIKYO</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00075"/><link linkend="__i_r_remote___library_2_i_rremote_8hpp_1a018b3df8bf49d3f6cc094db8491ad2ad">00075</link> <emphasis role="preprocessor">#define&#32;DECODE_PANASONIC&#32;&#32;&#32;&#32;</emphasis><emphasis role="comment">//&#32;the&#32;same&#32;as&#32;DECODE_KASEIKYO</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00076"/><link linkend="__i_r_remote___library_2_i_rremote_8hpp_1a54d5d4710700ef373384f64409df677f">00076</link> <emphasis role="preprocessor">#define&#32;DECODE_LG</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00077"/><link linkend="__i_r_remote___library_2_i_rremote_8hpp_1ac1592db6a7ef80a046d9f33a5a2ed5d8">00077</link> <emphasis role="preprocessor">#define&#32;DECODE_NEC&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;</emphasis><emphasis role="comment">//&#32;Includes&#32;Apple&#32;and&#32;Onkyo</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00078"/><link linkend="__i_r_remote___library_2_i_rremote_8hpp_1aa460f8aea781d305b7e0fef9b6748523">00078</link> <emphasis role="preprocessor">#define&#32;DECODE_SAMSUNG</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00079"/><link linkend="__i_r_remote___library_2_i_rremote_8hpp_1a308d000d6a90fac72f4dcf47323bef21">00079</link> <emphasis role="preprocessor">#define&#32;DECODE_SONY</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00080"/><link linkend="__i_r_remote___library_2_i_rremote_8hpp_1aa1dbf245adf93ffa573dc4863ea29c5b">00080</link> <emphasis role="preprocessor">#define&#32;DECODE_RC5</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00081"/><link linkend="__i_r_remote___library_2_i_rremote_8hpp_1a4f3761bb8157be080bee1d9e4c1bc8c8">00081</link> <emphasis role="preprocessor">#define&#32;DECODE_RC6</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00082"/>00082 
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00083"/>00083 <emphasis role="preprocessor">#&#32;&#32;if&#32;!defined(EXCLUDE_EXOTIC_PROTOCOLS)&#32;</emphasis><emphasis role="comment">//&#32;saves&#32;around&#32;2000&#32;bytes&#32;program&#32;space</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00084"/><link linkend="__i_r_remote___library_2_i_rremote_8hpp_1a2935e3b14cf449b00b4166f71eecf8af">00084</link> <emphasis role="preprocessor">#define&#32;DECODE_BOSEWAVE</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00085"/><link linkend="__i_r_remote___library_2_i_rremote_8hpp_1a95bc1b009436547a892527e2c2f43384">00085</link> <emphasis role="preprocessor">#define&#32;DECODE_LEGO_PF</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00086"/><link linkend="__i_r_remote___library_2_i_rremote_8hpp_1ad1f31ad2d36110ba06286b7fb1d1ddcf">00086</link> <emphasis role="preprocessor">#define&#32;DECODE_WHYNTER</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00087"/><link linkend="__i_r_remote___library_2_i_rremote_8hpp_1a4f3f73855171522cc6a9fa5ba5f51896">00087</link> <emphasis role="preprocessor">#define&#32;DECODE_MAGIQUEST&#32;</emphasis><emphasis role="comment">//&#32;It&#32;modifies&#32;the&#32;RAW_BUFFER_LENGTH&#32;from&#32;100&#32;to&#32;112</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00088"/>00088 <emphasis role="preprocessor">#&#32;&#32;endif</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00089"/>00089 
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00090"/>00090 <emphasis role="preprocessor">#&#32;&#32;if&#32;!defined(EXCLUDE_UNIVERSAL_PROTOCOLS)</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00091"/><link linkend="__i_r_remote___library_2_i_rremote_8hpp_1ac56dd3a6901bd61a6a122e1f683e5105">00091</link> <emphasis role="preprocessor">#define&#32;DECODE_DISTANCE&#32;&#32;&#32;&#32;&#32;</emphasis><emphasis role="comment">//&#32;universal&#32;decoder&#32;for&#32;pulse&#32;width&#32;or&#32;pulse&#32;distance&#32;protocols&#32;-&#32;requires&#32;up&#32;to&#32;750&#32;bytes&#32;additional&#32;program&#32;space</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00092"/><link linkend="__i_r_remote___library_2_i_rremote_8hpp_1a4ee00d8b9631462888e74c95712234e1">00092</link> <emphasis role="preprocessor">#define&#32;DECODE_HASH&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;</emphasis><emphasis role="comment">//&#32;special&#32;decoder&#32;for&#32;all&#32;protocols&#32;-&#32;requires&#32;up&#32;to&#32;250&#32;bytes&#32;additional&#32;program&#32;space</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00093"/>00093 <emphasis role="preprocessor">#&#32;&#32;endif</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00094"/>00094 <emphasis role="preprocessor">#endif</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00095"/>00095 <emphasis role="preprocessor">#endif&#32;</emphasis><emphasis role="comment">//&#32;!defined(NO_DECODER)</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00096"/>00096 
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00097"/>00097 <emphasis role="preprocessor">#if&#32;defined(DECODE_NEC)&#32;&amp;&amp;&#32;!(~(~DECODE_NEC&#32;+&#32;0)&#32;==&#32;0&#32;&amp;&amp;&#32;~(~DECODE_NEC&#32;+&#32;1)&#32;==&#32;1)</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00098"/>00098 <emphasis role="preprocessor">#warning&#32;&quot;The&#32;macros&#32;DECODE_XXX&#32;no&#32;longer&#32;require&#32;a&#32;value.&#32;Decoding&#32;is&#32;now&#32;switched&#32;by&#32;defining&#32;/&#32;non&#32;defining&#32;the&#32;macro.&quot;</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00099"/>00099 <emphasis role="preprocessor">#endif</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00100"/>00100 
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00101"/>00101 <emphasis role="comment">//#define&#32;DEBUG&#32;//&#32;Activate&#32;this&#32;for&#32;lots&#32;of&#32;lovely&#32;debug&#32;output&#32;from&#32;the&#32;IRremote&#32;core.</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00102"/>00102 
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00103"/>00103 
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00111"/>00111 <emphasis role="preprocessor">#if&#32;!defined(RAW_BUFFER_LENGTH)</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00112"/>00112 <emphasis role="preprocessor">#&#32;&#32;if&#32;defined(DECODE_MAGIQUEST)</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00113"/><link linkend="__i_r_remote___library_2_i_rremote_8hpp_1a589aa40429eeb37b6e83a2c09854a47b">00113</link> <emphasis role="preprocessor">#define&#32;RAW_BUFFER_LENGTH&#32;&#32;112&#32;&#32;</emphasis><emphasis role="comment">//&#32;MagiQuest&#32;requires&#32;112&#32;bytes.</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00114"/>00114 <emphasis role="preprocessor">#&#32;&#32;else</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00115"/>00115 <emphasis role="preprocessor">#define&#32;RAW_BUFFER_LENGTH&#32;&#32;100&#32;&#32;</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00116"/>00116 <emphasis role="comment">//#define&#32;RAW_BUFFER_LENGTH&#32;&#32;750&#32;&#32;//&#32;750&#32;is&#32;the&#32;value&#32;for&#32;air&#32;condition&#32;remotes.</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00117"/>00117 <emphasis role="preprocessor">#&#32;&#32;endif</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00118"/>00118 <emphasis role="preprocessor">#endif</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00119"/>00119 <emphasis role="preprocessor">#if&#32;RAW_BUFFER_LENGTH&#32;%&#32;2&#32;==&#32;1</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00120"/>00120 <emphasis role="preprocessor">#error&#32;RAW_BUFFER_LENGTH&#32;must&#32;be&#32;even,&#32;since&#32;the&#32;array&#32;consists&#32;of&#32;space&#32;/&#32;mark&#32;pairs.</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00121"/>00121 <emphasis role="preprocessor">#endif</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00122"/>00122 
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00138"/>00138 <emphasis role="preprocessor">#if&#32;!defined(MARK_EXCESS_MICROS)</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00139"/>00139 <emphasis role="comment">//&#32;To&#32;change&#32;this&#32;value,&#32;you&#32;simply&#32;can&#32;add&#32;a&#32;line&#32;#define&#32;&quot;MARK_EXCESS_MICROS&#32;&lt;My_new_value&gt;&quot;&#32;in&#32;your&#32;ino&#32;file&#32;before&#32;the&#32;line&#32;&quot;#include&#32;&lt;IRremote.hpp&gt;&quot;</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00140"/><link linkend="__i_r_remote___library_2_i_rremote_8hpp_1a6cb4ad1bc3f0b5d2c4503615058a1d90">00140</link> <emphasis role="preprocessor">#define&#32;MARK_EXCESS_MICROS&#32;&#32;&#32;&#32;20</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00141"/>00141 <emphasis role="preprocessor">#endif</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00142"/>00142 
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00149"/>00149 <emphasis role="preprocessor">#if&#32;!defined(RECORD_GAP_MICROS)</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00150"/>00150 <emphasis role="comment">//&#32;To&#32;change&#32;this&#32;value,&#32;you&#32;simply&#32;can&#32;add&#32;a&#32;line&#32;#define&#32;&quot;RECORD_GAP_MICROS&#32;&lt;My_new_value&gt;&quot;&#32;in&#32;your&#32;ino&#32;file&#32;before&#32;the&#32;line&#32;&quot;#include&#32;&lt;IRremote.hpp&gt;&quot;</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00151"/><link linkend="__i_r_remote___library_2_i_rremote_8hpp_1a2eb6de0bae8bc6f19f3832c00e91f499">00151</link> <emphasis role="preprocessor">#define&#32;RECORD_GAP_MICROS&#32;&#32;&#32;5000&#32;</emphasis><emphasis role="comment">//&#32;FREDRICH28AC&#32;/&#32;LG2&#32;header&#32;space&#32;is&#32;9700,&#32;NEC&#32;header&#32;space&#32;is&#32;4500</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00152"/>00152 <emphasis role="preprocessor">#endif</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00156"/>00156 <emphasis role="preprocessor">#if&#32;!defined(RECORD_GAP_MICROS_WARNING_THRESHOLD)</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00157"/>00157 <emphasis role="comment">//&#32;To&#32;change&#32;this&#32;value,&#32;you&#32;simply&#32;can&#32;add&#32;a&#32;line&#32;#define&#32;&quot;RECORD_GAP_MICROS_WARNING_THRESHOLD&#32;&lt;My_new_value&gt;&quot;&#32;in&#32;your&#32;ino&#32;file&#32;before&#32;the&#32;line&#32;&quot;#include&#32;&lt;IRremote.hpp&gt;&quot;</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00158"/><link linkend="__i_r_remote___library_2_i_rremote_8hpp_1a6afa54ea105253cce361d8c571da5fa9">00158</link> <emphasis role="preprocessor">#define&#32;RECORD_GAP_MICROS_WARNING_THRESHOLD&#32;&#32;&#32;20000</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00159"/>00159 <emphasis role="preprocessor">#endif</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00160"/>00160 
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00162"/><link linkend="__i_r_remote___library_2_i_rremote_8hpp_1a1ba5a08e87f922d04e6acb5c07867386">00162</link> <emphasis role="preprocessor">#define&#32;RECORD_GAP_TICKS&#32;&#32;&#32;&#32;(RECORD_GAP_MICROS&#32;/&#32;MICROS_PER_TICK)&#32;</emphasis><emphasis role="comment">//&#32;221&#32;for&#32;1100</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00163"/>00163 
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00164"/>00164 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00165"/>00165 <emphasis role="comment">&#32;*&#32;Activate&#32;this&#32;line&#32;if&#32;your&#32;receiver&#32;has&#32;an&#32;external&#32;output&#32;driver&#32;transistor&#32;/&#32;&quot;inverted&quot;&#32;output</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00166"/>00166 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00167"/>00167 <emphasis role="comment">//#define&#32;IR_INPUT_IS_ACTIVE_HIGH</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00168"/>00168 <emphasis role="preprocessor">#ifdef&#32;IR_INPUT_IS_ACTIVE_HIGH</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00169"/>00169 <emphasis role="comment">//&#32;IR&#32;detector&#32;output&#32;is&#32;active&#32;high</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00170"/>00170 <emphasis role="preprocessor">#define&#32;INPUT_MARK&#32;&#32;&#32;1&#32;</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00171"/>00171 <emphasis role="preprocessor">#else</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00172"/>00172 <emphasis role="comment">//&#32;IR&#32;detector&#32;output&#32;is&#32;active&#32;low</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00173"/><link linkend="__i_r_remote___library_2_i_rremote_8hpp_1ace39503e8ded5ffb7a1c0d6f651f8d43">00173</link> <emphasis role="preprocessor">#define&#32;INPUT_MARK&#32;&#32;&#32;0&#32;</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00174"/>00174 <emphasis role="preprocessor">#endif</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00175"/>00175 
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00181"/>00181 <emphasis role="preprocessor">#if&#32;defined(ESP32)</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00182"/>00182 <emphasis role="preprocessor">#define&#32;SEND_PWM_BY_TIMER&#32;&#32;&#32;&#32;&#32;&#32;&#32;</emphasis><emphasis role="comment">//&#32;the&#32;best&#32;and&#32;default&#32;method&#32;for&#32;ESP32</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00183"/>00183 <emphasis role="preprocessor">#else</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00184"/>00184 <emphasis role="comment">//#define&#32;SEND_PWM_BY_TIMER</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00185"/>00185 <emphasis role="preprocessor">#endif</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00186"/>00186 
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00190"/>00190 <emphasis role="comment">//#define&#32;USE_NO_SEND_PWM</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00191"/>00191 <emphasis role="preprocessor">#if&#32;defined(SEND_PWM_BY_TIMER)&#32;&amp;&amp;&#32;defined(USE_NO_SEND_PWM)</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00192"/>00192 <emphasis role="preprocessor">#undef&#32;SEND_PWM_BY_TIMER&#32;</emphasis><emphasis role="comment">//&#32;USE_NO_SEND_PWM&#32;overrides&#32;SEND_PWM_BY_TIMER</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00193"/>00193 <emphasis role="preprocessor">#warning&#32;&quot;SEND_PWM_BY_TIMER&#32;and&#32;USE_NO_SEND_PWM&#32;are&#32;both&#32;defined&#32;-&gt;&#32;undefine&#32;SEND_PWM_BY_TIMER&#32;now!&quot;</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00194"/>00194 <emphasis role="preprocessor">#endif</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00195"/>00195 
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00200"/>00200 <emphasis role="comment">//#define&#32;USE_OPEN_DRAIN_OUTPUT_FOR_SEND_PIN</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00206"/>00206 <emphasis role="comment"></emphasis><emphasis role="preprocessor">#if&#32;!defined(PULSE_CORRECTION_NANOS)</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00207"/>00207 <emphasis role="preprocessor">#&#32;&#32;if&#32;defined(F_CPU)</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00208"/>00208 <emphasis role="comment">//&#32;To&#32;change&#32;this&#32;value,&#32;you&#32;simply&#32;can&#32;add&#32;a&#32;line&#32;#define&#32;&quot;PULSE_CORRECTION_NANOS&#32;&lt;My_new_value&gt;&quot;&#32;in&#32;your&#32;ino&#32;file&#32;before&#32;the&#32;line&#32;&quot;#include&#32;&lt;IRremote.hpp&gt;&quot;</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00209"/>00209 <emphasis role="preprocessor">#define&#32;PULSE_CORRECTION_NANOS&#32;(48000L&#32;/&#32;(F_CPU/MICROS_IN_ONE_SECOND))&#32;</emphasis><emphasis role="comment">//&#32;3000&#32;@16MHz,&#32;666&#32;@72MHz</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00210"/>00210 <emphasis role="preprocessor">#&#32;&#32;else</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00211"/><link linkend="__i_r_remote___library_2_i_rremote_8hpp_1ac836377a7a04f6f4044daab71d9660f9">00211</link> <emphasis role="preprocessor">#define&#32;PULSE_CORRECTION_NANOS&#32;600</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00212"/>00212 <emphasis role="preprocessor">#&#32;&#32;endif</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00213"/>00213 <emphasis role="preprocessor">#endif</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00214"/>00214 
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00215"/>00215 <emphasis role="preprocessor">#include&#32;&quot;<link linkend="__i_r_remote___library_2_i_rremote_int_8h">IRremoteInt.h</link>&quot;</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00216"/>00216 <emphasis role="preprocessor">#include&#32;&quot;private/IRTimer.hpp&quot;</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00217"/>00217 <emphasis role="preprocessor">#if&#32;!defined(NO_LED_FEEDBACK_CODE)</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00218"/>00218 <emphasis role="preprocessor">#include&#32;&quot;<link linkend="__i_r_remote___library_2_i_r_feedback_l_e_d_8hpp">IRFeedbackLED.hpp</link>&quot;</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00219"/>00219 <emphasis role="preprocessor">#endif</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00220"/>00220 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00221"/>00221 <emphasis role="comment">&#32;*&#32;Include&#32;the&#32;sources&#32;here&#32;to&#32;enable&#32;compilation&#32;with&#32;macro&#32;values&#32;set&#32;by&#32;user&#32;program.</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00222"/>00222 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00223"/>00223 <emphasis role="preprocessor">#include&#32;&quot;<link linkend="__i_r_remote___library_2_i_r_receive_8hpp">IRReceive.hpp</link>&quot;</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00224"/>00224 <emphasis role="preprocessor">#include&#32;&quot;<link linkend="__i_r_remote___library_2_i_r_send_8hpp">IRSend.hpp</link>&quot;</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00225"/>00225 
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00226"/>00226 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00227"/>00227 <emphasis role="comment">&#32;*&#32;Include&#32;the&#32;sources&#32;of&#32;all&#32;decoders&#32;here&#32;to&#32;enable&#32;compilation&#32;with&#32;macro&#32;values&#32;set&#32;by&#32;user&#32;program.</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00228"/>00228 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00229"/>00229 <emphasis role="preprocessor">#if&#32;defined(DECODE_BOSEWAVE)</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00230"/>00230 <emphasis role="preprocessor">#include&#32;&quot;<link linkend="__i_r_remote___library_2ir___bose_wave_8hpp">ir_BoseWave.hpp</link>&quot;</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00231"/>00231 <emphasis role="preprocessor">#endif</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00232"/>00232 <emphasis role="preprocessor">#if&#32;defined(DECODE_DENON&#32;)&#32;&#32;&#32;&#32;&#32;&#32;&#32;</emphasis><emphasis role="comment">//&#32;Includes&#32;Sharp</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00233"/>00233 <emphasis role="preprocessor">#include&#32;&quot;<link linkend="__i_r_remote___library_2ir___denon_8hpp">ir_Denon.hpp</link>&quot;</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00234"/>00234 <emphasis role="preprocessor">#endif</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00235"/>00235 <emphasis role="preprocessor">#if&#32;defined(DECODE_DISTANCE)&#32;&#32;&#32;&#32;&#32;</emphasis><emphasis role="comment">//&#32;universal&#32;decoder&#32;for&#32;pulse&#32;width&#32;or&#32;pulse&#32;distance&#32;protocols&#32;-&#32;requires&#32;up&#32;to&#32;750&#32;bytes&#32;additional&#32;program&#32;space</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00236"/>00236 <emphasis role="preprocessor">#include&#32;&quot;<link linkend="__i_r_remote___library_2ir___distance_protocol_8hpp">ir_DistanceProtocol.hpp</link>&quot;</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00237"/>00237 <emphasis role="preprocessor">#endif</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00238"/>00238 <emphasis role="preprocessor">#if&#32;defined(DECODE_JVC)</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00239"/>00239 <emphasis role="preprocessor">#include&#32;&quot;<link linkend="__i_r_remote___library_2ir___j_v_c_8hpp">ir_JVC.hpp</link>&quot;</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00240"/>00240 <emphasis role="preprocessor">#endif</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00241"/>00241 <emphasis role="preprocessor">#if&#32;defined(DECODE_KASEIKYO)&#32;||&#32;defined(DECODE_PANASONIC)</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00242"/>00242 <emphasis role="preprocessor">#include&#32;&quot;<link linkend="__i_r_remote___library_2ir___kaseikyo_8hpp">ir_Kaseikyo.hpp</link>&quot;</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00243"/>00243 <emphasis role="preprocessor">#endif</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00244"/>00244 <emphasis role="preprocessor">#if&#32;defined(DECODE_LEGO_PF)</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00245"/>00245 <emphasis role="preprocessor">#include&#32;&quot;<link linkend="__i_r_remote___library_2ir___lego_8hpp">ir_Lego.hpp</link>&quot;</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00246"/>00246 <emphasis role="preprocessor">#endif</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00247"/>00247 <emphasis role="preprocessor">#if&#32;defined(DECODE_LG)</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00248"/>00248 <emphasis role="preprocessor">#include&#32;&quot;<link linkend="__i_r_remote___library_2ir___l_g_8hpp">ir_LG.hpp</link>&quot;</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00249"/>00249 <emphasis role="preprocessor">#endif</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00250"/>00250 <emphasis role="preprocessor">#if&#32;defined(DECODE_MAGIQUEST)</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00251"/>00251 <emphasis role="preprocessor">#include&#32;&quot;<link linkend="__i_r_remote___library_2ir___magi_quest_8hpp">ir_MagiQuest.hpp</link>&quot;</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00252"/>00252 <emphasis role="preprocessor">#endif</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00253"/>00253 <emphasis role="preprocessor">#if&#32;defined(DECODE_NEC)&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;</emphasis><emphasis role="comment">//&#32;Includes&#32;Apple&#32;and&#32;Onkyo</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00254"/>00254 <emphasis role="preprocessor">#include&#32;&quot;<link linkend="__i_r_remote___library_2ir___n_e_c_8hpp">ir_NEC.hpp</link>&quot;</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00255"/>00255 <emphasis role="preprocessor">#endif</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00256"/>00256 <emphasis role="preprocessor">#if&#32;defined(DECODE_RC5)&#32;||&#32;defined(DECODE_RC6)</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00257"/>00257 <emphasis role="preprocessor">#include&#32;&quot;<link linkend="__i_r_remote___library_2ir___r_c5___r_c6_8hpp">ir_RC5_RC6.hpp</link>&quot;</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00258"/>00258 <emphasis role="preprocessor">#endif</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00259"/>00259 <emphasis role="preprocessor">#if&#32;defined(DECODE_SAMSUNG)</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00260"/>00260 <emphasis role="preprocessor">#include&#32;&quot;<link linkend="__i_r_remote___library_2ir___samsung_8hpp">ir_Samsung.hpp</link>&quot;</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00261"/>00261 <emphasis role="preprocessor">#endif</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00262"/>00262 <emphasis role="preprocessor">#if&#32;defined(DECODE_SONY)</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00263"/>00263 <emphasis role="preprocessor">#include&#32;&quot;<link linkend="__i_r_remote___library_2ir___sony_8hpp">ir_Sony.hpp</link>&quot;</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00264"/>00264 <emphasis role="preprocessor">#endif</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00265"/>00265 <emphasis role="preprocessor">#if&#32;defined(DECODE_WHYNTER)</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00266"/>00266 <emphasis role="preprocessor">#include&#32;&quot;<link linkend="__i_r_remote___library_2ir___whynter_8hpp">ir_Whynter.hpp</link>&quot;</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00267"/>00267 <emphasis role="preprocessor">#endif</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00268"/>00268 
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00269"/>00269 <emphasis role="preprocessor">#include&#32;&quot;<link linkend="__i_r_remote___library_2ir___pronto_8hpp">ir_Pronto.hpp</link>&quot;</emphasis>&#32;<emphasis role="comment">//&#32;pronto&#32;is&#32;an&#32;universal&#32;decoder&#32;and&#32;encoder</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00270"/>00270 
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00271"/>00271 <emphasis role="preprocessor">#include&#32;&quot;<link linkend="__i_r_remote___library_2ir___dish_8hpp">ir_Dish.hpp</link>&quot;</emphasis>&#32;<emphasis role="comment">//&#32;contains&#32;only&#32;sendDISH(unsigned&#32;long&#32;data,&#32;int&#32;nbits)</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00272"/>00272 
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00276"/><link linkend="__i_r_remote___library_2_i_rremote_8hpp_1abb919079668bcc14433d4c857ab8a196">00276</link> <emphasis role="preprocessor">#define&#32;RAWBUF&#32;&#32;101&#32;&#32;</emphasis><emphasis role="comment">//&#32;Maximum&#32;length&#32;of&#32;raw&#32;duration&#32;buffer</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00277"/><link linkend="__i_r_remote___library_2_i_rremote_8hpp_1a2c9384c67919c632913b8db2088f8341">00277</link> <emphasis role="preprocessor">#define&#32;REPEAT&#32;0xFFFFFFFF</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00278"/><link linkend="__i_r_remote___library_2_i_rremote_8hpp_1aad2fcaac88c28bf54ecbd42146a56e3f">00278</link> <emphasis role="preprocessor">#define&#32;USECPERTICK&#32;MICROS_PER_TICK</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00279"/><link linkend="__i_r_remote___library_2_i_rremote_8hpp_1ac21b48ddc487212fbce7d6474423e080">00279</link> <emphasis role="preprocessor">#define&#32;MARK_EXCESS&#32;MARK_EXCESS_MICROS</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00280"/>00280 
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00281"/>00281 <emphasis role="preprocessor">#endif&#32;</emphasis><emphasis role="comment">//&#32;IRremote_hpp</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00282"/>00282 
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00283"/>00283 <emphasis role="preprocessor">#pragma&#32;once</emphasis>
+<anchor xml:id="__i_r_remote___library_2_i_rremote_8hpp_source_1l00284"/>00284 
+</programlisting></section>

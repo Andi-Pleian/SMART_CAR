@@ -1,0 +1,549 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_group___sending" xml:lang="en-US">
+<title>Sending IR data for multiple protocols</title>
+<indexterm><primary>Sending IR data for multiple protocols</primary></indexterm>
+<simplesect>
+    <title>Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_group___sending_1ga47f39d9472487072fc80fedbc6b3e161">__attribute</link> ((error(&quot;Error: You must use begin(&lt;sendPin&gt;, &lt;EnableLEDFeedback&gt;, &lt;aFeedbackLEDPin&gt;) if IR_SEND_PIN and SEND_PWM_BY_TIMER are not defined or USE_NO_SEND_PWM is defined. To suppress this error, enable lto or activate the line #define SUPPRESS_ERROR_MESSAGE_FOR_BEGIN in IRremote.hpp.&quot;))) void beginUsageError()</para>
+</listitem>
+            <listitem><para><link linkend="_group___sending_1ga047d9e3f47864869afaa5076579c9f63">IRsend::IRsend</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_group___sending_1gabf55f45c8cfe3558053130bea46e7f14">IRsend::IRsend</link> (uint8_t aSendPin)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___sending_1ga5f592984c8cda2db23aa533cd0d7e827">IRsend::setSendPin</link> (uint8_t aSendPinNumber)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___sending_1ga7db69257658d7ee780a5319bc463dbe9">IRsend::begin</link> (uint8_t aSendPin)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___sending_1gaf2fb03ebe7de801ffc2c1ea0a7ea1cbf">IRsend::begin</link> (uint8_t aSendPin, bool aEnableLEDFeedback, uint8_t aFeedbackLEDPin=<link linkend="__i_rremote_int_8h_1a575e74508c30d1ccf92f7e142a43dd3d">USE_DEFAULT_FEEDBACK_LED_PIN</link>)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___sending_1ga28a0bb05c6b5d7330b2185c8447ef7a2">IRsend::begin</link> (bool aEnableLEDFeedback, uint8_t aFeedbackLEDPin=<link linkend="__i_rremote_int_8h_1a575e74508c30d1ccf92f7e142a43dd3d">USE_DEFAULT_FEEDBACK_LED_PIN</link>)</para>
+</listitem>
+            <listitem><para>size_t <link linkend="_group___sending_1ga567f59869ebc6c7f53d0dc9b360dd4c3">IRsend::write</link> (<link linkend="_struct_i_r_data">IRData</link> *aIRSendData, uint_fast8_t <link linkend="_class_i_rsend_1aff233b57d2382a713926797ce5da0fd3">aNumberOfRepeats</link>=<link linkend="__i_rremote_int_8h_1a5d35fb37031b53f0083f8b88ae3cf2c2">NO_REPEATS</link>)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___sending_1gacdb18ddcfd936246e214e0a9519209bf">IRsend::sendRaw</link> (const uint16_t aBufferWithMicroseconds[], uint_fast8_t aLengthOfBuffer, uint_fast8_t aIRFrequencyKilohertz)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___sending_1ga1c9027bc86e6a726295219ac11e06a1b">IRsend::sendRaw</link> (const uint8_t aBufferWithTicks[], uint_fast8_t aLengthOfBuffer, uint_fast8_t aIRFrequencyKilohertz)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___sending_1ga34540fe390a44b055bfea3da6a79008c">IRsend::sendRaw_P</link> (const uint16_t aBufferWithMicroseconds[], uint_fast8_t aLengthOfBuffer, uint_fast8_t aIRFrequencyKilohertz)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___sending_1gac351cb665bc0a5c863bc7a070b3aee4e">IRsend::sendRaw_P</link> (const uint8_t aBufferWithTicks[], uint_fast8_t aLengthOfBuffer, uint_fast8_t aIRFrequencyKilohertz)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___sending_1ga6904a411999a4c9f7306dba49851eb7b">IRsend::sendPulseDistanceWidthData</link> (unsigned int aOneMarkMicros, unsigned int aOneSpaceMicros, unsigned int aZeroMarkMicros, unsigned int aZeroSpaceMicros, uint32_t aData, uint8_t aNumberOfBits, bool aMSBfirst, bool aSendStopBit=false)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___sending_1ga50162b158e0fa94b105d3717318b8b2c">IRsend::sendBiphaseData</link> (unsigned int aBiphaseTimeUnit, uint32_t aData, uint_fast8_t aNumberOfBits)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___sending_1ga7328943560a5f60f4e9e13d677716674">IRsend::mark</link> (unsigned int aMarkMicros)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___sending_1ga5242741b8da4fbfaae237eee2b279dd0">IRsend::IRLedOff</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___sending_1ga6a653dc4b2f718ce16a2ae87abdc2527">IRsend::space</link> (unsigned int aSpaceMicros)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___sending_1ga78e52089f1ee53b3d080db7d8c25f798">IRsend::customDelayMicroseconds</link> (unsigned long aMicroseconds)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___sending_1ga42c04af63d252b320c017ffa2bfc90e5">IRsend::enableIROut</link> (uint8_t aFrequencyKHz)</para>
+</listitem>
+            <listitem><para>unsigned int <link linkend="_group___sending_1ga39034e110ba58c6a5effb7711801d74a">IRsend::getPulseCorrectionNanos</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Variables    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_i_rsend">IRsend</link> <link linkend="_group___sending_1gafba8232b747be85f72c1c4612780d5cf">IrSender</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+</section>
+<section>
+<title>Function Documentation</title>
+<anchor xml:id="_group___sending_1ga47f39d9472487072fc80fedbc6b3e161"/><section>
+    <title>__attribute()</title>
+<indexterm><primary>__attribute</primary><secondary>Sending IR data for multiple protocols</secondary></indexterm>
+<indexterm><primary>Sending IR data for multiple protocols</primary><secondary>__attribute</secondary></indexterm>
+<para><computeroutput>__attribute ((error(&quot;Error: You must use begin(&lt;sendPin&gt;, &lt;EnableLEDFeedback&gt;, &lt;aFeedbackLEDPin&gt;) if IR_SEND_PIN and SEND_PWM_BY_TIMER are not defined or USE_NO_SEND_PWM is defined. To suppress this error, enable lto or activate the line #define SUPPRESS_ERROR_MESSAGE_FOR_BEGIN in IRremote.hpp.&quot;)) )</computeroutput></para></section>
+<anchor xml:id="_group___sending_1ga28a0bb05c6b5d7330b2185c8447ef7a2"/><section>
+    <title>begin()<computeroutput>[1/3]</computeroutput></title>
+<indexterm><primary>begin</primary><secondary>Sending IR data for multiple protocols</secondary></indexterm>
+<indexterm><primary>Sending IR data for multiple protocols</primary><secondary>begin</secondary></indexterm>
+<para><computeroutput>void IRsend::begin (bool aEnableLEDFeedback, uint8_t aFeedbackLEDPin = <computeroutput><link linkend="__i_rremote_int_8h_1a575e74508c30d1ccf92f7e142a43dd3d">USE_DEFAULT_FEEDBACK_LED_PIN</link></computeroutput>
+)</computeroutput></para>
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>aFeedbackLEDPin</entry><entry>
+<para>if 0, then take board specific FEEDBACK_LED_ON() and FEEDBACK_LED_OFF() functions </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="__i_r_send_8hpp_source_1l00118">118</link> of file <link linkend="__i_r_send_8hpp_source">IRSend.hpp</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="group___sending_ga28a0bb05c6b5d7330b2185c8447ef7a2_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_group___sending_1ga7db69257658d7ee780a5319bc463dbe9"/><section>
+    <title>begin()<computeroutput>[2/3]</computeroutput></title>
+<indexterm><primary>begin</primary><secondary>Sending IR data for multiple protocols</secondary></indexterm>
+<indexterm><primary>Sending IR data for multiple protocols</primary><secondary>begin</secondary></indexterm>
+<para><computeroutput>void IRsend::begin (uint8_t aSendPin)</computeroutput></para>
+<para>Initializes the send pin and enable LED feedback with board specific FEEDBACK_LED_ON() and FEEDBACK_LED_OFF() functions 
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>aSendPin</entry><entry>
+<para>The Arduino pin number, where a IR sender diode is connected. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="__i_r_send_8hpp_source_1l00074">74</link> of file <link linkend="__i_r_send_8hpp_source">IRSend.hpp</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="group___sending_ga7db69257658d7ee780a5319bc463dbe9_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_group___sending_1gaf2fb03ebe7de801ffc2c1ea0a7ea1cbf"/><section>
+    <title>begin()<computeroutput>[3/3]</computeroutput></title>
+<indexterm><primary>begin</primary><secondary>Sending IR data for multiple protocols</secondary></indexterm>
+<indexterm><primary>Sending IR data for multiple protocols</primary><secondary>begin</secondary></indexterm>
+<para><computeroutput>void IRsend::begin (uint8_t aSendPin, bool aEnableLEDFeedback, uint8_t aFeedbackLEDPin = <computeroutput><link linkend="__i_rremote_int_8h_1a575e74508c30d1ccf92f7e142a43dd3d">USE_DEFAULT_FEEDBACK_LED_PIN</link></computeroutput>
+)</computeroutput></para>
+<para>Initializes the send and feedback pin 
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>aSendPin</entry><entry>
+<para>The Arduino pin number, where a IR sender diode is connected. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>aFeedbackLEDPin</entry><entry>
+<para>if 0, then take board specific FEEDBACK_LED_ON() and FEEDBACK_LED_OFF() functions </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="__i_r_send_8hpp_source_1l00099">99</link> of file <link linkend="__i_r_send_8hpp_source">IRSend.hpp</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="group___sending_gaf2fb03ebe7de801ffc2c1ea0a7ea1cbf_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_group___sending_1ga78e52089f1ee53b3d080db7d8c25f798"/><section>
+    <title>customDelayMicroseconds()</title>
+<indexterm><primary>customDelayMicroseconds</primary><secondary>Sending IR data for multiple protocols</secondary></indexterm>
+<indexterm><primary>Sending IR data for multiple protocols</primary><secondary>customDelayMicroseconds</secondary></indexterm>
+<para><computeroutput>void IRsend::customDelayMicroseconds (unsigned long aMicroseconds)</computeroutput></para>
+<para>Custom delay function that circumvents Arduino&apos;s delayMicroseconds 16 bit limit and is (mostly) not extended by the duration of interrupt codes like the millis() interrupt </para>
+<para>
+Definition at line <link linkend="__i_r_send_8hpp_source_1l00580">580</link> of file <link linkend="__i_r_send_8hpp_source">IRSend.hpp</link>.</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="group___sending_ga78e52089f1ee53b3d080db7d8c25f798_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_group___sending_1ga42c04af63d252b320c017ffa2bfc90e5"/><section>
+    <title>enableIROut()</title>
+<indexterm><primary>enableIROut</primary><secondary>Sending IR data for multiple protocols</secondary></indexterm>
+<indexterm><primary>Sending IR data for multiple protocols</primary><secondary>enableIROut</secondary></indexterm>
+<para><computeroutput>void IRsend::enableIROut (uint8_t aFrequencyKHz)</computeroutput></para>
+<para>Enables IR output. The kHz value controls the modulation frequency in kilohertz. The IR output will be on pin 3 (OC2B). This routine is designed for 36-40 kHz and for software generation gives 26 us for 38.46 kHz, 27 us for 37.04 kHz and 25 us for 40 kHz. If you use it for other values, it&apos;s up to you to make sure it gives reasonable results. (Watch out for overflow / underflow / rounding.) TIMER2 is used in phase-correct PWM mode, with OCR2A controlling the frequency and OCR2B controlling the duty cycle. There is no prescaling, so the output frequency is 16 MHz / (2 * OCR2A) To turn the output on and off, we leave the PWM running, but connect and disconnect the output pin. A few hours staring at the ATmega documentation and this will all make sense. See my Secrets of Arduino PWM at <link xlink:href="http://www.righto.com/2009/07/secrets-of-arduino-pwm.html">http://www.righto.com/2009/07/secrets-of-arduino-pwm.html</link> for details. </para>
+<para>
+Definition at line <link linkend="__i_r_send_8hpp_source_1l00603">603</link> of file <link linkend="__i_r_send_8hpp_source">IRSend.hpp</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="group___sending_ga42c04af63d252b320c017ffa2bfc90e5_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="group___sending_ga42c04af63d252b320c017ffa2bfc90e5_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_group___sending_1ga39034e110ba58c6a5effb7711801d74a"/><section>
+    <title>getPulseCorrectionNanos()</title>
+<indexterm><primary>getPulseCorrectionNanos</primary><secondary>Sending IR data for multiple protocols</secondary></indexterm>
+<indexterm><primary>Sending IR data for multiple protocols</primary><secondary>getPulseCorrectionNanos</secondary></indexterm>
+<para><computeroutput>unsigned int IRsend::getPulseCorrectionNanos ( )</computeroutput></para><para>
+Definition at line <link linkend="__i_r_send_8hpp_source_1l00631">631</link> of file <link linkend="__i_r_send_8hpp_source">IRSend.hpp</link>.</para>
+</section>
+<anchor xml:id="_group___sending_1ga5242741b8da4fbfaae237eee2b279dd0"/><section>
+    <title>IRLedOff()</title>
+<indexterm><primary>IRLedOff</primary><secondary>Sending IR data for multiple protocols</secondary></indexterm>
+<indexterm><primary>Sending IR data for multiple protocols</primary><secondary>IRLedOff</secondary></indexterm>
+<para><computeroutput>void IRsend::IRLedOff ( )</computeroutput></para>
+<para>Just switch the IR sending LED off to send an IR space A space is &quot;no output&quot;, so the PWM output is disabled. This function may affect the state of feedback LED. </para>
+<para>
+Definition at line <link linkend="__i_r_send_8hpp_source_1l00542">542</link> of file <link linkend="__i_r_send_8hpp_source">IRSend.hpp</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="group___sending_ga5242741b8da4fbfaae237eee2b279dd0_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="group___sending_ga5242741b8da4fbfaae237eee2b279dd0_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_group___sending_1ga047d9e3f47864869afaa5076579c9f63"/><section>
+    <title>IRsend()<computeroutput>[1/2]</computeroutput></title>
+<indexterm><primary>IRsend</primary><secondary>Sending IR data for multiple protocols</secondary></indexterm>
+<indexterm><primary>Sending IR data for multiple protocols</primary><secondary>IRsend</secondary></indexterm>
+<para><computeroutput>IRsend::IRsend ( )</computeroutput></para><para>
+Definition at line <link linkend="__i_r_send_8hpp_source_1l00051">51</link> of file <link linkend="__i_r_send_8hpp_source">IRSend.hpp</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="group___sending_ga047d9e3f47864869afaa5076579c9f63_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_group___sending_1gabf55f45c8cfe3558053130bea46e7f14"/><section>
+    <title>IRsend()<computeroutput>[2/2]</computeroutput></title>
+<indexterm><primary>IRsend</primary><secondary>Sending IR data for multiple protocols</secondary></indexterm>
+<indexterm><primary>Sending IR data for multiple protocols</primary><secondary>IRsend</secondary></indexterm>
+<para><computeroutput>IRsend::IRsend (uint8_t aSendPin)</computeroutput></para><para>
+Definition at line <link linkend="__i_r_send_8hpp_source_1l00059">59</link> of file <link linkend="__i_r_send_8hpp_source">IRSend.hpp</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="group___sending_gabf55f45c8cfe3558053130bea46e7f14_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_group___sending_1ga7328943560a5f60f4e9e13d677716674"/><section>
+    <title>mark()</title>
+<indexterm><primary>mark</primary><secondary>Sending IR data for multiple protocols</secondary></indexterm>
+<indexterm><primary>Sending IR data for multiple protocols</primary><secondary>mark</secondary></indexterm>
+<para><computeroutput>void IRsend::mark (unsigned int aMarkMicros)</computeroutput></para>
+<para>Sends an IR mark for the specified number of microseconds. The mark output is modulated at the PWM frequency if USE_NO_SEND_PWM is not defined. The output is guaranteed to be OFF / inactive after after the call of the function. This function may affect the state of feedback LED. </para>
+<para>
+Definition at line <link linkend="__i_r_send_8hpp_source_1l00431">431</link> of file <link linkend="__i_r_send_8hpp_source">IRSend.hpp</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="group___sending_ga7328943560a5f60f4e9e13d677716674_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="group___sending_ga7328943560a5f60f4e9e13d677716674_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_group___sending_1ga50162b158e0fa94b105d3717318b8b2c"/><section>
+    <title>sendBiphaseData()</title>
+<indexterm><primary>sendBiphaseData</primary><secondary>Sending IR data for multiple protocols</secondary></indexterm>
+<indexterm><primary>Sending IR data for multiple protocols</primary><secondary>sendBiphaseData</secondary></indexterm>
+<para><computeroutput>void IRsend::sendBiphaseData (unsigned int aBiphaseTimeUnit, uint32_t aData, uint_fast8_t aNumberOfBits)</computeroutput></para><para>
+Definition at line <link linkend="__i_r_send_8hpp_source_1l00389">389</link> of file <link linkend="__i_r_send_8hpp_source">IRSend.hpp</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="group___sending_ga50162b158e0fa94b105d3717318b8b2c_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="group___sending_ga50162b158e0fa94b105d3717318b8b2c_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_group___sending_1ga6904a411999a4c9f7306dba49851eb7b"/><section>
+    <title>sendPulseDistanceWidthData()</title>
+<indexterm><primary>sendPulseDistanceWidthData</primary><secondary>Sending IR data for multiple protocols</secondary></indexterm>
+<indexterm><primary>Sending IR data for multiple protocols</primary><secondary>sendPulseDistanceWidthData</secondary></indexterm>
+<para><computeroutput>void IRsend::sendPulseDistanceWidthData (unsigned int aOneMarkMicros, unsigned int aOneSpaceMicros, unsigned int aZeroMarkMicros, unsigned int aZeroSpaceMicros, uint32_t aData, uint8_t aNumberOfBits, bool aMSBfirst, bool aSendStopBit = <computeroutput>false</computeroutput>
+)</computeroutput></para>
+<para>Sends PulseDistance data The output always ends with a space </para>
+<para>
+Definition at line <link linkend="__i_r_send_8hpp_source_1l00347">347</link> of file <link linkend="__i_r_send_8hpp_source">IRSend.hpp</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="group___sending_ga6904a411999a4c9f7306dba49851eb7b_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="group___sending_ga6904a411999a4c9f7306dba49851eb7b_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_group___sending_1gacdb18ddcfd936246e214e0a9519209bf"/><section>
+    <title>sendRaw()<computeroutput>[1/2]</computeroutput></title>
+<indexterm><primary>sendRaw</primary><secondary>Sending IR data for multiple protocols</secondary></indexterm>
+<indexterm><primary>Sending IR data for multiple protocols</primary><secondary>sendRaw</secondary></indexterm>
+<para><computeroutput>void IRsend::sendRaw (const uint16_t aBufferWithMicroseconds[], uint_fast8_t aLengthOfBuffer, uint_fast8_t aIRFrequencyKilohertz)</computeroutput></para>
+<para>Function using an 16 byte microsecond timing array for every purpose. Raw data starts with a Mark. No leading space as in received timing data! </para>
+<para>
+Definition at line <link linkend="__i_r_send_8hpp_source_1l00255">255</link> of file <link linkend="__i_r_send_8hpp_source">IRSend.hpp</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="group___sending_gacdb18ddcfd936246e214e0a9519209bf_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_group___sending_1ga1c9027bc86e6a726295219ac11e06a1b"/><section>
+    <title>sendRaw()<computeroutput>[2/2]</computeroutput></title>
+<indexterm><primary>sendRaw</primary><secondary>Sending IR data for multiple protocols</secondary></indexterm>
+<indexterm><primary>Sending IR data for multiple protocols</primary><secondary>sendRaw</secondary></indexterm>
+<para><computeroutput>void IRsend::sendRaw (const uint8_t aBufferWithTicks[], uint_fast8_t aLengthOfBuffer, uint_fast8_t aIRFrequencyKilohertz)</computeroutput></para>
+<para>New function using an 8 byte tick timing array to save program space Raw data starts with a Mark. No leading space as in received timing data! </para>
+<para>
+Definition at line <link linkend="__i_r_send_8hpp_source_1l00278">278</link> of file <link linkend="__i_r_send_8hpp_source">IRSend.hpp</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="group___sending_ga1c9027bc86e6a726295219ac11e06a1b_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="group___sending_ga1c9027bc86e6a726295219ac11e06a1b_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_group___sending_1ga34540fe390a44b055bfea3da6a79008c"/><section>
+    <title>sendRaw_P()<computeroutput>[1/2]</computeroutput></title>
+<indexterm><primary>sendRaw_P</primary><secondary>Sending IR data for multiple protocols</secondary></indexterm>
+<indexterm><primary>Sending IR data for multiple protocols</primary><secondary>sendRaw_P</secondary></indexterm>
+<para><computeroutput>void IRsend::sendRaw_P (const uint16_t aBufferWithMicroseconds[], uint_fast8_t aLengthOfBuffer, uint_fast8_t aIRFrequencyKilohertz)</computeroutput></para>
+<para>Function using an 16 byte microsecond timing array in FLASH for every purpose. Raw data starts with a Mark. No leading space as in received timing data! </para>
+<para>
+Definition at line <link linkend="__i_r_send_8hpp_source_1l00297">297</link> of file <link linkend="__i_r_send_8hpp_source">IRSend.hpp</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="group___sending_ga34540fe390a44b055bfea3da6a79008c_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_group___sending_1gac351cb665bc0a5c863bc7a070b3aee4e"/><section>
+    <title>sendRaw_P()<computeroutput>[2/2]</computeroutput></title>
+<indexterm><primary>sendRaw_P</primary><secondary>Sending IR data for multiple protocols</secondary></indexterm>
+<indexterm><primary>Sending IR data for multiple protocols</primary><secondary>sendRaw_P</secondary></indexterm>
+<para><computeroutput>void IRsend::sendRaw_P (const uint8_t aBufferWithTicks[], uint_fast8_t aLengthOfBuffer, uint_fast8_t aIRFrequencyKilohertz)</computeroutput></para>
+<para>New function using an 8 byte tick timing array in FLASH to save program space Raw data starts with a Mark. No leading space as in received timing data! </para>
+<para>
+Definition at line <link linkend="__i_r_send_8hpp_source_1l00323">323</link> of file <link linkend="__i_r_send_8hpp_source">IRSend.hpp</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="group___sending_gac351cb665bc0a5c863bc7a070b3aee4e_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_group___sending_1ga5f592984c8cda2db23aa533cd0d7e827"/><section>
+    <title>setSendPin()</title>
+<indexterm><primary>setSendPin</primary><secondary>Sending IR data for multiple protocols</secondary></indexterm>
+<indexterm><primary>Sending IR data for multiple protocols</primary><secondary>setSendPin</secondary></indexterm>
+<para><computeroutput>void IRsend::setSendPin (uint8_t aSendPinNumber)</computeroutput></para><para>
+Definition at line <link linkend="__i_r_send_8hpp_source_1l00066">66</link> of file <link linkend="__i_r_send_8hpp_source">IRSend.hpp</link>.</para>
+</section>
+<anchor xml:id="_group___sending_1ga6a653dc4b2f718ce16a2ae87abdc2527"/><section>
+    <title>space()</title>
+<indexterm><primary>space</primary><secondary>Sending IR data for multiple protocols</secondary></indexterm>
+<indexterm><primary>Sending IR data for multiple protocols</primary><secondary>space</secondary></indexterm>
+<para><computeroutput>void IRsend::space (unsigned int aSpaceMicros)</computeroutput></para>
+<para>Sends an IR space for the specified number of microseconds. A space is &quot;no output&quot;, so just wait. </para>
+<para>
+Definition at line <link linkend="__i_r_send_8hpp_source_1l00572">572</link> of file <link linkend="__i_r_send_8hpp_source">IRSend.hpp</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_group___sending_1ga567f59869ebc6c7f53d0dc9b360dd4c3"/><section>
+    <title>write()</title>
+<indexterm><primary>write</primary><secondary>Sending IR data for multiple protocols</secondary></indexterm>
+<indexterm><primary>Sending IR data for multiple protocols</primary><secondary>write</secondary></indexterm>
+<para><computeroutput>size_t IRsend::write (<link linkend="_struct_i_r_data">IRData</link> * aIRSendData, uint_fast8_t aNumberOfRepeats = <computeroutput><link linkend="__i_rremote_int_8h_1a5d35fb37031b53f0083f8b88ae3cf2c2">NO_REPEATS</link></computeroutput>
+)</computeroutput></para>
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>aIRSendData</entry><entry>
+<para>The values of protocol, address, command and repeat flag are taken for sending. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>aNumberOfRepeats</entry><entry>
+<para>Number of repeats to send after the initial data. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="__i_r_send_8hpp_source_1l00150">150</link> of file <link linkend="__i_r_send_8hpp_source">IRSend.hpp</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="group___sending_ga567f59869ebc6c7f53d0dc9b360dd4c3_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+<section>
+<title>Variable Documentation</title>
+<anchor xml:id="_group___sending_1gafba8232b747be85f72c1c4612780d5cf"/><section>
+    <title>IrSender</title>
+<indexterm><primary>IrSender</primary><secondary>Sending IR data for multiple protocols</secondary></indexterm>
+<indexterm><primary>Sending IR data for multiple protocols</primary><secondary>IrSender</secondary></indexterm>
+<para><computeroutput><link linkend="_class_i_rsend">IRsend</link> IrSender</computeroutput></para><para>
+Definition at line <link linkend="__i_r_send_8hpp_source_1l00049">49</link> of file <link linkend="__i_r_send_8hpp_source">IRSend.hpp</link>.</para>
+</section>
+</section>
+</section>

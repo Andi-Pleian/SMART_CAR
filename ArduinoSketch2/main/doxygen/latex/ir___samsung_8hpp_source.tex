@@ -1,0 +1,269 @@
+\hypertarget{ir___samsung_8hpp_source}{}\doxysection{ir\+\_\+\+Samsung.\+hpp}
+\label{ir___samsung_8hpp_source}\index{IRRemote/ir\_Samsung.hpp@{IRRemote/ir\_Samsung.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * ir\_Samsung.hpp}}
+\DoxyCodeLine{3 \textcolor{comment}{ *}}
+\DoxyCodeLine{4 \textcolor{comment}{ *  Contains functions for receiving and sending Samsung IR Protocol in "{}raw"{} and standard format with 16 bit address and 16 or 32 bit command}}
+\DoxyCodeLine{5 \textcolor{comment}{ *}}
+\DoxyCodeLine{6 \textcolor{comment}{ *  This file is part of Arduino-\/IRremote https://github.com/Arduino-\/IRremote/Arduino-\/IRremote.}}
+\DoxyCodeLine{7 \textcolor{comment}{ *}}
+\DoxyCodeLine{8 \textcolor{comment}{ ************************************************************************************}}
+\DoxyCodeLine{9 \textcolor{comment}{ * MIT License}}
+\DoxyCodeLine{10 \textcolor{comment}{ *}}
+\DoxyCodeLine{11 \textcolor{comment}{ * Copyright (c) 2017-\/2021 Darryl Smith, Armin Joachimsmeyer}}
+\DoxyCodeLine{12 \textcolor{comment}{ *}}
+\DoxyCodeLine{13 \textcolor{comment}{ * Permission is hereby granted, free of charge, to any person obtaining a copy}}
+\DoxyCodeLine{14 \textcolor{comment}{ * of this software and associated documentation files (the "{}Software"{}), to deal}}
+\DoxyCodeLine{15 \textcolor{comment}{ * in the Software without restriction, including without limitation the rights}}
+\DoxyCodeLine{16 \textcolor{comment}{ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell}}
+\DoxyCodeLine{17 \textcolor{comment}{ * copies of the Software, and to permit persons to whom the Software is furnished}}
+\DoxyCodeLine{18 \textcolor{comment}{ * to do so, subject to the following conditions:}}
+\DoxyCodeLine{19 \textcolor{comment}{ *}}
+\DoxyCodeLine{20 \textcolor{comment}{ * The above copyright notice and this permission notice shall be included in all}}
+\DoxyCodeLine{21 \textcolor{comment}{ * copies or substantial portions of the Software.}}
+\DoxyCodeLine{22 \textcolor{comment}{ *}}
+\DoxyCodeLine{23 \textcolor{comment}{ * THE SOFTWARE IS PROVIDED "{}AS IS"{}, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,}}
+\DoxyCodeLine{24 \textcolor{comment}{ * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A}}
+\DoxyCodeLine{25 \textcolor{comment}{ * PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT}}
+\DoxyCodeLine{26 \textcolor{comment}{ * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF}}
+\DoxyCodeLine{27 \textcolor{comment}{ * CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONSAMSUNGTION WITH THE SOFTWARE}}
+\DoxyCodeLine{28 \textcolor{comment}{ * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.}}
+\DoxyCodeLine{29 \textcolor{comment}{ *}}
+\DoxyCodeLine{30 \textcolor{comment}{ ************************************************************************************}}
+\DoxyCodeLine{31 \textcolor{comment}{ */}}
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#ifndef IR\_SAMSUNG\_HPP}}
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#define IR\_SAMSUNG\_HPP}}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35 \textcolor{preprocessor}{\#include <Arduino.h>}}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37 \textcolor{comment}{//\#define DEBUG // Activate this for lots of lovely debug output from this decoder.}}
+\DoxyCodeLine{38 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_i_rremote_int_8h}{IRremoteInt.h}}"{}} \textcolor{comment}{// evaluates the DEBUG for IR\_DEBUG\_PRINT}}
+\DoxyCodeLine{39 \textcolor{preprocessor}{\#include "{}LongUnion.h"{}}}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{44 \textcolor{comment}{//==============================================================================}}
+\DoxyCodeLine{45 \textcolor{comment}{//              SSSS   AAA    MMM    SSSS  U   U  N   N   GGGG}}
+\DoxyCodeLine{46 \textcolor{comment}{//             S      A   A  M M M  S      U   U  NN  N  G}}
+\DoxyCodeLine{47 \textcolor{comment}{//              SSS   AAAAA  M M M   SSS   U   U  N N N  G  GG}}
+\DoxyCodeLine{48 \textcolor{comment}{//                 S  A   A  M   M      S  U   U  N  NN  G   G}}
+\DoxyCodeLine{49 \textcolor{comment}{//             SSSS   A   A  M   M  SSSS    UUU   N   N   GGG}}
+\DoxyCodeLine{50 \textcolor{comment}{//==============================================================================}}
+\DoxyCodeLine{51 \textcolor{comment}{// see http://www.hifi-\/remote.com/wiki/index.php?title=DecodeIR\#Samsung}}
+\DoxyCodeLine{52 \textcolor{comment}{// https://www.mikrocontroller.net/articles/IRMP\_-\/\_english\#SAMSUNG32}}
+\DoxyCodeLine{53 \textcolor{comment}{// LSB first, 1 start bit + 16 bit address + 16,32,20 bit data + 1 stop bit.}}
+\DoxyCodeLine{54 \textcolor{comment}{// repeats are like NEC but with 2 stop bits}}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56 \textcolor{preprocessor}{\#define SAMSUNG\_ADDRESS\_BITS        16}}
+\DoxyCodeLine{57 \textcolor{preprocessor}{\#define SAMSUNG\_COMMAND16\_BITS      16}}
+\DoxyCodeLine{58 \textcolor{preprocessor}{\#define SAMSUNG\_COMMAND32\_BITS      32}}
+\DoxyCodeLine{59 \textcolor{preprocessor}{\#define SAMSUNG\_BITS                (SAMSUNG\_ADDRESS\_BITS + SAMSUNG\_COMMAND16\_BITS)}}
+\DoxyCodeLine{60 \textcolor{preprocessor}{\#define SAMSUNG48\_BITS              (SAMSUNG\_ADDRESS\_BITS + SAMSUNG\_COMMAND32\_BITS)}}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62 \textcolor{preprocessor}{\#define SAMSUNG\_UNIT                553 }\textcolor{comment}{// 21 periods of 38 kHz (552,631)}}
+\DoxyCodeLine{63 \textcolor{preprocessor}{\#define SAMSUNG\_HEADER\_MARK         (8 * SAMSUNG\_UNIT) }\textcolor{comment}{// 4400}}
+\DoxyCodeLine{64 \textcolor{preprocessor}{\#define SAMSUNG\_HEADER\_SPACE        (8 * SAMSUNG\_UNIT) }\textcolor{comment}{// 4400}}
+\DoxyCodeLine{65 \textcolor{preprocessor}{\#define SAMSUNG\_BIT\_MARK            SAMSUNG\_UNIT}}
+\DoxyCodeLine{66 \textcolor{preprocessor}{\#define SAMSUNG\_ONE\_SPACE           (3 * SAMSUNG\_UNIT) }\textcolor{comment}{// 1650}}
+\DoxyCodeLine{67 \textcolor{preprocessor}{\#define SAMSUNG\_ZERO\_SPACE          SAMSUNG\_UNIT}}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69 \textcolor{preprocessor}{\#define SAMSUNG\_AVERAGE\_DURATION    55000 }\textcolor{comment}{// SAMSUNG\_HEADER\_MARK + SAMSUNG\_HEADER\_SPACE  + 32 * 2,5 * SAMSUNG\_UNIT + SAMSUNG\_UNIT // 2.5 because we assume more zeros than ones}}
+\DoxyCodeLine{70 \textcolor{preprocessor}{\#define SAMSUNG\_REPEAT\_DURATION     (SAMSUNG\_HEADER\_MARK  + SAMSUNG\_HEADER\_SPACE + SAMSUNG\_BIT\_MARK + SAMSUNG\_ZERO\_SPACE + SAMSUNG\_BIT\_MARK)}}
+\DoxyCodeLine{71 \textcolor{preprocessor}{\#define SAMSUNG\_REPEAT\_PERIOD       110000 }\textcolor{comment}{// Commands are repeated every 110 ms (measured from start to start) for as long as the key on the remote control is held down.}}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73 }
+\DoxyCodeLine{78 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___decoder_ga4daa3f9a1c496072f2e17cdcf93f3906}{IRsend::sendSamsungRepeat}}() \{}
+\DoxyCodeLine{79     \mbox{\hyperlink{group___sending_ga42c04af63d252b320c017ffa2bfc90e5}{enableIROut}}(SAMSUNG\_KHZ); \textcolor{comment}{// 38 kHz}}
+\DoxyCodeLine{80     \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(SAMSUNG\_HEADER\_MARK);}
+\DoxyCodeLine{81     \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(SAMSUNG\_HEADER\_SPACE);}
+\DoxyCodeLine{82     \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(SAMSUNG\_BIT\_MARK);}
+\DoxyCodeLine{83     \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(SAMSUNG\_ZERO\_SPACE);}
+\DoxyCodeLine{84     \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(SAMSUNG\_BIT\_MARK);}
+\DoxyCodeLine{85 \}}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{87 \textcolor{keywordtype}{void} IRsend::sendSamsung(uint16\_t aAddress, uint16\_t aCommand, uint\_fast8\_t aNumberOfRepeats, \textcolor{keywordtype}{bool} aIsRepeat) \{}
+\DoxyCodeLine{88     \textcolor{keywordflow}{if} (aIsRepeat) \{}
+\DoxyCodeLine{89         \mbox{\hyperlink{group___decoder_ga4daa3f9a1c496072f2e17cdcf93f3906}{sendSamsungRepeat}}();}
+\DoxyCodeLine{90         \textcolor{keywordflow}{return};}
+\DoxyCodeLine{91     \}}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{93     \textcolor{comment}{// Set IR carrier frequency}}
+\DoxyCodeLine{94     \mbox{\hyperlink{group___sending_ga42c04af63d252b320c017ffa2bfc90e5}{enableIROut}}(SAMSUNG\_KHZ);}
+\DoxyCodeLine{95 }
+\DoxyCodeLine{96     \textcolor{comment}{// Header}}
+\DoxyCodeLine{97     \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(SAMSUNG\_HEADER\_MARK);}
+\DoxyCodeLine{98     \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(SAMSUNG\_HEADER\_SPACE);}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{100     \textcolor{comment}{// Address}}
+\DoxyCodeLine{101     \mbox{\hyperlink{group___sending_ga6904a411999a4c9f7306dba49851eb7b}{sendPulseDistanceWidthData}}(SAMSUNG\_BIT\_MARK, SAMSUNG\_ONE\_SPACE, SAMSUNG\_BIT\_MARK, SAMSUNG\_ZERO\_SPACE, aAddress,}
+\DoxyCodeLine{102     SAMSUNG\_ADDRESS\_BITS, PROTOCOL\_IS\_LSB\_FIRST);}
+\DoxyCodeLine{103 }
+\DoxyCodeLine{104     \textcolor{comment}{// Command}}
+\DoxyCodeLine{105 }
+\DoxyCodeLine{106     \textcolor{comment}{// send 8 command bits and then 8 inverted command bits LSB first}}
+\DoxyCodeLine{107     aCommand = aCommand \& 0xFF;}
+\DoxyCodeLine{108     aCommand = ((\string~aCommand) << 8) | aCommand;}
+\DoxyCodeLine{109 }
+\DoxyCodeLine{110     \mbox{\hyperlink{group___sending_ga6904a411999a4c9f7306dba49851eb7b}{sendPulseDistanceWidthData}}(SAMSUNG\_BIT\_MARK, SAMSUNG\_ONE\_SPACE, SAMSUNG\_BIT\_MARK, SAMSUNG\_ZERO\_SPACE, aCommand,}
+\DoxyCodeLine{111     SAMSUNG\_COMMAND16\_BITS, PROTOCOL\_IS\_LSB\_FIRST, SEND\_STOP\_BIT);}
+\DoxyCodeLine{112 }
+\DoxyCodeLine{113     \textcolor{keywordflow}{for} (uint\_fast8\_t i = 0; i < aNumberOfRepeats; ++i) \{}
+\DoxyCodeLine{114         \textcolor{comment}{// send repeat in a 110 ms raster}}
+\DoxyCodeLine{115         \textcolor{keywordflow}{if} (i == 0) \{}
+\DoxyCodeLine{116             delay((SAMSUNG\_REPEAT\_PERIOD -\/ SAMSUNG\_AVERAGE\_DURATION) / MICROS\_IN\_ONE\_MILLI);}
+\DoxyCodeLine{117         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{118             delay((SAMSUNG\_REPEAT\_PERIOD -\/ SAMSUNG\_REPEAT\_DURATION) / MICROS\_IN\_ONE\_MILLI);}
+\DoxyCodeLine{119         \}}
+\DoxyCodeLine{120         \textcolor{comment}{// send repeat}}
+\DoxyCodeLine{121         \mbox{\hyperlink{group___decoder_ga4daa3f9a1c496072f2e17cdcf93f3906}{sendSamsungRepeat}}();}
+\DoxyCodeLine{122     \}}
+\DoxyCodeLine{123 \}}
+\DoxyCodeLine{124 }
+\DoxyCodeLine{125 \textcolor{comment}{//+=============================================================================}}
+\DoxyCodeLine{126 \textcolor{keywordtype}{bool} IRrecv::decodeSamsung() \{}
+\DoxyCodeLine{127 }
+\DoxyCodeLine{128     \textcolor{comment}{// Check we have enough data (68). The +4 is for initial gap, start bit mark and space + stop bit mark}}
+\DoxyCodeLine{129     \textcolor{keywordflow}{if} (decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_af0571ac479d1c38c79502651b0631432}{rawlen}} != ((2 * SAMSUNG\_BITS) + 4)}
+\DoxyCodeLine{130             \&\& decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_af0571ac479d1c38c79502651b0631432}{rawlen}} != ((2 * SAMSUNG48\_BITS) + 4) \&\& (decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_af0571ac479d1c38c79502651b0631432}{rawlen}} != 6)) \{}
+\DoxyCodeLine{131         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(F(\textcolor{stringliteral}{"{}Samsung: "{}}));}
+\DoxyCodeLine{132         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(\textcolor{stringliteral}{"{}Data length="{}});}
+\DoxyCodeLine{133         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_af0571ac479d1c38c79502651b0631432}{rawlen}});}
+\DoxyCodeLine{134         \mbox{\hyperlink{_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{} is not 68 or 100 or 6"{}});}
+\DoxyCodeLine{135         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{136     \}}
+\DoxyCodeLine{137 }
+\DoxyCodeLine{138     \textcolor{comment}{// Check header "{}mark"{} + "{}space"{}}}
+\DoxyCodeLine{139     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{group___receiving_ga4472564ea96b1ee10b51f594f60d7aeb}{matchMark}}(decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_a7aa7b811dcc0fb5ab0da7c0bddaf97f8}{rawbuf}}[1], SAMSUNG\_HEADER\_MARK)}
+\DoxyCodeLine{140             || !\mbox{\hyperlink{group___receiving_ga7902b620f6c01463b5b6e50ef604ac8b}{matchSpace}}(decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_a7aa7b811dcc0fb5ab0da7c0bddaf97f8}{rawbuf}}[2], SAMSUNG\_HEADER\_SPACE)) \{}
+\DoxyCodeLine{141         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(\textcolor{stringliteral}{"{}Samsung: "{}});}
+\DoxyCodeLine{142         \mbox{\hyperlink{_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}Header mark or space length is wrong"{}});}
+\DoxyCodeLine{143 }
+\DoxyCodeLine{144         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{145     \}}
+\DoxyCodeLine{146 }
+\DoxyCodeLine{147     \textcolor{comment}{// Check for repeat}}
+\DoxyCodeLine{148     \textcolor{keywordflow}{if} (decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_af0571ac479d1c38c79502651b0631432}{rawlen}} == 6) \{}
+\DoxyCodeLine{149         decodedIRData.\mbox{\hyperlink{struct_i_r_data_aaaad48fc0d90e5c6daec601987848a51}{flags}} = IRDATA\_FLAGS\_IS\_REPEAT| IRDATA\_FLAGS\_IS\_LSB\_FIRST;}
+\DoxyCodeLine{150         decodedIRData.\mbox{\hyperlink{struct_i_r_data_a1255a5b7d704d34fda83dcabcb903d4c}{address}} = lastDecodedAddress;}
+\DoxyCodeLine{151         decodedIRData.\mbox{\hyperlink{struct_i_r_data_ab0ce2b36765ea429e8c4bfa0706a45e7}{command}} = lastDecodedCommand;}
+\DoxyCodeLine{152         decodedIRData.\mbox{\hyperlink{struct_i_r_data_a703592faec26bab5cbe465f53ef14245}{protocol}} = SAMSUNG;}
+\DoxyCodeLine{153         \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{154     \}}
+\DoxyCodeLine{155 }
+\DoxyCodeLine{156     \textcolor{keywordflow}{if} (decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_af0571ac479d1c38c79502651b0631432}{rawlen}} == (2 * SAMSUNG48\_BITS) + 4) \{}
+\DoxyCodeLine{157         \textcolor{comment}{/*}}
+\DoxyCodeLine{158 \textcolor{comment}{         * Samsung48}}
+\DoxyCodeLine{159 \textcolor{comment}{         */}}
+\DoxyCodeLine{160         \textcolor{comment}{// decode address}}
+\DoxyCodeLine{161         \textcolor{keywordflow}{if} (!\mbox{\hyperlink{group___receiving_gaf8c9cdb5f7280043a552f22265bdb2d5}{decodePulseDistanceData}}(SAMSUNG\_ADDRESS\_BITS, 3, SAMSUNG\_BIT\_MARK, SAMSUNG\_ONE\_SPACE, SAMSUNG\_ZERO\_SPACE, PROTOCOL\_IS\_LSB\_FIRST)) \{}
+\DoxyCodeLine{162             \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(\textcolor{stringliteral}{"{}Samsung: "{}});}
+\DoxyCodeLine{163             \mbox{\hyperlink{_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}Decode failed"{}});}
+\DoxyCodeLine{164             \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{165         \}}
+\DoxyCodeLine{166         decodedIRData.\mbox{\hyperlink{struct_i_r_data_a1255a5b7d704d34fda83dcabcb903d4c}{address}} = decodedIRData.\mbox{\hyperlink{struct_i_r_data_aeca55ebf36bf919312a933597b8734d8}{decodedRawData}};}
+\DoxyCodeLine{167 }
+\DoxyCodeLine{168         \textcolor{comment}{// decode 32 bit command}}
+\DoxyCodeLine{169         \textcolor{keywordflow}{if} (!\mbox{\hyperlink{group___receiving_gaf8c9cdb5f7280043a552f22265bdb2d5}{decodePulseDistanceData}}(SAMSUNG\_COMMAND32\_BITS, 3, SAMSUNG\_BIT\_MARK, SAMSUNG\_ONE\_SPACE, SAMSUNG\_ZERO\_SPACE, PROTOCOL\_IS\_LSB\_FIRST)) \{}
+\DoxyCodeLine{170             \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(\textcolor{stringliteral}{"{}Samsung: "{}});}
+\DoxyCodeLine{171             \mbox{\hyperlink{_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}Decode failed"{}});}
+\DoxyCodeLine{172             \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{173         \}}
+\DoxyCodeLine{174 }
+\DoxyCodeLine{175         \textcolor{comment}{// Success}}
+\DoxyCodeLine{176 \textcolor{comment}{//    decodedIRData.flags = IRDATA\_FLAGS\_IS\_LSB\_FIRST; // Not required, since this is the start value}}
+\DoxyCodeLine{177         \mbox{\hyperlink{union_long_union}{LongUnion}} tValue;}
+\DoxyCodeLine{178         tValue.ULong = decodedIRData.\mbox{\hyperlink{struct_i_r_data_aeca55ebf36bf919312a933597b8734d8}{decodedRawData}};}
+\DoxyCodeLine{179         \textcolor{comment}{// receive 2 * (8 bits then 8 inverted bits) LSB first}}
+\DoxyCodeLine{180         \textcolor{keywordflow}{if} (tValue.UByte.HighByte != (uint8\_t) (\string~tValue.UByte.MidHighByte)}
+\DoxyCodeLine{181                 \&\& tValue.UByte.MidLowByte != (uint8\_t) (\string~tValue.UByte.LowByte)) \{}
+\DoxyCodeLine{182             decodedIRData.\mbox{\hyperlink{struct_i_r_data_aaaad48fc0d90e5c6daec601987848a51}{flags}} = \mbox{\hyperlink{_i_rremote_int_8h_a1a60f95f0885b1865dc5514ddd80e093}{IRDATA\_FLAGS\_PARITY\_FAILED}} | IRDATA\_FLAGS\_IS\_LSB\_FIRST;}
+\DoxyCodeLine{183         \}}
+\DoxyCodeLine{184         decodedIRData.\mbox{\hyperlink{struct_i_r_data_ab0ce2b36765ea429e8c4bfa0706a45e7}{command}} = tValue.UByte.HighByte << 8 | tValue.UByte.MidLowByte;}
+\DoxyCodeLine{185         decodedIRData.\mbox{\hyperlink{struct_i_r_data_a945c41b8463a36cf00b0f38b0aa73200}{numberOfBits}} = SAMSUNG48\_BITS;}
+\DoxyCodeLine{186 }
+\DoxyCodeLine{187     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{188         \textcolor{comment}{/*}}
+\DoxyCodeLine{189 \textcolor{comment}{         * Samsung32}}
+\DoxyCodeLine{190 \textcolor{comment}{         */}}
+\DoxyCodeLine{191         \textcolor{keywordflow}{if} (!\mbox{\hyperlink{group___receiving_gaf8c9cdb5f7280043a552f22265bdb2d5}{decodePulseDistanceData}}(SAMSUNG\_BITS, 3, SAMSUNG\_BIT\_MARK, SAMSUNG\_ONE\_SPACE, SAMSUNG\_ZERO\_SPACE, PROTOCOL\_IS\_LSB\_FIRST)) \{}
+\DoxyCodeLine{192             \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(\textcolor{stringliteral}{"{}Samsung: "{}});}
+\DoxyCodeLine{193             \mbox{\hyperlink{_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}Decode failed"{}});}
+\DoxyCodeLine{194             \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{195         \}}
+\DoxyCodeLine{196         \mbox{\hyperlink{union_long_union}{LongUnion}} tValue;}
+\DoxyCodeLine{197         tValue.ULong = decodedIRData.\mbox{\hyperlink{struct_i_r_data_aeca55ebf36bf919312a933597b8734d8}{decodedRawData}};}
+\DoxyCodeLine{198         decodedIRData.\mbox{\hyperlink{struct_i_r_data_a1255a5b7d704d34fda83dcabcb903d4c}{address}} = tValue.UWord.LowWord;}
+\DoxyCodeLine{199 }
+\DoxyCodeLine{200         \textcolor{keywordflow}{if} (tValue.UByte.MidHighByte == (uint8\_t) (\string~tValue.UByte.HighByte)) \{}
+\DoxyCodeLine{201             \textcolor{comment}{// 8 bit command protocol}}
+\DoxyCodeLine{202             decodedIRData.\mbox{\hyperlink{struct_i_r_data_ab0ce2b36765ea429e8c4bfa0706a45e7}{command}} = tValue.UByte.MidHighByte; \textcolor{comment}{// first 8 bit}}
+\DoxyCodeLine{203         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{204             \textcolor{comment}{// 16 bit command protocol}}
+\DoxyCodeLine{205             decodedIRData.\mbox{\hyperlink{struct_i_r_data_ab0ce2b36765ea429e8c4bfa0706a45e7}{command}} = tValue.UWord.HighWord; \textcolor{comment}{// first 16 bit}}
+\DoxyCodeLine{206         \}}
+\DoxyCodeLine{207         decodedIRData.\mbox{\hyperlink{struct_i_r_data_a945c41b8463a36cf00b0f38b0aa73200}{numberOfBits}} = SAMSUNG\_BITS;}
+\DoxyCodeLine{208     \}}
+\DoxyCodeLine{209 }
+\DoxyCodeLine{210     decodedIRData.\mbox{\hyperlink{struct_i_r_data_a703592faec26bab5cbe465f53ef14245}{protocol}} = SAMSUNG;}
+\DoxyCodeLine{211 }
+\DoxyCodeLine{212     \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{213 \}}
+\DoxyCodeLine{214 }
+\DoxyCodeLine{215 \textcolor{keywordtype}{bool} IRrecv::decodeSAMSUNG(\mbox{\hyperlink{structdecode__results}{decode\_results}} *aResults) \{}
+\DoxyCodeLine{216     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} offset = 1;  \textcolor{comment}{// Skip first space}}
+\DoxyCodeLine{217 }
+\DoxyCodeLine{218     \textcolor{comment}{// Initial mark}}
+\DoxyCodeLine{219     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{group___receiving_ga4472564ea96b1ee10b51f594f60d7aeb}{matchMark}}(aResults-\/>rawbuf[offset], SAMSUNG\_HEADER\_MARK)) \{}
+\DoxyCodeLine{220         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{221     \}}
+\DoxyCodeLine{222     offset++;}
+\DoxyCodeLine{223 }
+\DoxyCodeLine{224 \textcolor{comment}{// Check for repeat -\/-\/ like a NEC repeat}}
+\DoxyCodeLine{225     \textcolor{keywordflow}{if} ((aResults-\/>rawlen == 4) \&\& \mbox{\hyperlink{group___receiving_ga7902b620f6c01463b5b6e50ef604ac8b}{matchSpace}}(aResults-\/>rawbuf[offset], 2250)}
+\DoxyCodeLine{226             \&\& \mbox{\hyperlink{group___receiving_ga4472564ea96b1ee10b51f594f60d7aeb}{matchMark}}(aResults-\/>rawbuf[offset + 1], SAMSUNG\_BIT\_MARK)) \{}
+\DoxyCodeLine{227         aResults-\/>bits = 0;}
+\DoxyCodeLine{228         aResults-\/>value = 0xFFFFFFFF;}
+\DoxyCodeLine{229         decodedIRData.\mbox{\hyperlink{struct_i_r_data_aaaad48fc0d90e5c6daec601987848a51}{flags}} = IRDATA\_FLAGS\_IS\_REPEAT;}
+\DoxyCodeLine{230         decodedIRData.\mbox{\hyperlink{struct_i_r_data_a703592faec26bab5cbe465f53ef14245}{protocol}} = SAMSUNG;}
+\DoxyCodeLine{231         \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{232     \}}
+\DoxyCodeLine{233     \textcolor{keywordflow}{if} (aResults-\/>rawlen < (2 * SAMSUNG\_BITS) + 4) \{}
+\DoxyCodeLine{234         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{235     \}}
+\DoxyCodeLine{236 }
+\DoxyCodeLine{237 \textcolor{comment}{// Initial space}}
+\DoxyCodeLine{238     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{group___receiving_ga7902b620f6c01463b5b6e50ef604ac8b}{matchSpace}}(aResults-\/>rawbuf[offset], SAMSUNG\_HEADER\_SPACE)) \{}
+\DoxyCodeLine{239         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{240     \}}
+\DoxyCodeLine{241     offset++;}
+\DoxyCodeLine{242 }
+\DoxyCodeLine{243     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{group___receiving_gaf8c9cdb5f7280043a552f22265bdb2d5}{decodePulseDistanceData}}(SAMSUNG\_BITS, offset, SAMSUNG\_BIT\_MARK, SAMSUNG\_ONE\_SPACE, SAMSUNG\_ZERO\_SPACE, PROTOCOL\_IS\_MSB\_FIRST)) \{}
+\DoxyCodeLine{244         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{245     \}}
+\DoxyCodeLine{246 }
+\DoxyCodeLine{247 \textcolor{comment}{// Success}}
+\DoxyCodeLine{248     aResults-\/>value = decodedIRData.\mbox{\hyperlink{struct_i_r_data_aeca55ebf36bf919312a933597b8734d8}{decodedRawData}};}
+\DoxyCodeLine{249     aResults-\/>bits = SAMSUNG\_BITS;}
+\DoxyCodeLine{250     aResults-\/>decode\_type = SAMSUNG;}
+\DoxyCodeLine{251     decodedIRData.\mbox{\hyperlink{struct_i_r_data_a703592faec26bab5cbe465f53ef14245}{protocol}} = SAMSUNG;}
+\DoxyCodeLine{252     \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{253 \}}
+\DoxyCodeLine{254 }
+\DoxyCodeLine{255 \textcolor{comment}{// Old version with MSB first}}
+\DoxyCodeLine{256 \textcolor{keywordtype}{void} IRsend::sendSAMSUNG(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} data, \textcolor{keywordtype}{int} nbits) \{}
+\DoxyCodeLine{257     \textcolor{comment}{// Set IR carrier frequency}}
+\DoxyCodeLine{258     \mbox{\hyperlink{group___sending_ga42c04af63d252b320c017ffa2bfc90e5}{enableIROut}}(SAMSUNG\_KHZ);}
+\DoxyCodeLine{259 }
+\DoxyCodeLine{260     \textcolor{comment}{// Header}}
+\DoxyCodeLine{261     \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(SAMSUNG\_HEADER\_MARK);}
+\DoxyCodeLine{262     \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(SAMSUNG\_HEADER\_SPACE);}
+\DoxyCodeLine{263 }
+\DoxyCodeLine{264     \textcolor{comment}{// Old version with MSB first Data + stop bit}}
+\DoxyCodeLine{265     \mbox{\hyperlink{group___sending_ga6904a411999a4c9f7306dba49851eb7b}{sendPulseDistanceWidthData}}(SAMSUNG\_BIT\_MARK, SAMSUNG\_ONE\_SPACE, SAMSUNG\_BIT\_MARK, SAMSUNG\_ZERO\_SPACE, data, nbits, PROTOCOL\_IS\_MSB\_FIRST,}
+\DoxyCodeLine{266     SEND\_STOP\_BIT);}
+\DoxyCodeLine{267 \}}
+\DoxyCodeLine{268 }
+\DoxyCodeLine{270 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{271 \textcolor{preprocessor}{\#pragma once}}
+
+\end{DoxyCode}

@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="__motor___control_8d_source" xml:lang="en-US">
+<title>Motor_Control.d</title>
+<indexterm><primary>ArduinoSketch2/main/Release/Modules/Actuators/MotorControl/Motor_Control.d</primary></indexterm>
+<programlisting linenumbering="unnumbered"><anchor xml:id="__motor___control_8d_source_1l00001"/>00001 Modules/Actuators/MotorControl/<link linkend="_class_motor___control">Motor_Control</link>.d&#32;\
+<anchor xml:id="__motor___control_8d_source_1l00002"/>00002 &#32;Modules/Actuators/MotorControl/<link linkend="_class_motor___control">Motor_Control</link>.o:&#32;\
+<anchor xml:id="__motor___control_8d_source_1l00003"/>00003 &#32;../Modules/Actuators/MotorControl/<link linkend="_class_motor___control">Motor_Control</link>.cpp&#32;\
+<anchor xml:id="__motor___control_8d_source_1l00004"/>00004 &#32;../Modules/Actuators/MotorControl/<link linkend="_class_motor___control">Motor_Control</link>.h
+<anchor xml:id="__motor___control_8d_source_1l00005"/>00005 
+<anchor xml:id="__motor___control_8d_source_1l00006"/>00006 ../Modules/Actuators/MotorControl/<link linkend="_class_motor___control">Motor_Control</link>.h:
+</programlisting></section>

@@ -1,0 +1,90 @@
+\hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source}{}\doxysection{IRFeedback\+LED.\+hpp}
+\label{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source}\index{main/IRRemote/IRFeedbackLED.hpp@{main/IRRemote/IRFeedbackLED.hpp}}
+\mbox{\hyperlink{_i_r_remote_2_i_r_feedback_l_e_d_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00001}00001 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00032}00032 \textcolor{preprocessor}{\#ifndef IR\_FEEDBACK\_LED\_HPP}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00033}00033 \textcolor{preprocessor}{\#define IR\_FEEDBACK\_LED\_HPP}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00034}00034 \textcolor{preprocessor}{\#include "{}private/IRFeedbackLEDDefs.h"{}}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00035}00035 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00043}\mbox{\hyperlink{struct_feedback_l_e_d_control_struct}{00043}} \textcolor{keyword}{struct }\mbox{\hyperlink{struct_feedback_l_e_d_control_struct}{FeedbackLEDControlStruct}} \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00044}\mbox{\hyperlink{struct_feedback_l_e_d_control_struct_a759f018b8bdb93695bd4ebb0d61a3c4c}{00044}}     uint8\_t \mbox{\hyperlink{struct_feedback_l_e_d_control_struct_a759f018b8bdb93695bd4ebb0d61a3c4c}{FeedbackLEDPin}};         }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00045}\mbox{\hyperlink{struct_feedback_l_e_d_control_struct_a49467187b92e40e5122b14d82a9fa500}{00045}}     \textcolor{keywordtype}{bool} \mbox{\hyperlink{struct_feedback_l_e_d_control_struct_a49467187b92e40e5122b14d82a9fa500}{LedFeedbackEnabled}};        }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00046}00046 \};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00047}00047 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00048}\mbox{\hyperlink{group___feedback_l_e_d_functions_ga456f04616e9881e7d85eb56c941942d2}{00048}} \textcolor{keyword}{struct }\mbox{\hyperlink{struct_feedback_l_e_d_control_struct}{FeedbackLEDControlStruct}} \mbox{\hyperlink{group___feedback_l_e_d_functions_ga456f04616e9881e7d85eb56c941942d2}{FeedbackLEDControl}}; }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00049}00049 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00055}\mbox{\hyperlink{group___feedback_l_e_d_functions_gaa5949b509ec061d9239867caa628cfec}{00055}} \textcolor{keywordtype}{void} \mbox{\hyperlink{group___feedback_l_e_d_functions_gaa5949b509ec061d9239867caa628cfec}{setLEDFeedback}}(uint8\_t aFeedbackLEDPin, \textcolor{keywordtype}{bool} aEnableLEDFeedback) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00056}00056     \mbox{\hyperlink{group___feedback_l_e_d_functions_ga456f04616e9881e7d85eb56c941942d2}{FeedbackLEDControl}}.\mbox{\hyperlink{struct_feedback_l_e_d_control_struct_a759f018b8bdb93695bd4ebb0d61a3c4c}{FeedbackLEDPin}} = aFeedbackLEDPin; \textcolor{comment}{// default is 0}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00057}00057 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00058}00058     \mbox{\hyperlink{group___feedback_l_e_d_functions_ga456f04616e9881e7d85eb56c941942d2}{FeedbackLEDControl}}.\mbox{\hyperlink{struct_feedback_l_e_d_control_struct_a49467187b92e40e5122b14d82a9fa500}{LedFeedbackEnabled}} = aEnableLEDFeedback;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00059}00059     \textcolor{keywordflow}{if} (aEnableLEDFeedback) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00060}00060         \textcolor{keywordflow}{if} (aFeedbackLEDPin != \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a575e74508c30d1ccf92f7e142a43dd3d}{USE\_DEFAULT\_FEEDBACK\_LED\_PIN}}) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00061}00061             pinMode(aFeedbackLEDPin, OUTPUT);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00062}00062 \textcolor{preprocessor}{\#ifdef LED\_BUILTIN}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00063}00063         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00064}00064             pinMode(LED\_BUILTIN, OUTPUT);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00065}00065 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00066}00066         \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00067}00067     \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00068}00068 \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00069}00069 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00070}00070 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00071}00071 \textcolor{comment}{ * Direct replacement for blink13()}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00072}00072 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00073}\mbox{\hyperlink{group___feedback_l_e_d_functions_ga53e5ec641a900f2c572c8bffd42da921}{00073}} \textcolor{keywordtype}{void} \mbox{\hyperlink{group___feedback_l_e_d_functions_gaa5949b509ec061d9239867caa628cfec}{setLEDFeedback}}(\textcolor{keywordtype}{bool} aEnableLEDFeedback) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00074}00074     \mbox{\hyperlink{group___feedback_l_e_d_functions_gaa5949b509ec061d9239867caa628cfec}{setLEDFeedback}}(\mbox{\hyperlink{group___feedback_l_e_d_functions_ga456f04616e9881e7d85eb56c941942d2}{FeedbackLEDControl}}.\mbox{\hyperlink{struct_feedback_l_e_d_control_struct_a759f018b8bdb93695bd4ebb0d61a3c4c}{FeedbackLEDPin}}, aEnableLEDFeedback);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00075}00075 \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00076}00076 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00077}\mbox{\hyperlink{group___feedback_l_e_d_functions_ga1150b1e371cd7d424d53dbcae6619e54}{00077}} \textcolor{keywordtype}{void} \mbox{\hyperlink{group___feedback_l_e_d_functions_ga1150b1e371cd7d424d53dbcae6619e54}{enableLEDFeedback}}() \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00078}00078     \mbox{\hyperlink{group___feedback_l_e_d_functions_ga456f04616e9881e7d85eb56c941942d2}{FeedbackLEDControl}}.\mbox{\hyperlink{struct_feedback_l_e_d_control_struct_a49467187b92e40e5122b14d82a9fa500}{LedFeedbackEnabled}} = \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00079}00079 \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00080}00080 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00081}\mbox{\hyperlink{group___feedback_l_e_d_functions_gab72e6123a449de7feaaa1c3dcb9f8630}{00081}} \textcolor{keywordtype}{void} \mbox{\hyperlink{group___feedback_l_e_d_functions_gab72e6123a449de7feaaa1c3dcb9f8630}{disableLEDFeedback}}() \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00082}00082     \mbox{\hyperlink{group___feedback_l_e_d_functions_ga456f04616e9881e7d85eb56c941942d2}{FeedbackLEDControl}}.\mbox{\hyperlink{struct_feedback_l_e_d_control_struct_a49467187b92e40e5122b14d82a9fa500}{LedFeedbackEnabled}} = \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00083}00083 \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00084}00084 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00089}00089 \textcolor{preprocessor}{\#if defined(ESP32)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00090}00090 IRAM\_ATTR}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00091}00091 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00092}\mbox{\hyperlink{group___feedback_l_e_d_functions_ga072624eeba964d8aa105822da00090ba}{00092}} \textcolor{keywordtype}{void} \mbox{\hyperlink{group___feedback_l_e_d_functions_ga072624eeba964d8aa105822da00090ba}{setFeedbackLED}}(\textcolor{keywordtype}{bool} aSwitchLedOn) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00093}00093     \textcolor{keywordflow}{if} (\mbox{\hyperlink{group___feedback_l_e_d_functions_ga456f04616e9881e7d85eb56c941942d2}{FeedbackLEDControl}}.\mbox{\hyperlink{struct_feedback_l_e_d_control_struct_a49467187b92e40e5122b14d82a9fa500}{LedFeedbackEnabled}}) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00094}00094         \textcolor{keywordflow}{if} (aSwitchLedOn) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00095}00095             \textcolor{keywordflow}{if} (\mbox{\hyperlink{group___feedback_l_e_d_functions_ga456f04616e9881e7d85eb56c941942d2}{FeedbackLEDControl}}.\mbox{\hyperlink{struct_feedback_l_e_d_control_struct_a759f018b8bdb93695bd4ebb0d61a3c4c}{FeedbackLEDPin}} != \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a575e74508c30d1ccf92f7e142a43dd3d}{USE\_DEFAULT\_FEEDBACK\_LED\_PIN}}) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00096}00096 \textcolor{preprocessor}{\#if defined(FEEDBACK\_LED\_IS\_ACTIVE\_LOW)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00097}00097                 digitalWrite(\mbox{\hyperlink{group___feedback_l_e_d_functions_ga456f04616e9881e7d85eb56c941942d2}{FeedbackLEDControl}}.\mbox{\hyperlink{struct_feedback_l_e_d_control_struct_a759f018b8bdb93695bd4ebb0d61a3c4c}{FeedbackLEDPin}}, LOW); \textcolor{comment}{// Turn user defined pin LED on}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00098}00098 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00099}00099                 digitalWrite(\mbox{\hyperlink{group___feedback_l_e_d_functions_ga456f04616e9881e7d85eb56c941942d2}{FeedbackLEDControl}}.\mbox{\hyperlink{struct_feedback_l_e_d_control_struct_a759f018b8bdb93695bd4ebb0d61a3c4c}{FeedbackLEDPin}}, HIGH); \textcolor{comment}{// Turn user defined pin LED on}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00100}00100 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00101}00101 \textcolor{preprocessor}{\#ifdef FEEDBACK\_LED\_ON}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00102}00102             \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00103}00103                 FEEDBACK\_LED\_ON();   \textcolor{comment}{// if no user defined LED pin, turn default LED pin for the hardware on}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00104}00104 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00105}00105             \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00106}00106         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00107}00107             \textcolor{keywordflow}{if} (\mbox{\hyperlink{group___feedback_l_e_d_functions_ga456f04616e9881e7d85eb56c941942d2}{FeedbackLEDControl}}.\mbox{\hyperlink{struct_feedback_l_e_d_control_struct_a759f018b8bdb93695bd4ebb0d61a3c4c}{FeedbackLEDPin}} != \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a575e74508c30d1ccf92f7e142a43dd3d}{USE\_DEFAULT\_FEEDBACK\_LED\_PIN}}) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00108}00108 \textcolor{preprocessor}{\#if defined(FEEDBACK\_LED\_IS\_ACTIVE\_LOW)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00109}00109                 digitalWrite(\mbox{\hyperlink{group___feedback_l_e_d_functions_ga456f04616e9881e7d85eb56c941942d2}{FeedbackLEDControl}}.\mbox{\hyperlink{struct_feedback_l_e_d_control_struct_a759f018b8bdb93695bd4ebb0d61a3c4c}{FeedbackLEDPin}}, HIGH); \textcolor{comment}{// Turn user defined pin LED off}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00110}00110 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00111}00111                 digitalWrite(\mbox{\hyperlink{group___feedback_l_e_d_functions_ga456f04616e9881e7d85eb56c941942d2}{FeedbackLEDControl}}.\mbox{\hyperlink{struct_feedback_l_e_d_control_struct_a759f018b8bdb93695bd4ebb0d61a3c4c}{FeedbackLEDPin}}, LOW); \textcolor{comment}{// Turn user defined pin LED off}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00112}00112 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00113}00113 \textcolor{preprocessor}{\#ifdef FEEDBACK\_LED\_OFF}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00114}00114             \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00115}00115                 FEEDBACK\_LED\_OFF();   \textcolor{comment}{// if no user defined LED pin, turn default LED pin for the hardware on}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00116}00116 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00117}00117             \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00118}00118         \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00119}00119     \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00120}00120 \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00121}00121 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00125}\mbox{\hyperlink{group___feedback_l_e_d_functions_ga1519a6ae287c97cf2764666d3250b074}{00125}} \textcolor{keywordtype}{void} \mbox{\hyperlink{group___feedback_l_e_d_functions_ga1519a6ae287c97cf2764666d3250b074}{IRrecv::blink13}}(\textcolor{keywordtype}{bool} aEnableLEDFeedback) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00126}00126     \mbox{\hyperlink{group___feedback_l_e_d_functions_gaa5949b509ec061d9239867caa628cfec}{setLEDFeedback}}(\mbox{\hyperlink{group___feedback_l_e_d_functions_ga456f04616e9881e7d85eb56c941942d2}{FeedbackLEDControl}}.\mbox{\hyperlink{struct_feedback_l_e_d_control_struct_a759f018b8bdb93695bd4ebb0d61a3c4c}{FeedbackLEDPin}}, aEnableLEDFeedback);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00127}00127 \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00131}\mbox{\hyperlink{group___feedback_l_e_d_functions_ga5f1d479f43dcd56febf146e97a3904db}{00131}} \textcolor{keywordtype}{void} \mbox{\hyperlink{group___feedback_l_e_d_functions_ga5f1d479f43dcd56febf146e97a3904db}{setBlinkPin}}(uint8\_t aBlinkPin) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00132}00132     \mbox{\hyperlink{group___feedback_l_e_d_functions_gaa5949b509ec061d9239867caa628cfec}{setLEDFeedback}}(aBlinkPin, \mbox{\hyperlink{group___feedback_l_e_d_functions_ga456f04616e9881e7d85eb56c941942d2}{FeedbackLEDControl}}.\mbox{\hyperlink{struct_feedback_l_e_d_control_struct_a49467187b92e40e5122b14d82a9fa500}{LedFeedbackEnabled}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00133}00133 \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00134}00134 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00137}00137 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \#ifndef IR\_FEEDBACK\_LED\_HPP}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_feedback_l_e_d_8hpp_source_l00138}00138 \textcolor{preprocessor}{\#pragma once}}
+
+\end{DoxyCode}

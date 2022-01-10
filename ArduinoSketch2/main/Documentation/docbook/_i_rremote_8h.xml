@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="__i_rremote_8h" xml:lang="en-US">
+<title>main/IRRemote_Library/IRremote.h File Reference</title>
+<indexterm><primary>main/IRRemote_Library/IRremote.h</primary></indexterm>
+<para>
+
+<para>Stub for backward compatibility. </para>
+ 
+</para>
+<programlisting linenumbering="unnumbered">#include &quot;IRremote.hpp&quot;
+</programlisting>Include dependency graph for IRremote.h:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="_i_rremote_8h__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<section>
+<title>Detailed Description</title>
+
+<para>Stub for backward compatibility. </para>
+<para>
+Definition in file <link linkend="__i_rremote_8h_source">IRremote.h</link>.</para>
+</section>
+</section>

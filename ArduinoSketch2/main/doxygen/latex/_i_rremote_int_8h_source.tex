@@ -1,0 +1,505 @@
+\hypertarget{_i_rremote_int_8h_source}{}\doxysection{IRremote\+Int.\+h}
+\label{_i_rremote_int_8h_source}\index{IRRemote/IRremoteInt.h@{IRRemote/IRremoteInt.h}}
+\mbox{\hyperlink{_i_rremote_int_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#ifndef IRremoteInt\_h}}
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#define IRremoteInt\_h}}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36 \textcolor{preprocessor}{\#include <Arduino.h>}}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38 \textcolor{preprocessor}{\#if !defined(RAW\_BUFFER\_LENGTH)}}
+\DoxyCodeLine{39 \textcolor{preprocessor}{\#error Seems you use \#include IRremoteInt.h in a file not containing main(). Please define RAW\_BUFFER\_LENGTH with the same value as in the main program and check if the macros IR\_SEND\_PIN and SEND\_PWM\_BY\_TIMER are defined in the main program.}}
+\DoxyCodeLine{40 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{41 \textcolor{comment}{//\#define RAW\_BUFFER\_LENGTH  100 // 100 is default}}
+\DoxyCodeLine{42 \textcolor{comment}{//\#define RAW\_BUFFER\_LENGTH  112 //  MagiQuest requires 112 bytes. enable this if DECODE\_MAGIQUEST is enabled}}
+\DoxyCodeLine{43 \textcolor{comment}{//\#define SEND\_PWM\_BY\_TIMER}}
+\DoxyCodeLine{44 \textcolor{comment}{//\#define IR\_SEND\_PIN            // here it is only interesting if it is defined, the value does not matter here}}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46 \textcolor{preprocessor}{\#define MARK   1}}
+\DoxyCodeLine{47 \textcolor{preprocessor}{\#define SPACE  0}}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49 \textcolor{preprocessor}{\#define MILLIS\_IN\_ONE\_SECOND 1000L}}
+\DoxyCodeLine{50 \textcolor{preprocessor}{\#define MICROS\_IN\_ONE\_SECOND 1000000L}}
+\DoxyCodeLine{51 \textcolor{preprocessor}{\#define MICROS\_IN\_ONE\_MILLI 1000L}}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53 \textcolor{preprocessor}{\#if defined(PARTICLE)}}
+\DoxyCodeLine{54 \textcolor{preprocessor}{\#define F\_CPU 16000000 }\textcolor{comment}{// definition for a board for which F\_CPU is not defined}}
+\DoxyCodeLine{55 \textcolor{preprocessor}{\#elif defined(ARDUINO\_ARCH\_MBED\_RP2040)}}
+\DoxyCodeLine{56 \textcolor{preprocessor}{\#define F\_CPU 133000000}}
+\DoxyCodeLine{57 \textcolor{preprocessor}{\#elif defined(ARDUINO\_ARDUINO\_NANO33BLE)}}
+\DoxyCodeLine{58 \textcolor{preprocessor}{\#define F\_CPU 64000000}}
+\DoxyCodeLine{59 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{60 \textcolor{preprocessor}{\#if defined(F\_CPU)}}
+\DoxyCodeLine{61 \textcolor{preprocessor}{\#define CLOCKS\_PER\_MICRO (F\_CPU / MICROS\_IN\_ONE\_SECOND)}}
+\DoxyCodeLine{62 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{63 \textcolor{preprocessor}{\#error F\_CPU not defined, please define it for your board in IRremoteInt.h}}
+\DoxyCodeLine{64 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{66 \textcolor{comment}{/*}}
+\DoxyCodeLine{67 \textcolor{comment}{ * For backwards compatibility}}
+\DoxyCodeLine{68 \textcolor{comment}{ */}}
+\DoxyCodeLine{69 \textcolor{preprocessor}{\#if defined(SYSCLOCK) }\textcolor{comment}{// allow for processor specific code to define F\_CPU}}
+\DoxyCodeLine{70 \textcolor{preprocessor}{\#undef F\_CPU}}
+\DoxyCodeLine{71 \textcolor{preprocessor}{\#define F\_CPU SYSCLOCK }\textcolor{comment}{// Clock frequency to be used for timing.}}
+\DoxyCodeLine{72 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{74 \textcolor{comment}{//\#define DEBUG // Activate this for lots of lovely debug output from the IRremote core and all protocol decoders.}}
+\DoxyCodeLine{75 \textcolor{comment}{//\#define TRACE // Activate this for more debug output.}}
+\DoxyCodeLine{76 }
+\DoxyCodeLine{80 \textcolor{preprocessor}{\#define DISABLE\_LED\_FEEDBACK false}}
+\DoxyCodeLine{81 \textcolor{preprocessor}{\#define ENABLE\_LED\_FEEDBACK true}}
+\DoxyCodeLine{82 \textcolor{preprocessor}{\#define USE\_DEFAULT\_FEEDBACK\_LED\_PIN 0}}
+\DoxyCodeLine{83 }
+\DoxyCodeLine{84 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_i_r_protocol_8h}{IRProtocol.h}}"{}}}
+\DoxyCodeLine{85 }
+\DoxyCodeLine{86 \textcolor{comment}{/****************************************************}}
+\DoxyCodeLine{87 \textcolor{comment}{ * Declarations for the receiver Interrupt Service Routine}}
+\DoxyCodeLine{88 \textcolor{comment}{ ****************************************************/}}
+\DoxyCodeLine{89 \textcolor{comment}{// ISR State-\/Machine : Receiver States}}
+\DoxyCodeLine{90 \textcolor{preprocessor}{\#define IR\_REC\_STATE\_IDLE      0}}
+\DoxyCodeLine{91 \textcolor{preprocessor}{\#define IR\_REC\_STATE\_MARK      1}}
+\DoxyCodeLine{92 \textcolor{preprocessor}{\#define IR\_REC\_STATE\_SPACE     2}}
+\DoxyCodeLine{93 \textcolor{preprocessor}{\#define IR\_REC\_STATE\_STOP      3 }\textcolor{comment}{// set to IR\_REC\_STATE\_IDLE only by resume()}}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{99 \textcolor{keyword}{struct }\mbox{\hyperlink{structirparams__struct}{irparams\_struct}} \{}
+\DoxyCodeLine{100     \textcolor{comment}{// The fields are ordered to reduce memory over caused by struct-\/padding}}
+\DoxyCodeLine{101     \textcolor{keyword}{volatile} uint8\_t \mbox{\hyperlink{structirparams__struct_aea7300a6d0cd2e463887a8595c6c1e2e}{StateForISR}};   }
+\DoxyCodeLine{102     uint8\_t \mbox{\hyperlink{structirparams__struct_aaa76c636723e7d1937edac2f0f197dcb}{IRReceivePin}};           }
+\DoxyCodeLine{103 \textcolor{preprocessor}{\#if defined(\_\_AVR\_\_)}}
+\DoxyCodeLine{104     \textcolor{keyword}{volatile} uint8\_t *IRReceivePinPortInputRegister;}
+\DoxyCodeLine{105     uint8\_t IRReceivePinMask;}
+\DoxyCodeLine{106 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{107     uint16\_t \mbox{\hyperlink{structirparams__struct_ad0b5caeae83ea38517415e7210829b85}{TickCounterForISR}};     }
+\DoxyCodeLine{108 }
+\DoxyCodeLine{109     \textcolor{keywordtype}{bool} \mbox{\hyperlink{structirparams__struct_add9591d883df748c9ceeb46fa0de1ebc}{OverflowFlag}};              }
+\DoxyCodeLine{110 \textcolor{preprocessor}{\#if RAW\_BUFFER\_LENGTH <= 254        }\textcolor{comment}{// saves around 75 bytes program space and speeds up ISR}}
+\DoxyCodeLine{111     uint8\_t \mbox{\hyperlink{structirparams__struct_af0571ac479d1c38c79502651b0631432}{rawlen}};                 }
+\DoxyCodeLine{112 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{113     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{structirparams__struct_af0571ac479d1c38c79502651b0631432}{rawlen}};            }
+\DoxyCodeLine{114 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{115     uint16\_t \mbox{\hyperlink{structirparams__struct_a7aa7b811dcc0fb5ab0da7c0bddaf97f8}{rawbuf}}[\mbox{\hyperlink{_i_rremote_8hpp_a589aa40429eeb37b6e83a2c09854a47b}{RAW\_BUFFER\_LENGTH}}]; }
+\DoxyCodeLine{116 \};}
+\DoxyCodeLine{117 }
+\DoxyCodeLine{118 \textcolor{comment}{/*}}
+\DoxyCodeLine{119 \textcolor{comment}{ * Info directives}}
+\DoxyCodeLine{120 \textcolor{comment}{ * Can be disabled to save program space}}
+\DoxyCodeLine{121 \textcolor{comment}{ */}}
+\DoxyCodeLine{122 \textcolor{preprocessor}{\#ifdef INFO}}
+\DoxyCodeLine{123 \textcolor{preprocessor}{\#  define IR\_INFO\_PRINT(...)    Serial.print(\_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{124 \textcolor{preprocessor}{\#  define IR\_INFO\_PRINTLN(...)  Serial.println(\_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{125 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{129 \textcolor{preprocessor}{\#  define IR\_INFO\_PRINT(...) void()}}
+\DoxyCodeLine{133 \textcolor{preprocessor}{\#  define IR\_INFO\_PRINTLN(...) void()}}
+\DoxyCodeLine{134 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{135 }
+\DoxyCodeLine{136 \textcolor{comment}{/*}}
+\DoxyCodeLine{137 \textcolor{comment}{ * Debug directives}}
+\DoxyCodeLine{138 \textcolor{comment}{ */}}
+\DoxyCodeLine{139 \textcolor{preprocessor}{\#ifdef DEBUG}}
+\DoxyCodeLine{140 \textcolor{preprocessor}{\#  define IR\_DEBUG\_PRINT(...)    Serial.print(\_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{141 \textcolor{preprocessor}{\#  define IR\_DEBUG\_PRINTLN(...)  Serial.println(\_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{142 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{146 \textcolor{preprocessor}{\#  define IR\_DEBUG\_PRINT(...) void()}}
+\DoxyCodeLine{150 \textcolor{preprocessor}{\#  define IR\_DEBUG\_PRINTLN(...) void()}}
+\DoxyCodeLine{151 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{152 }
+\DoxyCodeLine{153 \textcolor{preprocessor}{\#ifdef TRACE}}
+\DoxyCodeLine{154 \textcolor{preprocessor}{\#  define IR\_TRACE\_PRINT(...)    Serial.print(\_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{155 \textcolor{preprocessor}{\#  define IR\_TRACE\_PRINTLN(...)  Serial.println(\_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{156 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{157 \textcolor{preprocessor}{\#  define IR\_TRACE\_PRINT(...) void()}}
+\DoxyCodeLine{158 \textcolor{preprocessor}{\#  define IR\_TRACE\_PRINTLN(...) void()}}
+\DoxyCodeLine{159 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{160 }
+\DoxyCodeLine{161 \textcolor{comment}{/****************************************************}}
+\DoxyCodeLine{162 \textcolor{comment}{ *                     RECEIVING}}
+\DoxyCodeLine{163 \textcolor{comment}{ ****************************************************/}}
+\DoxyCodeLine{164 \textcolor{comment}{/*}}
+\DoxyCodeLine{165 \textcolor{comment}{ * Definitions for member IRData.flags}}
+\DoxyCodeLine{166 \textcolor{comment}{ */}}
+\DoxyCodeLine{167 \textcolor{preprocessor}{\#define IRDATA\_FLAGS\_EMPTY              0x00}}
+\DoxyCodeLine{168 \textcolor{preprocessor}{\#define IRDATA\_FLAGS\_IS\_REPEAT          0x01}}
+\DoxyCodeLine{169 \textcolor{preprocessor}{\#define IRDATA\_FLAGS\_IS\_AUTO\_REPEAT     0x02}}
+\DoxyCodeLine{170 \textcolor{preprocessor}{\#define IRDATA\_FLAGS\_PARITY\_FAILED      0x04 }}
+\DoxyCodeLine{171 \textcolor{preprocessor}{\#define IRDATA\_TOGGLE\_BIT\_MASK          0x08}}
+\DoxyCodeLine{172 \textcolor{preprocessor}{\#define IRDATA\_FLAGS\_EXTRA\_INFO         0x10 }}
+\DoxyCodeLine{173 \textcolor{preprocessor}{\#define IRDATA\_FLAGS\_WAS\_OVERFLOW       0x40 }}
+\DoxyCodeLine{174 \textcolor{preprocessor}{\#define IRDATA\_FLAGS\_IS\_LSB\_FIRST       0x00}}
+\DoxyCodeLine{175 \textcolor{preprocessor}{\#define IRDATA\_FLAGS\_IS\_MSB\_FIRST       0x80 }}
+\DoxyCodeLine{176 }
+\DoxyCodeLine{181 \textcolor{keyword}{struct }\mbox{\hyperlink{struct_i_r_data}{IRData}} \{}
+\DoxyCodeLine{182     \mbox{\hyperlink{_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fad}{decode\_type\_t}} \mbox{\hyperlink{struct_i_r_data_a703592faec26bab5cbe465f53ef14245}{protocol}};  }
+\DoxyCodeLine{183     uint16\_t \mbox{\hyperlink{struct_i_r_data_a1255a5b7d704d34fda83dcabcb903d4c}{address}};        }
+\DoxyCodeLine{184     uint16\_t \mbox{\hyperlink{struct_i_r_data_ab0ce2b36765ea429e8c4bfa0706a45e7}{command}};        }
+\DoxyCodeLine{185     uint16\_t \mbox{\hyperlink{struct_i_r_data_a0b71fa1a17e3ab0ae9bc9462b795213f}{extra}};          }
+\DoxyCodeLine{186     uint16\_t \mbox{\hyperlink{struct_i_r_data_a945c41b8463a36cf00b0f38b0aa73200}{numberOfBits}}; }
+\DoxyCodeLine{187     uint8\_t \mbox{\hyperlink{struct_i_r_data_aaaad48fc0d90e5c6daec601987848a51}{flags}};               }
+\DoxyCodeLine{188     uint32\_t \mbox{\hyperlink{struct_i_r_data_aeca55ebf36bf919312a933597b8734d8}{decodedRawData}};     }
+\DoxyCodeLine{189     \mbox{\hyperlink{structirparams__struct}{irparams\_struct}} *\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}; }
+\DoxyCodeLine{190 \};}
+\DoxyCodeLine{191 }
+\DoxyCodeLine{192 }
+\DoxyCodeLine{196 \textcolor{keyword}{struct }\mbox{\hyperlink{structdecode__results}{decode\_results}} \{}
+\DoxyCodeLine{197     \mbox{\hyperlink{_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fad}{decode\_type\_t}} decode\_type;  \textcolor{comment}{// deprecated, moved to decodedIRData.protocol ///< UNKNOWN, NEC, SONY, RC5, ...}}
+\DoxyCodeLine{198     uint16\_t \mbox{\hyperlink{structdecode__results_a63091d6d39138248dd2c3bc35ca8ab46}{address}};           }
+\DoxyCodeLine{199     uint32\_t value;             \textcolor{comment}{// deprecated, moved to decodedIRData.decodedRawData ///< Decoded value / command [max 32-\/bits]}}
+\DoxyCodeLine{200     uint8\_t bits;               \textcolor{comment}{// deprecated, moved to decodedIRData.numberOfBits ///< Number of bits in decoded value}}
+\DoxyCodeLine{201     uint16\_t magnitude;         \textcolor{comment}{// deprecated, moved to decodedIRData.extra ///< Used by MagiQuest [16-\/bits]}}
+\DoxyCodeLine{202     \textcolor{keywordtype}{bool} isRepeat;              \textcolor{comment}{// deprecated, moved to decodedIRData.flags ///< True if repeat of value is detected}}
+\DoxyCodeLine{203 }
+\DoxyCodeLine{204 \textcolor{comment}{// next 3 values are copies of irparams values -\/ see IRremoteint.h}}
+\DoxyCodeLine{205     uint16\_t *rawbuf;           \textcolor{comment}{// deprecated, moved to decodedIRData.rawDataPtr-\/>rawbuf ///< Raw intervals in 50uS ticks}}
+\DoxyCodeLine{206     uint16\_t rawlen;            \textcolor{comment}{// deprecated, moved to decodedIRData.rawDataPtr-\/>rawlen ///< Number of records in rawbuf}}
+\DoxyCodeLine{207     \textcolor{keywordtype}{bool} overflow;              \textcolor{comment}{// deprecated, moved to decodedIRData.flags ///< true if IR raw code too long}}
+\DoxyCodeLine{208 \};}
+\DoxyCodeLine{209 }
+\DoxyCodeLine{213 \textcolor{keyword}{class }\mbox{\hyperlink{class_i_rrecv}{IRrecv}} \{}
+\DoxyCodeLine{214 \textcolor{keyword}{public}:}
+\DoxyCodeLine{215 }
+\DoxyCodeLine{216     \mbox{\hyperlink{group___receiving_ga81eee3a1f9153578d595c771688003e8}{IRrecv}}();}
+\DoxyCodeLine{217     \mbox{\hyperlink{group___receiving_ga81eee3a1f9153578d595c771688003e8}{IRrecv}}(uint8\_t aReceivePin);}
+\DoxyCodeLine{218     \mbox{\hyperlink{group___receiving_ga81eee3a1f9153578d595c771688003e8}{IRrecv}}(uint8\_t aReceivePin, uint8\_t aFeedbackLEDPin);}
+\DoxyCodeLine{219     \textcolor{keywordtype}{void} \mbox{\hyperlink{group___receiving_gac3c968e5acf5b0bbd1e1b87e0b5af61f}{setReceivePin}}(uint8\_t aReceivePinNumber);}
+\DoxyCodeLine{220 }
+\DoxyCodeLine{221     \textcolor{keywordtype}{void} \mbox{\hyperlink{group___receiving_ga69d3e9314aea4a37b43b74a0b4f3f976}{enableIRIn}}();}
+\DoxyCodeLine{222     \textcolor{keywordtype}{void} \mbox{\hyperlink{group___receiving_gaf828d23c733b1bde8f61e39230d9dbcd}{disableIRIn}}();}
+\DoxyCodeLine{223 }
+\DoxyCodeLine{224     \textcolor{comment}{/*}}
+\DoxyCodeLine{225 \textcolor{comment}{     * Stream like API}}
+\DoxyCodeLine{226 \textcolor{comment}{     */}}
+\DoxyCodeLine{227     \textcolor{keywordtype}{void} \mbox{\hyperlink{group___receiving_ga0358fc4a683ba3f8d31fdde1e22be724}{begin}}(uint8\_t aReceivePin, \textcolor{keywordtype}{bool} aEnableLEDFeedback = \textcolor{keyword}{false}, uint8\_t aFeedbackLEDPin = USE\_DEFAULT\_FEEDBACK\_LED\_PIN);}
+\DoxyCodeLine{228     \textcolor{keywordtype}{void} \mbox{\hyperlink{group___receiving_ga2c06971f0e4e0c4131930c8903eb21dc}{start}}(); \textcolor{comment}{// alias for enableIRIn}}
+\DoxyCodeLine{229     \textcolor{keywordtype}{void} \mbox{\hyperlink{group___receiving_ga2c06971f0e4e0c4131930c8903eb21dc}{start}}(uint32\_t aMicrosecondsToAddToGapCounter);}
+\DoxyCodeLine{230     \textcolor{keywordtype}{bool} \mbox{\hyperlink{group___receiving_gaa4f466138c416bf4e1548f5399be0298}{available}}();}
+\DoxyCodeLine{231     \mbox{\hyperlink{struct_i_r_data}{IRData}}* \mbox{\hyperlink{group___receiving_ga471a42c75e807e43827e319852536e3c}{read}}(); \textcolor{comment}{// returns decoded data}}
+\DoxyCodeLine{232     \textcolor{comment}{// write is a method of class IRsend below}}
+\DoxyCodeLine{233     \textcolor{comment}{// size\_t write(IRData *aIRSendData, uint\_fast8\_t aNumberOfRepeats = NO\_REPEATS);}}
+\DoxyCodeLine{234     \textcolor{keywordtype}{void} \mbox{\hyperlink{group___receiving_gaadb62786cd826cd539683c03734e46fe}{stop}}(); \textcolor{comment}{// alias for disableIRIn}}
+\DoxyCodeLine{235     \textcolor{keywordtype}{void} \mbox{\hyperlink{group___receiving_ga8ffd22c2d4c6e93918d987a4b7c3ba5b}{end}}();}
+\DoxyCodeLine{236 }
+\DoxyCodeLine{237     \textcolor{keywordtype}{bool} \mbox{\hyperlink{group___receiving_gacfbf39fb284cc2d200158f20747c4ae3}{isIdle}}();}
+\DoxyCodeLine{238 }
+\DoxyCodeLine{239     \textcolor{comment}{/*}}
+\DoxyCodeLine{240 \textcolor{comment}{     * The main functions}}
+\DoxyCodeLine{241 \textcolor{comment}{     */}}
+\DoxyCodeLine{242     \textcolor{keywordtype}{bool} \mbox{\hyperlink{group___receiving_ga913af602be49b9182fb0b22e9e351b36}{decode}}();  \textcolor{comment}{// Check if available and try to decode}}
+\DoxyCodeLine{243     \textcolor{keywordtype}{void} \mbox{\hyperlink{group___receiving_gaf40f1e16b1cc911e47ac3f0a9b3b1ec5}{resume}}();  \textcolor{comment}{// Enable receiving of the next value}}
+\DoxyCodeLine{244 }
+\DoxyCodeLine{245     \textcolor{comment}{/*}}
+\DoxyCodeLine{246 \textcolor{comment}{     * Useful info and print functions}}
+\DoxyCodeLine{247 \textcolor{comment}{     */}}
+\DoxyCodeLine{248     \textcolor{keywordtype}{void} \mbox{\hyperlink{group___receiving_ga1c11036a46d1e9624e283821f0a99aee}{printIRResultShort}}(Print *aSerial);}
+\DoxyCodeLine{249     \textcolor{keywordtype}{void} \mbox{\hyperlink{group___receiving_ga4597a1f83fb256e1673291c424449c51}{printIRResultMinimal}}(Print *aSerial);}
+\DoxyCodeLine{250     \textcolor{keywordtype}{void} \mbox{\hyperlink{group___receiving_ga0d8405bf5ec373798c74684b9c7c2e2d}{printIRResultRawFormatted}}(Print *aSerial, \textcolor{keywordtype}{bool} aOutputMicrosecondsInsteadOfTicks = \textcolor{keyword}{true});}
+\DoxyCodeLine{251     \textcolor{keywordtype}{void} \mbox{\hyperlink{group___receiving_gae24919a83cfbea5b2c53a851e1d3fed0}{printIRResultAsCVariables}}(Print *aSerial);}
+\DoxyCodeLine{252 }
+\DoxyCodeLine{253     \textcolor{keywordtype}{void} \mbox{\hyperlink{group___receiving_ga21364e5f35756fe0f72581c00b1b33b1}{compensateAndPrintIRResultAsCArray}}(Print *aSerial, \textcolor{keywordtype}{bool} aOutputMicrosecondsInsteadOfTicks = \textcolor{keyword}{true});}
+\DoxyCodeLine{254     \textcolor{keywordtype}{void} \mbox{\hyperlink{group___decoder_gaa701711c860c8ff58d332c4567e7ff89}{compensateAndPrintIRResultAsPronto}}(Print *aSerial, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} frequency = 38000U);}
+\DoxyCodeLine{255 }
+\DoxyCodeLine{256     \textcolor{comment}{/*}}
+\DoxyCodeLine{257 \textcolor{comment}{     * Store the data for further processing}}
+\DoxyCodeLine{258 \textcolor{comment}{     */}}
+\DoxyCodeLine{259     \textcolor{keywordtype}{void} \mbox{\hyperlink{group___receiving_ga5a515633f91a505e621cba3bab5e53d0}{compensateAndStoreIRResultInArray}}(uint8\_t *aArrayPtr);}
+\DoxyCodeLine{260     \textcolor{keywordtype}{size\_t} compensateAndStorePronto(String *aString, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} frequency = 38000U);}
+\DoxyCodeLine{261 }
+\DoxyCodeLine{262     \textcolor{comment}{/*}}
+\DoxyCodeLine{263 \textcolor{comment}{     * The main decoding functions used by the individual decoders}}
+\DoxyCodeLine{264 \textcolor{comment}{     */}}
+\DoxyCodeLine{265     \textcolor{keywordtype}{bool} \mbox{\hyperlink{group___receiving_gaf8c9cdb5f7280043a552f22265bdb2d5}{decodePulseDistanceData}}(uint8\_t aNumberOfBits, uint8\_t aStartOffset, uint16\_t aBitMarkMicros, uint16\_t aOneSpaceMicros,}
+\DoxyCodeLine{266             uint16\_t aZeroSpaceMicros, \textcolor{keywordtype}{bool} aMSBfirst);}
+\DoxyCodeLine{267 }
+\DoxyCodeLine{268     \textcolor{keywordtype}{bool} \mbox{\hyperlink{group___receiving_ga208047cf25c7850842984462bfa11cd0}{decodePulseWidthData}}(uint8\_t aNumberOfBits, uint8\_t aStartOffset, uint16\_t aOneMarkMicros, uint16\_t aZeroMarkMicros,}
+\DoxyCodeLine{269             uint16\_t aBitSpaceMicros, \textcolor{keywordtype}{bool} aMSBfirst);}
+\DoxyCodeLine{270 }
+\DoxyCodeLine{271     \textcolor{keywordtype}{bool} decodeBiPhaseData(uint\_fast8\_t aNumberOfBits, uint\_fast8\_t aStartOffset, uint\_fast8\_t aStartClockCount,}
+\DoxyCodeLine{272             uint\_fast8\_t aValueOfSpaceToMarkTransition, uint16\_t aBiphaseTimeUnit);}
+\DoxyCodeLine{273 }
+\DoxyCodeLine{274     \textcolor{keywordtype}{void} initBiphaselevel(uint8\_t aRCDecodeRawbuffOffset, uint16\_t aBiphaseTimeUnit);}
+\DoxyCodeLine{275     uint8\_t \mbox{\hyperlink{group___receiving_ga7d26f9254747368762e4d4c09dc22fb0}{getBiphaselevel}}();}
+\DoxyCodeLine{276 }
+\DoxyCodeLine{277     \textcolor{comment}{/*}}
+\DoxyCodeLine{278 \textcolor{comment}{     * All standard (decode address + command) protocol decoders}}
+\DoxyCodeLine{279 \textcolor{comment}{     */}}
+\DoxyCodeLine{280     \textcolor{keywordtype}{bool} decodeBoseWave();}
+\DoxyCodeLine{281     \textcolor{keywordtype}{bool} decodeDenon();}
+\DoxyCodeLine{282     \textcolor{keywordtype}{bool} decodeJVC();}
+\DoxyCodeLine{283     \textcolor{keywordtype}{bool} decodeKaseikyo();}
+\DoxyCodeLine{284     \textcolor{keywordtype}{bool} decodeLegoPowerFunctions();}
+\DoxyCodeLine{285     \textcolor{keywordtype}{bool} decodeLG();}
+\DoxyCodeLine{286     \textcolor{keywordtype}{bool} decodeMagiQuest(); \textcolor{comment}{// not completely standard}}
+\DoxyCodeLine{287     \textcolor{keywordtype}{bool} decodeNEC();}
+\DoxyCodeLine{288     \textcolor{keywordtype}{bool} \mbox{\hyperlink{group___decoder_ga5720b53e427e0346ecc248e55c57e2b9}{decodeRC5}}();}
+\DoxyCodeLine{289     \textcolor{keywordtype}{bool} \mbox{\hyperlink{group___decoder_gad98448418d525479e74c1a38725b498f}{decodeRC6}}();}
+\DoxyCodeLine{290     \textcolor{keywordtype}{bool} decodeSamsung();}
+\DoxyCodeLine{291     \textcolor{keywordtype}{bool} decodeSharp(); \textcolor{comment}{// redirected to decodeDenon()}}
+\DoxyCodeLine{292     \textcolor{keywordtype}{bool} decodeSony();}
+\DoxyCodeLine{293     \textcolor{keywordtype}{bool} decodeWhynter();}
+\DoxyCodeLine{294 }
+\DoxyCodeLine{295     \textcolor{keywordtype}{bool} decodeDistance();}
+\DoxyCodeLine{296 }
+\DoxyCodeLine{297     \textcolor{keywordtype}{bool} decodeHash();}
+\DoxyCodeLine{298 }
+\DoxyCodeLine{299     \textcolor{comment}{// Template function :-\/)}}
+\DoxyCodeLine{300     \textcolor{keywordtype}{bool} decodeShuzu();}
+\DoxyCodeLine{301 }
+\DoxyCodeLine{302     \textcolor{comment}{/*}}
+\DoxyCodeLine{303 \textcolor{comment}{     * Old functions}}
+\DoxyCodeLine{304 \textcolor{comment}{     */}}
+\DoxyCodeLine{305     \textcolor{keywordtype}{bool} decodeDenonOld(\mbox{\hyperlink{structdecode__results}{decode\_results}} *aResults);}
+\DoxyCodeLine{306     \textcolor{keywordtype}{bool} decodeJVCMSB(\mbox{\hyperlink{structdecode__results}{decode\_results}} *aResults);}
+\DoxyCodeLine{307     \textcolor{keywordtype}{bool} decodeLGMSB(\mbox{\hyperlink{structdecode__results}{decode\_results}} *aResults);}
+\DoxyCodeLine{308     \textcolor{keywordtype}{bool} decodeNECMSB(\mbox{\hyperlink{structdecode__results}{decode\_results}} *aResults);}
+\DoxyCodeLine{309     \textcolor{keywordtype}{bool} \mbox{\hyperlink{group___decoder_ga5b0375df7166d1b6b1886891768a9379}{decodePanasonicMSB}}(\mbox{\hyperlink{structdecode__results}{decode\_results}} *aResults);}
+\DoxyCodeLine{310     \textcolor{keywordtype}{bool} decodeSonyMSB(\mbox{\hyperlink{structdecode__results}{decode\_results}} *aResults);}
+\DoxyCodeLine{311     \textcolor{keywordtype}{bool} decodeSAMSUNG(\mbox{\hyperlink{structdecode__results}{decode\_results}} *aResults);}
+\DoxyCodeLine{312     \textcolor{keywordtype}{bool} decodeHashOld(\mbox{\hyperlink{structdecode__results}{decode\_results}} *aResults);}
+\DoxyCodeLine{313 }
+\DoxyCodeLine{314     \textcolor{keywordtype}{bool} \mbox{\hyperlink{group___receiving_ga913af602be49b9182fb0b22e9e351b36}{decode}}(}
+\DoxyCodeLine{315             \mbox{\hyperlink{structdecode__results}{decode\_results}} *aResults)}
+\DoxyCodeLine{316                     \_\_attribute\_\_ ((deprecated (\textcolor{stringliteral}{"{}Please use IrReceiver.decode() without a parameter and IrReceiver.decodedIRData.<fieldname> ."{}}))); \textcolor{comment}{// deprecated}}
+\DoxyCodeLine{317 }
+\DoxyCodeLine{318     \textcolor{comment}{// for backward compatibility. Now in IRFeedbackLED.hpp}}
+\DoxyCodeLine{319     \textcolor{keywordtype}{void} \mbox{\hyperlink{group___feedback_l_e_d_functions_ga1519a6ae287c97cf2764666d3250b074}{blink13}}(\textcolor{keywordtype}{bool} aEnableLEDFeedback)}
+\DoxyCodeLine{320             \_\_attribute\_\_ ((deprecated (\textcolor{stringliteral}{"{}Please use setLEDFeedback() or enableLEDFeedback() / disableLEDFeedback()."{}}))); \textcolor{comment}{// deprecated}}
+\DoxyCodeLine{321 }
+\DoxyCodeLine{322     \textcolor{comment}{/*}}
+\DoxyCodeLine{323 \textcolor{comment}{     * Internal functions}}
+\DoxyCodeLine{324 \textcolor{comment}{     */}}
+\DoxyCodeLine{325     \textcolor{keywordtype}{void} \mbox{\hyperlink{group___receiving_ga26e37f666387134ed18393fd930f68db}{initDecodedIRData}}();}
+\DoxyCodeLine{326     uint8\_t compare(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} oldval, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} newval);}
+\DoxyCodeLine{327 }
+\DoxyCodeLine{328     \mbox{\hyperlink{struct_i_r_data}{IRData}} decodedIRData;       \textcolor{comment}{// New: decoded IR data for the application}}
+\DoxyCodeLine{329 }
+\DoxyCodeLine{330     \textcolor{comment}{// Last decoded IR data for repeat detection}}
+\DoxyCodeLine{331     \mbox{\hyperlink{_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fad}{decode\_type\_t}} lastDecodedProtocol;}
+\DoxyCodeLine{332     uint32\_t lastDecodedAddress;}
+\DoxyCodeLine{333     uint32\_t lastDecodedCommand;}
+\DoxyCodeLine{334 }
+\DoxyCodeLine{335     uint8\_t repeatCount;        \textcolor{comment}{// Used e.g. for Denon decode for autorepeat decoding.}}
+\DoxyCodeLine{336 \};}
+\DoxyCodeLine{337 }
+\DoxyCodeLine{338 \textcolor{keyword}{extern} uint8\_t sBiphaseDecodeRawbuffOffset; \textcolor{comment}{//}}
+\DoxyCodeLine{339 }
+\DoxyCodeLine{340 \textcolor{comment}{/*}}
+\DoxyCodeLine{341 \textcolor{comment}{ * Mark \& Space matching functions}}
+\DoxyCodeLine{342 \textcolor{comment}{ */}}
+\DoxyCodeLine{343 \textcolor{keywordtype}{bool} \mbox{\hyperlink{group___receiving_ga495b7f49ff71cde1289b118fac0f0674}{matchTicks}}(uint16\_t aMeasuredTicks, uint16\_t aMatchValueMicros);}
+\DoxyCodeLine{344 \textcolor{keywordtype}{bool} \mbox{\hyperlink{group___receiving_ga4472564ea96b1ee10b51f594f60d7aeb}{matchMark}}(uint16\_t aMeasuredTicks, uint16\_t aMatchValueMicros);}
+\DoxyCodeLine{345 \textcolor{keywordtype}{bool} \mbox{\hyperlink{group___receiving_ga7902b620f6c01463b5b6e50ef604ac8b}{matchSpace}}(uint16\_t aMeasuredTicks, uint16\_t aMatchValueMicros);}
+\DoxyCodeLine{346 }
+\DoxyCodeLine{347 \textcolor{comment}{/*}}
+\DoxyCodeLine{348 \textcolor{comment}{ * Old function names}}
+\DoxyCodeLine{349 \textcolor{comment}{ */}}
+\DoxyCodeLine{350 \textcolor{keywordtype}{bool} MATCH(uint16\_t measured, uint16\_t desired);}
+\DoxyCodeLine{351 \textcolor{keywordtype}{bool} MATCH\_MARK(uint16\_t measured\_ticks, uint16\_t desired\_us);}
+\DoxyCodeLine{352 \textcolor{keywordtype}{bool} MATCH\_SPACE(uint16\_t measured\_ticks, uint16\_t desired\_us);}
+\DoxyCodeLine{353 }
+\DoxyCodeLine{354 \textcolor{keywordtype}{int} \mbox{\hyperlink{group___receiving_gab1d28d4dd67d6bf808c0328a92e2d863}{getMarkExcessMicros}}();}
+\DoxyCodeLine{355 \textcolor{keywordtype}{void} printActiveIRProtocols(Print *aSerial);}
+\DoxyCodeLine{356 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___receiving_ga545a2c08c0d21af0e95d65b052670bae}{printIRResultShort}}(Print *aSerial, \mbox{\hyperlink{struct_i_r_data}{IRData}} *aIRDataPtr, uint16\_t aLeadingSpaceDuration = 0);}
+\DoxyCodeLine{357 }
+\DoxyCodeLine{358 \textcolor{comment}{/****************************************************}}
+\DoxyCodeLine{359 \textcolor{comment}{ * Feedback LED related functions}}
+\DoxyCodeLine{360 \textcolor{comment}{ ****************************************************/}}
+\DoxyCodeLine{361 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___feedback_l_e_d_functions_ga072624eeba964d8aa105822da00090ba}{setFeedbackLED}}(\textcolor{keywordtype}{bool} aSwitchLedOn);}
+\DoxyCodeLine{362 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___feedback_l_e_d_functions_gaa5949b509ec061d9239867caa628cfec}{setLEDFeedback}}(uint8\_t aFeedbackLEDPin, \textcolor{keywordtype}{bool} aEnableLEDFeedback); \textcolor{comment}{// if aFeedbackLEDPin == 0, then take board BLINKLED\_ON() and BLINKLED\_OFF() functions}}
+\DoxyCodeLine{363 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___feedback_l_e_d_functions_gaa5949b509ec061d9239867caa628cfec}{setLEDFeedback}}(\textcolor{keywordtype}{bool} aEnableLEDFeedback); \textcolor{comment}{// Direct replacement for blink13()}}
+\DoxyCodeLine{364 \textcolor{keywordtype}{void} enableLEDFeedback();}
+\DoxyCodeLine{365 \textcolor{keywordtype}{void} disableLEDFeedback();}
+\DoxyCodeLine{366 }
+\DoxyCodeLine{367 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___feedback_l_e_d_functions_ga5f1d479f43dcd56febf146e97a3904db}{setBlinkPin}}(uint8\_t aFeedbackLEDPin) \_\_attribute\_\_ ((deprecated (\textcolor{stringliteral}{"{}Please use setLEDFeedback()."{}}))); \textcolor{comment}{// deprecated}}
+\DoxyCodeLine{368 }
+\DoxyCodeLine{372 \textcolor{preprocessor}{\#if ! defined(MICROS\_PER\_TICK)}}
+\DoxyCodeLine{373 \textcolor{preprocessor}{\#define MICROS\_PER\_TICK    50}}
+\DoxyCodeLine{374 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{375 }
+\DoxyCodeLine{376 \textcolor{comment}{/*}}
+\DoxyCodeLine{377 \textcolor{comment}{ * Pulse parms are ((X*50)-\/100) for the Mark and ((X*50)+100) for the Space.}}
+\DoxyCodeLine{378 \textcolor{comment}{ * First MARK is the one after the long gap}}
+\DoxyCodeLine{379 \textcolor{comment}{ * Pulse parameters in uSec}}
+\DoxyCodeLine{380 \textcolor{comment}{ */}}
+\DoxyCodeLine{382 \textcolor{preprocessor}{\#define TOLERANCE       25}}
+\DoxyCodeLine{383 }
+\DoxyCodeLine{385 \textcolor{comment}{//\#define LTOL            (1.0 -\/ (TOLERANCE/100.))}}
+\DoxyCodeLine{386 \textcolor{preprocessor}{\#define LTOL            (100 -\/ TOLERANCE)}}
+\DoxyCodeLine{388 \textcolor{comment}{//\#define UTOL            (1.0 + (TOLERANCE/100.))}}
+\DoxyCodeLine{389 \textcolor{preprocessor}{\#define UTOL            (100 + TOLERANCE)}}
+\DoxyCodeLine{390 }
+\DoxyCodeLine{391 \textcolor{comment}{//\#define TICKS\_LOW(us)   ((int)(((us)*LTOL/MICROS\_PER\_TICK)))}}
+\DoxyCodeLine{392 \textcolor{comment}{//\#define TICKS\_HIGH(us)  ((int)(((us)*UTOL/MICROS\_PER\_TICK + 1)))}}
+\DoxyCodeLine{393 \textcolor{preprocessor}{\#if MICROS\_PER\_TICK == 50 \&\& TOLERANCE == 25           }\textcolor{comment}{// Defaults}}
+\DoxyCodeLine{394 \textcolor{preprocessor}{\#define TICKS\_LOW(us)   ((us)/67 )     }\textcolor{comment}{// (us) / ((MICROS\_PER\_TICK:50 / LTOL:75 ) * 100)}}
+\DoxyCodeLine{395 \textcolor{preprocessor}{\#define TICKS\_HIGH(us)  ((us)/40 + 1)  }\textcolor{comment}{// (us) / ((MICROS\_PER\_TICK:50 / UTOL:125) * 100) + 1}}
+\DoxyCodeLine{396 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{397 \textcolor{preprocessor}{    \#define TICKS\_LOW(us)   ((uint16\_t) ((long) (us) * LTOL / (MICROS\_PER\_TICK * 100) ))}}
+\DoxyCodeLine{398 \textcolor{preprocessor}{    \#define TICKS\_HIGH(us)  ((uint16\_t) ((long) (us) * UTOL / (MICROS\_PER\_TICK * 100) + 1))}}
+\DoxyCodeLine{399 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{400 }
+\DoxyCodeLine{401 \textcolor{comment}{/*}}
+\DoxyCodeLine{402 \textcolor{comment}{ * The receiver instance}}
+\DoxyCodeLine{403 \textcolor{comment}{ */}}
+\DoxyCodeLine{404 \textcolor{keyword}{extern} \mbox{\hyperlink{class_i_rrecv}{IRrecv}} \mbox{\hyperlink{group___receiving_ga6813a2b456e5359ce674699c85a61cf9}{IrReceiver}};}
+\DoxyCodeLine{405 }
+\DoxyCodeLine{406 \textcolor{comment}{/****************************************************}}
+\DoxyCodeLine{407 \textcolor{comment}{ *                     SENDING}}
+\DoxyCodeLine{408 \textcolor{comment}{ ****************************************************/}}
+\DoxyCodeLine{409 }
+\DoxyCodeLine{413 \textcolor{preprocessor}{\#define NO\_REPEATS  0}}
+\DoxyCodeLine{414 \textcolor{preprocessor}{\#define SEND\_STOP\_BIT true}}
+\DoxyCodeLine{415 \textcolor{preprocessor}{\#define SEND\_REPEAT\_COMMAND true }}
+\DoxyCodeLine{416 }
+\DoxyCodeLine{420 \textcolor{preprocessor}{\#if ! defined(IR\_SEND\_DUTY\_CYCLE)}}
+\DoxyCodeLine{421 \textcolor{preprocessor}{\#define IR\_SEND\_DUTY\_CYCLE 30 }\textcolor{comment}{// 30 saves power and is compatible to the old existing code}}
+\DoxyCodeLine{422 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{423 }
+\DoxyCodeLine{427 \textcolor{keyword}{class }\mbox{\hyperlink{class_i_rsend}{IRsend}} \{}
+\DoxyCodeLine{428 \textcolor{keyword}{public}:}
+\DoxyCodeLine{429     \mbox{\hyperlink{class_i_rsend}{IRsend}}();}
+\DoxyCodeLine{430 }
+\DoxyCodeLine{431 \textcolor{preprocessor}{\#if defined(IR\_SEND\_PIN) || defined(SEND\_PWM\_BY\_TIMER)}}
+\DoxyCodeLine{432     \textcolor{keywordtype}{void} \mbox{\hyperlink{group___sending_ga28a0bb05c6b5d7330b2185c8447ef7a2}{begin}}();}
+\DoxyCodeLine{433 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{434 \textcolor{preprocessor}{\#if !defined(IR\_SEND\_PIN) \&\& !defined(SEND\_PWM\_BY\_TIMER)}}
+\DoxyCodeLine{435     \mbox{\hyperlink{class_i_rsend}{IRsend}}(uint8\_t aSendPin);}
+\DoxyCodeLine{436     \textcolor{keywordtype}{void} setSendPin(uint8\_t aSendPinNumber);}
+\DoxyCodeLine{437 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{438 }
+\DoxyCodeLine{439     \textcolor{keywordtype}{void} \mbox{\hyperlink{group___sending_ga28a0bb05c6b5d7330b2185c8447ef7a2}{begin}}(\textcolor{keywordtype}{bool} aEnableLEDFeedback, uint8\_t aFeedbackLEDPin = USE\_DEFAULT\_FEEDBACK\_LED\_PIN);}
+\DoxyCodeLine{440     \textcolor{keywordtype}{void} \mbox{\hyperlink{group___sending_ga28a0bb05c6b5d7330b2185c8447ef7a2}{begin}}(uint8\_t aSendPin);}
+\DoxyCodeLine{441 }
+\DoxyCodeLine{442     \textcolor{comment}{// Not guarded for backward compatibility}}
+\DoxyCodeLine{443     \textcolor{keywordtype}{void} \mbox{\hyperlink{group___sending_ga28a0bb05c6b5d7330b2185c8447ef7a2}{begin}}(uint8\_t aSendPin, \textcolor{keywordtype}{bool} aEnableLEDFeedback, uint8\_t aFeedbackLEDPin = USE\_DEFAULT\_FEEDBACK\_LED\_PIN);}
+\DoxyCodeLine{444 }
+\DoxyCodeLine{445     \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{group___sending_ga567f59869ebc6c7f53d0dc9b360dd4c3}{write}}(\mbox{\hyperlink{struct_i_r_data}{IRData}} *aIRSendData, uint\_fast8\_t aNumberOfRepeats = \mbox{\hyperlink{_i_rremote_int_8h_a5d35fb37031b53f0083f8b88ae3cf2c2}{NO\_REPEATS}});}
+\DoxyCodeLine{446 }
+\DoxyCodeLine{447     \textcolor{keywordtype}{void} \mbox{\hyperlink{group___sending_ga42c04af63d252b320c017ffa2bfc90e5}{enableIROut}}(uint8\_t aFrequencyKHz);}
+\DoxyCodeLine{448 }
+\DoxyCodeLine{449     \textcolor{keywordtype}{void} \mbox{\hyperlink{group___sending_ga6904a411999a4c9f7306dba49851eb7b}{sendPulseDistanceWidthData}}(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} aOneMarkMicros, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} aOneSpaceMicros, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} aZeroMarkMicros,}
+\DoxyCodeLine{450             \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} aZeroSpaceMicros, uint32\_t aData, uint8\_t aNumberOfBits, \textcolor{keywordtype}{bool} aMSBfirst, \textcolor{keywordtype}{bool} aSendStopBit = \textcolor{keyword}{false});}
+\DoxyCodeLine{451     \textcolor{keywordtype}{void} sendBiphaseData(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} aBiphaseTimeUnit, uint32\_t aData, uint\_fast8\_t aNumberOfBits);}
+\DoxyCodeLine{452 }
+\DoxyCodeLine{453     \textcolor{keywordtype}{void} \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} aMarkMicros);}
+\DoxyCodeLine{454     \textcolor{keywordtype}{void} \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} aSpaceMicros);}
+\DoxyCodeLine{455     \textcolor{keywordtype}{void} \mbox{\hyperlink{group___sending_ga5242741b8da4fbfaae237eee2b279dd0}{IRLedOff}}();}
+\DoxyCodeLine{456 }
+\DoxyCodeLine{457 \textcolor{comment}{// 8 Bit array}}
+\DoxyCodeLine{458     \textcolor{keywordtype}{void} \mbox{\hyperlink{group___sending_ga1c9027bc86e6a726295219ac11e06a1b}{sendRaw}}(\textcolor{keyword}{const} uint8\_t aBufferWithTicks[], uint\_fast8\_t aLengthOfBuffer, uint\_fast8\_t aIRFrequencyKilohertz);}
+\DoxyCodeLine{459     \textcolor{keywordtype}{void} \mbox{\hyperlink{group___sending_gac351cb665bc0a5c863bc7a070b3aee4e}{sendRaw\_P}}(\textcolor{keyword}{const} uint8\_t aBufferWithTicks[], uint\_fast8\_t aLengthOfBuffer, uint\_fast8\_t aIRFrequencyKilohertz);}
+\DoxyCodeLine{460 }
+\DoxyCodeLine{461 \textcolor{comment}{// 16 Bit array}}
+\DoxyCodeLine{462     \textcolor{keywordtype}{void} \mbox{\hyperlink{group___sending_ga1c9027bc86e6a726295219ac11e06a1b}{sendRaw}}(\textcolor{keyword}{const} uint16\_t aBufferWithMicroseconds[], uint\_fast8\_t aLengthOfBuffer, uint\_fast8\_t aIRFrequencyKilohertz);}
+\DoxyCodeLine{463     \textcolor{keywordtype}{void} \mbox{\hyperlink{group___sending_gac351cb665bc0a5c863bc7a070b3aee4e}{sendRaw\_P}}(\textcolor{keyword}{const} uint16\_t aBufferWithMicroseconds[], uint\_fast8\_t aLengthOfBuffer, uint\_fast8\_t aIRFrequencyKilohertz);}
+\DoxyCodeLine{464 }
+\DoxyCodeLine{465     \textcolor{comment}{/*}}
+\DoxyCodeLine{466 \textcolor{comment}{     * New send functions}}
+\DoxyCodeLine{467 \textcolor{comment}{     */}}
+\DoxyCodeLine{468     \textcolor{keywordtype}{void} sendBoseWave(uint8\_t aCommand, uint\_fast8\_t aNumberOfRepeats = \mbox{\hyperlink{_i_rremote_int_8h_a5d35fb37031b53f0083f8b88ae3cf2c2}{NO\_REPEATS}});}
+\DoxyCodeLine{469     \textcolor{keywordtype}{void} sendDenon(uint8\_t aAddress, uint8\_t aCommand, uint\_fast8\_t aNumberOfRepeats, \textcolor{keywordtype}{bool} aSendSharp = \textcolor{keyword}{false});}
+\DoxyCodeLine{470     \textcolor{keywordtype}{void} sendDenonRaw(uint16\_t aRawData, uint\_fast8\_t aNumberOfRepeats = 0)}
+\DoxyCodeLine{471 \textcolor{preprocessor}{\#if !defined (DOXYGEN)}}
+\DoxyCodeLine{472             \_\_attribute\_\_ ((deprecated (\textcolor{stringliteral}{"{}Please use sendDenon(aAddress, aCommand, aNumberOfRepeats)."{}})));}
+\DoxyCodeLine{473 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{474     \textcolor{keywordtype}{void} sendJVC(uint8\_t aAddress, uint8\_t aCommand, uint\_fast8\_t aNumberOfRepeats);}
+\DoxyCodeLine{475 }
+\DoxyCodeLine{476     \textcolor{keywordtype}{void} sendLGRepeat(\textcolor{keywordtype}{bool} aUseLG2Protocol = \textcolor{keyword}{false});}
+\DoxyCodeLine{477     \textcolor{keywordtype}{void} \mbox{\hyperlink{group___decoder_gaf5095df5a6598fe2651510e4a8d5e018}{sendLG}}(uint8\_t aAddress, uint16\_t aCommand, uint\_fast8\_t aNumberOfRepeats, \textcolor{keywordtype}{bool} aIsRepeat = \textcolor{keyword}{false}, \textcolor{keywordtype}{bool} aUseLG2Protocol =}
+\DoxyCodeLine{478             \textcolor{keyword}{false});}
+\DoxyCodeLine{479     \textcolor{keywordtype}{void} sendLGRaw(uint32\_t aRawData, uint\_fast8\_t aNumberOfRepeats = 0, \textcolor{keywordtype}{bool} aIsRepeat = \textcolor{keyword}{false}, \textcolor{keywordtype}{bool} aUseLG2Protocol = \textcolor{keyword}{false});}
+\DoxyCodeLine{480 }
+\DoxyCodeLine{481     \textcolor{keywordtype}{void} sendNECRepeat();}
+\DoxyCodeLine{482     \textcolor{keywordtype}{void} sendNEC(uint16\_t aAddress, uint8\_t aCommand, uint\_fast8\_t aNumberOfRepeats, \textcolor{keywordtype}{bool} aIsRepeat = \textcolor{keyword}{false});}
+\DoxyCodeLine{483     \textcolor{keywordtype}{void} sendNECRaw(uint32\_t aRawData, uint\_fast8\_t aNumberOfRepeats = 0, \textcolor{keywordtype}{bool} aIsRepeat = \textcolor{keyword}{false});}
+\DoxyCodeLine{484     \textcolor{comment}{// NEC variants}}
+\DoxyCodeLine{485     \textcolor{keywordtype}{void} sendOnkyo(uint16\_t aAddress, uint16\_t aCommand, uint\_fast8\_t aNumberOfRepeats, \textcolor{keywordtype}{bool} aIsRepeat = \textcolor{keyword}{false});}
+\DoxyCodeLine{486     \textcolor{keywordtype}{void} sendApple(uint8\_t aAddress, uint8\_t aCommand, uint\_fast8\_t aNumberOfRepeats, \textcolor{keywordtype}{bool} aIsRepeat = \textcolor{keyword}{false});}
+\DoxyCodeLine{487 }
+\DoxyCodeLine{488     \textcolor{keywordtype}{void} sendKaseikyo(uint16\_t aAddress, uint8\_t aData, uint\_fast8\_t aNumberOfRepeats, uint16\_t aVendorCode); \textcolor{comment}{// LSB first}}
+\DoxyCodeLine{489     \textcolor{keywordtype}{void} \mbox{\hyperlink{group___decoder_gad3a14e1a94a402a4cbe0eeeded312173}{sendPanasonic}}(uint16\_t aAddress, uint8\_t aData, uint\_fast8\_t aNumberOfRepeats); \textcolor{comment}{// LSB first}}
+\DoxyCodeLine{490     \textcolor{keywordtype}{void} \mbox{\hyperlink{group___decoder_ga9c3687ea0ab26ce088bd2a8a0aa1f1c8}{sendKaseikyo\_Denon}}(uint16\_t aAddress, uint8\_t aData, uint\_fast8\_t aNumberOfRepeats); \textcolor{comment}{// LSB first}}
+\DoxyCodeLine{491     \textcolor{keywordtype}{void} \mbox{\hyperlink{group___decoder_gaf42f22f1d83211811b4ec765d4dc0a7f}{sendKaseikyo\_Mitsubishi}}(uint16\_t aAddress, uint8\_t aData, uint\_fast8\_t aNumberOfRepeats); \textcolor{comment}{// LSB first}}
+\DoxyCodeLine{492     \textcolor{keywordtype}{void} \mbox{\hyperlink{group___decoder_ga6fee66f189ae46afac1ebe876ffbbf58}{sendKaseikyo\_Sharp}}(uint16\_t aAddress, uint8\_t aData, uint\_fast8\_t aNumberOfRepeats); \textcolor{comment}{// LSB first}}
+\DoxyCodeLine{493     \textcolor{keywordtype}{void} \mbox{\hyperlink{group___decoder_ga43bf86aaaa216292f8eb7d0941731241}{sendKaseikyo\_JVC}}(uint16\_t aAddress, uint8\_t aData, uint\_fast8\_t aNumberOfRepeats); \textcolor{comment}{// LSB first}}
+\DoxyCodeLine{494 }
+\DoxyCodeLine{495     \textcolor{keywordtype}{void} \mbox{\hyperlink{group___decoder_ga55808fcce8aaf429ebbb1d34cb7f5ee5}{sendRC5}}(uint8\_t aAddress, uint8\_t aCommand, uint\_fast8\_t aNumberOfRepeats, \textcolor{keywordtype}{bool} aEnableAutomaticToggle = \textcolor{keyword}{true});}
+\DoxyCodeLine{496     \textcolor{keywordtype}{void} \mbox{\hyperlink{group___decoder_gad26a55d87f9f8cc64a77b4571ae79e5f}{sendRC6}}(uint8\_t aAddress, uint8\_t aCommand, uint\_fast8\_t aNumberOfRepeats, \textcolor{keywordtype}{bool} aEnableAutomaticToggle = \textcolor{keyword}{true});}
+\DoxyCodeLine{497     \textcolor{keywordtype}{void} \mbox{\hyperlink{group___decoder_ga4daa3f9a1c496072f2e17cdcf93f3906}{sendSamsungRepeat}}();}
+\DoxyCodeLine{498     \textcolor{keywordtype}{void} sendSamsung(uint16\_t aAddress, uint16\_t aCommand, uint\_fast8\_t aNumberOfRepeats, \textcolor{keywordtype}{bool} aIsRepeat = \textcolor{keyword}{false});}
+\DoxyCodeLine{499     \textcolor{keywordtype}{void} sendSharp(uint8\_t aAddress, uint8\_t aCommand, uint\_fast8\_t aNumberOfRepeats); \textcolor{comment}{// redirected to sendDenon}}
+\DoxyCodeLine{500     \textcolor{keywordtype}{void} sendSony(uint16\_t aAddress, uint8\_t aCommand, uint\_fast8\_t aNumberOfRepeats, uint8\_t numberOfBits = SIRCS\_12\_PROTOCOL);}
+\DoxyCodeLine{501 }
+\DoxyCodeLine{502     \textcolor{keywordtype}{void} sendLegoPowerFunctions(uint8\_t aChannel, uint8\_t tCommand, uint8\_t aMode, \textcolor{keywordtype}{bool} aDoSend5Times = \textcolor{keyword}{true});}
+\DoxyCodeLine{503     \textcolor{keywordtype}{void} sendLegoPowerFunctions(uint16\_t aRawData, \textcolor{keywordtype}{bool} aDoSend5Times = \textcolor{keyword}{true});}
+\DoxyCodeLine{504     \textcolor{keywordtype}{void} sendLegoPowerFunctions(uint16\_t aRawData, uint8\_t aChannel, \textcolor{keywordtype}{bool} aDoSend5Times = \textcolor{keyword}{true});}
+\DoxyCodeLine{505 }
+\DoxyCodeLine{506     \textcolor{keywordtype}{void} sendMagiQuest(uint32\_t wand\_id, uint16\_t magnitude);}
+\DoxyCodeLine{507 }
+\DoxyCodeLine{508     \textcolor{keywordtype}{void} sendPronto(\textcolor{keyword}{const} \_\_FlashStringHelper *str, uint\_fast8\_t aNumberOfRepeats = \mbox{\hyperlink{_i_rremote_int_8h_a5d35fb37031b53f0083f8b88ae3cf2c2}{NO\_REPEATS}});}
+\DoxyCodeLine{509     \textcolor{keywordtype}{void} sendPronto(\textcolor{keyword}{const} \textcolor{keywordtype}{char} *prontoHexString, uint\_fast8\_t aNumberOfRepeats = \mbox{\hyperlink{_i_rremote_int_8h_a5d35fb37031b53f0083f8b88ae3cf2c2}{NO\_REPEATS}});}
+\DoxyCodeLine{510     \textcolor{keywordtype}{void} sendPronto(\textcolor{keyword}{const} uint16\_t *data, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} length, uint\_fast8\_t aNumberOfRepeats = \mbox{\hyperlink{_i_rremote_int_8h_a5d35fb37031b53f0083f8b88ae3cf2c2}{NO\_REPEATS}});}
+\DoxyCodeLine{511 \textcolor{preprocessor}{\#if defined(\_\_AVR\_\_)}}
+\DoxyCodeLine{512     \textcolor{keywordtype}{void} sendPronto\_PF(uint\_farptr\_t str, uint\_fast8\_t aNumberOfRepeats = \mbox{\hyperlink{_i_rremote_int_8h_a5d35fb37031b53f0083f8b88ae3cf2c2}{NO\_REPEATS}});}
+\DoxyCodeLine{513     \textcolor{keywordtype}{void} sendPronto\_P(\textcolor{keyword}{const} \textcolor{keywordtype}{char} *str, uint\_fast8\_t aNumberOfRepeats);}
+\DoxyCodeLine{514 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{515 }
+\DoxyCodeLine{516 \textcolor{comment}{// Template protocol :-\/)}}
+\DoxyCodeLine{517     \textcolor{keywordtype}{void} sendShuzu(uint16\_t aAddress, uint8\_t aCommand, uint\_fast8\_t aNumberOfRepeats);}
+\DoxyCodeLine{518 }
+\DoxyCodeLine{519     \textcolor{comment}{/*}}
+\DoxyCodeLine{520 \textcolor{comment}{     * OLD send functions}}
+\DoxyCodeLine{521 \textcolor{comment}{     */}}
+\DoxyCodeLine{522     \textcolor{keywordtype}{void} sendDenon(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} data, \textcolor{keywordtype}{int} nbits);}
+\DoxyCodeLine{523     \textcolor{keywordtype}{void} sendDISH(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} data, \textcolor{keywordtype}{int} nbits);}
+\DoxyCodeLine{524     \textcolor{keywordtype}{void} sendJVC(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} data, \textcolor{keywordtype}{int} nbits,}
+\DoxyCodeLine{525             \textcolor{keywordtype}{bool} repeat)}
+\DoxyCodeLine{526                     \_\_attribute\_\_ ((deprecated (\textcolor{stringliteral}{"{}This old function sends MSB first! Please use sendJVC(aAddress, aCommand, aNumberOfRepeats)."{}}))) \{}
+\DoxyCodeLine{527         \mbox{\hyperlink{group___decoder_gae3ffaf23301bec85ca0c2c7499f484a3}{sendJVCMSB}}(data, nbits, repeat);}
+\DoxyCodeLine{528     \}}
+\DoxyCodeLine{529     \textcolor{keywordtype}{void} \mbox{\hyperlink{group___decoder_gae3ffaf23301bec85ca0c2c7499f484a3}{sendJVCMSB}}(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} data, \textcolor{keywordtype}{int} nbits, \textcolor{keywordtype}{bool} repeat = \textcolor{keyword}{false});}
+\DoxyCodeLine{530 }
+\DoxyCodeLine{531     \textcolor{keywordtype}{void} \mbox{\hyperlink{group___decoder_gaf5095df5a6598fe2651510e4a8d5e018}{sendLG}}(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} data, \textcolor{keywordtype}{int} nbits);}
+\DoxyCodeLine{532 }
+\DoxyCodeLine{533     \textcolor{keywordtype}{void} sendNEC(uint32\_t aRawData,}
+\DoxyCodeLine{534             uint8\_t nbits)}
+\DoxyCodeLine{535                     \_\_attribute\_\_ ((deprecated (\textcolor{stringliteral}{"{}This old function sends MSB first! Please use sendNEC(aAddress, aCommand, aNumberOfRepeats)."{}}))) \{}
+\DoxyCodeLine{536         \mbox{\hyperlink{group___decoder_ga0184d3edbfe2659b12fc157c3be0cd63}{sendNECMSB}}(aRawData, nbits);}
+\DoxyCodeLine{537     \}}
+\DoxyCodeLine{538     \textcolor{keywordtype}{void} \mbox{\hyperlink{group___decoder_ga0184d3edbfe2659b12fc157c3be0cd63}{sendNECMSB}}(uint32\_t data, uint8\_t nbits, \textcolor{keywordtype}{bool} repeat = \textcolor{keyword}{false});}
+\DoxyCodeLine{539     \textcolor{keywordtype}{void} \mbox{\hyperlink{group___decoder_gad3a14e1a94a402a4cbe0eeeded312173}{sendPanasonic}}(uint16\_t aAddress,}
+\DoxyCodeLine{540             uint32\_t aData)}
+\DoxyCodeLine{541                     \_\_attribute\_\_ ((deprecated (\textcolor{stringliteral}{"{}This old function sends MSB first! Please use sendPanasonic(aAddress, aCommand, aNumberOfRepeats)."{}})));}
+\DoxyCodeLine{542     \textcolor{keywordtype}{void} \mbox{\hyperlink{group___decoder_ga55808fcce8aaf429ebbb1d34cb7f5ee5}{sendRC5}}(uint32\_t data, uint8\_t nbits);}
+\DoxyCodeLine{543     \textcolor{keywordtype}{void} sendRC5ext(uint8\_t addr, uint8\_t cmd, \textcolor{keywordtype}{bool} toggle);}
+\DoxyCodeLine{544     \textcolor{keywordtype}{void} \mbox{\hyperlink{group___decoder_gad26a55d87f9f8cc64a77b4571ae79e5f}{sendRC6}}(uint32\_t data, uint8\_t nbits);}
+\DoxyCodeLine{545     \textcolor{keywordtype}{void} \mbox{\hyperlink{group___decoder_gad26a55d87f9f8cc64a77b4571ae79e5f}{sendRC6}}(uint64\_t data, uint8\_t nbits);}
+\DoxyCodeLine{546     \textcolor{keywordtype}{void} sendSharpRaw(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} data, \textcolor{keywordtype}{int} nbits);}
+\DoxyCodeLine{547     \textcolor{keywordtype}{void} sendSharp(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} address, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} command);}
+\DoxyCodeLine{548     \textcolor{keywordtype}{void} sendSAMSUNG(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} data, \textcolor{keywordtype}{int} nbits);}
+\DoxyCodeLine{549     \_\_attribute\_\_ ((deprecated (\textcolor{stringliteral}{"{}This old function sends MSB first! Please use sendSamsung()."{}})));}
+\DoxyCodeLine{550     \textcolor{keywordtype}{void} sendSony(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} data,}
+\DoxyCodeLine{551             \textcolor{keywordtype}{int} nbits)}
+\DoxyCodeLine{552                     \_\_attribute\_\_ ((deprecated (\textcolor{stringliteral}{"{}This old function sends MSB first! Please use sendSony(aAddress, aCommand, aNumberOfRepeats)."{}})));}
+\DoxyCodeLine{553     ;}
+\DoxyCodeLine{554     \textcolor{keywordtype}{void} sendWhynter(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} data, \textcolor{keywordtype}{int} nbits);}
+\DoxyCodeLine{555 }
+\DoxyCodeLine{556 \textcolor{preprocessor}{\#if !defined(IR\_SEND\_PIN) \&\& !defined(SEND\_PWM\_BY\_TIMER)}}
+\DoxyCodeLine{557     uint8\_t sendPin;}
+\DoxyCodeLine{558 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{559     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} periodTimeMicros;}
+\DoxyCodeLine{560     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} periodOnTimeMicros; \textcolor{comment}{// compensated with PULSE\_CORRECTION\_NANOS for duration of digitalWrite.}}
+\DoxyCodeLine{561     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} getPulseCorrectionNanos();}
+\DoxyCodeLine{562 }
+\DoxyCodeLine{563     \textcolor{keywordtype}{void} \mbox{\hyperlink{group___sending_ga78e52089f1ee53b3d080db7d8c25f798}{customDelayMicroseconds}}(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} aMicroseconds);}
+\DoxyCodeLine{564 \};}
+\DoxyCodeLine{565 }
+\DoxyCodeLine{566 \textcolor{comment}{/*}}
+\DoxyCodeLine{567 \textcolor{comment}{ * The sender instance}}
+\DoxyCodeLine{568 \textcolor{comment}{ */}}
+\DoxyCodeLine{569 \textcolor{keyword}{extern} \mbox{\hyperlink{class_i_rsend}{IRsend}} IrSender;}
+\DoxyCodeLine{570 }
+\DoxyCodeLine{571 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// IRremoteInt\_h}}
+\DoxyCodeLine{572 }
+\DoxyCodeLine{573 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{574 }
+
+\end{DoxyCode}

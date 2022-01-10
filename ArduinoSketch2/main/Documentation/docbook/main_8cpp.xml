@@ -1,11 +1,34 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_main_8cpp" xml:lang="en-US">
-<title>ArduinoSketch2/main/main.cpp File Reference</title>
-<indexterm><primary>ArduinoSketch2/main/main.cpp</primary></indexterm>
+<title>main/main.cpp File Reference</title>
+<indexterm><primary>main/main.cpp</primary></indexterm>
 <programlisting linenumbering="unnumbered">#include &lt;Arduino.h&gt;
-</programlisting><simplesect>
+#include &quot;IRRemote/IRremote.h&quot;
+#include &quot;Modules/Sensors/ParkingSensor/ParkingSensor.h&quot;
+#include &quot;Modules/Actuators/Buzzer/Buzz.h&quot;
+#include &quot;Modules/Actuators/MotorControl/Motor_Control.h&quot;
+</programlisting>Include dependency graph for main.cpp:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="main_8cpp__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
     <title>Functions    </title>
         <itemizedlist>
+            <listitem><para>void <link linkend="_main_8cpp_1a7de2a543986e45b9083c69f6138bf079">forward</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_main_8cpp_1a0ef114368554c36e0e17a40d0a603f20">back</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_main_8cpp_1a12ea22f00299ae04f0e81278f5dce0eb">left</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_main_8cpp_1a13d543ef43bc20f64e5e4cb27a4d3369">right</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_main_8cpp_1a17a237457e57625296e6b24feb19c60a">Stop</link> ()</para>
+</listitem>
             <listitem><para>void <link linkend="_main_8cpp_1a4fc01d736fe50cf5b977f755b675f11d">setup</link> ()</para>
 </listitem>
             <listitem><para>void <link linkend="_main_8cpp_1afe461d27b9c48d5921c00d521181f12f">loop</link> ()</para>
@@ -15,62 +38,142 @@
 <simplesect>
     <title>Variables    </title>
         <itemizedlist>
-            <listitem><para>int <link linkend="_main_8cpp_1a18a89135ea173bcea5ade3aa5be0cbb5">motor1pin1</link> = 2</para>
+            <listitem><para>unsigned short int <link linkend="_main_8cpp_1ab528f1c0546e22b6f5fa8c3444101e83">RESET_PIN</link> = 12</para>
 </listitem>
-            <listitem><para>int <link linkend="_main_8cpp_1ac28383b5453807508076d466afaa3592">motor1pin2</link> = 3</para>
+            <listitem><para>const int <link linkend="_main_8cpp_1a7d4cc8e2a76ee3629c8707bd4f365a7c">RECV_PIN</link> = 7</para>
 </listitem>
-            <listitem><para>int <link linkend="_main_8cpp_1a55d27079be6d976f3aa3d09e86b91840">motor2pin1</link> = 4</para>
-</listitem>
-            <listitem><para>int <link linkend="_main_8cpp_1a90cadfc73d12d5d0d68640e5eb85151c">motor2pin2</link> = 5</para>
+            <listitem><para><link linkend="_class_motor___control">Motor_Control</link> * <link linkend="_main_8cpp_1a4a738d24d10bc2508668ba064221c275">MotorControl</link> = new <link linkend="_class_motor___control">Motor_Control</link>(6, 8, 2, 3, 4, 5)</para>
 </listitem>
         </itemizedlist>
 </simplesect>
 <section>
 <title>Function Documentation</title>
+<anchor xml:id="_main_8cpp_1a0ef114368554c36e0e17a40d0a603f20"/><section>
+    <title>back()</title>
+<indexterm><primary>back</primary><secondary>main.cpp</secondary></indexterm>
+<indexterm><primary>main.cpp</primary><secondary>back</secondary></indexterm>
+<para><computeroutput>void back ( )</computeroutput></para><para>
+Definition at line <link linkend="_main_8cpp_source_1l00073">73</link> of file <link linkend="_main_8cpp_source">main.cpp</link>.</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="main_8cpp_a0ef114368554c36e0e17a40d0a603f20_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_main_8cpp_1a7de2a543986e45b9083c69f6138bf079"/><section>
+    <title>forward()</title>
+<indexterm><primary>forward</primary><secondary>main.cpp</secondary></indexterm>
+<indexterm><primary>main.cpp</primary><secondary>forward</secondary></indexterm>
+<para><computeroutput>void forward ( )</computeroutput></para><para>
+Definition at line <link linkend="_main_8cpp_source_1l00060">60</link> of file <link linkend="_main_8cpp_source">main.cpp</link>.</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="main_8cpp_a7de2a543986e45b9083c69f6138bf079_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_main_8cpp_1a12ea22f00299ae04f0e81278f5dce0eb"/><section>
+    <title>left()</title>
+<indexterm><primary>left</primary><secondary>main.cpp</secondary></indexterm>
+<indexterm><primary>main.cpp</primary><secondary>left</secondary></indexterm>
+<para><computeroutput>void left ( )</computeroutput></para><para>
+Definition at line <link linkend="_main_8cpp_source_1l00086">86</link> of file <link linkend="_main_8cpp_source">main.cpp</link>.</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="main_8cpp_a12ea22f00299ae04f0e81278f5dce0eb_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
 <anchor xml:id="_main_8cpp_1afe461d27b9c48d5921c00d521181f12f"/><section>
     <title>loop()</title>
 <indexterm><primary>loop</primary><secondary>main.cpp</secondary></indexterm>
 <indexterm><primary>main.cpp</primary><secondary>loop</secondary></indexterm>
 <para><computeroutput>void loop ( )</computeroutput></para><para>
-Definition at line <link linkend="_main_8cpp_source_1l00038">38</link> of file <link linkend="_main_8cpp_source">main.cpp</link>.</para>
+Definition at line <link linkend="_main_8cpp_source_1l00191">191</link> of file <link linkend="_main_8cpp_source">main.cpp</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="main_8cpp_afe461d27b9c48d5921c00d521181f12f_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_main_8cpp_1a13d543ef43bc20f64e5e4cb27a4d3369"/><section>
+    <title>right()</title>
+<indexterm><primary>right</primary><secondary>main.cpp</secondary></indexterm>
+<indexterm><primary>main.cpp</primary><secondary>right</secondary></indexterm>
+<para><computeroutput>void right ( )</computeroutput></para><para>
+Definition at line <link linkend="_main_8cpp_source_1l00098">98</link> of file <link linkend="_main_8cpp_source">main.cpp</link>.</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="main_8cpp_a13d543ef43bc20f64e5e4cb27a4d3369_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
 </section>
 <anchor xml:id="_main_8cpp_1a4fc01d736fe50cf5b977f755b675f11d"/><section>
     <title>setup()</title>
 <indexterm><primary>setup</primary><secondary>main.cpp</secondary></indexterm>
 <indexterm><primary>main.cpp</primary><secondary>setup</secondary></indexterm>
 <para><computeroutput>void setup ( )</computeroutput></para><para>
-Definition at line <link linkend="_main_8cpp_source_1l00030">30</link> of file <link linkend="_main_8cpp_source">main.cpp</link>.</para>
+Definition at line <link linkend="_main_8cpp_source_1l00131">131</link> of file <link linkend="_main_8cpp_source">main.cpp</link>.</para>
+</section>
+<anchor xml:id="_main_8cpp_1a17a237457e57625296e6b24feb19c60a"/><section>
+    <title>Stop()</title>
+<indexterm><primary>Stop</primary><secondary>main.cpp</secondary></indexterm>
+<indexterm><primary>main.cpp</primary><secondary>Stop</secondary></indexterm>
+<para><computeroutput>void Stop ( )</computeroutput></para><para>
+Definition at line <link linkend="_main_8cpp_source_1l00110">110</link> of file <link linkend="_main_8cpp_source">main.cpp</link>.</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="main_8cpp_a17a237457e57625296e6b24feb19c60a_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
 </section>
 </section>
 <section>
 <title>Variable Documentation</title>
-<anchor xml:id="_main_8cpp_1a18a89135ea173bcea5ade3aa5be0cbb5"/><section>
-    <title>motor1pin1</title>
-<indexterm><primary>motor1pin1</primary><secondary>main.cpp</secondary></indexterm>
-<indexterm><primary>main.cpp</primary><secondary>motor1pin1</secondary></indexterm>
-<para><computeroutput>int motor1pin1 = 2</computeroutput></para><para>
-Definition at line <link linkend="_main_8cpp_source_1l00024">24</link> of file <link linkend="_main_8cpp_source">main.cpp</link>.</para>
+<anchor xml:id="_main_8cpp_1a4a738d24d10bc2508668ba064221c275"/><section>
+    <title>MotorControl</title>
+<indexterm><primary>MotorControl</primary><secondary>main.cpp</secondary></indexterm>
+<indexterm><primary>main.cpp</primary><secondary>MotorControl</secondary></indexterm>
+<para><computeroutput><link linkend="_class_motor___control">Motor_Control</link>* MotorControl = new <link linkend="_class_motor___control">Motor_Control</link>(6, 8, 2, 3, 4, 5)</computeroutput></para><para>
+Definition at line <link linkend="_main_8cpp_source_1l00047">47</link> of file <link linkend="_main_8cpp_source">main.cpp</link>.</para>
 </section>
-<anchor xml:id="_main_8cpp_1ac28383b5453807508076d466afaa3592"/><section>
-    <title>motor1pin2</title>
-<indexterm><primary>motor1pin2</primary><secondary>main.cpp</secondary></indexterm>
-<indexterm><primary>main.cpp</primary><secondary>motor1pin2</secondary></indexterm>
-<para><computeroutput>int motor1pin2 = 3</computeroutput></para><para>
-Definition at line <link linkend="_main_8cpp_source_1l00025">25</link> of file <link linkend="_main_8cpp_source">main.cpp</link>.</para>
+<anchor xml:id="_main_8cpp_1a7d4cc8e2a76ee3629c8707bd4f365a7c"/><section>
+    <title>RECV_PIN</title>
+<indexterm><primary>RECV_PIN</primary><secondary>main.cpp</secondary></indexterm>
+<indexterm><primary>main.cpp</primary><secondary>RECV_PIN</secondary></indexterm>
+<para><computeroutput>const int RECV_PIN = 7</computeroutput></para><para>
+Definition at line <link linkend="_main_8cpp_source_1l00042">42</link> of file <link linkend="_main_8cpp_source">main.cpp</link>.</para>
 </section>
-<anchor xml:id="_main_8cpp_1a55d27079be6d976f3aa3d09e86b91840"/><section>
-    <title>motor2pin1</title>
-<indexterm><primary>motor2pin1</primary><secondary>main.cpp</secondary></indexterm>
-<indexterm><primary>main.cpp</primary><secondary>motor2pin1</secondary></indexterm>
-<para><computeroutput>int motor2pin1 = 4</computeroutput></para><para>
-Definition at line <link linkend="_main_8cpp_source_1l00027">27</link> of file <link linkend="_main_8cpp_source">main.cpp</link>.</para>
-</section>
-<anchor xml:id="_main_8cpp_1a90cadfc73d12d5d0d68640e5eb85151c"/><section>
-    <title>motor2pin2</title>
-<indexterm><primary>motor2pin2</primary><secondary>main.cpp</secondary></indexterm>
-<indexterm><primary>main.cpp</primary><secondary>motor2pin2</secondary></indexterm>
-<para><computeroutput>int motor2pin2 = 5</computeroutput></para><para>
-Definition at line <link linkend="_main_8cpp_source_1l00028">28</link> of file <link linkend="_main_8cpp_source">main.cpp</link>.</para>
+<anchor xml:id="_main_8cpp_1ab528f1c0546e22b6f5fa8c3444101e83"/><section>
+    <title>RESET_PIN</title>
+<indexterm><primary>RESET_PIN</primary><secondary>main.cpp</secondary></indexterm>
+<indexterm><primary>main.cpp</primary><secondary>RESET_PIN</secondary></indexterm>
+<para><computeroutput>unsigned short int RESET_PIN = 12</computeroutput></para><para>
+Definition at line <link linkend="_main_8cpp_source_1l00034">34</link> of file <link linkend="_main_8cpp_source">main.cpp</link>.</para>
 </section>
 </section>
 </section>

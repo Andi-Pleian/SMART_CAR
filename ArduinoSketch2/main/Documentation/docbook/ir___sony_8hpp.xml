@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_ir___sony_8hpp" xml:lang="en-US">
+<title>main/IRRemote_Library/ir_Sony.hpp File Reference</title>
+<indexterm><primary>main/IRRemote_Library/ir_Sony.hpp</primary></indexterm>
+<programlisting linenumbering="unnumbered">#include &lt;Arduino.h&gt;
+#include &quot;IRremoteInt.h&quot;
+</programlisting>Include dependency graph for ir_Sony.hpp:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="ir___sony_8hpp__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+This graph shows which files directly or indirectly include this file:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="ir___sony_8hpp__dep__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Macros    </title>
+        <itemizedlist>
+            <listitem><para>#define <link linkend="_group___decoder_1ga8bf3de6a0e95b5fcdee222bb59170be3">SONY_ADDRESS_BITS</link>   5</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga41b47908d312a62738b47d02f5996bd7">SONY_COMMAND_BITS</link>   7</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga706923dfa59320924f91e826c170789f">SONY_EXTRA_BITS</link>   8</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga081ed9a7e2b2ee39c9ca9198f655160e">SONY_BITS_MIN</link>   (<link linkend="_group___decoder_1ga41b47908d312a62738b47d02f5996bd7">SONY_COMMAND_BITS</link> + <link linkend="_group___decoder_1ga8bf3de6a0e95b5fcdee222bb59170be3">SONY_ADDRESS_BITS</link>)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1gaf3244e66cd80474af035911fbbe6d46d">SONY_BITS_15</link>   (<link linkend="_group___decoder_1ga41b47908d312a62738b47d02f5996bd7">SONY_COMMAND_BITS</link> + <link linkend="_group___decoder_1ga8bf3de6a0e95b5fcdee222bb59170be3">SONY_ADDRESS_BITS</link> + 3)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga0122c3deff0aa5a81ccb9cc675d87e57">SONY_BITS_MAX</link>   (<link linkend="_group___decoder_1ga41b47908d312a62738b47d02f5996bd7">SONY_COMMAND_BITS</link> + <link linkend="_group___decoder_1ga8bf3de6a0e95b5fcdee222bb59170be3">SONY_ADDRESS_BITS</link> + <link linkend="_group___decoder_1ga706923dfa59320924f91e826c170789f">SONY_EXTRA_BITS</link>)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga441cf836ba5e41a476cfaed754619e7d">SONY_UNIT</link>   600</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1gaa9e51d168691efecbc72d9ab08ebe167">SONY_HEADER_MARK</link>   (4 * <link linkend="_group___decoder_1ga441cf836ba5e41a476cfaed754619e7d">SONY_UNIT</link>)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1gaaa7d595e4d4b3857f3165bbc7682ae36">SONY_ONE_MARK</link>   (2 * <link linkend="_group___decoder_1ga441cf836ba5e41a476cfaed754619e7d">SONY_UNIT</link>)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1gaacafe83ae7609e591a845d188477b4e6">SONY_ZERO_MARK</link>   <link linkend="_group___decoder_1ga441cf836ba5e41a476cfaed754619e7d">SONY_UNIT</link></para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga6bed381432686c9434b0debbda4936d0">SONY_SPACE</link>   <link linkend="_group___decoder_1ga441cf836ba5e41a476cfaed754619e7d">SONY_UNIT</link></para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1gaa2fa5f3ee92363009f82407872c42549">SONY_AVERAGE_DURATION</link>   21000</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga04bbfe2a8ffe2d8909f20223dc7ae573">SONY_REPEAT_PERIOD</link>   45000</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga99ad5f89aa2e68db38c3ee54d925673e">SONY_REPEAT_SPACE</link>   (<link linkend="_group___decoder_1ga04bbfe2a8ffe2d8909f20223dc7ae573">SONY_REPEAT_PERIOD</link> - <link linkend="_group___decoder_1gaa2fa5f3ee92363009f82407872c42549">SONY_AVERAGE_DURATION</link>)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1gae8967821a9dae0e890bdb9d95a3ee6c0">SONY_DOUBLE_SPACE_USECS</link>   500</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

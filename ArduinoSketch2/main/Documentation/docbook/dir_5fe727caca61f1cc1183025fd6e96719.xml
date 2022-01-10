@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_dir_5fe727caca61f1cc1183025fd6e96719" xml:lang="en-US">
+<title>main/Debug Directory Reference</title>
+<indexterm><primary>main/Debug Directory Reference</primary></indexterm>
+<simplesect>
+    <title>Directories    </title>
+        <itemizedlist>
+            <listitem><para>directory <link linkend="_dir_6b9e22de452fc729bcd0548f226f8537">Modules</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

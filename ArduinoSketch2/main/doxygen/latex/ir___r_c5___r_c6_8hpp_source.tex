@@ -1,0 +1,526 @@
+\hypertarget{ir___r_c5___r_c6_8hpp_source}{}\doxysection{ir\+\_\+\+RC5\+\_\+\+RC6.\+hpp}
+\label{ir___r_c5___r_c6_8hpp_source}\index{IRRemote/ir\_RC5\_RC6.hpp@{IRRemote/ir\_RC5\_RC6.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * ir\_RC5\_RC6.hpp}}
+\DoxyCodeLine{3 \textcolor{comment}{ *}}
+\DoxyCodeLine{4 \textcolor{comment}{ *  Contains functions for receiving and sending RC5, RC5X Protocols}}
+\DoxyCodeLine{5 \textcolor{comment}{ *}}
+\DoxyCodeLine{6 \textcolor{comment}{ *  This file is part of Arduino-\/IRremote https://github.com/Arduino-\/IRremote/Arduino-\/IRremote.}}
+\DoxyCodeLine{7 \textcolor{comment}{ *}}
+\DoxyCodeLine{8 \textcolor{comment}{ ************************************************************************************}}
+\DoxyCodeLine{9 \textcolor{comment}{ * MIT License}}
+\DoxyCodeLine{10 \textcolor{comment}{ *}}
+\DoxyCodeLine{11 \textcolor{comment}{ * Permission is hereby granted, free of charge, to any person obtaining a copy}}
+\DoxyCodeLine{12 \textcolor{comment}{ * of this software and associated documentation files (the "{}Software"{}), to deal}}
+\DoxyCodeLine{13 \textcolor{comment}{ * in the Software without restriction, including without limitation the rights}}
+\DoxyCodeLine{14 \textcolor{comment}{ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell}}
+\DoxyCodeLine{15 \textcolor{comment}{ * copies of the Software, and to permit persons to whom the Software is furnished}}
+\DoxyCodeLine{16 \textcolor{comment}{ * to do so, subject to the following conditions:}}
+\DoxyCodeLine{17 \textcolor{comment}{ *}}
+\DoxyCodeLine{18 \textcolor{comment}{ * The above copyright notice and this permission notice shall be included in all}}
+\DoxyCodeLine{19 \textcolor{comment}{ * copies or substantial portions of the Software.}}
+\DoxyCodeLine{20 \textcolor{comment}{ *}}
+\DoxyCodeLine{21 \textcolor{comment}{ * THE SOFTWARE IS PROVIDED "{}AS IS"{}, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,}}
+\DoxyCodeLine{22 \textcolor{comment}{ * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A}}
+\DoxyCodeLine{23 \textcolor{comment}{ * PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT}}
+\DoxyCodeLine{24 \textcolor{comment}{ * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF}}
+\DoxyCodeLine{25 \textcolor{comment}{ * CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE}}
+\DoxyCodeLine{26 \textcolor{comment}{ * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.}}
+\DoxyCodeLine{27 \textcolor{comment}{ *}}
+\DoxyCodeLine{28 \textcolor{comment}{ ************************************************************************************}}
+\DoxyCodeLine{29 \textcolor{comment}{ */}}
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#ifndef IR\_RC5\_RC6\_HPP}}
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#define IR\_RC5\_RC6\_HPP}}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#include <Arduino.h>}}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35 \textcolor{comment}{//\#define DEBUG // Activate this for lots of lovely debug output from this decoder.}}
+\DoxyCodeLine{36 \textcolor{comment}{//\#define TRACE // Activate this for more debug output from this decoder.}}
+\DoxyCodeLine{37 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_i_rremote_int_8h}{IRremoteInt.h}}"{}} \textcolor{comment}{// evaluates the DEBUG for IR\_DEBUG\_PRINT}}
+\DoxyCodeLine{38 \textcolor{preprocessor}{\#include "{}LongUnion.h"{}}}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{43 \textcolor{keywordtype}{bool} sLastSendToggleValue = \textcolor{keyword}{false};}
+\DoxyCodeLine{44 \textcolor{comment}{//uint8\_t sLastReceiveToggleValue = 3; // 3 -\/> start value}}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46 \textcolor{comment}{//==============================================================================}}
+\DoxyCodeLine{47 \textcolor{comment}{//     RRRR    CCCC  55555}}
+\DoxyCodeLine{48 \textcolor{comment}{//     R   R  C      5}}
+\DoxyCodeLine{49 \textcolor{comment}{//     RRRR   C      5555}}
+\DoxyCodeLine{50 \textcolor{comment}{//     R  R   C          5}}
+\DoxyCodeLine{51 \textcolor{comment}{//     R   R   CCCC  5555}}
+\DoxyCodeLine{52 \textcolor{comment}{//==============================================================================}}
+\DoxyCodeLine{53 \textcolor{comment}{//}}
+\DoxyCodeLine{54 \textcolor{comment}{// see: https://www.sbprojects.net/knowledge/ir/rc5.php}}
+\DoxyCodeLine{55 \textcolor{comment}{// https://en.wikipedia.org/wiki/Manchester\_code}}
+\DoxyCodeLine{56 \textcolor{comment}{// mark-\/>space => 0}}
+\DoxyCodeLine{57 \textcolor{comment}{// space-\/>mark => 1}}
+\DoxyCodeLine{58 \textcolor{comment}{// MSB first 1 start bit, 1 field bit, 1 toggle bit + 5 bit address + 6 bit command (6 bit command plus one field bit for RC5X), no stop bit}}
+\DoxyCodeLine{59 \textcolor{comment}{// duty factor is 25\%,}}
+\DoxyCodeLine{60 \textcolor{comment}{//}}
+\DoxyCodeLine{61 \textcolor{preprocessor}{\#define RC5\_ADDRESS\_BITS        5}}
+\DoxyCodeLine{62 \textcolor{preprocessor}{\#define RC5\_COMMAND\_BITS        6}}
+\DoxyCodeLine{63 \textcolor{preprocessor}{\#define RC5\_COMMAND\_FIELD\_BIT   1}}
+\DoxyCodeLine{64 \textcolor{preprocessor}{\#define RC5\_TOGGLE\_BIT          1}}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{66 \textcolor{preprocessor}{\#define RC5\_BITS            (RC5\_COMMAND\_FIELD\_BIT + RC5\_TOGGLE\_BIT + RC5\_ADDRESS\_BITS + RC5\_COMMAND\_BITS) }\textcolor{comment}{// 13}}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68 \textcolor{preprocessor}{\#define RC5\_UNIT            889 }\textcolor{comment}{// 32 periods of 36 kHz (888.8888)}}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{70 \textcolor{preprocessor}{\#define MIN\_RC5\_MARKS       ((RC5\_BITS + 1) / 2) }\textcolor{comment}{// 7}}
+\DoxyCodeLine{71 }
+\DoxyCodeLine{72 \textcolor{preprocessor}{\#define RC5\_DURATION        (15L * RC5\_UNIT) }\textcolor{comment}{// 13335}}
+\DoxyCodeLine{73 \textcolor{preprocessor}{\#define RC5\_REPEAT\_PERIOD   (128L * RC5\_UNIT) }\textcolor{comment}{// 113792}}
+\DoxyCodeLine{74 \textcolor{preprocessor}{\#define RC5\_REPEAT\_SPACE    (RC5\_REPEAT\_PERIOD -\/ RC5\_DURATION) }\textcolor{comment}{// 100 ms}}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{79 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___decoder_ga55808fcce8aaf429ebbb1d34cb7f5ee5}{IRsend::sendRC5}}(uint8\_t aAddress, uint8\_t aCommand, uint\_fast8\_t aNumberOfRepeats, \textcolor{keywordtype}{bool} aEnableAutomaticToggle) \{}
+\DoxyCodeLine{80     \textcolor{comment}{// Set IR carrier frequency}}
+\DoxyCodeLine{81     \mbox{\hyperlink{group___sending_ga42c04af63d252b320c017ffa2bfc90e5}{enableIROut}}(RC5\_RC6\_KHZ);}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{83     uint16\_t tIRData = ((aAddress \& 0x1F) << RC5\_COMMAND\_BITS);}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{85     \textcolor{keywordflow}{if} (aCommand < 0x40) \{}
+\DoxyCodeLine{86         \textcolor{comment}{// set field bit to lower field / set inverted upper command bit}}
+\DoxyCodeLine{87         tIRData |= 1 << (RC5\_TOGGLE\_BIT + RC5\_ADDRESS\_BITS + RC5\_COMMAND\_BITS);}
+\DoxyCodeLine{88     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{89         \textcolor{comment}{// let field bit zero}}
+\DoxyCodeLine{90         aCommand \&= 0x3F;}
+\DoxyCodeLine{91     \}}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{93     tIRData |= aCommand;}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{95     \textcolor{keywordflow}{if} (aEnableAutomaticToggle) \{}
+\DoxyCodeLine{96         \textcolor{keywordflow}{if} (sLastSendToggleValue == 0) \{}
+\DoxyCodeLine{97             sLastSendToggleValue = 1;}
+\DoxyCodeLine{98             \textcolor{comment}{// set toggled bit}}
+\DoxyCodeLine{99             tIRData |= 1 << (RC5\_ADDRESS\_BITS + RC5\_COMMAND\_BITS);}
+\DoxyCodeLine{100         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{101             sLastSendToggleValue = 0;}
+\DoxyCodeLine{102         \}}
+\DoxyCodeLine{103     \}}
+\DoxyCodeLine{104 }
+\DoxyCodeLine{105     uint\_fast8\_t tNumberOfCommands = aNumberOfRepeats + 1;}
+\DoxyCodeLine{106     \textcolor{keywordflow}{while} (tNumberOfCommands > 0) \{}
+\DoxyCodeLine{107 }
+\DoxyCodeLine{108         \textcolor{comment}{// start bit is sent by sendBiphaseData}}
+\DoxyCodeLine{109         sendBiphaseData(RC5\_UNIT, tIRData, RC5\_BITS);}
+\DoxyCodeLine{110 }
+\DoxyCodeLine{111         tNumberOfCommands-\/-\/;}
+\DoxyCodeLine{112         \textcolor{comment}{// skip last delay!}}
+\DoxyCodeLine{113         \textcolor{keywordflow}{if} (tNumberOfCommands > 0) \{}
+\DoxyCodeLine{114             \textcolor{comment}{// send repeated command in a fixed raster}}
+\DoxyCodeLine{115             delay(RC5\_REPEAT\_SPACE / MICROS\_IN\_ONE\_MILLI);}
+\DoxyCodeLine{116         \}}
+\DoxyCodeLine{117     \}}
+\DoxyCodeLine{118 \}}
+\DoxyCodeLine{119 }
+\DoxyCodeLine{132 \textcolor{keywordtype}{bool} \mbox{\hyperlink{group___decoder_ga5720b53e427e0346ecc248e55c57e2b9}{IRrecv::decodeRC5}}() \{}
+\DoxyCodeLine{133     uint8\_t tBitIndex;}
+\DoxyCodeLine{134     uint32\_t tDecodedRawData = 0;}
+\DoxyCodeLine{135 }
+\DoxyCodeLine{136     \textcolor{comment}{// Set Biphase decoding start values}}
+\DoxyCodeLine{137     initBiphaselevel(1, RC5\_UNIT); \textcolor{comment}{// Skip gap space}}
+\DoxyCodeLine{138 }
+\DoxyCodeLine{139     \textcolor{comment}{// Check we have the right amount of data (11 to 26). The +2 is for initial gap and start bit mark.}}
+\DoxyCodeLine{140     \textcolor{keywordflow}{if} (decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_af0571ac479d1c38c79502651b0631432}{rawlen}} < MIN\_RC5\_MARKS + 2 \&\& decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_af0571ac479d1c38c79502651b0631432}{rawlen}} > ((2 * RC5\_BITS) + 2)) \{}
+\DoxyCodeLine{141         \textcolor{comment}{// no debug output, since this check is mainly to determine the received protocol}}
+\DoxyCodeLine{142         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(F(\textcolor{stringliteral}{"{}RC5: "{}}));}
+\DoxyCodeLine{143         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(\textcolor{stringliteral}{"{}Data length="{}});}
+\DoxyCodeLine{144         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_af0571ac479d1c38c79502651b0631432}{rawlen}});}
+\DoxyCodeLine{145         \mbox{\hyperlink{_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{} is not between 11 and 26"{}});}
+\DoxyCodeLine{146         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{147     \}}
+\DoxyCodeLine{148 }
+\DoxyCodeLine{149 \textcolor{comment}{// Check start bit, the first space is included in the gap}}
+\DoxyCodeLine{150     \textcolor{keywordflow}{if} (\mbox{\hyperlink{group___receiving_ga7d26f9254747368762e4d4c09dc22fb0}{getBiphaselevel}}() != MARK) \{}
+\DoxyCodeLine{151         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(F(\textcolor{stringliteral}{"{}RC5: "{}}));}
+\DoxyCodeLine{152         \mbox{\hyperlink{_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}first getBiphaselevel() is not MARK"{}});}
+\DoxyCodeLine{153         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{154     \}}
+\DoxyCodeLine{155 }
+\DoxyCodeLine{156     \textcolor{comment}{/*}}
+\DoxyCodeLine{157 \textcolor{comment}{     * Get data bits -\/ MSB first}}
+\DoxyCodeLine{158 \textcolor{comment}{     */}}
+\DoxyCodeLine{159     \textcolor{keywordflow}{for} (tBitIndex = 0; sBiphaseDecodeRawbuffOffset < decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_af0571ac479d1c38c79502651b0631432}{rawlen}}; tBitIndex++) \{}
+\DoxyCodeLine{160         uint8\_t tStartLevel = \mbox{\hyperlink{group___receiving_ga7d26f9254747368762e4d4c09dc22fb0}{getBiphaselevel}}();}
+\DoxyCodeLine{161         uint8\_t tEndLevel = \mbox{\hyperlink{group___receiving_ga7d26f9254747368762e4d4c09dc22fb0}{getBiphaselevel}}();}
+\DoxyCodeLine{162 }
+\DoxyCodeLine{163         \textcolor{keywordflow}{if} ((tStartLevel == SPACE) \&\& (tEndLevel == MARK)) \{}
+\DoxyCodeLine{164             \textcolor{comment}{// we have a space to mark transition here}}
+\DoxyCodeLine{165             tDecodedRawData = (tDecodedRawData << 1) | 1;}
+\DoxyCodeLine{166         \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} ((tStartLevel == MARK) \&\& (tEndLevel == SPACE)) \{}
+\DoxyCodeLine{167             \textcolor{comment}{// we have a mark to space transition here}}
+\DoxyCodeLine{168             tDecodedRawData = (tDecodedRawData << 1) | 0;}
+\DoxyCodeLine{169         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{170             \textcolor{comment}{// IR\_TRACE\_PRINT since I saw this too often}}
+\DoxyCodeLine{171             \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(F(\textcolor{stringliteral}{"{}RC5: "{}}));}
+\DoxyCodeLine{172             \mbox{\hyperlink{_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(F(\textcolor{stringliteral}{"{}Decode failed"{}}));}
+\DoxyCodeLine{173             \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{174         \}}
+\DoxyCodeLine{175     \}}
+\DoxyCodeLine{176 }
+\DoxyCodeLine{177     \textcolor{comment}{// Success}}
+\DoxyCodeLine{178     decodedIRData.\mbox{\hyperlink{struct_i_r_data_a945c41b8463a36cf00b0f38b0aa73200}{numberOfBits}} = tBitIndex; \textcolor{comment}{// must be RC5\_BITS}}
+\DoxyCodeLine{179 }
+\DoxyCodeLine{180     \mbox{\hyperlink{union_long_union}{LongUnion}} tValue;}
+\DoxyCodeLine{181     tValue.ULong = tDecodedRawData;}
+\DoxyCodeLine{182     decodedIRData.\mbox{\hyperlink{struct_i_r_data_aeca55ebf36bf919312a933597b8734d8}{decodedRawData}} = tDecodedRawData;}
+\DoxyCodeLine{183     decodedIRData.\mbox{\hyperlink{struct_i_r_data_ab0ce2b36765ea429e8c4bfa0706a45e7}{command}} = tValue.UByte.LowByte \& 0x3F;}
+\DoxyCodeLine{184     decodedIRData.\mbox{\hyperlink{struct_i_r_data_a1255a5b7d704d34fda83dcabcb903d4c}{address}} = (tValue.UWord.LowWord >> RC5\_COMMAND\_BITS) \& 0x1F;}
+\DoxyCodeLine{185 }
+\DoxyCodeLine{186     \textcolor{comment}{// Get the inverted 7. command bit for RC5X, the inverted value is always 1 for RC5 and serves as a second start bit.}}
+\DoxyCodeLine{187     \textcolor{keywordflow}{if} ((tValue.UWord.LowWord \& (1 << (RC5\_TOGGLE\_BIT + RC5\_ADDRESS\_BITS + RC5\_COMMAND\_BITS))) == 0) \{}
+\DoxyCodeLine{188         decodedIRData.\mbox{\hyperlink{struct_i_r_data_ab0ce2b36765ea429e8c4bfa0706a45e7}{command}} += 0x40;}
+\DoxyCodeLine{189     \}}
+\DoxyCodeLine{190 }
+\DoxyCodeLine{191     decodedIRData.\mbox{\hyperlink{struct_i_r_data_aaaad48fc0d90e5c6daec601987848a51}{flags}} = \mbox{\hyperlink{_i_rremote_int_8h_a7f6872e6f83c0571e3150ba86428af4c}{IRDATA\_FLAGS\_IS\_MSB\_FIRST}};}
+\DoxyCodeLine{192     \textcolor{keywordflow}{if} (tValue.UByte.MidLowByte \& 0x8) \{}
+\DoxyCodeLine{193         decodedIRData.\mbox{\hyperlink{struct_i_r_data_aaaad48fc0d90e5c6daec601987848a51}{flags}} = IRDATA\_TOGGLE\_BIT\_MASK | \mbox{\hyperlink{_i_rremote_int_8h_a7f6872e6f83c0571e3150ba86428af4c}{IRDATA\_FLAGS\_IS\_MSB\_FIRST}};}
+\DoxyCodeLine{194     \}}
+\DoxyCodeLine{195 }
+\DoxyCodeLine{196     \textcolor{comment}{// check for repeat}}
+\DoxyCodeLine{197     \textcolor{keywordflow}{if} (decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_a7aa7b811dcc0fb5ab0da7c0bddaf97f8}{rawbuf}}[0] < (RC5\_REPEAT\_PERIOD / \mbox{\hyperlink{_i_rremote_int_8h_a1c7eebb527483c272812530caa313d20}{MICROS\_PER\_TICK}})) \{}
+\DoxyCodeLine{198         decodedIRData.\mbox{\hyperlink{struct_i_r_data_aaaad48fc0d90e5c6daec601987848a51}{flags}} |= IRDATA\_FLAGS\_IS\_REPEAT;}
+\DoxyCodeLine{199     \}}
+\DoxyCodeLine{200 }
+\DoxyCodeLine{201     decodedIRData.\mbox{\hyperlink{struct_i_r_data_a703592faec26bab5cbe465f53ef14245}{protocol}} = RC5;}
+\DoxyCodeLine{202     \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{203 \}}
+\DoxyCodeLine{204 }
+\DoxyCodeLine{205 \textcolor{comment}{//+=============================================================================}}
+\DoxyCodeLine{206 \textcolor{comment}{// RRRR    CCCC   6666}}
+\DoxyCodeLine{207 \textcolor{comment}{// R   R  C      6}}
+\DoxyCodeLine{208 \textcolor{comment}{// RRRR   C      6666}}
+\DoxyCodeLine{209 \textcolor{comment}{// R  R   C      6   6}}
+\DoxyCodeLine{210 \textcolor{comment}{// R   R   CCCC   666}}
+\DoxyCodeLine{211 \textcolor{comment}{//}}
+\DoxyCodeLine{212 \textcolor{comment}{//}}
+\DoxyCodeLine{213 \textcolor{comment}{// mark-\/>space => 1}}
+\DoxyCodeLine{214 \textcolor{comment}{// space-\/>mark => 0}}
+\DoxyCodeLine{215 \textcolor{comment}{// https://www.sbprojects.net/knowledge/ir/rc6.php}}
+\DoxyCodeLine{216 \textcolor{comment}{// https://www.mikrocontroller.net/articles/IRMP\_-\/\_english\#RC6\_.2B\_RC6A}}
+\DoxyCodeLine{217 \textcolor{comment}{// https://en.wikipedia.org/wiki/Manchester\_code}}
+\DoxyCodeLine{218 }
+\DoxyCodeLine{219 \textcolor{preprocessor}{\#define MIN\_RC6\_SAMPLES         1}}
+\DoxyCodeLine{220 }
+\DoxyCodeLine{221 \textcolor{preprocessor}{\#define RC6\_RPT\_LENGTH      46000}}
+\DoxyCodeLine{222 }
+\DoxyCodeLine{223 \textcolor{preprocessor}{\#define RC6\_LEADING\_BIT         1}}
+\DoxyCodeLine{224 \textcolor{preprocessor}{\#define RC6\_MODE\_BITS           3 }\textcolor{comment}{// never seen others than all 0 for Philips TV}}
+\DoxyCodeLine{225 \textcolor{preprocessor}{\#define RC6\_TOGGLE\_BIT          1 }\textcolor{comment}{// toggles at every key press. Can be used to distinguish repeats from 2 key presses.}}
+\DoxyCodeLine{226 \textcolor{preprocessor}{\#define RC6\_ADDRESS\_BITS        8}}
+\DoxyCodeLine{227 \textcolor{preprocessor}{\#define RC6\_COMMAND\_BITS        8}}
+\DoxyCodeLine{228 }
+\DoxyCodeLine{229 \textcolor{preprocessor}{\#define RC6\_BITS            (RC6\_LEADING\_BIT + RC6\_MODE\_BITS + RC6\_TOGGLE\_BIT + RC6\_ADDRESS\_BITS + RC6\_COMMAND\_BITS) }\textcolor{comment}{// 13}}
+\DoxyCodeLine{230 }
+\DoxyCodeLine{231 \textcolor{preprocessor}{\#define RC6\_UNIT            444 }\textcolor{comment}{// 16 periods of 36 kHz (444.4444)}}
+\DoxyCodeLine{232 }
+\DoxyCodeLine{233 \textcolor{preprocessor}{\#define RC6\_HEADER\_MARK     (6 * RC6\_UNIT) }\textcolor{comment}{// 2666}}
+\DoxyCodeLine{234 \textcolor{preprocessor}{\#define RC6\_HEADER\_SPACE    (2 * RC6\_UNIT) }\textcolor{comment}{// 889}}
+\DoxyCodeLine{235 }
+\DoxyCodeLine{236 \textcolor{preprocessor}{\#define RC6\_TRAILING\_SPACE  (6 * RC6\_UNIT) }\textcolor{comment}{// 2666}}
+\DoxyCodeLine{237 \textcolor{preprocessor}{\#define MIN\_RC6\_MARKS       4 + ((RC6\_ADDRESS\_BITS + RC6\_COMMAND\_BITS) / 2) }\textcolor{comment}{// 12, 4 are for preamble}}
+\DoxyCodeLine{238 }
+\DoxyCodeLine{239 \textcolor{preprocessor}{\#define RC6\_REPEAT\_SPACE    107000 }\textcolor{comment}{// just a guess but > 2.666ms}}
+\DoxyCodeLine{240 }
+\DoxyCodeLine{244 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___decoder_gad26a55d87f9f8cc64a77b4571ae79e5f}{IRsend::sendRC6}}(uint32\_t aRawData, uint8\_t aNumberOfBitsToSend) \{}
+\DoxyCodeLine{245 \textcolor{comment}{// Set IR carrier frequency}}
+\DoxyCodeLine{246     \mbox{\hyperlink{group___sending_ga42c04af63d252b320c017ffa2bfc90e5}{enableIROut}}(RC5\_RC6\_KHZ);}
+\DoxyCodeLine{247 }
+\DoxyCodeLine{248 \textcolor{comment}{// Header}}
+\DoxyCodeLine{249     \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(RC6\_HEADER\_MARK);}
+\DoxyCodeLine{250     \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(RC6\_HEADER\_SPACE);}
+\DoxyCodeLine{251 }
+\DoxyCodeLine{252 \textcolor{comment}{// Start bit}}
+\DoxyCodeLine{253     \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(RC6\_UNIT);}
+\DoxyCodeLine{254     \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(RC6\_UNIT);}
+\DoxyCodeLine{255 }
+\DoxyCodeLine{256 \textcolor{comment}{// Data MSB first}}
+\DoxyCodeLine{257     uint32\_t mask = 1UL << (aNumberOfBitsToSend -\/ 1);}
+\DoxyCodeLine{258     \textcolor{keywordflow}{for} (uint\_fast8\_t i = 1; mask; i++, mask >>= 1) \{}
+\DoxyCodeLine{259         \textcolor{comment}{// The fourth bit we send is the "{}double width toggle bit"{}}}
+\DoxyCodeLine{260         \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} t = (i == 4) ? (RC6\_UNIT * 2) : (RC6\_UNIT);}
+\DoxyCodeLine{261         \textcolor{keywordflow}{if} (aRawData \& mask) \{}
+\DoxyCodeLine{262             \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(t);}
+\DoxyCodeLine{263             \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(t);}
+\DoxyCodeLine{264         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{265             \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(t);}
+\DoxyCodeLine{266             \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(t);}
+\DoxyCodeLine{267         \}}
+\DoxyCodeLine{268     \}}
+\DoxyCodeLine{269 \}}
+\DoxyCodeLine{270 }
+\DoxyCodeLine{275 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___decoder_gad26a55d87f9f8cc64a77b4571ae79e5f}{IRsend::sendRC6}}(uint64\_t data, uint8\_t nbits) \{}
+\DoxyCodeLine{276 \textcolor{comment}{// Set IR carrier frequency}}
+\DoxyCodeLine{277     \mbox{\hyperlink{group___sending_ga42c04af63d252b320c017ffa2bfc90e5}{enableIROut}}(RC5\_RC6\_KHZ);}
+\DoxyCodeLine{278 }
+\DoxyCodeLine{279 \textcolor{comment}{// Header}}
+\DoxyCodeLine{280     \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(RC6\_HEADER\_MARK);}
+\DoxyCodeLine{281     \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(RC6\_HEADER\_SPACE);}
+\DoxyCodeLine{282 }
+\DoxyCodeLine{283 \textcolor{comment}{// Start bit}}
+\DoxyCodeLine{284     \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(RC6\_UNIT);}
+\DoxyCodeLine{285     \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(RC6\_UNIT);}
+\DoxyCodeLine{286 }
+\DoxyCodeLine{287 \textcolor{comment}{// Data MSB first}}
+\DoxyCodeLine{288     uint64\_t mask = 1ULL << (nbits -\/ 1);}
+\DoxyCodeLine{289     \textcolor{keywordflow}{for} (uint\_fast8\_t i = 1; mask; i++, mask >>= 1) \{}
+\DoxyCodeLine{290         \textcolor{comment}{// The fourth bit we send is the "{}double width toggle bit"{}}}
+\DoxyCodeLine{291         \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} t = (i == 4) ? (RC6\_UNIT * 2) : (RC6\_UNIT);}
+\DoxyCodeLine{292         \textcolor{keywordflow}{if} (data \& mask) \{}
+\DoxyCodeLine{293             \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(t);}
+\DoxyCodeLine{294             \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(t);}
+\DoxyCodeLine{295         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{296             \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(t);}
+\DoxyCodeLine{297             \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(t);}
+\DoxyCodeLine{298         \}}
+\DoxyCodeLine{299     \}}
+\DoxyCodeLine{300 \}}
+\DoxyCodeLine{301 }
+\DoxyCodeLine{307 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___decoder_gad26a55d87f9f8cc64a77b4571ae79e5f}{IRsend::sendRC6}}(uint8\_t aAddress, uint8\_t aCommand, uint\_fast8\_t aNumberOfRepeats, \textcolor{keywordtype}{bool} aEnableAutomaticToggle) \{}
+\DoxyCodeLine{308 }
+\DoxyCodeLine{309     \mbox{\hyperlink{union_long_union}{LongUnion}} tIRRawData;}
+\DoxyCodeLine{310     tIRRawData.UByte.LowByte = aCommand;}
+\DoxyCodeLine{311     tIRRawData.UByte.MidLowByte = aAddress;}
+\DoxyCodeLine{312 }
+\DoxyCodeLine{313     tIRRawData.UWord.HighWord = 0; \textcolor{comment}{// must clear high word}}
+\DoxyCodeLine{314     \textcolor{keywordflow}{if} (aEnableAutomaticToggle) \{}
+\DoxyCodeLine{315         \textcolor{keywordflow}{if} (sLastSendToggleValue == 0) \{}
+\DoxyCodeLine{316             sLastSendToggleValue = 1;}
+\DoxyCodeLine{317             \textcolor{comment}{// set toggled bit}}
+\DoxyCodeLine{318             \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(F(\textcolor{stringliteral}{"{}Set Toggle "{}}));}
+\DoxyCodeLine{319             tIRRawData.UByte.MidHighByte = 1; \textcolor{comment}{// 3 Mode bits are 0}}
+\DoxyCodeLine{320         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{321             sLastSendToggleValue = 0;}
+\DoxyCodeLine{322         \}}
+\DoxyCodeLine{323     \}}
+\DoxyCodeLine{324 }
+\DoxyCodeLine{325     \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(F(\textcolor{stringliteral}{"{}RC6: "{}}));}
+\DoxyCodeLine{326     \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(F(\textcolor{stringliteral}{"{}sLastSendToggleValue="{}}));}
+\DoxyCodeLine{327     \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(sLastSendToggleValue);}
+\DoxyCodeLine{328     \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(F(\textcolor{stringliteral}{"{} RawData="{}}));}
+\DoxyCodeLine{329     \mbox{\hyperlink{_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(tIRRawData.ULong, HEX);}
+\DoxyCodeLine{330 }
+\DoxyCodeLine{331     uint\_fast8\_t tNumberOfCommands = aNumberOfRepeats + 1;}
+\DoxyCodeLine{332     \textcolor{keywordflow}{while} (tNumberOfCommands > 0) \{}
+\DoxyCodeLine{333 }
+\DoxyCodeLine{334         \textcolor{comment}{// start and leading bits are sent by sendRC6}}
+\DoxyCodeLine{335         \mbox{\hyperlink{group___decoder_gad26a55d87f9f8cc64a77b4571ae79e5f}{sendRC6}}(tIRRawData.ULong, RC6\_BITS -\/ 1); \textcolor{comment}{// -\/1 since the leading bit is additionally sent by sendRC6}}
+\DoxyCodeLine{336 }
+\DoxyCodeLine{337         tNumberOfCommands-\/-\/;}
+\DoxyCodeLine{338         \textcolor{comment}{// skip last delay!}}
+\DoxyCodeLine{339         \textcolor{keywordflow}{if} (tNumberOfCommands > 0) \{}
+\DoxyCodeLine{340             \textcolor{comment}{// send repeated command in a fixed raster}}
+\DoxyCodeLine{341             delay(RC6\_REPEAT\_SPACE / MICROS\_IN\_ONE\_MILLI);}
+\DoxyCodeLine{342         \}}
+\DoxyCodeLine{343     \}}
+\DoxyCodeLine{344 \}}
+\DoxyCodeLine{345 }
+\DoxyCodeLine{349 \textcolor{keywordtype}{bool} \mbox{\hyperlink{group___decoder_gad98448418d525479e74c1a38725b498f}{IRrecv::decodeRC6}}() \{}
+\DoxyCodeLine{350     uint8\_t tBitIndex;}
+\DoxyCodeLine{351     uint32\_t tDecodedRawData = 0;}
+\DoxyCodeLine{352 }
+\DoxyCodeLine{353     \textcolor{comment}{// Check we have the right amount of data (). The +3 for initial gap, start bit mark and space}}
+\DoxyCodeLine{354     \textcolor{keywordflow}{if} (decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_af0571ac479d1c38c79502651b0631432}{rawlen}} < MIN\_RC6\_MARKS + 3 \&\& decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_af0571ac479d1c38c79502651b0631432}{rawlen}} > ((2 * RC6\_BITS) + 3)) \{}
+\DoxyCodeLine{355         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(F(\textcolor{stringliteral}{"{}RC6: "{}}));}
+\DoxyCodeLine{356         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(\textcolor{stringliteral}{"{}Data length="{}});}
+\DoxyCodeLine{357         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_af0571ac479d1c38c79502651b0631432}{rawlen}});}
+\DoxyCodeLine{358         \mbox{\hyperlink{_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{} is not between 15 and 45"{}});}
+\DoxyCodeLine{359         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{360     \}}
+\DoxyCodeLine{361 }
+\DoxyCodeLine{362     \textcolor{comment}{// Check header "{}mark"{} and "{}space"{}, this must be done for repeat and data}}
+\DoxyCodeLine{363     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{group___receiving_ga4472564ea96b1ee10b51f594f60d7aeb}{matchMark}}(decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_a7aa7b811dcc0fb5ab0da7c0bddaf97f8}{rawbuf}}[1], RC6\_HEADER\_MARK)}
+\DoxyCodeLine{364             || !\mbox{\hyperlink{group___receiving_ga7902b620f6c01463b5b6e50ef604ac8b}{matchSpace}}(decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_a7aa7b811dcc0fb5ab0da7c0bddaf97f8}{rawbuf}}[2], RC6\_HEADER\_SPACE)) \{}
+\DoxyCodeLine{365         \textcolor{comment}{// no debug output, since this check is mainly to determine the received protocol}}
+\DoxyCodeLine{366         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(F(\textcolor{stringliteral}{"{}RC6: "{}}));}
+\DoxyCodeLine{367         \mbox{\hyperlink{_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}Header mark or space length is wrong"{}});}
+\DoxyCodeLine{368         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{369     \}}
+\DoxyCodeLine{370 }
+\DoxyCodeLine{371     \textcolor{comment}{// Set Biphase decoding start values}}
+\DoxyCodeLine{372     initBiphaselevel(3, RC6\_UNIT); \textcolor{comment}{// Skip gap-\/space and start-\/bit mark + space}}
+\DoxyCodeLine{373 }
+\DoxyCodeLine{374 \textcolor{comment}{// Process first bit, which is known to be a 1 (mark-\/>space)}}
+\DoxyCodeLine{375     \textcolor{keywordflow}{if} (\mbox{\hyperlink{group___receiving_ga7d26f9254747368762e4d4c09dc22fb0}{getBiphaselevel}}() != MARK) \{}
+\DoxyCodeLine{376         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(F(\textcolor{stringliteral}{"{}RC6: "{}}));}
+\DoxyCodeLine{377         \mbox{\hyperlink{_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}first getBiphaselevel() is not MARK"{}});}
+\DoxyCodeLine{378         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{379     \}}
+\DoxyCodeLine{380     \textcolor{keywordflow}{if} (\mbox{\hyperlink{group___receiving_ga7d26f9254747368762e4d4c09dc22fb0}{getBiphaselevel}}() != SPACE) \{}
+\DoxyCodeLine{381         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(F(\textcolor{stringliteral}{"{}RC6: "{}}));}
+\DoxyCodeLine{382         \mbox{\hyperlink{_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}second getBiphaselevel() is not SPACE"{}});}
+\DoxyCodeLine{383         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{384     \}}
+\DoxyCodeLine{385 }
+\DoxyCodeLine{386     \textcolor{keywordflow}{for} (tBitIndex = 0; sBiphaseDecodeRawbuffOffset < decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_af0571ac479d1c38c79502651b0631432}{rawlen}}; tBitIndex++) \{}
+\DoxyCodeLine{387         uint8\_t tStartLevel; \textcolor{comment}{// start level of coded bit}}
+\DoxyCodeLine{388         uint8\_t tEndLevel;   \textcolor{comment}{// end level of coded bit}}
+\DoxyCodeLine{389 }
+\DoxyCodeLine{390         tStartLevel = \mbox{\hyperlink{group___receiving_ga7d26f9254747368762e4d4c09dc22fb0}{getBiphaselevel}}();}
+\DoxyCodeLine{391         \textcolor{keywordflow}{if} (tBitIndex == 3) \{}
+\DoxyCodeLine{392             \textcolor{comment}{// Toggle bit is double wide; make sure second half is equal first half}}
+\DoxyCodeLine{393             \textcolor{keywordflow}{if} (tStartLevel != \mbox{\hyperlink{group___receiving_ga7d26f9254747368762e4d4c09dc22fb0}{getBiphaselevel}}()) \{}
+\DoxyCodeLine{394                 \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(F(\textcolor{stringliteral}{"{}RC6: "{}}));}
+\DoxyCodeLine{395                 \mbox{\hyperlink{_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(F(\textcolor{stringliteral}{"{}Toggle mark or space length is wrong"{}}));}
+\DoxyCodeLine{396                 \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{397             \}}
+\DoxyCodeLine{398         \}}
+\DoxyCodeLine{399 }
+\DoxyCodeLine{400         tEndLevel = \mbox{\hyperlink{group___receiving_ga7d26f9254747368762e4d4c09dc22fb0}{getBiphaselevel}}();}
+\DoxyCodeLine{401         \textcolor{keywordflow}{if} (tBitIndex == 3) \{}
+\DoxyCodeLine{402             \textcolor{comment}{// Toggle bit is double wide; make sure second half matches}}
+\DoxyCodeLine{403             \textcolor{keywordflow}{if} (tEndLevel != \mbox{\hyperlink{group___receiving_ga7d26f9254747368762e4d4c09dc22fb0}{getBiphaselevel}}()) \{}
+\DoxyCodeLine{404                 \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(F(\textcolor{stringliteral}{"{}RC6: "{}}));}
+\DoxyCodeLine{405                 \mbox{\hyperlink{_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(F(\textcolor{stringliteral}{"{}Toggle mark or space length is wrong"{}}));}
+\DoxyCodeLine{406                 \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{407             \}}
+\DoxyCodeLine{408         \}}
+\DoxyCodeLine{409 }
+\DoxyCodeLine{410         \textcolor{comment}{/*}}
+\DoxyCodeLine{411 \textcolor{comment}{         * Determine tDecodedRawData bit value by checking the transition type}}
+\DoxyCodeLine{412 \textcolor{comment}{         */}}
+\DoxyCodeLine{413         \textcolor{keywordflow}{if} ((tStartLevel == MARK) \&\& (tEndLevel == SPACE)) \{}
+\DoxyCodeLine{414             \textcolor{comment}{// we have a mark to space transition here}}
+\DoxyCodeLine{415             tDecodedRawData = (tDecodedRawData << 1) | 1;  \textcolor{comment}{// inverted compared to RC5}}
+\DoxyCodeLine{416         \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} ((tStartLevel == SPACE) \&\& (tEndLevel == MARK)) \{}
+\DoxyCodeLine{417             \textcolor{comment}{// we have a space to mark transition here}}
+\DoxyCodeLine{418             tDecodedRawData = (tDecodedRawData << 1) | 0;}
+\DoxyCodeLine{419         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{420             \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(F(\textcolor{stringliteral}{"{}RC6: "{}}));}
+\DoxyCodeLine{421             \mbox{\hyperlink{_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(F(\textcolor{stringliteral}{"{}Decode failed"{}}));}
+\DoxyCodeLine{422             \textcolor{comment}{// we have no transition here or one level is -\/1 -\/> error}}
+\DoxyCodeLine{423             \textcolor{keywordflow}{return} \textcolor{keyword}{false};            \textcolor{comment}{// Error}}
+\DoxyCodeLine{424         \}}
+\DoxyCodeLine{425     \}}
+\DoxyCodeLine{426 }
+\DoxyCodeLine{427 \textcolor{comment}{// Success}}
+\DoxyCodeLine{428     decodedIRData.\mbox{\hyperlink{struct_i_r_data_a945c41b8463a36cf00b0f38b0aa73200}{numberOfBits}} = tBitIndex;}
+\DoxyCodeLine{429 }
+\DoxyCodeLine{430     \mbox{\hyperlink{union_long_union}{LongUnion}} tValue;}
+\DoxyCodeLine{431     tValue.ULong = tDecodedRawData;}
+\DoxyCodeLine{432     decodedIRData.\mbox{\hyperlink{struct_i_r_data_aeca55ebf36bf919312a933597b8734d8}{decodedRawData}} = tDecodedRawData;}
+\DoxyCodeLine{433 }
+\DoxyCodeLine{434     \textcolor{keywordflow}{if} (tBitIndex < 36) \{}
+\DoxyCodeLine{435         \textcolor{comment}{// RC6}}
+\DoxyCodeLine{436         decodedIRData.\mbox{\hyperlink{struct_i_r_data_aaaad48fc0d90e5c6daec601987848a51}{flags}} = \mbox{\hyperlink{_i_rremote_int_8h_a7f6872e6f83c0571e3150ba86428af4c}{IRDATA\_FLAGS\_IS\_MSB\_FIRST}};}
+\DoxyCodeLine{437         decodedIRData.\mbox{\hyperlink{struct_i_r_data_ab0ce2b36765ea429e8c4bfa0706a45e7}{command}} = tValue.UByte.LowByte;}
+\DoxyCodeLine{438         decodedIRData.\mbox{\hyperlink{struct_i_r_data_a1255a5b7d704d34fda83dcabcb903d4c}{address}} = tValue.UByte.MidLowByte;}
+\DoxyCodeLine{439         \textcolor{comment}{// Check for toggle flag}}
+\DoxyCodeLine{440         \textcolor{keywordflow}{if} ((tValue.UByte.MidHighByte \& 1) != 0) \{}
+\DoxyCodeLine{441             decodedIRData.\mbox{\hyperlink{struct_i_r_data_aaaad48fc0d90e5c6daec601987848a51}{flags}} = IRDATA\_TOGGLE\_BIT\_MASK | \mbox{\hyperlink{_i_rremote_int_8h_a7f6872e6f83c0571e3150ba86428af4c}{IRDATA\_FLAGS\_IS\_MSB\_FIRST}};}
+\DoxyCodeLine{442         \}}
+\DoxyCodeLine{443     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{444         \textcolor{comment}{// RC6A}}
+\DoxyCodeLine{445         decodedIRData.\mbox{\hyperlink{struct_i_r_data_aaaad48fc0d90e5c6daec601987848a51}{flags}} = \mbox{\hyperlink{_i_rremote_int_8h_a7f6872e6f83c0571e3150ba86428af4c}{IRDATA\_FLAGS\_IS\_MSB\_FIRST}} | \mbox{\hyperlink{_i_rremote_int_8h_abf3b16f9ab35f4e4b95c8c362aca2d71}{IRDATA\_FLAGS\_EXTRA\_INFO}};}
+\DoxyCodeLine{446         \textcolor{keywordflow}{if} ((tValue.UByte.MidLowByte \& 0x80) != 0) \{}
+\DoxyCodeLine{447             decodedIRData.\mbox{\hyperlink{struct_i_r_data_aaaad48fc0d90e5c6daec601987848a51}{flags}} = IRDATA\_TOGGLE\_BIT\_MASK | \mbox{\hyperlink{_i_rremote_int_8h_a7f6872e6f83c0571e3150ba86428af4c}{IRDATA\_FLAGS\_IS\_MSB\_FIRST}} | \mbox{\hyperlink{_i_rremote_int_8h_abf3b16f9ab35f4e4b95c8c362aca2d71}{IRDATA\_FLAGS\_EXTRA\_INFO}};}
+\DoxyCodeLine{448         \}}
+\DoxyCodeLine{449         tValue.UByte.MidLowByte \&= 0x87F; \textcolor{comment}{// mask toggle bit}}
+\DoxyCodeLine{450         decodedIRData.\mbox{\hyperlink{struct_i_r_data_ab0ce2b36765ea429e8c4bfa0706a45e7}{command}} = tValue.UByte.LowByte;}
+\DoxyCodeLine{451         decodedIRData.\mbox{\hyperlink{struct_i_r_data_a1255a5b7d704d34fda83dcabcb903d4c}{address}} = tValue.UByte.MidLowByte;}
+\DoxyCodeLine{452         \textcolor{comment}{// get extra info}}
+\DoxyCodeLine{453         decodedIRData.\mbox{\hyperlink{struct_i_r_data_a0b71fa1a17e3ab0ae9bc9462b795213f}{extra}} = tValue.UWord.HighWord;}
+\DoxyCodeLine{454     \}}
+\DoxyCodeLine{455 }
+\DoxyCodeLine{456     \textcolor{comment}{// check for repeat, do not check toggle bit yet}}
+\DoxyCodeLine{457     \textcolor{keywordflow}{if} (decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_a7aa7b811dcc0fb5ab0da7c0bddaf97f8}{rawbuf}}[0] < ((RC6\_REPEAT\_SPACE + (RC6\_REPEAT\_SPACE / 4)) / \mbox{\hyperlink{_i_rremote_int_8h_a1c7eebb527483c272812530caa313d20}{MICROS\_PER\_TICK}})) \{}
+\DoxyCodeLine{458         decodedIRData.\mbox{\hyperlink{struct_i_r_data_aaaad48fc0d90e5c6daec601987848a51}{flags}} |= IRDATA\_FLAGS\_IS\_REPEAT;}
+\DoxyCodeLine{459     \}}
+\DoxyCodeLine{460 }
+\DoxyCodeLine{461     decodedIRData.\mbox{\hyperlink{struct_i_r_data_a703592faec26bab5cbe465f53ef14245}{protocol}} = RC6;}
+\DoxyCodeLine{462     \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{463 \}}
+\DoxyCodeLine{464 }
+\DoxyCodeLine{468 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___decoder_ga55808fcce8aaf429ebbb1d34cb7f5ee5}{IRsend::sendRC5}}(uint32\_t data, uint8\_t nbits) \{}
+\DoxyCodeLine{469     \textcolor{comment}{// Set IR carrier frequency}}
+\DoxyCodeLine{470     \mbox{\hyperlink{group___sending_ga42c04af63d252b320c017ffa2bfc90e5}{enableIROut}}(RC5\_RC6\_KHZ);}
+\DoxyCodeLine{471 }
+\DoxyCodeLine{472     \textcolor{comment}{// Start}}
+\DoxyCodeLine{473     \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(RC5\_UNIT);}
+\DoxyCodeLine{474     \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(RC5\_UNIT);}
+\DoxyCodeLine{475     \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(RC5\_UNIT);}
+\DoxyCodeLine{476 }
+\DoxyCodeLine{477     \textcolor{comment}{// Data -\/ Biphase code MSB first}}
+\DoxyCodeLine{478     \textcolor{keywordflow}{for} (uint32\_t mask = 1UL << (nbits -\/ 1); mask; mask >>= 1) \{}
+\DoxyCodeLine{479         \textcolor{keywordflow}{if} (data \& mask) \{}
+\DoxyCodeLine{480             \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(RC5\_UNIT); \textcolor{comment}{// 1 is space, then mark}}
+\DoxyCodeLine{481             \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(RC5\_UNIT);}
+\DoxyCodeLine{482         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{483             \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(RC5\_UNIT);}
+\DoxyCodeLine{484             \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(RC5\_UNIT);}
+\DoxyCodeLine{485         \}}
+\DoxyCodeLine{486     \}}
+\DoxyCodeLine{487 \}}
+\DoxyCodeLine{488 }
+\DoxyCodeLine{489 \textcolor{comment}{/*}}
+\DoxyCodeLine{490 \textcolor{comment}{ * Not longer required, use sendRC5 instead}}
+\DoxyCodeLine{491 \textcolor{comment}{ */}}
+\DoxyCodeLine{492 \textcolor{keywordtype}{void} IRsend::sendRC5ext(uint8\_t addr, uint8\_t cmd, \textcolor{keywordtype}{bool} toggle) \{}
+\DoxyCodeLine{493 \textcolor{comment}{// Set IR carrier frequency}}
+\DoxyCodeLine{494     \mbox{\hyperlink{group___sending_ga42c04af63d252b320c017ffa2bfc90e5}{enableIROut}}(RC5\_RC6\_KHZ);}
+\DoxyCodeLine{495 }
+\DoxyCodeLine{496     uint8\_t addressBits = 5;}
+\DoxyCodeLine{497     uint8\_t commandBits = 7;}
+\DoxyCodeLine{498 \textcolor{comment}{//    unsigned long nbits = addressBits + commandBits;}}
+\DoxyCodeLine{499 }
+\DoxyCodeLine{500 \textcolor{comment}{// Start}}
+\DoxyCodeLine{501     \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(RC5\_UNIT);}
+\DoxyCodeLine{502 }
+\DoxyCodeLine{503 \textcolor{comment}{// Bit \#6 of the command part, but inverted!}}
+\DoxyCodeLine{504     uint8\_t cmdBit6 = (1UL << (commandBits -\/ 1)) \& cmd;}
+\DoxyCodeLine{505     \textcolor{keywordflow}{if} (cmdBit6) \{}
+\DoxyCodeLine{506         \textcolor{comment}{// Inverted (1 -\/> 0 = mark-\/to-\/space)}}
+\DoxyCodeLine{507         \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(RC5\_UNIT);}
+\DoxyCodeLine{508         \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(RC5\_UNIT);}
+\DoxyCodeLine{509     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{510         \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(RC5\_UNIT);}
+\DoxyCodeLine{511         \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(RC5\_UNIT);}
+\DoxyCodeLine{512     \}}
+\DoxyCodeLine{513     commandBits-\/-\/;}
+\DoxyCodeLine{514 }
+\DoxyCodeLine{515 \textcolor{comment}{// Toggle bit}}
+\DoxyCodeLine{516     \textcolor{keyword}{static} \textcolor{keywordtype}{int} toggleBit = 1;}
+\DoxyCodeLine{517     \textcolor{keywordflow}{if} (toggle) \{}
+\DoxyCodeLine{518         \textcolor{keywordflow}{if} (toggleBit == 0) \{}
+\DoxyCodeLine{519             toggleBit = 1;}
+\DoxyCodeLine{520         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{521             toggleBit = 0;}
+\DoxyCodeLine{522         \}}
+\DoxyCodeLine{523     \}}
+\DoxyCodeLine{524     \textcolor{keywordflow}{if} (toggleBit) \{}
+\DoxyCodeLine{525         \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(RC5\_UNIT);}
+\DoxyCodeLine{526         \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(RC5\_UNIT);}
+\DoxyCodeLine{527     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{528         \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(RC5\_UNIT);}
+\DoxyCodeLine{529         \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(RC5\_UNIT);}
+\DoxyCodeLine{530     \}}
+\DoxyCodeLine{531 }
+\DoxyCodeLine{532 \textcolor{comment}{// Address}}
+\DoxyCodeLine{533     \textcolor{keywordflow}{for} (uint\_fast8\_t mask = 1UL << (addressBits -\/ 1); mask; mask >>= 1) \{}
+\DoxyCodeLine{534         \textcolor{keywordflow}{if} (addr \& mask) \{}
+\DoxyCodeLine{535             \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(RC5\_UNIT); \textcolor{comment}{// 1 is space, then mark}}
+\DoxyCodeLine{536             \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(RC5\_UNIT);}
+\DoxyCodeLine{537         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{538             \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(RC5\_UNIT);}
+\DoxyCodeLine{539             \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(RC5\_UNIT);}
+\DoxyCodeLine{540         \}}
+\DoxyCodeLine{541     \}}
+\DoxyCodeLine{542 }
+\DoxyCodeLine{543 \textcolor{comment}{// Command}}
+\DoxyCodeLine{544     \textcolor{keywordflow}{for} (uint\_fast8\_t mask = 1UL << (commandBits -\/ 1); mask; mask >>= 1) \{}
+\DoxyCodeLine{545         \textcolor{keywordflow}{if} (cmd \& mask) \{}
+\DoxyCodeLine{546             \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(RC5\_UNIT); \textcolor{comment}{// 1 is space, then mark}}
+\DoxyCodeLine{547             \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(RC5\_UNIT);}
+\DoxyCodeLine{548         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{549             \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(RC5\_UNIT);}
+\DoxyCodeLine{550             \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(RC5\_UNIT);}
+\DoxyCodeLine{551         \}}
+\DoxyCodeLine{552     \}}
+\DoxyCodeLine{553 \}}
+\DoxyCodeLine{554 }
+\DoxyCodeLine{556 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{557 \textcolor{preprocessor}{\#pragma once}}
+
+\end{DoxyCode}

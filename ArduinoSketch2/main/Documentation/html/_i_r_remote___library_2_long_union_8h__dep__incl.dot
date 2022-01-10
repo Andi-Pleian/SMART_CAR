@@ -1,0 +1,28 @@
+digraph "main/IRRemote_Library/LongUnion.h"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="main/IRRemote_Library\l/LongUnion.h",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="main/IRRemote_Library\l/TinyIRReceiver.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_i_r_remote___library_2_tiny_i_r_receiver_8h.html",tooltip=" "];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="main/IRRemote_Library\l/TinyIRReceiver.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_i_r_remote___library_2_tiny_i_r_receiver_8hpp.html",tooltip=" "];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="main/IRRemote_Library\l/ac_LG.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_i_r_remote___library_2ac___l_g_8hpp.html",tooltip=" "];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="main/IRRemote_Library\l/ir_Kaseikyo.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_i_r_remote___library_2ir___kaseikyo_8hpp.html",tooltip=" "];
+  Node5 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="main/IRRemote_Library\l/IRremote.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_i_r_remote___library_2_i_rremote_8hpp.html",tooltip="Public API to the library."];
+  Node6 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="main/IRRemote_Library\l/IRremote.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_i_r_remote___library_2_i_rremote_8h.html",tooltip="Stub for backward compatibility."];
+  Node1 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="main/IRRemote_Library\l/ir_NEC.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_i_r_remote___library_2ir___n_e_c_8hpp.html",tooltip=" "];
+  Node8 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="main/IRRemote_Library\l/ir_RC5_RC6.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_i_r_remote___library_2ir___r_c5___r_c6_8hpp.html",tooltip=" "];
+  Node9 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="main/IRRemote_Library\l/ir_Samsung.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_i_r_remote___library_2ir___samsung_8hpp.html",tooltip=" "];
+  Node10 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

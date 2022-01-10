@@ -1,0 +1,185 @@
+\hypertarget{ir___magi_quest_8hpp_source}{}\doxysection{ir\+\_\+\+Magi\+Quest.\+hpp}
+\label{ir___magi_quest_8hpp_source}\index{IRRemote/ir\_MagiQuest.hpp@{IRRemote/ir\_MagiQuest.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * ir\_MagiQuest.hpp}}
+\DoxyCodeLine{3 \textcolor{comment}{ *}}
+\DoxyCodeLine{4 \textcolor{comment}{ *  Contains functions for receiving and sending LG IR Protocol in "{}raw"{} and standard format with 16 or 8 bit address and 8 bit command}}
+\DoxyCodeLine{5 \textcolor{comment}{ *  Based off the Magiquest fork of Arduino-\/IRremote by mpflaga https://github.com/mpflaga/Arduino-\/IRremote/}}
+\DoxyCodeLine{6 \textcolor{comment}{ *}}
+\DoxyCodeLine{7 \textcolor{comment}{ *  This file is part of Arduino-\/IRremote https://github.com/Arduino-\/IRremote/Arduino-\/IRremote.}}
+\DoxyCodeLine{8 \textcolor{comment}{ *}}
+\DoxyCodeLine{9 \textcolor{comment}{ ************************************************************************************}}
+\DoxyCodeLine{10 \textcolor{comment}{ * MIT License}}
+\DoxyCodeLine{11 \textcolor{comment}{ *}}
+\DoxyCodeLine{12 \textcolor{comment}{ * Copyright (c) 2017-\/2021 E. Stuart Hicks <ehicks@binarymagi.com>, Armin Joachimsmeyer}}
+\DoxyCodeLine{13 \textcolor{comment}{ *}}
+\DoxyCodeLine{14 \textcolor{comment}{ * Permission is hereby granted, free of charge, to any person obtaining a copy}}
+\DoxyCodeLine{15 \textcolor{comment}{ * of this software and associated documentation files (the "{}Software"{}), to deal}}
+\DoxyCodeLine{16 \textcolor{comment}{ * in the Software without restriction, including without limitation the rights}}
+\DoxyCodeLine{17 \textcolor{comment}{ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell}}
+\DoxyCodeLine{18 \textcolor{comment}{ * copies of the Software, and to permit persons to whom the Software is furnished}}
+\DoxyCodeLine{19 \textcolor{comment}{ * to do so, subject to the following conditions:}}
+\DoxyCodeLine{20 \textcolor{comment}{ *}}
+\DoxyCodeLine{21 \textcolor{comment}{ * The above copyright notice and this permission notice shall be included in all}}
+\DoxyCodeLine{22 \textcolor{comment}{ * copies or substantial portions of the Software.}}
+\DoxyCodeLine{23 \textcolor{comment}{ *}}
+\DoxyCodeLine{24 \textcolor{comment}{ * THE SOFTWARE IS PROVIDED "{}AS IS"{}, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,}}
+\DoxyCodeLine{25 \textcolor{comment}{ * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A}}
+\DoxyCodeLine{26 \textcolor{comment}{ * PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT}}
+\DoxyCodeLine{27 \textcolor{comment}{ * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF}}
+\DoxyCodeLine{28 \textcolor{comment}{ * CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE}}
+\DoxyCodeLine{29 \textcolor{comment}{ * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.}}
+\DoxyCodeLine{30 \textcolor{comment}{ *}}
+\DoxyCodeLine{31 \textcolor{comment}{ ************************************************************************************}}
+\DoxyCodeLine{32 \textcolor{comment}{ */}}
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#ifndef IR\_MAGIQUEST\_HPP}}
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#define IR\_MAGIQUEST\_HPP}}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36 \textcolor{preprocessor}{\#include <Arduino.h>}}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38 \textcolor{comment}{//\#define DEBUG // Activate this for lots of lovely debug output from this decoder.}}
+\DoxyCodeLine{39 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_i_rremote_int_8h}{IRremoteInt.h}}"{}} \textcolor{comment}{// evaluates the DEBUG for IR\_DEBUG\_PRINT}}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41 \textcolor{comment}{//}}
+\DoxyCodeLine{42 \textcolor{comment}{//==============================================================================}}
+\DoxyCodeLine{43 \textcolor{comment}{//}}
+\DoxyCodeLine{44 \textcolor{comment}{//                            M A G I Q U E S T}}
+\DoxyCodeLine{45 \textcolor{comment}{//}}
+\DoxyCodeLine{46 \textcolor{comment}{//==============================================================================}}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48 \textcolor{preprocessor}{\#if !defined (DOXYGEN)}}
+\DoxyCodeLine{49 \textcolor{comment}{// MagiQuest packet is both Wand ID and magnitude of swish and flick}}
+\DoxyCodeLine{50 \textcolor{keyword}{union }\mbox{\hyperlink{unionmagiquest__t}{magiquest\_t}} \{}
+\DoxyCodeLine{51     uint64\_t llword;}
+\DoxyCodeLine{52     \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{53         uint16\_t magnitude;}
+\DoxyCodeLine{54         uint32\_t wand\_id;}
+\DoxyCodeLine{55         uint8\_t padding;}
+\DoxyCodeLine{56         uint8\_t scrap;  \textcolor{comment}{// just to pad the struct out to 64 bits so we can union with llword}}
+\DoxyCodeLine{57     \} cmd;}
+\DoxyCodeLine{58 \};}
+\DoxyCodeLine{59 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// !defined (DOXYGEN)}}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61 \textcolor{preprocessor}{\#define MAGIQUEST\_MAGNITUDE\_BITS   (sizeof(uint16\_t) * 8)   }\textcolor{comment}{// magiquest\_t.cmd.magnitude}}
+\DoxyCodeLine{62 \textcolor{preprocessor}{\#define MAGIQUEST\_WAND\_ID\_BITS     (sizeof(uint32\_t) * 8)   }\textcolor{comment}{// magiquest\_t.cmd.wand\_id}}
+\DoxyCodeLine{63 \textcolor{preprocessor}{\#define MAGIQUEST\_PADDING\_BITS     (sizeof(uint8\_t) * 8)    }\textcolor{comment}{// magiquest\_t.cmd.padding}}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{65 \textcolor{preprocessor}{\#define MAGIQUEST\_PERIOD      1150   }\textcolor{comment}{// Length of time a full MQ "{}bit"{} consumes (1100 -\/ 1200 usec)}}
+\DoxyCodeLine{66 \textcolor{preprocessor}{\#define MAGIQUEST\_BITS        (MAGIQUEST\_MAGNITUDE\_BITS + MAGIQUEST\_WAND\_ID\_BITS)   }\textcolor{comment}{// Size of the command itself}}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68 \textcolor{comment}{// The total size of a packet is the sum of all 3 expected fields * 2 to support start/stop bits}}
+\DoxyCodeLine{69 \textcolor{preprocessor}{\#define MAGIQUEST\_PACKET\_SIZE (2 * (MAGIQUEST\_BITS + MAGIQUEST\_PADDING\_BITS))}}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71 \textcolor{comment}{/*}}
+\DoxyCodeLine{72 \textcolor{comment}{ * 0 = 25\% mark \& 75\% space across 1 period}}
+\DoxyCodeLine{73 \textcolor{comment}{ *     1150 * 0.25 = 288 usec mark}}
+\DoxyCodeLine{74 \textcolor{comment}{ *     1150 -\/ 288 = 862 usec space}}
+\DoxyCodeLine{75 \textcolor{comment}{ * 1 = 50\% mark \& 50\% space across 1 period}}
+\DoxyCodeLine{76 \textcolor{comment}{ *     1150 * 0.5 = 575 usec mark}}
+\DoxyCodeLine{77 \textcolor{comment}{ *     1150 -\/ 575 = 575 usec space}}
+\DoxyCodeLine{78 \textcolor{comment}{ */}}
+\DoxyCodeLine{79 \textcolor{preprocessor}{\#define MAGIQUEST\_UNIT          (MAGIQUEST\_PERIOD / 4)}}
+\DoxyCodeLine{80 }
+\DoxyCodeLine{81 \textcolor{preprocessor}{\#define MAGIQUEST\_ONE\_MARK      (2 * MAGIQUEST\_UNIT) }\textcolor{comment}{// 576}}
+\DoxyCodeLine{82 \textcolor{preprocessor}{\#define MAGIQUEST\_ONE\_SPACE     (2 * MAGIQUEST\_UNIT) }\textcolor{comment}{// 576}}
+\DoxyCodeLine{83 \textcolor{preprocessor}{\#define MAGIQUEST\_ZERO\_MARK     MAGIQUEST\_UNIT}}
+\DoxyCodeLine{84 \textcolor{preprocessor}{\#define MAGIQUEST\_ZERO\_SPACE    (3 * MAGIQUEST\_UNIT) }\textcolor{comment}{// 864}}
+\DoxyCodeLine{85 }
+\DoxyCodeLine{86 \textcolor{comment}{//+=============================================================================}}
+\DoxyCodeLine{87 \textcolor{comment}{//}}
+\DoxyCodeLine{88 \textcolor{keywordtype}{void} IRsend::sendMagiQuest(uint32\_t wand\_id, uint16\_t magnitude) \{}
+\DoxyCodeLine{89 }
+\DoxyCodeLine{90     \textcolor{comment}{// Set IR carrier frequency}}
+\DoxyCodeLine{91     \mbox{\hyperlink{group___sending_ga42c04af63d252b320c017ffa2bfc90e5}{enableIROut}}(38);}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{93     \textcolor{comment}{// 2 start bits}}
+\DoxyCodeLine{94     \mbox{\hyperlink{group___sending_ga6904a411999a4c9f7306dba49851eb7b}{sendPulseDistanceWidthData}}(}
+\DoxyCodeLine{95     MAGIQUEST\_ONE\_MARK, MAGIQUEST\_ONE\_SPACE, MAGIQUEST\_ZERO\_MARK, MAGIQUEST\_ZERO\_SPACE, 0, 2, PROTOCOL\_IS\_MSB\_FIRST);}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{97     \textcolor{comment}{// Data}}
+\DoxyCodeLine{98     \mbox{\hyperlink{group___sending_ga6904a411999a4c9f7306dba49851eb7b}{sendPulseDistanceWidthData}}(}
+\DoxyCodeLine{99     MAGIQUEST\_ONE\_MARK, MAGIQUEST\_ONE\_SPACE, MAGIQUEST\_ZERO\_MARK, MAGIQUEST\_ZERO\_SPACE, wand\_id, MAGIQUEST\_WAND\_ID\_BITS,}
+\DoxyCodeLine{100     PROTOCOL\_IS\_MSB\_FIRST);}
+\DoxyCodeLine{101     \mbox{\hyperlink{group___sending_ga6904a411999a4c9f7306dba49851eb7b}{sendPulseDistanceWidthData}}(}
+\DoxyCodeLine{102     MAGIQUEST\_ONE\_MARK, MAGIQUEST\_ONE\_SPACE, MAGIQUEST\_ZERO\_MARK, MAGIQUEST\_ZERO\_SPACE, magnitude, MAGIQUEST\_MAGNITUDE\_BITS,}
+\DoxyCodeLine{103     PROTOCOL\_IS\_MSB\_FIRST,}
+\DoxyCodeLine{104     SEND\_STOP\_BIT);}
+\DoxyCodeLine{105 \}}
+\DoxyCodeLine{106 }
+\DoxyCodeLine{107 \textcolor{comment}{//+=============================================================================}}
+\DoxyCodeLine{108 \textcolor{comment}{//}}
+\DoxyCodeLine{109 \textcolor{comment}{/*}}
+\DoxyCodeLine{110 \textcolor{comment}{ * decodes a 56 bit result, which is not really compatible with standard decoder layout}}
+\DoxyCodeLine{111 \textcolor{comment}{ */}}
+\DoxyCodeLine{112 \textcolor{keywordtype}{bool} IRrecv::decodeMagiQuest() \{}
+\DoxyCodeLine{113     \mbox{\hyperlink{unionmagiquest__t}{magiquest\_t}} data;  \textcolor{comment}{// Somewhere to build our code}}
+\DoxyCodeLine{114     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} offset = 1;  \textcolor{comment}{// Skip the gap reading}}
+\DoxyCodeLine{115 }
+\DoxyCodeLine{116     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} mark\_;}
+\DoxyCodeLine{117     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} space\_;}
+\DoxyCodeLine{118     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} ratio\_;}
+\DoxyCodeLine{119 }
+\DoxyCodeLine{120 \textcolor{preprocessor}{\#ifdef DEBUG}}
+\DoxyCodeLine{121     \textcolor{keywordtype}{char} bitstring[(MAGIQUEST\_PACKET\_SIZE + 1)];}
+\DoxyCodeLine{122     bitstring[MAGIQUEST\_PACKET\_SIZE] = \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{123 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{124 }
+\DoxyCodeLine{125     \textcolor{comment}{// Check we have the right amount of data}}
+\DoxyCodeLine{126     \textcolor{keywordflow}{if} (decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_af0571ac479d1c38c79502651b0631432}{rawlen}} != MAGIQUEST\_PACKET\_SIZE) \{}
+\DoxyCodeLine{127         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(\textcolor{stringliteral}{"{}MagiQuest: Bad packet length -\/ got "{}});}
+\DoxyCodeLine{128         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_af0571ac479d1c38c79502651b0631432}{rawlen}});}
+\DoxyCodeLine{129         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(\textcolor{stringliteral}{"{}, expected "{}});}
+\DoxyCodeLine{130         \mbox{\hyperlink{_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(MAGIQUEST\_PACKET\_SIZE);}
+\DoxyCodeLine{131         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{132     \}}
+\DoxyCodeLine{133 }
+\DoxyCodeLine{134     \textcolor{comment}{// Read the bits in}}
+\DoxyCodeLine{135     data.llword = 0;}
+\DoxyCodeLine{136     \textcolor{keywordflow}{while} (offset < (MAGIQUEST\_PACKET\_SIZE -\/ 1)) \{}
+\DoxyCodeLine{137         mark\_ = decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_a7aa7b811dcc0fb5ab0da7c0bddaf97f8}{rawbuf}}[offset++];}
+\DoxyCodeLine{138         space\_ = decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_a7aa7b811dcc0fb5ab0da7c0bddaf97f8}{rawbuf}}[offset++];}
+\DoxyCodeLine{139         ratio\_ = space\_ / mark\_;}
+\DoxyCodeLine{140 }
+\DoxyCodeLine{141         IR\_TRACE\_PRINT(\textcolor{stringliteral}{"{}MagiQuest: mark="{}});}
+\DoxyCodeLine{142         IR\_TRACE\_PRINT(mark\_ * \mbox{\hyperlink{_i_rremote_int_8h_a1c7eebb527483c272812530caa313d20}{MICROS\_PER\_TICK}});}
+\DoxyCodeLine{143         IR\_TRACE\_PRINT(\textcolor{stringliteral}{"{} space="{}});}
+\DoxyCodeLine{144         IR\_TRACE\_PRINT(space\_ * \mbox{\hyperlink{_i_rremote_int_8h_a1c7eebb527483c272812530caa313d20}{MICROS\_PER\_TICK}});}
+\DoxyCodeLine{145         IR\_TRACE\_PRINT(\textcolor{stringliteral}{"{} ratio="{}});}
+\DoxyCodeLine{146         IR\_TRACE\_PRINTLN(ratio\_);}
+\DoxyCodeLine{147 }
+\DoxyCodeLine{148         \textcolor{keywordflow}{if} (\mbox{\hyperlink{group___receiving_ga4472564ea96b1ee10b51f594f60d7aeb}{matchMark}}(space\_ + mark\_, MAGIQUEST\_PERIOD)) \{}
+\DoxyCodeLine{149             \textcolor{keywordflow}{if} (ratio\_ > 1) \{}
+\DoxyCodeLine{150                 \textcolor{comment}{// It's a 0}}
+\DoxyCodeLine{151                 data.llword <<= 1;}
+\DoxyCodeLine{152 \textcolor{preprocessor}{\#ifdef DEBUG}}
+\DoxyCodeLine{153                 bitstring[(offset / 2) -\/ 1] = \textcolor{charliteral}{'0'};}
+\DoxyCodeLine{154 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{155             \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{156                 \textcolor{comment}{// It's a 1}}
+\DoxyCodeLine{157                 data.llword = (data.llword << 1) | 1;}
+\DoxyCodeLine{158 \textcolor{preprocessor}{\#ifdef DEBUG}}
+\DoxyCodeLine{159                 bitstring[(offset / 2) -\/ 1] = \textcolor{charliteral}{'1'};}
+\DoxyCodeLine{160 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{161             \}}
+\DoxyCodeLine{162         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{163             \mbox{\hyperlink{_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}MATCH\_MARK failed"{}});}
+\DoxyCodeLine{164             \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{165         \}}
+\DoxyCodeLine{166     \}}
+\DoxyCodeLine{167     \mbox{\hyperlink{_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(bitstring);}
+\DoxyCodeLine{168 }
+\DoxyCodeLine{169     \textcolor{comment}{// Success}}
+\DoxyCodeLine{170     decodedIRData.\mbox{\hyperlink{struct_i_r_data_a703592faec26bab5cbe465f53ef14245}{protocol}} = MAGIQUEST;}
+\DoxyCodeLine{171     decodedIRData.\mbox{\hyperlink{struct_i_r_data_a945c41b8463a36cf00b0f38b0aa73200}{numberOfBits}} = offset / 2;}
+\DoxyCodeLine{172     decodedIRData.\mbox{\hyperlink{struct_i_r_data_aaaad48fc0d90e5c6daec601987848a51}{flags}} = \mbox{\hyperlink{_i_rremote_int_8h_abf3b16f9ab35f4e4b95c8c362aca2d71}{IRDATA\_FLAGS\_EXTRA\_INFO}};}
+\DoxyCodeLine{173     decodedIRData.\mbox{\hyperlink{struct_i_r_data_a0b71fa1a17e3ab0ae9bc9462b795213f}{extra}} = data.cmd.magnitude;}
+\DoxyCodeLine{174     decodedIRData.\mbox{\hyperlink{struct_i_r_data_aeca55ebf36bf919312a933597b8734d8}{decodedRawData}} = data.cmd.wand\_id;}
+\DoxyCodeLine{175 }
+\DoxyCodeLine{176     \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{177 \}}
+\DoxyCodeLine{178 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{179 \textcolor{preprocessor}{\#pragma once}}
+
+\end{DoxyCode}

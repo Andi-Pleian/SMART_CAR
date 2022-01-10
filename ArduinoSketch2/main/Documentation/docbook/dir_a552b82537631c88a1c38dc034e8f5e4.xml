@@ -2,12 +2,19 @@
 <section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_dir_a552b82537631c88a1c38dc034e8f5e4" xml:lang="en-US">
 <title>main/Modules/Sensors Directory Reference</title>
 <indexterm><primary>main/Modules/Sensors Directory Reference</primary></indexterm>
+Directory dependency graph for Sensors:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="dir_a552b82537631c88a1c38dc034e8f5e4_dep.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
 <simplesect>
     <title>Directories    </title>
         <itemizedlist>
-            <listitem><para>directory <link linkend="_dir_d450a519a9bd031f5a1aa493f4e877e6">SPS</link></para>
-</listitem>
-            <listitem><para>directory <link linkend="_dir_863301dffa7bfa32dd8a6e436d6ffd7f">TempMeas</link></para>
+            <listitem><para>directory <link linkend="_dir_285db30d7606318ac6e4ffb3de016527">ParkingSensor</link></para>
 </listitem>
         </itemizedlist>
 </simplesect>

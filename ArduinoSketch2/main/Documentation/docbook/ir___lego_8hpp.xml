@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_ir___lego_8hpp" xml:lang="en-US">
+<title>main/IRRemote_Library/ir_Lego.hpp File Reference</title>
+<indexterm><primary>main/IRRemote_Library/ir_Lego.hpp</primary></indexterm>
+<programlisting linenumbering="unnumbered">#include &lt;Arduino.h&gt;
+#include &quot;IRremoteInt.h&quot;
+</programlisting>Include dependency graph for ir_Lego.hpp:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="ir___lego_8hpp__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+This graph shows which files directly or indirectly include this file:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="ir___lego_8hpp__dep__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Macros    </title>
+        <itemizedlist>
+            <listitem><para>#define <link linkend="_group___decoder_1ga39a09b56f06d4ed10980f04da1cf7d3c">LEGO_CHANNEL_BITS</link>   4</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga22bc0b6a014c407189fbdda9de0d9460">LEGO_MODE_BITS</link>   4</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga24e8ec9c66fa683bbe0cf8e2bf9f464f">LEGO_COMMAND_BITS</link>   4</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga7da9e4d69027085b8a05c99dedd711c8">LEGO_PARITY_BITS</link>   4</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1gaba11a8cdf603ec3a9f581e0316065ccd">LEGO_BITS</link>   (<link linkend="_group___decoder_1ga39a09b56f06d4ed10980f04da1cf7d3c">LEGO_CHANNEL_BITS</link> + <link linkend="_group___decoder_1ga22bc0b6a014c407189fbdda9de0d9460">LEGO_MODE_BITS</link> + <link linkend="_group___decoder_1ga24e8ec9c66fa683bbe0cf8e2bf9f464f">LEGO_COMMAND_BITS</link> + <link linkend="_group___decoder_1ga7da9e4d69027085b8a05c99dedd711c8">LEGO_PARITY_BITS</link>)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga413eee2968c317cddd592f169a0ae4d7">LEGO_HEADER_MARK</link>   158</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga9f0dd70b25bfe364a5959c6531c1838c">LEGO_HEADER_SPACE</link>   1026</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga38fc71b4c4cfb05d183d1656365755ab">LEGO_BIT_MARK</link>   158</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga8aefc728574d08153c73f21bdb4cb152">LEGO_ONE_SPACE</link>   553</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga8d06796444b99735c047301f52d5fcfc">LEGO_ZERO_SPACE</link>   263</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1gacffc86d1bdb9fa68d39408e230349be3">LEGO_AVERAGE_DURATION</link>   11000</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga92da2b7d1208de09d496438a32e46ecf">LEGO_AUTO_REPEAT_PERIOD_MIN</link>   110000</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1gadb5b6035eb795ce7def85993415a8d38">LEGO_AUTO_REPEAT_PERIOD_MAX</link>   230000</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

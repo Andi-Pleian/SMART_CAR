@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="__i_r_feedback_l_e_d_8hpp" xml:lang="en-US">
+<title>main/IRRemote_Library/IRFeedbackLED.hpp File Reference</title>
+<indexterm><primary>main/IRRemote_Library/IRFeedbackLED.hpp</primary></indexterm>
+<para>
+
+<para>All Feedback LED specific functions are contained in this file. </para>
+ 
+</para>
+<programlisting linenumbering="unnumbered">#include &quot;private/IRFeedbackLEDDefs.h&quot;
+</programlisting>Include dependency graph for IRFeedbackLED.hpp:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="_i_r_feedback_l_e_d_8hpp__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+This graph shows which files directly or indirectly include this file:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="_i_r_feedback_l_e_d_8hpp__dep__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Classes    </title>
+        <itemizedlist>
+            <listitem><para>struct <link linkend="_struct_feedback_l_e_d_control_struct">FeedbackLEDControlStruct</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Functions    </title>
+        <itemizedlist>
+            <listitem><para>void <link linkend="_group___feedback_l_e_d_functions_1gaa5949b509ec061d9239867caa628cfec">setLEDFeedback</link> (uint8_t aFeedbackLEDPin, bool aEnableLEDFeedback)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___feedback_l_e_d_functions_1ga53e5ec641a900f2c572c8bffd42da921">setLEDFeedback</link> (bool aEnableLEDFeedback)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___feedback_l_e_d_functions_1ga1150b1e371cd7d424d53dbcae6619e54">enableLEDFeedback</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___feedback_l_e_d_functions_1gab72e6123a449de7feaaa1c3dcb9f8630">disableLEDFeedback</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___feedback_l_e_d_functions_1ga072624eeba964d8aa105822da00090ba">setFeedbackLED</link> (bool aSwitchLedOn)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___feedback_l_e_d_functions_1ga5f1d479f43dcd56febf146e97a3904db">setBlinkPin</link> (uint8_t aBlinkPin)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Variables    </title>
+        <itemizedlist>
+            <listitem><para>struct <link linkend="_struct_feedback_l_e_d_control_struct">FeedbackLEDControlStruct</link> <link linkend="_group___feedback_l_e_d_functions_1ga456f04616e9881e7d85eb56c941942d2">FeedbackLEDControl</link></para>
+
+<para>The feedback LED control instance. </para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>All Feedback LED specific functions are contained in this file. </para>
+
+<para>This file is part of Arduino-IRremote <link xlink:href="https://github.com/Arduino-IRremote/Arduino-IRremote">https://github.com/Arduino-IRremote/Arduino-IRremote</link>.</para>
+
+<para>MIT License</para>
+
+<para>Copyright (c) 2021 Armin Joachimsmeyer</para>
+
+<para>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</para>
+
+<para>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</para>
+
+<para>THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. </para>
+<para>
+Definition in file <link linkend="__i_r_feedback_l_e_d_8hpp_source">IRFeedbackLED.hpp</link>.</para>
+</section>
+</section>

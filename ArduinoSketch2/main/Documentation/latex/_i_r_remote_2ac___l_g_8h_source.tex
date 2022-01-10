@@ -1,0 +1,140 @@
+\hypertarget{_i_r_remote_2ac___l_g_8h_source}{}\doxysection{ac\+\_\+\+LG.\+h}
+\label{_i_r_remote_2ac___l_g_8h_source}\index{main/IRRemote/ac\_LG.h@{main/IRRemote/ac\_LG.h}}
+\mbox{\hyperlink{_i_r_remote_2ac___l_g_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00001}00001 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00002}00002 \textcolor{comment}{ * ac\_LG.h}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00003}00003 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00004}00004 \textcolor{comment}{ *  Contains definitions for receiving and sending LG air conditioner IR Protocol}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00005}00005 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00006}00006 \textcolor{comment}{ *  This file is part of Arduino-\/IRremote https://github.com/Arduino-\/IRremote/Arduino-\/IRremote.}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00007}00007 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00008}00008 \textcolor{comment}{ ************************************************************************************}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00009}00009 \textcolor{comment}{ * MIT License}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00010}00010 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00011}00011 \textcolor{comment}{ * Copyright (c) 2021 Armin Joachimsmeyer}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00012}00012 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00013}00013 \textcolor{comment}{ * Permission is hereby granted, free of charge, to any person obtaining a copy}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00014}00014 \textcolor{comment}{ * of this software and associated documentation files (the "{}Software"{}), to deal}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00015}00015 \textcolor{comment}{ * in the Software without restriction, including without limitation the rights}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00016}00016 \textcolor{comment}{ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00017}00017 \textcolor{comment}{ * copies of the Software, and to permit persons to whom the Software is furnished}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00018}00018 \textcolor{comment}{ * to do so, subject to the following conditions:}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00019}00019 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00020}00020 \textcolor{comment}{ * The above copyright notice and this permission notice shall be included in all}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00021}00021 \textcolor{comment}{ * copies or substantial portions of the Software.}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00022}00022 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00023}00023 \textcolor{comment}{ * THE SOFTWARE IS PROVIDED "{}AS IS"{}, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00024}00024 \textcolor{comment}{ * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00025}00025 \textcolor{comment}{ * PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00026}00026 \textcolor{comment}{ * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00027}00027 \textcolor{comment}{ * CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00028}00028 \textcolor{comment}{ * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00029}00029 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00030}00030 \textcolor{comment}{ ************************************************************************************}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00031}00031 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00032}00032 \textcolor{comment}{// see also: https://github.com/crankyoldgit/IRremoteESP8266/blob/master/src/ir\_LG.h}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00033}00033 \textcolor{preprocessor}{\#ifndef AC\_LG\_H}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00034}00034 \textcolor{preprocessor}{\#define AC\_LG\_H}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00035}00035 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00036}00036 \textcolor{preprocessor}{\#include <Arduino.h>}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00037}00037 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00042}\mbox{\hyperlink{group___airconditoners_ga23c78d99597e1fb79900c2c2162703ed}{00042}} \textcolor{preprocessor}{\#define LG\_ADDRESS  0x88}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00043}00043 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00044}00044 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00045}00045 \textcolor{comment}{ * The basic IR command codes}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00046}00046 \textcolor{comment}{ * Parts of the codes (especially the lower nibbles) may be modified to contain}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00047}00047 \textcolor{comment}{ * additional information like temperature, fan speed and minutes.}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00048}00048 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00049}\mbox{\hyperlink{group___airconditoners_ga2e4ee6b0d489a06eb1115213bf8055ed}{00049}} \textcolor{preprocessor}{\#define LG\_SWITCH\_ON\_MASK       0x0800  }\textcolor{comment}{// This bit is masked if we switch Power on}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00050}\mbox{\hyperlink{group___airconditoners_gaae2e0db9a5ce4151112a6906bfb1090c}{00050}} \textcolor{preprocessor}{\#define LG\_MODE\_COOLING         0x0800  }\textcolor{comment}{// Temperature and fan speed in lower nibbles}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00051}\mbox{\hyperlink{group___airconditoners_gac49c9a2cf24d0bac6724167416236498}{00051}} \textcolor{preprocessor}{\#define LG\_MODE\_DEHUMIDIFIYING  0x0990  }\textcolor{comment}{// sets also temperature to 24 and fan speed to 0}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00052}\mbox{\hyperlink{group___airconditoners_gae82f0963f74d72085d63857a33a8abfe}{00052}} \textcolor{preprocessor}{\#define LG\_MODE\_FAN             0x0A30  }\textcolor{comment}{// sets also temperature to 18}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00053}\mbox{\hyperlink{group___airconditoners_ga7474777d5b8f60c2871b141c4c8febdc}{00053}} \textcolor{preprocessor}{\#define LG\_MODE\_AUTO            0x0B00  }\textcolor{comment}{// The remote initially sets also temperature to 22 and fan speed to 4}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00054}\mbox{\hyperlink{group___airconditoners_ga49b7354b9ea838746bd12d44a73cbbfe}{00054}} \textcolor{preprocessor}{\#define LG\_MODE\_HEATING         0x0C00  }\textcolor{comment}{// Temperature and fan speed in lower nibbles}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00055}\mbox{\hyperlink{group___airconditoners_ga50a68c01f30d77719bd0965849eb9432}{00055}} \textcolor{preprocessor}{\#define LG\_ENERGY\_SAVING\_ON     0x1004}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00056}\mbox{\hyperlink{group___airconditoners_gaa04556b565d50612183d76a1cf17162a}{00056}} \textcolor{preprocessor}{\#define LG\_ENERGY\_SAVING\_OFF    0x1005}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00057}\mbox{\hyperlink{group___airconditoners_gac832ef74f7acce9703cf4bfe3af9c62c}{00057}} \textcolor{preprocessor}{\#define LG\_JET\_ON               0x1008}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00058}\mbox{\hyperlink{group___airconditoners_ga6e9da9436e1330717c4e521c3274f9e7}{00058}} \textcolor{preprocessor}{\#define LG\_WALL\_SWING\_ON        0x1314}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00059}\mbox{\hyperlink{group___airconditoners_gac4018dd9d884ac5f47a72f8f97a30013}{00059}} \textcolor{preprocessor}{\#define LG\_WALL\_SWING\_OFF       0x1315}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00060}\mbox{\hyperlink{group___airconditoners_gae2aa0cea45172493aff78b178429498b}{00060}} \textcolor{preprocessor}{\#define LG\_SWING\_ON             0x1316  }\textcolor{comment}{// not verified, for AKB73757604}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00061}\mbox{\hyperlink{group___airconditoners_gae948545d5555a8e1661bf9ed84f8a5bd}{00061}} \textcolor{preprocessor}{\#define LG\_SWING\_OFF            0x1317  }\textcolor{comment}{// not verified, for AKB73757604}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00062}\mbox{\hyperlink{group___airconditoners_ga0d3fa053a91e0ccdbf82607d6f191884}{00062}} \textcolor{preprocessor}{\#define LG\_TIMER\_ON             0x8000  }\textcolor{comment}{// relative minutes in lower nibbles}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00063}\mbox{\hyperlink{group___airconditoners_ga953e35300b777bf9b39ecb1c97fbe92b}{00063}} \textcolor{preprocessor}{\#define LG\_TIMER\_OFF            0x9000  }\textcolor{comment}{// relative minutes in lower nibbles}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00064}\mbox{\hyperlink{group___airconditoners_gafa12114ef5d9a8113d9b812e1c3f215d}{00064}} \textcolor{preprocessor}{\#define LG\_SLEEP                0xA000  }\textcolor{comment}{// relative minutes in lower nibbles}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00065}\mbox{\hyperlink{group___airconditoners_gabbff1ff71274f875aab9304e201697a9}{00065}} \textcolor{preprocessor}{\#define LG\_CLEAR\_ALL            0xB000  }\textcolor{comment}{// Timers and sleep}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00066}\mbox{\hyperlink{group___airconditoners_gac55cb8592c8e9e1d0d9d47e8921862d0}{00066}} \textcolor{preprocessor}{\#define LG\_POWER\_DOWN           0xC005}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00067}\mbox{\hyperlink{group___airconditoners_gafc7cc7b8e3f42b30e478d80f917c917c}{00067}} \textcolor{preprocessor}{\#define LG\_LIGHT                0xC00A}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00068}\mbox{\hyperlink{group___airconditoners_ga3f6636d07bce14c9610e5acd74e4c32c}{00068}} \textcolor{preprocessor}{\#define LG\_AUTO\_CLEAN\_ON        0xC00B}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00069}\mbox{\hyperlink{group___airconditoners_ga61b4e884ce7bb6f44749e52af3fe93dc}{00069}} \textcolor{preprocessor}{\#define LG\_AUTO\_CLEAN\_OFF       0xC00C}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00070}00070 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00071}00071 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00072}00072 \textcolor{comment}{ * Commands as printed in menu and uses as first parameter for sendCommandAndParameter}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00073}00073 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00074}\mbox{\hyperlink{group___airconditoners_ga24fd67c4d0d7bf87fd4a7d788070a226}{00074}} \textcolor{preprocessor}{\#define LG\_COMMAND\_OFF          '0'}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00075}\mbox{\hyperlink{group___airconditoners_ga79162224c70f14abcb2a2dba386148c1}{00075}} \textcolor{preprocessor}{\#define LG\_COMMAND\_ON           '1'}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00076}\mbox{\hyperlink{group___airconditoners_ga82d5b518dba56f050e6563f22d9c2206}{00076}} \textcolor{preprocessor}{\#define LG\_COMMAND\_SWING        's'}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00077}\mbox{\hyperlink{group___airconditoners_ga718a9952e98c9ff0db43168edff9f9e1}{00077}} \textcolor{preprocessor}{\#define LG\_COMMAND\_AUTO\_CLEAN   'a'}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00078}\mbox{\hyperlink{group___airconditoners_ga64f924ab6a2a070627ca40bb8ea718a2}{00078}} \textcolor{preprocessor}{\#define LG\_COMMAND\_JET          'j'}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00079}\mbox{\hyperlink{group___airconditoners_ga78b9d595527aac3bc74b16079f6a5875}{00079}} \textcolor{preprocessor}{\#define LG\_COMMAND\_ENERGY       'e'}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00080}\mbox{\hyperlink{group___airconditoners_ga96e898832dfdd0788ba0d188eefed0c9}{00080}} \textcolor{preprocessor}{\#define LG\_COMMAND\_LIGHT        'l'}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00081}\mbox{\hyperlink{group___airconditoners_ga7476ae7bbae7d8bbc85101df2481e928}{00081}} \textcolor{preprocessor}{\#define LG\_COMMAND\_FAN\_SPEED    'f'}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00082}\mbox{\hyperlink{group___airconditoners_gaee4c1f6351dff61efa70ac0f59c301b9}{00082}} \textcolor{preprocessor}{\#define LG\_COMMAND\_TEMPERATURE  't'}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00083}\mbox{\hyperlink{group___airconditoners_ga26bce5b8f0b1f61c21135f7ce116bd0e}{00083}} \textcolor{preprocessor}{\#define LG\_COMMAND\_TEMPERATURE\_PLUS '+'}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00084}\mbox{\hyperlink{group___airconditoners_gad15f415d50b1f65322b15ea607d718d7}{00084}} \textcolor{preprocessor}{\#define LG\_COMMAND\_TEMPERATURE\_MINUS '-\/'}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00085}\mbox{\hyperlink{group___airconditoners_ga8da7f66cacc866d8f7e50bfe1b80bab1}{00085}} \textcolor{preprocessor}{\#define LG\_COMMAND\_MODE         'm'}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00086}\mbox{\hyperlink{group___airconditoners_gaded0337c0d938ef82caaf8c2f1c59283}{00086}} \textcolor{preprocessor}{\#define LG\_COMMAND\_SLEEP        'S'}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00087}\mbox{\hyperlink{group___airconditoners_ga414f526948aba8247f62b560d75834d6}{00087}} \textcolor{preprocessor}{\#define LG\_COMMAND\_TIMER\_ON     'T'}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00088}\mbox{\hyperlink{group___airconditoners_ga2a765b54db1abe3e11c72f19feaa071f}{00088}} \textcolor{preprocessor}{\#define LG\_COMMAND\_TIMER\_OFF    'O'}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00089}\mbox{\hyperlink{group___airconditoners_gaf1ec2778dd50f24b0eee7e2141a74de2}{00089}} \textcolor{preprocessor}{\#define LG\_COMMAND\_CLEAR\_ALL    'C'}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00090}00090 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00091}00091 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00092}00092 \textcolor{comment}{ * The modes are encoded as character values for easy printing :-\/)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00093}00093 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00094}\mbox{\hyperlink{group___airconditoners_gad40cb179d8947abb261c66c4025d6f5c}{00094}} \textcolor{preprocessor}{\#define AC\_MODE\_COOLING         'c'}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00095}\mbox{\hyperlink{group___airconditoners_ga3c73605f2e327ae30c0cb5cb90fdade5}{00095}} \textcolor{preprocessor}{\#define AC\_MODE\_DEHUMIDIFIYING  'd'}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00096}\mbox{\hyperlink{group___airconditoners_gaa95639ff20eae994eac17c04cd1af46a}{00096}} \textcolor{preprocessor}{\#define AC\_MODE\_FAN             'f'}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00097}\mbox{\hyperlink{group___airconditoners_ga5e3517bd87cdd71f3faedd5648f3869a}{00097}} \textcolor{preprocessor}{\#define AC\_MODE\_AUTO            'a'}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00098}\mbox{\hyperlink{group___airconditoners_ga4d1f100bd13d68bbff9165cfeb1d011c}{00098}} \textcolor{preprocessor}{\#define AC\_MODE\_HEATING         'h'}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00099}00099 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00100}00100 \textcolor{comment}{// see https://github.com/crankyoldgit/IRremoteESP8266/blob/master/src/ir\_LG.h}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00101}\mbox{\hyperlink{union_l_g_protocol}{00101}} \textcolor{keyword}{union }\mbox{\hyperlink{union_l_g_protocol}{LGProtocol}} \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00102}\mbox{\hyperlink{union_l_g_protocol_a3255b9b6a3069f7b749b98ed22bf5378}{00102}}     uint32\_t \mbox{\hyperlink{union_l_g_protocol_a3255b9b6a3069f7b749b98ed22bf5378}{raw}};  }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00103}00103     \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00104}\mbox{\hyperlink{union_l_g_protocol_a6c1424bd04a3616ec8c62d31dc03ee4b}{00104}}         uint32\_t \mbox{\hyperlink{union_l_g_protocol_a6c1424bd04a3616ec8c62d31dc03ee4b}{Checksum}} :4;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00105}\mbox{\hyperlink{union_l_g_protocol_ad8132d6e5603d1eb3b51b28165fe3803}{00105}}         uint32\_t \mbox{\hyperlink{union_l_g_protocol_ad8132d6e5603d1eb3b51b28165fe3803}{Fan}} :3;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00106}\mbox{\hyperlink{union_l_g_protocol_ac753a0d317bf2416c208ed23990c131f}{00106}}         uint32\_t \mbox{\hyperlink{union_l_g_protocol_ac753a0d317bf2416c208ed23990c131f}{FanExt}} :1;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00107}\mbox{\hyperlink{union_l_g_protocol_ae556c7e3100b062ec21581cbe61f126a}{00107}}         uint32\_t \mbox{\hyperlink{union_l_g_protocol_ae556c7e3100b062ec21581cbe61f126a}{Temp}} :4;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00108}\mbox{\hyperlink{union_l_g_protocol_adea2990a6e13a31ecb6f8c70c0702543}{00108}}         uint32\_t \mbox{\hyperlink{union_l_g_protocol_adea2990a6e13a31ecb6f8c70c0702543}{Mode}} :4;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00109}\mbox{\hyperlink{union_l_g_protocol_ab0676c3c820e2fa00d117af76a6a4127}{00109}}         uint32\_t \mbox{\hyperlink{union_l_g_protocol_ab0676c3c820e2fa00d117af76a6a4127}{Function}} :3;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00110}\mbox{\hyperlink{union_l_g_protocol_ac4af7b6a94f13b8a7fb8f20e8bbe80ce}{00110}}         uint32\_t \mbox{\hyperlink{union_l_g_protocol_ac4af7b6a94f13b8a7fb8f20e8bbe80ce}{SwitchOnMask}} :1; \textcolor{comment}{/* Content is 0 when switching from off to on */}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00111}\mbox{\hyperlink{union_l_g_protocol_ac12b1f007fa0ce8a728e1259256a3334}{00111}}         uint32\_t \mbox{\hyperlink{union_l_g_protocol_ac12b1f007fa0ce8a728e1259256a3334}{Signature}} :8; \textcolor{comment}{/* Content is 0x88, LG\_ADDRESS */}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00112}00112     \};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00113}00113 \};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00114}00114 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00115}\mbox{\hyperlink{class_aircondition___l_g}{00115}} \textcolor{keyword}{class }\mbox{\hyperlink{class_aircondition___l_g}{Aircondition\_LG}} \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00116}00116 \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00117}00117     \textcolor{keywordtype}{bool} \mbox{\hyperlink{group___airconditoners_ga65bba14a0302268cc515831d37e95b7a}{sendCommandAndParameter}}(\textcolor{keywordtype}{char} aCommand, \textcolor{keywordtype}{int} aParameter);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00118}00118     \textcolor{keywordtype}{void} \mbox{\hyperlink{group___airconditoners_ga75056e4f4dfa299b6f328df460f3f174}{setType}}(\textcolor{keywordtype}{bool} aIsWallType);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00119}00119     \textcolor{keywordtype}{void} \mbox{\hyperlink{group___airconditoners_ga0210285f615ce3a1ac9b26fd1af51dd9}{printMenu}}(Print *aSerial);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00120}00120     \textcolor{keywordtype}{void} \mbox{\hyperlink{group___airconditoners_ga113704b3b19c8477635210341163bf9e}{sendIRCommand}}(uint16\_t aCommand);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00121}00121     \textcolor{keywordtype}{void} \mbox{\hyperlink{group___airconditoners_ga83d18e2597cc2ea78f25889bc6c060e3}{sendTemperatureFanSpeedAndMode}}();}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00122}00122     \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00123}00123 \textcolor{comment}{     * Internal state of the air condition}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00124}00124 \textcolor{comment}{     */}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00125}\mbox{\hyperlink{_i_r_remote_2ac___l_g_8h_a2e8eafcea40ac8c271441c6828ab3650}{00125}} \textcolor{preprocessor}{\#define LG\_IS\_WALL\_TYPE true}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00126}\mbox{\hyperlink{_i_r_remote_2ac___l_g_8h_af24e4af37feee6f77a7dbbf379b02705}{00126}} \textcolor{preprocessor}{\#define LG\_IS\_TOWER\_TYPE false}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00127}\mbox{\hyperlink{class_aircondition___l_g_aa4afac70cfc80f7915b26bbd1c269bc9}{00127}}     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_aircondition___l_g_aa4afac70cfc80f7915b26bbd1c269bc9}{ACIsWallType}};      \textcolor{comment}{// false : TOWER, true : WALL}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00128}\mbox{\hyperlink{class_aircondition___l_g_a4550e9ef869119bdd82f3bbdbd0a4bf0}{00128}}     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_aircondition___l_g_a4550e9ef869119bdd82f3bbdbd0a4bf0}{PowerIsOn}};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00129}00129 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00130}00130     \textcolor{comment}{// These value are encoded and sent by AC\_LG\_SendCommandAndParameter()}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00131}\mbox{\hyperlink{class_aircondition___l_g_a285204d81a347cf3017ed98a60621b9e}{00131}}     uint8\_t \mbox{\hyperlink{class_aircondition___l_g_a285204d81a347cf3017ed98a60621b9e}{FanIntensity}} = 1;    \textcolor{comment}{// 0 -\/> low, 4 high, 5 -\/> cycle}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00132}\mbox{\hyperlink{class_aircondition___l_g_a5339d1ec7928c685eb345a50b0c3781f}{00132}}     uint8\_t \mbox{\hyperlink{class_aircondition___l_g_a5339d1ec7928c685eb345a50b0c3781f}{Temperature}} = 22;    \textcolor{comment}{// temperature : 18 \string~ 30}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00133}\mbox{\hyperlink{class_aircondition___l_g_a953f8d7dd483a1c406cf808a9c1ffe9a}{00133}}     uint8\_t \mbox{\hyperlink{class_aircondition___l_g_a953f8d7dd483a1c406cf808a9c1ffe9a}{Mode}} = \mbox{\hyperlink{group___airconditoners_gad40cb179d8947abb261c66c4025d6f5c}{AC\_MODE\_COOLING}};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00134}\mbox{\hyperlink{class_aircondition___l_g_a7bfa209facd538812cb0fa89fef89850}{00134}}     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_aircondition___l_g_a7bfa209facd538812cb0fa89fef89850}{useLG2Protocol}} = \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00135}00135 \};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00136}00136 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00138}00138 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \#ifndef AC\_LG\_H}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ac___l_g_8h_source_l00139}00139 \textcolor{preprocessor}{\#pragma once}}
+
+\end{DoxyCode}

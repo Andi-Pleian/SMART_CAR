@@ -1,0 +1,65 @@
+\hypertarget{ir___r_c5___r_c6_8hpp}{}\doxysection{main/\+IRRemote\+\_\+\+Library/ir\+\_\+\+RC5\+\_\+\+RC6.hpp File Reference}
+\label{ir___r_c5___r_c6_8hpp}\index{main/IRRemote\_Library/ir\_RC5\_RC6.hpp@{main/IRRemote\_Library/ir\_RC5\_RC6.hpp}}
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}IRremote\+Int.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Long\+Union.\+h\char`\"{}}\newline
+Include dependency graph for ir\+\_\+\+RC5\+\_\+\+RC6.\+hpp\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group___decoder_ga6a67feee58533e6520c703ce2f21c74d}{RC5\+\_\+\+ADDRESS\+\_\+\+BITS}}~5
+\item 
+\#define \mbox{\hyperlink{group___decoder_gad486165e9022f3ee3a36c2d6c0068901}{RC5\+\_\+\+COMMAND\+\_\+\+BITS}}~6
+\item 
+\#define \mbox{\hyperlink{group___decoder_ga736ff0f98dd2db7eb6998fd0d99f4764}{RC5\+\_\+\+COMMAND\+\_\+\+FIELD\+\_\+\+BIT}}~1
+\item 
+\#define \mbox{\hyperlink{group___decoder_ga5b54edc58ba3827fa05eb934f570f27d}{RC5\+\_\+\+TOGGLE\+\_\+\+BIT}}~1
+\item 
+\#define \mbox{\hyperlink{group___decoder_gabc94db01a9d2e2f8caccaa32ec2ffa8a}{RC5\+\_\+\+BITS}}~(\mbox{\hyperlink{group___decoder_ga736ff0f98dd2db7eb6998fd0d99f4764}{RC5\+\_\+\+COMMAND\+\_\+\+FIELD\+\_\+\+BIT}} + \mbox{\hyperlink{group___decoder_ga5b54edc58ba3827fa05eb934f570f27d}{RC5\+\_\+\+TOGGLE\+\_\+\+BIT}} + \mbox{\hyperlink{group___decoder_ga6a67feee58533e6520c703ce2f21c74d}{RC5\+\_\+\+ADDRESS\+\_\+\+BITS}} + \mbox{\hyperlink{group___decoder_gad486165e9022f3ee3a36c2d6c0068901}{RC5\+\_\+\+COMMAND\+\_\+\+BITS}})
+\item 
+\#define \mbox{\hyperlink{group___decoder_ga29c2e67aa7b0ee1ed87b0e154eaf6f69}{RC5\+\_\+\+UNIT}}~889
+\item 
+\#define \mbox{\hyperlink{group___decoder_gaace57f5ebe7ac2d2f80a496702065627}{MIN\+\_\+\+RC5\+\_\+\+MARKS}}~((\mbox{\hyperlink{group___decoder_gabc94db01a9d2e2f8caccaa32ec2ffa8a}{RC5\+\_\+\+BITS}} + 1) / 2)
+\item 
+\#define \mbox{\hyperlink{group___decoder_ga72ef3521775a056c2009b22cc9a50a28}{RC5\+\_\+\+DURATION}}~(15L $\ast$ \mbox{\hyperlink{group___decoder_ga29c2e67aa7b0ee1ed87b0e154eaf6f69}{RC5\+\_\+\+UNIT}})
+\item 
+\#define \mbox{\hyperlink{group___decoder_ga985b139053cd231f47e363981e6a32e4}{RC5\+\_\+\+REPEAT\+\_\+\+PERIOD}}~(128L $\ast$ \mbox{\hyperlink{group___decoder_ga29c2e67aa7b0ee1ed87b0e154eaf6f69}{RC5\+\_\+\+UNIT}})
+\item 
+\#define \mbox{\hyperlink{group___decoder_ga97029fbe8be39f78c835bf30040a743b}{RC5\+\_\+\+REPEAT\+\_\+\+SPACE}}~(\mbox{\hyperlink{group___decoder_ga985b139053cd231f47e363981e6a32e4}{RC5\+\_\+\+REPEAT\+\_\+\+PERIOD}} -\/ \mbox{\hyperlink{group___decoder_ga72ef3521775a056c2009b22cc9a50a28}{RC5\+\_\+\+DURATION}})
+\item 
+\#define \mbox{\hyperlink{group___decoder_ga864aa6044417289d715eb819c1be3e10}{MIN\+\_\+\+RC6\+\_\+\+SAMPLES}}~1
+\item 
+\#define \mbox{\hyperlink{group___decoder_gab20744e40f55c70de7fd11c163643d03}{RC6\+\_\+\+RPT\+\_\+\+LENGTH}}~46000
+\item 
+\#define \mbox{\hyperlink{group___decoder_gabe308752857e0c9d2aa632459efff68b}{RC6\+\_\+\+LEADING\+\_\+\+BIT}}~1
+\item 
+\#define \mbox{\hyperlink{group___decoder_gace06a80186f826baaec50247cccd9fa6}{RC6\+\_\+\+MODE\+\_\+\+BITS}}~3
+\item 
+\#define \mbox{\hyperlink{group___decoder_ga2899c3ab9e20e006a196f1e959e496f7}{RC6\+\_\+\+TOGGLE\+\_\+\+BIT}}~1
+\item 
+\#define \mbox{\hyperlink{group___decoder_ga998e578fa80abf8e58794f162b4e9c4f}{RC6\+\_\+\+ADDRESS\+\_\+\+BITS}}~8
+\item 
+\#define \mbox{\hyperlink{group___decoder_ga2693e6912aaa2615f31b2c8298e84e83}{RC6\+\_\+\+COMMAND\+\_\+\+BITS}}~8
+\item 
+\#define \mbox{\hyperlink{group___decoder_gaf0ebba4bfe3db1f49f593ac87ecc78ea}{RC6\+\_\+\+BITS}}~(\mbox{\hyperlink{group___decoder_gabe308752857e0c9d2aa632459efff68b}{RC6\+\_\+\+LEADING\+\_\+\+BIT}} + \mbox{\hyperlink{group___decoder_gace06a80186f826baaec50247cccd9fa6}{RC6\+\_\+\+MODE\+\_\+\+BITS}} + \mbox{\hyperlink{group___decoder_ga2899c3ab9e20e006a196f1e959e496f7}{RC6\+\_\+\+TOGGLE\+\_\+\+BIT}} + \mbox{\hyperlink{group___decoder_ga998e578fa80abf8e58794f162b4e9c4f}{RC6\+\_\+\+ADDRESS\+\_\+\+BITS}} + \mbox{\hyperlink{group___decoder_ga2693e6912aaa2615f31b2c8298e84e83}{RC6\+\_\+\+COMMAND\+\_\+\+BITS}})
+\item 
+\#define \mbox{\hyperlink{group___decoder_ga0c8422e20817bc71f9b16f013d282800}{RC6\+\_\+\+UNIT}}~444
+\item 
+\#define \mbox{\hyperlink{group___decoder_ga89c0498dae46351ae778a263bd1c90c9}{RC6\+\_\+\+HEADER\+\_\+\+MARK}}~(6 $\ast$ \mbox{\hyperlink{group___decoder_ga0c8422e20817bc71f9b16f013d282800}{RC6\+\_\+\+UNIT}})
+\item 
+\#define \mbox{\hyperlink{group___decoder_ga5c7e98f561ee9ffea33dbe1f5c6d124a}{RC6\+\_\+\+HEADER\+\_\+\+SPACE}}~(2 $\ast$ \mbox{\hyperlink{group___decoder_ga0c8422e20817bc71f9b16f013d282800}{RC6\+\_\+\+UNIT}})
+\item 
+\#define \mbox{\hyperlink{group___decoder_ga80d136268d4d727245922ae0c85464c3}{RC6\+\_\+\+TRAILING\+\_\+\+SPACE}}~(6 $\ast$ \mbox{\hyperlink{group___decoder_ga0c8422e20817bc71f9b16f013d282800}{RC6\+\_\+\+UNIT}})
+\item 
+\#define \mbox{\hyperlink{group___decoder_ga9d1c512ada596652f29f24b17ef7f900}{MIN\+\_\+\+RC6\+\_\+\+MARKS}}~4 + ((\mbox{\hyperlink{group___decoder_ga998e578fa80abf8e58794f162b4e9c4f}{RC6\+\_\+\+ADDRESS\+\_\+\+BITS}} + \mbox{\hyperlink{group___decoder_ga2693e6912aaa2615f31b2c8298e84e83}{RC6\+\_\+\+COMMAND\+\_\+\+BITS}}) / 2)
+\item 
+\#define \mbox{\hyperlink{group___decoder_ga359feaa5ff007c309d1bce3debe3f579}{RC6\+\_\+\+REPEAT\+\_\+\+SPACE}}~107000
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{group___decoder_gaf9adc578f613a3d00e25f6a7fe1d371b}{s\+Last\+Send\+Toggle\+Value}} = false
+\end{DoxyCompactItemize}

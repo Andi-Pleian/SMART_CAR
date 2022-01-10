@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_dir_30ff622b9c0222f055b9cb27c0f4274d" xml:lang="en-US">
+<title>main/Modules/Actuators/MotorControl Directory Reference</title>
+<indexterm><primary>main/Modules/Actuators/MotorControl Directory Reference</primary></indexterm>
+<simplesect>
+    <title>Files    </title>
+        <itemizedlist>
+            <listitem><para>file <link linkend="__motor___control_8cpp">Motor_Control.cpp</link></para>
+</listitem>
+            <listitem><para>file <link linkend="__motor___control_8h">Motor_Control.h</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

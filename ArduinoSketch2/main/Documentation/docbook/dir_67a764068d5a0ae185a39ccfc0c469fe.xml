@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_dir_67a764068d5a0ae185a39ccfc0c469fe" xml:lang="en-US">
+<title>main/IRRemote_Library Directory Reference</title>
+<indexterm><primary>main/IRRemote_Library Directory Reference</primary></indexterm>
+Directory dependency graph for IRRemote_Library:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="dir_67a764068d5a0ae185a39ccfc0c469fe_dep.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Directories    </title>
+        <itemizedlist>
+            <listitem><para>directory <link linkend="_dir_8be12d550821700d14f4099cb61823f3">private</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Files    </title>
+        <itemizedlist>
+            <listitem><para>file <link linkend="_ac___l_g_8h">ac_LG.h</link></para>
+</listitem>
+            <listitem><para>file <link linkend="_ac___l_g_8hpp">ac_LG.hpp</link></para>
+</listitem>
+            <listitem><para>file <link linkend="_digital_write_fast_8h">digitalWriteFast.h</link></para>
+</listitem>
+            <listitem><para>file <link linkend="_ir___bose_wave_8hpp">ir_BoseWave.hpp</link></para>
+</listitem>
+            <listitem><para>file <link linkend="_ir___denon_8hpp">ir_Denon.hpp</link></para>
+</listitem>
+            <listitem><para>file <link linkend="_ir___dish_8hpp">ir_Dish.hpp</link></para>
+</listitem>
+            <listitem><para>file <link linkend="_ir___distance_protocol_8hpp">ir_DistanceProtocol.hpp</link></para>
+</listitem>
+            <listitem><para>file <link linkend="_ir___j_v_c_8hpp">ir_JVC.hpp</link></para>
+</listitem>
+            <listitem><para>file <link linkend="_ir___kaseikyo_8hpp">ir_Kaseikyo.hpp</link></para>
+</listitem>
+            <listitem><para>file <link linkend="_ir___lego_8hpp">ir_Lego.hpp</link></para>
+</listitem>
+            <listitem><para>file <link linkend="_ir___l_g_8hpp">ir_LG.hpp</link></para>
+</listitem>
+            <listitem><para>file <link linkend="_ir___magi_quest_8hpp">ir_MagiQuest.hpp</link></para>
+</listitem>
+            <listitem><para>file <link linkend="_ir___n_e_c_8hpp">ir_NEC.hpp</link></para>
+</listitem>
+            <listitem><para>file <link linkend="_ir___pronto_8hpp">ir_Pronto.hpp</link></para>
+</listitem>
+            <listitem><para>file <link linkend="_ir___r_c5___r_c6_8hpp">ir_RC5_RC6.hpp</link></para>
+</listitem>
+            <listitem><para>file <link linkend="_ir___samsung_8hpp">ir_Samsung.hpp</link></para>
+</listitem>
+            <listitem><para>file <link linkend="_ir___sony_8hpp">ir_Sony.hpp</link></para>
+</listitem>
+            <listitem><para>file <link linkend="_ir___template_8hpp">ir_Template.hpp</link></para>
+</listitem>
+            <listitem><para>file <link linkend="_ir___whynter_8hpp">ir_Whynter.hpp</link></para>
+</listitem>
+            <listitem><para>file <link linkend="__i_r_feedback_l_e_d_8hpp">IRFeedbackLED.hpp</link></para>
+
+<para>All Feedback LED specific functions are contained in this file. </para>
+</listitem>
+            <listitem><para>file <link linkend="__i_r_protocol_8h">IRProtocol.h</link></para>
+
+<para>Common declarations for receiving and sending. </para>
+</listitem>
+            <listitem><para>file <link linkend="__i_r_receive_8hpp">IRReceive.hpp</link></para>
+</listitem>
+            <listitem><para>file <link linkend="__i_rremote_8h">IRremote.h</link></para>
+
+<para>Stub for backward compatibility. </para>
+</listitem>
+            <listitem><para>file <link linkend="__i_rremote_8hpp">IRremote.hpp</link></para>
+
+<para>Public API to the library. </para>
+</listitem>
+            <listitem><para>file <link linkend="__i_rremote_int_8h">IRremoteInt.h</link></para>
+
+<para>Contains all declarations required for the interface to IRremote. Could not be named <link linkend="__i_rremote_8h">IRremote.h</link>, since this has another semantic (it must include all *.hpp files) for old example code found in the wild. </para>
+</listitem>
+            <listitem><para>file <link linkend="__i_r_send_8hpp">IRSend.hpp</link></para>
+</listitem>
+            <listitem><para>file <link linkend="__long_union_8h">LongUnion.h</link></para>
+</listitem>
+            <listitem><para>file <link linkend="__tiny_i_r_receiver_8h">TinyIRReceiver.h</link></para>
+</listitem>
+            <listitem><para>file <link linkend="__tiny_i_r_receiver_8hpp">TinyIRReceiver.hpp</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_dir_6cee165160de34c1e3b1ec5717779561" xml:lang="en-US">
+<title>main/IRRemote/private Directory Reference</title>
+<indexterm><primary>main/IRRemote/private Directory Reference</primary></indexterm>
+<simplesect>
+    <title>Files    </title>
+        <itemizedlist>
+            <listitem><para>file <link linkend="_private_2_i_r_feedback_l_e_d_defs_8h">IRFeedbackLEDDefs.h</link></para>
+
+<para>All feedback LED definitions are contained in this file. </para>
+</listitem>
+            <listitem><para>file <link linkend="_private_2_i_r_timer_8hpp">IRTimer.hpp</link></para>
+
+<para>All timer specific definitions are contained in this file. </para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

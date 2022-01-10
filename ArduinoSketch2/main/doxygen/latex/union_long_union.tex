@@ -1,0 +1,94 @@
+\hypertarget{union_long_union}{}\doxysection{Long\+Union Union Reference}
+\label{union_long_union}\index{LongUnion@{LongUnion}}
+
+
+{\ttfamily \#include $<$Long\+Union.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{union_long_union_a1dfe8893e7015a65e9482671c15a099f}\label{union_long_union_a1dfe8893e7015a65e9482671c15a099f}} 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>uint8\_t {\bfseries LowByte}\\
+\>uint8\_t {\bfseries MidLowByte}\\
+\>uint8\_t {\bfseries MidHighByte}\\
+\>uint8\_t {\bfseries HighByte}\\
+\} {\bfseries UByte}\\
+
+\end{tabbing}\item 
+\mbox{\Hypertarget{union_long_union_a1c2dae40c6f3cc0a71a7625c71417f21}\label{union_long_union_a1c2dae40c6f3cc0a71a7625c71417f21}} 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>int8\_t {\bfseries LowByte}\\
+\>int8\_t {\bfseries MidLowByte}\\
+\>int8\_t {\bfseries MidHighByte}\\
+\>int8\_t {\bfseries HighByte}\\
+\} {\bfseries Byte}\\
+
+\end{tabbing}\item 
+\mbox{\Hypertarget{union_long_union_a01dc27d7394fa94bb24a9c0a1e3bf925}\label{union_long_union_a01dc27d7394fa94bb24a9c0a1e3bf925}} 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>uint8\_t {\bfseries LowByte}\\
+\>\mbox{\hyperlink{union_word_union}{WordUnion}} {\bfseries MidWord}\\
+\>uint8\_t {\bfseries HighByte}\\
+\} {\bfseries ByteWord}\\
+
+\end{tabbing}\item 
+\mbox{\Hypertarget{union_long_union_a38025526d128638a496c4c9f0a9182d0}\label{union_long_union_a38025526d128638a496c4c9f0a9182d0}} 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>int16\_t {\bfseries LowWord}\\
+\>int16\_t {\bfseries HighWord}\\
+\} {\bfseries Word}\\
+
+\end{tabbing}\item 
+\mbox{\Hypertarget{union_long_union_a8956cd66850e78483c6bce6056df63c3}\label{union_long_union_a8956cd66850e78483c6bce6056df63c3}} 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>\mbox{\hyperlink{union_word_union}{WordUnion}} {\bfseries LowWord}\\
+\>\mbox{\hyperlink{union_word_union}{WordUnion}} {\bfseries HighWord}\\
+\} {\bfseries WordUnion}\\
+
+\end{tabbing}\item 
+\mbox{\Hypertarget{union_long_union_a68a0c249634ca250ca5fdb31a06cbb18}\label{union_long_union_a68a0c249634ca250ca5fdb31a06cbb18}} 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>uint16\_t {\bfseries LowWord}\\
+\>uint16\_t {\bfseries HighWord}\\
+\} {\bfseries UWord}\\
+
+\end{tabbing}\item 
+\mbox{\Hypertarget{union_long_union_a683822101c9e06c7cec0dde475d23ad3}\label{union_long_union_a683822101c9e06c7cec0dde475d23ad3}} 
+uint8\+\_\+t {\bfseries UBytes} \mbox{[}4\mbox{]}
+\item 
+\mbox{\Hypertarget{union_long_union_a8c5178886b7c046da66506d996ee6587}\label{union_long_union_a8c5178886b7c046da66506d996ee6587}} 
+int8\+\_\+t {\bfseries Bytes} \mbox{[}4\mbox{]}
+\item 
+\mbox{\Hypertarget{union_long_union_a96deff8963ef4155f33a26390f8f0a4b}\label{union_long_union_a96deff8963ef4155f33a26390f8f0a4b}} 
+uint16\+\_\+t {\bfseries UWords} \mbox{[}2\mbox{]}
+\item 
+\mbox{\Hypertarget{union_long_union_a67e933c7563c43956226e5db844984d5}\label{union_long_union_a67e933c7563c43956226e5db844984d5}} 
+int16\+\_\+t {\bfseries Words} \mbox{[}2\mbox{]}
+\item 
+\mbox{\Hypertarget{union_long_union_aaf8815ca810b2d8386b5912f127586a7}\label{union_long_union_aaf8815ca810b2d8386b5912f127586a7}} 
+uint32\+\_\+t {\bfseries ULong}
+\item 
+\mbox{\Hypertarget{union_long_union_a987b9b0499e30d1ba84f33e38d4cb034}\label{union_long_union_a987b9b0499e30d1ba84f33e38d4cb034}} 
+int32\+\_\+t {\bfseries Long}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Union to specify parts / manifestations of a 32 bit Long without casts and shifts. It also supports the compiler generating small code. 
+
+The documentation for this union was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+IRRemote/Long\+Union.\+h\end{DoxyCompactItemize}

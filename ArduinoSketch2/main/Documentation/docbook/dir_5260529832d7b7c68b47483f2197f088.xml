@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_dir_5260529832d7b7c68b47483f2197f088" xml:lang="en-US">
+<title>main/Debug/Modules/Sensors/SPS Directory Reference</title>
+<indexterm><primary>main/Debug/Modules/Sensors/SPS Directory Reference</primary></indexterm>
+<simplesect>
+    <title>Files    </title>
+        <itemizedlist>
+            <listitem><para>file <link linkend="__smart_parking_sensor_8d">SmartParkingSensor.d</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

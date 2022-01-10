@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="__i_r_receive_8hpp" xml:lang="en-US">
+<title>main/IRRemote_Library/IRReceive.hpp File Reference</title>
+<indexterm><primary>main/IRRemote_Library/IRReceive.hpp</primary></indexterm>
+This graph shows which files directly or indirectly include this file:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="_i_r_receive_8hpp__dep__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Functions    </title>
+        <itemizedlist>
+            <listitem><para>bool <link linkend="_group___receiving_1ga495b7f49ff71cde1289b118fac0f0674">matchTicks</link> (uint16_t aMeasuredTicks, uint16_t aMatchValueMicros)</para>
+</listitem>
+            <listitem><para>bool <link linkend="_group___receiving_1ga0f9263ab71af2d2895add92f72a05ee9">MATCH</link> (uint16_t measured_ticks, uint16_t desired_us)</para>
+</listitem>
+            <listitem><para>bool <link linkend="_group___receiving_1ga4472564ea96b1ee10b51f594f60d7aeb">matchMark</link> (uint16_t aMeasuredTicks, uint16_t aMatchValueMicros)</para>
+</listitem>
+            <listitem><para>bool <link linkend="_group___receiving_1gadab293a71386f20571db6d779d1d84b7">MATCH_MARK</link> (uint16_t measured_ticks, uint16_t desired_us)</para>
+</listitem>
+            <listitem><para>bool <link linkend="_group___receiving_1ga7902b620f6c01463b5b6e50ef604ac8b">matchSpace</link> (uint16_t aMeasuredTicks, uint16_t aMatchValueMicros)</para>
+</listitem>
+            <listitem><para>bool <link linkend="_group___receiving_1gab91e763e3ae44501f7c4f7b7ff8aca0f">MATCH_SPACE</link> (uint16_t measured_ticks, uint16_t desired_us)</para>
+</listitem>
+            <listitem><para>int <link linkend="_group___receiving_1gab1d28d4dd67d6bf808c0328a92e2d863">getMarkExcessMicros</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___receiving_1ga0ad570723cf65cad6721117ae1a6d598">CheckForRecordGapsMicros</link> (Print *aSerial, <link linkend="_struct_i_r_data">IRData</link> *aIRDataPtr)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___receiving_1gada0f2fe0704a217c16ee497ba7b3630e">printActiveIRProtocols</link> (Print *aSerial)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___receiving_1ga545a2c08c0d21af0e95d65b052670bae">printIRResultShort</link> (Print *aSerial, <link linkend="_struct_i_r_data">IRData</link> *aIRDataPtr, uint16_t aLeadingSpaceTicks)</para>
+</listitem>
+            <listitem><para>const __FlashStringHelper * <link linkend="_group___receiving_1ga378e691dd082face86f9ae908d0eef2e">getProtocolString</link> (<link linkend="__i_r_protocol_8h_1ad5b287a488a8c1b7b8661f029ab56fad">decode_type_t</link> aProtocol)</para>
+</listitem>
+            <listitem><para><link linkend="_group___receiving_1gaa8c5af507063503eacfa11a27c993a90">ISR</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Variables    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_i_rrecv">IRrecv</link> <link linkend="_group___receiving_1ga6813a2b456e5359ce674699c85a61cf9">IrReceiver</link></para>
+</listitem>
+            <listitem><para>struct <link linkend="_structirparams__struct">irparams_struct</link> <link linkend="_group___receiving_1ga938046a49af083b7d470e61fd77e12ed">irparams</link></para>
+</listitem>
+            <listitem><para>uint8_t <link linkend="_group___receiving_1ga3f8125d5a7cde4fca3ece58e361296f9">sBiphaseDecodeRawbuffOffset</link></para>
+</listitem>
+            <listitem><para>uint16_t <link linkend="_group___receiving_1ga800106974e301f9dedf8acb891800e0b">sCurrentTimingIntervals</link></para>
+</listitem>
+            <listitem><para>uint8_t <link linkend="_group___receiving_1ga1b4a7361ca04152a3dd0a8681a721325">sUsedTimingIntervals</link></para>
+</listitem>
+            <listitem><para>uint16_t <link linkend="_group___receiving_1gae25d907bed7a0f0298f9cf105d89f86f">sBiphaseTimeUnit</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

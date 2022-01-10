@@ -1,0 +1,771 @@
+\hypertarget{group___receiving}{}\doxysection{Receiving IR data for multiple protocols}
+\label{group___receiving}\index{Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{group___receiving_ga495b7f49ff71cde1289b118fac0f0674}{match\+Ticks}} (uint16\+\_\+t a\+Measured\+Ticks, uint16\+\_\+t a\+Match\+Value\+Micros)
+\item 
+bool \mbox{\hyperlink{group___receiving_ga0f9263ab71af2d2895add92f72a05ee9}{MATCH}} (uint16\+\_\+t measured\+\_\+ticks, uint16\+\_\+t desired\+\_\+us)
+\item 
+bool \mbox{\hyperlink{group___receiving_ga4472564ea96b1ee10b51f594f60d7aeb}{match\+Mark}} (uint16\+\_\+t a\+Measured\+Ticks, uint16\+\_\+t a\+Match\+Value\+Micros)
+\item 
+bool \mbox{\hyperlink{group___receiving_gadab293a71386f20571db6d779d1d84b7}{MATCH\+\_\+\+MARK}} (uint16\+\_\+t measured\+\_\+ticks, uint16\+\_\+t desired\+\_\+us)
+\item 
+bool \mbox{\hyperlink{group___receiving_ga7902b620f6c01463b5b6e50ef604ac8b}{match\+Space}} (uint16\+\_\+t a\+Measured\+Ticks, uint16\+\_\+t a\+Match\+Value\+Micros)
+\item 
+bool \mbox{\hyperlink{group___receiving_gab91e763e3ae44501f7c4f7b7ff8aca0f}{MATCH\+\_\+\+SPACE}} (uint16\+\_\+t measured\+\_\+ticks, uint16\+\_\+t desired\+\_\+us)
+\item 
+int \mbox{\hyperlink{group___receiving_gab1d28d4dd67d6bf808c0328a92e2d863}{get\+Mark\+Excess\+Micros}} ()
+\item 
+void \mbox{\hyperlink{group___receiving_ga0ad570723cf65cad6721117ae1a6d598}{Check\+For\+Record\+Gaps\+Micros}} (Print $\ast$a\+Serial, \mbox{\hyperlink{struct_i_r_data}{IRData}} $\ast$a\+IRData\+Ptr)
+\item 
+void \mbox{\hyperlink{group___receiving_gada0f2fe0704a217c16ee497ba7b3630e}{print\+Active\+IRProtocols}} (Print $\ast$a\+Serial)
+\item 
+void \mbox{\hyperlink{group___receiving_ga545a2c08c0d21af0e95d65b052670bae}{print\+IRResult\+Short}} (Print $\ast$a\+Serial, \mbox{\hyperlink{struct_i_r_data}{IRData}} $\ast$a\+IRData\+Ptr, uint16\+\_\+t a\+Leading\+Space\+Ticks)
+\item 
+const \+\_\+\+\_\+\+Flash\+String\+Helper $\ast$ \mbox{\hyperlink{group___receiving_ga378e691dd082face86f9ae908d0eef2e}{get\+Protocol\+String}} (\mbox{\hyperlink{_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fad}{decode\+\_\+type\+\_\+t}} a\+Protocol)
+\item 
+\mbox{\hyperlink{group___receiving_gaa8c5af507063503eacfa11a27c993a90}{ISR}} ()
+\item 
+\mbox{\hyperlink{group___receiving_ga81eee3a1f9153578d595c771688003e8}{IRrecv\+::\+IRrecv}} ()
+\item 
+\mbox{\hyperlink{group___receiving_ga223c74ba081592e2fba4b5cd08c8a45c}{IRrecv\+::\+IRrecv}} (uint8\+\_\+t a\+Receive\+Pin)
+\item 
+\mbox{\hyperlink{group___receiving_ga78bb606b282e710d0d542e2aa44786d8}{IRrecv\+::\+IRrecv}} (uint8\+\_\+t a\+Receive\+Pin, uint8\+\_\+t a\+Feedback\+LEDPin)
+\item 
+void \mbox{\hyperlink{group___receiving_ga0358fc4a683ba3f8d31fdde1e22be724}{IRrecv\+::begin}} (uint8\+\_\+t a\+Receive\+Pin, bool a\+Enable\+LEDFeedback=false, uint8\+\_\+t a\+Feedback\+LEDPin=\mbox{\hyperlink{_i_rremote_int_8h_a575e74508c30d1ccf92f7e142a43dd3d}{USE\+\_\+\+DEFAULT\+\_\+\+FEEDBACK\+\_\+\+LED\+\_\+\+PIN}})
+\item 
+void \mbox{\hyperlink{group___receiving_gac3c968e5acf5b0bbd1e1b87e0b5af61f}{IRrecv\+::set\+Receive\+Pin}} (uint8\+\_\+t a\+Receive\+Pin\+Number)
+\item 
+void \mbox{\hyperlink{group___receiving_ga2c06971f0e4e0c4131930c8903eb21dc}{IRrecv\+::start}} ()
+\item 
+void \mbox{\hyperlink{group___receiving_ga9588bd3637dadf9b488a8d669030db9d}{IRrecv\+::start}} (uint32\+\_\+t a\+Microseconds\+To\+Add\+To\+Gap\+Counter)
+\item 
+void \mbox{\hyperlink{group___receiving_gaadb62786cd826cd539683c03734e46fe}{IRrecv\+::stop}} ()
+\item 
+void \mbox{\hyperlink{group___receiving_ga8ffd22c2d4c6e93918d987a4b7c3ba5b}{IRrecv\+::end}} ()
+\item 
+void \mbox{\hyperlink{group___receiving_ga69d3e9314aea4a37b43b74a0b4f3f976}{IRrecv\+::enable\+IRIn}} ()
+\item 
+void \mbox{\hyperlink{group___receiving_gaf828d23c733b1bde8f61e39230d9dbcd}{IRrecv\+::disable\+IRIn}} ()
+\item 
+bool \mbox{\hyperlink{group___receiving_gacfbf39fb284cc2d200158f20747c4ae3}{IRrecv\+::is\+Idle}} ()
+\item 
+void \mbox{\hyperlink{group___receiving_gaf40f1e16b1cc911e47ac3f0a9b3b1ec5}{IRrecv\+::resume}} ()
+\item 
+void \mbox{\hyperlink{group___receiving_ga26e37f666387134ed18393fd930f68db}{IRrecv\+::init\+Decoded\+IRData}} ()
+\item 
+bool \mbox{\hyperlink{group___receiving_gaa4f466138c416bf4e1548f5399be0298}{IRrecv\+::available}} ()
+\item 
+\mbox{\hyperlink{struct_i_r_data}{IRData}} $\ast$ \mbox{\hyperlink{group___receiving_ga471a42c75e807e43827e319852536e3c}{IRrecv\+::read}} ()
+\item 
+bool \mbox{\hyperlink{group___receiving_ga913af602be49b9182fb0b22e9e351b36}{IRrecv\+::decode}} ()
+\item 
+bool \mbox{\hyperlink{group___receiving_ga208047cf25c7850842984462bfa11cd0}{IRrecv\+::decode\+Pulse\+Width\+Data}} (uint8\+\_\+t a\+Number\+Of\+Bits, uint8\+\_\+t a\+Start\+Offset, uint16\+\_\+t a\+One\+Mark\+Micros, uint16\+\_\+t a\+Zero\+Mark\+Micros, uint16\+\_\+t a\+Bit\+Space\+Micros, bool a\+MSBfirst)
+\item 
+bool \mbox{\hyperlink{group___receiving_gaf8c9cdb5f7280043a552f22265bdb2d5}{IRrecv\+::decode\+Pulse\+Distance\+Data}} (uint8\+\_\+t a\+Number\+Of\+Bits, uint8\+\_\+t a\+Start\+Offset, uint16\+\_\+t a\+Bit\+Mark\+Micros, uint16\+\_\+t a\+One\+Space\+Micros, uint16\+\_\+t a\+Zero\+Space\+Micros, bool a\+MSBfirst)
+\item 
+void \mbox{\hyperlink{group___receiving_ga51376b9bd8d1d9ac5c694f6a8c8ecc98}{IRrecv\+::init\+Biphaselevel}} (uint8\+\_\+t a\+RCDecode\+Rawbuff\+Offset, uint16\+\_\+t a\+Biphase\+Time\+Unit)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{group___receiving_ga7d26f9254747368762e4d4c09dc22fb0}{IRrecv\+::get\+Biphaselevel}} ()
+\item 
+void \mbox{\hyperlink{group___receiving_ga1c11036a46d1e9624e283821f0a99aee}{IRrecv\+::print\+IRResult\+Short}} (Print $\ast$a\+Serial)
+\item 
+void \mbox{\hyperlink{group___receiving_ga4597a1f83fb256e1673291c424449c51}{IRrecv\+::print\+IRResult\+Minimal}} (Print $\ast$a\+Serial)
+\item 
+void \mbox{\hyperlink{group___receiving_ga0d8405bf5ec373798c74684b9c7c2e2d}{IRrecv\+::print\+IRResult\+Raw\+Formatted}} (Print $\ast$a\+Serial, bool a\+Output\+Microseconds\+Instead\+Of\+Ticks=true)
+\item 
+void \mbox{\hyperlink{group___receiving_ga21364e5f35756fe0f72581c00b1b33b1}{IRrecv\+::compensate\+And\+Print\+IRResult\+As\+CArray}} (Print $\ast$a\+Serial, bool a\+Output\+Microseconds\+Instead\+Of\+Ticks=true)
+\item 
+void \mbox{\hyperlink{group___receiving_ga5a515633f91a505e621cba3bab5e53d0}{IRrecv\+::compensate\+And\+Store\+IRResult\+In\+Array}} (uint8\+\_\+t $\ast$a\+Array\+Ptr)
+\item 
+void \mbox{\hyperlink{group___receiving_gae24919a83cfbea5b2c53a851e1d3fed0}{IRrecv\+::print\+IRResult\+As\+CVariables}} (Print $\ast$a\+Serial)
+\item 
+bool \mbox{\hyperlink{group___receiving_ga9705c2ae98b44014e6e8bf55191b2eba}{IRrecv\+::decode}} (\mbox{\hyperlink{structdecode__results}{decode\+\_\+results}} $\ast$a\+Results) \+\_\+\+\_\+attribute\+\_\+\+\_\+((deprecated(\char`\"{}Please use Ir\+Receiver.\+decode() without a parameter and Ir\+Receiver.\+decoded\+IRData.$<$fieldname$>$ .\char`\"{})))
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_i_rrecv}{IRrecv}} \mbox{\hyperlink{group___receiving_ga6813a2b456e5359ce674699c85a61cf9}{Ir\+Receiver}}
+\item 
+struct \mbox{\hyperlink{structirparams__struct}{irparams\+\_\+struct}} \mbox{\hyperlink{group___receiving_ga938046a49af083b7d470e61fd77e12ed}{irparams}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{group___receiving_ga3f8125d5a7cde4fca3ece58e361296f9}{s\+Biphase\+Decode\+Rawbuff\+Offset}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{group___receiving_ga800106974e301f9dedf8acb891800e0b}{s\+Current\+Timing\+Intervals}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{group___receiving_ga1b4a7361ca04152a3dd0a8681a721325}{s\+Used\+Timing\+Intervals}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{group___receiving_gae25d907bed7a0f0298f9cf105d89f86f}{s\+Biphase\+Time\+Unit}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{group___receiving_gaa4f466138c416bf4e1548f5399be0298}\label{group___receiving_gaa4f466138c416bf4e1548f5399be0298}} 
+\index{Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}!available@{available}}
+\index{available@{available}!Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}}
+\doxysubsubsection{\texorpdfstring{available()}{available()}}
+{\footnotesize\ttfamily bool IRrecv\+::available (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Returns true if IR receiver data is available. 
+
+Definition at line \mbox{\hyperlink{_i_r_receive_8hpp_source_l00226}{226}} of file \mbox{\hyperlink{_i_r_receive_8hpp_source}{IRReceive.\+hpp}}.
+
+\mbox{\Hypertarget{group___receiving_ga0358fc4a683ba3f8d31fdde1e22be724}\label{group___receiving_ga0358fc4a683ba3f8d31fdde1e22be724}} 
+\index{Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}!begin@{begin}}
+\index{begin@{begin}!Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}}
+\doxysubsubsection{\texorpdfstring{begin()}{begin()}}
+{\footnotesize\ttfamily void IRrecv\+::begin (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{a\+Receive\+Pin,  }\item[{bool}]{a\+Enable\+LEDFeedback = {\ttfamily false},  }\item[{uint8\+\_\+t}]{a\+Feedback\+LEDPin = {\ttfamily \mbox{\hyperlink{_i_rremote_int_8h_a575e74508c30d1ccf92f7e142a43dd3d}{USE\+\_\+\+DEFAULT\+\_\+\+FEEDBACK\+\_\+\+LED\+\_\+\+PIN}}} }\end{DoxyParamCaption})}
+
+Stream like API Initializes the receive and feedback pin 
+\begin{DoxyParams}{Parameters}
+{\em a\+Receive\+Pin} & The Arduino pin number, where a demodulating IR receiver is connected. \\
+\hline
+{\em a\+Enable\+LEDFeedback} & if true / ENABLE\+\_\+\+LED\+\_\+\+FEEDBACK, then let the feedback led blink on receiving IR signal \\
+\hline
+{\em a\+Feedback\+LEDPin} & if 0 / USE\+\_\+\+DEFAULT\+\_\+\+FEEDBACK\+\_\+\+LED\+\_\+\+PIN, then take board specific FEEDBACK\+\_\+\+LED\+\_\+\+ON() and FEEDBACK\+\_\+\+LED\+\_\+\+OFF() functions \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_i_r_receive_8hpp_source_l00092}{92}} of file \mbox{\hyperlink{_i_r_receive_8hpp_source}{IRReceive.\+hpp}}.
+
+Here is the call graph for this function\+:
+% FIG 0
+Here is the caller graph for this function\+:
+% FIG 1
+\mbox{\Hypertarget{group___receiving_ga0ad570723cf65cad6721117ae1a6d598}\label{group___receiving_ga0ad570723cf65cad6721117ae1a6d598}} 
+\index{Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}!CheckForRecordGapsMicros@{CheckForRecordGapsMicros}}
+\index{CheckForRecordGapsMicros@{CheckForRecordGapsMicros}!Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}}
+\doxysubsubsection{\texorpdfstring{CheckForRecordGapsMicros()}{CheckForRecordGapsMicros()}}
+{\footnotesize\ttfamily void Check\+For\+Record\+Gaps\+Micros (\begin{DoxyParamCaption}\item[{Print $\ast$}]{a\+Serial,  }\item[{\mbox{\hyperlink{struct_i_r_data}{IRData}} $\ast$}]{a\+IRData\+Ptr }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_receive_8hpp_source_l00843}{843}} of file \mbox{\hyperlink{_i_r_receive_8hpp_source}{IRReceive.\+hpp}}.
+
+Here is the caller graph for this function\+:
+% FIG 2
+\mbox{\Hypertarget{group___receiving_ga21364e5f35756fe0f72581c00b1b33b1}\label{group___receiving_ga21364e5f35756fe0f72581c00b1b33b1}} 
+\index{Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}!compensateAndPrintIRResultAsCArray@{compensateAndPrintIRResultAsCArray}}
+\index{compensateAndPrintIRResultAsCArray@{compensateAndPrintIRResultAsCArray}!Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}}
+\doxysubsubsection{\texorpdfstring{compensateAndPrintIRResultAsCArray()}{compensateAndPrintIRResultAsCArray()}}
+{\footnotesize\ttfamily void IRrecv\+::compensate\+And\+Print\+IRResult\+As\+CArray (\begin{DoxyParamCaption}\item[{Print $\ast$}]{a\+Serial,  }\item[{bool}]{a\+Output\+Microseconds\+Instead\+Of\+Ticks = {\ttfamily true} }\end{DoxyParamCaption})}
+
+Dump out the Ir\+Receiver.\+decoded\+IRData.\+raw\+Data\+Ptr-\/\texorpdfstring{$>$}{>}rawbuf\mbox{[}\mbox{]} to be used as C definition for send\+Raw().
+
+Compensate received values by MARK\+\_\+\+EXCESS\+\_\+\+MICROS, like it is done for decoding! Print ticks in 8 bit format to save space. Maximum is 255$\ast$50 microseconds = 12750 microseconds = 12.\+75 ms, which hardly ever occurs inside an IR sequence. Recording of IRremote anyway stops at a gap of RECORD\+\_\+\+GAP\+\_\+\+MICROS (5 ms).
+
+
+\begin{DoxyParams}{Parameters}
+{\em a\+Serial} & The Print object on which to write, for Arduino you can use \&Serial. \\
+\hline
+{\em a\+Output\+Microseconds\+Instead\+Of\+Ticks} & Output the (rawbuf\+\_\+values $\ast$ MICROS\+\_\+\+PER\+\_\+\+TICK) for better readability. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_i_r_receive_8hpp_source_l01117}{1117}} of file \mbox{\hyperlink{_i_r_receive_8hpp_source}{IRReceive.\+hpp}}.
+
+Here is the call graph for this function\+:
+% FIG 3
+\mbox{\Hypertarget{group___receiving_ga5a515633f91a505e621cba3bab5e53d0}\label{group___receiving_ga5a515633f91a505e621cba3bab5e53d0}} 
+\index{Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}!compensateAndStoreIRResultInArray@{compensateAndStoreIRResultInArray}}
+\index{compensateAndStoreIRResultInArray@{compensateAndStoreIRResultInArray}!Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}}
+\doxysubsubsection{\texorpdfstring{compensateAndStoreIRResultInArray()}{compensateAndStoreIRResultInArray()}}
+{\footnotesize\ttfamily void IRrecv\+::compensate\+And\+Store\+IRResult\+In\+Array (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{a\+Array\+Ptr }\end{DoxyParamCaption})}
+
+Store the decoded\+IRData to be used for send\+Raw().
+
+Compensate received values by MARK\+\_\+\+EXCESS\+\_\+\+MICROS, like it is done for decoding and store it in an array provided.
+
+Maximum for uint8\+\_\+t is 255$\ast$50 microseconds = 12750 microseconds = 12.\+75 ms, which hardly ever occurs inside an IR sequence. Recording of IRremote anyway stops at a gap of RECORD\+\_\+\+GAP\+\_\+\+MICROS (5 ms). 
+\begin{DoxyParams}{Parameters}
+{\em a\+Array\+Ptr} & Address of an array provided by the caller. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_i_r_receive_8hpp_source_l01179}{1179}} of file \mbox{\hyperlink{_i_r_receive_8hpp_source}{IRReceive.\+hpp}}.
+
+\mbox{\Hypertarget{group___receiving_ga913af602be49b9182fb0b22e9e351b36}\label{group___receiving_ga913af602be49b9182fb0b22e9e351b36}} 
+\index{Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}!decode@{decode}}
+\index{decode@{decode}!Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}}
+\doxysubsubsection{\texorpdfstring{decode()}{decode()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool IRrecv\+::decode (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+The main decode function, attempts to decode the recently receive IR signal. \begin{DoxyReturn}{Returns}
+false if no IR receiver data available, true if data available. Results of decoding are stored in Ir\+Receiver.\+decoded\+IRData. The set of decoders used is determined by active definitions of the DECODE\+\_\+$<$\+PROTOCOL$>$ macros. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_i_r_receive_8hpp_source_l00249}{249}} of file \mbox{\hyperlink{_i_r_receive_8hpp_source}{IRReceive.\+hpp}}.
+
+Here is the call graph for this function\+:
+% FIG 4
+Here is the caller graph for this function\+:
+% FIG 5
+\mbox{\Hypertarget{group___receiving_ga9705c2ae98b44014e6e8bf55191b2eba}\label{group___receiving_ga9705c2ae98b44014e6e8bf55191b2eba}} 
+\index{Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}!decode@{decode}}
+\index{decode@{decode}!Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}}
+\doxysubsubsection{\texorpdfstring{decode()}{decode()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool IRrecv\+::decode (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structdecode__results}{decode\+\_\+results}} $\ast$}]{a\+Results }\end{DoxyParamCaption})}
+
+The DEPRECATED decode function with parameter a\+Results ONLY for backwards compatibility! This function calls the old MSB first decoders and fills only the 3 variables\+: a\+Results-\/\texorpdfstring{$>$}{>}value a\+Results-\/\texorpdfstring{$>$}{>}bits a\+Results-\/\texorpdfstring{$>$}{>}decode\+\_\+type 
+
+Definition at line \mbox{\hyperlink{_i_r_receive_8hpp_source_l01453}{1453}} of file \mbox{\hyperlink{_i_r_receive_8hpp_source}{IRReceive.\+hpp}}.
+
+Here is the call graph for this function\+:
+% FIG 6
+\mbox{\Hypertarget{group___receiving_gaf8c9cdb5f7280043a552f22265bdb2d5}\label{group___receiving_gaf8c9cdb5f7280043a552f22265bdb2d5}} 
+\index{Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}!decodePulseDistanceData@{decodePulseDistanceData}}
+\index{decodePulseDistanceData@{decodePulseDistanceData}!Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}}
+\doxysubsubsection{\texorpdfstring{decodePulseDistanceData()}{decodePulseDistanceData()}}
+{\footnotesize\ttfamily bool IRrecv\+::decode\+Pulse\+Distance\+Data (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{a\+Number\+Of\+Bits,  }\item[{uint8\+\_\+t}]{a\+Start\+Offset,  }\item[{uint16\+\_\+t}]{a\+Bit\+Mark\+Micros,  }\item[{uint16\+\_\+t}]{a\+One\+Space\+Micros,  }\item[{uint16\+\_\+t}]{a\+Zero\+Space\+Micros,  }\item[{bool}]{a\+MSBfirst }\end{DoxyParamCaption})}
+
+Decode pulse distance protocols. The mark (pulse) has constant length, the length of the space determines the bit value. Each bit looks like\+: MARK + SPACE\+\_\+1 -\/\texorpdfstring{$>$}{>} 1 or \+: MARK + SPACE\+\_\+0 -\/\texorpdfstring{$>$}{>} 0
+
+Input is Ir\+Receiver.\+decoded\+IRData.\+raw\+Data\+Ptr-\/\texorpdfstring{$>$}{>}rawbuf\mbox{[}\mbox{]} Output is Ir\+Receiver.\+decoded\+IRData.\+decoded\+Raw\+Data
+
+
+\begin{DoxyParams}{Parameters}
+{\em a\+Start\+Offset} & must point to a mark \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if decoding was successful 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_i_r_receive_8hpp_source_l00497}{497}} of file \mbox{\hyperlink{_i_r_receive_8hpp_source}{IRReceive.\+hpp}}.
+
+Here is the call graph for this function\+:
+% FIG 7
+Here is the caller graph for this function\+:
+% FIG 8
+\mbox{\Hypertarget{group___receiving_ga208047cf25c7850842984462bfa11cd0}\label{group___receiving_ga208047cf25c7850842984462bfa11cd0}} 
+\index{Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}!decodePulseWidthData@{decodePulseWidthData}}
+\index{decodePulseWidthData@{decodePulseWidthData}!Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}}
+\doxysubsubsection{\texorpdfstring{decodePulseWidthData()}{decodePulseWidthData()}}
+{\footnotesize\ttfamily bool IRrecv\+::decode\+Pulse\+Width\+Data (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{a\+Number\+Of\+Bits,  }\item[{uint8\+\_\+t}]{a\+Start\+Offset,  }\item[{uint16\+\_\+t}]{a\+One\+Mark\+Micros,  }\item[{uint16\+\_\+t}]{a\+Zero\+Mark\+Micros,  }\item[{uint16\+\_\+t}]{a\+Bit\+Space\+Micros,  }\item[{bool}]{a\+MSBfirst }\end{DoxyParamCaption})}
+
+Common decode functions Decode pulse width protocols. Currently only used for sony protocol. The space (pause) has constant length, the length of the mark determines the bit value. Each bit looks like\+: MARK\+\_\+1 + SPACE -\/\texorpdfstring{$>$}{>} 1 or \+: MARK\+\_\+0 + SPACE -\/\texorpdfstring{$>$}{>} 0
+
+Input is Ir\+Receiver.\+decoded\+IRData.\+raw\+Data\+Ptr-\/\texorpdfstring{$>$}{>}rawbuf\mbox{[}\mbox{]} Output is Ir\+Receiver.\+decoded\+IRData.\+decoded\+Raw\+Data
+
+
+\begin{DoxyParams}{Parameters}
+{\em a\+Start\+Offset} & must point to a mark \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if decoding was successful 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_i_r_receive_8hpp_source_l00401}{401}} of file \mbox{\hyperlink{_i_r_receive_8hpp_source}{IRReceive.\+hpp}}.
+
+Here is the call graph for this function\+:
+% FIG 9
+Here is the caller graph for this function\+:
+% FIG 10
+\mbox{\Hypertarget{group___receiving_gaf828d23c733b1bde8f61e39230d9dbcd}\label{group___receiving_gaf828d23c733b1bde8f61e39230d9dbcd}} 
+\index{Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}!disableIRIn@{disableIRIn}}
+\index{disableIRIn@{disableIRIn}!Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}}
+\doxysubsubsection{\texorpdfstring{disableIRIn()}{disableIRIn()}}
+{\footnotesize\ttfamily void IRrecv\+::disable\+IRIn (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Disables the timer for IR reception. 
+
+Definition at line \mbox{\hyperlink{_i_r_receive_8hpp_source_l00172}{172}} of file \mbox{\hyperlink{_i_r_receive_8hpp_source}{IRReceive.\+hpp}}.
+
+Here is the caller graph for this function\+:
+% FIG 11
+\mbox{\Hypertarget{group___receiving_ga69d3e9314aea4a37b43b74a0b4f3f976}\label{group___receiving_ga69d3e9314aea4a37b43b74a0b4f3f976}} 
+\index{Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}!enableIRIn@{enableIRIn}}
+\index{enableIRIn@{enableIRIn}!Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}}
+\doxysubsubsection{\texorpdfstring{enableIRIn()}{enableIRIn()}}
+{\footnotesize\ttfamily void IRrecv\+::enable\+IRIn (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Configures the timer and the state machine for IR reception. 
+
+Definition at line \mbox{\hyperlink{_i_r_receive_8hpp_source_l00152}{152}} of file \mbox{\hyperlink{_i_r_receive_8hpp_source}{IRReceive.\+hpp}}.
+
+Here is the call graph for this function\+:
+% FIG 12
+Here is the caller graph for this function\+:
+% FIG 13
+\mbox{\Hypertarget{group___receiving_ga8ffd22c2d4c6e93918d987a4b7c3ba5b}\label{group___receiving_ga8ffd22c2d4c6e93918d987a4b7c3ba5b}} 
+\index{Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}!end@{end}}
+\index{end@{end}!Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}}
+\doxysubsubsection{\texorpdfstring{end()}{end()}}
+{\footnotesize\ttfamily void IRrecv\+::end (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Disables the timer for IR reception. 
+
+Definition at line \mbox{\hyperlink{_i_r_receive_8hpp_source_l00145}{145}} of file \mbox{\hyperlink{_i_r_receive_8hpp_source}{IRReceive.\+hpp}}.
+
+Here is the call graph for this function\+:
+% FIG 14
+\mbox{\Hypertarget{group___receiving_ga7d26f9254747368762e4d4c09dc22fb0}\label{group___receiving_ga7d26f9254747368762e4d4c09dc22fb0}} 
+\index{Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}!getBiphaselevel@{getBiphaselevel}}
+\index{getBiphaselevel@{getBiphaselevel}!Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}}
+\doxysubsubsection{\texorpdfstring{getBiphaselevel()}{getBiphaselevel()}}
+{\footnotesize\ttfamily uint8\+\_\+t IRrecv\+::get\+Biphaselevel (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Gets the level of one time interval (a\+Biphase\+Time\+Unit) at a time from the raw buffer. The RC5/6 decoding is easier if the data is broken into time intervals. E.\+g. if the buffer has mark for 2 time intervals and space for 1, successive calls to get\+Biphaselevel will return 1, 1, 0. \begin{DoxyVerb}          _   _   _   _   _   _   _   _   _   _   _   _   _
+    _____| |_| |_| |_| |_| |_| |_| |_| |_| |_| |_| |_| |_| |
+           ^   ^   ^   ^   ^   ^   ^   ^   ^   ^   ^   ^   ^    Significant clock edge
+          _     _   _   ___   _     ___     ___   _   - Mark
+\end{DoxyVerb}
+ Data \+\_\+\+\_\+\+\_\+\+\_\+\+\_\+$\vert$ $\vert$\+\_\+\+\_\+\+\_\+$\vert$ $\vert$\+\_\+$\vert$ $\vert$\+\_\+$\vert$ $\vert$\+\_\+$\vert$ $\vert$\+\_\+\+\_\+\+\_\+$\vert$ $\vert$\+\_\+\+\_\+\+\_\+$\vert$ $\vert$\+\_\+$\vert$ $\vert$ -\/ Data starts with a mark-\/\texorpdfstring{$>$}{>}space bit 1 0 0 0 1 1 0 1 0 1 1 -\/ Space A mark to space at a significant clock edge results in a 1 A space to mark at a significant clock edge results in a 0 (for RC6) Returns current level \mbox{[}MARK or SPACE\mbox{]} or -\/1 for error (measured time interval is not a multiple of s\+Biphase\+Time\+Unit). 
+
+Definition at line \mbox{\hyperlink{_i_r_receive_8hpp_source_l00605}{605}} of file \mbox{\hyperlink{_i_r_receive_8hpp_source}{IRReceive.\+hpp}}.
+
+Here is the call graph for this function\+:
+% FIG 15
+Here is the caller graph for this function\+:
+% FIG 16
+\mbox{\Hypertarget{group___receiving_gab1d28d4dd67d6bf808c0328a92e2d863}\label{group___receiving_gab1d28d4dd67d6bf808c0328a92e2d863}} 
+\index{Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}!getMarkExcessMicros@{getMarkExcessMicros}}
+\index{getMarkExcessMicros@{getMarkExcessMicros}!Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}}
+\doxysubsubsection{\texorpdfstring{getMarkExcessMicros()}{getMarkExcessMicros()}}
+{\footnotesize\ttfamily int get\+Mark\+Excess\+Micros (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Getter function for MARK\+\_\+\+EXCESS\+\_\+\+MICROS 
+
+Definition at line \mbox{\hyperlink{_i_r_receive_8hpp_source_l00835}{835}} of file \mbox{\hyperlink{_i_r_receive_8hpp_source}{IRReceive.\+hpp}}.
+
+Here is the caller graph for this function\+:
+% FIG 17
+\mbox{\Hypertarget{group___receiving_ga378e691dd082face86f9ae908d0eef2e}\label{group___receiving_ga378e691dd082face86f9ae908d0eef2e}} 
+\index{Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}!getProtocolString@{getProtocolString}}
+\index{getProtocolString@{getProtocolString}!Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}}
+\doxysubsubsection{\texorpdfstring{getProtocolString()}{getProtocolString()}}
+{\footnotesize\ttfamily const \+\_\+\+\_\+\+Flash\+String\+Helper $\ast$ get\+Protocol\+String (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fad}{decode\+\_\+type\+\_\+t}}}]{a\+Protocol }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_receive_8hpp_source_l01231}{1231}} of file \mbox{\hyperlink{_i_r_receive_8hpp_source}{IRReceive.\+hpp}}.
+
+Here is the caller graph for this function\+:
+% FIG 18
+\mbox{\Hypertarget{group___receiving_ga51376b9bd8d1d9ac5c694f6a8c8ecc98}\label{group___receiving_ga51376b9bd8d1d9ac5c694f6a8c8ecc98}} 
+\index{Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}!initBiphaselevel@{initBiphaselevel}}
+\index{initBiphaselevel@{initBiphaselevel}!Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}}
+\doxysubsubsection{\texorpdfstring{initBiphaselevel()}{initBiphaselevel()}}
+{\footnotesize\ttfamily void IRrecv\+::init\+Biphaselevel (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{a\+RCDecode\+Rawbuff\+Offset,  }\item[{uint16\+\_\+t}]{a\+Biphase\+Time\+Unit }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_receive_8hpp_source_l00583}{583}} of file \mbox{\hyperlink{_i_r_receive_8hpp_source}{IRReceive.\+hpp}}.
+
+Here is the caller graph for this function\+:
+% FIG 19
+\mbox{\Hypertarget{group___receiving_ga26e37f666387134ed18393fd930f68db}\label{group___receiving_ga26e37f666387134ed18393fd930f68db}} 
+\index{Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}!initDecodedIRData@{initDecodedIRData}}
+\index{initDecodedIRData@{initDecodedIRData}!Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}}
+\doxysubsubsection{\texorpdfstring{initDecodedIRData()}{initDecodedIRData()}}
+{\footnotesize\ttfamily void IRrecv\+::init\+Decoded\+IRData (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Is internally called by decode before calling decoders. Must be used to setup data, if you call decoders manually. 
+
+Definition at line \mbox{\hyperlink{_i_r_receive_8hpp_source_l00199}{199}} of file \mbox{\hyperlink{_i_r_receive_8hpp_source}{IRReceive.\+hpp}}.
+
+Here is the caller graph for this function\+:
+% FIG 20
+\mbox{\Hypertarget{group___receiving_ga81eee3a1f9153578d595c771688003e8}\label{group___receiving_ga81eee3a1f9153578d595c771688003e8}} 
+\index{Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}!IRrecv@{IRrecv}}
+\index{IRrecv@{IRrecv}!Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}}
+\doxysubsubsection{\texorpdfstring{IRrecv()}{IRrecv()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily IRrecv\+::\+IRrecv (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Instantiate the \mbox{\hyperlink{class_i_rrecv}{IRrecv}} class. Multiple instantiation is not supported. 
+\begin{DoxyParams}{Parameters}
+{\em IRReceive\+Pin} & Arduino pin to use. No sanity check is made. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_i_r_receive_8hpp_source_l00053}{53}} of file \mbox{\hyperlink{_i_r_receive_8hpp_source}{IRReceive.\+hpp}}.
+
+Here is the call graph for this function\+:
+% FIG 21
+\mbox{\Hypertarget{group___receiving_ga223c74ba081592e2fba4b5cd08c8a45c}\label{group___receiving_ga223c74ba081592e2fba4b5cd08c8a45c}} 
+\index{Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}!IRrecv@{IRrecv}}
+\index{IRrecv@{IRrecv}!Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}}
+\doxysubsubsection{\texorpdfstring{IRrecv()}{IRrecv()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily IRrecv\+::\+IRrecv (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{a\+Receive\+Pin }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_receive_8hpp_source_l00061}{61}} of file \mbox{\hyperlink{_i_r_receive_8hpp_source}{IRReceive.\+hpp}}.
+
+Here is the call graph for this function\+:
+% FIG 22
+\mbox{\Hypertarget{group___receiving_ga78bb606b282e710d0d542e2aa44786d8}\label{group___receiving_ga78bb606b282e710d0d542e2aa44786d8}} 
+\index{Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}!IRrecv@{IRrecv}}
+\index{IRrecv@{IRrecv}!Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}}
+\doxysubsubsection{\texorpdfstring{IRrecv()}{IRrecv()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily IRrecv\+::\+IRrecv (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{a\+Receive\+Pin,  }\item[{uint8\+\_\+t}]{a\+Feedback\+LEDPin }\end{DoxyParamCaption})}
+
+Instantiate the \mbox{\hyperlink{class_i_rrecv}{IRrecv}} class. Multiple instantiation is not supported. 
+\begin{DoxyParams}{Parameters}
+{\em a\+Receive\+Pin} & Arduino pin to use, where a demodulating IR receiver is connected. \\
+\hline
+{\em a\+Feedback\+LEDPin} & if 0, then take board specific FEEDBACK\+\_\+\+LED\+\_\+\+ON() and FEEDBACK\+\_\+\+LED\+\_\+\+OFF() functions \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_i_r_receive_8hpp_source_l00073}{73}} of file \mbox{\hyperlink{_i_r_receive_8hpp_source}{IRReceive.\+hpp}}.
+
+Here is the call graph for this function\+:
+% FIG 23
+\mbox{\Hypertarget{group___receiving_gacfbf39fb284cc2d200158f20747c4ae3}\label{group___receiving_gacfbf39fb284cc2d200158f20747c4ae3}} 
+\index{Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}!isIdle@{isIdle}}
+\index{isIdle@{isIdle}!Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}}
+\doxysubsubsection{\texorpdfstring{isIdle()}{isIdle()}}
+{\footnotesize\ttfamily bool IRrecv\+::is\+Idle (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Returns status of reception \begin{DoxyReturn}{Returns}
+true if no reception is on-\/going. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_i_r_receive_8hpp_source_l00180}{180}} of file \mbox{\hyperlink{_i_r_receive_8hpp_source}{IRReceive.\+hpp}}.
+
+\mbox{\Hypertarget{group___receiving_gaa8c5af507063503eacfa11a27c993a90}\label{group___receiving_gaa8c5af507063503eacfa11a27c993a90}} 
+\index{Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}!ISR@{ISR}}
+\index{ISR@{ISR}!Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}}
+\doxysubsubsection{\texorpdfstring{ISR()}{ISR()}}
+{\footnotesize\ttfamily ISR (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Interrupt Service Routine -\/ Called every 50 us
+
+Duration in ticks of 50 us of alternating SPACE, MARK are recorded in irparams.\+rawbuf array. \textquotesingle{}rawlen\textquotesingle{} counts the number of entries recorded so far. First entry is the SPACE between transmissions.
+
+As soon as one SPACE entry gets longer than RECORD\+\_\+\+GAP\+\_\+\+TICKS, state switches to STOP (frame received). Timing of SPACE continues. A call of resume() switches from STOP to IDLE. As soon as first MARK arrives in IDLE, gap width is recorded and new logging starts.
+
+With digital\+Read and Feedback LED 15 pushs, 1 in, 1 eor before start of code = 2 us @16MHz + $\ast$ 7.\+2 us computation time (6us idle time) + $\ast$ pop + reti = 2.\+25 us @16MHz =\texorpdfstring{$>$}{>} 10.\+3 to 11.\+5 us @16MHz With port\+Input\+Register and mask and Feedback LED code commented 9 pushs, 1 in, 1 eor before start of code = 1.\+25 us @16MHz + $\ast$ 2.\+25 us computation time + $\ast$ pop + reti = 1.\+5 us @16MHz =\texorpdfstring{$>$}{>} 5 us @16MHz =\texorpdfstring{$>$}{>} Minimal CPU frequency is 4 MHz 
+
+Definition at line \mbox{\hyperlink{_i_r_receive_8hpp_source_l01340}{1340}} of file \mbox{\hyperlink{_i_r_receive_8hpp_source}{IRReceive.\+hpp}}.
+
+Here is the call graph for this function\+:
+% FIG 24
+\mbox{\Hypertarget{group___receiving_ga0f9263ab71af2d2895add92f72a05ee9}\label{group___receiving_ga0f9263ab71af2d2895add92f72a05ee9}} 
+\index{Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}!MATCH@{MATCH}}
+\index{MATCH@{MATCH}!Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}}
+\doxysubsubsection{\texorpdfstring{MATCH()}{MATCH()}}
+{\footnotesize\ttfamily bool MATCH (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{measured\+\_\+ticks,  }\item[{uint16\+\_\+t}]{desired\+\_\+us }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_receive_8hpp_source_l00762}{762}} of file \mbox{\hyperlink{_i_r_receive_8hpp_source}{IRReceive.\+hpp}}.
+
+Here is the call graph for this function\+:
+% FIG 25
+\mbox{\Hypertarget{group___receiving_gadab293a71386f20571db6d779d1d84b7}\label{group___receiving_gadab293a71386f20571db6d779d1d84b7}} 
+\index{Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}!MATCH\_MARK@{MATCH\_MARK}}
+\index{MATCH\_MARK@{MATCH\_MARK}!Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}}
+\doxysubsubsection{\texorpdfstring{MATCH\_MARK()}{MATCH\_MARK()}}
+{\footnotesize\ttfamily bool MATCH\+\_\+\+MARK (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{measured\+\_\+ticks,  }\item[{uint16\+\_\+t}]{desired\+\_\+us }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_receive_8hpp_source_l00795}{795}} of file \mbox{\hyperlink{_i_r_receive_8hpp_source}{IRReceive.\+hpp}}.
+
+Here is the call graph for this function\+:
+% FIG 26
+\mbox{\Hypertarget{group___receiving_gab91e763e3ae44501f7c4f7b7ff8aca0f}\label{group___receiving_gab91e763e3ae44501f7c4f7b7ff8aca0f}} 
+\index{Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}!MATCH\_SPACE@{MATCH\_SPACE}}
+\index{MATCH\_SPACE@{MATCH\_SPACE}!Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}}
+\doxysubsubsection{\texorpdfstring{MATCH\_SPACE()}{MATCH\_SPACE()}}
+{\footnotesize\ttfamily bool MATCH\+\_\+\+SPACE (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{measured\+\_\+ticks,  }\item[{uint16\+\_\+t}]{desired\+\_\+us }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_receive_8hpp_source_l00828}{828}} of file \mbox{\hyperlink{_i_r_receive_8hpp_source}{IRReceive.\+hpp}}.
+
+Here is the call graph for this function\+:
+% FIG 27
+\mbox{\Hypertarget{group___receiving_ga4472564ea96b1ee10b51f594f60d7aeb}\label{group___receiving_ga4472564ea96b1ee10b51f594f60d7aeb}} 
+\index{Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}!matchMark@{matchMark}}
+\index{matchMark@{matchMark}!Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}}
+\doxysubsubsection{\texorpdfstring{matchMark()}{matchMark()}}
+{\footnotesize\ttfamily bool match\+Mark (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{a\+Measured\+Ticks,  }\item[{uint16\+\_\+t}]{a\+Match\+Value\+Micros }\end{DoxyParamCaption})}
+
+Compensate for marks exceeded by demodulator hardware 
+
+Definition at line \mbox{\hyperlink{_i_r_receive_8hpp_source_l00769}{769}} of file \mbox{\hyperlink{_i_r_receive_8hpp_source}{IRReceive.\+hpp}}.
+
+Here is the caller graph for this function\+:
+% FIG 28
+\mbox{\Hypertarget{group___receiving_ga7902b620f6c01463b5b6e50ef604ac8b}\label{group___receiving_ga7902b620f6c01463b5b6e50ef604ac8b}} 
+\index{Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}!matchSpace@{matchSpace}}
+\index{matchSpace@{matchSpace}!Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}}
+\doxysubsubsection{\texorpdfstring{matchSpace()}{matchSpace()}}
+{\footnotesize\ttfamily bool match\+Space (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{a\+Measured\+Ticks,  }\item[{uint16\+\_\+t}]{a\+Match\+Value\+Micros }\end{DoxyParamCaption})}
+
+Compensate for spaces shortened by demodulator hardware 
+
+Definition at line \mbox{\hyperlink{_i_r_receive_8hpp_source_l00802}{802}} of file \mbox{\hyperlink{_i_r_receive_8hpp_source}{IRReceive.\+hpp}}.
+
+Here is the caller graph for this function\+:
+% FIG 29
+\mbox{\Hypertarget{group___receiving_ga495b7f49ff71cde1289b118fac0f0674}\label{group___receiving_ga495b7f49ff71cde1289b118fac0f0674}} 
+\index{Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}!matchTicks@{matchTicks}}
+\index{matchTicks@{matchTicks}!Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}}
+\doxysubsubsection{\texorpdfstring{matchTicks()}{matchTicks()}}
+{\footnotesize\ttfamily bool match\+Ticks (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{a\+Measured\+Ticks,  }\item[{uint16\+\_\+t}]{a\+Match\+Value\+Micros }\end{DoxyParamCaption})}
+
+Match functions Match function without compensating for marks exceeded or spaces shortened by demodulator hardware Currently not used 
+
+Definition at line \mbox{\hyperlink{_i_r_receive_8hpp_source_l00742}{742}} of file \mbox{\hyperlink{_i_r_receive_8hpp_source}{IRReceive.\+hpp}}.
+
+Here is the caller graph for this function\+:
+% FIG 30
+\mbox{\Hypertarget{group___receiving_gada0f2fe0704a217c16ee497ba7b3630e}\label{group___receiving_gada0f2fe0704a217c16ee497ba7b3630e}} 
+\index{Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}!printActiveIRProtocols@{printActiveIRProtocols}}
+\index{printActiveIRProtocols@{printActiveIRProtocols}!Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}}
+\doxysubsubsection{\texorpdfstring{printActiveIRProtocols()}{printActiveIRProtocols()}}
+{\footnotesize\ttfamily void print\+Active\+IRProtocols (\begin{DoxyParamCaption}\item[{Print $\ast$}]{a\+Serial }\end{DoxyParamCaption})}
+
+Print functions Since a library should not allocate the \char`\"{}\+Serial\char`\"{} object, all functions require a pointer to a Print object. 
+
+Definition at line \mbox{\hyperlink{_i_r_receive_8hpp_source_l00864}{864}} of file \mbox{\hyperlink{_i_r_receive_8hpp_source}{IRReceive.\+hpp}}.
+
+\mbox{\Hypertarget{group___receiving_gae24919a83cfbea5b2c53a851e1d3fed0}\label{group___receiving_gae24919a83cfbea5b2c53a851e1d3fed0}} 
+\index{Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}!printIRResultAsCVariables@{printIRResultAsCVariables}}
+\index{printIRResultAsCVariables@{printIRResultAsCVariables}!Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}}
+\doxysubsubsection{\texorpdfstring{printIRResultAsCVariables()}{printIRResultAsCVariables()}}
+{\footnotesize\ttfamily void IRrecv\+::print\+IRResult\+As\+CVariables (\begin{DoxyParamCaption}\item[{Print $\ast$}]{a\+Serial }\end{DoxyParamCaption})}
+
+Print results as C variables to be used for send\+XXX() 
+\begin{DoxyParams}{Parameters}
+{\em a\+Serial} & The Print object on which to write, for Arduino you can use \&Serial. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_i_r_receive_8hpp_source_l01206}{1206}} of file \mbox{\hyperlink{_i_r_receive_8hpp_source}{IRReceive.\+hpp}}.
+
+\mbox{\Hypertarget{group___receiving_ga4597a1f83fb256e1673291c424449c51}\label{group___receiving_ga4597a1f83fb256e1673291c424449c51}} 
+\index{Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}!printIRResultMinimal@{printIRResultMinimal}}
+\index{printIRResultMinimal@{printIRResultMinimal}!Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}}
+\doxysubsubsection{\texorpdfstring{printIRResultMinimal()}{printIRResultMinimal()}}
+{\footnotesize\ttfamily void IRrecv\+::print\+IRResult\+Minimal (\begin{DoxyParamCaption}\item[{Print $\ast$}]{a\+Serial }\end{DoxyParamCaption})}
+
+Function to print protocol number, address, command, raw data and repeat flag of Ir\+Receiver.\+decoded\+IRData in one short line. Does not print a Newline / does not end with println().
+
+
+\begin{DoxyParams}{Parameters}
+{\em a\+Serial} & The Print object on which to write, for Arduino you can use \&Serial. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_i_r_receive_8hpp_source_l01015}{1015}} of file \mbox{\hyperlink{_i_r_receive_8hpp_source}{IRReceive.\+hpp}}.
+
+\mbox{\Hypertarget{group___receiving_ga0d8405bf5ec373798c74684b9c7c2e2d}\label{group___receiving_ga0d8405bf5ec373798c74684b9c7c2e2d}} 
+\index{Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}!printIRResultRawFormatted@{printIRResultRawFormatted}}
+\index{printIRResultRawFormatted@{printIRResultRawFormatted}!Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}}
+\doxysubsubsection{\texorpdfstring{printIRResultRawFormatted()}{printIRResultRawFormatted()}}
+{\footnotesize\ttfamily void IRrecv\+::print\+IRResult\+Raw\+Formatted (\begin{DoxyParamCaption}\item[{Print $\ast$}]{a\+Serial,  }\item[{bool}]{a\+Output\+Microseconds\+Instead\+Of\+Ticks = {\ttfamily true} }\end{DoxyParamCaption})}
+
+Dump out the timings in Ir\+Receiver.\+decoded\+IRData.\+raw\+Data\+Ptr-\/\texorpdfstring{$>$}{>}rawbuf\mbox{[}\mbox{]} array 8 values per line.
+
+
+\begin{DoxyParams}{Parameters}
+{\em a\+Serial} & The Print object on which to write, for Arduino you can use \&Serial. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_i_r_receive_8hpp_source_l01050}{1050}} of file \mbox{\hyperlink{_i_r_receive_8hpp_source}{IRReceive.\+hpp}}.
+
+\mbox{\Hypertarget{group___receiving_ga1c11036a46d1e9624e283821f0a99aee}\label{group___receiving_ga1c11036a46d1e9624e283821f0a99aee}} 
+\index{Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}!printIRResultShort@{printIRResultShort}}
+\index{printIRResultShort@{printIRResultShort}!Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}}
+\doxysubsubsection{\texorpdfstring{printIRResultShort()}{printIRResultShort()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void IRrecv\+::print\+IRResult\+Short (\begin{DoxyParamCaption}\item[{Print $\ast$}]{a\+Serial }\end{DoxyParamCaption})}
+
+Function to print values and flags of Ir\+Receiver.\+decoded\+IRData in one line. Ends with println().
+
+
+\begin{DoxyParams}{Parameters}
+{\em a\+Serial} & The Print object on which to write, for Arduino you can use \&Serial. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_i_r_receive_8hpp_source_l01005}{1005}} of file \mbox{\hyperlink{_i_r_receive_8hpp_source}{IRReceive.\+hpp}}.
+
+Here is the call graph for this function\+:
+% FIG 31
+Here is the caller graph for this function\+:
+% FIG 32
+\mbox{\Hypertarget{group___receiving_ga545a2c08c0d21af0e95d65b052670bae}\label{group___receiving_ga545a2c08c0d21af0e95d65b052670bae}} 
+\index{Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}!printIRResultShort@{printIRResultShort}}
+\index{printIRResultShort@{printIRResultShort}!Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}}
+\doxysubsubsection{\texorpdfstring{printIRResultShort()}{printIRResultShort()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void print\+IRResult\+Short (\begin{DoxyParamCaption}\item[{Print $\ast$}]{a\+Serial,  }\item[{\mbox{\hyperlink{struct_i_r_data}{IRData}} $\ast$}]{a\+IRData\+Ptr,  }\item[{uint16\+\_\+t}]{a\+Leading\+Space\+Ticks }\end{DoxyParamCaption})}
+
+Internal function to print decoded result and flags in one line. Ends with println().
+
+
+\begin{DoxyParams}{Parameters}
+{\em a\+Serial} & The Print object on which to write, for Arduino you can use \&Serial. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_i_r_receive_8hpp_source_l00924}{924}} of file \mbox{\hyperlink{_i_r_receive_8hpp_source}{IRReceive.\+hpp}}.
+
+Here is the call graph for this function\+:
+% FIG 33
+\mbox{\Hypertarget{group___receiving_ga471a42c75e807e43827e319852536e3c}\label{group___receiving_ga471a42c75e807e43827e319852536e3c}} 
+\index{Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}!read@{read}}
+\index{read@{read}!Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}}
+\doxysubsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_i_r_data}{IRData}} $\ast$ IRrecv\+::read (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+If IR receiver data is available, returns pointer to Ir\+Receiver.\+decoded\+IRData, else NULL. 
+
+Definition at line \mbox{\hyperlink{_i_r_receive_8hpp_source_l00233}{233}} of file \mbox{\hyperlink{_i_r_receive_8hpp_source}{IRReceive.\+hpp}}.
+
+Here is the call graph for this function\+:
+% FIG 34
+\mbox{\Hypertarget{group___receiving_gaf40f1e16b1cc911e47ac3f0a9b3b1ec5}\label{group___receiving_gaf40f1e16b1cc911e47ac3f0a9b3b1ec5}} 
+\index{Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}!resume@{resume}}
+\index{resume@{resume}!Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}}
+\doxysubsubsection{\texorpdfstring{resume()}{resume()}}
+{\footnotesize\ttfamily void IRrecv\+::resume (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Restart the ISR state machine Enable receiving of the next value 
+
+Definition at line \mbox{\hyperlink{_i_r_receive_8hpp_source_l00188}{188}} of file \mbox{\hyperlink{_i_r_receive_8hpp_source}{IRReceive.\+hpp}}.
+
+Here is the caller graph for this function\+:
+% FIG 35
+\mbox{\Hypertarget{group___receiving_gac3c968e5acf5b0bbd1e1b87e0b5af61f}\label{group___receiving_gac3c968e5acf5b0bbd1e1b87e0b5af61f}} 
+\index{Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}!setReceivePin@{setReceivePin}}
+\index{setReceivePin@{setReceivePin}!Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}}
+\doxysubsubsection{\texorpdfstring{setReceivePin()}{setReceivePin()}}
+{\footnotesize\ttfamily void IRrecv\+::set\+Receive\+Pin (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{a\+Receive\+Pin\+Number }\end{DoxyParamCaption})}
+
+Sets / changes the receiver pin number 
+
+Definition at line \mbox{\hyperlink{_i_r_receive_8hpp_source_l00108}{108}} of file \mbox{\hyperlink{_i_r_receive_8hpp_source}{IRReceive.\+hpp}}.
+
+Here is the caller graph for this function\+:
+% FIG 36
+\mbox{\Hypertarget{group___receiving_ga2c06971f0e4e0c4131930c8903eb21dc}\label{group___receiving_ga2c06971f0e4e0c4131930c8903eb21dc}} 
+\index{Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}!start@{start}}
+\index{start@{start}!Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}}
+\doxysubsubsection{\texorpdfstring{start()}{start()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void IRrecv\+::start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Configures the timer and the state machine for IR reception. 
+
+Definition at line \mbox{\hyperlink{_i_r_receive_8hpp_source_l00119}{119}} of file \mbox{\hyperlink{_i_r_receive_8hpp_source}{IRReceive.\+hpp}}.
+
+Here is the call graph for this function\+:
+% FIG 37
+\mbox{\Hypertarget{group___receiving_ga9588bd3637dadf9b488a8d669030db9d}\label{group___receiving_ga9588bd3637dadf9b488a8d669030db9d}} 
+\index{Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}!start@{start}}
+\index{start@{start}!Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}}
+\doxysubsubsection{\texorpdfstring{start()}{start()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void IRrecv\+::start (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{a\+Microseconds\+To\+Add\+To\+Gap\+Counter }\end{DoxyParamCaption})}
+
+Configures the timer and the state machine for IR reception. 
+\begin{DoxyParams}{Parameters}
+{\em a\+Microseconds\+To\+Add\+To\+Gap\+Counter} & To compensate for microseconds the timer was stopped / disabled. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_i_r_receive_8hpp_source_l00127}{127}} of file \mbox{\hyperlink{_i_r_receive_8hpp_source}{IRReceive.\+hpp}}.
+
+Here is the call graph for this function\+:
+% FIG 38
+\mbox{\Hypertarget{group___receiving_gaadb62786cd826cd539683c03734e46fe}\label{group___receiving_gaadb62786cd826cd539683c03734e46fe}} 
+\index{Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}!stop@{stop}}
+\index{stop@{stop}!Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}}
+\doxysubsubsection{\texorpdfstring{stop()}{stop()}}
+{\footnotesize\ttfamily void IRrecv\+::stop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Disables the timer for IR reception. Alias for 
+
+Definition at line \mbox{\hyperlink{_i_r_receive_8hpp_source_l00138}{138}} of file \mbox{\hyperlink{_i_r_receive_8hpp_source}{IRReceive.\+hpp}}.
+
+Here is the call graph for this function\+:
+% FIG 39
+Here is the caller graph for this function\+:
+% FIG 40
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{group___receiving_ga938046a49af083b7d470e61fd77e12ed}\label{group___receiving_ga938046a49af083b7d470e61fd77e12ed}} 
+\index{Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}!irparams@{irparams}}
+\index{irparams@{irparams}!Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}}
+\doxysubsubsection{\texorpdfstring{irparams}{irparams}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structirparams__struct}{irparams\+\_\+struct}} irparams}
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_receive_8hpp_source_l00047}{47}} of file \mbox{\hyperlink{_i_r_receive_8hpp_source}{IRReceive.\+hpp}}.
+
+\mbox{\Hypertarget{group___receiving_ga6813a2b456e5359ce674699c85a61cf9}\label{group___receiving_ga6813a2b456e5359ce674699c85a61cf9}} 
+\index{Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}!IrReceiver@{IrReceiver}}
+\index{IrReceiver@{IrReceiver}!Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}}
+\doxysubsubsection{\texorpdfstring{IrReceiver}{IrReceiver}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_i_rrecv}{IRrecv}} Ir\+Receiver}
+
+The receiver instance 
+
+Definition at line \mbox{\hyperlink{_i_r_receive_8hpp_source_l00042}{42}} of file \mbox{\hyperlink{_i_r_receive_8hpp_source}{IRReceive.\+hpp}}.
+
+\mbox{\Hypertarget{group___receiving_ga3f8125d5a7cde4fca3ece58e361296f9}\label{group___receiving_ga3f8125d5a7cde4fca3ece58e361296f9}} 
+\index{Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}!sBiphaseDecodeRawbuffOffset@{sBiphaseDecodeRawbuffOffset}}
+\index{sBiphaseDecodeRawbuffOffset@{sBiphaseDecodeRawbuffOffset}!Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}}
+\doxysubsubsection{\texorpdfstring{sBiphaseDecodeRawbuffOffset}{sBiphaseDecodeRawbuffOffset}}
+{\footnotesize\ttfamily uint8\+\_\+t s\+Biphase\+Decode\+Rawbuff\+Offset}
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_receive_8hpp_source_l00578}{578}} of file \mbox{\hyperlink{_i_r_receive_8hpp_source}{IRReceive.\+hpp}}.
+
+\mbox{\Hypertarget{group___receiving_gae25d907bed7a0f0298f9cf105d89f86f}\label{group___receiving_gae25d907bed7a0f0298f9cf105d89f86f}} 
+\index{Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}!sBiphaseTimeUnit@{sBiphaseTimeUnit}}
+\index{sBiphaseTimeUnit@{sBiphaseTimeUnit}!Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}}
+\doxysubsubsection{\texorpdfstring{sBiphaseTimeUnit}{sBiphaseTimeUnit}}
+{\footnotesize\ttfamily uint16\+\_\+t s\+Biphase\+Time\+Unit}
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_receive_8hpp_source_l00581}{581}} of file \mbox{\hyperlink{_i_r_receive_8hpp_source}{IRReceive.\+hpp}}.
+
+\mbox{\Hypertarget{group___receiving_ga800106974e301f9dedf8acb891800e0b}\label{group___receiving_ga800106974e301f9dedf8acb891800e0b}} 
+\index{Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}!sCurrentTimingIntervals@{sCurrentTimingIntervals}}
+\index{sCurrentTimingIntervals@{sCurrentTimingIntervals}!Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}}
+\doxysubsubsection{\texorpdfstring{sCurrentTimingIntervals}{sCurrentTimingIntervals}}
+{\footnotesize\ttfamily uint16\+\_\+t s\+Current\+Timing\+Intervals}
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_receive_8hpp_source_l00579}{579}} of file \mbox{\hyperlink{_i_r_receive_8hpp_source}{IRReceive.\+hpp}}.
+
+\mbox{\Hypertarget{group___receiving_ga1b4a7361ca04152a3dd0a8681a721325}\label{group___receiving_ga1b4a7361ca04152a3dd0a8681a721325}} 
+\index{Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}!sUsedTimingIntervals@{sUsedTimingIntervals}}
+\index{sUsedTimingIntervals@{sUsedTimingIntervals}!Receiving IR data for multiple protocols@{Receiving IR data for multiple protocols}}
+\doxysubsubsection{\texorpdfstring{sUsedTimingIntervals}{sUsedTimingIntervals}}
+{\footnotesize\ttfamily uint8\+\_\+t s\+Used\+Timing\+Intervals}
+
+
+
+Definition at line \mbox{\hyperlink{_i_r_receive_8hpp_source_l00580}{580}} of file \mbox{\hyperlink{_i_r_receive_8hpp_source}{IRReceive.\+hpp}}.
+

@@ -1,0 +1,130 @@
+\hypertarget{ac___l_g_8h}{}\doxysection{main/\+IRRemote\+\_\+\+Library/ac\+\_\+\+LG.h File Reference}
+\label{ac___l_g_8h}\index{main/IRRemote\_Library/ac\_LG.h@{main/IRRemote\_Library/ac\_LG.h}}
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+Include dependency graph for ac\+\_\+\+LG.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+union \mbox{\hyperlink{union_l_g_protocol}{LGProtocol}}
+\item 
+class \mbox{\hyperlink{class_aircondition___l_g}{Aircondition\+\_\+\+LG}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group___airconditoners_ga23c78d99597e1fb79900c2c2162703ed}{LG\+\_\+\+ADDRESS}}~0x88
+\item 
+\#define \mbox{\hyperlink{group___airconditoners_ga2e4ee6b0d489a06eb1115213bf8055ed}{LG\+\_\+\+SWITCH\+\_\+\+ON\+\_\+\+MASK}}~0x0800
+\item 
+\#define \mbox{\hyperlink{group___airconditoners_gaae2e0db9a5ce4151112a6906bfb1090c}{LG\+\_\+\+MODE\+\_\+\+COOLING}}~0x0800
+\item 
+\#define \mbox{\hyperlink{group___airconditoners_gac49c9a2cf24d0bac6724167416236498}{LG\+\_\+\+MODE\+\_\+\+DEHUMIDIFIYING}}~0x0990
+\item 
+\#define \mbox{\hyperlink{group___airconditoners_gae82f0963f74d72085d63857a33a8abfe}{LG\+\_\+\+MODE\+\_\+\+FAN}}~0x0\+A30
+\item 
+\#define \mbox{\hyperlink{group___airconditoners_ga7474777d5b8f60c2871b141c4c8febdc}{LG\+\_\+\+MODE\+\_\+\+AUTO}}~0x0\+B00
+\item 
+\#define \mbox{\hyperlink{group___airconditoners_ga49b7354b9ea838746bd12d44a73cbbfe}{LG\+\_\+\+MODE\+\_\+\+HEATING}}~0x0\+C00
+\item 
+\#define \mbox{\hyperlink{group___airconditoners_ga50a68c01f30d77719bd0965849eb9432}{LG\+\_\+\+ENERGY\+\_\+\+SAVING\+\_\+\+ON}}~0x1004
+\item 
+\#define \mbox{\hyperlink{group___airconditoners_gaa04556b565d50612183d76a1cf17162a}{LG\+\_\+\+ENERGY\+\_\+\+SAVING\+\_\+\+OFF}}~0x1005
+\item 
+\#define \mbox{\hyperlink{group___airconditoners_gac832ef74f7acce9703cf4bfe3af9c62c}{LG\+\_\+\+JET\+\_\+\+ON}}~0x1008
+\item 
+\#define \mbox{\hyperlink{group___airconditoners_ga6e9da9436e1330717c4e521c3274f9e7}{LG\+\_\+\+WALL\+\_\+\+SWING\+\_\+\+ON}}~0x1314
+\item 
+\#define \mbox{\hyperlink{group___airconditoners_gac4018dd9d884ac5f47a72f8f97a30013}{LG\+\_\+\+WALL\+\_\+\+SWING\+\_\+\+OFF}}~0x1315
+\item 
+\#define \mbox{\hyperlink{group___airconditoners_gae2aa0cea45172493aff78b178429498b}{LG\+\_\+\+SWING\+\_\+\+ON}}~0x1316
+\item 
+\#define \mbox{\hyperlink{group___airconditoners_gae948545d5555a8e1661bf9ed84f8a5bd}{LG\+\_\+\+SWING\+\_\+\+OFF}}~0x1317
+\item 
+\#define \mbox{\hyperlink{group___airconditoners_ga0d3fa053a91e0ccdbf82607d6f191884}{LG\+\_\+\+TIMER\+\_\+\+ON}}~0x8000
+\item 
+\#define \mbox{\hyperlink{group___airconditoners_ga953e35300b777bf9b39ecb1c97fbe92b}{LG\+\_\+\+TIMER\+\_\+\+OFF}}~0x9000
+\item 
+\#define \mbox{\hyperlink{group___airconditoners_gafa12114ef5d9a8113d9b812e1c3f215d}{LG\+\_\+\+SLEEP}}~0x\+A000
+\item 
+\#define \mbox{\hyperlink{group___airconditoners_gabbff1ff71274f875aab9304e201697a9}{LG\+\_\+\+CLEAR\+\_\+\+ALL}}~0x\+B000
+\item 
+\#define \mbox{\hyperlink{group___airconditoners_gac55cb8592c8e9e1d0d9d47e8921862d0}{LG\+\_\+\+POWER\+\_\+\+DOWN}}~0x\+C005
+\item 
+\#define \mbox{\hyperlink{group___airconditoners_gafc7cc7b8e3f42b30e478d80f917c917c}{LG\+\_\+\+LIGHT}}~0x\+C00A
+\item 
+\#define \mbox{\hyperlink{group___airconditoners_ga3f6636d07bce14c9610e5acd74e4c32c}{LG\+\_\+\+AUTO\+\_\+\+CLEAN\+\_\+\+ON}}~0x\+C00B
+\item 
+\#define \mbox{\hyperlink{group___airconditoners_ga61b4e884ce7bb6f44749e52af3fe93dc}{LG\+\_\+\+AUTO\+\_\+\+CLEAN\+\_\+\+OFF}}~0x\+C00C
+\item 
+\#define \mbox{\hyperlink{group___airconditoners_ga24fd67c4d0d7bf87fd4a7d788070a226}{LG\+\_\+\+COMMAND\+\_\+\+OFF}}~\textquotesingle{}0\textquotesingle{}
+\item 
+\#define \mbox{\hyperlink{group___airconditoners_ga79162224c70f14abcb2a2dba386148c1}{LG\+\_\+\+COMMAND\+\_\+\+ON}}~\textquotesingle{}1\textquotesingle{}
+\item 
+\#define \mbox{\hyperlink{group___airconditoners_ga82d5b518dba56f050e6563f22d9c2206}{LG\+\_\+\+COMMAND\+\_\+\+SWING}}~\textquotesingle{}s\textquotesingle{}
+\item 
+\#define \mbox{\hyperlink{group___airconditoners_ga718a9952e98c9ff0db43168edff9f9e1}{LG\+\_\+\+COMMAND\+\_\+\+AUTO\+\_\+\+CLEAN}}~\textquotesingle{}a\textquotesingle{}
+\item 
+\#define \mbox{\hyperlink{group___airconditoners_ga64f924ab6a2a070627ca40bb8ea718a2}{LG\+\_\+\+COMMAND\+\_\+\+JET}}~\textquotesingle{}j\textquotesingle{}
+\item 
+\#define \mbox{\hyperlink{group___airconditoners_ga78b9d595527aac3bc74b16079f6a5875}{LG\+\_\+\+COMMAND\+\_\+\+ENERGY}}~\textquotesingle{}e\textquotesingle{}
+\item 
+\#define \mbox{\hyperlink{group___airconditoners_ga96e898832dfdd0788ba0d188eefed0c9}{LG\+\_\+\+COMMAND\+\_\+\+LIGHT}}~\textquotesingle{}l\textquotesingle{}
+\item 
+\#define \mbox{\hyperlink{group___airconditoners_ga7476ae7bbae7d8bbc85101df2481e928}{LG\+\_\+\+COMMAND\+\_\+\+FAN\+\_\+\+SPEED}}~\textquotesingle{}f\textquotesingle{}
+\item 
+\#define \mbox{\hyperlink{group___airconditoners_gaee4c1f6351dff61efa70ac0f59c301b9}{LG\+\_\+\+COMMAND\+\_\+\+TEMPERATURE}}~\textquotesingle{}t\textquotesingle{}
+\item 
+\#define \mbox{\hyperlink{group___airconditoners_ga26bce5b8f0b1f61c21135f7ce116bd0e}{LG\+\_\+\+COMMAND\+\_\+\+TEMPERATURE\+\_\+\+PLUS}}~\textquotesingle{}+\textquotesingle{}
+\item 
+\#define \mbox{\hyperlink{group___airconditoners_gad15f415d50b1f65322b15ea607d718d7}{LG\+\_\+\+COMMAND\+\_\+\+TEMPERATURE\+\_\+\+MINUS}}~\textquotesingle{}-\/\textquotesingle{}
+\item 
+\#define \mbox{\hyperlink{group___airconditoners_ga8da7f66cacc866d8f7e50bfe1b80bab1}{LG\+\_\+\+COMMAND\+\_\+\+MODE}}~\textquotesingle{}m\textquotesingle{}
+\item 
+\#define \mbox{\hyperlink{group___airconditoners_gaded0337c0d938ef82caaf8c2f1c59283}{LG\+\_\+\+COMMAND\+\_\+\+SLEEP}}~\textquotesingle{}S\textquotesingle{}
+\item 
+\#define \mbox{\hyperlink{group___airconditoners_ga414f526948aba8247f62b560d75834d6}{LG\+\_\+\+COMMAND\+\_\+\+TIMER\+\_\+\+ON}}~\textquotesingle{}T\textquotesingle{}
+\item 
+\#define \mbox{\hyperlink{group___airconditoners_ga2a765b54db1abe3e11c72f19feaa071f}{LG\+\_\+\+COMMAND\+\_\+\+TIMER\+\_\+\+OFF}}~\textquotesingle{}O\textquotesingle{}
+\item 
+\#define \mbox{\hyperlink{group___airconditoners_gaf1ec2778dd50f24b0eee7e2141a74de2}{LG\+\_\+\+COMMAND\+\_\+\+CLEAR\+\_\+\+ALL}}~\textquotesingle{}C\textquotesingle{}
+\item 
+\#define \mbox{\hyperlink{group___airconditoners_gad40cb179d8947abb261c66c4025d6f5c}{AC\+\_\+\+MODE\+\_\+\+COOLING}}~\textquotesingle{}c\textquotesingle{}
+\item 
+\#define \mbox{\hyperlink{group___airconditoners_ga3c73605f2e327ae30c0cb5cb90fdade5}{AC\+\_\+\+MODE\+\_\+\+DEHUMIDIFIYING}}~\textquotesingle{}d\textquotesingle{}
+\item 
+\#define \mbox{\hyperlink{group___airconditoners_gaa95639ff20eae994eac17c04cd1af46a}{AC\+\_\+\+MODE\+\_\+\+FAN}}~\textquotesingle{}f\textquotesingle{}
+\item 
+\#define \mbox{\hyperlink{group___airconditoners_ga5e3517bd87cdd71f3faedd5648f3869a}{AC\+\_\+\+MODE\+\_\+\+AUTO}}~\textquotesingle{}a\textquotesingle{}
+\item 
+\#define \mbox{\hyperlink{group___airconditoners_ga4d1f100bd13d68bbff9165cfeb1d011c}{AC\+\_\+\+MODE\+\_\+\+HEATING}}~\textquotesingle{}h\textquotesingle{}
+\item 
+\#define \mbox{\hyperlink{ac___l_g_8h_a2e8eafcea40ac8c271441c6828ab3650}{LG\+\_\+\+IS\+\_\+\+WALL\+\_\+\+TYPE}}~true
+\item 
+\#define \mbox{\hyperlink{ac___l_g_8h_af24e4af37feee6f77a7dbbf379b02705}{LG\+\_\+\+IS\+\_\+\+TOWER\+\_\+\+TYPE}}~false
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{ac___l_g_8h_af24e4af37feee6f77a7dbbf379b02705}\label{ac___l_g_8h_af24e4af37feee6f77a7dbbf379b02705}} 
+\index{ac\_LG.h@{ac\_LG.h}!LG\_IS\_TOWER\_TYPE@{LG\_IS\_TOWER\_TYPE}}
+\index{LG\_IS\_TOWER\_TYPE@{LG\_IS\_TOWER\_TYPE}!ac\_LG.h@{ac\_LG.h}}
+\doxysubsubsection{\texorpdfstring{LG\_IS\_TOWER\_TYPE}{LG\_IS\_TOWER\_TYPE}}
+{\footnotesize\ttfamily \#define LG\+\_\+\+IS\+\_\+\+TOWER\+\_\+\+TYPE~false}
+
+
+
+Definition at line \mbox{\hyperlink{ac___l_g_8h_source_l00126}{126}} of file \mbox{\hyperlink{ac___l_g_8h_source}{ac\+\_\+\+LG.\+h}}.
+
+\mbox{\Hypertarget{ac___l_g_8h_a2e8eafcea40ac8c271441c6828ab3650}\label{ac___l_g_8h_a2e8eafcea40ac8c271441c6828ab3650}} 
+\index{ac\_LG.h@{ac\_LG.h}!LG\_IS\_WALL\_TYPE@{LG\_IS\_WALL\_TYPE}}
+\index{LG\_IS\_WALL\_TYPE@{LG\_IS\_WALL\_TYPE}!ac\_LG.h@{ac\_LG.h}}
+\doxysubsubsection{\texorpdfstring{LG\_IS\_WALL\_TYPE}{LG\_IS\_WALL\_TYPE}}
+{\footnotesize\ttfamily \#define LG\+\_\+\+IS\+\_\+\+WALL\+\_\+\+TYPE~true}
+
+
+
+Definition at line \mbox{\hyperlink{ac___l_g_8h_source_l00125}{125}} of file \mbox{\hyperlink{ac___l_g_8h_source}{ac\+\_\+\+LG.\+h}}.
+

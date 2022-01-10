@@ -1,0 +1,304 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_i_rsend" xml:lang="en-US">
+<title>IRsend Class Reference</title>
+<indexterm><primary>IRsend</primary></indexterm>
+<para>
+<computeroutput>#include &lt;IRremoteInt.h&gt;</computeroutput>
+</para>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_group___sending_1ga047d9e3f47864869afaa5076579c9f63">IRsend</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_group___sending_1gabf55f45c8cfe3558053130bea46e7f14">IRsend</link> (uint8_t aSendPin)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___sending_1ga5f592984c8cda2db23aa533cd0d7e827">setSendPin</link> (uint8_t aSendPinNumber)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___sending_1ga28a0bb05c6b5d7330b2185c8447ef7a2">begin</link> (bool aEnableLEDFeedback, uint8_t aFeedbackLEDPin=<link linkend="__i_rremote_int_8h_1a575e74508c30d1ccf92f7e142a43dd3d">USE_DEFAULT_FEEDBACK_LED_PIN</link>)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___sending_1ga7db69257658d7ee780a5319bc463dbe9">begin</link> (uint8_t aSendPin)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___sending_1gaf2fb03ebe7de801ffc2c1ea0a7ea1cbf">begin</link> (uint8_t aSendPin, bool aEnableLEDFeedback, uint8_t aFeedbackLEDPin=<link linkend="__i_rremote_int_8h_1a575e74508c30d1ccf92f7e142a43dd3d">USE_DEFAULT_FEEDBACK_LED_PIN</link>)</para>
+</listitem>
+            <listitem><para>size_t <link linkend="_group___sending_1ga567f59869ebc6c7f53d0dc9b360dd4c3">write</link> (<link linkend="_struct_i_r_data">IRData</link> *aIRSendData, uint_fast8_t <link linkend="_class_i_rsend_1aff233b57d2382a713926797ce5da0fd3">aNumberOfRepeats</link>=<link linkend="__i_rremote_int_8h_1a5d35fb37031b53f0083f8b88ae3cf2c2">NO_REPEATS</link>)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___sending_1ga42c04af63d252b320c017ffa2bfc90e5">enableIROut</link> (uint8_t aFrequencyKHz)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___sending_1ga6904a411999a4c9f7306dba49851eb7b">sendPulseDistanceWidthData</link> (unsigned int aOneMarkMicros, unsigned int aOneSpaceMicros, unsigned int aZeroMarkMicros, unsigned int aZeroSpaceMicros, uint32_t aData, uint8_t aNumberOfBits, bool aMSBfirst, bool aSendStopBit=false)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___sending_1ga50162b158e0fa94b105d3717318b8b2c">sendBiphaseData</link> (unsigned int aBiphaseTimeUnit, uint32_t aData, uint_fast8_t aNumberOfBits)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___sending_1ga7328943560a5f60f4e9e13d677716674">mark</link> (unsigned int aMarkMicros)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___sending_1ga6a653dc4b2f718ce16a2ae87abdc2527">space</link> (unsigned int aSpaceMicros)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___sending_1ga5242741b8da4fbfaae237eee2b279dd0">IRLedOff</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___sending_1ga1c9027bc86e6a726295219ac11e06a1b">sendRaw</link> (const uint8_t aBufferWithTicks[], uint_fast8_t aLengthOfBuffer, uint_fast8_t aIRFrequencyKilohertz)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___sending_1gac351cb665bc0a5c863bc7a070b3aee4e">sendRaw_P</link> (const uint8_t aBufferWithTicks[], uint_fast8_t aLengthOfBuffer, uint_fast8_t aIRFrequencyKilohertz)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___sending_1gacdb18ddcfd936246e214e0a9519209bf">sendRaw</link> (const uint16_t aBufferWithMicroseconds[], uint_fast8_t aLengthOfBuffer, uint_fast8_t aIRFrequencyKilohertz)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___sending_1ga34540fe390a44b055bfea3da6a79008c">sendRaw_P</link> (const uint16_t aBufferWithMicroseconds[], uint_fast8_t aLengthOfBuffer, uint_fast8_t aIRFrequencyKilohertz)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___decoder_1ga56bfe794dedefda7cc2487301fe1f1f3">sendBoseWave</link> (uint8_t <link linkend="_class_i_rsend_1a5f5d819c72ce2f74395d14166e77c7cc">aCommand</link>, uint_fast8_t <link linkend="_class_i_rsend_1aff233b57d2382a713926797ce5da0fd3">aNumberOfRepeats</link>=<link linkend="__i_rremote_int_8h_1a5d35fb37031b53f0083f8b88ae3cf2c2">NO_REPEATS</link>)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___decoder_1ga342baabd2418ed33d6d847ea5f53f165">sendDenon</link> (uint8_t aAddress, uint8_t <link linkend="_class_i_rsend_1a5f5d819c72ce2f74395d14166e77c7cc">aCommand</link>, uint_fast8_t <link linkend="_class_i_rsend_1aff233b57d2382a713926797ce5da0fd3">aNumberOfRepeats</link>, bool aSendSharp=false)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___decoder_1ga24eb15e28a8cbfa9a19e106ebd736731">sendDenonRaw</link> (uint16_t aRawData, uint_fast8_t <link linkend="_class_i_rsend_1aff233b57d2382a713926797ce5da0fd3">aNumberOfRepeats</link>=0) <link linkend="_class_i_rsend_1a47ef75994f6381a6bfe8a715a6b8cdd5">__attribute__</link>((deprecated(&quot;Please use <link linkend="_group___decoder_1ga342baabd2418ed33d6d847ea5f53f165">sendDenon</link>(aAddress</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___decoder_1ga5b226cb8ff607ec666fbab236fcd1ec9">sendJVC</link> (uint8_t aAddress, uint8_t <link linkend="_class_i_rsend_1a5f5d819c72ce2f74395d14166e77c7cc">aCommand</link>, uint_fast8_t <link linkend="_class_i_rsend_1aff233b57d2382a713926797ce5da0fd3">aNumberOfRepeats</link>)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___decoder_1ga59c09c7300fa34bc136b7be9bdebe2b5">sendLGRepeat</link> (bool aUseLG2Protocol=false)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___decoder_1gaf5095df5a6598fe2651510e4a8d5e018">sendLG</link> (uint8_t aAddress, uint16_t <link linkend="_class_i_rsend_1a5f5d819c72ce2f74395d14166e77c7cc">aCommand</link>, uint_fast8_t <link linkend="_class_i_rsend_1aff233b57d2382a713926797ce5da0fd3">aNumberOfRepeats</link>, bool aIsRepeat=false, bool aUseLG2Protocol=false)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___decoder_1ga9f8683daf286269b2aafab5e86a8bfc1">sendLGRaw</link> (uint32_t aRawData, uint_fast8_t <link linkend="_class_i_rsend_1aff233b57d2382a713926797ce5da0fd3">aNumberOfRepeats</link>=0, bool aIsRepeat=false, bool aUseLG2Protocol=false)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___decoder_1gae8fff4f1d8703ca18ea85a15289dc44c">sendNECRepeat</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___decoder_1gacc081690ddf61dec5d3f1c55000da7f5">sendNEC</link> (uint16_t aAddress, uint8_t <link linkend="_class_i_rsend_1a5f5d819c72ce2f74395d14166e77c7cc">aCommand</link>, uint_fast8_t <link linkend="_class_i_rsend_1aff233b57d2382a713926797ce5da0fd3">aNumberOfRepeats</link>, bool aIsRepeat=false)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___decoder_1gaaeec0a3f8d592deee8746a5b06bc3454">sendNECRaw</link> (uint32_t aRawData, uint_fast8_t <link linkend="_class_i_rsend_1aff233b57d2382a713926797ce5da0fd3">aNumberOfRepeats</link>=0, bool aIsRepeat=false)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___decoder_1ga857b05f2b99e8b705cb6d00470c4e78b">sendOnkyo</link> (uint16_t aAddress, uint16_t <link linkend="_class_i_rsend_1a5f5d819c72ce2f74395d14166e77c7cc">aCommand</link>, uint_fast8_t <link linkend="_class_i_rsend_1aff233b57d2382a713926797ce5da0fd3">aNumberOfRepeats</link>, bool aIsRepeat=false)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___decoder_1ga15fbc8a08b929395d6be6549cb296db5">sendApple</link> (uint8_t aAddress, uint8_t <link linkend="_class_i_rsend_1a5f5d819c72ce2f74395d14166e77c7cc">aCommand</link>, uint_fast8_t <link linkend="_class_i_rsend_1aff233b57d2382a713926797ce5da0fd3">aNumberOfRepeats</link>, bool aIsRepeat=false)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___decoder_1ga4b61477c5bd7a32ec7d005d7bb88c610">sendKaseikyo</link> (uint16_t aAddress, uint8_t aData, uint_fast8_t <link linkend="_class_i_rsend_1aff233b57d2382a713926797ce5da0fd3">aNumberOfRepeats</link>, uint16_t aVendorCode)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___decoder_1gad3a14e1a94a402a4cbe0eeeded312173">sendPanasonic</link> (uint16_t aAddress, uint8_t aData, uint_fast8_t <link linkend="_class_i_rsend_1aff233b57d2382a713926797ce5da0fd3">aNumberOfRepeats</link>)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___decoder_1ga9c3687ea0ab26ce088bd2a8a0aa1f1c8">sendKaseikyo_Denon</link> (uint16_t aAddress, uint8_t aData, uint_fast8_t <link linkend="_class_i_rsend_1aff233b57d2382a713926797ce5da0fd3">aNumberOfRepeats</link>)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___decoder_1gaf42f22f1d83211811b4ec765d4dc0a7f">sendKaseikyo_Mitsubishi</link> (uint16_t aAddress, uint8_t aData, uint_fast8_t <link linkend="_class_i_rsend_1aff233b57d2382a713926797ce5da0fd3">aNumberOfRepeats</link>)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___decoder_1ga6fee66f189ae46afac1ebe876ffbbf58">sendKaseikyo_Sharp</link> (uint16_t aAddress, uint8_t aData, uint_fast8_t <link linkend="_class_i_rsend_1aff233b57d2382a713926797ce5da0fd3">aNumberOfRepeats</link>)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___decoder_1ga43bf86aaaa216292f8eb7d0941731241">sendKaseikyo_JVC</link> (uint16_t aAddress, uint8_t aData, uint_fast8_t <link linkend="_class_i_rsend_1aff233b57d2382a713926797ce5da0fd3">aNumberOfRepeats</link>)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___decoder_1ga55808fcce8aaf429ebbb1d34cb7f5ee5">sendRC5</link> (uint8_t aAddress, uint8_t <link linkend="_class_i_rsend_1a5f5d819c72ce2f74395d14166e77c7cc">aCommand</link>, uint_fast8_t <link linkend="_class_i_rsend_1aff233b57d2382a713926797ce5da0fd3">aNumberOfRepeats</link>, bool aEnableAutomaticToggle=true)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___decoder_1gad26a55d87f9f8cc64a77b4571ae79e5f">sendRC6</link> (uint8_t aAddress, uint8_t <link linkend="_class_i_rsend_1a5f5d819c72ce2f74395d14166e77c7cc">aCommand</link>, uint_fast8_t <link linkend="_class_i_rsend_1aff233b57d2382a713926797ce5da0fd3">aNumberOfRepeats</link>, bool aEnableAutomaticToggle=true)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___decoder_1ga4daa3f9a1c496072f2e17cdcf93f3906">sendSamsungRepeat</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___decoder_1ga5d194d783811b52669eb1c1ab17a3a0f">sendSamsung</link> (uint16_t aAddress, uint16_t <link linkend="_class_i_rsend_1a5f5d819c72ce2f74395d14166e77c7cc">aCommand</link>, uint_fast8_t <link linkend="_class_i_rsend_1aff233b57d2382a713926797ce5da0fd3">aNumberOfRepeats</link>, bool aIsRepeat=false)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___decoder_1ga81b608682a7f7f89e0b1fd00756bb714">sendSharp</link> (uint8_t aAddress, uint8_t <link linkend="_class_i_rsend_1a5f5d819c72ce2f74395d14166e77c7cc">aCommand</link>, uint_fast8_t <link linkend="_class_i_rsend_1aff233b57d2382a713926797ce5da0fd3">aNumberOfRepeats</link>)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___decoder_1ga64cfeb90c005e597c62586ea19b93b12">sendSony</link> (uint16_t aAddress, uint8_t <link linkend="_class_i_rsend_1a5f5d819c72ce2f74395d14166e77c7cc">aCommand</link>, uint_fast8_t <link linkend="_class_i_rsend_1aff233b57d2382a713926797ce5da0fd3">aNumberOfRepeats</link>, uint8_t numberOfBits=<link linkend="__i_r_protocol_8h_1a8a2dbf77031a92783a200b9902c8459b">SIRCS_12_PROTOCOL</link>)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___decoder_1gaa62e64650aaae09b6f001a53a31f00b8">sendLegoPowerFunctions</link> (uint8_t aChannel, uint8_t tCommand, uint8_t aMode, bool aDoSend5Times=true)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___decoder_1ga315bc3587e7c4aa15629155b66e52728">sendLegoPowerFunctions</link> (uint16_t aRawData, bool aDoSend5Times=true)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___decoder_1gaea94765ecf1af29cf323354be4d74538">sendLegoPowerFunctions</link> (uint16_t aRawData, uint8_t aChannel, bool aDoSend5Times=true)</para>
+</listitem>
+            <listitem><para>void <link linkend="_class_i_rsend_1a7baa10d355a9a694a7e3cce942ff9f59">sendMagiQuest</link> (uint32_t wand_id, uint16_t magnitude)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___decoder_1ga26830e1c38ef9caa1caedeb9e7dabb7a">sendPronto</link> (const __FlashStringHelper *str, uint_fast8_t <link linkend="_class_i_rsend_1aff233b57d2382a713926797ce5da0fd3">aNumberOfRepeats</link>=<link linkend="__i_rremote_int_8h_1a5d35fb37031b53f0083f8b88ae3cf2c2">NO_REPEATS</link>)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___decoder_1ga5174f63b73d3ba9fe997bdb98a4af0c5">sendPronto</link> (const char *prontoHexString, uint_fast8_t <link linkend="_class_i_rsend_1aff233b57d2382a713926797ce5da0fd3">aNumberOfRepeats</link>=<link linkend="__i_rremote_int_8h_1a5d35fb37031b53f0083f8b88ae3cf2c2">NO_REPEATS</link>)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___decoder_1ga4f221f872371078dd6d4f3ffa87b7b10">sendPronto</link> (const uint16_t *data, unsigned int length, uint_fast8_t <link linkend="_class_i_rsend_1aff233b57d2382a713926797ce5da0fd3">aNumberOfRepeats</link>=<link linkend="__i_rremote_int_8h_1a5d35fb37031b53f0083f8b88ae3cf2c2">NO_REPEATS</link>)</para>
+</listitem>
+            <listitem><para>void <link linkend="_class_i_rsend_1a1d8036a6e498c052b291a2871a3b1b94">sendShuzu</link> (uint16_t aAddress, uint8_t <link linkend="_class_i_rsend_1a5f5d819c72ce2f74395d14166e77c7cc">aCommand</link>, uint_fast8_t <link linkend="_class_i_rsend_1aff233b57d2382a713926797ce5da0fd3">aNumberOfRepeats</link>)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___decoder_1gab5a2c0a20071c7b37f0d1cd99680d513">sendDenon</link> (unsigned long data, int nbits)</para>
+</listitem>
+            <listitem><para>void <link linkend="_class_i_rsend_1ac8b3fe0ba492391c8f142281165accec">sendDISH</link> (unsigned long data, int nbits)</para>
+</listitem>
+            <listitem><para>void <link linkend="_class_i_rsend_1a623ebe3659a8600fd09ccd4391a632af">sendJVC</link> (unsigned long data, int nbits, bool repeat) <link linkend="_class_i_rsend_1a47ef75994f6381a6bfe8a715a6b8cdd5">__attribute__</link>((deprecated(&quot;This old function sends MSB first! Please use sendJVC(aAddress</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___decoder_1gae3ffaf23301bec85ca0c2c7499f484a3">sendJVCMSB</link> (unsigned long data, int nbits, bool repeat=false)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___decoder_1ga88ecc2eb801abf6aa1428cc0669abe94">sendLG</link> (unsigned long data, int nbits)</para>
+</listitem>
+            <listitem><para>void <link linkend="_class_i_rsend_1a2a6f485602665ff9556e2c1e4d456669">sendNEC</link> (uint32_t aRawData, uint8_t nbits) <link linkend="_class_i_rsend_1a47ef75994f6381a6bfe8a715a6b8cdd5">__attribute__</link>((deprecated(&quot;This old function sends MSB first! Please use sendNEC(aAddress</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___decoder_1ga0184d3edbfe2659b12fc157c3be0cd63">sendNECMSB</link> (uint32_t data, uint8_t nbits, bool repeat=false)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___decoder_1ga205cb2e4005389ce19e769b25002b2a2">sendPanasonic</link> (uint16_t aAddress, uint32_t aData) <link linkend="_class_i_rsend_1a47ef75994f6381a6bfe8a715a6b8cdd5">__attribute__</link>((deprecated(&quot;This old function sends MSB first! Please use sendPanasonic(aAddress</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___decoder_1ga6168e3ad4e47c657c9f3de0e5d7590b3">sendRC5</link> (uint32_t data, uint8_t nbits)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___decoder_1gaee1c9e1d8ab6dcf642d6707b4528385b">sendRC5ext</link> (uint8_t addr, uint8_t cmd, bool toggle)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___decoder_1gab2553414d8480f449762eb00a3ff7d6d">sendRC6</link> (uint32_t data, uint8_t nbits)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___decoder_1gae6bfe6af18c1bb7f34fda4338882b435">sendRC6</link> (uint64_t data, uint8_t nbits)</para>
+</listitem>
+            <listitem><para>void <link linkend="_class_i_rsend_1a50067887a95c401e98362e0c6f721f71">sendSharpRaw</link> (unsigned long data, int nbits)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___decoder_1ga0b0933040532b8c1cbc7cbf17ab7edb5">sendSharp</link> (unsigned int address, unsigned int command)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___decoder_1ga7b4ca49d8fceaf6ccfa26df2d1b553d5">sendSAMSUNG</link> (unsigned long data, int nbits)</para>
+</listitem>
+            <listitem><para><link linkend="_class_i_rsend_1a47ef75994f6381a6bfe8a715a6b8cdd5">__attribute__</link> ((deprecated(&quot;This old function sends MSB first! Please use <link linkend="_group___decoder_1ga5d194d783811b52669eb1c1ab17a3a0f">sendSamsung</link>().&quot;)))</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___decoder_1ga8d1abfc5910cf3f0964498e8bf22bd4e">sendSony</link> (unsigned long data, int nbits) <link linkend="_class_i_rsend_1a47ef75994f6381a6bfe8a715a6b8cdd5">__attribute__</link>((deprecated(&quot;This old function sends MSB first! Please use sendSony(aAddress</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___decoder_1ga8acfdbfc54f8b76d49acb799f5b40805">sendWhynter</link> (unsigned long data, int nbits)</para>
+</listitem>
+            <listitem><para>unsigned int <link linkend="_group___sending_1ga39034e110ba58c6a5effb7711801d74a">getPulseCorrectionNanos</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___sending_1ga78e52089f1ee53b3d080db7d8c25f798">customDelayMicroseconds</link> (unsigned long aMicroseconds)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Public Attributes    </title>
+        <itemizedlist>
+            <listitem><para>void <link linkend="_class_i_rsend_1a5f5d819c72ce2f74395d14166e77c7cc">aCommand</link></para>
+</listitem>
+            <listitem><para>void <link linkend="_class_i_rsend_1aff233b57d2382a713926797ce5da0fd3">aNumberOfRepeats</link></para>
+</listitem>
+            <listitem><para>uint8_t <link linkend="_class_i_rsend_1a39f9782dd884b804bcf0034ab71ac202">sendPin</link></para>
+</listitem>
+            <listitem><para>unsigned int <link linkend="_class_i_rsend_1a4793a33b9ac0066d198d6938d6dd2256">periodTimeMicros</link></para>
+</listitem>
+            <listitem><para>unsigned int <link linkend="_class_i_rsend_1a09e9265c2c7b55632d8c2feae4c08203">periodOnTimeMicros</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>Main class for sending IR signals </para>
+<para>
+Definition at line <link linkend="__i_rremote_int_8h_source_1l00427">427</link> of file <link linkend="__i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_class_i_rsend_1a47ef75994f6381a6bfe8a715a6b8cdd5"/><section>
+    <title>__attribute__()</title>
+<indexterm><primary>__attribute__</primary><secondary>IRsend</secondary></indexterm>
+<indexterm><primary>IRsend</primary><secondary>__attribute__</secondary></indexterm>
+<para><computeroutput>IRsend::__attribute__ ((deprecated(&quot;This old function sends MSB first! Please use <link linkend="_group___decoder_1ga5d194d783811b52669eb1c1ab17a3a0f">sendSamsung</link>().&quot;)) )</computeroutput></para></section>
+<anchor xml:id="_class_i_rsend_1ac8b3fe0ba492391c8f142281165accec"/><section>
+    <title>sendDISH()</title>
+<indexterm><primary>sendDISH</primary><secondary>IRsend</secondary></indexterm>
+<indexterm><primary>IRsend</primary><secondary>sendDISH</secondary></indexterm>
+<para><computeroutput>void IRsend::sendDISH (unsigned long data, int nbits)</computeroutput></para><para>
+Definition at line <link linkend="_ir___dish_8hpp_source_1l00034">34</link> of file <link linkend="_ir___dish_8hpp_source">ir_Dish.hpp</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="class_i_rsend_ac8b3fe0ba492391c8f142281165accec_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_i_rsend_1a623ebe3659a8600fd09ccd4391a632af"/><section>
+    <title>sendJVC()</title>
+<indexterm><primary>sendJVC</primary><secondary>IRsend</secondary></indexterm>
+<indexterm><primary>IRsend</primary><secondary>sendJVC</secondary></indexterm>
+<para><computeroutput>void IRsend::sendJVC (unsigned long data, int nbits, bool repeat)</computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="class_i_rsend_a623ebe3659a8600fd09ccd4391a632af_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_i_rsend_1a7baa10d355a9a694a7e3cce942ff9f59"/><section>
+    <title>sendMagiQuest()</title>
+<indexterm><primary>sendMagiQuest</primary><secondary>IRsend</secondary></indexterm>
+<indexterm><primary>IRsend</primary><secondary>sendMagiQuest</secondary></indexterm>
+<para><computeroutput>void IRsend::sendMagiQuest (uint32_t wand_id, uint16_t magnitude)</computeroutput></para><para>
+Definition at line <link linkend="_ir___magi_quest_8hpp_source_1l00088">88</link> of file <link linkend="_ir___magi_quest_8hpp_source">ir_MagiQuest.hpp</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="class_i_rsend_a7baa10d355a9a694a7e3cce942ff9f59_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_i_rsend_1a2a6f485602665ff9556e2c1e4d456669"/><section>
+    <title>sendNEC()</title>
+<indexterm><primary>sendNEC</primary><secondary>IRsend</secondary></indexterm>
+<indexterm><primary>IRsend</primary><secondary>sendNEC</secondary></indexterm>
+<para><computeroutput>void IRsend::sendNEC (uint32_t aRawData, uint8_t nbits)</computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="class_i_rsend_a2a6f485602665ff9556e2c1e4d456669_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_i_rsend_1a50067887a95c401e98362e0c6f721f71"/><section>
+    <title>sendSharpRaw()</title>
+<indexterm><primary>sendSharpRaw</primary><secondary>IRsend</secondary></indexterm>
+<indexterm><primary>IRsend</primary><secondary>sendSharpRaw</secondary></indexterm>
+<para><computeroutput>void IRsend::sendSharpRaw (unsigned long data, int nbits)</computeroutput></para></section>
+<anchor xml:id="_class_i_rsend_1a1d8036a6e498c052b291a2871a3b1b94"/><section>
+    <title>sendShuzu()</title>
+<indexterm><primary>sendShuzu</primary><secondary>IRsend</secondary></indexterm>
+<indexterm><primary>IRsend</primary><secondary>sendShuzu</secondary></indexterm>
+<para><computeroutput>void IRsend::sendShuzu (uint16_t aAddress, uint8_t aCommand, uint_fast8_t aNumberOfRepeats)</computeroutput></para><para>
+Definition at line <link linkend="_ir___template_8hpp_source_1l00168">168</link> of file <link linkend="_ir___template_8hpp_source">ir_Template.hpp</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="class_i_rsend_a1d8036a6e498c052b291a2871a3b1b94_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+<section>
+<title>Member Data Documentation</title>
+<anchor xml:id="_class_i_rsend_1a5f5d819c72ce2f74395d14166e77c7cc"/><section>
+    <title>aCommand</title>
+<indexterm><primary>aCommand</primary><secondary>IRsend</secondary></indexterm>
+<indexterm><primary>IRsend</primary><secondary>aCommand</secondary></indexterm>
+<para><computeroutput>void IRsend::aCommand</computeroutput></para><para>
+Definition at line <link linkend="__i_rremote_int_8h_source_1l00472">472</link> of file <link linkend="__i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<anchor xml:id="_class_i_rsend_1aff233b57d2382a713926797ce5da0fd3"/><section>
+    <title>aNumberOfRepeats</title>
+<indexterm><primary>aNumberOfRepeats</primary><secondary>IRsend</secondary></indexterm>
+<indexterm><primary>IRsend</primary><secondary>aNumberOfRepeats</secondary></indexterm>
+<para><computeroutput>void IRsend::aNumberOfRepeats</computeroutput></para><emphasis role="strong">Initial value:</emphasis><programlisting linenumbering="unnumbered">{
+&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_group___decoder_1gae3ffaf23301bec85ca0c2c7499f484a3">sendJVCMSB</link>(data,&#32;nbits,&#32;repeat)
+</programlisting><para>
+Definition at line <link linkend="__i_rremote_int_8h_source_1l00472">472</link> of file <link linkend="__i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<anchor xml:id="_class_i_rsend_1a09e9265c2c7b55632d8c2feae4c08203"/><section>
+    <title>periodOnTimeMicros</title>
+<indexterm><primary>periodOnTimeMicros</primary><secondary>IRsend</secondary></indexterm>
+<indexterm><primary>IRsend</primary><secondary>periodOnTimeMicros</secondary></indexterm>
+<para><computeroutput>unsigned int IRsend::periodOnTimeMicros</computeroutput></para><para>
+Definition at line <link linkend="__i_rremote_int_8h_source_1l00560">560</link> of file <link linkend="__i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<anchor xml:id="_class_i_rsend_1a4793a33b9ac0066d198d6938d6dd2256"/><section>
+    <title>periodTimeMicros</title>
+<indexterm><primary>periodTimeMicros</primary><secondary>IRsend</secondary></indexterm>
+<indexterm><primary>IRsend</primary><secondary>periodTimeMicros</secondary></indexterm>
+<para><computeroutput>unsigned int IRsend::periodTimeMicros</computeroutput></para><para>
+Definition at line <link linkend="__i_rremote_int_8h_source_1l00559">559</link> of file <link linkend="__i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<anchor xml:id="_class_i_rsend_1a39f9782dd884b804bcf0034ab71ac202"/><section>
+    <title>sendPin</title>
+<indexterm><primary>sendPin</primary><secondary>IRsend</secondary></indexterm>
+<indexterm><primary>IRsend</primary><secondary>sendPin</secondary></indexterm>
+<para><computeroutput>uint8_t IRsend::sendPin</computeroutput></para><para>
+Definition at line <link linkend="__i_rremote_int_8h_source_1l00557">557</link> of file <link linkend="__i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<para>
+The documentation for this class was generated from the following files:</para>
+main/IRRemote_Library/<link linkend="__i_rremote_int_8h">IRremoteInt.h</link>main/IRRemote_Library/<link linkend="_ir___bose_wave_8hpp">ir_BoseWave.hpp</link>main/IRRemote_Library/<link linkend="_ir___denon_8hpp">ir_Denon.hpp</link>main/IRRemote_Library/<link linkend="_ir___dish_8hpp">ir_Dish.hpp</link>main/IRRemote_Library/<link linkend="_ir___j_v_c_8hpp">ir_JVC.hpp</link>main/IRRemote_Library/<link linkend="_ir___kaseikyo_8hpp">ir_Kaseikyo.hpp</link>main/IRRemote_Library/<link linkend="_ir___lego_8hpp">ir_Lego.hpp</link>main/IRRemote_Library/<link linkend="_ir___l_g_8hpp">ir_LG.hpp</link>main/IRRemote_Library/<link linkend="_ir___magi_quest_8hpp">ir_MagiQuest.hpp</link>main/IRRemote_Library/<link linkend="_ir___n_e_c_8hpp">ir_NEC.hpp</link>main/IRRemote_Library/<link linkend="_ir___pronto_8hpp">ir_Pronto.hpp</link>main/IRRemote_Library/<link linkend="_ir___r_c5___r_c6_8hpp">ir_RC5_RC6.hpp</link>main/IRRemote_Library/<link linkend="_ir___samsung_8hpp">ir_Samsung.hpp</link>main/IRRemote_Library/<link linkend="_ir___sony_8hpp">ir_Sony.hpp</link>main/IRRemote_Library/<link linkend="_ir___template_8hpp">ir_Template.hpp</link>main/IRRemote_Library/<link linkend="_ir___whynter_8hpp">ir_Whynter.hpp</link>main/IRRemote_Library/<link linkend="__i_r_send_8hpp">IRSend.hpp</link></section>
+</section>

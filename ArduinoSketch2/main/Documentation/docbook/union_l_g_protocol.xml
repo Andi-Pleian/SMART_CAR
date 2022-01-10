@@ -1,0 +1,119 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_union_l_g_protocol" xml:lang="en-US">
+<title>LGProtocol Union Reference</title>
+<indexterm><primary>LGProtocol</primary></indexterm>
+<para>
+<computeroutput>#include &lt;ac_LG.h&gt;</computeroutput>
+</para>
+<simplesect>
+    <title>Public Attributes    </title>
+        <itemizedlist>
+            <listitem><para>uint32_t <link linkend="_union_l_g_protocol_1a3255b9b6a3069f7b749b98ed22bf5378">raw</link></para>
+
+<para>The state of the IR remote in IR code form. </para>
+</listitem>
+            <listitem><para>struct {</para>
+        <itemizedlist>
+            <listitem><para>   uint32_t <link linkend="_union_l_g_protocol_1a6c1424bd04a3616ec8c62d31dc03ee4b">Checksum</link>:4</para>
+</listitem>
+            <listitem><para>   uint32_t <link linkend="_union_l_g_protocol_1ad8132d6e5603d1eb3b51b28165fe3803">Fan</link>:3</para>
+</listitem>
+            <listitem><para>   uint32_t <link linkend="_union_l_g_protocol_1ac753a0d317bf2416c208ed23990c131f">FanExt</link>:1</para>
+</listitem>
+            <listitem><para>   uint32_t <link linkend="_union_l_g_protocol_1ae556c7e3100b062ec21581cbe61f126a">Temp</link>:4</para>
+</listitem>
+            <listitem><para>   uint32_t <link linkend="_union_l_g_protocol_1adea2990a6e13a31ecb6f8c70c0702543">Mode</link>:4</para>
+</listitem>
+            <listitem><para>   uint32_t <link linkend="_union_l_g_protocol_1ab0676c3c820e2fa00d117af76a6a4127">Function</link>:3</para>
+</listitem>
+            <listitem><para>   uint32_t <link linkend="_union_l_g_protocol_1ac4af7b6a94f13b8a7fb8f20e8bbe80ce">SwitchOnMask</link>:1</para>
+</listitem>
+            <listitem><para>   uint32_t <link linkend="_union_l_g_protocol_1ac12b1f007fa0ce8a728e1259256a3334">Signature</link>:8</para>
+</listitem>
+        </itemizedlist>
+</listitem>
+            <listitem><para>}; </para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+<para>
+Definition at line <link linkend="_ac___l_g_8h_source_1l00101">101</link> of file <link linkend="_ac___l_g_8h_source">ac_LG.h</link>.</para>
+</section>
+<section>
+<title>Member Data Documentation</title>
+<anchor xml:id="_union_l_g_protocol_1a8d09421b3d7260c675c7304c7b82f179"/><section>
+    <title></title>
+<para><computeroutput>struct  { ... }  LGProtocol::@1</computeroutput></para></section>
+<anchor xml:id="_union_l_g_protocol_1a6c1424bd04a3616ec8c62d31dc03ee4b"/><section>
+    <title>Checksum</title>
+<indexterm><primary>Checksum</primary><secondary>LGProtocol</secondary></indexterm>
+<indexterm><primary>LGProtocol</primary><secondary>Checksum</secondary></indexterm>
+<para><computeroutput>uint32_t LGProtocol::Checksum</computeroutput></para><para>
+Definition at line <link linkend="_ac___l_g_8h_source_1l00104">104</link> of file <link linkend="_ac___l_g_8h_source">ac_LG.h</link>.</para>
+</section>
+<anchor xml:id="_union_l_g_protocol_1ad8132d6e5603d1eb3b51b28165fe3803"/><section>
+    <title>Fan</title>
+<indexterm><primary>Fan</primary><secondary>LGProtocol</secondary></indexterm>
+<indexterm><primary>LGProtocol</primary><secondary>Fan</secondary></indexterm>
+<para><computeroutput>uint32_t LGProtocol::Fan</computeroutput></para><para>
+Definition at line <link linkend="_ac___l_g_8h_source_1l00105">105</link> of file <link linkend="_ac___l_g_8h_source">ac_LG.h</link>.</para>
+</section>
+<anchor xml:id="_union_l_g_protocol_1ac753a0d317bf2416c208ed23990c131f"/><section>
+    <title>FanExt</title>
+<indexterm><primary>FanExt</primary><secondary>LGProtocol</secondary></indexterm>
+<indexterm><primary>LGProtocol</primary><secondary>FanExt</secondary></indexterm>
+<para><computeroutput>uint32_t LGProtocol::FanExt</computeroutput></para><para>
+Definition at line <link linkend="_ac___l_g_8h_source_1l00106">106</link> of file <link linkend="_ac___l_g_8h_source">ac_LG.h</link>.</para>
+</section>
+<anchor xml:id="_union_l_g_protocol_1ab0676c3c820e2fa00d117af76a6a4127"/><section>
+    <title>Function</title>
+<indexterm><primary>Function</primary><secondary>LGProtocol</secondary></indexterm>
+<indexterm><primary>LGProtocol</primary><secondary>Function</secondary></indexterm>
+<para><computeroutput>uint32_t LGProtocol::Function</computeroutput></para><para>
+Definition at line <link linkend="_ac___l_g_8h_source_1l00109">109</link> of file <link linkend="_ac___l_g_8h_source">ac_LG.h</link>.</para>
+</section>
+<anchor xml:id="_union_l_g_protocol_1adea2990a6e13a31ecb6f8c70c0702543"/><section>
+    <title>Mode</title>
+<indexterm><primary>Mode</primary><secondary>LGProtocol</secondary></indexterm>
+<indexterm><primary>LGProtocol</primary><secondary>Mode</secondary></indexterm>
+<para><computeroutput>uint32_t LGProtocol::Mode</computeroutput></para><para>
+Definition at line <link linkend="_ac___l_g_8h_source_1l00108">108</link> of file <link linkend="_ac___l_g_8h_source">ac_LG.h</link>.</para>
+</section>
+<anchor xml:id="_union_l_g_protocol_1a3255b9b6a3069f7b749b98ed22bf5378"/><section>
+    <title>raw</title>
+<indexterm><primary>raw</primary><secondary>LGProtocol</secondary></indexterm>
+<indexterm><primary>LGProtocol</primary><secondary>raw</secondary></indexterm>
+<para><computeroutput>uint32_t LGProtocol::raw</computeroutput></para><para>
+
+<para>The state of the IR remote in IR code form. </para>
+</para>
+<para>
+Definition at line <link linkend="_ac___l_g_8h_source_1l00102">102</link> of file <link linkend="_ac___l_g_8h_source">ac_LG.h</link>.</para>
+</section>
+<anchor xml:id="_union_l_g_protocol_1ac12b1f007fa0ce8a728e1259256a3334"/><section>
+    <title>Signature</title>
+<indexterm><primary>Signature</primary><secondary>LGProtocol</secondary></indexterm>
+<indexterm><primary>LGProtocol</primary><secondary>Signature</secondary></indexterm>
+<para><computeroutput>uint32_t LGProtocol::Signature</computeroutput></para><para>
+Definition at line <link linkend="_ac___l_g_8h_source_1l00111">111</link> of file <link linkend="_ac___l_g_8h_source">ac_LG.h</link>.</para>
+</section>
+<anchor xml:id="_union_l_g_protocol_1ac4af7b6a94f13b8a7fb8f20e8bbe80ce"/><section>
+    <title>SwitchOnMask</title>
+<indexterm><primary>SwitchOnMask</primary><secondary>LGProtocol</secondary></indexterm>
+<indexterm><primary>LGProtocol</primary><secondary>SwitchOnMask</secondary></indexterm>
+<para><computeroutput>uint32_t LGProtocol::SwitchOnMask</computeroutput></para><para>
+Definition at line <link linkend="_ac___l_g_8h_source_1l00110">110</link> of file <link linkend="_ac___l_g_8h_source">ac_LG.h</link>.</para>
+</section>
+<anchor xml:id="_union_l_g_protocol_1ae556c7e3100b062ec21581cbe61f126a"/><section>
+    <title>Temp</title>
+<indexterm><primary>Temp</primary><secondary>LGProtocol</secondary></indexterm>
+<indexterm><primary>LGProtocol</primary><secondary>Temp</secondary></indexterm>
+<para><computeroutput>uint32_t LGProtocol::Temp</computeroutput></para><para>
+Definition at line <link linkend="_ac___l_g_8h_source_1l00107">107</link> of file <link linkend="_ac___l_g_8h_source">ac_LG.h</link>.</para>
+</section>
+<para>
+The documentation for this union was generated from the following file:</para>
+main/IRRemote_Library/<link linkend="_ac___l_g_8h">ac_LG.h</link></section>
+</section>

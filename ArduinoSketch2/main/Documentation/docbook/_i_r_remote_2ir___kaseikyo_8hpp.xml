@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="__i_r_remote_2ir___kaseikyo_8hpp" xml:lang="en-US">
+<title>main/IRRemote/ir_Kaseikyo.hpp File Reference</title>
+<indexterm><primary>main/IRRemote/ir_Kaseikyo.hpp</primary></indexterm>
+<programlisting linenumbering="unnumbered">#include &lt;Arduino.h&gt;
+#include &quot;IRremoteInt.h&quot;
+#include &quot;LongUnion.h&quot;
+</programlisting>Include dependency graph for ir_Kaseikyo.hpp:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="_i_r_remote_2ir___kaseikyo_8hpp__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+This graph shows which files directly or indirectly include this file:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="_i_r_remote_2ir___kaseikyo_8hpp__dep__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Macros    </title>
+        <itemizedlist>
+            <listitem><para>#define <link linkend="_group___decoder_1gaa40dc0f36a788a2347dd601eb421fac9">KASEIKYO_VENDOR_ID_BITS</link>   16</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga00026f9a2bcd232d4cb191b9e9ce9fdb">KASEIKYO_VENDOR_ID_PARITY_BITS</link>   4</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga2980cf86e2d6c0af8df3c7a29ff9468f">KASEIKYO_ADDRESS_BITS</link>   12</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga46f7e707bf79a6b1657bd29bfaaa7522">KASEIKYO_COMMAND_BITS</link>   8</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga4d69f0966b844257d734539d4547ea80">KASEIKYO_PARITY_BITS</link>   8</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga592fb0e33827b607bb6c43072526575c">KASEIKYO_BITS</link>   (<link linkend="_group___decoder_1gaa40dc0f36a788a2347dd601eb421fac9">KASEIKYO_VENDOR_ID_BITS</link> + <link linkend="_group___decoder_1ga00026f9a2bcd232d4cb191b9e9ce9fdb">KASEIKYO_VENDOR_ID_PARITY_BITS</link> + <link linkend="_group___decoder_1ga2980cf86e2d6c0af8df3c7a29ff9468f">KASEIKYO_ADDRESS_BITS</link> + <link linkend="_group___decoder_1ga46f7e707bf79a6b1657bd29bfaaa7522">KASEIKYO_COMMAND_BITS</link> + <link linkend="_group___decoder_1ga4d69f0966b844257d734539d4547ea80">KASEIKYO_PARITY_BITS</link>)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga902a330843509bcaff6a5f0bf4f38a9d">KASEIKYO_UNIT</link>   432</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1gaced5ece1bb2d810f20f6a02142181699">KASEIKYO_HEADER_MARK</link>   (8 * <link linkend="_group___decoder_1ga902a330843509bcaff6a5f0bf4f38a9d">KASEIKYO_UNIT</link>)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga5bad2bab824504b4289cf034c8070b60">KASEIKYO_HEADER_SPACE</link>   (4 * <link linkend="_group___decoder_1ga902a330843509bcaff6a5f0bf4f38a9d">KASEIKYO_UNIT</link>)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga69ea9935d680733cf8e37181e7df9184">KASEIKYO_BIT_MARK</link>   <link linkend="_group___decoder_1ga902a330843509bcaff6a5f0bf4f38a9d">KASEIKYO_UNIT</link></para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga70e2a773b7615e33846a98556ef5e43f">KASEIKYO_ONE_SPACE</link>   (3 * <link linkend="_group___decoder_1ga902a330843509bcaff6a5f0bf4f38a9d">KASEIKYO_UNIT</link>)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga11d27c9a23d42f44d941e0e9a678fcf5">KASEIKYO_ZERO_SPACE</link>   <link linkend="_group___decoder_1ga902a330843509bcaff6a5f0bf4f38a9d">KASEIKYO_UNIT</link></para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga96b2393ae13bd45c6b13074a27e800eb">KASEIKYO_AVERAGE_DURATION</link>   56000</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1gab8c7f8e151b67c06523fce7193dd5cdd">KASEIKYO_REPEAT_PERIOD</link>   130000</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga33bd304970bafe120a91b03a08718ff9">KASEIKYO_REPEAT_SPACE</link>   (<link linkend="_group___decoder_1gab8c7f8e151b67c06523fce7193dd5cdd">KASEIKYO_REPEAT_PERIOD</link> - <link linkend="_group___decoder_1ga96b2393ae13bd45c6b13074a27e800eb">KASEIKYO_AVERAGE_DURATION</link>)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1gab8e6b6ef29172f2a9f2e3690fcdac4f3">KASEIKYO_DATA_BITS</link>   32</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

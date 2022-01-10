@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DoxySettings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SettingsFile>Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\main\doxySettings.xml</SettingsFile>
+  <ProjectName>main</ProjectName>
+  <DoxyExePath>C:\Program Files\doxygen\bin\doxygen.exe</DoxyExePath>
+  <UseDefaultSettings>true</UseDefaultSettings>
+  <GenerateAsPartOfBuild>false</GenerateAsPartOfBuild>
+  <ConfigFilePath>Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\main\doxyfile</ConfigFilePath>
+  <OutputDirPath>Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\main\doxygen</OutputDirPath>
+  <Excluded>Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\main\IRRemote\private\IRFeedbackLEDDefs.h</Excluded>
+  <Excluded>Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\main\IRRemote\private\IRTimer.hpp</Excluded>
+  <Excluded>Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\main\IRRemote\ac_LG.h</Excluded>
+  <Excluded>Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\main\IRRemote\ac_LG.hpp</Excluded>
+  <Excluded>Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\main\IRRemote\digitalWriteFast.h</Excluded>
+  <Excluded>Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\main\IRRemote\ir_BoseWave.hpp</Excluded>
+  <Excluded>Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\main\IRRemote\ir_Denon.hpp</Excluded>
+  <Excluded>Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\main\IRRemote\ir_Dish.hpp</Excluded>
+  <Excluded>Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\main\IRRemote\ir_DistanceProtocol.hpp</Excluded>
+  <Excluded>Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\main\IRRemote\ir_JVC.hpp</Excluded>
+  <Excluded>Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\main\IRRemote\ir_Kaseikyo.hpp</Excluded>
+  <Excluded>Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\main\IRRemote\ir_Lego.hpp</Excluded>
+  <Excluded>Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\main\IRRemote\ir_LG.hpp</Excluded>
+  <Excluded>Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\main\IRRemote\ir_MagiQuest.hpp</Excluded>
+  <Excluded>Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\main\IRRemote\ir_NEC.hpp</Excluded>
+  <Excluded>Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\main\IRRemote\ir_Pronto.hpp</Excluded>
+  <Excluded>Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\main\IRRemote\ir_RC5_RC6.hpp</Excluded>
+  <Excluded>Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\main\IRRemote\ir_Samsung.hpp</Excluded>
+  <Excluded>Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\main\IRRemote\ir_Sony.hpp</Excluded>
+  <Excluded>Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\main\IRRemote\ir_Template.hpp</Excluded>
+  <Excluded>Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\main\IRRemote\ir_Whynter.hpp</Excluded>
+  <Excluded>Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\main\IRRemote\IRFeedbackLED.hpp</Excluded>
+  <Excluded>Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\main\IRRemote\IRProtocol.h</Excluded>
+  <Excluded>Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\main\IRRemote\IRReceive.hpp</Excluded>
+  <Excluded>Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\main\IRRemote\IRremote.h</Excluded>
+  <Excluded>Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\main\IRRemote\IRremote.hpp</Excluded>
+  <Excluded>Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\main\IRRemote\IRremoteInt.h</Excluded>
+  <Excluded>Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\main\IRRemote\IRSend.hpp</Excluded>
+  <Excluded>Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\main\IRRemote\LongUnion.h</Excluded>
+  <Excluded>Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\main\IRRemote\TinyIRReceiver.h</Excluded>
+  <Excluded>Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\main\IRRemote\TinyIRReceiver.hpp</Excluded>
+  <ShowErrorsAndWarnings>false</ShowErrorsAndWarnings>
+</DoxySettings>

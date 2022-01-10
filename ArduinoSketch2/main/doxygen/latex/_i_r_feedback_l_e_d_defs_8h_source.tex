@@ -1,0 +1,78 @@
+\hypertarget{_i_r_feedback_l_e_d_defs_8h_source}{}\doxysection{IRFeedback\+LEDDefs.\+h}
+\label{_i_r_feedback_l_e_d_defs_8h_source}\index{IRRemote/private/IRFeedbackLEDDefs.h@{IRRemote/private/IRFeedbackLEDDefs.h}}
+\mbox{\hyperlink{_i_r_feedback_l_e_d_defs_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#ifndef IRFeedbackLEDDefs\_h}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#define IRFeedbackLEDDefs\_h}}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#ifdef DOXYGEN}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#define FEEDBACK\_LED\_ON()   digitalWrite(LED\_BUILTIN, HIGH)}}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#define FEEDBACK\_LED\_OFF()  digitalWrite(LED\_BUILTIN, LOW)}}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28 \textcolor{comment}{// Sparkfun Pro Micro is \_\_AVR\_ATmega32U4\_\_ but has different external circuit}}
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#elif defined(ARDUINO\_AVR\_PROMICRO)}}
+\DoxyCodeLine{30 \textcolor{comment}{// We have no built in LED at pin 13 -\/> reuse RX LED}}
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#undef LED\_BUILTIN}}
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#define LED\_BUILTIN        LED\_BUILTIN\_RX}}
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#define FEEDBACK\_LED\_ON()   RXLED1}}
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#define FEEDBACK\_LED\_OFF()  RXLED0}}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36 \textcolor{comment}{// Arduino Leonardo + others}}
+\DoxyCodeLine{37 \textcolor{preprocessor}{\#elif defined(\_\_AVR\_ATmega32U4\_\_)}}
+\DoxyCodeLine{38 \textcolor{preprocessor}{\#define FEEDBACK\_LED\_ON()   (PORTC |= B10000000)}}
+\DoxyCodeLine{39 \textcolor{preprocessor}{\#define FEEDBACK\_LED\_OFF()  (PORTC \&= B01111111)}}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41 \textcolor{comment}{// Arduino Uno, Nano etc}}
+\DoxyCodeLine{42 \textcolor{preprocessor}{\#elif defined(\_\_AVR\_ATmega328P\_\_) || defined(\_\_AVR\_ATmega328PB\_\_) || defined(\_\_AVR\_ATmega168\_\_)}}
+\DoxyCodeLine{43 \textcolor{preprocessor}{\#define FEEDBACK\_LED\_ON()   (PORTB |= B00100000)}}
+\DoxyCodeLine{44 \textcolor{preprocessor}{\#define FEEDBACK\_LED\_OFF()  (PORTB \&= B11011111)}}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46 \textcolor{preprocessor}{\#elif defined(\_\_AVR\_ATmega1280\_\_) || defined(\_\_AVR\_ATmega2560\_\_)}}
+\DoxyCodeLine{47 \textcolor{preprocessor}{\#define LED\_BUILTIN        13}}
+\DoxyCodeLine{48 \textcolor{preprocessor}{\#define FEEDBACK\_LED\_ON()   (PORTB |= B10000000)}}
+\DoxyCodeLine{49 \textcolor{preprocessor}{\#define FEEDBACK\_LED\_OFF()  (PORTB \&= B01111111)}}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51 \textcolor{preprocessor}{\#elif defined(\_\_AVR\_ATmega644P\_\_) || defined(\_\_AVR\_ATmega644\_\_) || defined(\_\_AVR\_ATtiny88\_\_)}}
+\DoxyCodeLine{52 \textcolor{preprocessor}{\#define LED\_BUILTIN        0}}
+\DoxyCodeLine{53 \textcolor{preprocessor}{\#define FEEDBACK\_LED\_ON()   (PORTD |= B00000001)}}
+\DoxyCodeLine{54 \textcolor{preprocessor}{\#define FEEDBACK\_LED\_OFF()  (PORTD \&= B11111110)}}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56 \textcolor{comment}{// TinyCore boards}}
+\DoxyCodeLine{57 \textcolor{preprocessor}{\#elif defined(\_\_AVR\_ATtiny1616\_\_)  || defined(\_\_AVR\_ATtiny3216\_\_) || defined(\_\_AVR\_ATtiny3217\_\_)}}
+\DoxyCodeLine{58 \textcolor{comment}{// No LED available on the board, take LED\_BUILTIN which is also the DAC output}}
+\DoxyCodeLine{59 \textcolor{preprocessor}{\#define FEEDBACK\_LED\_ON()   (PORTC.OUTSET = \_BV(6))}}
+\DoxyCodeLine{60 \textcolor{preprocessor}{\#define FEEDBACK\_LED\_OFF()  (PORTC.OUTCLR = \_BV(6))}}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62 \textcolor{preprocessor}{\#elif defined(PARTICLE)}}
+\DoxyCodeLine{63 \textcolor{preprocessor}{\#define LED\_BUILTIN       D7}}
+\DoxyCodeLine{64 \textcolor{preprocessor}{\#define FEEDBACK\_LED\_ON()  digitalWrite(LED\_BUILTIN, 1)}}
+\DoxyCodeLine{65 \textcolor{preprocessor}{\#define FEEDBACK\_LED\_OFF() digitalWrite(LED\_BUILTIN, 0)}}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{67 \textcolor{comment}{// Arduino Zero and BluePill and ESP8266 have an LED which is active low}}
+\DoxyCodeLine{68 \textcolor{preprocessor}{\#elif defined(\_\_STM32F1\_\_) || defined(STM32F1xx) || defined(ESP8266)}}
+\DoxyCodeLine{69 \textcolor{preprocessor}{\#define FEEDBACK\_LED\_ON()   digitalWrite(LED\_BUILTIN, LOW)}}
+\DoxyCodeLine{70 \textcolor{preprocessor}{\#define FEEDBACK\_LED\_OFF()  digitalWrite(LED\_BUILTIN, HIGH)}}
+\DoxyCodeLine{71 }
+\DoxyCodeLine{72 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{73 \textcolor{comment}{/*}}
+\DoxyCodeLine{74 \textcolor{comment}{ * Default case suitable for most boards}}
+\DoxyCodeLine{75 \textcolor{comment}{ */}}
+\DoxyCodeLine{76 \textcolor{preprocessor}{\#  if defined(LED\_BUILTIN)}}
+\DoxyCodeLine{77 \textcolor{preprocessor}{\#define FEEDBACK\_LED\_ON()   digitalWrite(LED\_BUILTIN, HIGH)}}
+\DoxyCodeLine{78 \textcolor{preprocessor}{\#define FEEDBACK\_LED\_OFF()  digitalWrite(LED\_BUILTIN, LOW)}}
+\DoxyCodeLine{79 \textcolor{preprocessor}{\#  else}}
+\DoxyCodeLine{80 \textcolor{comment}{/*}}
+\DoxyCodeLine{81 \textcolor{comment}{ * print a warning}}
+\DoxyCodeLine{82 \textcolor{comment}{ */}}
+\DoxyCodeLine{83 \textcolor{preprocessor}{\#warning No definition for LED\_BUILTIN for default feedback LED found. Check private/IRFeedbackLEDDefs.h.}}
+\DoxyCodeLine{84 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{85 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{90 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// ! IRFeedbackLEDDefs\_h}}
+\DoxyCodeLine{91 }
+\DoxyCodeLine{92 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{93 }
+
+\end{DoxyCode}

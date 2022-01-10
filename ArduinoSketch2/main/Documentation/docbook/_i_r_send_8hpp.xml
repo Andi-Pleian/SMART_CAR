@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="__i_r_send_8hpp" xml:lang="en-US">
+<title>main/IRRemote_Library/IRSend.hpp File Reference</title>
+<indexterm><primary>main/IRRemote_Library/IRSend.hpp</primary></indexterm>
+<programlisting linenumbering="unnumbered">#include &quot;IRremoteInt.h&quot;
+</programlisting>Include dependency graph for IRSend.hpp:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="_i_r_send_8hpp__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+This graph shows which files directly or indirectly include this file:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="_i_r_send_8hpp__dep__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Macros    </title>
+        <itemizedlist>
+            <listitem><para>#define <link linkend="__i_r_send_8hpp_1a9bef074dfc5a83ffbb27929185ef9597">digitalWriteFast</link>   digitalWrite</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_send_8hpp_1a99fa3e1d72f2f1a9ffba996b06767a39">pinModeFast</link>   pinMode</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_group___sending_1ga47f39d9472487072fc80fedbc6b3e161">__attribute</link> ((error(&quot;Error: You must use begin(&lt;sendPin&gt;, &lt;EnableLEDFeedback&gt;, &lt;aFeedbackLEDPin&gt;) if IR_SEND_PIN and SEND_PWM_BY_TIMER are not defined or USE_NO_SEND_PWM is defined. To suppress this error, enable lto or activate the line #define SUPPRESS_ERROR_MESSAGE_FOR_BEGIN in IRremote.hpp.&quot;))) void beginUsageError()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Variables    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_i_rsend">IRsend</link> <link linkend="_group___sending_1gafba8232b747be85f72c1c4612780d5cf">IrSender</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Macro Definition Documentation</title>
+<anchor xml:id="__i_r_send_8hpp_1a9bef074dfc5a83ffbb27929185ef9597"/><section>
+    <title>digitalWriteFast</title>
+<indexterm><primary>digitalWriteFast</primary><secondary>IRSend.hpp</secondary></indexterm>
+<indexterm><primary>IRSend.hpp</primary><secondary>digitalWriteFast</secondary></indexterm>
+<para><computeroutput>#define digitalWriteFast   digitalWrite</computeroutput></para><para>
+Definition at line <link linkend="__i_r_send_8hpp_source_1l00040">40</link> of file <link linkend="__i_r_send_8hpp_source">IRSend.hpp</link>.</para>
+</section>
+<anchor xml:id="__i_r_send_8hpp_1a99fa3e1d72f2f1a9ffba996b06767a39"/><section>
+    <title>pinModeFast</title>
+<indexterm><primary>pinModeFast</primary><secondary>IRSend.hpp</secondary></indexterm>
+<indexterm><primary>IRSend.hpp</primary><secondary>pinModeFast</secondary></indexterm>
+<para><computeroutput>#define pinModeFast   pinMode</computeroutput></para><para>
+Definition at line <link linkend="__i_r_send_8hpp_source_1l00041">41</link> of file <link linkend="__i_r_send_8hpp_source">IRSend.hpp</link>.</para>
+</section>
+</section>
+</section>

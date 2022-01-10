@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="__i_r_remote___library_2ir___denon_8hpp" xml:lang="en-US">
+<title>main/IRRemote_Library/ir_Denon.hpp File Reference</title>
+<indexterm><primary>main/IRRemote_Library/ir_Denon.hpp</primary></indexterm>
+<programlisting linenumbering="unnumbered">#include &lt;Arduino.h&gt;
+#include &quot;IRremoteInt.h&quot;
+</programlisting>Include dependency graph for ir_Denon.hpp:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="_i_r_remote___library_2ir___denon_8hpp__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+This graph shows which files directly or indirectly include this file:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="_i_r_remote___library_2ir___denon_8hpp__dep__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Macros    </title>
+        <itemizedlist>
+            <listitem><para>#define <link linkend="_group___decoder_1ga0fa706b9b7b446be7508c1d42a287b87">DENON_ADDRESS_BITS</link>   5</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga90391cc9021f25e3db08a4ecb6a3ce5b">DENON_COMMAND_BITS</link>   8</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1gac4d956744c670f42909797aa1a9f66d2">DENON_FRAME_BITS</link>   2</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1gaf72e9c52e59ed81ef46bfd19a8b15613">DENON_BITS</link>   (<link linkend="_group___decoder_1ga0fa706b9b7b446be7508c1d42a287b87">DENON_ADDRESS_BITS</link> + <link linkend="_group___decoder_1ga90391cc9021f25e3db08a4ecb6a3ce5b">DENON_COMMAND_BITS</link> + <link linkend="_group___decoder_1gac4d956744c670f42909797aa1a9f66d2">DENON_FRAME_BITS</link>)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1gad25dca3fd4ddc00b460b66007be0b2bb">DENON_UNIT</link>   260</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1gaa1e687145d4c8b75ae218193b16ecc8d">DENON_BIT_MARK</link>   <link linkend="_group___decoder_1gad25dca3fd4ddc00b460b66007be0b2bb">DENON_UNIT</link></para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga8bf7f0f59510bb18534fc8766c9fe01e">DENON_ONE_SPACE</link>   (7 * <link linkend="_group___decoder_1gad25dca3fd4ddc00b460b66007be0b2bb">DENON_UNIT</link>)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga502f8eb1ebb964692c6593a580713064">DENON_ZERO_SPACE</link>   (3 * <link linkend="_group___decoder_1gad25dca3fd4ddc00b460b66007be0b2bb">DENON_UNIT</link>)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga2f1a46669381f4761b484d731a83997e">DENON_AUTO_REPEAT_SPACE</link>   45000</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1gadf29400cf8e1622f6bc747dff0944861">DENON_REPEAT_PERIOD</link>   110000</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga6dc27eb34cfad41af16ceb70357898da">DENON_HEADER_MARK</link>   <link linkend="_group___decoder_1gad25dca3fd4ddc00b460b66007be0b2bb">DENON_UNIT</link></para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1gaba7b22de3732ce2d613f16730f2477d8">DENON_HEADER_SPACE</link>   (3 * <link linkend="_group___decoder_1gad25dca3fd4ddc00b460b66007be0b2bb">DENON_UNIT</link>)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

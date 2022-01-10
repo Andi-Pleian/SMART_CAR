@@ -2,12 +2,19 @@
 <section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_dir_1f3340c269d12e8f50ab557a1817aed7" xml:lang="en-US">
 <title>main/Modules Directory Reference</title>
 <indexterm><primary>main/Modules Directory Reference</primary></indexterm>
+Directory dependency graph for Modules:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="dir_1f3340c269d12e8f50ab557a1817aed7_dep.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
 <simplesect>
     <title>Directories    </title>
         <itemizedlist>
             <listitem><para>directory <link linkend="_dir_5412c0b10749e0a7303571e7f7593e59">Actuators</link></para>
-</listitem>
-            <listitem><para>directory <link linkend="_dir_a4a7d6af41f06f9e556ec6ef0f5ab352">Project Header</link></para>
 </listitem>
             <listitem><para>directory <link linkend="_dir_a552b82537631c88a1c38dc034e8f5e4">Sensors</link></para>
 </listitem>

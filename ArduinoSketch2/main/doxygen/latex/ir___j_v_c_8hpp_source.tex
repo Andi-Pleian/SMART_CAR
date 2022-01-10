@@ -1,0 +1,233 @@
+\hypertarget{ir___j_v_c_8hpp_source}{}\doxysection{ir\+\_\+\+JVC.\+hpp}
+\label{ir___j_v_c_8hpp_source}\index{IRRemote/ir\_JVC.hpp@{IRRemote/ir\_JVC.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * ir\_JVC.hpp}}
+\DoxyCodeLine{3 \textcolor{comment}{ *}}
+\DoxyCodeLine{4 \textcolor{comment}{ *  Contains functions for receiving and sending JVC IR Protocol in "{}raw"{} and standard format with 8 bit address and 8 bit command}}
+\DoxyCodeLine{5 \textcolor{comment}{ *}}
+\DoxyCodeLine{6 \textcolor{comment}{ *  This file is part of Arduino-\/IRremote https://github.com/Arduino-\/IRremote/Arduino-\/IRremote.}}
+\DoxyCodeLine{7 \textcolor{comment}{ *}}
+\DoxyCodeLine{8 \textcolor{comment}{ ************************************************************************************}}
+\DoxyCodeLine{9 \textcolor{comment}{ * MIT License}}
+\DoxyCodeLine{10 \textcolor{comment}{ *}}
+\DoxyCodeLine{11 \textcolor{comment}{ * Copyright (c) 2017-\/2021 Kristian Lauszus, Armin Joachimsmeyer}}
+\DoxyCodeLine{12 \textcolor{comment}{ *}}
+\DoxyCodeLine{13 \textcolor{comment}{ * Permission is hereby granted, free of charge, to any person obtaining a copy}}
+\DoxyCodeLine{14 \textcolor{comment}{ * of this software and associated documentation files (the "{}Software"{}), to deal}}
+\DoxyCodeLine{15 \textcolor{comment}{ * in the Software without restriction, including without limitation the rights}}
+\DoxyCodeLine{16 \textcolor{comment}{ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell}}
+\DoxyCodeLine{17 \textcolor{comment}{ * copies of the Software, and to permit persons to whom the Software is furnished}}
+\DoxyCodeLine{18 \textcolor{comment}{ * to do so, subject to the following conditions:}}
+\DoxyCodeLine{19 \textcolor{comment}{ *}}
+\DoxyCodeLine{20 \textcolor{comment}{ * The above copyright notice and this permission notice shall be included in all}}
+\DoxyCodeLine{21 \textcolor{comment}{ * copies or substantial portions of the Software.}}
+\DoxyCodeLine{22 \textcolor{comment}{ *}}
+\DoxyCodeLine{23 \textcolor{comment}{ * THE SOFTWARE IS PROVIDED "{}AS IS"{}, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,}}
+\DoxyCodeLine{24 \textcolor{comment}{ * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A}}
+\DoxyCodeLine{25 \textcolor{comment}{ * PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT}}
+\DoxyCodeLine{26 \textcolor{comment}{ * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF}}
+\DoxyCodeLine{27 \textcolor{comment}{ * CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE}}
+\DoxyCodeLine{28 \textcolor{comment}{ * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.}}
+\DoxyCodeLine{29 \textcolor{comment}{ *}}
+\DoxyCodeLine{30 \textcolor{comment}{ ************************************************************************************}}
+\DoxyCodeLine{31 \textcolor{comment}{ */}}
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#ifndef IR\_JVC\_HPP}}
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#define IR\_JVC\_HPP}}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35 \textcolor{preprocessor}{\#include <Arduino.h>}}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37 \textcolor{comment}{//\#define DEBUG // Activate this for lots of lovely debug output from this decoder.}}
+\DoxyCodeLine{38 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_i_rremote_int_8h}{IRremoteInt.h}}"{}} \textcolor{comment}{// evaluates the DEBUG for IR\_DEBUG\_PRINT}}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{43 \textcolor{comment}{//==============================================================================}}
+\DoxyCodeLine{44 \textcolor{comment}{//                             JJJJJ  V   V   CCCC}}
+\DoxyCodeLine{45 \textcolor{comment}{//                               J    V   V  C}}
+\DoxyCodeLine{46 \textcolor{comment}{//                               J     V V   C}}
+\DoxyCodeLine{47 \textcolor{comment}{//                             J J     V V   C}}
+\DoxyCodeLine{48 \textcolor{comment}{//                              J       V     CCCC}}
+\DoxyCodeLine{49 \textcolor{comment}{//==============================================================================}}
+\DoxyCodeLine{50 \textcolor{comment}{// https://www.sbprojects.net/knowledge/ir/jvc.php}}
+\DoxyCodeLine{51 \textcolor{comment}{// http://www.hifi-\/remote.com/johnsfine/DecodeIR.html\#JVC}}
+\DoxyCodeLine{52 \textcolor{comment}{// IRP: \{38k,525\}<1,-\/1|1,-\/3>(16,-\/8,(D:8,F:8,1,-\/45)+)}}
+\DoxyCodeLine{53 \textcolor{comment}{// LSB first, 1 start bit + 8 bit address + 8 bit command + 1 stop bit.}}
+\DoxyCodeLine{54 \textcolor{comment}{// The JVC protocol repeats by skipping the header mark and space -\/> this leads to a poor repeat detection for JVC protocol.}}
+\DoxyCodeLine{55 \textcolor{preprocessor}{\#define JVC\_ADDRESS\_BITS      8 }\textcolor{comment}{// 8 bit address}}
+\DoxyCodeLine{56 \textcolor{preprocessor}{\#define JVC\_COMMAND\_BITS      8 }\textcolor{comment}{// Command}}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58 \textcolor{preprocessor}{\#define JVC\_BITS              (JVC\_ADDRESS\_BITS + JVC\_COMMAND\_BITS) }\textcolor{comment}{// 16 -\/ The number of bits in the protocol}}
+\DoxyCodeLine{59 \textcolor{preprocessor}{\#define JVC\_UNIT              526 }\textcolor{comment}{// 20 periods of 38 kHz (526.315789)}}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61 \textcolor{preprocessor}{\#define JVC\_HEADER\_MARK       (16 * JVC\_UNIT) }\textcolor{comment}{// 8400}}
+\DoxyCodeLine{62 \textcolor{preprocessor}{\#define JVC\_HEADER\_SPACE      (8 * JVC\_UNIT)  }\textcolor{comment}{// 4200}}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64 \textcolor{preprocessor}{\#define JVC\_BIT\_MARK          JVC\_UNIT        }\textcolor{comment}{// The length of a Bit:Mark}}
+\DoxyCodeLine{65 \textcolor{preprocessor}{\#define JVC\_ONE\_SPACE         (3 * JVC\_UNIT)  }\textcolor{comment}{// 1578 -\/ The length of a Bit:Space for 1's}}
+\DoxyCodeLine{66 \textcolor{preprocessor}{\#define JVC\_ZERO\_SPACE        JVC\_UNIT        }\textcolor{comment}{// The length of a Bit:Space for 0's}}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68 \textcolor{preprocessor}{\#define JVC\_REPEAT\_SPACE      (uint16\_t)(45 * JVC\_UNIT)  }\textcolor{comment}{// 23625 -\/ Commands are repeated with a distance of 23 ms for as long as the key on the remote control is held down.}}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{70 \textcolor{comment}{//+=============================================================================}}
+\DoxyCodeLine{71 \textcolor{comment}{// JVC does NOT repeat by sending a separate code (like NEC does).}}
+\DoxyCodeLine{72 \textcolor{comment}{// The JVC protocol repeats by skipping the header.}}
+\DoxyCodeLine{73 \textcolor{comment}{//}}
+\DoxyCodeLine{74 }
+\DoxyCodeLine{75 \textcolor{keywordtype}{void} IRsend::sendJVC(uint8\_t aAddress, uint8\_t aCommand, uint\_fast8\_t aNumberOfRepeats) \{}
+\DoxyCodeLine{76     \textcolor{comment}{// Set IR carrier frequency}}
+\DoxyCodeLine{77     \mbox{\hyperlink{group___sending_ga42c04af63d252b320c017ffa2bfc90e5}{enableIROut}}(JVC\_KHZ); \textcolor{comment}{// 38 kHz}}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{79     \textcolor{comment}{// Header}}
+\DoxyCodeLine{80     \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(JVC\_HEADER\_MARK);}
+\DoxyCodeLine{81     \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(JVC\_HEADER\_SPACE);}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{83     uint\_fast8\_t tNumberOfCommands = aNumberOfRepeats + 1;}
+\DoxyCodeLine{84     \textcolor{keywordflow}{while} (tNumberOfCommands > 0) \{}
+\DoxyCodeLine{85 }
+\DoxyCodeLine{86         \textcolor{comment}{// Address + command}}
+\DoxyCodeLine{87         \mbox{\hyperlink{group___sending_ga6904a411999a4c9f7306dba49851eb7b}{sendPulseDistanceWidthData}}(JVC\_BIT\_MARK, JVC\_ONE\_SPACE, JVC\_BIT\_MARK, JVC\_ZERO\_SPACE,}
+\DoxyCodeLine{88                 aAddress | (aCommand << JVC\_ADDRESS\_BITS), JVC\_BITS, PROTOCOL\_IS\_LSB\_FIRST, SEND\_STOP\_BIT);}
+\DoxyCodeLine{89 }
+\DoxyCodeLine{90         tNumberOfCommands-\/-\/;}
+\DoxyCodeLine{91         \textcolor{comment}{// skip last delay!}}
+\DoxyCodeLine{92         \textcolor{keywordflow}{if} (tNumberOfCommands > 0) \{}
+\DoxyCodeLine{93             \textcolor{comment}{// send repeated command in a fixed raster}}
+\DoxyCodeLine{94             delay(JVC\_REPEAT\_SPACE / MICROS\_IN\_ONE\_MILLI);}
+\DoxyCodeLine{95         \}}
+\DoxyCodeLine{96     \}}
+\DoxyCodeLine{97 \}}
+\DoxyCodeLine{98 }
+\DoxyCodeLine{99 \textcolor{comment}{/*}}
+\DoxyCodeLine{100 \textcolor{comment}{ * First check for right data length}}
+\DoxyCodeLine{101 \textcolor{comment}{ * Next check start bit}}
+\DoxyCodeLine{102 \textcolor{comment}{ * Next try the decode}}
+\DoxyCodeLine{103 \textcolor{comment}{ */}}
+\DoxyCodeLine{104 \textcolor{keywordtype}{bool} IRrecv::decodeJVC() \{}
+\DoxyCodeLine{105 }
+\DoxyCodeLine{106     \textcolor{comment}{// Check we have the right amount of data (36 or 34). The +4 is for initial gap, start bit mark and space + stop bit mark. +2 is for repeats}}
+\DoxyCodeLine{107     \textcolor{keywordflow}{if} (decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_af0571ac479d1c38c79502651b0631432}{rawlen}} != ((2 * JVC\_BITS) + 4) \&\& decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_af0571ac479d1c38c79502651b0631432}{rawlen}} != ((2 * JVC\_BITS) + 2)) \{}
+\DoxyCodeLine{108         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(F(\textcolor{stringliteral}{"{}JVC: "{}}));}
+\DoxyCodeLine{109         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(\textcolor{stringliteral}{"{}Data length="{}});}
+\DoxyCodeLine{110         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_af0571ac479d1c38c79502651b0631432}{rawlen}});}
+\DoxyCodeLine{111         \mbox{\hyperlink{_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{} is not 34 or 36"{}});}
+\DoxyCodeLine{112         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{113     \}}
+\DoxyCodeLine{114 }
+\DoxyCodeLine{115     \textcolor{keywordflow}{if} (decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_af0571ac479d1c38c79502651b0631432}{rawlen}} == ((2 * JVC\_BITS) + 2)) \{}
+\DoxyCodeLine{116         \textcolor{comment}{/*}}
+\DoxyCodeLine{117 \textcolor{comment}{         * Check for repeat}}
+\DoxyCodeLine{118 \textcolor{comment}{         * Check leading space and first and last mark length}}
+\DoxyCodeLine{119 \textcolor{comment}{         */}}
+\DoxyCodeLine{120         \textcolor{keywordflow}{if} (decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_a7aa7b811dcc0fb5ab0da7c0bddaf97f8}{rawbuf}}[0] < ((JVC\_REPEAT\_SPACE + (JVC\_REPEAT\_SPACE / 4) / \mbox{\hyperlink{_i_rremote_int_8h_a1c7eebb527483c272812530caa313d20}{MICROS\_PER\_TICK}}))}
+\DoxyCodeLine{121                 \&\& \mbox{\hyperlink{group___receiving_ga4472564ea96b1ee10b51f594f60d7aeb}{matchMark}}(decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_a7aa7b811dcc0fb5ab0da7c0bddaf97f8}{rawbuf}}[1], JVC\_BIT\_MARK)}
+\DoxyCodeLine{122                 \&\& \mbox{\hyperlink{group___receiving_ga4472564ea96b1ee10b51f594f60d7aeb}{matchMark}}(decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_a7aa7b811dcc0fb5ab0da7c0bddaf97f8}{rawbuf}}[decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_af0571ac479d1c38c79502651b0631432}{rawlen}} -\/ 1], JVC\_BIT\_MARK)) \{}
+\DoxyCodeLine{123             \textcolor{comment}{/*}}
+\DoxyCodeLine{124 \textcolor{comment}{             * We have a repeat here, so do not check for start bit}}
+\DoxyCodeLine{125 \textcolor{comment}{             */}}
+\DoxyCodeLine{126             decodedIRData.\mbox{\hyperlink{struct_i_r_data_aaaad48fc0d90e5c6daec601987848a51}{flags}} = IRDATA\_FLAGS\_IS\_REPEAT | IRDATA\_FLAGS\_IS\_LSB\_FIRST;}
+\DoxyCodeLine{127             decodedIRData.\mbox{\hyperlink{struct_i_r_data_a1255a5b7d704d34fda83dcabcb903d4c}{address}} = lastDecodedAddress;}
+\DoxyCodeLine{128             decodedIRData.\mbox{\hyperlink{struct_i_r_data_ab0ce2b36765ea429e8c4bfa0706a45e7}{command}} = lastDecodedCommand;}
+\DoxyCodeLine{129             decodedIRData.\mbox{\hyperlink{struct_i_r_data_a703592faec26bab5cbe465f53ef14245}{protocol}} = JVC;}
+\DoxyCodeLine{130         \}}
+\DoxyCodeLine{131     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{132 }
+\DoxyCodeLine{133         \textcolor{comment}{// Check header "{}mark"{} and "{}space"{}}}
+\DoxyCodeLine{134         \textcolor{keywordflow}{if} (!\mbox{\hyperlink{group___receiving_ga4472564ea96b1ee10b51f594f60d7aeb}{matchMark}}(decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_a7aa7b811dcc0fb5ab0da7c0bddaf97f8}{rawbuf}}[1], JVC\_HEADER\_MARK)}
+\DoxyCodeLine{135                 || !\mbox{\hyperlink{group___receiving_ga7902b620f6c01463b5b6e50ef604ac8b}{matchSpace}}(decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_a7aa7b811dcc0fb5ab0da7c0bddaf97f8}{rawbuf}}[2], JVC\_HEADER\_SPACE)) \{}
+\DoxyCodeLine{136             \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(\textcolor{stringliteral}{"{}JVC: "{}});}
+\DoxyCodeLine{137             \mbox{\hyperlink{_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}Header mark or space length is wrong"{}});}
+\DoxyCodeLine{138             \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{139         \}}
+\DoxyCodeLine{140 }
+\DoxyCodeLine{141         \textcolor{keywordflow}{if} (!\mbox{\hyperlink{group___receiving_gaf8c9cdb5f7280043a552f22265bdb2d5}{decodePulseDistanceData}}(JVC\_BITS, 3, JVC\_BIT\_MARK, JVC\_ONE\_SPACE, JVC\_ZERO\_SPACE, PROTOCOL\_IS\_LSB\_FIRST)) \{}
+\DoxyCodeLine{142             \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(F(\textcolor{stringliteral}{"{}JVC: "{}}));}
+\DoxyCodeLine{143             \mbox{\hyperlink{_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(F(\textcolor{stringliteral}{"{}Decode failed"{}}));}
+\DoxyCodeLine{144             \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{145         \}}
+\DoxyCodeLine{146 }
+\DoxyCodeLine{147         \textcolor{comment}{// Success}}
+\DoxyCodeLine{148 \textcolor{comment}{//    decodedIRData.flags = IRDATA\_FLAGS\_IS\_LSB\_FIRST; // Not required, since this is the start value}}
+\DoxyCodeLine{149         uint8\_t tCommand = decodedIRData.\mbox{\hyperlink{struct_i_r_data_aeca55ebf36bf919312a933597b8734d8}{decodedRawData}} >> JVC\_ADDRESS\_BITS;  \textcolor{comment}{// upper 8 bits of LSB first value}}
+\DoxyCodeLine{150         uint8\_t tAddress = decodedIRData.\mbox{\hyperlink{struct_i_r_data_aeca55ebf36bf919312a933597b8734d8}{decodedRawData}} \& 0xFF;    \textcolor{comment}{// lowest 8 bit of LSB first value}}
+\DoxyCodeLine{151 }
+\DoxyCodeLine{152         decodedIRData.\mbox{\hyperlink{struct_i_r_data_ab0ce2b36765ea429e8c4bfa0706a45e7}{command}} = tCommand;}
+\DoxyCodeLine{153         decodedIRData.\mbox{\hyperlink{struct_i_r_data_a1255a5b7d704d34fda83dcabcb903d4c}{address}} = tAddress;}
+\DoxyCodeLine{154         decodedIRData.\mbox{\hyperlink{struct_i_r_data_a945c41b8463a36cf00b0f38b0aa73200}{numberOfBits}} = JVC\_BITS;}
+\DoxyCodeLine{155         decodedIRData.\mbox{\hyperlink{struct_i_r_data_a703592faec26bab5cbe465f53ef14245}{protocol}} = JVC;}
+\DoxyCodeLine{156     \}}
+\DoxyCodeLine{157 }
+\DoxyCodeLine{158     \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{159 \}}
+\DoxyCodeLine{160 }
+\DoxyCodeLine{161 \textcolor{keywordtype}{bool} IRrecv::decodeJVCMSB(\mbox{\hyperlink{structdecode__results}{decode\_results}} *aResults) \{}
+\DoxyCodeLine{162     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} offset = 1; \textcolor{comment}{// Skip first space}}
+\DoxyCodeLine{163 }
+\DoxyCodeLine{164     \textcolor{comment}{// Check for repeat}}
+\DoxyCodeLine{165     \textcolor{keywordflow}{if} ((aResults-\/>rawlen -\/ 1 == 33) \&\& \mbox{\hyperlink{group___receiving_ga4472564ea96b1ee10b51f594f60d7aeb}{matchMark}}(aResults-\/>rawbuf[offset], JVC\_BIT\_MARK)}
+\DoxyCodeLine{166             \&\& \mbox{\hyperlink{group___receiving_ga4472564ea96b1ee10b51f594f60d7aeb}{matchMark}}(aResults-\/>rawbuf[aResults-\/>rawlen -\/ 1], JVC\_BIT\_MARK)) \{}
+\DoxyCodeLine{167         aResults-\/>bits = 0;}
+\DoxyCodeLine{168         aResults-\/>value = 0xFFFFFFFF;}
+\DoxyCodeLine{169         decodedIRData.\mbox{\hyperlink{struct_i_r_data_aaaad48fc0d90e5c6daec601987848a51}{flags}} = IRDATA\_FLAGS\_IS\_REPEAT;}
+\DoxyCodeLine{170         decodedIRData.\mbox{\hyperlink{struct_i_r_data_a703592faec26bab5cbe465f53ef14245}{protocol}} = JVC;}
+\DoxyCodeLine{171         \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{172     \}}
+\DoxyCodeLine{173 }
+\DoxyCodeLine{174     \textcolor{comment}{// Initial mark}}
+\DoxyCodeLine{175     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{group___receiving_ga4472564ea96b1ee10b51f594f60d7aeb}{matchMark}}(aResults-\/>rawbuf[offset], JVC\_HEADER\_MARK)) \{}
+\DoxyCodeLine{176         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{177     \}}
+\DoxyCodeLine{178     offset++;}
+\DoxyCodeLine{179 }
+\DoxyCodeLine{180     \textcolor{comment}{// Check we have enough data -\/ +3 for start bit mark and space + stop bit mark}}
+\DoxyCodeLine{181     \textcolor{keywordflow}{if} (aResults-\/>rawlen <= (2 * JVC\_BITS) + 3) \{}
+\DoxyCodeLine{182         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(\textcolor{stringliteral}{"{}Data length="{}});}
+\DoxyCodeLine{183         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(aResults-\/>rawlen);}
+\DoxyCodeLine{184         \mbox{\hyperlink{_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{} is too small. >= 36 is required."{}});}
+\DoxyCodeLine{185 }
+\DoxyCodeLine{186         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{187     \}}
+\DoxyCodeLine{188 }
+\DoxyCodeLine{189     \textcolor{comment}{// Initial space}}
+\DoxyCodeLine{190     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{group___receiving_ga7902b620f6c01463b5b6e50ef604ac8b}{matchSpace}}(aResults-\/>rawbuf[offset], JVC\_HEADER\_SPACE)) \{}
+\DoxyCodeLine{191         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{192     \}}
+\DoxyCodeLine{193     offset++;}
+\DoxyCodeLine{194 }
+\DoxyCodeLine{195     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{group___receiving_gaf8c9cdb5f7280043a552f22265bdb2d5}{decodePulseDistanceData}}(JVC\_BITS, offset, JVC\_BIT\_MARK, JVC\_ONE\_SPACE, JVC\_ZERO\_SPACE, PROTOCOL\_IS\_MSB\_FIRST)) \{}
+\DoxyCodeLine{196         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{197     \}}
+\DoxyCodeLine{198 }
+\DoxyCodeLine{199     \textcolor{comment}{// Stop bit}}
+\DoxyCodeLine{200     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{group___receiving_ga4472564ea96b1ee10b51f594f60d7aeb}{matchMark}}(aResults-\/>rawbuf[offset + (2 * JVC\_BITS)], JVC\_BIT\_MARK)) \{}
+\DoxyCodeLine{201         \mbox{\hyperlink{_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(F(\textcolor{stringliteral}{"{}Stop bit mark length is wrong"{}}));}
+\DoxyCodeLine{202         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{203     \}}
+\DoxyCodeLine{204 }
+\DoxyCodeLine{205     \textcolor{comment}{// Success}}
+\DoxyCodeLine{206     aResults-\/>value = decodedIRData.\mbox{\hyperlink{struct_i_r_data_aeca55ebf36bf919312a933597b8734d8}{decodedRawData}};}
+\DoxyCodeLine{207     aResults-\/>bits = JVC\_BITS;}
+\DoxyCodeLine{208     aResults-\/>decode\_type = JVC;}
+\DoxyCodeLine{209     decodedIRData.\mbox{\hyperlink{struct_i_r_data_a703592faec26bab5cbe465f53ef14245}{protocol}} = JVC;}
+\DoxyCodeLine{210 }
+\DoxyCodeLine{211     \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{212 \}}
+\DoxyCodeLine{213 }
+\DoxyCodeLine{224 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___decoder_gae3ffaf23301bec85ca0c2c7499f484a3}{IRsend::sendJVCMSB}}(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} data, \textcolor{keywordtype}{int} nbits, \textcolor{keywordtype}{bool} repeat) \{}
+\DoxyCodeLine{225     \textcolor{comment}{// Set IR carrier frequency}}
+\DoxyCodeLine{226     \mbox{\hyperlink{group___sending_ga42c04af63d252b320c017ffa2bfc90e5}{enableIROut}}(JVC\_KHZ);}
+\DoxyCodeLine{227 }
+\DoxyCodeLine{228     \textcolor{comment}{// Only send the Header if this is NOT a repeat command}}
+\DoxyCodeLine{229     \textcolor{keywordflow}{if} (!repeat) \{}
+\DoxyCodeLine{230         \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(JVC\_HEADER\_MARK);}
+\DoxyCodeLine{231         \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(JVC\_HEADER\_SPACE);}
+\DoxyCodeLine{232     \}}
+\DoxyCodeLine{233 }
+\DoxyCodeLine{234     \textcolor{comment}{// Old version with MSB first Data}}
+\DoxyCodeLine{235     \mbox{\hyperlink{group___sending_ga6904a411999a4c9f7306dba49851eb7b}{sendPulseDistanceWidthData}}(JVC\_BIT\_MARK, JVC\_ONE\_SPACE, JVC\_BIT\_MARK, JVC\_ZERO\_SPACE, data, nbits, PROTOCOL\_IS\_MSB\_FIRST,}
+\DoxyCodeLine{236     SEND\_STOP\_BIT);}
+\DoxyCodeLine{237 \}}
+\DoxyCodeLine{238 }
+\DoxyCodeLine{240 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{241 \textcolor{preprocessor}{\#pragma once}}
+
+\end{DoxyCode}

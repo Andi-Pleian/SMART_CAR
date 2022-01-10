@@ -1,0 +1,102 @@
+\hypertarget{_tiny_i_r_receiver_8h_source}{}\doxysection{Tiny\+IRReceiver.\+h}
+\label{_tiny_i_r_receiver_8h_source}\index{main/IRRemote\_Library/TinyIRReceiver.h@{main/IRRemote\_Library/TinyIRReceiver.h}}
+\mbox{\hyperlink{_tiny_i_r_receiver_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00001}00001 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00002}00002 \textcolor{comment}{ *  TinyIRReceiver.h}}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00003}00003 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00004}00004 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00005}00005 \textcolor{comment}{ *  Copyright (C) 2021  Armin Joachimsmeyer}}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00006}00006 \textcolor{comment}{ *  armin.joachimsmeyer@gmail.com}}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00007}00007 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00008}00008 \textcolor{comment}{ *  This file is part of IRMP https://github.com/ukw100/IRMP.}}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00009}00009 \textcolor{comment}{ *  This file is part of Arduino-\/IRremote https://github.com/Arduino-\/IRremote/Arduino-\/IRremote.}}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00010}00010 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00011}00011 \textcolor{comment}{ *  TinyIRReceiver is free software: you can redistribute it and/or modify}}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00012}00012 \textcolor{comment}{ *  it under the terms of the GNU General Public License as published by}}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00013}00013 \textcolor{comment}{ *  the Free Software Foundation, either version 3 of the License, or}}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00014}00014 \textcolor{comment}{ *  (at your option) any later version.}}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00015}00015 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00016}00016 \textcolor{comment}{ *  This program is distributed in the hope that it will be useful,}}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00017}00017 \textcolor{comment}{ *  but WITHOUT ANY WARRANTY; without even the implied warranty of}}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00018}00018 \textcolor{comment}{ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the}}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00019}00019 \textcolor{comment}{ *  GNU General Public License for more details.}}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00020}00020 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00021}00021 \textcolor{comment}{ *  You should have received a copy of the GNU General Public License}}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00022}00022 \textcolor{comment}{ *  along with this program.  If not, see <http://www.gnu.org/licenses/gpl.html>.}}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00023}00023 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00024}00024 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00025}00025 }
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00026}00026 \textcolor{preprocessor}{\#ifndef TINY\_IR\_RECEIVER\_H}}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00027}00027 \textcolor{preprocessor}{\#define TINY\_IR\_RECEIVER\_H}}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00028}00028 }
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00029}00029 \textcolor{preprocessor}{\#include <Arduino.h>}}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00030}00030 }
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00031}00031 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_long_union_8h}{LongUnion.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00032}00032 }
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00037}00037 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00038}00038 \textcolor{comment}{ * This function is called if a complete command was received and must be implemented by the including file (user code)}}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00039}00039 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00040}\mbox{\hyperlink{group___tiny_receiver_ga5c751ad19033cb8c209d7253dccf34e7}{00040}} \textcolor{keywordtype}{void} \mbox{\hyperlink{group___tiny_receiver_ga5c751ad19033cb8c209d7253dccf34e7}{handleReceivedTinyIRData}}(uint16\_t aAddress, uint8\_t aCommand, \textcolor{keywordtype}{bool} isRepeat);}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00041}00041 }
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00042}00042 \textcolor{comment}{// LSB first, 1 start bit + 16 bit address + 8 bit data + 8 bit inverted data + 1 stop bit.}}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00043}00043 \textcolor{comment}{// see: https://www.sbprojects.net/knowledge/ir/nec.php}}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00044}00044 }
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00045}\mbox{\hyperlink{group___tiny_receiver_ga2ab110e480a4b16fe516c2afd16a1ea2}{00045}} \textcolor{preprocessor}{\#define NEC\_ADDRESS\_BITS        16 }\textcolor{comment}{// 16 bit address or 8 bit address and 8 bit inverted address}}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00046}\mbox{\hyperlink{group___tiny_receiver_ga07e295da53565eb7146072bdfeb2ed32}{00046}} \textcolor{preprocessor}{\#define NEC\_COMMAND\_BITS        16 }\textcolor{comment}{// Command and inverted command}}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00047}00047 }
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00048}\mbox{\hyperlink{group___tiny_receiver_gaa82c77bc0131ac28bc3534b8cf3422bc}{00048}} \textcolor{preprocessor}{\#define NEC\_BITS                (NEC\_ADDRESS\_BITS + NEC\_COMMAND\_BITS)}}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00049}\mbox{\hyperlink{group___tiny_receiver_gaf3317b0cf5cf7d3063addbaa0a256158}{00049}} \textcolor{preprocessor}{\#define NEC\_UNIT                560}}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00050}00050 }
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00051}\mbox{\hyperlink{group___tiny_receiver_ga8d393b95d8df4dfa15873aec6a37965e}{00051}} \textcolor{preprocessor}{\#define NEC\_HEADER\_MARK         (16 * NEC\_UNIT) }\textcolor{comment}{// 9000}}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00052}\mbox{\hyperlink{group___tiny_receiver_ga5c728ed320ffee624e26767be0a80404}{00052}} \textcolor{preprocessor}{\#define NEC\_HEADER\_SPACE        (8 * NEC\_UNIT)  }\textcolor{comment}{// 4500}}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00053}00053 }
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00054}\mbox{\hyperlink{group___tiny_receiver_ga3abbe30ef3781c1cf2490003e1c1443a}{00054}} \textcolor{preprocessor}{\#define NEC\_BIT\_MARK            NEC\_UNIT}}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00055}\mbox{\hyperlink{group___tiny_receiver_ga5ac04ec8b2185c9fb257d39c472733b1}{00055}} \textcolor{preprocessor}{\#define NEC\_ONE\_SPACE           (3 * NEC\_UNIT)  }\textcolor{comment}{// 1690}}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00056}\mbox{\hyperlink{group___tiny_receiver_ga5ee46914e98bf7f87f32a7104843b243}{00056}} \textcolor{preprocessor}{\#define NEC\_ZERO\_SPACE          NEC\_UNIT}}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00057}00057 }
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00058}\mbox{\hyperlink{group___tiny_receiver_ga91880ffa0b09391f2c827d3a1c565abf}{00058}} \textcolor{preprocessor}{\#define NEC\_REPEAT\_HEADER\_SPACE (4 * NEC\_UNIT)  }\textcolor{comment}{// 2250}}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00059}\mbox{\hyperlink{group___tiny_receiver_gac2dab5c4a22f8c4915217d3ee4676f08}{00059}} \textcolor{preprocessor}{\#define NEC\_REPEAT\_PERIOD       110000 }\textcolor{comment}{// Not used yet -\/ Commands are repeated every 110 ms (measured from start to start) for as long as the key on the remote control is held down.}}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00060}00060 }
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00061}00061 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00062}00062 \textcolor{comment}{ * Macros for comparing timing values}}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00063}00063 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00064}\mbox{\hyperlink{group___tiny_receiver_ga02b97ed6af9381a224ea3be0cab054a0}{00064}} \textcolor{preprocessor}{\#define lowerValue25Percent(aDuration)   (aDuration -\/ (aDuration / 4))}}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00065}\mbox{\hyperlink{group___tiny_receiver_ga22a6cd77d395a6c06686eafdf9aa2b52}{00065}} \textcolor{preprocessor}{\#define upperValue25Percent(aDuration)   (aDuration + (aDuration / 4))}}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00066}\mbox{\hyperlink{group___tiny_receiver_gadc6908665014a0bef4442c7769ed5054}{00066}} \textcolor{preprocessor}{\#define lowerValue(aDuration)   (aDuration -\/ (aDuration / 2))}}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00067}\mbox{\hyperlink{group___tiny_receiver_gaf6134d81e390f1e3dcd60e2aca9c9143}{00067}} \textcolor{preprocessor}{\#define upperValue(aDuration)   (aDuration + (aDuration / 2))}}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00068}00068 }
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00069}00069 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00070}00070 \textcolor{comment}{ * The states for the state machine}}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00071}00071 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00072}\mbox{\hyperlink{group___tiny_receiver_ga2535b0f1ae380b696c6a37ffa69b3df3}{00072}} \textcolor{preprocessor}{\#define IR\_RECEIVER\_STATE\_WAITING\_FOR\_START\_MARK        0}}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00073}\mbox{\hyperlink{group___tiny_receiver_ga43017cba7c72b3f0d45265f417e5195d}{00073}} \textcolor{preprocessor}{\#define IR\_RECEIVER\_STATE\_WAITING\_FOR\_START\_SPACE       1}}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00074}\mbox{\hyperlink{group___tiny_receiver_gaecf505182d1fa2aa885fcde6cd4160bf}{00074}} \textcolor{preprocessor}{\#define IR\_RECEIVER\_STATE\_WAITING\_FOR\_FIRST\_DATA\_MARK   2}}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00075}\mbox{\hyperlink{group___tiny_receiver_gad3b7237c2aa120840c0eed233d5c627e}{00075}} \textcolor{preprocessor}{\#define IR\_RECEIVER\_STATE\_WAITING\_FOR\_DATA\_SPACE        3}}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00076}\mbox{\hyperlink{group___tiny_receiver_gae237abb240b59b9c8dd7d853fc3c76b1}{00076}} \textcolor{preprocessor}{\#define IR\_RECEIVER\_STATE\_WAITING\_FOR\_DATA\_MARK         4}}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00077}\mbox{\hyperlink{group___tiny_receiver_ga2f6f17e18c7b5f1ef4b9cfc907d086e4}{00077}} \textcolor{preprocessor}{\#define IR\_RECEIVER\_STATE\_WAITING\_FOR\_STOP\_MARK         5}}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00081}\mbox{\hyperlink{struct_tiny_i_r_receiver_struct}{00081}} \textcolor{keyword}{struct }\mbox{\hyperlink{struct_tiny_i_r_receiver_struct}{TinyIRReceiverStruct}} \{}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00082}00082     \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00083}00083 \textcolor{comment}{     * State machine}}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00084}00084 \textcolor{comment}{     */}}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00085}\mbox{\hyperlink{struct_tiny_i_r_receiver_struct_a978f2ac480cb3ab428ff3016239413f1}{00085}}     uint32\_t \mbox{\hyperlink{struct_tiny_i_r_receiver_struct_a978f2ac480cb3ab428ff3016239413f1}{LastChangeMicros}};      }
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00086}\mbox{\hyperlink{struct_tiny_i_r_receiver_struct_aca59e5c5331a581e0603a59c552fa8c9}{00086}}     uint8\_t \mbox{\hyperlink{struct_tiny_i_r_receiver_struct_aca59e5c5331a581e0603a59c552fa8c9}{IRReceiverState}};        }
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00087}\mbox{\hyperlink{struct_tiny_i_r_receiver_struct_accdf38f518f17dfaf1a8aa870d77ce91}{00087}}     uint8\_t \mbox{\hyperlink{struct_tiny_i_r_receiver_struct_accdf38f518f17dfaf1a8aa870d77ce91}{IRRawDataBitCounter}};}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00088}00088     \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00089}00089 \textcolor{comment}{     * Data}}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00090}00090 \textcolor{comment}{     */}}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00091}\mbox{\hyperlink{struct_tiny_i_r_receiver_struct_aa6f580c1bf0c11c37edefd255283361a}{00091}}     uint32\_t \mbox{\hyperlink{struct_tiny_i_r_receiver_struct_aa6f580c1bf0c11c37edefd255283361a}{IRRawDataMask}};}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00092}\mbox{\hyperlink{struct_tiny_i_r_receiver_struct_a6277ed6c719314aef883af018f886056}{00092}}     \mbox{\hyperlink{union_long_union}{LongUnion}} \mbox{\hyperlink{struct_tiny_i_r_receiver_struct_a6277ed6c719314aef883af018f886056}{IRRawData}};}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00093}\mbox{\hyperlink{struct_tiny_i_r_receiver_struct_a003e482629350aaee549b482dd653922}{00093}}     \textcolor{keywordtype}{bool} \mbox{\hyperlink{struct_tiny_i_r_receiver_struct_a003e482629350aaee549b482dd653922}{IRRepeatDetected}};}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00094}00094 \};}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00095}00095 }
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00096}00096 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___tiny_receiver_ga1f3913249343258d738ea0a48f7e1aed}{initPCIInterruptForTinyReceiver}}();}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00097}00097 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___tiny_receiver_gad23b935e2236a42a070a87379c7c36a4}{enablePCIInterruptForTinyReceiver}}();}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00098}00098 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___tiny_receiver_ga4217cae1ded4a9b2ed54bc3a1e8cd86e}{disablePCIInterruptForTinyReceiver}}();}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00099}00099 \textcolor{keywordtype}{bool} \mbox{\hyperlink{group___tiny_receiver_gab65e33fe496d3bee4af897e5d8bd9420}{isTinyReceiverIdle}}();}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00100}00100 }
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00103}00103 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// TINY\_IR\_RECEIVER\_H}}
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00104}00104 }
+\DoxyCodeLine{\Hypertarget{_tiny_i_r_receiver_8h_source_l00105}00105 \textcolor{preprocessor}{\#pragma once}}
+
+\end{DoxyCode}

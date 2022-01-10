@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_ir___n_e_c_8hpp" xml:lang="en-US">
+<title>main/IRRemote_Library/ir_NEC.hpp File Reference</title>
+<indexterm><primary>main/IRRemote_Library/ir_NEC.hpp</primary></indexterm>
+<programlisting linenumbering="unnumbered">#include &lt;Arduino.h&gt;
+#include &quot;IRremoteInt.h&quot;
+#include &quot;LongUnion.h&quot;
+</programlisting>Include dependency graph for ir_NEC.hpp:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="ir___n_e_c_8hpp__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+This graph shows which files directly or indirectly include this file:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="ir___n_e_c_8hpp__dep__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Macros    </title>
+        <itemizedlist>
+            <listitem><para>#define <link linkend="_group___decoder_1ga2ab110e480a4b16fe516c2afd16a1ea2">NEC_ADDRESS_BITS</link>   16</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga07e295da53565eb7146072bdfeb2ed32">NEC_COMMAND_BITS</link>   16</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1gaa82c77bc0131ac28bc3534b8cf3422bc">NEC_BITS</link>   (<link linkend="_group___tiny_receiver_1ga2ab110e480a4b16fe516c2afd16a1ea2">NEC_ADDRESS_BITS</link> + <link linkend="_group___tiny_receiver_1ga07e295da53565eb7146072bdfeb2ed32">NEC_COMMAND_BITS</link>)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1gaf3317b0cf5cf7d3063addbaa0a256158">NEC_UNIT</link>   560</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga8d393b95d8df4dfa15873aec6a37965e">NEC_HEADER_MARK</link>   (16 * <link linkend="_group___tiny_receiver_1gaf3317b0cf5cf7d3063addbaa0a256158">NEC_UNIT</link>)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga5c728ed320ffee624e26767be0a80404">NEC_HEADER_SPACE</link>   (8 * <link linkend="_group___tiny_receiver_1gaf3317b0cf5cf7d3063addbaa0a256158">NEC_UNIT</link>)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga3abbe30ef3781c1cf2490003e1c1443a">NEC_BIT_MARK</link>   <link linkend="_group___tiny_receiver_1gaf3317b0cf5cf7d3063addbaa0a256158">NEC_UNIT</link></para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga5ac04ec8b2185c9fb257d39c472733b1">NEC_ONE_SPACE</link>   (3 * <link linkend="_group___tiny_receiver_1gaf3317b0cf5cf7d3063addbaa0a256158">NEC_UNIT</link>)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga5ee46914e98bf7f87f32a7104843b243">NEC_ZERO_SPACE</link>   <link linkend="_group___tiny_receiver_1gaf3317b0cf5cf7d3063addbaa0a256158">NEC_UNIT</link></para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga91880ffa0b09391f2c827d3a1c565abf">NEC_REPEAT_HEADER_SPACE</link>   (4 * <link linkend="_group___tiny_receiver_1gaf3317b0cf5cf7d3063addbaa0a256158">NEC_UNIT</link>)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1gad086d93e5fb59de2890e12653a9c2f4f">NEC_AVERAGE_DURATION</link>   62000</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga0e78e019c888522fce3d5a4d4104753d">NEC_REPEAT_DURATION</link>   (<link linkend="_group___tiny_receiver_1ga8d393b95d8df4dfa15873aec6a37965e">NEC_HEADER_MARK</link>  + <link linkend="_group___tiny_receiver_1ga91880ffa0b09391f2c827d3a1c565abf">NEC_REPEAT_HEADER_SPACE</link> + <link linkend="_group___tiny_receiver_1ga3abbe30ef3781c1cf2490003e1c1443a">NEC_BIT_MARK</link>)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1gac2dab5c4a22f8c4915217d3ee4676f08">NEC_REPEAT_PERIOD</link>   110000</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1gad075e7ecc3052e071d1c9076137c2b35">NEC_REPEAT_SPACE</link>   (<link linkend="_group___tiny_receiver_1gac2dab5c4a22f8c4915217d3ee4676f08">NEC_REPEAT_PERIOD</link> - <link linkend="_group___decoder_1gad086d93e5fb59de2890e12653a9c2f4f">NEC_AVERAGE_DURATION</link>)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga4d268b1bd7431cab88c570c446d4810b">APPLE_ADDRESS</link>   0x87EE</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

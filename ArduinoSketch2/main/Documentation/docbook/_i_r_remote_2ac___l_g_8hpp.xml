@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="__i_r_remote_2ac___l_g_8hpp" xml:lang="en-US">
+<title>main/IRRemote/ac_LG.hpp File Reference</title>
+<indexterm><primary>main/IRRemote/ac_LG.hpp</primary></indexterm>
+<programlisting linenumbering="unnumbered">#include &lt;Arduino.h&gt;
+#include &quot;IRremoteInt.h&quot;
+#include &quot;ac_LG.h&quot;
+#include &quot;LongUnion.h&quot;
+</programlisting>Include dependency graph for ac_LG.hpp:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="_i_r_remote_2ac___l_g_8hpp__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Macros    </title>
+        <itemizedlist>
+            <listitem><para>#define <link linkend="_group___airconditoners_1ga6d745a4e59f5d14e9983d174b6e9705a">SIZE_OF_FAN_SPEED_MAPPING_TABLE</link>   4</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Variables    </title>
+        <itemizedlist>
+            <listitem><para>const int <link linkend="_group___airconditoners_1ga9e4c45659819db87363cdef65209ee56">AC_FAN_TOWER</link> [<link linkend="_group___airconditoners_1ga6d745a4e59f5d14e9983d174b6e9705a">SIZE_OF_FAN_SPEED_MAPPING_TABLE</link>] = { 0, 4, 6, 6 }</para>
+</listitem>
+            <listitem><para>const int <link linkend="_group___airconditoners_1ga06d1cb86267a1aa639caa670ba813600">AC_FAN_WALL</link> [<link linkend="_group___airconditoners_1ga6d745a4e59f5d14e9983d174b6e9705a">SIZE_OF_FAN_SPEED_MAPPING_TABLE</link>] = { 0, 2, 4, 5 }</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

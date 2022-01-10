@@ -1,0 +1,142 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="__parking_sensor_8cpp_source" xml:lang="en-US">
+<title>ParkingSensor.cpp</title>
+<indexterm><primary>ArduinoSketch2/main/Modules/Sensors/ParkingSensor/ParkingSensor.cpp</primary></indexterm>
+<programlisting linenumbering="unnumbered"><anchor xml:id="__parking_sensor_8cpp_source_1l00001"/>00001 <emphasis role="comment">/*&#32;</emphasis>
+<anchor xml:id="__parking_sensor_8cpp_source_1l00002"/>00002 <emphasis role="comment">*&#32;ParkingSensor.cpp</emphasis>
+<anchor xml:id="__parking_sensor_8cpp_source_1l00003"/>00003 <emphasis role="comment">*</emphasis>
+<anchor xml:id="__parking_sensor_8cpp_source_1l00004"/>00004 <emphasis role="comment">*&#32;Created:&#32;10/7/2021&#32;12:17:58&#32;AM</emphasis>
+<anchor xml:id="__parking_sensor_8cpp_source_1l00005"/>00005 <emphasis role="comment">*&#32;Author:&#32;Andi</emphasis>
+<anchor xml:id="__parking_sensor_8cpp_source_1l00006"/>00006 <emphasis role="comment">*/</emphasis>
+<anchor xml:id="__parking_sensor_8cpp_source_1l00007"/>00007 
+<anchor xml:id="__parking_sensor_8cpp_source_1l00008"/>00008 
+<anchor xml:id="__parking_sensor_8cpp_source_1l00009"/>00009 <emphasis role="comment">/*&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;Includes&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;*/</emphasis>
+<anchor xml:id="__parking_sensor_8cpp_source_1l00010"/>00010 
+<anchor xml:id="__parking_sensor_8cpp_source_1l00012"/>00012 <emphasis role="preprocessor">#pragma&#32;region&#32;Includes</emphasis>
+<anchor xml:id="__parking_sensor_8cpp_source_1l00013"/>00013 
+<anchor xml:id="__parking_sensor_8cpp_source_1l00014"/>00014 <emphasis role="preprocessor">#include&#32;&quot;ParkingSensor.h&quot;</emphasis>
+<anchor xml:id="__parking_sensor_8cpp_source_1l00015"/>00015 <emphasis role="preprocessor">#include&#32;&lt;string.h&gt;</emphasis>
+<anchor xml:id="__parking_sensor_8cpp_source_1l00016"/>00016 <emphasis role="preprocessor">#include&#32;&quot;..\..\..\..\ArduinoCore\include\core\Arduino.h&quot;</emphasis>
+<anchor xml:id="__parking_sensor_8cpp_source_1l00017"/>00017 
+<anchor xml:id="__parking_sensor_8cpp_source_1l00018"/>00018 <emphasis role="preprocessor">#pragma&#32;endregion</emphasis>
+<anchor xml:id="__parking_sensor_8cpp_source_1l00019"/>00019 
+<anchor xml:id="__parking_sensor_8cpp_source_1l00020"/>00020 
+<anchor xml:id="__parking_sensor_8cpp_source_1l00021"/>00021 <emphasis role="comment">/*&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;Default&#32;Constructors&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;*/</emphasis>
+<anchor xml:id="__parking_sensor_8cpp_source_1l00022"/>00022 
+<anchor xml:id="__parking_sensor_8cpp_source_1l00024"/>00024 <emphasis role="preprocessor">#pragma&#32;region&#32;Default&#32;Constructors</emphasis>
+<anchor xml:id="__parking_sensor_8cpp_source_1l00025"/>00025 
+<anchor xml:id="__parking_sensor_8cpp_source_1l00029"/><link linkend="_class_parking_sensor_1a5f59f713e82968fdb71c9956a3c37f8e">00029</link> <link linkend="_class_parking_sensor_1a5f59f713e82968fdb71c9956a3c37f8e">ParkingSensor::ParkingSensor</link>()
+<anchor xml:id="__parking_sensor_8cpp_source_1l00030"/>00030 {
+<anchor xml:id="__parking_sensor_8cpp_source_1l00031"/>00031 &#32;&#32;&#32;&#32;this-&gt;<link linkend="_class_parking_sensor_1adb1d39c112be08cd8e8acf2a4c6a9e76">trigPin</link>&#32;=&#32;1;
+<anchor xml:id="__parking_sensor_8cpp_source_1l00032"/>00032 &#32;&#32;&#32;&#32;this-&gt;<link linkend="_class_parking_sensor_1aa1c2ebc54dbbe12b19a3ea3dd5e25b47">echoPin</link>&#32;=&#32;2;
+<anchor xml:id="__parking_sensor_8cpp_source_1l00033"/>00033 }&#32;<emphasis role="comment">//ParkingSensor</emphasis>
+<anchor xml:id="__parking_sensor_8cpp_source_1l00034"/>00034 
+<anchor xml:id="__parking_sensor_8cpp_source_1l00038"/><link linkend="_class_parking_sensor_1a1fc5c87cd15800606eda0accc8d2b225">00038</link> &#32;<link linkend="_class_parking_sensor_1a5f59f713e82968fdb71c9956a3c37f8e">ParkingSensor::ParkingSensor</link>(<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_parking_sensor">ParkingSensor</link>&#32;&amp;s)
+<anchor xml:id="__parking_sensor_8cpp_source_1l00039"/>00039 &#32;{
+<anchor xml:id="__parking_sensor_8cpp_source_1l00040"/>00040 &#32;&#32;&#32;&#32;this-&gt;<link linkend="_class_parking_sensor_1adb1d39c112be08cd8e8acf2a4c6a9e76">trigPin</link>&#32;=&#32;s.<link linkend="_class_parking_sensor_1adb1d39c112be08cd8e8acf2a4c6a9e76">trigPin</link>;
+<anchor xml:id="__parking_sensor_8cpp_source_1l00041"/>00041 &#32;&#32;&#32;&#32;this-&gt;<link linkend="_class_parking_sensor_1aa1c2ebc54dbbe12b19a3ea3dd5e25b47">echoPin</link>&#32;=&#32;s.<link linkend="_class_parking_sensor_1aa1c2ebc54dbbe12b19a3ea3dd5e25b47">echoPin</link>;
+<anchor xml:id="__parking_sensor_8cpp_source_1l00042"/>00042 &#32;&#32;&#32;&#32;
+<anchor xml:id="__parking_sensor_8cpp_source_1l00043"/>00043 &#32;&#32;&#32;&#32;this-&gt;<link linkend="_class_parking_sensor_1abf68f673f81bc141d9fe4de5e7183a61">buzzer</link>-&gt;setSigPin(s.<link linkend="_class_parking_sensor_1abf68f673f81bc141d9fe4de5e7183a61">buzzer</link>-&gt;getSigPin());
+<anchor xml:id="__parking_sensor_8cpp_source_1l00044"/>00044 &#32;}
+<anchor xml:id="__parking_sensor_8cpp_source_1l00045"/>00045 
+<anchor xml:id="__parking_sensor_8cpp_source_1l00049"/><link linkend="_class_parking_sensor_1a77486ddcba156d5a8768047574963ec4">00049</link> <link linkend="_class_parking_sensor_1a77486ddcba156d5a8768047574963ec4">ParkingSensor::~ParkingSensor</link>()
+<anchor xml:id="__parking_sensor_8cpp_source_1l00050"/>00050 {
+<anchor xml:id="__parking_sensor_8cpp_source_1l00051"/>00051 }&#32;<emphasis role="comment">//~ParkingSensor</emphasis>
+<anchor xml:id="__parking_sensor_8cpp_source_1l00052"/>00052 
+<anchor xml:id="__parking_sensor_8cpp_source_1l00053"/>00053 <emphasis role="preprocessor">#pragma&#32;endregion</emphasis>
+<anchor xml:id="__parking_sensor_8cpp_source_1l00054"/>00054 
+<anchor xml:id="__parking_sensor_8cpp_source_1l00055"/>00055 
+<anchor xml:id="__parking_sensor_8cpp_source_1l00056"/>00056 <emphasis role="comment">/*&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;Public&#32;Functions&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;*/</emphasis>
+<anchor xml:id="__parking_sensor_8cpp_source_1l00057"/>00057 
+<anchor xml:id="__parking_sensor_8cpp_source_1l00059"/>00059 <emphasis role="preprocessor">#pragma&#32;region&#32;Public&#32;Functions</emphasis>
+<anchor xml:id="__parking_sensor_8cpp_source_1l00060"/>00060 
+<anchor xml:id="__parking_sensor_8cpp_source_1l00069"/><link linkend="_class_parking_sensor_1a50f7d8db46e89b0a84b10f434fed4ded">00069</link> <link linkend="_class_parking_sensor_1a5f59f713e82968fdb71c9956a3c37f8e">ParkingSensor::ParkingSensor</link>(<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">short</emphasis>&#32;<emphasis role="keywordtype">int</emphasis>&#32;trigPin_arg,&#32;
+<anchor xml:id="__parking_sensor_8cpp_source_1l00070"/>00070 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">short</emphasis>&#32;<emphasis role="keywordtype">int</emphasis>&#32;echoPin_arg,&#32;
+<anchor xml:id="__parking_sensor_8cpp_source_1l00071"/>00071 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">short</emphasis>&#32;<emphasis role="keywordtype">int</emphasis>&#32;buzzerPin_arg)&#32;{
+<anchor xml:id="__parking_sensor_8cpp_source_1l00072"/>00072 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;
+<anchor xml:id="__parking_sensor_8cpp_source_1l00073"/>00073 &#32;&#32;&#32;&#32;this-&gt;<link linkend="_class_parking_sensor_1adb1d39c112be08cd8e8acf2a4c6a9e76">trigPin</link>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&#32;trigPin_arg;
+<anchor xml:id="__parking_sensor_8cpp_source_1l00074"/>00074 &#32;&#32;&#32;&#32;this-&gt;<link linkend="_class_parking_sensor_1aa1c2ebc54dbbe12b19a3ea3dd5e25b47">echoPin</link>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&#32;echoPin_arg;
+<anchor xml:id="__parking_sensor_8cpp_source_1l00075"/>00075 &#32;&#32;&#32;&#32;this-&gt;<link linkend="_class_parking_sensor_1abf68f673f81bc141d9fe4de5e7183a61">buzzer</link>-&gt;setSigPin(buzzerPin_arg);
+<anchor xml:id="__parking_sensor_8cpp_source_1l00076"/>00076 }
+<anchor xml:id="__parking_sensor_8cpp_source_1l00077"/>00077 
+<anchor xml:id="__parking_sensor_8cpp_source_1l00085"/><link linkend="_class_parking_sensor_1a54f438a973ae30d67dbf1786f9794982">00085</link> <emphasis role="keywordtype">long</emphasis>&#32;<link linkend="_class_parking_sensor_1a54f438a973ae30d67dbf1786f9794982">ParkingSensor::getWaveComebackTime</link>()&#32;{
+<anchor xml:id="__parking_sensor_8cpp_source_1l00086"/>00086 &#32;&#32;&#32;&#32;digitalWrite(this-&gt;<link linkend="_class_parking_sensor_1adb1d39c112be08cd8e8acf2a4c6a9e76">trigPin</link>,&#32;LOW);&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;
+<anchor xml:id="__parking_sensor_8cpp_source_1l00087"/>00087 &#32;&#32;&#32;&#32;delayMicroseconds(2);
+<anchor xml:id="__parking_sensor_8cpp_source_1l00088"/>00088 &#32;&#32;&#32;&#32;
+<anchor xml:id="__parking_sensor_8cpp_source_1l00089"/>00089 &#32;&#32;&#32;&#32;digitalWrite(this-&gt;<link linkend="_class_parking_sensor_1adb1d39c112be08cd8e8acf2a4c6a9e76">trigPin</link>,&#32;HIGH);&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;
+<anchor xml:id="__parking_sensor_8cpp_source_1l00090"/>00090 &#32;&#32;&#32;&#32;delayMicroseconds(10);&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;
+<anchor xml:id="__parking_sensor_8cpp_source_1l00091"/>00091 &#32;&#32;&#32;&#32;digitalWrite(this-&gt;<link linkend="_class_parking_sensor_1adb1d39c112be08cd8e8acf2a4c6a9e76">trigPin</link>,&#32;LOW);&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;
+<anchor xml:id="__parking_sensor_8cpp_source_1l00092"/>00092 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;
+<anchor xml:id="__parking_sensor_8cpp_source_1l00093"/>00093 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;pulseIn(<link linkend="_class_parking_sensor_1aa1c2ebc54dbbe12b19a3ea3dd5e25b47">echoPin</link>,&#32;HIGH);&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;
+<anchor xml:id="__parking_sensor_8cpp_source_1l00094"/>00094 }
+<anchor xml:id="__parking_sensor_8cpp_source_1l00095"/>00095 
+<anchor xml:id="__parking_sensor_8cpp_source_1l00102"/><link linkend="_class_parking_sensor_1afe9352318215cf3ca634bbd9629eb65b">00102</link> <emphasis role="keywordtype">int</emphasis>&#32;<link linkend="_class_parking_sensor_1afe9352318215cf3ca634bbd9629eb65b">ParkingSensor::getDistanceToObject</link>()&#32;{
+<anchor xml:id="__parking_sensor_8cpp_source_1l00103"/>00103 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;(<link linkend="_class_parking_sensor_1a54f438a973ae30d67dbf1786f9794982">getWaveComebackTime</link>()&#32;*&#32;SOUND_SPEED_MS)&#32;/&#32;2;&#32;&#32;&#32;&#32;
+<anchor xml:id="__parking_sensor_8cpp_source_1l00104"/>00104 }
+<anchor xml:id="__parking_sensor_8cpp_source_1l00105"/>00105 
+<anchor xml:id="__parking_sensor_8cpp_source_1l00111"/><link linkend="_class_parking_sensor_1a4c630df384e9be608ce86ca5aabef07a">00111</link> <emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_class_parking_sensor_1a4c630df384e9be608ce86ca5aabef07a">ParkingSensor::serialPrintDistance</link>()&#32;{
+<anchor xml:id="__parking_sensor_8cpp_source_1l00112"/>00112 &#32;&#32;&#32;&#32;Serial.print(<emphasis role="stringliteral">&quot;Distance:&#32;&quot;</emphasis>);
+<anchor xml:id="__parking_sensor_8cpp_source_1l00113"/>00113 &#32;&#32;&#32;&#32;Serial.print(this-&gt;<link linkend="_class_parking_sensor_1afe9352318215cf3ca634bbd9629eb65b">getDistanceToObject</link>());
+<anchor xml:id="__parking_sensor_8cpp_source_1l00114"/>00114 &#32;&#32;&#32;&#32;Serial.println(<emphasis role="stringliteral">&quot;&#32;cm&quot;</emphasis>);
+<anchor xml:id="__parking_sensor_8cpp_source_1l00115"/>00115 }
+<anchor xml:id="__parking_sensor_8cpp_source_1l00116"/>00116 
+<anchor xml:id="__parking_sensor_8cpp_source_1l00124"/><link linkend="_class_parking_sensor_1a6fb5861e5a5e2918db5810fb396c97f6">00124</link> <emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_class_parking_sensor_1a6fb5861e5a5e2918db5810fb396c97f6">ParkingSensor::Task</link>()&#32;{
+<anchor xml:id="__parking_sensor_8cpp_source_1l00125"/>00125 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;((this-&gt;<link linkend="_class_parking_sensor_1afe9352318215cf3ca634bbd9629eb65b">getDistanceToObject</link>()&#32;&lt;=&#32;PS_1ST_STAGE_CM)&#32;&amp;&amp;&#32;(this-&gt;<link linkend="_class_parking_sensor_1afe9352318215cf3ca634bbd9629eb65b">getDistanceToObject</link>()&#32;&gt;&#32;PS_2ST_STAGE_CM))&#32;{
+<anchor xml:id="__parking_sensor_8cpp_source_1l00126"/>00126 
+<anchor xml:id="__parking_sensor_8cpp_source_1l00127"/>00127 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;this-&gt;<link linkend="_class_parking_sensor_1abf68f673f81bc141d9fe4de5e7183a61">buzzer</link>-&gt;Buzz(BUZZER_1ST_STAGE_DELAY_MS);
+<anchor xml:id="__parking_sensor_8cpp_source_1l00128"/>00128 &#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;<emphasis role="keywordflow">if</emphasis>&#32;((this-&gt;<link linkend="_class_parking_sensor_1afe9352318215cf3ca634bbd9629eb65b">getDistanceToObject</link>()&#32;&lt;=&#32;PS_2ST_STAGE_CM)&#32;&amp;&amp;&#32;(this-&gt;<link linkend="_class_parking_sensor_1afe9352318215cf3ca634bbd9629eb65b">getDistanceToObject</link>()&#32;&gt;&#32;PS_3ST_STAGE_CM))&#32;{
+<anchor xml:id="__parking_sensor_8cpp_source_1l00129"/>00129 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;
+<anchor xml:id="__parking_sensor_8cpp_source_1l00130"/>00130 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;this-&gt;<link linkend="_class_parking_sensor_1abf68f673f81bc141d9fe4de5e7183a61">buzzer</link>-&gt;Buzz(BUZZER_2ST_STAGE_DELAY_MS);
+<anchor xml:id="__parking_sensor_8cpp_source_1l00131"/>00131 &#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;<emphasis role="keywordflow">if</emphasis>&#32;((this-&gt;<link linkend="_class_parking_sensor_1afe9352318215cf3ca634bbd9629eb65b">getDistanceToObject</link>()&#32;&lt;=&#32;PS_3ST_STAGE_CM)&#32;&amp;&amp;&#32;(this-&gt;<link linkend="_class_parking_sensor_1afe9352318215cf3ca634bbd9629eb65b">getDistanceToObject</link>()&#32;&gt;&#32;PS_4ST_STAGE_CM))&#32;{
+<anchor xml:id="__parking_sensor_8cpp_source_1l00132"/>00132 
+<anchor xml:id="__parking_sensor_8cpp_source_1l00133"/>00133 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;this-&gt;<link linkend="_class_parking_sensor_1abf68f673f81bc141d9fe4de5e7183a61">buzzer</link>-&gt;Buzz(BUZZER_3ST_STAGE_DELAY_MS);
+<anchor xml:id="__parking_sensor_8cpp_source_1l00134"/>00134 &#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;<emphasis role="keywordflow">if</emphasis>&#32;((this-&gt;<link linkend="_class_parking_sensor_1afe9352318215cf3ca634bbd9629eb65b">getDistanceToObject</link>()&#32;&lt;=&#32;PS_4ST_STAGE_CM)&#32;&amp;&amp;&#32;(this-&gt;<link linkend="_class_parking_sensor_1afe9352318215cf3ca634bbd9629eb65b">getDistanceToObject</link>()&#32;&gt;&#32;PS_5ST_STAGE_CM))&#32;{
+<anchor xml:id="__parking_sensor_8cpp_source_1l00135"/>00135 
+<anchor xml:id="__parking_sensor_8cpp_source_1l00136"/>00136 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;this-&gt;<link linkend="_class_parking_sensor_1abf68f673f81bc141d9fe4de5e7183a61">buzzer</link>-&gt;Buzz(BUZZER_4ST_STAGE_DELAY_MS);
+<anchor xml:id="__parking_sensor_8cpp_source_1l00137"/>00137 &#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;<emphasis role="keywordflow">if</emphasis>&#32;((this-&gt;<link linkend="_class_parking_sensor_1afe9352318215cf3ca634bbd9629eb65b">getDistanceToObject</link>()&#32;&lt;=&#32;PS_5ST_STAGE_CM)&#32;&amp;&amp;&#32;(this-&gt;<link linkend="_class_parking_sensor_1afe9352318215cf3ca634bbd9629eb65b">getDistanceToObject</link>()&#32;&gt;&#32;PS_MIN_DISTANCE_CM))&#32;{
+<anchor xml:id="__parking_sensor_8cpp_source_1l00138"/>00138 
+<anchor xml:id="__parking_sensor_8cpp_source_1l00139"/>00139 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;this-&gt;<link linkend="_class_parking_sensor_1abf68f673f81bc141d9fe4de5e7183a61">buzzer</link>-&gt;Buzz(BUZZER_5ST_STAGE_DELAY_MS);
+<anchor xml:id="__parking_sensor_8cpp_source_1l00140"/>00140 &#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;<emphasis role="keywordflow">if</emphasis>&#32;(this-&gt;<link linkend="_class_parking_sensor_1afe9352318215cf3ca634bbd9629eb65b">getDistanceToObject</link>()&#32;&lt;=&#32;PS_MIN_DISTANCE_CM)&#32;{
+<anchor xml:id="__parking_sensor_8cpp_source_1l00141"/>00141 
+<anchor xml:id="__parking_sensor_8cpp_source_1l00142"/>00142 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;this-&gt;<link linkend="_class_parking_sensor_1abf68f673f81bc141d9fe4de5e7183a61">buzzer</link>-&gt;Buzz(BUZZER_MIN_STAGE_DELAY_MS);
+<anchor xml:id="__parking_sensor_8cpp_source_1l00143"/>00143 &#32;&#32;&#32;&#32;}
+<anchor xml:id="__parking_sensor_8cpp_source_1l00144"/>00144 }
+<anchor xml:id="__parking_sensor_8cpp_source_1l00145"/>00145 
+<anchor xml:id="__parking_sensor_8cpp_source_1l00146"/>00146 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="__parking_sensor_8cpp_source_1l00147"/>00147 <emphasis role="comment">&#32;*&#32;&#32;Trig&#32;Pin&#32;getter</emphasis>
+<anchor xml:id="__parking_sensor_8cpp_source_1l00148"/>00148 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="__parking_sensor_8cpp_source_1l00149"/>00149 <emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">short</emphasis>&#32;<emphasis role="keywordtype">int</emphasis>&#32;ParkingSensor::getTrigPin()
+<anchor xml:id="__parking_sensor_8cpp_source_1l00150"/>00150 {
+<anchor xml:id="__parking_sensor_8cpp_source_1l00151"/>00151 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;this-&gt;<link linkend="_class_parking_sensor_1adb1d39c112be08cd8e8acf2a4c6a9e76">trigPin</link>;
+<anchor xml:id="__parking_sensor_8cpp_source_1l00152"/>00152 }
+<anchor xml:id="__parking_sensor_8cpp_source_1l00153"/>00153 
+<anchor xml:id="__parking_sensor_8cpp_source_1l00154"/>00154 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="__parking_sensor_8cpp_source_1l00155"/>00155 <emphasis role="comment">&#32;*&#32;&#32;Echo&#32;Pin&#32;getter</emphasis>
+<anchor xml:id="__parking_sensor_8cpp_source_1l00156"/>00156 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="__parking_sensor_8cpp_source_1l00157"/>00157 <emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">short</emphasis>&#32;<emphasis role="keywordtype">int</emphasis>&#32;ParkingSensor::getEchoPin()
+<anchor xml:id="__parking_sensor_8cpp_source_1l00158"/>00158 {
+<anchor xml:id="__parking_sensor_8cpp_source_1l00159"/>00159 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;this-&gt;<link linkend="_class_parking_sensor_1aa1c2ebc54dbbe12b19a3ea3dd5e25b47">echoPin</link>;
+<anchor xml:id="__parking_sensor_8cpp_source_1l00160"/>00160 }
+<anchor xml:id="__parking_sensor_8cpp_source_1l00161"/>00161 
+<anchor xml:id="__parking_sensor_8cpp_source_1l00162"/>00162 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="__parking_sensor_8cpp_source_1l00163"/>00163 <emphasis role="comment">&#32;*&#32;&#32;Trig&#32;Pin&#32;setter</emphasis>
+<anchor xml:id="__parking_sensor_8cpp_source_1l00164"/>00164 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="__parking_sensor_8cpp_source_1l00165"/>00165 <emphasis role="keywordtype">void</emphasis>&#32;ParkingSensor::setTrigPin(<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">short</emphasis>&#32;<emphasis role="keywordtype">int</emphasis>&#32;trigPin_arg)
+<anchor xml:id="__parking_sensor_8cpp_source_1l00166"/>00166 {
+<anchor xml:id="__parking_sensor_8cpp_source_1l00167"/>00167 &#32;&#32;&#32;&#32;this-&gt;<link linkend="_class_parking_sensor_1adb1d39c112be08cd8e8acf2a4c6a9e76">trigPin</link>&#32;=&#32;trigPin_arg;
+<anchor xml:id="__parking_sensor_8cpp_source_1l00168"/>00168 }
+<anchor xml:id="__parking_sensor_8cpp_source_1l00169"/>00169 
+<anchor xml:id="__parking_sensor_8cpp_source_1l00170"/>00170 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="__parking_sensor_8cpp_source_1l00171"/>00171 <emphasis role="comment">&#32;*&#32;&#32;Echo&#32;Pin&#32;setter</emphasis>
+<anchor xml:id="__parking_sensor_8cpp_source_1l00172"/>00172 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="__parking_sensor_8cpp_source_1l00173"/>00173 <emphasis role="keywordtype">void</emphasis>&#32;ParkingSensor::setEchoPin(<emphasis role="keywordtype">unsigned</emphasis>&#32;<emphasis role="keywordtype">short</emphasis>&#32;<emphasis role="keywordtype">int</emphasis>&#32;echoPin_arg)
+<anchor xml:id="__parking_sensor_8cpp_source_1l00174"/>00174 {
+<anchor xml:id="__parking_sensor_8cpp_source_1l00175"/>00175 &#32;&#32;&#32;&#32;this-&gt;<link linkend="_class_parking_sensor_1aa1c2ebc54dbbe12b19a3ea3dd5e25b47">echoPin</link>&#32;=&#32;echoPin_arg;
+<anchor xml:id="__parking_sensor_8cpp_source_1l00176"/>00176 }
+<anchor xml:id="__parking_sensor_8cpp_source_1l00177"/>00177 
+<anchor xml:id="__parking_sensor_8cpp_source_1l00178"/>00178 <emphasis role="preprocessor">#pragma&#32;endregion&#32;</emphasis>
+<anchor xml:id="__parking_sensor_8cpp_source_1l00179"/>00179 
+<anchor xml:id="__parking_sensor_8cpp_source_1l00180"/>00180 
+<anchor xml:id="__parking_sensor_8cpp_source_1l00181"/>00181 <emphasis role="comment">/*&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;End&#32;of&#32;File&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;*/</emphasis>
+<anchor xml:id="__parking_sensor_8cpp_source_1l00182"/>00182 
+</programlisting></section>

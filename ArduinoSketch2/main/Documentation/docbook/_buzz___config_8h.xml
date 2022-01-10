@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="__buzz___config_8h" xml:lang="en-US">
+<title>main/Modules/Actuators/Buzzer/Buzz_Config.h File Reference</title>
+<indexterm><primary>main/Modules/Actuators/Buzzer/Buzz_Config.h</primary></indexterm>
+This graph shows which files directly or indirectly include this file:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="_buzz___config_8h__dep__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Macros    </title>
+        <itemizedlist>
+            <listitem><para>#define <link linkend="__buzz___config_8h_1a53157b0c521fcb6114549b588626560d">BUZZER_FREQ</link>   1000</para>
+</listitem>
+            <listitem><para>#define <link linkend="__buzz___config_8h_1a40deac39e91106c7b472dee17cdd4995">BUZZER_DEFAULT_DURATION</link>   500</para>
+</listitem>
+            <listitem><para>#define <link linkend="__buzz___config_8h_1aaa35eda2eb75c9fbf634f754982fd234">BUZZER_1ST_STAGE_DELAY_MS</link>   1000</para>
+</listitem>
+            <listitem><para>#define <link linkend="__buzz___config_8h_1acb658ddd79b9a8d20283f14f5c801a6a">BUZZER_2ST_STAGE_DELAY_MS</link>   800</para>
+</listitem>
+            <listitem><para>#define <link linkend="__buzz___config_8h_1a2c313a23ff0056524b61430ecf784b39">BUZZER_3ST_STAGE_DELAY_MS</link>   600</para>
+</listitem>
+            <listitem><para>#define <link linkend="__buzz___config_8h_1a6c3cd36d0d1b50e184427da434240710">BUZZER_4ST_STAGE_DELAY_MS</link>   400</para>
+</listitem>
+            <listitem><para>#define <link linkend="__buzz___config_8h_1a21848e2a1d94a107f28b968c2afd2f3a">BUZZER_5ST_STAGE_DELAY_MS</link>   200</para>
+</listitem>
+            <listitem><para>#define <link linkend="__buzz___config_8h_1a6971f399d8a49d21cd766fa6bf18e130">BUZZER_MIN_STAGE_DELAY_MS</link>   100</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Macro Definition Documentation</title>
+<anchor xml:id="__buzz___config_8h_1aaa35eda2eb75c9fbf634f754982fd234"/><section>
+    <title>BUZZER_1ST_STAGE_DELAY_MS</title>
+<indexterm><primary>BUZZER_1ST_STAGE_DELAY_MS</primary><secondary>Buzz_Config.h</secondary></indexterm>
+<indexterm><primary>Buzz_Config.h</primary><secondary>BUZZER_1ST_STAGE_DELAY_MS</secondary></indexterm>
+<para><computeroutput>#define BUZZER_1ST_STAGE_DELAY_MS   1000</computeroutput></para><para>
+Definition at line <link linkend="__buzz___config_8h_source_1l00029">29</link> of file <link linkend="__buzz___config_8h_source">Buzz_Config.h</link>.</para>
+</section>
+<anchor xml:id="__buzz___config_8h_1acb658ddd79b9a8d20283f14f5c801a6a"/><section>
+    <title>BUZZER_2ST_STAGE_DELAY_MS</title>
+<indexterm><primary>BUZZER_2ST_STAGE_DELAY_MS</primary><secondary>Buzz_Config.h</secondary></indexterm>
+<indexterm><primary>Buzz_Config.h</primary><secondary>BUZZER_2ST_STAGE_DELAY_MS</secondary></indexterm>
+<para><computeroutput>#define BUZZER_2ST_STAGE_DELAY_MS   800</computeroutput></para><para>
+Definition at line <link linkend="__buzz___config_8h_source_1l00034">34</link> of file <link linkend="__buzz___config_8h_source">Buzz_Config.h</link>.</para>
+</section>
+<anchor xml:id="__buzz___config_8h_1a2c313a23ff0056524b61430ecf784b39"/><section>
+    <title>BUZZER_3ST_STAGE_DELAY_MS</title>
+<indexterm><primary>BUZZER_3ST_STAGE_DELAY_MS</primary><secondary>Buzz_Config.h</secondary></indexterm>
+<indexterm><primary>Buzz_Config.h</primary><secondary>BUZZER_3ST_STAGE_DELAY_MS</secondary></indexterm>
+<para><computeroutput>#define BUZZER_3ST_STAGE_DELAY_MS   600</computeroutput></para><para>
+Definition at line <link linkend="__buzz___config_8h_source_1l00039">39</link> of file <link linkend="__buzz___config_8h_source">Buzz_Config.h</link>.</para>
+</section>
+<anchor xml:id="__buzz___config_8h_1a6c3cd36d0d1b50e184427da434240710"/><section>
+    <title>BUZZER_4ST_STAGE_DELAY_MS</title>
+<indexterm><primary>BUZZER_4ST_STAGE_DELAY_MS</primary><secondary>Buzz_Config.h</secondary></indexterm>
+<indexterm><primary>Buzz_Config.h</primary><secondary>BUZZER_4ST_STAGE_DELAY_MS</secondary></indexterm>
+<para><computeroutput>#define BUZZER_4ST_STAGE_DELAY_MS   400</computeroutput></para><para>
+Definition at line <link linkend="__buzz___config_8h_source_1l00044">44</link> of file <link linkend="__buzz___config_8h_source">Buzz_Config.h</link>.</para>
+</section>
+<anchor xml:id="__buzz___config_8h_1a21848e2a1d94a107f28b968c2afd2f3a"/><section>
+    <title>BUZZER_5ST_STAGE_DELAY_MS</title>
+<indexterm><primary>BUZZER_5ST_STAGE_DELAY_MS</primary><secondary>Buzz_Config.h</secondary></indexterm>
+<indexterm><primary>Buzz_Config.h</primary><secondary>BUZZER_5ST_STAGE_DELAY_MS</secondary></indexterm>
+<para><computeroutput>#define BUZZER_5ST_STAGE_DELAY_MS   200</computeroutput></para><para>
+Definition at line <link linkend="__buzz___config_8h_source_1l00049">49</link> of file <link linkend="__buzz___config_8h_source">Buzz_Config.h</link>.</para>
+</section>
+<anchor xml:id="__buzz___config_8h_1a40deac39e91106c7b472dee17cdd4995"/><section>
+    <title>BUZZER_DEFAULT_DURATION</title>
+<indexterm><primary>BUZZER_DEFAULT_DURATION</primary><secondary>Buzz_Config.h</secondary></indexterm>
+<indexterm><primary>Buzz_Config.h</primary><secondary>BUZZER_DEFAULT_DURATION</secondary></indexterm>
+<para><computeroutput>#define BUZZER_DEFAULT_DURATION   500</computeroutput></para><para>
+Definition at line <link linkend="__buzz___config_8h_source_1l00024">24</link> of file <link linkend="__buzz___config_8h_source">Buzz_Config.h</link>.</para>
+</section>
+<anchor xml:id="__buzz___config_8h_1a53157b0c521fcb6114549b588626560d"/><section>
+    <title>BUZZER_FREQ</title>
+<indexterm><primary>BUZZER_FREQ</primary><secondary>Buzz_Config.h</secondary></indexterm>
+<indexterm><primary>Buzz_Config.h</primary><secondary>BUZZER_FREQ</secondary></indexterm>
+<para><computeroutput>#define BUZZER_FREQ   1000</computeroutput></para><para>
+Definition at line <link linkend="__buzz___config_8h_source_1l00019">19</link> of file <link linkend="__buzz___config_8h_source">Buzz_Config.h</link>.</para>
+</section>
+<anchor xml:id="__buzz___config_8h_1a6971f399d8a49d21cd766fa6bf18e130"/><section>
+    <title>BUZZER_MIN_STAGE_DELAY_MS</title>
+<indexterm><primary>BUZZER_MIN_STAGE_DELAY_MS</primary><secondary>Buzz_Config.h</secondary></indexterm>
+<indexterm><primary>Buzz_Config.h</primary><secondary>BUZZER_MIN_STAGE_DELAY_MS</secondary></indexterm>
+<para><computeroutput>#define BUZZER_MIN_STAGE_DELAY_MS   100</computeroutput></para><para>
+Definition at line <link linkend="__buzz___config_8h_source_1l00054">54</link> of file <link linkend="__buzz___config_8h_source">Buzz_Config.h</link>.</para>
+</section>
+</section>
+</section>

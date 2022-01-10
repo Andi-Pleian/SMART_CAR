@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_dir_cae4751c643886e50c74852eac03b088" xml:lang="en-US">
+<title>main/Debug/Modules/Sensors Directory Reference</title>
+<indexterm><primary>main/Debug/Modules/Sensors Directory Reference</primary></indexterm>
+<simplesect>
+    <title>Directories    </title>
+        <itemizedlist>
+            <listitem><para>directory <link linkend="_dir_5260529832d7b7c68b47483f2197f088">SPS</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

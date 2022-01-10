@@ -1,0 +1,364 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="__i_r_protocol_8h" xml:lang="en-US">
+<title>main/IRRemote_Library/IRProtocol.h File Reference</title>
+<indexterm><primary>main/IRRemote_Library/IRProtocol.h</primary></indexterm>
+<para>
+
+<para>Common declarations for receiving and sending. </para>
+ 
+</para>
+This graph shows which files directly or indirectly include this file:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="_i_r_protocol_8h__dep__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Macros    </title>
+        <itemizedlist>
+            <listitem><para>#define <link linkend="__i_r_protocol_8h_1a8717702b4019c982727719bd40af7630">PROTOCOL_IS_LSB_FIRST</link>   false</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_protocol_8h_1a2db53e8319cd3f5de758337fa08552d0">PROTOCOL_IS_MSB_FIRST</link>   true</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_protocol_8h_1a5dcaa6ec48a7a0b663e5de0ce853a541">SONY_KHZ</link>   40</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_protocol_8h_1a5e8586b46bb336ab800f4239b9bc46d1">BOSEWAVE_KHZ</link>   38</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_protocol_8h_1ad2ebee0d7bd6593a38e1998ddd6b0c90">DENON_KHZ</link>   38</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_protocol_8h_1abcc6e2b61050500362daed1341bef91b">JVC_KHZ</link>   38</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_protocol_8h_1ada5cace06e49eefd0eceb54fa57ad824">LG_KHZ</link>   38</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_protocol_8h_1ae1333ec007e3f586daf2b4af76894fc9">NEC_KHZ</link>   38</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_protocol_8h_1ac386480bc33f2fa50193da38a023b8ce">SAMSUNG_KHZ</link>   38</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_protocol_8h_1ae59fcf8145e60472b2b94f7e72a1d441">KASEIKYO_KHZ</link>   37</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_protocol_8h_1a1e8fcd1e00b7fa15e99fae5ea30f35ae">RC5_RC6_KHZ</link>   36</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_protocol_8h_1a310adca9c81e03bc122d77251a594440">PANASONIC_VENDOR_ID_CODE</link>   0x2002</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_protocol_8h_1aeb3d85736eb3f3e60af419edd191e14d">DENON_VENDOR_ID_CODE</link>   0x3254</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_protocol_8h_1aca397cf0ba4543c581f0f5bfaf50ef25">MITSUBISHI_VENDOR_ID_CODE</link>   0xCB23</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_protocol_8h_1a2ee9972dc5425130b659242589ceb098">SHARP_VENDOR_ID_CODE</link>   0x5AAA</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_protocol_8h_1a3e456885d3a0286f50fb024b0b3f90a2">JVC_VENDOR_ID_CODE</link>   0x0103</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_protocol_8h_1a8a2dbf77031a92783a200b9902c8459b">SIRCS_12_PROTOCOL</link>   12</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_protocol_8h_1a75fe4989c11b3e3176262acfa9bce2ce">SIRCS_15_PROTOCOL</link>   15</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_protocol_8h_1a4014bf0435ac7da04aa0bb1b0949eb8e">SIRCS_20_PROTOCOL</link>   20</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_protocol_8h_1acd9e7f1a67b4ac536be4b7754db8da62">LEGO_MODE_EXTENDED</link>   0</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_protocol_8h_1a47c92bffd09d8ad45b99db6c6eda8e0b">LEGO_MODE_COMBO</link>   1</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_protocol_8h_1a4b8e451f62edbd13839eec57242fa6bf">LEGO_MODE_SINGLE</link>   0x4</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Enumerations    </title>
+        <itemizedlist>
+            <listitem><para>enum <link linkend="__i_r_protocol_8h_1ad5b287a488a8c1b7b8661f029ab56fad">decode_type_t</link> { 
+<link linkend="__i_r_protocol_8h_1ad5b287a488a8c1b7b8661f029ab56fada6ce26a62afab55d7606ad4e92428b30c">UNKNOWN</link> = 0
+, <link linkend="__i_r_protocol_8h_1ad5b287a488a8c1b7b8661f029ab56fadab60e0c1f01cfceb2dc9d5f2005f6dfc0">PULSE_DISTANCE</link>
+, <link linkend="__i_r_protocol_8h_1ad5b287a488a8c1b7b8661f029ab56fada783253fd89cb09e1dbdb2bcdbc0400e3">PULSE_WIDTH</link>
+, <link linkend="__i_r_protocol_8h_1ad5b287a488a8c1b7b8661f029ab56fada2bda37b76abb290d1675c3e027e3c2e1">DENON</link>
+, 
+<link linkend="__i_r_protocol_8h_1ad5b287a488a8c1b7b8661f029ab56fadac27c6ac38ba872593af8e46ac2fdc85a">DISH</link>
+, <link linkend="__i_r_protocol_8h_1ad5b287a488a8c1b7b8661f029ab56fada5b6f507fb4bbd70ee70be4e2e0b0371d">JVC</link>
+, <link linkend="__i_r_protocol_8h_1ad5b287a488a8c1b7b8661f029ab56fadadf6c249ac7d923229f9e623eff9a61f4">LG</link>
+, <link linkend="__i_r_protocol_8h_1ad5b287a488a8c1b7b8661f029ab56fada8402547ec0b99b9b0efe97dec65badf9">LG2</link>
+, 
+<link linkend="__i_r_protocol_8h_1ad5b287a488a8c1b7b8661f029ab56fada0811f93a25b0873e21979d569eeac05e">NEC</link>
+, <link linkend="__i_r_protocol_8h_1ad5b287a488a8c1b7b8661f029ab56fadaf87c99938d26a1f77d4f082c070d4660">PANASONIC</link>
+, <link linkend="__i_r_protocol_8h_1ad5b287a488a8c1b7b8661f029ab56fadaf2d8443e083aa95f191f26d438c6b953">KASEIKYO</link>
+, <link linkend="__i_r_protocol_8h_1ad5b287a488a8c1b7b8661f029ab56fada6b221b79427a02288ea41683a7d04841">KASEIKYO_JVC</link>
+, 
+<link linkend="__i_r_protocol_8h_1ad5b287a488a8c1b7b8661f029ab56fada4cb93fe0fe3dbe0681b8764a9294733b">KASEIKYO_DENON</link>
+, <link linkend="__i_r_protocol_8h_1ad5b287a488a8c1b7b8661f029ab56fada181746513f88dba0d824c5dfeeec68b6">KASEIKYO_SHARP</link>
+, <link linkend="__i_r_protocol_8h_1ad5b287a488a8c1b7b8661f029ab56fada2516be3bdfd7614bb64961800fa49e43">KASEIKYO_MITSUBISHI</link>
+, <link linkend="__i_r_protocol_8h_1ad5b287a488a8c1b7b8661f029ab56fadac3c0a3883a1488209bcd91730ece33b2">RC5</link>
+, 
+<link linkend="__i_r_protocol_8h_1ad5b287a488a8c1b7b8661f029ab56fada7f7247f15587eb3812846f424b941abe">RC6</link>
+, <link linkend="__i_r_protocol_8h_1ad5b287a488a8c1b7b8661f029ab56fada2b451b6e7bebbf070d0913ec77d5d438">SAMSUNG</link>
+, <link linkend="__i_r_protocol_8h_1ad5b287a488a8c1b7b8661f029ab56fadaad63db67a2284cd7e3ffe382b6d6ea82">SHARP</link>
+, <link linkend="__i_r_protocol_8h_1ad5b287a488a8c1b7b8661f029ab56fada72d58193d4d25517202d22b7e57a65c3">SONY</link>
+, 
+<link linkend="__i_r_protocol_8h_1ad5b287a488a8c1b7b8661f029ab56fada20603784a6e8d35a82b2476366010344">ONKYO</link>
+, <link linkend="__i_r_protocol_8h_1ad5b287a488a8c1b7b8661f029ab56fada5484ec37ffd1fcffb7aba549a4839910">APPLE</link>
+, <link linkend="__i_r_protocol_8h_1ad5b287a488a8c1b7b8661f029ab56fada20736b037c0e7444d4dc7ff06e9dea54">BOSEWAVE</link>
+, <link linkend="__i_r_protocol_8h_1ad5b287a488a8c1b7b8661f029ab56fadaf47be4dad020b9c36aa255c582e25510">LEGO_PF</link>
+, 
+<link linkend="__i_r_protocol_8h_1ad5b287a488a8c1b7b8661f029ab56fada3be750ce1687bc1a92fee05b0c511100">MAGIQUEST</link>
+, <link linkend="__i_r_protocol_8h_1ad5b287a488a8c1b7b8661f029ab56fada458cdd7fa2b29dc8617c694696580c0c">WHYNTER</link>
+ }</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Functions    </title>
+        <itemizedlist>
+            <listitem><para>const __FlashStringHelper * <link linkend="_group___receiving_1ga378e691dd082face86f9ae908d0eef2e">getProtocolString</link> (<link linkend="__i_r_protocol_8h_1ad5b287a488a8c1b7b8661f029ab56fad">decode_type_t</link> aProtocol)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>Common declarations for receiving and sending. </para>
+
+<para>This file is part of Arduino-IRremote <link xlink:href="https://github.com/Arduino-IRremote/Arduino-IRremote">https://github.com/Arduino-IRremote/Arduino-IRremote</link>.</para>
+
+<para>MIT License</para>
+
+<para>Copyright (c) 2020-2021 Armin Joachimsmeyer</para>
+
+<para>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</para>
+
+<para>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</para>
+
+<para>THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. </para>
+<para>
+Definition in file <link linkend="__i_r_protocol_8h_source">IRProtocol.h</link>.</para>
+</section>
+<section>
+<title>Macro Definition Documentation</title>
+<anchor xml:id="__i_r_protocol_8h_1a5e8586b46bb336ab800f4239b9bc46d1"/><section>
+    <title>BOSEWAVE_KHZ</title>
+<indexterm><primary>BOSEWAVE_KHZ</primary><secondary>IRProtocol.h</secondary></indexterm>
+<indexterm><primary>IRProtocol.h</primary><secondary>BOSEWAVE_KHZ</secondary></indexterm>
+<para><computeroutput>#define BOSEWAVE_KHZ   38</computeroutput></para><para>
+Definition at line <link linkend="__i_r_protocol_8h_source_1l00077">77</link> of file <link linkend="__i_r_protocol_8h_source">IRProtocol.h</link>.</para>
+</section>
+<anchor xml:id="__i_r_protocol_8h_1ad2ebee0d7bd6593a38e1998ddd6b0c90"/><section>
+    <title>DENON_KHZ</title>
+<indexterm><primary>DENON_KHZ</primary><secondary>IRProtocol.h</secondary></indexterm>
+<indexterm><primary>IRProtocol.h</primary><secondary>DENON_KHZ</secondary></indexterm>
+<para><computeroutput>#define DENON_KHZ   38</computeroutput></para><para>
+Definition at line <link linkend="__i_r_protocol_8h_source_1l00078">78</link> of file <link linkend="__i_r_protocol_8h_source">IRProtocol.h</link>.</para>
+</section>
+<anchor xml:id="__i_r_protocol_8h_1aeb3d85736eb3f3e60af419edd191e14d"/><section>
+    <title>DENON_VENDOR_ID_CODE</title>
+<indexterm><primary>DENON_VENDOR_ID_CODE</primary><secondary>IRProtocol.h</secondary></indexterm>
+<indexterm><primary>IRProtocol.h</primary><secondary>DENON_VENDOR_ID_CODE</secondary></indexterm>
+<para><computeroutput>#define DENON_VENDOR_ID_CODE   0x3254</computeroutput></para><para>
+Definition at line <link linkend="__i_r_protocol_8h_source_1l00090">90</link> of file <link linkend="__i_r_protocol_8h_source">IRProtocol.h</link>.</para>
+</section>
+<anchor xml:id="__i_r_protocol_8h_1abcc6e2b61050500362daed1341bef91b"/><section>
+    <title>JVC_KHZ</title>
+<indexterm><primary>JVC_KHZ</primary><secondary>IRProtocol.h</secondary></indexterm>
+<indexterm><primary>IRProtocol.h</primary><secondary>JVC_KHZ</secondary></indexterm>
+<para><computeroutput>#define JVC_KHZ   38</computeroutput></para><para>
+Definition at line <link linkend="__i_r_protocol_8h_source_1l00079">79</link> of file <link linkend="__i_r_protocol_8h_source">IRProtocol.h</link>.</para>
+</section>
+<anchor xml:id="__i_r_protocol_8h_1a3e456885d3a0286f50fb024b0b3f90a2"/><section>
+    <title>JVC_VENDOR_ID_CODE</title>
+<indexterm><primary>JVC_VENDOR_ID_CODE</primary><secondary>IRProtocol.h</secondary></indexterm>
+<indexterm><primary>IRProtocol.h</primary><secondary>JVC_VENDOR_ID_CODE</secondary></indexterm>
+<para><computeroutput>#define JVC_VENDOR_ID_CODE   0x0103</computeroutput></para><para>
+Definition at line <link linkend="__i_r_protocol_8h_source_1l00093">93</link> of file <link linkend="__i_r_protocol_8h_source">IRProtocol.h</link>.</para>
+</section>
+<anchor xml:id="__i_r_protocol_8h_1ae59fcf8145e60472b2b94f7e72a1d441"/><section>
+    <title>KASEIKYO_KHZ</title>
+<indexterm><primary>KASEIKYO_KHZ</primary><secondary>IRProtocol.h</secondary></indexterm>
+<indexterm><primary>IRProtocol.h</primary><secondary>KASEIKYO_KHZ</secondary></indexterm>
+<para><computeroutput>#define KASEIKYO_KHZ   37</computeroutput></para><para>
+Definition at line <link linkend="__i_r_protocol_8h_source_1l00083">83</link> of file <link linkend="__i_r_protocol_8h_source">IRProtocol.h</link>.</para>
+</section>
+<anchor xml:id="__i_r_protocol_8h_1a47c92bffd09d8ad45b99db6c6eda8e0b"/><section>
+    <title>LEGO_MODE_COMBO</title>
+<indexterm><primary>LEGO_MODE_COMBO</primary><secondary>IRProtocol.h</secondary></indexterm>
+<indexterm><primary>IRProtocol.h</primary><secondary>LEGO_MODE_COMBO</secondary></indexterm>
+<para><computeroutput>#define LEGO_MODE_COMBO   1</computeroutput></para><para>
+Definition at line <link linkend="__i_r_protocol_8h_source_1l00100">100</link> of file <link linkend="__i_r_protocol_8h_source">IRProtocol.h</link>.</para>
+</section>
+<anchor xml:id="__i_r_protocol_8h_1acd9e7f1a67b4ac536be4b7754db8da62"/><section>
+    <title>LEGO_MODE_EXTENDED</title>
+<indexterm><primary>LEGO_MODE_EXTENDED</primary><secondary>IRProtocol.h</secondary></indexterm>
+<indexterm><primary>IRProtocol.h</primary><secondary>LEGO_MODE_EXTENDED</secondary></indexterm>
+<para><computeroutput>#define LEGO_MODE_EXTENDED   0</computeroutput></para><para>
+Definition at line <link linkend="__i_r_protocol_8h_source_1l00099">99</link> of file <link linkend="__i_r_protocol_8h_source">IRProtocol.h</link>.</para>
+</section>
+<anchor xml:id="__i_r_protocol_8h_1a4b8e451f62edbd13839eec57242fa6bf"/><section>
+    <title>LEGO_MODE_SINGLE</title>
+<indexterm><primary>LEGO_MODE_SINGLE</primary><secondary>IRProtocol.h</secondary></indexterm>
+<indexterm><primary>IRProtocol.h</primary><secondary>LEGO_MODE_SINGLE</secondary></indexterm>
+<para><computeroutput>#define LEGO_MODE_SINGLE   0x4</computeroutput></para><para>
+Definition at line <link linkend="__i_r_protocol_8h_source_1l00101">101</link> of file <link linkend="__i_r_protocol_8h_source">IRProtocol.h</link>.</para>
+</section>
+<anchor xml:id="__i_r_protocol_8h_1ada5cace06e49eefd0eceb54fa57ad824"/><section>
+    <title>LG_KHZ</title>
+<indexterm><primary>LG_KHZ</primary><secondary>IRProtocol.h</secondary></indexterm>
+<indexterm><primary>IRProtocol.h</primary><secondary>LG_KHZ</secondary></indexterm>
+<para><computeroutput>#define LG_KHZ   38</computeroutput></para><para>
+Definition at line <link linkend="__i_r_protocol_8h_source_1l00080">80</link> of file <link linkend="__i_r_protocol_8h_source">IRProtocol.h</link>.</para>
+</section>
+<anchor xml:id="__i_r_protocol_8h_1aca397cf0ba4543c581f0f5bfaf50ef25"/><section>
+    <title>MITSUBISHI_VENDOR_ID_CODE</title>
+<indexterm><primary>MITSUBISHI_VENDOR_ID_CODE</primary><secondary>IRProtocol.h</secondary></indexterm>
+<indexterm><primary>IRProtocol.h</primary><secondary>MITSUBISHI_VENDOR_ID_CODE</secondary></indexterm>
+<para><computeroutput>#define MITSUBISHI_VENDOR_ID_CODE   0xCB23</computeroutput></para><para>
+Definition at line <link linkend="__i_r_protocol_8h_source_1l00091">91</link> of file <link linkend="__i_r_protocol_8h_source">IRProtocol.h</link>.</para>
+</section>
+<anchor xml:id="__i_r_protocol_8h_1ae1333ec007e3f586daf2b4af76894fc9"/><section>
+    <title>NEC_KHZ</title>
+<indexterm><primary>NEC_KHZ</primary><secondary>IRProtocol.h</secondary></indexterm>
+<indexterm><primary>IRProtocol.h</primary><secondary>NEC_KHZ</secondary></indexterm>
+<para><computeroutput>#define NEC_KHZ   38</computeroutput></para><para>
+Definition at line <link linkend="__i_r_protocol_8h_source_1l00081">81</link> of file <link linkend="__i_r_protocol_8h_source">IRProtocol.h</link>.</para>
+</section>
+<anchor xml:id="__i_r_protocol_8h_1a310adca9c81e03bc122d77251a594440"/><section>
+    <title>PANASONIC_VENDOR_ID_CODE</title>
+<indexterm><primary>PANASONIC_VENDOR_ID_CODE</primary><secondary>IRProtocol.h</secondary></indexterm>
+<indexterm><primary>IRProtocol.h</primary><secondary>PANASONIC_VENDOR_ID_CODE</secondary></indexterm>
+<para><computeroutput>#define PANASONIC_VENDOR_ID_CODE   0x2002</computeroutput></para><para>
+Definition at line <link linkend="__i_r_protocol_8h_source_1l00089">89</link> of file <link linkend="__i_r_protocol_8h_source">IRProtocol.h</link>.</para>
+</section>
+<anchor xml:id="__i_r_protocol_8h_1a8717702b4019c982727719bd40af7630"/><section>
+    <title>PROTOCOL_IS_LSB_FIRST</title>
+<indexterm><primary>PROTOCOL_IS_LSB_FIRST</primary><secondary>IRProtocol.h</secondary></indexterm>
+<indexterm><primary>IRProtocol.h</primary><secondary>PROTOCOL_IS_LSB_FIRST</secondary></indexterm>
+<para><computeroutput>#define PROTOCOL_IS_LSB_FIRST   false</computeroutput></para><para>
+Definition at line <link linkend="__i_r_protocol_8h_source_1l00070">70</link> of file <link linkend="__i_r_protocol_8h_source">IRProtocol.h</link>.</para>
+</section>
+<anchor xml:id="__i_r_protocol_8h_1a2db53e8319cd3f5de758337fa08552d0"/><section>
+    <title>PROTOCOL_IS_MSB_FIRST</title>
+<indexterm><primary>PROTOCOL_IS_MSB_FIRST</primary><secondary>IRProtocol.h</secondary></indexterm>
+<indexterm><primary>IRProtocol.h</primary><secondary>PROTOCOL_IS_MSB_FIRST</secondary></indexterm>
+<para><computeroutput>#define PROTOCOL_IS_MSB_FIRST   true</computeroutput></para><para>
+Definition at line <link linkend="__i_r_protocol_8h_source_1l00071">71</link> of file <link linkend="__i_r_protocol_8h_source">IRProtocol.h</link>.</para>
+</section>
+<anchor xml:id="__i_r_protocol_8h_1a1e8fcd1e00b7fa15e99fae5ea30f35ae"/><section>
+    <title>RC5_RC6_KHZ</title>
+<indexterm><primary>RC5_RC6_KHZ</primary><secondary>IRProtocol.h</secondary></indexterm>
+<indexterm><primary>IRProtocol.h</primary><secondary>RC5_RC6_KHZ</secondary></indexterm>
+<para><computeroutput>#define RC5_RC6_KHZ   36</computeroutput></para><para>
+Definition at line <link linkend="__i_r_protocol_8h_source_1l00084">84</link> of file <link linkend="__i_r_protocol_8h_source">IRProtocol.h</link>.</para>
+</section>
+<anchor xml:id="__i_r_protocol_8h_1ac386480bc33f2fa50193da38a023b8ce"/><section>
+    <title>SAMSUNG_KHZ</title>
+<indexterm><primary>SAMSUNG_KHZ</primary><secondary>IRProtocol.h</secondary></indexterm>
+<indexterm><primary>IRProtocol.h</primary><secondary>SAMSUNG_KHZ</secondary></indexterm>
+<para><computeroutput>#define SAMSUNG_KHZ   38</computeroutput></para><para>
+Definition at line <link linkend="__i_r_protocol_8h_source_1l00082">82</link> of file <link linkend="__i_r_protocol_8h_source">IRProtocol.h</link>.</para>
+</section>
+<anchor xml:id="__i_r_protocol_8h_1a2ee9972dc5425130b659242589ceb098"/><section>
+    <title>SHARP_VENDOR_ID_CODE</title>
+<indexterm><primary>SHARP_VENDOR_ID_CODE</primary><secondary>IRProtocol.h</secondary></indexterm>
+<indexterm><primary>IRProtocol.h</primary><secondary>SHARP_VENDOR_ID_CODE</secondary></indexterm>
+<para><computeroutput>#define SHARP_VENDOR_ID_CODE   0x5AAA</computeroutput></para><para>
+Definition at line <link linkend="__i_r_protocol_8h_source_1l00092">92</link> of file <link linkend="__i_r_protocol_8h_source">IRProtocol.h</link>.</para>
+</section>
+<anchor xml:id="__i_r_protocol_8h_1a8a2dbf77031a92783a200b9902c8459b"/><section>
+    <title>SIRCS_12_PROTOCOL</title>
+<indexterm><primary>SIRCS_12_PROTOCOL</primary><secondary>IRProtocol.h</secondary></indexterm>
+<indexterm><primary>IRProtocol.h</primary><secondary>SIRCS_12_PROTOCOL</secondary></indexterm>
+<para><computeroutput>#define SIRCS_12_PROTOCOL   12</computeroutput></para><para>
+Definition at line <link linkend="__i_r_protocol_8h_source_1l00095">95</link> of file <link linkend="__i_r_protocol_8h_source">IRProtocol.h</link>.</para>
+</section>
+<anchor xml:id="__i_r_protocol_8h_1a75fe4989c11b3e3176262acfa9bce2ce"/><section>
+    <title>SIRCS_15_PROTOCOL</title>
+<indexterm><primary>SIRCS_15_PROTOCOL</primary><secondary>IRProtocol.h</secondary></indexterm>
+<indexterm><primary>IRProtocol.h</primary><secondary>SIRCS_15_PROTOCOL</secondary></indexterm>
+<para><computeroutput>#define SIRCS_15_PROTOCOL   15</computeroutput></para><para>
+Definition at line <link linkend="__i_r_protocol_8h_source_1l00096">96</link> of file <link linkend="__i_r_protocol_8h_source">IRProtocol.h</link>.</para>
+</section>
+<anchor xml:id="__i_r_protocol_8h_1a4014bf0435ac7da04aa0bb1b0949eb8e"/><section>
+    <title>SIRCS_20_PROTOCOL</title>
+<indexterm><primary>SIRCS_20_PROTOCOL</primary><secondary>IRProtocol.h</secondary></indexterm>
+<indexterm><primary>IRProtocol.h</primary><secondary>SIRCS_20_PROTOCOL</secondary></indexterm>
+<para><computeroutput>#define SIRCS_20_PROTOCOL   20</computeroutput></para><para>
+Definition at line <link linkend="__i_r_protocol_8h_source_1l00097">97</link> of file <link linkend="__i_r_protocol_8h_source">IRProtocol.h</link>.</para>
+</section>
+<anchor xml:id="__i_r_protocol_8h_1a5dcaa6ec48a7a0b663e5de0ce853a541"/><section>
+    <title>SONY_KHZ</title>
+<indexterm><primary>SONY_KHZ</primary><secondary>IRProtocol.h</secondary></indexterm>
+<indexterm><primary>IRProtocol.h</primary><secondary>SONY_KHZ</secondary></indexterm>
+<para><computeroutput>#define SONY_KHZ   40</computeroutput></para><para>
+Definition at line <link linkend="__i_r_protocol_8h_source_1l00076">76</link> of file <link linkend="__i_r_protocol_8h_source">IRProtocol.h</link>.</para>
+</section>
+</section>
+<section>
+<title>Enumeration Type Documentation</title>
+<anchor xml:id="__i_r_protocol_8h_1ad5b287a488a8c1b7b8661f029ab56fad"/><section>
+    <title>decode_type_t</title>
+<indexterm><primary>decode_type_t</primary><secondary>IRProtocol.h</secondary></indexterm>
+<indexterm><primary>IRProtocol.h</primary><secondary>decode_type_t</secondary></indexterm>
+<para><computeroutput>enum <link linkend="__i_r_protocol_8h_1ad5b287a488a8c1b7b8661f029ab56fad">decode_type_t</link></computeroutput></para>
+<para>An enum consisting of all supported formats. You do NOT need to remove entries from this list when disabling protocols! </para>
+<informaltable frame="all">
+<title>Enumerator</title>
+    <tgroup cols="2" align="left" colsep="1" rowsep="1">
+      <colspec colname='c1'/>
+      <colspec colname='c2'/>
+<tbody>
+<row><entry><indexterm><primary>UNKNOWN</primary><secondary>IRProtocol.h</secondary></indexterm>
+<indexterm><primary>IRProtocol.h</primary><secondary>UNKNOWN</secondary></indexterm>
+<anchor xml:id="__i_r_protocol_8h_1ad5b287a488a8c1b7b8661f029ab56fada6ce26a62afab55d7606ad4e92428b30c"/>UNKNOWN</entry><entry></entry></row><row><entry><indexterm><primary>PULSE_DISTANCE</primary><secondary>IRProtocol.h</secondary></indexterm>
+<indexterm><primary>IRProtocol.h</primary><secondary>PULSE_DISTANCE</secondary></indexterm>
+<anchor xml:id="__i_r_protocol_8h_1ad5b287a488a8c1b7b8661f029ab56fadab60e0c1f01cfceb2dc9d5f2005f6dfc0"/>PULSE_DISTANCE</entry><entry></entry></row><row><entry><indexterm><primary>PULSE_WIDTH</primary><secondary>IRProtocol.h</secondary></indexterm>
+<indexterm><primary>IRProtocol.h</primary><secondary>PULSE_WIDTH</secondary></indexterm>
+<anchor xml:id="__i_r_protocol_8h_1ad5b287a488a8c1b7b8661f029ab56fada783253fd89cb09e1dbdb2bcdbc0400e3"/>PULSE_WIDTH</entry><entry></entry></row><row><entry><indexterm><primary>DENON</primary><secondary>IRProtocol.h</secondary></indexterm>
+<indexterm><primary>IRProtocol.h</primary><secondary>DENON</secondary></indexterm>
+<anchor xml:id="__i_r_protocol_8h_1ad5b287a488a8c1b7b8661f029ab56fada2bda37b76abb290d1675c3e027e3c2e1"/>DENON</entry><entry></entry></row><row><entry><indexterm><primary>DISH</primary><secondary>IRProtocol.h</secondary></indexterm>
+<indexterm><primary>IRProtocol.h</primary><secondary>DISH</secondary></indexterm>
+<anchor xml:id="__i_r_protocol_8h_1ad5b287a488a8c1b7b8661f029ab56fadac27c6ac38ba872593af8e46ac2fdc85a"/>DISH</entry><entry></entry></row><row><entry><indexterm><primary>JVC</primary><secondary>IRProtocol.h</secondary></indexterm>
+<indexterm><primary>IRProtocol.h</primary><secondary>JVC</secondary></indexterm>
+<anchor xml:id="__i_r_protocol_8h_1ad5b287a488a8c1b7b8661f029ab56fada5b6f507fb4bbd70ee70be4e2e0b0371d"/>JVC</entry><entry></entry></row><row><entry><indexterm><primary>LG</primary><secondary>IRProtocol.h</secondary></indexterm>
+<indexterm><primary>IRProtocol.h</primary><secondary>LG</secondary></indexterm>
+<anchor xml:id="__i_r_protocol_8h_1ad5b287a488a8c1b7b8661f029ab56fadadf6c249ac7d923229f9e623eff9a61f4"/>LG</entry><entry></entry></row><row><entry><indexterm><primary>LG2</primary><secondary>IRProtocol.h</secondary></indexterm>
+<indexterm><primary>IRProtocol.h</primary><secondary>LG2</secondary></indexterm>
+<anchor xml:id="__i_r_protocol_8h_1ad5b287a488a8c1b7b8661f029ab56fada8402547ec0b99b9b0efe97dec65badf9"/>LG2</entry><entry></entry></row><row><entry><indexterm><primary>NEC</primary><secondary>IRProtocol.h</secondary></indexterm>
+<indexterm><primary>IRProtocol.h</primary><secondary>NEC</secondary></indexterm>
+<anchor xml:id="__i_r_protocol_8h_1ad5b287a488a8c1b7b8661f029ab56fada0811f93a25b0873e21979d569eeac05e"/>NEC</entry><entry></entry></row><row><entry><indexterm><primary>PANASONIC</primary><secondary>IRProtocol.h</secondary></indexterm>
+<indexterm><primary>IRProtocol.h</primary><secondary>PANASONIC</secondary></indexterm>
+<anchor xml:id="__i_r_protocol_8h_1ad5b287a488a8c1b7b8661f029ab56fadaf87c99938d26a1f77d4f082c070d4660"/>PANASONIC</entry><entry></entry></row><row><entry><indexterm><primary>KASEIKYO</primary><secondary>IRProtocol.h</secondary></indexterm>
+<indexterm><primary>IRProtocol.h</primary><secondary>KASEIKYO</secondary></indexterm>
+<anchor xml:id="__i_r_protocol_8h_1ad5b287a488a8c1b7b8661f029ab56fadaf2d8443e083aa95f191f26d438c6b953"/>KASEIKYO</entry><entry></entry></row><row><entry><indexterm><primary>KASEIKYO_JVC</primary><secondary>IRProtocol.h</secondary></indexterm>
+<indexterm><primary>IRProtocol.h</primary><secondary>KASEIKYO_JVC</secondary></indexterm>
+<anchor xml:id="__i_r_protocol_8h_1ad5b287a488a8c1b7b8661f029ab56fada6b221b79427a02288ea41683a7d04841"/>KASEIKYO_JVC</entry><entry></entry></row><row><entry><indexterm><primary>KASEIKYO_DENON</primary><secondary>IRProtocol.h</secondary></indexterm>
+<indexterm><primary>IRProtocol.h</primary><secondary>KASEIKYO_DENON</secondary></indexterm>
+<anchor xml:id="__i_r_protocol_8h_1ad5b287a488a8c1b7b8661f029ab56fada4cb93fe0fe3dbe0681b8764a9294733b"/>KASEIKYO_DENON</entry><entry></entry></row><row><entry><indexterm><primary>KASEIKYO_SHARP</primary><secondary>IRProtocol.h</secondary></indexterm>
+<indexterm><primary>IRProtocol.h</primary><secondary>KASEIKYO_SHARP</secondary></indexterm>
+<anchor xml:id="__i_r_protocol_8h_1ad5b287a488a8c1b7b8661f029ab56fada181746513f88dba0d824c5dfeeec68b6"/>KASEIKYO_SHARP</entry><entry></entry></row><row><entry><indexterm><primary>KASEIKYO_MITSUBISHI</primary><secondary>IRProtocol.h</secondary></indexterm>
+<indexterm><primary>IRProtocol.h</primary><secondary>KASEIKYO_MITSUBISHI</secondary></indexterm>
+<anchor xml:id="__i_r_protocol_8h_1ad5b287a488a8c1b7b8661f029ab56fada2516be3bdfd7614bb64961800fa49e43"/>KASEIKYO_MITSUBISHI</entry><entry></entry></row><row><entry><indexterm><primary>RC5</primary><secondary>IRProtocol.h</secondary></indexterm>
+<indexterm><primary>IRProtocol.h</primary><secondary>RC5</secondary></indexterm>
+<anchor xml:id="__i_r_protocol_8h_1ad5b287a488a8c1b7b8661f029ab56fadac3c0a3883a1488209bcd91730ece33b2"/>RC5</entry><entry></entry></row><row><entry><indexterm><primary>RC6</primary><secondary>IRProtocol.h</secondary></indexterm>
+<indexterm><primary>IRProtocol.h</primary><secondary>RC6</secondary></indexterm>
+<anchor xml:id="__i_r_protocol_8h_1ad5b287a488a8c1b7b8661f029ab56fada7f7247f15587eb3812846f424b941abe"/>RC6</entry><entry></entry></row><row><entry><indexterm><primary>SAMSUNG</primary><secondary>IRProtocol.h</secondary></indexterm>
+<indexterm><primary>IRProtocol.h</primary><secondary>SAMSUNG</secondary></indexterm>
+<anchor xml:id="__i_r_protocol_8h_1ad5b287a488a8c1b7b8661f029ab56fada2b451b6e7bebbf070d0913ec77d5d438"/>SAMSUNG</entry><entry></entry></row><row><entry><indexterm><primary>SHARP</primary><secondary>IRProtocol.h</secondary></indexterm>
+<indexterm><primary>IRProtocol.h</primary><secondary>SHARP</secondary></indexterm>
+<anchor xml:id="__i_r_protocol_8h_1ad5b287a488a8c1b7b8661f029ab56fadaad63db67a2284cd7e3ffe382b6d6ea82"/>SHARP</entry><entry></entry></row><row><entry><indexterm><primary>SONY</primary><secondary>IRProtocol.h</secondary></indexterm>
+<indexterm><primary>IRProtocol.h</primary><secondary>SONY</secondary></indexterm>
+<anchor xml:id="__i_r_protocol_8h_1ad5b287a488a8c1b7b8661f029ab56fada72d58193d4d25517202d22b7e57a65c3"/>SONY</entry><entry></entry></row><row><entry><indexterm><primary>ONKYO</primary><secondary>IRProtocol.h</secondary></indexterm>
+<indexterm><primary>IRProtocol.h</primary><secondary>ONKYO</secondary></indexterm>
+<anchor xml:id="__i_r_protocol_8h_1ad5b287a488a8c1b7b8661f029ab56fada20603784a6e8d35a82b2476366010344"/>ONKYO</entry><entry></entry></row><row><entry><indexterm><primary>APPLE</primary><secondary>IRProtocol.h</secondary></indexterm>
+<indexterm><primary>IRProtocol.h</primary><secondary>APPLE</secondary></indexterm>
+<anchor xml:id="__i_r_protocol_8h_1ad5b287a488a8c1b7b8661f029ab56fada5484ec37ffd1fcffb7aba549a4839910"/>APPLE</entry><entry></entry></row><row><entry><indexterm><primary>BOSEWAVE</primary><secondary>IRProtocol.h</secondary></indexterm>
+<indexterm><primary>IRProtocol.h</primary><secondary>BOSEWAVE</secondary></indexterm>
+<anchor xml:id="__i_r_protocol_8h_1ad5b287a488a8c1b7b8661f029ab56fada20736b037c0e7444d4dc7ff06e9dea54"/>BOSEWAVE</entry><entry></entry></row><row><entry><indexterm><primary>LEGO_PF</primary><secondary>IRProtocol.h</secondary></indexterm>
+<indexterm><primary>IRProtocol.h</primary><secondary>LEGO_PF</secondary></indexterm>
+<anchor xml:id="__i_r_protocol_8h_1ad5b287a488a8c1b7b8661f029ab56fadaf47be4dad020b9c36aa255c582e25510"/>LEGO_PF</entry><entry></entry></row><row><entry><indexterm><primary>MAGIQUEST</primary><secondary>IRProtocol.h</secondary></indexterm>
+<indexterm><primary>IRProtocol.h</primary><secondary>MAGIQUEST</secondary></indexterm>
+<anchor xml:id="__i_r_protocol_8h_1ad5b287a488a8c1b7b8661f029ab56fada3be750ce1687bc1a92fee05b0c511100"/>MAGIQUEST</entry><entry></entry></row><row><entry><indexterm><primary>WHYNTER</primary><secondary>IRProtocol.h</secondary></indexterm>
+<indexterm><primary>IRProtocol.h</primary><secondary>WHYNTER</secondary></indexterm>
+<anchor xml:id="__i_r_protocol_8h_1ad5b287a488a8c1b7b8661f029ab56fada458cdd7fa2b29dc8617c694696580c0c"/>WHYNTER</entry><entry></entry></row>    </tbody>
+    </tgroup>
+</informaltable>
+<para>
+Definition at line <link linkend="__i_r_protocol_8h_source_1l00039">39</link> of file <link linkend="__i_r_protocol_8h_source">IRProtocol.h</link>.</para>
+</section>
+</section>
+</section>

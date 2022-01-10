@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_structdecode__results" xml:lang="en-US">
+<title>decode_results Struct Reference</title>
+<indexterm><primary>decode_results</primary></indexterm>
+<para>
+<computeroutput>#include &lt;IRremoteInt.h&gt;</computeroutput>
+</para>
+<simplesect>
+    <title>Public Attributes    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="__i_r_protocol_8h_1ad5b287a488a8c1b7b8661f029ab56fad">decode_type_t</link> <link linkend="_structdecode__results_1a9c0e9f161b9c90dc10b7561d4c0b50fa">decode_type</link></para>
+</listitem>
+            <listitem><para>uint16_t <link linkend="_structdecode__results_1a63091d6d39138248dd2c3bc35ca8ab46">address</link></para>
+
+<para>Used by Panasonic &amp; Sharp [16-bits]. </para>
+</listitem>
+            <listitem><para>uint32_t <link linkend="_structdecode__results_1a7c9654e6312819d5f7880fa4838340fe">value</link></para>
+</listitem>
+            <listitem><para>uint8_t <link linkend="_structdecode__results_1aa22c703c3ba7308dc7663bf1058a6686">bits</link></para>
+</listitem>
+            <listitem><para>uint16_t <link linkend="_structdecode__results_1a98c64af766518ef20d7b62419bc0780b">magnitude</link></para>
+</listitem>
+            <listitem><para>bool <link linkend="_structdecode__results_1a90be852473f99ee751a1db7f4041c15e">isRepeat</link></para>
+</listitem>
+            <listitem><para>uint16_t * <link linkend="_structdecode__results_1a88b2a9fa8a5e843247c6dcdfe372ddf5">rawbuf</link></para>
+</listitem>
+            <listitem><para>uint16_t <link linkend="_structdecode__results_1a913e19fc5032fa1f97cf8afe0fa450ec">rawlen</link></para>
+</listitem>
+            <listitem><para>bool <link linkend="_structdecode__results_1a821bc53c006bab3283c6b8592f0c43d3">overflow</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>Results returned from old decoders !!!deprecated!!! </para>
+<para>
+Definition at line <link linkend="__i_rremote_int_8h_source_1l00196">196</link> of file <link linkend="__i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<section>
+<title>Member Data Documentation</title>
+<anchor xml:id="_structdecode__results_1a63091d6d39138248dd2c3bc35ca8ab46"/><section>
+    <title>address</title>
+<indexterm><primary>address</primary><secondary>decode_results</secondary></indexterm>
+<indexterm><primary>decode_results</primary><secondary>address</secondary></indexterm>
+<para><computeroutput>uint16_t decode_results::address</computeroutput></para><para>
+
+<para>Used by Panasonic &amp; Sharp [16-bits]. </para>
+</para>
+<para>
+Definition at line <link linkend="__i_rremote_int_8h_source_1l00198">198</link> of file <link linkend="__i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<anchor xml:id="_structdecode__results_1aa22c703c3ba7308dc7663bf1058a6686"/><section>
+    <title>bits</title>
+<indexterm><primary>bits</primary><secondary>decode_results</secondary></indexterm>
+<indexterm><primary>decode_results</primary><secondary>bits</secondary></indexterm>
+<para><computeroutput>uint8_t decode_results::bits</computeroutput></para><para>
+Definition at line <link linkend="__i_rremote_int_8h_source_1l00200">200</link> of file <link linkend="__i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<anchor xml:id="_structdecode__results_1a9c0e9f161b9c90dc10b7561d4c0b50fa"/><section>
+    <title>decode_type</title>
+<indexterm><primary>decode_type</primary><secondary>decode_results</secondary></indexterm>
+<indexterm><primary>decode_results</primary><secondary>decode_type</secondary></indexterm>
+<para><computeroutput><link linkend="__i_r_protocol_8h_1ad5b287a488a8c1b7b8661f029ab56fad">decode_type_t</link> decode_results::decode_type</computeroutput></para><para>
+Definition at line <link linkend="__i_rremote_int_8h_source_1l00197">197</link> of file <link linkend="__i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<anchor xml:id="_structdecode__results_1a90be852473f99ee751a1db7f4041c15e"/><section>
+    <title>isRepeat</title>
+<indexterm><primary>isRepeat</primary><secondary>decode_results</secondary></indexterm>
+<indexterm><primary>decode_results</primary><secondary>isRepeat</secondary></indexterm>
+<para><computeroutput>bool decode_results::isRepeat</computeroutput></para><para>
+Definition at line <link linkend="__i_rremote_int_8h_source_1l00202">202</link> of file <link linkend="__i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<anchor xml:id="_structdecode__results_1a98c64af766518ef20d7b62419bc0780b"/><section>
+    <title>magnitude</title>
+<indexterm><primary>magnitude</primary><secondary>decode_results</secondary></indexterm>
+<indexterm><primary>decode_results</primary><secondary>magnitude</secondary></indexterm>
+<para><computeroutput>uint16_t decode_results::magnitude</computeroutput></para><para>
+Definition at line <link linkend="__i_rremote_int_8h_source_1l00201">201</link> of file <link linkend="__i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<anchor xml:id="_structdecode__results_1a821bc53c006bab3283c6b8592f0c43d3"/><section>
+    <title>overflow</title>
+<indexterm><primary>overflow</primary><secondary>decode_results</secondary></indexterm>
+<indexterm><primary>decode_results</primary><secondary>overflow</secondary></indexterm>
+<para><computeroutput>bool decode_results::overflow</computeroutput></para><para>
+Definition at line <link linkend="__i_rremote_int_8h_source_1l00207">207</link> of file <link linkend="__i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<anchor xml:id="_structdecode__results_1a88b2a9fa8a5e843247c6dcdfe372ddf5"/><section>
+    <title>rawbuf</title>
+<indexterm><primary>rawbuf</primary><secondary>decode_results</secondary></indexterm>
+<indexterm><primary>decode_results</primary><secondary>rawbuf</secondary></indexterm>
+<para><computeroutput>uint16_t* decode_results::rawbuf</computeroutput></para><para>
+Definition at line <link linkend="__i_rremote_int_8h_source_1l00205">205</link> of file <link linkend="__i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<anchor xml:id="_structdecode__results_1a913e19fc5032fa1f97cf8afe0fa450ec"/><section>
+    <title>rawlen</title>
+<indexterm><primary>rawlen</primary><secondary>decode_results</secondary></indexterm>
+<indexterm><primary>decode_results</primary><secondary>rawlen</secondary></indexterm>
+<para><computeroutput>uint16_t decode_results::rawlen</computeroutput></para><para>
+Definition at line <link linkend="__i_rremote_int_8h_source_1l00206">206</link> of file <link linkend="__i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<anchor xml:id="_structdecode__results_1a7c9654e6312819d5f7880fa4838340fe"/><section>
+    <title>value</title>
+<indexterm><primary>value</primary><secondary>decode_results</secondary></indexterm>
+<indexterm><primary>decode_results</primary><secondary>value</secondary></indexterm>
+<para><computeroutput>uint32_t decode_results::value</computeroutput></para><para>
+Definition at line <link linkend="__i_rremote_int_8h_source_1l00199">199</link> of file <link linkend="__i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<para>
+The documentation for this struct was generated from the following file:</para>
+main/IRRemote_Library/<link linkend="__i_rremote_int_8h">IRremoteInt.h</link></section>
+</section>

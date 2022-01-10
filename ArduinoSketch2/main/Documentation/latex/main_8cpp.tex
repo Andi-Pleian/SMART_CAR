@@ -1,8 +1,24 @@
-\hypertarget{main_8cpp}{}\doxysection{Arduino\+Sketch2/main/main.cpp File Reference}
-\label{main_8cpp}\index{ArduinoSketch2/main/main.cpp@{ArduinoSketch2/main/main.cpp}}
+\hypertarget{main_8cpp}{}\doxysection{main/main.cpp File Reference}
+\label{main_8cpp}\index{main/main.cpp@{main/main.cpp}}
 {\ttfamily \#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}IRRemote/\+IRremote.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Modules/\+Sensors/\+Parking\+Sensor/\+Parking\+Sensor.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Modules/\+Actuators/\+Buzzer/\+Buzz.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Modules/\+Actuators/\+Motor\+Control/\+Motor\+\_\+\+Control.\+h\char`\"{}}\newline
+Include dependency graph for main.\+cpp\+:
+% FIG 0
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{main_8cpp_a7de2a543986e45b9083c69f6138bf079}{forward}} ()
+\item 
+void \mbox{\hyperlink{main_8cpp_a0ef114368554c36e0e17a40d0a603f20}{back}} ()
+\item 
+void \mbox{\hyperlink{main_8cpp_a12ea22f00299ae04f0e81278f5dce0eb}{left}} ()
+\item 
+void \mbox{\hyperlink{main_8cpp_a13d543ef43bc20f64e5e4cb27a4d3369}{right}} ()
+\item 
+void \mbox{\hyperlink{main_8cpp_a17a237457e57625296e6b24feb19c60a}{Stop}} ()
 \item 
 void \mbox{\hyperlink{main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}{setup}} ()
 \item 
@@ -11,17 +27,51 @@ void \mbox{\hyperlink{main_8cpp_afe461d27b9c48d5921c00d521181f12f}{loop}} ()
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
-int \mbox{\hyperlink{main_8cpp_a18a89135ea173bcea5ade3aa5be0cbb5}{motor1pin1}} = 2
+unsigned short int \mbox{\hyperlink{main_8cpp_ab528f1c0546e22b6f5fa8c3444101e83}{RESET\+\_\+\+PIN}} = 12
 \item 
-int \mbox{\hyperlink{main_8cpp_ac28383b5453807508076d466afaa3592}{motor1pin2}} = 3
+const int \mbox{\hyperlink{main_8cpp_a7d4cc8e2a76ee3629c8707bd4f365a7c}{RECV\+\_\+\+PIN}} = 7
 \item 
-int \mbox{\hyperlink{main_8cpp_a55d27079be6d976f3aa3d09e86b91840}{motor2pin1}} = 4
-\item 
-int \mbox{\hyperlink{main_8cpp_a90cadfc73d12d5d0d68640e5eb85151c}{motor2pin2}} = 5
+\mbox{\hyperlink{class_motor___control}{Motor\+\_\+\+Control}} $\ast$ \mbox{\hyperlink{main_8cpp_a4a738d24d10bc2508668ba064221c275}{Motor\+Control}} = new \mbox{\hyperlink{class_motor___control}{Motor\+\_\+\+Control}}(6, 8, 2, 3, 4, 5)
 \end{DoxyCompactItemize}
 
 
 \doxysubsection{Function Documentation}
+\mbox{\Hypertarget{main_8cpp_a0ef114368554c36e0e17a40d0a603f20}\label{main_8cpp_a0ef114368554c36e0e17a40d0a603f20}} 
+\index{main.cpp@{main.cpp}!back@{back}}
+\index{back@{back}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{back()}{back()}}
+{\footnotesize\ttfamily void back (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{main_8cpp_source_l00073}{73}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+Here is the caller graph for this function\+:
+% FIG 1
+\mbox{\Hypertarget{main_8cpp_a7de2a543986e45b9083c69f6138bf079}\label{main_8cpp_a7de2a543986e45b9083c69f6138bf079}} 
+\index{main.cpp@{main.cpp}!forward@{forward}}
+\index{forward@{forward}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{forward()}{forward()}}
+{\footnotesize\ttfamily void forward (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{main_8cpp_source_l00060}{60}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+Here is the caller graph for this function\+:
+% FIG 2
+\mbox{\Hypertarget{main_8cpp_a12ea22f00299ae04f0e81278f5dce0eb}\label{main_8cpp_a12ea22f00299ae04f0e81278f5dce0eb}} 
+\index{main.cpp@{main.cpp}!left@{left}}
+\index{left@{left}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{left()}{left()}}
+{\footnotesize\ttfamily void left (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{main_8cpp_source_l00086}{86}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+Here is the caller graph for this function\+:
+% FIG 3
 \mbox{\Hypertarget{main_8cpp_afe461d27b9c48d5921c00d521181f12f}\label{main_8cpp_afe461d27b9c48d5921c00d521181f12f}} 
 \index{main.cpp@{main.cpp}!loop@{loop}}
 \index{loop@{loop}!main.cpp@{main.cpp}}
@@ -30,8 +80,22 @@ int \mbox{\hyperlink{main_8cpp_a90cadfc73d12d5d0d68640e5eb85151c}{motor2pin2}} =
 
 
 
-Definition at line \mbox{\hyperlink{main_8cpp_source_l00038}{38}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+Definition at line \mbox{\hyperlink{main_8cpp_source_l00191}{191}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
 
+Here is the call graph for this function\+:
+% FIG 4
+\mbox{\Hypertarget{main_8cpp_a13d543ef43bc20f64e5e4cb27a4d3369}\label{main_8cpp_a13d543ef43bc20f64e5e4cb27a4d3369}} 
+\index{main.cpp@{main.cpp}!right@{right}}
+\index{right@{right}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{right()}{right()}}
+{\footnotesize\ttfamily void right (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{main_8cpp_source_l00098}{98}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+Here is the caller graph for this function\+:
+% FIG 5
 \mbox{\Hypertarget{main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}\label{main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}} 
 \index{main.cpp@{main.cpp}!setup@{setup}}
 \index{setup@{setup}!main.cpp@{main.cpp}}
@@ -40,48 +104,50 @@ Definition at line \mbox{\hyperlink{main_8cpp_source_l00038}{38}} of file \mbox{
 
 
 
-Definition at line \mbox{\hyperlink{main_8cpp_source_l00030}{30}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+Definition at line \mbox{\hyperlink{main_8cpp_source_l00131}{131}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
 
+\mbox{\Hypertarget{main_8cpp_a17a237457e57625296e6b24feb19c60a}\label{main_8cpp_a17a237457e57625296e6b24feb19c60a}} 
+\index{main.cpp@{main.cpp}!Stop@{Stop}}
+\index{Stop@{Stop}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{Stop()}{Stop()}}
+{\footnotesize\ttfamily void Stop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{main_8cpp_source_l00110}{110}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+Here is the caller graph for this function\+:
+% FIG 6
 
 
 \doxysubsection{Variable Documentation}
-\mbox{\Hypertarget{main_8cpp_a18a89135ea173bcea5ade3aa5be0cbb5}\label{main_8cpp_a18a89135ea173bcea5ade3aa5be0cbb5}} 
-\index{main.cpp@{main.cpp}!motor1pin1@{motor1pin1}}
-\index{motor1pin1@{motor1pin1}!main.cpp@{main.cpp}}
-\doxysubsubsection{\texorpdfstring{motor1pin1}{motor1pin1}}
-{\footnotesize\ttfamily int motor1pin1 = 2}
+\mbox{\Hypertarget{main_8cpp_a4a738d24d10bc2508668ba064221c275}\label{main_8cpp_a4a738d24d10bc2508668ba064221c275}} 
+\index{main.cpp@{main.cpp}!MotorControl@{MotorControl}}
+\index{MotorControl@{MotorControl}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{MotorControl}{MotorControl}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_motor___control}{Motor\+\_\+\+Control}}$\ast$ Motor\+Control = new \mbox{\hyperlink{class_motor___control}{Motor\+\_\+\+Control}}(6, 8, 2, 3, 4, 5)}
 
 
 
-Definition at line \mbox{\hyperlink{main_8cpp_source_l00024}{24}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+Definition at line \mbox{\hyperlink{main_8cpp_source_l00047}{47}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
 
-\mbox{\Hypertarget{main_8cpp_ac28383b5453807508076d466afaa3592}\label{main_8cpp_ac28383b5453807508076d466afaa3592}} 
-\index{main.cpp@{main.cpp}!motor1pin2@{motor1pin2}}
-\index{motor1pin2@{motor1pin2}!main.cpp@{main.cpp}}
-\doxysubsubsection{\texorpdfstring{motor1pin2}{motor1pin2}}
-{\footnotesize\ttfamily int motor1pin2 = 3}
-
-
-
-Definition at line \mbox{\hyperlink{main_8cpp_source_l00025}{25}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
-
-\mbox{\Hypertarget{main_8cpp_a55d27079be6d976f3aa3d09e86b91840}\label{main_8cpp_a55d27079be6d976f3aa3d09e86b91840}} 
-\index{main.cpp@{main.cpp}!motor2pin1@{motor2pin1}}
-\index{motor2pin1@{motor2pin1}!main.cpp@{main.cpp}}
-\doxysubsubsection{\texorpdfstring{motor2pin1}{motor2pin1}}
-{\footnotesize\ttfamily int motor2pin1 = 4}
+\mbox{\Hypertarget{main_8cpp_a7d4cc8e2a76ee3629c8707bd4f365a7c}\label{main_8cpp_a7d4cc8e2a76ee3629c8707bd4f365a7c}} 
+\index{main.cpp@{main.cpp}!RECV\_PIN@{RECV\_PIN}}
+\index{RECV\_PIN@{RECV\_PIN}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{RECV\_PIN}{RECV\_PIN}}
+{\footnotesize\ttfamily const int RECV\+\_\+\+PIN = 7}
 
 
 
-Definition at line \mbox{\hyperlink{main_8cpp_source_l00027}{27}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+Definition at line \mbox{\hyperlink{main_8cpp_source_l00042}{42}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
 
-\mbox{\Hypertarget{main_8cpp_a90cadfc73d12d5d0d68640e5eb85151c}\label{main_8cpp_a90cadfc73d12d5d0d68640e5eb85151c}} 
-\index{main.cpp@{main.cpp}!motor2pin2@{motor2pin2}}
-\index{motor2pin2@{motor2pin2}!main.cpp@{main.cpp}}
-\doxysubsubsection{\texorpdfstring{motor2pin2}{motor2pin2}}
-{\footnotesize\ttfamily int motor2pin2 = 5}
+\mbox{\Hypertarget{main_8cpp_ab528f1c0546e22b6f5fa8c3444101e83}\label{main_8cpp_ab528f1c0546e22b6f5fa8c3444101e83}} 
+\index{main.cpp@{main.cpp}!RESET\_PIN@{RESET\_PIN}}
+\index{RESET\_PIN@{RESET\_PIN}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{RESET\_PIN}{RESET\_PIN}}
+{\footnotesize\ttfamily unsigned short int RESET\+\_\+\+PIN = 12}
 
 
 
-Definition at line \mbox{\hyperlink{main_8cpp_source_l00028}{28}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+Definition at line \mbox{\hyperlink{main_8cpp_source_l00034}{34}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
 

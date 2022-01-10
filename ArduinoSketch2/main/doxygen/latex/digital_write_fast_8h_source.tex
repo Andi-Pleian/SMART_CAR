@@ -1,0 +1,507 @@
+\hypertarget{digital_write_fast_8h_source}{}\doxysection{digital\+Write\+Fast.\+h}
+\label{digital_write_fast_8h_source}\index{IRRemote/digitalWriteFast.h@{IRRemote/digitalWriteFast.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{  Optimized digital functions for AVR microcontrollers}}
+\DoxyCodeLine{3 \textcolor{comment}{  by Watterott electronic (www.watterott.com)}}
+\DoxyCodeLine{4 \textcolor{comment}{  based on http://code.google.com/p/digitalwritefast}}
+\DoxyCodeLine{5 \textcolor{comment}{ */}}
+\DoxyCodeLine{6 }
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#ifndef \_\_digitalWriteFast\_h\_}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#define \_\_digitalWriteFast\_h\_ 1}}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10 \textcolor{comment}{//\#define SANGUINO\_PINOUT //define for Sanguino pinout}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{comment}{// general macros/defines}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#ifndef BIT\_READ}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\# define BIT\_READ(value, bit)            ((value) \&   (1UL << (bit)))}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#ifndef BIT\_SET}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\# define BIT\_SET(value, bit)             ((value) |=  (1UL << (bit)))}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#ifndef BIT\_CLEAR}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\# define BIT\_CLEAR(value, bit)           ((value) \&= \string~(1UL << (bit)))}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#ifndef BIT\_WRITE}}
+\DoxyCodeLine{23 \textcolor{preprocessor}{\# define BIT\_WRITE(value, bit, bitvalue) (bitvalue ? BIT\_SET(value, bit) : BIT\_CLEAR(value, bit))}}
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#ifndef SWAP}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\# define SWAP(x,y) do\{ (x)=(x)\string^(y); (y)=(x)\string^(y); (x)=(x)\string^(y); \}while(0)}}
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#ifndef DEC}}
+\DoxyCodeLine{31 \textcolor{preprocessor}{\# define DEC (10)}}
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#ifndef HEX}}
+\DoxyCodeLine{34 \textcolor{preprocessor}{\# define HEX (16)}}
+\DoxyCodeLine{35 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{36 \textcolor{preprocessor}{\#ifndef OCT}}
+\DoxyCodeLine{37 \textcolor{preprocessor}{\# define OCT (8)}}
+\DoxyCodeLine{38 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{39 \textcolor{preprocessor}{\#ifndef BIN}}
+\DoxyCodeLine{40 \textcolor{preprocessor}{\# define BIN (2)}}
+\DoxyCodeLine{41 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44 \textcolor{comment}{// workarounds for ARM microcontrollers}}
+\DoxyCodeLine{45 \textcolor{preprocessor}{\#if (!defined(\_\_AVR\_\_) || \(\backslash\)}}
+\DoxyCodeLine{46 \textcolor{preprocessor}{     defined(ARDUINO\_ARCH\_SAM) || \(\backslash\)}}
+\DoxyCodeLine{47 \textcolor{preprocessor}{     defined(ARDUINO\_ARCH\_SAMD))}}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49 \textcolor{preprocessor}{\#ifndef PROGMEM}}
+\DoxyCodeLine{50 \textcolor{preprocessor}{\# define PROGMEM}}
+\DoxyCodeLine{51 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{52 \textcolor{preprocessor}{\#ifndef PGM\_P}}
+\DoxyCodeLine{53 \textcolor{preprocessor}{\# define PGM\_P const char *}}
+\DoxyCodeLine{54 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{55 \textcolor{preprocessor}{\#ifndef PSTR}}
+\DoxyCodeLine{56 \textcolor{preprocessor}{\# define PSTR(str) (str)}}
+\DoxyCodeLine{57 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59 \textcolor{preprocessor}{\#ifndef memcpy\_P}}
+\DoxyCodeLine{60 \textcolor{preprocessor}{\# define memcpy\_P(dest, src, num) memcpy((dest), (src), (num))}}
+\DoxyCodeLine{61 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{62 \textcolor{preprocessor}{\#ifndef strcpy\_P}}
+\DoxyCodeLine{63 \textcolor{preprocessor}{\# define strcpy\_P(dst, src)       strcpy((dst), (src))}}
+\DoxyCodeLine{64 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{65 \textcolor{preprocessor}{\#ifndef strcat\_P}}
+\DoxyCodeLine{66 \textcolor{preprocessor}{\# define strcat\_P(dst, src)       strcat((dst), (src))}}
+\DoxyCodeLine{67 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{68 \textcolor{preprocessor}{\#ifndef strcmp\_P}}
+\DoxyCodeLine{69 \textcolor{preprocessor}{\# define strcmp\_P(a, b)           strcmp((a), (b))}}
+\DoxyCodeLine{70 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{71 \textcolor{preprocessor}{\#ifndef strcasecmp\_P}}
+\DoxyCodeLine{72 \textcolor{preprocessor}{\# define strcasecmp\_P(a, b)       strcasecmp((a), (b))}}
+\DoxyCodeLine{73 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{74 \textcolor{preprocessor}{\#ifndef strncmp\_P}}
+\DoxyCodeLine{75 \textcolor{preprocessor}{\# define strncmp\_P(a, b, n)       strncmp((a), (b), (n))}}
+\DoxyCodeLine{76 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{77 \textcolor{preprocessor}{\#ifndef strncasecmp\_P}}
+\DoxyCodeLine{78 \textcolor{preprocessor}{\# define strncasecmp\_P(a, b, n)   strncasecmp((a), (b), (n))}}
+\DoxyCodeLine{79 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{80 \textcolor{preprocessor}{\#ifndef strstr\_P}}
+\DoxyCodeLine{81 \textcolor{preprocessor}{\# define strstr\_P(a, b)           strstr((a), (b))}}
+\DoxyCodeLine{82 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{83 \textcolor{preprocessor}{\#ifndef strlen\_P}}
+\DoxyCodeLine{84 \textcolor{preprocessor}{\# define strlen\_P(a)              strlen((a))}}
+\DoxyCodeLine{85 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{86 \textcolor{preprocessor}{\#ifndef sprintf\_P}}
+\DoxyCodeLine{87 \textcolor{preprocessor}{\# define sprintf\_P(s, f, ...)     sprintf((s), (f), \_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{88 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{89 }
+\DoxyCodeLine{90 \textcolor{preprocessor}{\#ifndef pgm\_read\_byte}}
+\DoxyCodeLine{91 \textcolor{preprocessor}{\# define pgm\_read\_byte(addr)      (*(const unsigned char *)(addr))}}
+\DoxyCodeLine{92 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{93 \textcolor{preprocessor}{\#ifndef pgm\_read\_word}}
+\DoxyCodeLine{94 \textcolor{preprocessor}{\# define pgm\_read\_word(addr)      (*(const unsigned short *)(addr))}}
+\DoxyCodeLine{95 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{96 \textcolor{preprocessor}{\#ifndef pgm\_read\_dword}}
+\DoxyCodeLine{97 \textcolor{preprocessor}{\# define pgm\_read\_dword(addr)     (*(const unsigned long *)(addr))}}
+\DoxyCodeLine{98 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{100 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{101 }
+\DoxyCodeLine{102 }
+\DoxyCodeLine{103 \textcolor{comment}{// digital functions}}
+\DoxyCodeLine{104 \textcolor{comment}{//\#ifndef digitalPinToPortReg}}
+\DoxyCodeLine{105 \textcolor{preprocessor}{\#define SPI\_SW\_SS\_PIN   (10) }\textcolor{comment}{//SS on Uno (for software SPI)}}
+\DoxyCodeLine{106 \textcolor{preprocessor}{\#define SPI\_SW\_MOSI\_PIN (11) }\textcolor{comment}{//MOSI on Uno (for software SPI)}}
+\DoxyCodeLine{107 \textcolor{preprocessor}{\#define SPI\_SW\_MISO\_PIN (12) }\textcolor{comment}{//MISO on Uno (for software SPI)}}
+\DoxyCodeLine{108 \textcolor{preprocessor}{\#define SPI\_SW\_SCK\_PIN  (13) }\textcolor{comment}{//SCK on Uno (for software SPI)}}
+\DoxyCodeLine{109 }
+\DoxyCodeLine{110 }
+\DoxyCodeLine{111 \textcolor{comment}{// -\/-\/-\/ Arduino Due and SAM3X8E based boards -\/-\/-\/}}
+\DoxyCodeLine{112 \textcolor{preprocessor}{\#if (defined(ARDUINO\_SAM\_DUE) || \(\backslash\)}}
+\DoxyCodeLine{113 \textcolor{preprocessor}{     defined(\_\_SAM3X8E\_\_))}}
+\DoxyCodeLine{114 }
+\DoxyCodeLine{115 \textcolor{preprocessor}{\#define UART\_RX\_PIN     (0)}}
+\DoxyCodeLine{116 \textcolor{preprocessor}{\#define UART\_TX\_PIN     (1)}}
+\DoxyCodeLine{117 }
+\DoxyCodeLine{118 \textcolor{preprocessor}{\#define I2C\_SDA\_PIN     (20)}}
+\DoxyCodeLine{119 \textcolor{preprocessor}{\#define I2C\_SCL\_PIN     (21)}}
+\DoxyCodeLine{120 }
+\DoxyCodeLine{121 \textcolor{preprocessor}{\#define SPI\_HW\_SS\_PIN   (78) }\textcolor{comment}{//SS0:77, SS1:87, SS2:86, SS3:78}}
+\DoxyCodeLine{122 \textcolor{preprocessor}{\#define SPI\_HW\_MOSI\_PIN (75) }\textcolor{comment}{//75}}
+\DoxyCodeLine{123 \textcolor{preprocessor}{\#define SPI\_HW\_MISO\_PIN (74) }\textcolor{comment}{//74}}
+\DoxyCodeLine{124 \textcolor{preprocessor}{\#define SPI\_HW\_SCK\_PIN  (76) }\textcolor{comment}{//76}}
+\DoxyCodeLine{125 }
+\DoxyCodeLine{126 }
+\DoxyCodeLine{127 \textcolor{comment}{// -\/-\/-\/ Arduino Zero and SAMD21G18 based boards -\/-\/-\/}}
+\DoxyCodeLine{128 \textcolor{preprocessor}{\#elif (defined(ARDUINO\_SAMD\_ZERO) || \(\backslash\)}}
+\DoxyCodeLine{129 \textcolor{preprocessor}{       defined(\_\_SAMD21G18A\_\_))}}
+\DoxyCodeLine{130 }
+\DoxyCodeLine{131 \textcolor{preprocessor}{\#define UART\_RX\_PIN     (0)}}
+\DoxyCodeLine{132 \textcolor{preprocessor}{\#define UART\_TX\_PIN     (1)}}
+\DoxyCodeLine{133 }
+\DoxyCodeLine{134 \textcolor{preprocessor}{\#define I2C\_SDA\_PIN     (16)}}
+\DoxyCodeLine{135 \textcolor{preprocessor}{\#define I2C\_SCL\_PIN     (17)}}
+\DoxyCodeLine{136 }
+\DoxyCodeLine{137 \textcolor{preprocessor}{\#define SPI\_HW\_SS\_PIN   (14) }\textcolor{comment}{//14}}
+\DoxyCodeLine{138 \textcolor{preprocessor}{\#define SPI\_HW\_MOSI\_PIN (21) }\textcolor{comment}{//21}}
+\DoxyCodeLine{139 \textcolor{preprocessor}{\#define SPI\_HW\_MISO\_PIN (18) }\textcolor{comment}{//18}}
+\DoxyCodeLine{140 \textcolor{preprocessor}{\#define SPI\_HW\_SCK\_PIN  (20) }\textcolor{comment}{//20}}
+\DoxyCodeLine{141 }
+\DoxyCodeLine{142 }
+\DoxyCodeLine{143 \textcolor{comment}{// -\/-\/-\/ Arduino Mega and ATmega128x/256x based boards -\/-\/-\/}}
+\DoxyCodeLine{144 \textcolor{preprocessor}{\#elif (defined(ARDUINO\_AVR\_MEGA) || \(\backslash\)}}
+\DoxyCodeLine{145 \textcolor{preprocessor}{       defined(ARDUINO\_AVR\_MEGA1280) || \(\backslash\)}}
+\DoxyCodeLine{146 \textcolor{preprocessor}{       defined(ARDUINO\_AVR\_MEGA2560) || \(\backslash\)}}
+\DoxyCodeLine{147 \textcolor{preprocessor}{       defined(\_\_AVR\_ATmega1280\_\_) || \(\backslash\)}}
+\DoxyCodeLine{148 \textcolor{preprocessor}{       defined(\_\_AVR\_ATmega1281\_\_) || \(\backslash\)}}
+\DoxyCodeLine{149 \textcolor{preprocessor}{       defined(\_\_AVR\_ATmega2560\_\_) || \(\backslash\)}}
+\DoxyCodeLine{150 \textcolor{preprocessor}{       defined(\_\_AVR\_ATmega2561\_\_))}}
+\DoxyCodeLine{151 }
+\DoxyCodeLine{152 \textcolor{preprocessor}{\#define UART\_RX\_PIN     (0) }\textcolor{comment}{//PE0}}
+\DoxyCodeLine{153 \textcolor{preprocessor}{\#define UART\_TX\_PIN     (1) }\textcolor{comment}{//PE1}}
+\DoxyCodeLine{154 }
+\DoxyCodeLine{155 \textcolor{preprocessor}{\#define I2C\_SDA\_PIN     (20)}}
+\DoxyCodeLine{156 \textcolor{preprocessor}{\#define I2C\_SCL\_PIN     (21)}}
+\DoxyCodeLine{157 }
+\DoxyCodeLine{158 \textcolor{preprocessor}{\#define SPI\_HW\_SS\_PIN   (53) }\textcolor{comment}{//PB0}}
+\DoxyCodeLine{159 \textcolor{preprocessor}{\#define SPI\_HW\_MOSI\_PIN (51) }\textcolor{comment}{//PB2}}
+\DoxyCodeLine{160 \textcolor{preprocessor}{\#define SPI\_HW\_MISO\_PIN (50) }\textcolor{comment}{//PB3}}
+\DoxyCodeLine{161 \textcolor{preprocessor}{\#define SPI\_HW\_SCK\_PIN  (52) }\textcolor{comment}{//PB1}}
+\DoxyCodeLine{162 }
+\DoxyCodeLine{163 \textcolor{preprocessor}{\#define \_\_digitalPinToPortReg(P) \(\backslash\)}}
+\DoxyCodeLine{164 \textcolor{preprocessor}{(((P) >= 22 \&\& (P) <= 29) ? \&PORTA : \(\backslash\)}}
+\DoxyCodeLine{165 \textcolor{preprocessor}{((((P) >= 10 \&\& (P) <= 13) || ((P) >= 50 \&\& (P) <= 53)) ? \&PORTB : \(\backslash\)}}
+\DoxyCodeLine{166 \textcolor{preprocessor}{(((P) >= 30 \&\& (P) <= 37) ? \&PORTC : \(\backslash\)}}
+\DoxyCodeLine{167 \textcolor{preprocessor}{((((P) >= 18 \&\& (P) <= 21) || (P) == 38) ? \&PORTD : \(\backslash\)}}
+\DoxyCodeLine{168 \textcolor{preprocessor}{((((P) >= 0 \&\& (P) <= 3) || (P) == 5) ? \&PORTE : \(\backslash\)}}
+\DoxyCodeLine{169 \textcolor{preprocessor}{(((P) >= 54 \&\& (P) <= 61) ? \&PORTF : \(\backslash\)}}
+\DoxyCodeLine{170 \textcolor{preprocessor}{((((P) >= 39 \&\& (P) <= 41) || (P) == 4) ? \&PORTG : \(\backslash\)}}
+\DoxyCodeLine{171 \textcolor{preprocessor}{((((P) >= 6 \&\& (P) <= 9) || (P) == 16 || (P) == 17) ? \&PORTH : \(\backslash\)}}
+\DoxyCodeLine{172 \textcolor{preprocessor}{(((P) == 14 || (P) == 15) ? \&PORTJ : \(\backslash\)}}
+\DoxyCodeLine{173 \textcolor{preprocessor}{(((P) >= 62 \&\& (P) <= 69) ? \&PORTK : \&PORTL))))))))))}}
+\DoxyCodeLine{174 }
+\DoxyCodeLine{175 \textcolor{preprocessor}{\#define \_\_digitalPinToDDRReg(P) \(\backslash\)}}
+\DoxyCodeLine{176 \textcolor{preprocessor}{(((P) >= 22 \&\& (P) <= 29) ? \&DDRA : \(\backslash\)}}
+\DoxyCodeLine{177 \textcolor{preprocessor}{((((P) >= 10 \&\& (P) <= 13) || ((P) >= 50 \&\& (P) <= 53)) ? \&DDRB : \(\backslash\)}}
+\DoxyCodeLine{178 \textcolor{preprocessor}{(((P) >= 30 \&\& (P) <= 37) ? \&DDRC : \(\backslash\)}}
+\DoxyCodeLine{179 \textcolor{preprocessor}{((((P) >= 18 \&\& (P) <= 21) || (P) == 38) ? \&DDRD : \(\backslash\)}}
+\DoxyCodeLine{180 \textcolor{preprocessor}{((((P) >= 0 \&\& (P) <= 3) || (P) == 5) ? \&DDRE : \(\backslash\)}}
+\DoxyCodeLine{181 \textcolor{preprocessor}{(((P) >= 54 \&\& (P) <= 61) ? \&DDRF : \(\backslash\)}}
+\DoxyCodeLine{182 \textcolor{preprocessor}{((((P) >= 39 \&\& (P) <= 41) || (P) == 4) ? \&DDRG : \(\backslash\)}}
+\DoxyCodeLine{183 \textcolor{preprocessor}{((((P) >= 6 \&\& (P) <= 9) || (P) == 16 || (P) == 17) ? \&DDRH : \(\backslash\)}}
+\DoxyCodeLine{184 \textcolor{preprocessor}{(((P) == 14 || (P) == 15) ? \&DDRJ : \(\backslash\)}}
+\DoxyCodeLine{185 \textcolor{preprocessor}{(((P) >= 62 \&\& (P) <= 69) ? \&DDRK : \&DDRL))))))))))}}
+\DoxyCodeLine{186 }
+\DoxyCodeLine{187 \textcolor{preprocessor}{\#define \_\_digitalPinToPINReg(P) \(\backslash\)}}
+\DoxyCodeLine{188 \textcolor{preprocessor}{(((P) >= 22 \&\& (P) <= 29) ? \&PINA : \(\backslash\)}}
+\DoxyCodeLine{189 \textcolor{preprocessor}{((((P) >= 10 \&\& (P) <= 13) || ((P) >= 50 \&\& (P) <= 53)) ? \&PINB : \(\backslash\)}}
+\DoxyCodeLine{190 \textcolor{preprocessor}{(((P) >= 30 \&\& (P) <= 37) ? \&PINC : \(\backslash\)}}
+\DoxyCodeLine{191 \textcolor{preprocessor}{((((P) >= 18 \&\& (P) <= 21) || (P) == 38) ? \&PIND : \(\backslash\)}}
+\DoxyCodeLine{192 \textcolor{preprocessor}{((((P) >= 0 \&\& (P) <= 3) || (P) == 5) ? \&PINE : \(\backslash\)}}
+\DoxyCodeLine{193 \textcolor{preprocessor}{(((P) >= 54 \&\& (P) <= 61) ? \&PINF : \(\backslash\)}}
+\DoxyCodeLine{194 \textcolor{preprocessor}{((((P) >= 39 \&\& (P) <= 41) || (P) == 4) ? \&PING : \(\backslash\)}}
+\DoxyCodeLine{195 \textcolor{preprocessor}{((((P) >= 6 \&\& (P) <= 9) || (P) == 16 || (P) == 17) ? \&PINH : \(\backslash\)}}
+\DoxyCodeLine{196 \textcolor{preprocessor}{(((P) == 14 || (P) == 15) ? \&PINJ : \(\backslash\)}}
+\DoxyCodeLine{197 \textcolor{preprocessor}{(((P) >= 62 \&\& (P) <= 69) ? \&PINK : \&PINL))))))))))}}
+\DoxyCodeLine{198 }
+\DoxyCodeLine{199 \textcolor{preprocessor}{\#define \_\_digitalPinToBit(P) \(\backslash\)}}
+\DoxyCodeLine{200 \textcolor{preprocessor}{(((P) >=  7 \&\& (P) <=  9) ? (P) -\/ 3 : \(\backslash\)}}
+\DoxyCodeLine{201 \textcolor{preprocessor}{(((P) >= 10 \&\& (P) <= 13) ? (P) -\/ 6 : \(\backslash\)}}
+\DoxyCodeLine{202 \textcolor{preprocessor}{(((P) >= 22 \&\& (P) <= 29) ? (P) -\/ 22 : \(\backslash\)}}
+\DoxyCodeLine{203 \textcolor{preprocessor}{(((P) >= 30 \&\& (P) <= 37) ? 37 -\/ (P) : \(\backslash\)}}
+\DoxyCodeLine{204 \textcolor{preprocessor}{(((P) >= 39 \&\& (P) <= 41) ? 41 -\/ (P) : \(\backslash\)}}
+\DoxyCodeLine{205 \textcolor{preprocessor}{(((P) >= 42 \&\& (P) <= 49) ? 49 -\/ (P) : \(\backslash\)}}
+\DoxyCodeLine{206 \textcolor{preprocessor}{(((P) >= 50 \&\& (P) <= 53) ? 53 -\/ (P) : \(\backslash\)}}
+\DoxyCodeLine{207 \textcolor{preprocessor}{(((P) >= 54 \&\& (P) <= 61) ? (P) -\/ 54 : \(\backslash\)}}
+\DoxyCodeLine{208 \textcolor{preprocessor}{(((P) >= 62 \&\& (P) <= 69) ? (P) -\/ 62 : \(\backslash\)}}
+\DoxyCodeLine{209 \textcolor{preprocessor}{(((P) == 0 || (P) == 15 || (P) == 17 || (P) == 21) ? 0 : \(\backslash\)}}
+\DoxyCodeLine{210 \textcolor{preprocessor}{(((P) == 1 || (P) == 14 || (P) == 16 || (P) == 20) ? 1 : \(\backslash\)}}
+\DoxyCodeLine{211 \textcolor{preprocessor}{(((P) == 19) ? 2 : \(\backslash\)}}
+\DoxyCodeLine{212 \textcolor{preprocessor}{(((P) == 5 || (P) == 6 || (P) == 18) ? 3 : \(\backslash\)}}
+\DoxyCodeLine{213 \textcolor{preprocessor}{(((P) == 2) ? 4 : \(\backslash\)}}
+\DoxyCodeLine{214 \textcolor{preprocessor}{(((P) == 3 || (P) == 4) ? 5 : 7)))))))))))))))}}
+\DoxyCodeLine{215 }
+\DoxyCodeLine{216 }
+\DoxyCodeLine{217 \textcolor{comment}{// -\/-\/-\/ Arduino MightyCore standard pinout -\/-\/-\/}}
+\DoxyCodeLine{218 \textcolor{preprocessor}{\#elif (defined(\_\_AVR\_ATmega1284P\_\_) || \(\backslash\)}}
+\DoxyCodeLine{219 \textcolor{preprocessor}{       defined(\_\_AVR\_ATmega1284\_\_)  || \(\backslash\)}}
+\DoxyCodeLine{220 \textcolor{preprocessor}{       defined(\_\_AVR\_ATmega644P\_\_)  || \(\backslash\)}}
+\DoxyCodeLine{221 \textcolor{preprocessor}{       defined(\_\_AVR\_ATmega644A\_\_)  || \(\backslash\)}}
+\DoxyCodeLine{222 \textcolor{preprocessor}{       defined(\_\_AVR\_ATmega644\_\_)   || \(\backslash\)}}
+\DoxyCodeLine{223 \textcolor{preprocessor}{       defined(\_\_AVR\_ATmega324PB\_\_) || \(\backslash\)}}
+\DoxyCodeLine{224 \textcolor{preprocessor}{       defined(\_\_AVR\_ATmega324PA\_\_) || \(\backslash\)}}
+\DoxyCodeLine{225 \textcolor{preprocessor}{       defined(\_\_AVR\_ATmega324P\_\_)  || \(\backslash\)}}
+\DoxyCodeLine{226 \textcolor{preprocessor}{       defined(\_\_AVR\_ATmega324A\_\_)  || \(\backslash\)}}
+\DoxyCodeLine{227 \textcolor{preprocessor}{       defined(\_\_AVR\_ATmega164P\_\_)  || \(\backslash\)}}
+\DoxyCodeLine{228 \textcolor{preprocessor}{       defined(\_\_AVR\_ATmega164A\_\_)  || \(\backslash\)}}
+\DoxyCodeLine{229 \textcolor{preprocessor}{       defined(\_\_AVR\_ATmega32\_\_)    || \(\backslash\)}}
+\DoxyCodeLine{230 \textcolor{preprocessor}{       defined(\_\_AVR\_ATmega16\_\_)    || \(\backslash\)}}
+\DoxyCodeLine{231 \textcolor{preprocessor}{       defined(\_\_AVR\_ATmega8535\_\_))  \&\& \(\backslash\)}}
+\DoxyCodeLine{232 \textcolor{preprocessor}{      !defined(BOBUINO\_PINOUT)}}
+\DoxyCodeLine{233 }
+\DoxyCodeLine{234 \textcolor{preprocessor}{\#define UART\_RX\_PIN     (8) }\textcolor{comment}{//PD0}}
+\DoxyCodeLine{235 \textcolor{preprocessor}{\#define UART\_TX\_PIN     (9) }\textcolor{comment}{//PD1}}
+\DoxyCodeLine{236 }
+\DoxyCodeLine{237 \textcolor{preprocessor}{\#define I2C\_SDA\_PIN     (17) }\textcolor{comment}{//PC1}}
+\DoxyCodeLine{238 \textcolor{preprocessor}{\#define I2C\_SCL\_PIN     (16) }\textcolor{comment}{//PC0}}
+\DoxyCodeLine{239 }
+\DoxyCodeLine{240 \textcolor{preprocessor}{\#define SPI\_HW\_SS\_PIN   (4) }\textcolor{comment}{//PB4}}
+\DoxyCodeLine{241 \textcolor{preprocessor}{\#define SPI\_HW\_MOSI\_PIN (5) }\textcolor{comment}{//PB5}}
+\DoxyCodeLine{242 \textcolor{preprocessor}{\#define SPI\_HW\_MISO\_PIN (6) }\textcolor{comment}{//PB6}}
+\DoxyCodeLine{243 \textcolor{preprocessor}{\#define SPI\_HW\_SCK\_PIN  (7) }\textcolor{comment}{//PB7}}
+\DoxyCodeLine{244 }
+\DoxyCodeLine{245 \textcolor{preprocessor}{\#if defined(\_\_AVR\_ATmega324PB\_\_)}}
+\DoxyCodeLine{246 \textcolor{preprocessor}{\#define \_\_digitalPinToPortReg(P) \(\backslash\)}}
+\DoxyCodeLine{247 \textcolor{preprocessor}{(((P) >= 0 \&\& (P) <= 7) ? \&PORTB : (((P) >= 8 \&\& (P) <= 15) ? \&PORTD : (((P) >= 16 \&\& (P) <= 23) ? \&PORTC : (((P) >= 24 \&\& (P) <= 31) ? \&PORTA : \&PORTE))))}}
+\DoxyCodeLine{248 \textcolor{preprocessor}{\#define \_\_digitalPinToDDRReg(P) \(\backslash\)}}
+\DoxyCodeLine{249 \textcolor{preprocessor}{(((P) >= 0 \&\& (P) <= 7) ? \&DDRB : (((P) >= 8 \&\& (P) <= 15) ? \&DDRD : (((P) >= 16 \&\& (P) <= 23) ? \&DDRC : (((P) >= 24 \&\& (P) <= 31) ? \&DDRA : \&DDRE))))}}
+\DoxyCodeLine{250 \textcolor{preprocessor}{\#define \_\_digitalPinToPINReg(P) \(\backslash\)}}
+\DoxyCodeLine{251 \textcolor{preprocessor}{(((P) >= 0 \&\& (P) <= 7) ? \&PINB : (((P) >= 8 \&\& (P) <= 15) ? \&PIND : (((P) >= 16 \&\& (P) <= 23) ? \&PINC : (((P) >= 24 \&\& (P) <= 31) ? \&PINA : \&PINE))))}}
+\DoxyCodeLine{252 \textcolor{preprocessor}{\# if defined(SANGUINO\_PINOUT)}}
+\DoxyCodeLine{253 \textcolor{preprocessor}{\#define \_\_digitalPinToBit(P) \(\backslash\)}}
+\DoxyCodeLine{254 \textcolor{preprocessor}{(((P) >= 0 \&\& (P) <= 7) ? (P) : (((P) >= 8 \&\& (P) <= 15) ? (P) -\/ 8 : (((P) >= 16 \&\& (P) <= 23) ? (P) -\/ 16 : (((P) >= 16 \&\& (P) <= 23) ? (7 -\/ ((P) -\/ 24)) : (P) -\/ 32))))}}
+\DoxyCodeLine{255 \textcolor{preprocessor}{\# else }\textcolor{comment}{//MightyCore Pinout}}
+\DoxyCodeLine{256 \textcolor{preprocessor}{\#define \_\_digitalPinToBit(P) \(\backslash\)}}
+\DoxyCodeLine{257 \textcolor{preprocessor}{(((P) >= 0 \&\& (P) <= 7) ? (P) : (((P) >= 8 \&\& (P) <= 15) ? (P) -\/ 8 : (((P) >= 16 \&\& (P) <= 23) ? (P) -\/ 16 : (((P) >= 16 \&\& (P) <= 23) ? (P) -\/ 24 : (P) -\/ 32))))}}
+\DoxyCodeLine{258 \textcolor{preprocessor}{\# endif}}
+\DoxyCodeLine{259 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{260 \textcolor{preprocessor}{\#define \_\_digitalPinToPortReg(P) \(\backslash\)}}
+\DoxyCodeLine{261 \textcolor{preprocessor}{(((P) >= 0 \&\& (P) <= 7) ? \&PORTB : (((P) >= 8 \&\& (P) <= 15) ? \&PORTD : (((P) >= 16 \&\& (P) <= 23) ? \&PORTC : \&PORTA)))}}
+\DoxyCodeLine{262 \textcolor{preprocessor}{\#define \_\_digitalPinToDDRReg(P) \(\backslash\)}}
+\DoxyCodeLine{263 \textcolor{preprocessor}{(((P) >= 0 \&\& (P) <= 7) ? \&DDRB : (((P) >= 8 \&\& (P) <= 15) ? \&DDRD : (((P) >= 16 \&\& (P) <= 23) ? \&DDRC : \&DDRA)))}}
+\DoxyCodeLine{264 \textcolor{preprocessor}{\#define \_\_digitalPinToPINReg(P) \(\backslash\)}}
+\DoxyCodeLine{265 \textcolor{preprocessor}{(((P) >= 0 \&\& (P) <= 7) ? \&PINB : (((P) >= 8 \&\& (P) <= 15) ? \&PIND : (((P) >= 16 \&\& (P) <= 23) ? \&PINC : \&PINA)))}}
+\DoxyCodeLine{266 \textcolor{preprocessor}{\# if defined(SANGUINO\_PINOUT)}}
+\DoxyCodeLine{267 \textcolor{preprocessor}{\#define \_\_digitalPinToBit(P) \(\backslash\)}}
+\DoxyCodeLine{268 \textcolor{preprocessor}{(((P) >= 0 \&\& (P) <= 7) ? (P) : (((P) >= 8 \&\& (P) <= 15) ? (P) -\/ 8 : (((P) >= 16 \&\& (P) <= 23) ? (P) -\/ 16 : (7 -\/ ((P) -\/ 24)))))}}
+\DoxyCodeLine{269 \textcolor{preprocessor}{\# else }\textcolor{comment}{//MightyCore Pinout}}
+\DoxyCodeLine{270 \textcolor{preprocessor}{\#define \_\_digitalPinToBit(P) \(\backslash\)}}
+\DoxyCodeLine{271 \textcolor{preprocessor}{(((P) >= 0 \&\& (P) <= 7) ? (P) : (((P) >= 8 \&\& (P) <= 15) ? (P) -\/ 8 : (((P) >= 16 \&\& (P) <= 23) ? (P) -\/ 16 : (P) -\/ 24)))}}
+\DoxyCodeLine{272 \textcolor{preprocessor}{\# endif}}
+\DoxyCodeLine{273 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{274 }
+\DoxyCodeLine{275 }
+\DoxyCodeLine{276 \textcolor{comment}{// -\/-\/-\/ Arduino Leonardo and ATmega16U4/32U4 based boards -\/-\/-\/}}
+\DoxyCodeLine{277 \textcolor{preprocessor}{\#elif (defined(ARDUINO\_AVR\_LEONARDO) || \(\backslash\)}}
+\DoxyCodeLine{278 \textcolor{preprocessor}{       defined(\_\_AVR\_ATmega16U4\_\_) || \(\backslash\)}}
+\DoxyCodeLine{279 \textcolor{preprocessor}{       defined(\_\_AVR\_ATmega32U4\_\_))}}
+\DoxyCodeLine{280 }
+\DoxyCodeLine{281 \textcolor{preprocessor}{\#define UART\_RX\_PIN     (0) }\textcolor{comment}{//PD2}}
+\DoxyCodeLine{282 \textcolor{preprocessor}{\#define UART\_TX\_PIN     (1) }\textcolor{comment}{//PD3}}
+\DoxyCodeLine{283 }
+\DoxyCodeLine{284 \textcolor{preprocessor}{\#define I2C\_SDA\_PIN     (2) }\textcolor{comment}{//PD1}}
+\DoxyCodeLine{285 \textcolor{preprocessor}{\#define I2C\_SCL\_PIN     (3) }\textcolor{comment}{//PD0}}
+\DoxyCodeLine{286 }
+\DoxyCodeLine{287 \textcolor{preprocessor}{\#define SPI\_HW\_SS\_PIN   (17) }\textcolor{comment}{//PB0}}
+\DoxyCodeLine{288 \textcolor{preprocessor}{\#define SPI\_HW\_MOSI\_PIN (16) }\textcolor{comment}{//PB2}}
+\DoxyCodeLine{289 \textcolor{preprocessor}{\#define SPI\_HW\_MISO\_PIN (14) }\textcolor{comment}{//PB3}}
+\DoxyCodeLine{290 \textcolor{preprocessor}{\#define SPI\_HW\_SCK\_PIN  (15) }\textcolor{comment}{//PB1}}
+\DoxyCodeLine{291 }
+\DoxyCodeLine{292 \textcolor{preprocessor}{\#define \_\_digitalPinToPortReg(P) \(\backslash\)}}
+\DoxyCodeLine{293 \textcolor{preprocessor}{((((P) >= 0 \&\& (P) <= 4) || (P) == 6 || (P) == 12 || (P) == 24 || (P) == 25 || (P) == 29) ? \&PORTD : (((P) == 5 || (P) == 13) ? \&PORTC : (((P) >= 18 \&\& (P) <= 23)) ? \&PORTF : (((P) == 7) ? \&PORTE : \&PORTB)))}}
+\DoxyCodeLine{294 \textcolor{preprocessor}{\#define \_\_digitalPinToDDRReg(P) \(\backslash\)}}
+\DoxyCodeLine{295 \textcolor{preprocessor}{((((P) >= 0 \&\& (P) <= 4) || (P) == 6 || (P) == 12 || (P) == 24 || (P) == 25 || (P) == 29) ? \&DDRD : (((P) == 5 || (P) == 13) ? \&DDRC : (((P) >= 18 \&\& (P) <= 23)) ? \&DDRF : (((P) == 7) ? \&DDRE : \&DDRB)))}}
+\DoxyCodeLine{296 \textcolor{preprocessor}{\#define \_\_digitalPinToPINReg(P) \(\backslash\)}}
+\DoxyCodeLine{297 \textcolor{preprocessor}{((((P) >= 0 \&\& (P) <= 4) || (P) == 6 || (P) == 12 || (P) == 24 || (P) == 25 || (P) == 29) ? \&PIND : (((P) == 5 || (P) == 13) ? \&PINC : (((P) >= 18 \&\& (P) <= 23)) ? \&PINF : (((P) == 7) ? \&PINE : \&PINB)))}}
+\DoxyCodeLine{298 \textcolor{preprocessor}{\#define \_\_digitalPinToBit(P) \(\backslash\)}}
+\DoxyCodeLine{299 \textcolor{preprocessor}{(((P) >= 8 \&\& (P) <= 11) ? (P) -\/ 4 : (((P) >= 18 \&\& (P) <= 21) ? 25 -\/ (P) : (((P) == 0) ? 2 : (((P) == 1) ? 3 : (((P) == 2) ? 1 : (((P) == 3) ? 0 : (((P) == 4) ? 4 : (((P) == 6) ? 7 : (((P) == 13) ? 7 : (((P) == 14) ? 3 : (((P) == 15) ? 1 : (((P) == 16) ? 2 : (((P) == 17) ? 0 : (((P) == 22) ? 1 : (((P) == 23) ? 0 : (((P) == 24) ? 4 : (((P) == 25) ? 7 : (((P) == 26) ? 4 : (((P) == 27) ? 5 : 6 )))))))))))))))))))}}
+\DoxyCodeLine{300 }
+\DoxyCodeLine{301 }
+\DoxyCodeLine{302 \textcolor{comment}{// -\/-\/-\/ Arduino Uno and ATmega168/328 based boards -\/-\/-\/}}
+\DoxyCodeLine{303 \textcolor{preprocessor}{\#elif (defined(ARDUINO\_AVR\_UNO) || \(\backslash\)}}
+\DoxyCodeLine{304 \textcolor{preprocessor}{       defined(ARDUINO\_AVR\_DUEMILANOVE) || \(\backslash\)}}
+\DoxyCodeLine{305 \textcolor{preprocessor}{       defined(\_\_AVR\_ATmega8\_\_) || \(\backslash\)}}
+\DoxyCodeLine{306 \textcolor{preprocessor}{       defined(\_\_AVR\_ATmega48\_\_) || \(\backslash\)}}
+\DoxyCodeLine{307 \textcolor{preprocessor}{       defined(\_\_AVR\_ATmega48P\_\_) || \(\backslash\)}}
+\DoxyCodeLine{308 \textcolor{preprocessor}{       defined(\_\_AVR\_ATmega48PB\_\_) || \(\backslash\)}}
+\DoxyCodeLine{309 \textcolor{preprocessor}{       defined(\_\_AVR\_ATmega88P\_\_) || \(\backslash\)}}
+\DoxyCodeLine{310 \textcolor{preprocessor}{       defined(\_\_AVR\_ATmega88PB\_\_) || \(\backslash\)}}
+\DoxyCodeLine{311 \textcolor{preprocessor}{       defined(\_\_AVR\_ATmega168\_\_) || \(\backslash\)}}
+\DoxyCodeLine{312 \textcolor{preprocessor}{       defined(\_\_AVR\_ATmega168PA\_\_) || \(\backslash\)}}
+\DoxyCodeLine{313 \textcolor{preprocessor}{       defined(\_\_AVR\_ATmega168PB\_\_) || \(\backslash\)}}
+\DoxyCodeLine{314 \textcolor{preprocessor}{       defined(\_\_AVR\_ATmega328\_\_) || \(\backslash\)}}
+\DoxyCodeLine{315 \textcolor{preprocessor}{       defined(\_\_AVR\_ATmega328P\_\_) || \(\backslash\)}}
+\DoxyCodeLine{316 \textcolor{preprocessor}{       defined(\_\_AVR\_ATmega328PB\_\_))}}
+\DoxyCodeLine{317 }
+\DoxyCodeLine{318 \textcolor{preprocessor}{\#define UART\_RX\_PIN     (0) }\textcolor{comment}{//PD0}}
+\DoxyCodeLine{319 \textcolor{preprocessor}{\#define UART\_TX\_PIN     (1) }\textcolor{comment}{//PD1}}
+\DoxyCodeLine{320 }
+\DoxyCodeLine{321 \textcolor{preprocessor}{\#define I2C\_SDA\_PIN     (18) }\textcolor{comment}{//A4}}
+\DoxyCodeLine{322 \textcolor{preprocessor}{\#define I2C\_SCL\_PIN     (19) }\textcolor{comment}{//A5}}
+\DoxyCodeLine{323 }
+\DoxyCodeLine{324 \textcolor{preprocessor}{\#define SPI\_HW\_SS\_PIN   (10) }\textcolor{comment}{//PB0}}
+\DoxyCodeLine{325 \textcolor{preprocessor}{\#define SPI\_HW\_MOSI\_PIN (11) }\textcolor{comment}{//PB2}}
+\DoxyCodeLine{326 \textcolor{preprocessor}{\#define SPI\_HW\_MISO\_PIN (12) }\textcolor{comment}{//PB3}}
+\DoxyCodeLine{327 \textcolor{preprocessor}{\#define SPI\_HW\_SCK\_PIN  (13) }\textcolor{comment}{//PB1}}
+\DoxyCodeLine{328 }
+\DoxyCodeLine{329 \textcolor{preprocessor}{\#if defined(\_\_AVR\_ATmega48PB\_\_) || defined(\_\_AVR\_ATmega88PB\_\_) || defined(\_\_AVR\_ATmega168PB\_\_) || defined(\_\_AVR\_ATmega328PB\_\_)}}
+\DoxyCodeLine{330 \textcolor{preprocessor}{\#define \_\_digitalPinToPortReg(P) \(\backslash\)}}
+\DoxyCodeLine{331 \textcolor{preprocessor}{(((P) >= 0 \&\& (P) <= 7) ? \&PORTD : (((P) >= 8 \&\& (P) <= 13) ? \&PORTB : (((P) >= 14 \&\& (P) <= 19) ? \&PORTC : \&PORTE)))}}
+\DoxyCodeLine{332 \textcolor{preprocessor}{\#define \_\_digitalPinToDDRReg(P) \(\backslash\)}}
+\DoxyCodeLine{333 \textcolor{preprocessor}{(((P) >= 0 \&\& (P) <= 7) ? \&DDRD : (((P) >= 8 \&\& (P) <= 13) ? \&DDRB : (((P) >= 14 \&\& (P) <= 19) ? \&DDRC : \&DDRE)))}}
+\DoxyCodeLine{334 \textcolor{preprocessor}{\#define \_\_digitalPinToPINReg(P) \(\backslash\)}}
+\DoxyCodeLine{335 \textcolor{preprocessor}{(((P) >= 0 \&\& (P) <= 7) ? \&PIND : (((P) >= 8 \&\& (P) <= 13) ? \&PINB : (((P) >= 14 \&\& (P) <= 19) ? \&PINC : \&PINE)))}}
+\DoxyCodeLine{336 \textcolor{preprocessor}{\#define \_\_digitalPinToBit(P) \(\backslash\)}}
+\DoxyCodeLine{337 \textcolor{preprocessor}{(((P) >= 0 \&\& (P) <= 7) ? (P) : (((P) >= 8 \&\& (P) <= 13) ? (P) -\/ 8 : (((P) >= 14 \&\& (P) <= 19) ? (P) -\/ 14 : (((P) >= 20 \&\& (P) <= 21) ? (P) -\/ 18 : (P) -\/ 22))))}}
+\DoxyCodeLine{338 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{339 \textcolor{preprocessor}{\#define \_\_digitalPinToPortReg(P) \(\backslash\)}}
+\DoxyCodeLine{340 \textcolor{preprocessor}{(((P) >= 0 \&\& (P) <= 7) ? \&PORTD : (((P) >= 8 \&\& (P) <= 13) ? \&PORTB : \&PORTC))}}
+\DoxyCodeLine{341 \textcolor{preprocessor}{\#define \_\_digitalPinToDDRReg(P) \(\backslash\)}}
+\DoxyCodeLine{342 \textcolor{preprocessor}{(((P) >= 0 \&\& (P) <= 7) ? \&DDRD : (((P) >= 8 \&\& (P) <= 13) ? \&DDRB : \&DDRC))}}
+\DoxyCodeLine{343 \textcolor{preprocessor}{\#define \_\_digitalPinToPINReg(P) \(\backslash\)}}
+\DoxyCodeLine{344 \textcolor{preprocessor}{(((P) >= 0 \&\& (P) <= 7) ? \&PIND : (((P) >= 8 \&\& (P) <= 13) ? \&PINB : \&PINC))}}
+\DoxyCodeLine{345 \textcolor{preprocessor}{\#define \_\_digitalPinToBit(P) \(\backslash\)}}
+\DoxyCodeLine{346 \textcolor{preprocessor}{(((P) >= 0 \&\& (P) <= 7) ? (P) : (((P) >= 8 \&\& (P) <= 13) ? (P) -\/ 8 : (P) -\/ 14))}}
+\DoxyCodeLine{347 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{348 }
+\DoxyCodeLine{349 }
+\DoxyCodeLine{350 \textcolor{comment}{// -\/-\/-\/ Arduino Uno WiFi Rev 2, Nano Every -\/-\/-\/}}
+\DoxyCodeLine{351 \textcolor{preprocessor}{\#elif defined(\_\_AVR\_ATmega4809\_\_)}}
+\DoxyCodeLine{352 }
+\DoxyCodeLine{353 \textcolor{preprocessor}{\#define UART\_RX\_PIN     (0) }\textcolor{comment}{//PB0}}
+\DoxyCodeLine{354 \textcolor{preprocessor}{\#define UART\_TX\_PIN     (1) }\textcolor{comment}{//PB1}}
+\DoxyCodeLine{355 }
+\DoxyCodeLine{356 \textcolor{preprocessor}{\#define I2C\_SDA\_PIN     (22) }\textcolor{comment}{//PA2}}
+\DoxyCodeLine{357 \textcolor{preprocessor}{\#define I2C\_SCL\_PIN     (23) }\textcolor{comment}{//PA3}}
+\DoxyCodeLine{358 }
+\DoxyCodeLine{359 \textcolor{preprocessor}{\#define SPI\_HW\_SS\_PIN   (8)  }\textcolor{comment}{//PE3}}
+\DoxyCodeLine{360 \textcolor{preprocessor}{\#define SPI\_HW\_MOSI\_PIN (11) }\textcolor{comment}{//PE0}}
+\DoxyCodeLine{361 \textcolor{preprocessor}{\#define SPI\_HW\_MISO\_PIN (12) }\textcolor{comment}{//PE1}}
+\DoxyCodeLine{362 \textcolor{preprocessor}{\#define SPI\_HW\_SCK\_PIN  (13) }\textcolor{comment}{//PE2}}
+\DoxyCodeLine{363 }
+\DoxyCodeLine{364 \textcolor{preprocessor}{\#define \_\_digitalPinToPortReg(P) \(\backslash\)}}
+\DoxyCodeLine{365 \textcolor{preprocessor}{(((P) == 2 || (P) == 7 ) ? \&VPORTA.OUT : ((P) == 5 || (P) == 9 || (P) == 10) ? \&VPORTB.OUT : ((P) == 4) ? \&VPORTC.OUT : (((P) >= 14 \&\& (P) <= 17) || (P) == 20 || (P) == 21) ? \&VPORTD.OUT : ((P) == 8 || (P) == 11 || (P) == 12 || (P) == 13) ? \&VPORTE.OUT : \&VPORTF.OUT)}}
+\DoxyCodeLine{366 \textcolor{preprocessor}{\#define \_\_digitalPinToDDRReg(P) \(\backslash\)}}
+\DoxyCodeLine{367 \textcolor{preprocessor}{(((P) == 2 || (P) == 7 ) ? \&VPORTA.DIR : ((P) == 5 || (P) == 9 || (P) == 10) ? \&VPORTB.DIR : ((P) == 4) ? \&VPORTC.DIR : (((P) >= 14 \&\& (P) <= 17) || (P) == 20 || (P) == 21) ? \&VPORTD.DIR : ((P) == 8 || (P) == 11 || (P) == 12 || (P) == 13) ? \&VPORTE.DIR : \&VPORTF.DIR)}}
+\DoxyCodeLine{368 \textcolor{preprocessor}{\#define \_\_digitalPinToPINReg(P) \(\backslash\)}}
+\DoxyCodeLine{369 \textcolor{preprocessor}{(((P) == 2 || (P) == 7 ) ? \&VPORTA.IN : ((P) == 5 || (P) == 9 || (P) == 10) ? \&VPORTB.IN : ((P) == 4) ? \&VPORTC.IN : (((P) >= 14 \&\& (P) <= 17) || (P) == 20 || (P) == 21) ? \&VPORTD.IN : ((P) == 8 || (P) == 11 || (P) == 12 || (P) == 13) ? \&VPORTE.IN : \&VPORTF.IN)}}
+\DoxyCodeLine{370 \textcolor{preprocessor}{\#define \_\_digitalPinToBit(P) \(\backslash\)}}
+\DoxyCodeLine{371 \textcolor{preprocessor}{(((P) == 2 || (P) == 9 || (P) == 11 || (P) == 17) ? 0 : ((P) == 7 || (P) == 10 || (P) == 12 || (P) == 16) ? 1 : ((P) == 5 || (P) == 13 || (P) == 15 || (P) == 18) ? 2 : ((P) == 9 || (P) == 14 || (P) == 19) ? 3 : ((P) == 6 || (P) == 20) ? 4 : ((P) == 3 || (P) == 21) ? 5 :  6 )}}
+\DoxyCodeLine{372 }
+\DoxyCodeLine{373 }
+\DoxyCodeLine{374 \textcolor{comment}{// TinyCore}}
+\DoxyCodeLine{375 \textcolor{comment}{// https://raw.githubusercontent.com/xukangmin/TinyCore/master/avr/package/package\_tinycore\_index.json}}
+\DoxyCodeLine{376 \textcolor{comment}{// https://docs.tinycore.dev/en/latest/}}
+\DoxyCodeLine{377 \textcolor{preprocessor}{\#elif  defined(\_\_AVR\_ATtiny1616\_\_)  || defined(\_\_AVR\_ATtiny3216\_\_) || defined(\_\_AVR\_ATtiny3217\_\_)}}
+\DoxyCodeLine{378 \textcolor{preprocessor}{\#define \_\_digitalPinToPortReg(P) ((P) <= 5 ? \&VPORTB.OUT : ((P) <= 9 ? \&VPORTC.OUT : ((P) <= 16 ? \&VPORTA.OUT : ((P) <= 18 ? \&VPORTB.OUT : \&VPORTC.OUT))))}}
+\DoxyCodeLine{379 \textcolor{preprocessor}{\#define \_\_digitalPinToDDRReg(P) ((P) <= 5 ? \&VPORTB.DIR : ((P) <= 9 ? \&VPORTC.DIR : ((P) <= 16 ? \&VPORTA.DIR : ((P) <= 18 ? \&VPORTB.DIR : \&VPORTC.DIR))))}}
+\DoxyCodeLine{380 \textcolor{preprocessor}{\#define \_\_digitalPinToPINReg(P) ((P) <= 5 ? \&VPORTB.IN : ((P) <= 9 ? \&VPORTC.IN : ((P) <= 16 ? \&VPORTA.IN : ((P) <= 18 ? \&VPORTB.IN : \&VPORTC.IN))))}}
+\DoxyCodeLine{381 \textcolor{preprocessor}{\#define \_\_digitalPinToBit(P) ( (P) <= 3 ? (3 -\/ P) : ((P) <= 5 ? (P) : ((P) <= 9 ? (P -\/ 6) : ((P) <= 16 ? ((P) -\/ 9) : ((P) <= 18 ? ((P) -\/ 11) : ((P) -\/ 15))))) )}}
+\DoxyCodeLine{382 }
+\DoxyCodeLine{383 }
+\DoxyCodeLine{384 \textcolor{comment}{// -\/-\/-\/ ATtinyX5 -\/-\/-\/}}
+\DoxyCodeLine{385 \textcolor{preprocessor}{\#elif defined(\_\_AVR\_ATtiny25\_\_) || defined(\_\_AVR\_ATtiny45\_\_) || defined(\_\_AVR\_ATtiny85\_\_)}}
+\DoxyCodeLine{386 \textcolor{comment}{// we have only PORTB}}
+\DoxyCodeLine{387 \textcolor{preprocessor}{\#define \_\_digitalPinToPortReg(P) (\&PORTB)}}
+\DoxyCodeLine{388 \textcolor{preprocessor}{\#define \_\_digitalPinToDDRReg(P)  (\&DDRB)}}
+\DoxyCodeLine{389 \textcolor{preprocessor}{\#define \_\_digitalPinToPINReg(P)  (\&PINB)}}
+\DoxyCodeLine{390 \textcolor{preprocessor}{\#define \_\_digitalPinToBit(P)     (((P) <= 7) ? (P) : (((P) >= 8 \&\& (P) <= 13) ? (P) -\/ 8 : (P) -\/ 14))}}
+\DoxyCodeLine{391 }
+\DoxyCodeLine{392 }
+\DoxyCodeLine{393 \textcolor{comment}{// -\/-\/-\/ ATtiny88 -\/-\/-\/}}
+\DoxyCodeLine{394 \textcolor{preprocessor}{\#elif defined(\_\_AVR\_ATtiny88\_\_)}}
+\DoxyCodeLine{395 \textcolor{preprocessor}{\# if defined(ARDUINO\_AVR\_DIGISPARKPRO)}}
+\DoxyCodeLine{396 \textcolor{preprocessor}{\#define \_\_digitalPinToPortReg(P) ((P) <= 7 ? \&PORTD : ((P) <= 14 ? \&PORTB : ((P) <= 18 ? \&PORTA : \&PORTC)))}}
+\DoxyCodeLine{397 \textcolor{preprocessor}{\#define \_\_digitalPinToDDRReg(P)  ((P) <= 7 ? \&DDRD : ((P) <= 14 ? \&DDRB : ((P) <= 18 ? \&DDRA : \&DDRC)))}}
+\DoxyCodeLine{398 \textcolor{preprocessor}{\#define \_\_digitalPinToPINReg(P)  ((P) <= 7 ? \&PIND : ((P) <= 14 ? \&PINB : ((P) <= 18 ? \&PINA : \&PINC)))}}
+\DoxyCodeLine{399 \textcolor{preprocessor}{\#define \_\_digitalPinToBit(P) ( (P) <= 7 ? (P) : ((P) <= 13 ? ((P) -\/ 8) : ((P) == 14 ? 7 : ((P) <= 16 ? ((P) -\/ 14) : ((P) <= 18 ? ((P) -\/ 17) : ((P) == 25 ? 7 : ((P) -\/ 19)))))) )}}
+\DoxyCodeLine{400 \textcolor{preprocessor}{\# else}}
+\DoxyCodeLine{401 \textcolor{preprocessor}{\#define \_\_digitalPinToPortReg(P) ((P) <= 7 ? \&PORTD : ((P) <= 15 ? \&PORTB : ((P) <= 22 ? \&PORTC : ((P) <= 26 ? \&PORTA : \&PORTC))))}}
+\DoxyCodeLine{402 \textcolor{preprocessor}{\#define \_\_digitalPinToDDRReg(P) ((P) <= 7 ? \&DDRD : ((P) <= 15 ? \&DDRB : ((P) <= 22 ? \&DDRC : ((P) <= 26 ? \&DDRA : \&DDRC))))}}
+\DoxyCodeLine{403 \textcolor{preprocessor}{\#define \_\_digitalPinToPINReg(P) ((P) <= 7 ? \&PIND : ((P) <= 15 ? \&PINB : ((P) <= 22 ? \&PINC : ((P) <= 26 ? \&PINA : \&PINC))))}}
+\DoxyCodeLine{404 \textcolor{preprocessor}{\#define \_\_digitalPinToBit(P) ((P) <= 15 ? ((P) \& 0x7) : ((P) == 16 ? (7) : ((P) <= 22 ? ((P) -\/ 17) : ((P) == 27 ? (6) : ((P) -\/ 23)))))}}
+\DoxyCodeLine{405 \textcolor{preprocessor}{\# endif}}
+\DoxyCodeLine{406 }
+\DoxyCodeLine{407 }
+\DoxyCodeLine{408 \textcolor{comment}{// -\/-\/-\/ ATtinyX4 + ATtinyX7 -\/-\/-\/}}
+\DoxyCodeLine{409 \textcolor{preprocessor}{\#elif  defined(\_\_AVR\_ATtiny24\_\_) || defined(\_\_AVR\_ATtiny44\_\_) || defined(\_\_AVR\_ATtiny84\_\_) || defined(\_\_AVR\_ATtiny87\_\_) || defined(\_\_AVR\_ATtiny167\_\_)}}
+\DoxyCodeLine{410 \textcolor{preprocessor}{\# if defined(ARDUINO\_AVR\_DIGISPARKPRO) || PIN\_PA7 == 5}}
+\DoxyCodeLine{411 \textcolor{comment}{// Strange enumeration of pins on Digispark board and core library}}
+\DoxyCodeLine{412 \textcolor{preprocessor}{\#define \_\_digitalPinToPortReg(P) (((P) <= 4) ? \&PORTB : \&PORTA)}}
+\DoxyCodeLine{413 \textcolor{preprocessor}{\#define \_\_digitalPinToDDRReg(P)  (((P) <= 4) ? \&DDRB : \&DDRA)}}
+\DoxyCodeLine{414 \textcolor{preprocessor}{\#define \_\_digitalPinToPINReg(P)  (((P) <= 4) ? \&PINB : \&PINA)}}
+\DoxyCodeLine{415 \textcolor{preprocessor}{\#define \_\_digitalPinToBit(P)     (((P) <= 2) ? (P) : (((P) == 3) ? 6 : (((P) == 4) ? 3 : (((P) == 5) ? 7 : (P) -\/ 6 ))))}}
+\DoxyCodeLine{416 \textcolor{preprocessor}{\# else}}
+\DoxyCodeLine{417 \textcolor{comment}{// ATtinyX4: PORTA for 0 to 7, PORTB for 8 to 11}}
+\DoxyCodeLine{418 \textcolor{comment}{// ATtinyX7: PORTA for 0 to 7, PORTB for 8 to 15}}
+\DoxyCodeLine{419 \textcolor{preprocessor}{\#define \_\_digitalPinToPortReg(P) (((P) <= 7) ? \&PORTA : \&PORTB)}}
+\DoxyCodeLine{420 \textcolor{preprocessor}{\#define \_\_digitalPinToDDRReg(P)  (((P) <= 7) ? \&DDRA : \&DDRB)}}
+\DoxyCodeLine{421 \textcolor{preprocessor}{\#define \_\_digitalPinToPINReg(P)  (((P) <= 7) ? \&PINA : \&PINB)}}
+\DoxyCodeLine{422 \textcolor{preprocessor}{\#define \_\_digitalPinToBit(P)     (((P) <= 7) ? (P) : (P) -\/ 8 )}}
+\DoxyCodeLine{423 \textcolor{preprocessor}{\# endif}}
+\DoxyCodeLine{424 }
+\DoxyCodeLine{425 \textcolor{comment}{// -\/-\/-\/ Other -\/-\/-\/}}
+\DoxyCodeLine{426 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{427 }
+\DoxyCodeLine{428 \textcolor{preprocessor}{\#define I2C\_SDA\_PIN     SDA}}
+\DoxyCodeLine{429 \textcolor{preprocessor}{\#define I2C\_SCL\_PIN     SCL}}
+\DoxyCodeLine{430 }
+\DoxyCodeLine{431 \textcolor{preprocessor}{\#define SPI\_HW\_SS\_PIN   SS}}
+\DoxyCodeLine{432 \textcolor{preprocessor}{\#define SPI\_HW\_MOSI\_PIN MOSI}}
+\DoxyCodeLine{433 \textcolor{preprocessor}{\#define SPI\_HW\_MISO\_PIN MISO}}
+\DoxyCodeLine{434 \textcolor{preprocessor}{\#define SPI\_HW\_SCK\_PIN  SCK}}
+\DoxyCodeLine{435 }
+\DoxyCodeLine{436 }
+\DoxyCodeLine{437 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{438 \textcolor{comment}{//\#endif  //\#ifndef digitalPinToPortReg}}
+\DoxyCodeLine{439 }
+\DoxyCodeLine{440 }
+\DoxyCodeLine{441 \textcolor{preprocessor}{\#ifndef digitalWriteFast}}
+\DoxyCodeLine{442 \textcolor{preprocessor}{\#if (defined(\_\_AVR\_\_) || defined(ARDUINO\_ARCH\_AVR)) \&\& defined(\_\_digitalPinToPortReg)}}
+\DoxyCodeLine{443 \textcolor{preprocessor}{\#define digitalWriteFast(P, V) \(\backslash\)}}
+\DoxyCodeLine{444 \textcolor{preprocessor}{if (\_\_builtin\_constant\_p(P)) \{ \(\backslash\)}}
+\DoxyCodeLine{445 \textcolor{preprocessor}{  BIT\_WRITE(*\_\_digitalPinToPortReg(P), \_\_digitalPinToBit(P), (V)); \(\backslash\)}}
+\DoxyCodeLine{446 \textcolor{preprocessor}{\} else \{ \(\backslash\)}}
+\DoxyCodeLine{447 \textcolor{preprocessor}{  digitalWrite((P), (V)); \(\backslash\)}}
+\DoxyCodeLine{448 \textcolor{preprocessor}{\}}}
+\DoxyCodeLine{449 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{450 \textcolor{preprocessor}{\#define digitalWriteFast digitalWrite}}
+\DoxyCodeLine{451 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{452 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{453 }
+\DoxyCodeLine{454 }
+\DoxyCodeLine{455 \textcolor{preprocessor}{\#ifndef pinModeFast}}
+\DoxyCodeLine{456 \textcolor{preprocessor}{\#if (defined(\_\_AVR\_\_) || defined(ARDUINO\_ARCH\_AVR)) \&\& defined(\_\_digitalPinToPortReg)}}
+\DoxyCodeLine{457 \textcolor{preprocessor}{\#define pinModeFast(P, V) \(\backslash\)}}
+\DoxyCodeLine{458 \textcolor{preprocessor}{if (\_\_builtin\_constant\_p(P) \&\& \_\_builtin\_constant\_p(V)) \{ \(\backslash\)}}
+\DoxyCodeLine{459 \textcolor{preprocessor}{  if (V == INPUT\_PULLUP) \{\(\backslash\)}}
+\DoxyCodeLine{460 \textcolor{preprocessor}{    BIT\_CLEAR(*\_\_digitalPinToDDRReg(P), \_\_digitalPinToBit(P)); \(\backslash\)}}
+\DoxyCodeLine{461 \textcolor{preprocessor}{    BIT\_SET(*\_\_digitalPinToPortReg(P), \_\_digitalPinToBit(P)); \(\backslash\)}}
+\DoxyCodeLine{462 \textcolor{preprocessor}{  \} else \{ \(\backslash\)}}
+\DoxyCodeLine{463 \textcolor{preprocessor}{    BIT\_WRITE(*\_\_digitalPinToDDRReg(P), \_\_digitalPinToBit(P), (V)); \(\backslash\)}}
+\DoxyCodeLine{464 \textcolor{preprocessor}{  \} \(\backslash\)}}
+\DoxyCodeLine{465 \textcolor{preprocessor}{\} else \{ \(\backslash\)}}
+\DoxyCodeLine{466 \textcolor{preprocessor}{  pinMode((P), (V)); \(\backslash\)}}
+\DoxyCodeLine{467 \textcolor{preprocessor}{\}}}
+\DoxyCodeLine{468 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{469 \textcolor{preprocessor}{\#define pinModeFast pinMode}}
+\DoxyCodeLine{470 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{471 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{472 }
+\DoxyCodeLine{473 }
+\DoxyCodeLine{474 \textcolor{preprocessor}{\#ifndef digitalReadFast}}
+\DoxyCodeLine{475 \textcolor{preprocessor}{\#if (defined(\_\_AVR\_\_) || defined(ARDUINO\_ARCH\_AVR))}}
+\DoxyCodeLine{476 \textcolor{preprocessor}{\#define digitalReadFast(P) ( (int) \_\_digitalReadFast((P)) )}}
+\DoxyCodeLine{477 \textcolor{preprocessor}{\#define \_\_digitalReadFast(P ) \(\backslash\)}}
+\DoxyCodeLine{478 \textcolor{preprocessor}{  (\_\_builtin\_constant\_p(P) ) ? \(\backslash\)}}
+\DoxyCodeLine{479 \textcolor{preprocessor}{  (( BIT\_READ(*\_\_digitalPinToPINReg(P), \_\_digitalPinToBit(P))) ? HIGH:LOW ) : \(\backslash\)}}
+\DoxyCodeLine{480 \textcolor{preprocessor}{  digitalRead((P))}}
+\DoxyCodeLine{481 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{482 \textcolor{preprocessor}{\#define digitalReadFast digitalRead}}
+\DoxyCodeLine{483 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{484 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{485 }
+\DoxyCodeLine{486 }
+\DoxyCodeLine{487 \textcolor{preprocessor}{\#ifndef digitalToggleFast}}
+\DoxyCodeLine{488 \textcolor{preprocessor}{\#if (defined(\_\_AVR\_\_) || defined(ARDUINO\_ARCH\_AVR))}}
+\DoxyCodeLine{489 \textcolor{preprocessor}{\#define digitalToggleFast(P) \(\backslash\)}}
+\DoxyCodeLine{490 \textcolor{preprocessor}{if (\_\_builtin\_constant\_p(P)) \{ \(\backslash\)}}
+\DoxyCodeLine{491 \textcolor{preprocessor}{  BIT\_SET(*\_\_digitalPinToPINReg(P), \_\_digitalPinToBit(P)); \(\backslash\)}}
+\DoxyCodeLine{492 \textcolor{preprocessor}{\} else \{ \(\backslash\)}}
+\DoxyCodeLine{493 \textcolor{preprocessor}{  digitalWrite(P, ! digitalRead(P)); \(\backslash\)}}
+\DoxyCodeLine{494 \textcolor{preprocessor}{\}}}
+\DoxyCodeLine{495 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{496 \textcolor{preprocessor}{\#define digitalToggleFast(P) digitalWrite(P, ! digitalRead(P))}}
+\DoxyCodeLine{497 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{498 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{499 }
+\DoxyCodeLine{500 }
+\DoxyCodeLine{501 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//\_\_digitalWriteFast\_h\_}}
+
+\end{DoxyCode}

@@ -1,0 +1,102 @@
+\hypertarget{_tiny_i_r_receiver_8h_source}{}\doxysection{Tiny\+IRReceiver.\+h}
+\label{_tiny_i_r_receiver_8h_source}\index{IRRemote/TinyIRReceiver.h@{IRRemote/TinyIRReceiver.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ *  TinyIRReceiver.h}}
+\DoxyCodeLine{3 \textcolor{comment}{ *}}
+\DoxyCodeLine{4 \textcolor{comment}{ *}}
+\DoxyCodeLine{5 \textcolor{comment}{ *  Copyright (C) 2021  Armin Joachimsmeyer}}
+\DoxyCodeLine{6 \textcolor{comment}{ *  armin.joachimsmeyer@gmail.com}}
+\DoxyCodeLine{7 \textcolor{comment}{ *}}
+\DoxyCodeLine{8 \textcolor{comment}{ *  This file is part of IRMP https://github.com/ukw100/IRMP.}}
+\DoxyCodeLine{9 \textcolor{comment}{ *  This file is part of Arduino-\/IRremote https://github.com/Arduino-\/IRremote/Arduino-\/IRremote.}}
+\DoxyCodeLine{10 \textcolor{comment}{ *}}
+\DoxyCodeLine{11 \textcolor{comment}{ *  TinyIRReceiver is free software: you can redistribute it and/or modify}}
+\DoxyCodeLine{12 \textcolor{comment}{ *  it under the terms of the GNU General Public License as published by}}
+\DoxyCodeLine{13 \textcolor{comment}{ *  the Free Software Foundation, either version 3 of the License, or}}
+\DoxyCodeLine{14 \textcolor{comment}{ *  (at your option) any later version.}}
+\DoxyCodeLine{15 \textcolor{comment}{ *}}
+\DoxyCodeLine{16 \textcolor{comment}{ *  This program is distributed in the hope that it will be useful,}}
+\DoxyCodeLine{17 \textcolor{comment}{ *  but WITHOUT ANY WARRANTY; without even the implied warranty of}}
+\DoxyCodeLine{18 \textcolor{comment}{ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the}}
+\DoxyCodeLine{19 \textcolor{comment}{ *  GNU General Public License for more details.}}
+\DoxyCodeLine{20 \textcolor{comment}{ *}}
+\DoxyCodeLine{21 \textcolor{comment}{ *  You should have received a copy of the GNU General Public License}}
+\DoxyCodeLine{22 \textcolor{comment}{ *  along with this program.  If not, see <http://www.gnu.org/licenses/gpl.html>.}}
+\DoxyCodeLine{23 \textcolor{comment}{ *}}
+\DoxyCodeLine{24 \textcolor{comment}{ */}}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#ifndef TINY\_IR\_RECEIVER\_H}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#define TINY\_IR\_RECEIVER\_H}}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#include <Arduino.h>}}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#include "{}LongUnion.h"{}}}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{37 \textcolor{comment}{/*}}
+\DoxyCodeLine{38 \textcolor{comment}{ * This function is called if a complete command was received and must be implemented by the including file (user code)}}
+\DoxyCodeLine{39 \textcolor{comment}{ */}}
+\DoxyCodeLine{40 \textcolor{keywordtype}{void} handleReceivedTinyIRData(uint16\_t aAddress, uint8\_t aCommand, \textcolor{keywordtype}{bool} isRepeat);}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42 \textcolor{comment}{// LSB first, 1 start bit + 16 bit address + 8 bit data + 8 bit inverted data + 1 stop bit.}}
+\DoxyCodeLine{43 \textcolor{comment}{// see: https://www.sbprojects.net/knowledge/ir/nec.php}}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45 \textcolor{preprocessor}{\#define NEC\_ADDRESS\_BITS        16 }\textcolor{comment}{// 16 bit address or 8 bit address and 8 bit inverted address}}
+\DoxyCodeLine{46 \textcolor{preprocessor}{\#define NEC\_COMMAND\_BITS        16 }\textcolor{comment}{// Command and inverted command}}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48 \textcolor{preprocessor}{\#define NEC\_BITS                (NEC\_ADDRESS\_BITS + NEC\_COMMAND\_BITS)}}
+\DoxyCodeLine{49 \textcolor{preprocessor}{\#define NEC\_UNIT                560}}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51 \textcolor{preprocessor}{\#define NEC\_HEADER\_MARK         (16 * NEC\_UNIT) }\textcolor{comment}{// 9000}}
+\DoxyCodeLine{52 \textcolor{preprocessor}{\#define NEC\_HEADER\_SPACE        (8 * NEC\_UNIT)  }\textcolor{comment}{// 4500}}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{54 \textcolor{preprocessor}{\#define NEC\_BIT\_MARK            NEC\_UNIT}}
+\DoxyCodeLine{55 \textcolor{preprocessor}{\#define NEC\_ONE\_SPACE           (3 * NEC\_UNIT)  }\textcolor{comment}{// 1690}}
+\DoxyCodeLine{56 \textcolor{preprocessor}{\#define NEC\_ZERO\_SPACE          NEC\_UNIT}}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58 \textcolor{preprocessor}{\#define NEC\_REPEAT\_HEADER\_SPACE (4 * NEC\_UNIT)  }\textcolor{comment}{// 2250}}
+\DoxyCodeLine{59 \textcolor{preprocessor}{\#define NEC\_REPEAT\_PERIOD       110000 }\textcolor{comment}{// Not used yet -\/ Commands are repeated every 110 ms (measured from start to start) for as long as the key on the remote control is held down.}}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61 \textcolor{comment}{/*}}
+\DoxyCodeLine{62 \textcolor{comment}{ * Macros for comparing timing values}}
+\DoxyCodeLine{63 \textcolor{comment}{ */}}
+\DoxyCodeLine{64 \textcolor{preprocessor}{\#define lowerValue25Percent(aDuration)   (aDuration -\/ (aDuration / 4))}}
+\DoxyCodeLine{65 \textcolor{preprocessor}{\#define upperValue25Percent(aDuration)   (aDuration + (aDuration / 4))}}
+\DoxyCodeLine{66 \textcolor{preprocessor}{\#define lowerValue(aDuration)   (aDuration -\/ (aDuration / 2))}}
+\DoxyCodeLine{67 \textcolor{preprocessor}{\#define upperValue(aDuration)   (aDuration + (aDuration / 2))}}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69 \textcolor{comment}{/*}}
+\DoxyCodeLine{70 \textcolor{comment}{ * The states for the state machine}}
+\DoxyCodeLine{71 \textcolor{comment}{ */}}
+\DoxyCodeLine{72 \textcolor{preprocessor}{\#define IR\_RECEIVER\_STATE\_WAITING\_FOR\_START\_MARK        0}}
+\DoxyCodeLine{73 \textcolor{preprocessor}{\#define IR\_RECEIVER\_STATE\_WAITING\_FOR\_START\_SPACE       1}}
+\DoxyCodeLine{74 \textcolor{preprocessor}{\#define IR\_RECEIVER\_STATE\_WAITING\_FOR\_FIRST\_DATA\_MARK   2}}
+\DoxyCodeLine{75 \textcolor{preprocessor}{\#define IR\_RECEIVER\_STATE\_WAITING\_FOR\_DATA\_SPACE        3}}
+\DoxyCodeLine{76 \textcolor{preprocessor}{\#define IR\_RECEIVER\_STATE\_WAITING\_FOR\_DATA\_MARK         4}}
+\DoxyCodeLine{77 \textcolor{preprocessor}{\#define IR\_RECEIVER\_STATE\_WAITING\_FOR\_STOP\_MARK         5}}
+\DoxyCodeLine{81 \textcolor{keyword}{struct }\mbox{\hyperlink{struct_tiny_i_r_receiver_struct}{TinyIRReceiverStruct}} \{}
+\DoxyCodeLine{82     \textcolor{comment}{/*}}
+\DoxyCodeLine{83 \textcolor{comment}{     * State machine}}
+\DoxyCodeLine{84 \textcolor{comment}{     */}}
+\DoxyCodeLine{85     uint32\_t \mbox{\hyperlink{struct_tiny_i_r_receiver_struct_a978f2ac480cb3ab428ff3016239413f1}{LastChangeMicros}};      }
+\DoxyCodeLine{86     uint8\_t \mbox{\hyperlink{struct_tiny_i_r_receiver_struct_aca59e5c5331a581e0603a59c552fa8c9}{IRReceiverState}};        }
+\DoxyCodeLine{87     uint8\_t IRRawDataBitCounter;}
+\DoxyCodeLine{88     \textcolor{comment}{/*}}
+\DoxyCodeLine{89 \textcolor{comment}{     * Data}}
+\DoxyCodeLine{90 \textcolor{comment}{     */}}
+\DoxyCodeLine{91     uint32\_t IRRawDataMask;}
+\DoxyCodeLine{92     \mbox{\hyperlink{union_long_union}{LongUnion}} IRRawData;}
+\DoxyCodeLine{93     \textcolor{keywordtype}{bool} IRRepeatDetected;}
+\DoxyCodeLine{94 \};}
+\DoxyCodeLine{95 }
+\DoxyCodeLine{96 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___tiny_receiver_ga1f3913249343258d738ea0a48f7e1aed}{initPCIInterruptForTinyReceiver}}();}
+\DoxyCodeLine{97 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___tiny_receiver_gad23b935e2236a42a070a87379c7c36a4}{enablePCIInterruptForTinyReceiver}}();}
+\DoxyCodeLine{98 \textcolor{keywordtype}{void} disablePCIInterruptForTinyReceiver();}
+\DoxyCodeLine{99 \textcolor{keywordtype}{bool} isTinyReceiverIdle();}
+\DoxyCodeLine{100 }
+\DoxyCodeLine{103 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// TINY\_IR\_RECEIVER\_H}}
+\DoxyCodeLine{104 }
+\DoxyCodeLine{105 \textcolor{preprocessor}{\#pragma once}}
+
+\end{DoxyCode}

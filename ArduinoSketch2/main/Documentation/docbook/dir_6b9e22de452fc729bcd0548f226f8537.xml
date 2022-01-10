@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_dir_6b9e22de452fc729bcd0548f226f8537" xml:lang="en-US">
+<title>main/Debug/Modules Directory Reference</title>
+<indexterm><primary>main/Debug/Modules Directory Reference</primary></indexterm>
+<simplesect>
+    <title>Directories    </title>
+        <itemizedlist>
+            <listitem><para>directory <link linkend="_dir_e9a5419698d94e9bd983ba366a4dcbb7">Actuators</link></para>
+</listitem>
+            <listitem><para>directory <link linkend="_dir_cae4751c643886e50c74852eac03b088">Sensors</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

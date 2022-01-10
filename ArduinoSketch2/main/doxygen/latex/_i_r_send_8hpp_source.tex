@@ -1,0 +1,568 @@
+\hypertarget{_i_r_send_8hpp_source}{}\doxysection{IRSend.\+hpp}
+\label{_i_r_send_8hpp_source}\index{IRRemote/IRSend.hpp@{IRRemote/IRSend.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * IRSend.hpp}}
+\DoxyCodeLine{3 \textcolor{comment}{ *}}
+\DoxyCodeLine{4 \textcolor{comment}{ *  Contains common functions for sending}}
+\DoxyCodeLine{5 \textcolor{comment}{ *}}
+\DoxyCodeLine{6 \textcolor{comment}{ *  This file is part of Arduino-\/IRremote https://github.com/Arduino-\/IRremote/Arduino-\/IRremote.}}
+\DoxyCodeLine{7 \textcolor{comment}{ *}}
+\DoxyCodeLine{8 \textcolor{comment}{ ************************************************************************************}}
+\DoxyCodeLine{9 \textcolor{comment}{ * MIT License}}
+\DoxyCodeLine{10 \textcolor{comment}{ *}}
+\DoxyCodeLine{11 \textcolor{comment}{ * Copyright (c) 2009-\/2021 Ken Shirriff, Rafi Khan, Armin Joachimsmeyer}}
+\DoxyCodeLine{12 \textcolor{comment}{ *}}
+\DoxyCodeLine{13 \textcolor{comment}{ * Permission is hereby granted, free of charge, to any person obtaining a copy}}
+\DoxyCodeLine{14 \textcolor{comment}{ * of this software and associated documentation files (the "{}Software"{}), to deal}}
+\DoxyCodeLine{15 \textcolor{comment}{ * in the Software without restriction, including without limitation the rights}}
+\DoxyCodeLine{16 \textcolor{comment}{ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell}}
+\DoxyCodeLine{17 \textcolor{comment}{ * copies of the Software, and to permit persons to whom the Software is furnished}}
+\DoxyCodeLine{18 \textcolor{comment}{ * to do so, subject to the following conditions:}}
+\DoxyCodeLine{19 \textcolor{comment}{ *}}
+\DoxyCodeLine{20 \textcolor{comment}{ * The above copyright notice and this permission notice shall be included in all}}
+\DoxyCodeLine{21 \textcolor{comment}{ * copies or substantial portions of the Software.}}
+\DoxyCodeLine{22 \textcolor{comment}{ *}}
+\DoxyCodeLine{23 \textcolor{comment}{ * THE SOFTWARE IS PROVIDED "{}AS IS"{}, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,}}
+\DoxyCodeLine{24 \textcolor{comment}{ * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A}}
+\DoxyCodeLine{25 \textcolor{comment}{ * PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT}}
+\DoxyCodeLine{26 \textcolor{comment}{ * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF}}
+\DoxyCodeLine{27 \textcolor{comment}{ * CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE}}
+\DoxyCodeLine{28 \textcolor{comment}{ * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.}}
+\DoxyCodeLine{29 \textcolor{comment}{ *}}
+\DoxyCodeLine{30 \textcolor{comment}{ ************************************************************************************}}
+\DoxyCodeLine{31 \textcolor{comment}{ */}}
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#ifndef IR\_SEND\_HPP}}
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#define IR\_SEND\_HPP}}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_i_rremote_int_8h}{IRremoteInt.h}}"{}}}
+\DoxyCodeLine{36 \textcolor{preprocessor}{\#if defined(IR\_SEND\_PIN)}}
+\DoxyCodeLine{37 \textcolor{preprocessor}{\#define sendPin IR\_SEND\_PIN}}
+\DoxyCodeLine{38 \textcolor{preprocessor}{\#include "{}digitalWriteFast.h"{}}}
+\DoxyCodeLine{39 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{40 \textcolor{preprocessor}{\#define digitalWriteFast    digitalWrite}}
+\DoxyCodeLine{41 \textcolor{preprocessor}{\#define pinModeFast         pinMode}}
+\DoxyCodeLine{42 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{48 \textcolor{comment}{// The sender instance}}
+\DoxyCodeLine{49 \mbox{\hyperlink{class_i_rsend}{IRsend}} IrSender;}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51 IRsend::IRsend() \{}
+\DoxyCodeLine{52 \textcolor{preprocessor}{\#if !defined(NO\_LED\_FEEDBACK\_CODE)}}
+\DoxyCodeLine{53     \mbox{\hyperlink{group___feedback_l_e_d_functions_gaa5949b509ec061d9239867caa628cfec}{setLEDFeedback}}(0, \textcolor{keyword}{false});}
+\DoxyCodeLine{54 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{55 \}}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57 \textcolor{preprocessor}{\#if !defined(IR\_SEND\_PIN) \&\& !defined(SEND\_PWM\_BY\_TIMER)}}
+\DoxyCodeLine{58 \textcolor{comment}{// there is no sendPin variable if IR\_SEND\_PIN or SEND\_PWM\_BY\_TIMER is defined}}
+\DoxyCodeLine{59 IRsend::IRsend(uint8\_t aSendPin) \{}
+\DoxyCodeLine{60     sendPin = aSendPin;}
+\DoxyCodeLine{61 \textcolor{preprocessor}{\#if !defined(NO\_LED\_FEEDBACK\_CODE)}}
+\DoxyCodeLine{62     \mbox{\hyperlink{group___feedback_l_e_d_functions_gaa5949b509ec061d9239867caa628cfec}{setLEDFeedback}}(0, \textcolor{keyword}{false});}
+\DoxyCodeLine{63 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{64 \}}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{66 \textcolor{keywordtype}{void} IRsend::setSendPin(uint8\_t aSendPin) \{}
+\DoxyCodeLine{67     sendPin = aSendPin;}
+\DoxyCodeLine{68 \}}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{74 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___sending_ga28a0bb05c6b5d7330b2185c8447ef7a2}{IRsend::begin}}(uint8\_t aSendPin) \{}
+\DoxyCodeLine{75     sendPin = aSendPin;}
+\DoxyCodeLine{76 \textcolor{preprocessor}{\#if !defined(NO\_LED\_FEEDBACK\_CODE)}}
+\DoxyCodeLine{77     \mbox{\hyperlink{group___feedback_l_e_d_functions_gaa5949b509ec061d9239867caa628cfec}{setLEDFeedback}}(USE\_DEFAULT\_FEEDBACK\_LED\_PIN, \textcolor{keyword}{true});}
+\DoxyCodeLine{78 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{79 \}}
+\DoxyCodeLine{80 }
+\DoxyCodeLine{81 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{83 \textcolor{preprocessor}{\#if defined(IR\_SEND\_PIN)}}
+\DoxyCodeLine{87 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___sending_ga28a0bb05c6b5d7330b2185c8447ef7a2}{IRsend::begin}}()\{}
+\DoxyCodeLine{88 \textcolor{preprocessor}{\#  if !defined(NO\_LED\_FEEDBACK\_CODE)}}
+\DoxyCodeLine{89     \mbox{\hyperlink{group___feedback_l_e_d_functions_gaa5949b509ec061d9239867caa628cfec}{setLEDFeedback}}(USE\_DEFAULT\_FEEDBACK\_LED\_PIN, \textcolor{keyword}{true});}
+\DoxyCodeLine{90 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{91 \}}
+\DoxyCodeLine{92 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{93 }
+\DoxyCodeLine{99 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___sending_ga28a0bb05c6b5d7330b2185c8447ef7a2}{IRsend::begin}}(uint8\_t aSendPin, \textcolor{keywordtype}{bool} aEnableLEDFeedback, uint8\_t aFeedbackLEDPin) \{}
+\DoxyCodeLine{100 \textcolor{preprocessor}{\#if !defined(IR\_SEND\_PIN) \&\& !defined(SEND\_PWM\_BY\_TIMER)}}
+\DoxyCodeLine{101     sendPin = aSendPin;}
+\DoxyCodeLine{102 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{103     (void) aSendPin; \textcolor{comment}{// there is no sendPin variable if IR\_SEND\_PIN or SEND\_PWM\_BY\_TIMER is defined}}
+\DoxyCodeLine{104 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{105 \textcolor{preprocessor}{\#if !defined(NO\_LED\_FEEDBACK\_CODE)}}
+\DoxyCodeLine{106     \mbox{\hyperlink{group___feedback_l_e_d_functions_gaa5949b509ec061d9239867caa628cfec}{setLEDFeedback}}(aFeedbackLEDPin, aEnableLEDFeedback);}
+\DoxyCodeLine{107 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{108     (void) aEnableLEDFeedback;}
+\DoxyCodeLine{109     (void) aFeedbackLEDPin;}
+\DoxyCodeLine{110 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{111 \}}
+\DoxyCodeLine{112 }
+\DoxyCodeLine{113 \textcolor{comment}{//\_\_attribute((error("{}Error: You must use begin(<sendPin>, <EnableLEDFeedback>, <aFeedbackLEDPin>) if IR\_SEND\_PIN and SEND\_PWM\_BY\_TIMER are not defined or USE\_NO\_SEND\_PWM is defined. To suppress this error, enable lto or activate the line \#define SUPPRESS\_ERROR\_MESSAGE\_FOR\_BEGIN in IRremote.hpp."{}))) void beginUsageError();}}
+\DoxyCodeLine{114 }
+\DoxyCodeLine{118 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___sending_ga28a0bb05c6b5d7330b2185c8447ef7a2}{IRsend::begin}}(\textcolor{keywordtype}{bool} aEnableLEDFeedback, uint8\_t aFeedbackLEDPin) \{}
+\DoxyCodeLine{119 \textcolor{preprocessor}{\#if !defined(IR\_SEND\_PIN)}}
+\DoxyCodeLine{120 }
+\DoxyCodeLine{121     \textcolor{comment}{// must exclude cores by MCUdude, MEGATINYCORE, NRF5, SAMD and ESP32 because they do not use the -\/flto flag for compile}}
+\DoxyCodeLine{122 \textcolor{preprocessor}{\#  if (!defined(SEND\_PWM\_BY\_TIMER) || defined(USE\_NO\_SEND\_PWM)) \(\backslash\)}}
+\DoxyCodeLine{123 \textcolor{preprocessor}{        \&\& !defined(SUPPRESS\_ERROR\_MESSAGE\_FOR\_BEGIN) \(\backslash\)}}
+\DoxyCodeLine{124 \textcolor{preprocessor}{        \&\& !(defined(NRF5) || defined(ARDUINO\_ARCH\_NRF52840)) \(\backslash\)}}
+\DoxyCodeLine{125 \textcolor{preprocessor}{        \&\& !defined(ARDUINO\_ARCH\_SAMD) \&\& !defined(ARDUINO\_ARCH\_RP2040) \(\backslash\)}}
+\DoxyCodeLine{126 \textcolor{preprocessor}{        \&\& !defined(ESP32) \&\& !defined(ESP8266) \&\& !defined(MEGATINYCORE) \(\backslash\)}}
+\DoxyCodeLine{127 \textcolor{preprocessor}{        \&\& !defined(MINICORE) \&\& !defined(MIGHTYCORE) \&\& !defined(MEGACORE) \&\& !defined(MAJORCORE) \(\backslash\)}}
+\DoxyCodeLine{128 \textcolor{preprocessor}{    \&\& !(defined(\_\_STM32F1\_\_) || defined(ARDUINO\_ARCH\_STM32F1)) \&\& !(defined(STM32F1xx) || defined(ARDUINO\_ARCH\_STM32))}}
+\DoxyCodeLine{129     \textcolor{comment}{/*}}
+\DoxyCodeLine{130 \textcolor{comment}{     * This error shows up, if this function is really used/called by the user program.}}
+\DoxyCodeLine{131 \textcolor{comment}{     * This check works only if lto is enabled, otherwise it always pops up :-\/(.}}
+\DoxyCodeLine{132 \textcolor{comment}{     * In this case activate the line \#define SUPPRESS\_ERROR\_MESSAGE\_FOR\_BEGIN in IRremote.h to suppress this message.}}
+\DoxyCodeLine{133 \textcolor{comment}{     * I know now way to check for lto flag here.}}
+\DoxyCodeLine{134 \textcolor{comment}{     */}}
+\DoxyCodeLine{135     \textcolor{comment}{//beginUsageError();}}
+\DoxyCodeLine{136 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{137 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{138 \textcolor{preprocessor}{\#if !defined(NO\_LED\_FEEDBACK\_CODE)}}
+\DoxyCodeLine{139     \mbox{\hyperlink{group___feedback_l_e_d_functions_gaa5949b509ec061d9239867caa628cfec}{setLEDFeedback}}(aFeedbackLEDPin, aEnableLEDFeedback);}
+\DoxyCodeLine{140 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{141     (void) aEnableLEDFeedback;}
+\DoxyCodeLine{142     (void) aFeedbackLEDPin;}
+\DoxyCodeLine{143 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{144 \}}
+\DoxyCodeLine{145 }
+\DoxyCodeLine{150 \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{group___sending_ga567f59869ebc6c7f53d0dc9b360dd4c3}{IRsend::write}}(\mbox{\hyperlink{struct_i_r_data}{IRData}} *aIRSendData, uint\_fast8\_t aNumberOfRepeats) \{}
+\DoxyCodeLine{151 }
+\DoxyCodeLine{152     \textcolor{keyword}{auto} tProtocol = aIRSendData-\/>\mbox{\hyperlink{struct_i_r_data_a703592faec26bab5cbe465f53ef14245}{protocol}};}
+\DoxyCodeLine{153     \textcolor{keyword}{auto} tAddress = aIRSendData-\/>\mbox{\hyperlink{struct_i_r_data_a1255a5b7d704d34fda83dcabcb903d4c}{address}};}
+\DoxyCodeLine{154     \textcolor{keyword}{auto} tCommand = aIRSendData-\/>\mbox{\hyperlink{struct_i_r_data_ab0ce2b36765ea429e8c4bfa0706a45e7}{command}};}
+\DoxyCodeLine{155     \textcolor{keywordtype}{bool} tSendRepeat = (aIRSendData-\/>\mbox{\hyperlink{struct_i_r_data_aaaad48fc0d90e5c6daec601987848a51}{flags}} \& IRDATA\_FLAGS\_IS\_REPEAT);}
+\DoxyCodeLine{156 \textcolor{comment}{//    switch (tProtocol) \{ // 26 bytes bigger than if, else if, else}}
+\DoxyCodeLine{157 \textcolor{comment}{//    case NEC:}}
+\DoxyCodeLine{158 \textcolor{comment}{//        sendNEC(tAddress, tCommand, aNumberOfRepeats, tSendRepeat);}}
+\DoxyCodeLine{159 \textcolor{comment}{//        break;}}
+\DoxyCodeLine{160 \textcolor{comment}{//    case SAMSUNG:}}
+\DoxyCodeLine{161 \textcolor{comment}{//        sendSamsung(tAddress, tCommand, aNumberOfRepeats, tSendRepeat);}}
+\DoxyCodeLine{162 \textcolor{comment}{//        break;}}
+\DoxyCodeLine{163 \textcolor{comment}{//    case SONY:}}
+\DoxyCodeLine{164 \textcolor{comment}{//        sendSony(tAddress, tCommand, aNumberOfRepeats, aIRSendData-\/>numberOfBits);}}
+\DoxyCodeLine{165 \textcolor{comment}{//        break;}}
+\DoxyCodeLine{166 \textcolor{comment}{//    case PANASONIC:}}
+\DoxyCodeLine{167 \textcolor{comment}{//        sendPanasonic(tAddress, tCommand, aNumberOfRepeats);}}
+\DoxyCodeLine{168 \textcolor{comment}{//        break;}}
+\DoxyCodeLine{169 \textcolor{comment}{//    case DENON:}}
+\DoxyCodeLine{170 \textcolor{comment}{//        sendDenon(tAddress, tCommand, aNumberOfRepeats);}}
+\DoxyCodeLine{171 \textcolor{comment}{//        break;}}
+\DoxyCodeLine{172 \textcolor{comment}{//    case SHARP:}}
+\DoxyCodeLine{173 \textcolor{comment}{//        sendSharp(tAddress, tCommand, aNumberOfRepeats);}}
+\DoxyCodeLine{174 \textcolor{comment}{//        break;}}
+\DoxyCodeLine{175 \textcolor{comment}{//    case JVC:}}
+\DoxyCodeLine{176 \textcolor{comment}{//        sendJVC((uint8\_t) tAddress, (uint8\_t) tCommand, aNumberOfRepeats); // casts are required to specify the right function}}
+\DoxyCodeLine{177 \textcolor{comment}{//        break;}}
+\DoxyCodeLine{178 \textcolor{comment}{//    case RC5:}}
+\DoxyCodeLine{179 \textcolor{comment}{//        sendRC5(tAddress, tCommand, aNumberOfRepeats, !tSendRepeat); // No toggle for repeats}}
+\DoxyCodeLine{180 \textcolor{comment}{//        break;}}
+\DoxyCodeLine{181 \textcolor{comment}{//    case RC6:}}
+\DoxyCodeLine{182 \textcolor{comment}{//        // No toggle for repeats//        sendRC6(tAddress, tCommand, aNumberOfRepeats, !tSendRepeat); // No toggle for repeats}}
+\DoxyCodeLine{183 \textcolor{comment}{//        break;}}
+\DoxyCodeLine{184 \textcolor{comment}{//    default:}}
+\DoxyCodeLine{185 \textcolor{comment}{//        break;}}
+\DoxyCodeLine{186 \textcolor{comment}{//    \}}}
+\DoxyCodeLine{187 }
+\DoxyCodeLine{188     \textcolor{comment}{/*}}
+\DoxyCodeLine{189 \textcolor{comment}{     * Order of protocols is in guessed relevance :-\/)}}
+\DoxyCodeLine{190 \textcolor{comment}{     */}}
+\DoxyCodeLine{191     \textcolor{keywordflow}{if} (tProtocol == NEC) \{}
+\DoxyCodeLine{192         sendNEC(tAddress, tCommand, aNumberOfRepeats, tSendRepeat);}
+\DoxyCodeLine{193 }
+\DoxyCodeLine{194     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (tProtocol == SAMSUNG) \{}
+\DoxyCodeLine{195         sendSamsung(tAddress, tCommand, aNumberOfRepeats, tSendRepeat);}
+\DoxyCodeLine{196 }
+\DoxyCodeLine{197     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (tProtocol == SONY) \{}
+\DoxyCodeLine{198         sendSony(tAddress, tCommand, aNumberOfRepeats, aIRSendData-\/>\mbox{\hyperlink{struct_i_r_data_a945c41b8463a36cf00b0f38b0aa73200}{numberOfBits}});}
+\DoxyCodeLine{199 }
+\DoxyCodeLine{200     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (tProtocol == PANASONIC) \{}
+\DoxyCodeLine{201         \mbox{\hyperlink{group___decoder_gad3a14e1a94a402a4cbe0eeeded312173}{sendPanasonic}}(tAddress, tCommand, aNumberOfRepeats);}
+\DoxyCodeLine{202 }
+\DoxyCodeLine{203     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (tProtocol == DENON) \{}
+\DoxyCodeLine{204         sendDenon(tAddress, tCommand, aNumberOfRepeats);}
+\DoxyCodeLine{205 }
+\DoxyCodeLine{206     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (tProtocol == SHARP) \{}
+\DoxyCodeLine{207         sendSharp(tAddress, tCommand, aNumberOfRepeats);}
+\DoxyCodeLine{208 }
+\DoxyCodeLine{209     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (tProtocol == LG) \{}
+\DoxyCodeLine{210         \mbox{\hyperlink{group___decoder_gaf5095df5a6598fe2651510e4a8d5e018}{sendLG}}(tAddress, tCommand, aNumberOfRepeats, tSendRepeat);}
+\DoxyCodeLine{211 }
+\DoxyCodeLine{212     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (tProtocol == JVC) \{}
+\DoxyCodeLine{213         sendJVC((uint8\_t) tAddress, (uint8\_t) tCommand, aNumberOfRepeats); \textcolor{comment}{// casts are required to specify the right function}}
+\DoxyCodeLine{214 }
+\DoxyCodeLine{215     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (tProtocol == RC5) \{}
+\DoxyCodeLine{216         \mbox{\hyperlink{group___decoder_ga55808fcce8aaf429ebbb1d34cb7f5ee5}{sendRC5}}(tAddress, tCommand, aNumberOfRepeats, !tSendRepeat); \textcolor{comment}{// No toggle for repeats}}
+\DoxyCodeLine{217 }
+\DoxyCodeLine{218     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (tProtocol == RC6) \{}
+\DoxyCodeLine{219         \mbox{\hyperlink{group___decoder_gad26a55d87f9f8cc64a77b4571ae79e5f}{sendRC6}}(tAddress, tCommand, aNumberOfRepeats, !tSendRepeat); \textcolor{comment}{// No toggle for repeats}}
+\DoxyCodeLine{220 }
+\DoxyCodeLine{221     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (tProtocol == KASEIKYO\_JVC) \{}
+\DoxyCodeLine{222         \mbox{\hyperlink{group___decoder_ga43bf86aaaa216292f8eb7d0941731241}{sendKaseikyo\_JVC}}(tAddress, tCommand, aNumberOfRepeats);}
+\DoxyCodeLine{223 }
+\DoxyCodeLine{224     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (tProtocol == KASEIKYO\_DENON) \{}
+\DoxyCodeLine{225         \mbox{\hyperlink{group___decoder_ga9c3687ea0ab26ce088bd2a8a0aa1f1c8}{sendKaseikyo\_Denon}}(tAddress, tCommand, aNumberOfRepeats);}
+\DoxyCodeLine{226 }
+\DoxyCodeLine{227     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (tProtocol == KASEIKYO\_SHARP) \{}
+\DoxyCodeLine{228         \mbox{\hyperlink{group___decoder_ga6fee66f189ae46afac1ebe876ffbbf58}{sendKaseikyo\_Sharp}}(tAddress, tCommand, aNumberOfRepeats);}
+\DoxyCodeLine{229 }
+\DoxyCodeLine{230     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (tProtocol == KASEIKYO\_MITSUBISHI) \{}
+\DoxyCodeLine{231         \mbox{\hyperlink{group___decoder_gaf42f22f1d83211811b4ec765d4dc0a7f}{sendKaseikyo\_Mitsubishi}}(tAddress, tCommand, aNumberOfRepeats);}
+\DoxyCodeLine{232 }
+\DoxyCodeLine{233     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (tProtocol == ONKYO) \{}
+\DoxyCodeLine{234         sendOnkyo(tAddress, tCommand, aNumberOfRepeats, tSendRepeat);}
+\DoxyCodeLine{235 }
+\DoxyCodeLine{236     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (tProtocol == APPLE) \{}
+\DoxyCodeLine{237         sendApple(tAddress, tCommand, aNumberOfRepeats, tSendRepeat);}
+\DoxyCodeLine{238 }
+\DoxyCodeLine{239 \textcolor{preprocessor}{\#if !defined(EXCLUDE\_EXOTIC\_PROTOCOLS)}}
+\DoxyCodeLine{240     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (tProtocol == BOSEWAVE) \{}
+\DoxyCodeLine{241         sendBoseWave(tCommand, aNumberOfRepeats);}
+\DoxyCodeLine{242 }
+\DoxyCodeLine{243     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (tProtocol == LEGO\_PF) \{}
+\DoxyCodeLine{244         sendLegoPowerFunctions(tAddress, tCommand, tCommand >> 4, tSendRepeat); \textcolor{comment}{// send 5 autorepeats}}
+\DoxyCodeLine{245 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{246 }
+\DoxyCodeLine{247     \}}
+\DoxyCodeLine{248     \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{249 \}}
+\DoxyCodeLine{250 }
+\DoxyCodeLine{255 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___sending_ga1c9027bc86e6a726295219ac11e06a1b}{IRsend::sendRaw}}(\textcolor{keyword}{const} uint16\_t aBufferWithMicroseconds[], uint\_fast8\_t aLengthOfBuffer, uint\_fast8\_t aIRFrequencyKilohertz) \{}
+\DoxyCodeLine{256 \textcolor{comment}{// Set IR carrier frequency}}
+\DoxyCodeLine{257     \mbox{\hyperlink{group___sending_ga42c04af63d252b320c017ffa2bfc90e5}{enableIROut}}(aIRFrequencyKilohertz);}
+\DoxyCodeLine{258 }
+\DoxyCodeLine{259     \textcolor{comment}{/*}}
+\DoxyCodeLine{260 \textcolor{comment}{     * Raw data starts with a mark.}}
+\DoxyCodeLine{261 \textcolor{comment}{     */}}
+\DoxyCodeLine{262     \textcolor{keywordflow}{for} (uint\_fast8\_t i = 0; i < aLengthOfBuffer; i++) \{}
+\DoxyCodeLine{263         \textcolor{keywordflow}{if} (i \& 1) \{}
+\DoxyCodeLine{264             \textcolor{comment}{// Odd}}
+\DoxyCodeLine{265             \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(aBufferWithMicroseconds[i]);}
+\DoxyCodeLine{266         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{267             \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(aBufferWithMicroseconds[i]);}
+\DoxyCodeLine{268         \}}
+\DoxyCodeLine{269     \}}
+\DoxyCodeLine{270 }
+\DoxyCodeLine{271 \textcolor{comment}{//    ledOff();  // Always end with the LED off}}
+\DoxyCodeLine{272 \}}
+\DoxyCodeLine{273 }
+\DoxyCodeLine{278 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___sending_ga1c9027bc86e6a726295219ac11e06a1b}{IRsend::sendRaw}}(\textcolor{keyword}{const} uint8\_t aBufferWithTicks[], uint\_fast8\_t aLengthOfBuffer, uint\_fast8\_t aIRFrequencyKilohertz) \{}
+\DoxyCodeLine{279 \textcolor{comment}{// Set IR carrier frequency}}
+\DoxyCodeLine{280     \mbox{\hyperlink{group___sending_ga42c04af63d252b320c017ffa2bfc90e5}{enableIROut}}(aIRFrequencyKilohertz);}
+\DoxyCodeLine{281 }
+\DoxyCodeLine{282     \textcolor{keywordflow}{for} (uint\_fast8\_t i = 0; i < aLengthOfBuffer; i++) \{}
+\DoxyCodeLine{283         \textcolor{keywordflow}{if} (i \& 1) \{}
+\DoxyCodeLine{284             \textcolor{comment}{// Odd}}
+\DoxyCodeLine{285             \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(aBufferWithTicks[i] * \mbox{\hyperlink{_i_rremote_int_8h_a1c7eebb527483c272812530caa313d20}{MICROS\_PER\_TICK}});}
+\DoxyCodeLine{286         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{287             \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(aBufferWithTicks[i] * \mbox{\hyperlink{_i_rremote_int_8h_a1c7eebb527483c272812530caa313d20}{MICROS\_PER\_TICK}});}
+\DoxyCodeLine{288         \}}
+\DoxyCodeLine{289     \}}
+\DoxyCodeLine{290     \mbox{\hyperlink{group___sending_ga5242741b8da4fbfaae237eee2b279dd0}{IRLedOff}}();  \textcolor{comment}{// Always end with the LED off}}
+\DoxyCodeLine{291 \}}
+\DoxyCodeLine{292 }
+\DoxyCodeLine{297 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___sending_gac351cb665bc0a5c863bc7a070b3aee4e}{IRsend::sendRaw\_P}}(\textcolor{keyword}{const} uint16\_t aBufferWithMicroseconds[], uint\_fast8\_t aLengthOfBuffer, uint\_fast8\_t aIRFrequencyKilohertz) \{}
+\DoxyCodeLine{298 \textcolor{preprocessor}{\#if !defined(\_\_AVR\_\_)}}
+\DoxyCodeLine{299     \mbox{\hyperlink{group___sending_ga1c9027bc86e6a726295219ac11e06a1b}{sendRaw}}(aBufferWithMicroseconds, aLengthOfBuffer, aIRFrequencyKilohertz); \textcolor{comment}{// Let the function work for non AVR platforms}}
+\DoxyCodeLine{300 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{301 \textcolor{comment}{// Set IR carrier frequency}}
+\DoxyCodeLine{302     \mbox{\hyperlink{group___sending_ga42c04af63d252b320c017ffa2bfc90e5}{enableIROut}}(aIRFrequencyKilohertz);}
+\DoxyCodeLine{303     \textcolor{comment}{/*}}
+\DoxyCodeLine{304 \textcolor{comment}{     * Raw data starts with a mark}}
+\DoxyCodeLine{305 \textcolor{comment}{     */}}
+\DoxyCodeLine{306     \textcolor{keywordflow}{for} (uint\_fast8\_t i = 0; i < aLengthOfBuffer; i++) \{}
+\DoxyCodeLine{307         uint16\_t duration = pgm\_read\_word(\&aBufferWithMicroseconds[i]);}
+\DoxyCodeLine{308         \textcolor{keywordflow}{if} (i \& 1) \{}
+\DoxyCodeLine{309             \textcolor{comment}{// Odd}}
+\DoxyCodeLine{310             \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(duration);}
+\DoxyCodeLine{311         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{312             \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(duration);}
+\DoxyCodeLine{313         \}}
+\DoxyCodeLine{314     \}}
+\DoxyCodeLine{315 \textcolor{comment}{//    ledOff();  // Always end with the LED off}}
+\DoxyCodeLine{316 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{317 \}}
+\DoxyCodeLine{318 }
+\DoxyCodeLine{323 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___sending_gac351cb665bc0a5c863bc7a070b3aee4e}{IRsend::sendRaw\_P}}(\textcolor{keyword}{const} uint8\_t aBufferWithTicks[], uint\_fast8\_t aLengthOfBuffer, uint\_fast8\_t aIRFrequencyKilohertz) \{}
+\DoxyCodeLine{324 \textcolor{preprocessor}{\#if !defined(\_\_AVR\_\_)}}
+\DoxyCodeLine{325     \mbox{\hyperlink{group___sending_ga1c9027bc86e6a726295219ac11e06a1b}{sendRaw}}(aBufferWithTicks, aLengthOfBuffer, aIRFrequencyKilohertz); \textcolor{comment}{// Let the function work for non AVR platforms}}
+\DoxyCodeLine{326 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{327 \textcolor{comment}{// Set IR carrier frequency}}
+\DoxyCodeLine{328     \mbox{\hyperlink{group___sending_ga42c04af63d252b320c017ffa2bfc90e5}{enableIROut}}(aIRFrequencyKilohertz);}
+\DoxyCodeLine{329 }
+\DoxyCodeLine{330     \textcolor{keywordflow}{for} (uint\_fast8\_t i = 0; i < aLengthOfBuffer; i++) \{}
+\DoxyCodeLine{331         uint16\_t duration = pgm\_read\_byte(\&aBufferWithTicks[i]) * (uint16\_t) \mbox{\hyperlink{_i_rremote_int_8h_a1c7eebb527483c272812530caa313d20}{MICROS\_PER\_TICK}};}
+\DoxyCodeLine{332         \textcolor{keywordflow}{if} (i \& 1) \{}
+\DoxyCodeLine{333             \textcolor{comment}{// Odd}}
+\DoxyCodeLine{334             \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(duration);}
+\DoxyCodeLine{335         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{336             \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(duration);}
+\DoxyCodeLine{337         \}}
+\DoxyCodeLine{338     \}}
+\DoxyCodeLine{339     \mbox{\hyperlink{group___sending_ga5242741b8da4fbfaae237eee2b279dd0}{IRLedOff}}();  \textcolor{comment}{// Always end with the LED off}}
+\DoxyCodeLine{340 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{341 \}}
+\DoxyCodeLine{342 }
+\DoxyCodeLine{347 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___sending_ga6904a411999a4c9f7306dba49851eb7b}{IRsend::sendPulseDistanceWidthData}}(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} aOneMarkMicros, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} aOneSpaceMicros, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} aZeroMarkMicros,}
+\DoxyCodeLine{348         \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} aZeroSpaceMicros, uint32\_t aData, uint8\_t aNumberOfBits, \textcolor{keywordtype}{bool} aMSBfirst, \textcolor{keywordtype}{bool} aSendStopBit) \{}
+\DoxyCodeLine{349 }
+\DoxyCodeLine{350     \textcolor{keywordflow}{if} (aMSBfirst) \{  \textcolor{comment}{// Send the MSB first.}}
+\DoxyCodeLine{351         \textcolor{comment}{// send data from MSB to LSB until mask bit is shifted out}}
+\DoxyCodeLine{352         \textcolor{keywordflow}{for} (uint32\_t tMask = 1UL << (aNumberOfBits -\/ 1); tMask; tMask >>= 1) \{}
+\DoxyCodeLine{353             \textcolor{keywordflow}{if} (aData \& tMask) \{}
+\DoxyCodeLine{354                 IR\_TRACE\_PRINT(\textcolor{charliteral}{'1'});}
+\DoxyCodeLine{355                 \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(aOneMarkMicros);}
+\DoxyCodeLine{356                 \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(aOneSpaceMicros);}
+\DoxyCodeLine{357             \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{358                 IR\_TRACE\_PRINT(\textcolor{charliteral}{'0'});}
+\DoxyCodeLine{359                 \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(aZeroMarkMicros);}
+\DoxyCodeLine{360                 \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(aZeroSpaceMicros);}
+\DoxyCodeLine{361             \}}
+\DoxyCodeLine{362         \}}
+\DoxyCodeLine{363     \} \textcolor{keywordflow}{else} \{  \textcolor{comment}{// Send the Least Significant Bit (LSB) first / MSB last.}}
+\DoxyCodeLine{364         \textcolor{keywordflow}{for} (uint\_fast8\_t bit = 0; bit < aNumberOfBits; bit++, aData >>= 1)}
+\DoxyCodeLine{365             \textcolor{keywordflow}{if} (aData \& 1) \{  \textcolor{comment}{// Send a 1}}
+\DoxyCodeLine{366                 IR\_TRACE\_PRINT(\textcolor{charliteral}{'1'});}
+\DoxyCodeLine{367                 \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(aOneMarkMicros);}
+\DoxyCodeLine{368                 \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(aOneSpaceMicros);}
+\DoxyCodeLine{369             \} \textcolor{keywordflow}{else} \{  \textcolor{comment}{// Send a 0}}
+\DoxyCodeLine{370                 IR\_TRACE\_PRINT(\textcolor{charliteral}{'0'});}
+\DoxyCodeLine{371                 \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(aZeroMarkMicros);}
+\DoxyCodeLine{372                 \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(aZeroSpaceMicros);}
+\DoxyCodeLine{373             \}}
+\DoxyCodeLine{374     \}}
+\DoxyCodeLine{375     \textcolor{keywordflow}{if} (aSendStopBit) \{}
+\DoxyCodeLine{376         IR\_TRACE\_PRINT(\textcolor{charliteral}{'S'});}
+\DoxyCodeLine{377         \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(aZeroMarkMicros); \textcolor{comment}{// seems like this is used for stop bits}}
+\DoxyCodeLine{378     \}}
+\DoxyCodeLine{379     IR\_TRACE\_PRINTLN(\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{380 \}}
+\DoxyCodeLine{381 }
+\DoxyCodeLine{382 \textcolor{comment}{/*}}
+\DoxyCodeLine{383 \textcolor{comment}{ * Sends Biphase data MSB first}}
+\DoxyCodeLine{384 \textcolor{comment}{ * Always send start bit, do not send the trailing space of the start bit}}
+\DoxyCodeLine{385 \textcolor{comment}{ * 0 -\/> mark+space}}
+\DoxyCodeLine{386 \textcolor{comment}{ * 1 -\/> space+mark}}
+\DoxyCodeLine{387 \textcolor{comment}{ * The output always ends with a space}}
+\DoxyCodeLine{388 \textcolor{comment}{ */}}
+\DoxyCodeLine{389 \textcolor{keywordtype}{void} IRsend::sendBiphaseData(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} aBiphaseTimeUnit, uint32\_t aData, uint\_fast8\_t aNumberOfBits) \{}
+\DoxyCodeLine{390 }
+\DoxyCodeLine{391 \textcolor{comment}{// do not send the trailing space of the start bit}}
+\DoxyCodeLine{392     \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(aBiphaseTimeUnit);}
+\DoxyCodeLine{393 }
+\DoxyCodeLine{394     IR\_TRACE\_PRINT(\textcolor{charliteral}{'S'});}
+\DoxyCodeLine{395     uint8\_t tLastBitValue = 1; \textcolor{comment}{// Start bit is a 1}}
+\DoxyCodeLine{396 }
+\DoxyCodeLine{397 \textcolor{comment}{// Data -\/ Biphase code MSB first}}
+\DoxyCodeLine{398     \textcolor{keywordflow}{for} (uint32\_t tMask = 1UL << (aNumberOfBits -\/ 1); tMask; tMask >>= 1) \{}
+\DoxyCodeLine{399         \textcolor{keywordflow}{if} (aData \& tMask) \{}
+\DoxyCodeLine{400             IR\_TRACE\_PRINT(\textcolor{charliteral}{'1'});}
+\DoxyCodeLine{401             \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(aBiphaseTimeUnit);}
+\DoxyCodeLine{402             \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(aBiphaseTimeUnit);}
+\DoxyCodeLine{403             tLastBitValue = 1;}
+\DoxyCodeLine{404 }
+\DoxyCodeLine{405         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{406             IR\_TRACE\_PRINT(\textcolor{charliteral}{'0'});}
+\DoxyCodeLine{407 \textcolor{preprocessor}{\#if defined(SEND\_PWM\_BY\_TIMER) || defined(USE\_NO\_SEND\_PWM)}}
+\DoxyCodeLine{408             \textcolor{keywordflow}{if} (tLastBitValue) \{}
+\DoxyCodeLine{409                 \textcolor{comment}{// Extend the current mark in order to generate a continuous signal without short breaks}}
+\DoxyCodeLine{410                 delayMicroseconds(aBiphaseTimeUnit);}
+\DoxyCodeLine{411             \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{412                 \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(aBiphaseTimeUnit);}
+\DoxyCodeLine{413             \}}
+\DoxyCodeLine{414 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{415             (void) tLastBitValue; \textcolor{comment}{// to avoid compiler warnings}}
+\DoxyCodeLine{416             \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(aBiphaseTimeUnit); \textcolor{comment}{// can not eventually delay here, we must call mark to generate the signal}}
+\DoxyCodeLine{417 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{418             \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(aBiphaseTimeUnit);}
+\DoxyCodeLine{419             tLastBitValue = 0;}
+\DoxyCodeLine{420         \}}
+\DoxyCodeLine{421     \}}
+\DoxyCodeLine{422     IR\_TRACE\_PRINTLN(\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{423 \}}
+\DoxyCodeLine{424 }
+\DoxyCodeLine{431 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{IRsend::mark}}(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} aMarkMicros) \{}
+\DoxyCodeLine{432 }
+\DoxyCodeLine{433 \textcolor{preprocessor}{\#if defined(SEND\_PWM\_BY\_TIMER)}}
+\DoxyCodeLine{434 \textcolor{preprocessor}{\#  if !defined(NO\_LED\_FEEDBACK\_CODE)}}
+\DoxyCodeLine{435     \mbox{\hyperlink{group___feedback_l_e_d_functions_ga072624eeba964d8aa105822da00090ba}{setFeedbackLED}}(\textcolor{keyword}{true});}
+\DoxyCodeLine{436 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{437     ENABLE\_SEND\_PWM\_BY\_TIMER; \textcolor{comment}{// Enable timer or ledcWrite() generated PWM output}}
+\DoxyCodeLine{438     \mbox{\hyperlink{group___sending_ga78e52089f1ee53b3d080db7d8c25f798}{customDelayMicroseconds}}(aMarkMicros);}
+\DoxyCodeLine{439     \mbox{\hyperlink{group___sending_ga5242741b8da4fbfaae237eee2b279dd0}{IRLedOff}}();}
+\DoxyCodeLine{440 \textcolor{preprocessor}{\#  if !defined(NO\_LED\_FEEDBACK\_CODE)}}
+\DoxyCodeLine{441     \mbox{\hyperlink{group___feedback_l_e_d_functions_ga072624eeba964d8aa105822da00090ba}{setFeedbackLED}}(\textcolor{keyword}{false});}
+\DoxyCodeLine{442 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{443 }
+\DoxyCodeLine{444 \textcolor{preprocessor}{\#elif defined(USE\_NO\_SEND\_PWM)}}
+\DoxyCodeLine{445 \textcolor{preprocessor}{\#  if !defined(NO\_LED\_FEEDBACK\_CODE)}}
+\DoxyCodeLine{446     \mbox{\hyperlink{group___feedback_l_e_d_functions_ga072624eeba964d8aa105822da00090ba}{setFeedbackLED}}(\textcolor{keyword}{true});}
+\DoxyCodeLine{447 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{448 \textcolor{preprocessor}{\#  if defined(USE\_OPEN\_DRAIN\_OUTPUT\_FOR\_SEND\_PIN) \&\& !defined(OUTPUT\_OPEN\_DRAIN)}}
+\DoxyCodeLine{449     pinModeFast(sendPin, OUTPUT); \textcolor{comment}{// active state for mimicking open drain}}
+\DoxyCodeLine{450 \textcolor{preprocessor}{\#  else}}
+\DoxyCodeLine{451     digitalWriteFast(sendPin, LOW); \textcolor{comment}{// Set output to active low.}}
+\DoxyCodeLine{452 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{453 }
+\DoxyCodeLine{454     \mbox{\hyperlink{group___sending_ga78e52089f1ee53b3d080db7d8c25f798}{customDelayMicroseconds}}(aMarkMicros);}
+\DoxyCodeLine{455     \mbox{\hyperlink{group___sending_ga5242741b8da4fbfaae237eee2b279dd0}{IRLedOff}}();}
+\DoxyCodeLine{456 \textcolor{preprocessor}{\#  if !defined(NO\_LED\_FEEDBACK\_CODE)}}
+\DoxyCodeLine{457     \mbox{\hyperlink{group___feedback_l_e_d_functions_ga072624eeba964d8aa105822da00090ba}{setFeedbackLED}}(\textcolor{keyword}{false});}
+\DoxyCodeLine{458 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{459 }
+\DoxyCodeLine{460 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{461     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} startMicros = micros();}
+\DoxyCodeLine{462     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} nextPeriodEnding = startMicros;}
+\DoxyCodeLine{463     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} tMicros;}
+\DoxyCodeLine{464 \textcolor{preprocessor}{\#  if !defined(NO\_LED\_FEEDBACK\_CODE)}}
+\DoxyCodeLine{465     \textcolor{keywordtype}{bool} FeedbackLedIsActive = \textcolor{keyword}{false};}
+\DoxyCodeLine{466 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{467 }
+\DoxyCodeLine{468     \textcolor{keywordflow}{do} \{}
+\DoxyCodeLine{469 \textcolor{comment}{//        digitalToggleFast(\_IR\_TIMING\_TEST\_PIN);}}
+\DoxyCodeLine{470         \textcolor{comment}{// Output the PWM pulse}}
+\DoxyCodeLine{471         noInterrupts(); \textcolor{comment}{// do not let interrupts extend the short on period}}
+\DoxyCodeLine{472 \textcolor{preprocessor}{\#  if defined(USE\_OPEN\_DRAIN\_OUTPUT\_FOR\_SEND\_PIN)}}
+\DoxyCodeLine{473 \textcolor{preprocessor}{\#    if defined(OUTPUT\_OPEN\_DRAIN)}}
+\DoxyCodeLine{474         digitalWriteFast(sendPin, LOW); \textcolor{comment}{// active state for open drain}}
+\DoxyCodeLine{475 \textcolor{preprocessor}{\#    else}}
+\DoxyCodeLine{476         pinModeFast(sendPin, OUTPUT); \textcolor{comment}{// active state for mimicking open drain}}
+\DoxyCodeLine{477 \textcolor{preprocessor}{\#    endif}}
+\DoxyCodeLine{478 \textcolor{preprocessor}{\#  else}}
+\DoxyCodeLine{479 \textcolor{preprocessor}{\#    if defined(IR\_SEND\_PIN)}}
+\DoxyCodeLine{480         digitalWriteFast(IR\_SEND\_PIN, HIGH); \textcolor{comment}{// 3.5 us from FeedbackLed on to pin setting. 5.7 us from call of mark() to pin setting incl. setting of feedback pin.}}
+\DoxyCodeLine{481 \textcolor{preprocessor}{\#    else}}
+\DoxyCodeLine{482         digitalWrite(sendPin, HIGH); \textcolor{comment}{// 4.3 us from do\{ to pin setting}}
+\DoxyCodeLine{483 \textcolor{preprocessor}{\#    endif}}
+\DoxyCodeLine{484 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{485         delayMicroseconds(periodOnTimeMicros); \textcolor{comment}{// this is normally implemented by a blocking wait}}
+\DoxyCodeLine{486 }
+\DoxyCodeLine{487         \textcolor{comment}{// Output the PWM pause}}
+\DoxyCodeLine{488 \textcolor{preprocessor}{\#  if defined(USE\_OPEN\_DRAIN\_OUTPUT\_FOR\_SEND\_PIN) \&\& !defined(OUTPUT\_OPEN\_DRAIN)}}
+\DoxyCodeLine{489 \textcolor{preprocessor}{\#    if defined(OUTPUT\_OPEN\_DRAIN)}}
+\DoxyCodeLine{490         digitalWriteFast(sendPin, HIGH); \textcolor{comment}{// Set output to inactive high.}}
+\DoxyCodeLine{491 \textcolor{preprocessor}{\#    else}}
+\DoxyCodeLine{492         pinModeFast(sendPin, INPUT); \textcolor{comment}{// inactive state to mimic open drain}}
+\DoxyCodeLine{493 \textcolor{preprocessor}{\#    endif}}
+\DoxyCodeLine{494 }
+\DoxyCodeLine{495 \textcolor{preprocessor}{\#  else}}
+\DoxyCodeLine{496         digitalWriteFast(sendPin, LOW);}
+\DoxyCodeLine{497 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{498         interrupts(); \textcolor{comment}{// Enable interrupts -\/to keep micros correct-\/ for the longer off period 3.4 us until receive ISR is active (for 7 us + pop's)}}
+\DoxyCodeLine{499 }
+\DoxyCodeLine{500 \textcolor{preprocessor}{\#  if !defined(NO\_LED\_FEEDBACK\_CODE)}}
+\DoxyCodeLine{501         \textcolor{comment}{/*}}
+\DoxyCodeLine{502 \textcolor{comment}{         * Delayed call of setFeedbackLED() to get better timing}}
+\DoxyCodeLine{503 \textcolor{comment}{         */}}
+\DoxyCodeLine{504         \textcolor{keywordflow}{if} (!FeedbackLedIsActive) \{}
+\DoxyCodeLine{505             FeedbackLedIsActive = \textcolor{keyword}{true};}
+\DoxyCodeLine{506             \mbox{\hyperlink{group___feedback_l_e_d_functions_ga072624eeba964d8aa105822da00090ba}{setFeedbackLED}}(\textcolor{keyword}{true});}
+\DoxyCodeLine{507         \}}
+\DoxyCodeLine{508 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{509         \textcolor{comment}{/*}}
+\DoxyCodeLine{510 \textcolor{comment}{         * Pause timing}}
+\DoxyCodeLine{511 \textcolor{comment}{         */}}
+\DoxyCodeLine{512         nextPeriodEnding += periodTimeMicros;}
+\DoxyCodeLine{513         \textcolor{keywordflow}{do} \{}
+\DoxyCodeLine{514             tMicros = micros(); \textcolor{comment}{// we have only 4 us resolution for AVR @16MHz}}
+\DoxyCodeLine{515             \textcolor{comment}{// check for aMarkMicros to be gone}}
+\DoxyCodeLine{516             \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} tDeltaMicros = tMicros -\/ startMicros;}
+\DoxyCodeLine{517 \textcolor{preprocessor}{\#if defined(\_\_AVR\_\_)}}
+\DoxyCodeLine{518 \textcolor{comment}{//            tDeltaMicros += (160 / CLOCKS\_PER\_MICRO); // adding this once increases program size !}}
+\DoxyCodeLine{519 \textcolor{preprocessor}{\#  if !defined(NO\_LED\_FEEDBACK\_CODE)}}
+\DoxyCodeLine{520             \textcolor{keywordflow}{if} (tDeltaMicros >= aMarkMicros -\/ (30 + (112 / CLOCKS\_PER\_MICRO))) \{ \textcolor{comment}{// 30 to be constant. Using periodTimeMicros increases program size too much.}}
+\DoxyCodeLine{521             \textcolor{comment}{// reset feedback led in the last pause before end}}
+\DoxyCodeLine{522                 \mbox{\hyperlink{group___feedback_l_e_d_functions_ga072624eeba964d8aa105822da00090ba}{setFeedbackLED}}(\textcolor{keyword}{false});}
+\DoxyCodeLine{523             \}}
+\DoxyCodeLine{524 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{525             \textcolor{keywordflow}{if} (tDeltaMicros >= aMarkMicros -\/ (112 / CLOCKS\_PER\_MICRO)) \{ \textcolor{comment}{// To compensate for call duration -\/ 112 is an empirical value}}
+\DoxyCodeLine{526 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{527             \textcolor{keywordflow}{if} (tDeltaMicros >= aMarkMicros) \{}
+\DoxyCodeLine{528 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{529                 \textcolor{keywordflow}{return};}
+\DoxyCodeLine{530             \}}
+\DoxyCodeLine{531 \textcolor{comment}{//            digitalToggleFast(\_IR\_TIMING\_TEST\_PIN); // 3.0 us per call @16MHz}}
+\DoxyCodeLine{532         \} \textcolor{keywordflow}{while} (tMicros < nextPeriodEnding);  \textcolor{comment}{// 3.4 us @16MHz}}
+\DoxyCodeLine{533     \} \textcolor{keywordflow}{while} (\textcolor{keyword}{true});}
+\DoxyCodeLine{534 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{535 \}}
+\DoxyCodeLine{536 }
+\DoxyCodeLine{542 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___sending_ga5242741b8da4fbfaae237eee2b279dd0}{IRsend::IRLedOff}}() \{}
+\DoxyCodeLine{543 \textcolor{preprocessor}{\#if defined(SEND\_PWM\_BY\_TIMER)}}
+\DoxyCodeLine{544     DISABLE\_SEND\_PWM\_BY\_TIMER; \textcolor{comment}{// Disable PWM output}}
+\DoxyCodeLine{545 \textcolor{preprocessor}{\#elif defined(USE\_NO\_SEND\_PWM)}}
+\DoxyCodeLine{546 \textcolor{preprocessor}{\#  if defined(USE\_OPEN\_DRAIN\_OUTPUT\_FOR\_SEND\_PIN) \&\& !defined(OUTPUT\_OPEN\_DRAIN)}}
+\DoxyCodeLine{547     digitalWriteFast(sendPin, LOW); \textcolor{comment}{// prepare for all next active states.}}
+\DoxyCodeLine{548     pinModeFast(sendPin, INPUT); \textcolor{comment}{// inactive state for open drain}}
+\DoxyCodeLine{549 \textcolor{preprocessor}{\#  else}}
+\DoxyCodeLine{550     digitalWriteFast(sendPin, HIGH); \textcolor{comment}{// Set output to inactive high.}}
+\DoxyCodeLine{551 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{552 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{553 \textcolor{preprocessor}{\#  if defined(USE\_OPEN\_DRAIN\_OUTPUT\_FOR\_SEND\_PIN)}}
+\DoxyCodeLine{554 \textcolor{preprocessor}{\#    if defined(OUTPUT\_OPEN\_DRAIN)}}
+\DoxyCodeLine{555     digitalWriteFast(sendPin, HIGH); \textcolor{comment}{// Set output to inactive high.}}
+\DoxyCodeLine{556 \textcolor{preprocessor}{\#    else}}
+\DoxyCodeLine{557     pinModeFast(sendPin, INPUT); \textcolor{comment}{// inactive state to mimic open drain}}
+\DoxyCodeLine{558 \textcolor{preprocessor}{\#    endif}}
+\DoxyCodeLine{559 \textcolor{preprocessor}{\#  else}}
+\DoxyCodeLine{560     digitalWriteFast(sendPin, LOW);}
+\DoxyCodeLine{561 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{562 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{563 \textcolor{preprocessor}{\#if !defined(NO\_LED\_FEEDBACK\_CODE)}}
+\DoxyCodeLine{564     \mbox{\hyperlink{group___feedback_l_e_d_functions_ga072624eeba964d8aa105822da00090ba}{setFeedbackLED}}(\textcolor{keyword}{false});}
+\DoxyCodeLine{565 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{566 \}}
+\DoxyCodeLine{567 }
+\DoxyCodeLine{572 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{IRsend::space}}(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} aSpaceMicros) \{}
+\DoxyCodeLine{573     \mbox{\hyperlink{group___sending_ga78e52089f1ee53b3d080db7d8c25f798}{customDelayMicroseconds}}(aSpaceMicros);}
+\DoxyCodeLine{574 \}}
+\DoxyCodeLine{575 }
+\DoxyCodeLine{580 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___sending_ga78e52089f1ee53b3d080db7d8c25f798}{IRsend::customDelayMicroseconds}}(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} aMicroseconds) \{}
+\DoxyCodeLine{581 \textcolor{preprocessor}{\#if defined(\_\_AVR\_\_)}}
+\DoxyCodeLine{582     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} start = micros() -\/ (64 / clockCyclesPerMicrosecond()); \textcolor{comment}{// -\/ (64 / clockCyclesPerMicrosecond()) for reduced resolution and additional overhead}}
+\DoxyCodeLine{583 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{584     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} start = micros();}
+\DoxyCodeLine{585 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{586     \textcolor{comment}{// overflow invariant comparison :-\/)}}
+\DoxyCodeLine{587     \textcolor{keywordflow}{while} (micros() -\/ start < aMicroseconds) \{}
+\DoxyCodeLine{588     \}}
+\DoxyCodeLine{589 \}}
+\DoxyCodeLine{590 }
+\DoxyCodeLine{603 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___sending_ga42c04af63d252b320c017ffa2bfc90e5}{IRsend::enableIROut}}(uint8\_t aFrequencyKHz) \{}
+\DoxyCodeLine{604 \textcolor{preprocessor}{\#if defined(SEND\_PWM\_BY\_TIMER)}}
+\DoxyCodeLine{605     TIMER\_DISABLE\_RECEIVE\_INTR; \textcolor{comment}{// Just in case receiving was active}}
+\DoxyCodeLine{606     timerConfigForSend(aFrequencyKHz);}
+\DoxyCodeLine{607 }
+\DoxyCodeLine{608 \textcolor{preprocessor}{\#elif defined(USE\_NO\_SEND\_PWM)}}
+\DoxyCodeLine{609     (void) aFrequencyKHz;}
+\DoxyCodeLine{610 }
+\DoxyCodeLine{611 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{612     periodTimeMicros = (1000U + (aFrequencyKHz / 2)) / aFrequencyKHz; \textcolor{comment}{// rounded value -\/> 26 for 38.46 kHz, 27 for 37.04 kHz, 25 for 40 kHz.}}
+\DoxyCodeLine{613 \textcolor{preprocessor}{\#  if defined(IR\_SEND\_PIN)}}
+\DoxyCodeLine{614     periodOnTimeMicros = (((periodTimeMicros * \mbox{\hyperlink{_i_rremote_int_8h_ac534825448d4687e6471c3855bf71cf5}{IR\_SEND\_DUTY\_CYCLE}}) + 50) / 100U); \textcolor{comment}{// +50 for rounding -\/> 830/100 for 30\% and 16 MHz}}
+\DoxyCodeLine{615 \textcolor{preprocessor}{\#  else}}
+\DoxyCodeLine{616     periodOnTimeMicros = (((periodTimeMicros * \mbox{\hyperlink{_i_rremote_int_8h_ac534825448d4687e6471c3855bf71cf5}{IR\_SEND\_DUTY\_CYCLE}}) + 50 -\/ (\mbox{\hyperlink{_i_rremote_8hpp_ac836377a7a04f6f4044daab71d9660f9}{PULSE\_CORRECTION\_NANOS}} / 10)) / 100U); \textcolor{comment}{// +50 for rounding -\/> 530/100 for 30\% and 16 MHz}}
+\DoxyCodeLine{617 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{618 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{619 }
+\DoxyCodeLine{620 \textcolor{preprocessor}{\#if defined(USE\_OPEN\_DRAIN\_OUTPUT\_FOR\_SEND\_PIN)}}
+\DoxyCodeLine{621 \textcolor{preprocessor}{\#  if defined(OUTPUT\_OPEN\_DRAIN)}}
+\DoxyCodeLine{622     pinMode(sendPin, OUTPUT\_OPEN\_DRAIN); \textcolor{comment}{// the only place where this mode is set for sendPin}}
+\DoxyCodeLine{623 \textcolor{preprocessor}{\#  endif }\textcolor{comment}{// the mode INPUT for mimicking open drain is set at IRLedOff()}}
+\DoxyCodeLine{624 }
+\DoxyCodeLine{625 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{626     pinModeFast(sendPin, OUTPUT);}
+\DoxyCodeLine{627 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{628     \mbox{\hyperlink{group___sending_ga5242741b8da4fbfaae237eee2b279dd0}{IRLedOff}}(); \textcolor{comment}{// When not sending, we want it low/inactive}}
+\DoxyCodeLine{629 \}}
+\DoxyCodeLine{630 }
+\DoxyCodeLine{631 \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} IRsend::getPulseCorrectionNanos() \{}
+\DoxyCodeLine{632     \textcolor{keywordflow}{return} \mbox{\hyperlink{_i_rremote_8hpp_ac836377a7a04f6f4044daab71d9660f9}{PULSE\_CORRECTION\_NANOS}};}
+\DoxyCodeLine{633 \}}
+\DoxyCodeLine{634 }
+\DoxyCodeLine{636 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// IR\_SEND\_HPP}}
+\DoxyCodeLine{637 \textcolor{preprocessor}{\#pragma once}}
+
+\end{DoxyCode}

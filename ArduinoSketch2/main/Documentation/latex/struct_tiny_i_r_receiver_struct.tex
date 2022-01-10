@@ -1,0 +1,108 @@
+\hypertarget{struct_tiny_i_r_receiver_struct}{}\doxysection{Tiny\+IRReceiver\+Struct Struct Reference}
+\label{struct_tiny_i_r_receiver_struct}\index{TinyIRReceiverStruct@{TinyIRReceiverStruct}}
+
+
+{\ttfamily \#include $<$Tiny\+IRReceiver.\+h$>$}
+
+
+
+Collaboration diagram for Tiny\+IRReceiver\+Struct\+:
+% FIG 0
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{struct_tiny_i_r_receiver_struct_a978f2ac480cb3ab428ff3016239413f1}{Last\+Change\+Micros}}
+\begin{DoxyCompactList}\small\item\em microseconds of last Pin Change Interrupt. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{struct_tiny_i_r_receiver_struct_aca59e5c5331a581e0603a59c552fa8c9}{IRReceiver\+State}}
+\begin{DoxyCompactList}\small\item\em the state of the state machine. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{struct_tiny_i_r_receiver_struct_accdf38f518f17dfaf1a8aa870d77ce91}{IRRaw\+Data\+Bit\+Counter}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{struct_tiny_i_r_receiver_struct_aa6f580c1bf0c11c37edefd255283361a}{IRRaw\+Data\+Mask}}
+\item 
+\mbox{\hyperlink{union_long_union}{Long\+Union}} \mbox{\hyperlink{struct_tiny_i_r_receiver_struct_a6277ed6c719314aef883af018f886056}{IRRaw\+Data}}
+\item 
+bool \mbox{\hyperlink{struct_tiny_i_r_receiver_struct_a003e482629350aaee549b482dd653922}{IRRepeat\+Detected}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Control and data variables of the state machine for Tiny\+Receiver 
+
+Definition at line \mbox{\hyperlink{_tiny_i_r_receiver_8h_source_l00081}{81}} of file \mbox{\hyperlink{_tiny_i_r_receiver_8h_source}{Tiny\+IRReceiver.\+h}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{struct_tiny_i_r_receiver_struct_a6277ed6c719314aef883af018f886056}\label{struct_tiny_i_r_receiver_struct_a6277ed6c719314aef883af018f886056}} 
+\index{TinyIRReceiverStruct@{TinyIRReceiverStruct}!IRRawData@{IRRawData}}
+\index{IRRawData@{IRRawData}!TinyIRReceiverStruct@{TinyIRReceiverStruct}}
+\doxysubsubsection{\texorpdfstring{IRRawData}{IRRawData}}
+{\footnotesize\ttfamily \mbox{\hyperlink{union_long_union}{Long\+Union}} Tiny\+IRReceiver\+Struct\+::\+IRRaw\+Data}
+
+
+
+Definition at line \mbox{\hyperlink{_tiny_i_r_receiver_8h_source_l00092}{92}} of file \mbox{\hyperlink{_tiny_i_r_receiver_8h_source}{Tiny\+IRReceiver.\+h}}.
+
+\mbox{\Hypertarget{struct_tiny_i_r_receiver_struct_accdf38f518f17dfaf1a8aa870d77ce91}\label{struct_tiny_i_r_receiver_struct_accdf38f518f17dfaf1a8aa870d77ce91}} 
+\index{TinyIRReceiverStruct@{TinyIRReceiverStruct}!IRRawDataBitCounter@{IRRawDataBitCounter}}
+\index{IRRawDataBitCounter@{IRRawDataBitCounter}!TinyIRReceiverStruct@{TinyIRReceiverStruct}}
+\doxysubsubsection{\texorpdfstring{IRRawDataBitCounter}{IRRawDataBitCounter}}
+{\footnotesize\ttfamily uint8\+\_\+t Tiny\+IRReceiver\+Struct\+::\+IRRaw\+Data\+Bit\+Counter}
+
+
+
+Definition at line \mbox{\hyperlink{_tiny_i_r_receiver_8h_source_l00087}{87}} of file \mbox{\hyperlink{_tiny_i_r_receiver_8h_source}{Tiny\+IRReceiver.\+h}}.
+
+\mbox{\Hypertarget{struct_tiny_i_r_receiver_struct_aa6f580c1bf0c11c37edefd255283361a}\label{struct_tiny_i_r_receiver_struct_aa6f580c1bf0c11c37edefd255283361a}} 
+\index{TinyIRReceiverStruct@{TinyIRReceiverStruct}!IRRawDataMask@{IRRawDataMask}}
+\index{IRRawDataMask@{IRRawDataMask}!TinyIRReceiverStruct@{TinyIRReceiverStruct}}
+\doxysubsubsection{\texorpdfstring{IRRawDataMask}{IRRawDataMask}}
+{\footnotesize\ttfamily uint32\+\_\+t Tiny\+IRReceiver\+Struct\+::\+IRRaw\+Data\+Mask}
+
+
+
+Definition at line \mbox{\hyperlink{_tiny_i_r_receiver_8h_source_l00091}{91}} of file \mbox{\hyperlink{_tiny_i_r_receiver_8h_source}{Tiny\+IRReceiver.\+h}}.
+
+\mbox{\Hypertarget{struct_tiny_i_r_receiver_struct_aca59e5c5331a581e0603a59c552fa8c9}\label{struct_tiny_i_r_receiver_struct_aca59e5c5331a581e0603a59c552fa8c9}} 
+\index{TinyIRReceiverStruct@{TinyIRReceiverStruct}!IRReceiverState@{IRReceiverState}}
+\index{IRReceiverState@{IRReceiverState}!TinyIRReceiverStruct@{TinyIRReceiverStruct}}
+\doxysubsubsection{\texorpdfstring{IRReceiverState}{IRReceiverState}}
+{\footnotesize\ttfamily uint8\+\_\+t Tiny\+IRReceiver\+Struct\+::\+IRReceiver\+State}
+
+
+
+the state of the state machine. 
+
+
+
+Definition at line \mbox{\hyperlink{_tiny_i_r_receiver_8h_source_l00086}{86}} of file \mbox{\hyperlink{_tiny_i_r_receiver_8h_source}{Tiny\+IRReceiver.\+h}}.
+
+\mbox{\Hypertarget{struct_tiny_i_r_receiver_struct_a003e482629350aaee549b482dd653922}\label{struct_tiny_i_r_receiver_struct_a003e482629350aaee549b482dd653922}} 
+\index{TinyIRReceiverStruct@{TinyIRReceiverStruct}!IRRepeatDetected@{IRRepeatDetected}}
+\index{IRRepeatDetected@{IRRepeatDetected}!TinyIRReceiverStruct@{TinyIRReceiverStruct}}
+\doxysubsubsection{\texorpdfstring{IRRepeatDetected}{IRRepeatDetected}}
+{\footnotesize\ttfamily bool Tiny\+IRReceiver\+Struct\+::\+IRRepeat\+Detected}
+
+
+
+Definition at line \mbox{\hyperlink{_tiny_i_r_receiver_8h_source_l00093}{93}} of file \mbox{\hyperlink{_tiny_i_r_receiver_8h_source}{Tiny\+IRReceiver.\+h}}.
+
+\mbox{\Hypertarget{struct_tiny_i_r_receiver_struct_a978f2ac480cb3ab428ff3016239413f1}\label{struct_tiny_i_r_receiver_struct_a978f2ac480cb3ab428ff3016239413f1}} 
+\index{TinyIRReceiverStruct@{TinyIRReceiverStruct}!LastChangeMicros@{LastChangeMicros}}
+\index{LastChangeMicros@{LastChangeMicros}!TinyIRReceiverStruct@{TinyIRReceiverStruct}}
+\doxysubsubsection{\texorpdfstring{LastChangeMicros}{LastChangeMicros}}
+{\footnotesize\ttfamily uint32\+\_\+t Tiny\+IRReceiver\+Struct\+::\+Last\+Change\+Micros}
+
+
+
+microseconds of last Pin Change Interrupt. 
+
+
+
+Definition at line \mbox{\hyperlink{_tiny_i_r_receiver_8h_source_l00085}{85}} of file \mbox{\hyperlink{_tiny_i_r_receiver_8h_source}{Tiny\+IRReceiver.\+h}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+main/\+IRRemote\+\_\+\+Library/\mbox{\hyperlink{_tiny_i_r_receiver_8h}{Tiny\+IRReceiver.\+h}}\end{DoxyCompactItemize}

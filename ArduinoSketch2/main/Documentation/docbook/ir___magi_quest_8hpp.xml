@@ -1,0 +1,139 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_ir___magi_quest_8hpp" xml:lang="en-US">
+<title>main/IRRemote_Library/ir_MagiQuest.hpp File Reference</title>
+<indexterm><primary>main/IRRemote_Library/ir_MagiQuest.hpp</primary></indexterm>
+<programlisting linenumbering="unnumbered">#include &lt;Arduino.h&gt;
+#include &quot;IRremoteInt.h&quot;
+</programlisting>Include dependency graph for ir_MagiQuest.hpp:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="ir___magi_quest_8hpp__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+This graph shows which files directly or indirectly include this file:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="ir___magi_quest_8hpp__dep__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Classes    </title>
+        <itemizedlist>
+            <listitem><para>union <link linkend="_unionmagiquest__t">magiquest_t</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Macros    </title>
+        <itemizedlist>
+            <listitem><para>#define <link linkend="_ir___magi_quest_8hpp_1a64aeb7e87d7a2f844ca6ec967e6bdf34">MAGIQUEST_MAGNITUDE_BITS</link>   (sizeof(uint16_t) * 8)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_ir___magi_quest_8hpp_1a6f9ee212ff850e280f9c241c5143cee5">MAGIQUEST_WAND_ID_BITS</link>   (sizeof(uint32_t) * 8)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_ir___magi_quest_8hpp_1a8488d2b8be79a7b84056d215c8fa83f0">MAGIQUEST_PADDING_BITS</link>   (sizeof(uint8_t) * 8)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_ir___magi_quest_8hpp_1a4816f5fc6dfc00a7f07213eff150652e">MAGIQUEST_PERIOD</link>   1150</para>
+</listitem>
+            <listitem><para>#define <link linkend="_ir___magi_quest_8hpp_1a5ad7278bb378f828e4ef743ce1611734">MAGIQUEST_BITS</link>   (<link linkend="_ir___magi_quest_8hpp_1a64aeb7e87d7a2f844ca6ec967e6bdf34">MAGIQUEST_MAGNITUDE_BITS</link> + <link linkend="_ir___magi_quest_8hpp_1a6f9ee212ff850e280f9c241c5143cee5">MAGIQUEST_WAND_ID_BITS</link>)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_ir___magi_quest_8hpp_1ab0e21cd13f5bde3d08248afbc05ccffc">MAGIQUEST_PACKET_SIZE</link>   (2 * (<link linkend="_ir___magi_quest_8hpp_1a5ad7278bb378f828e4ef743ce1611734">MAGIQUEST_BITS</link> + <link linkend="_ir___magi_quest_8hpp_1a8488d2b8be79a7b84056d215c8fa83f0">MAGIQUEST_PADDING_BITS</link>))</para>
+</listitem>
+            <listitem><para>#define <link linkend="_ir___magi_quest_8hpp_1ab55a5562099370a536d44962ad2db98a">MAGIQUEST_UNIT</link>   (<link linkend="_ir___magi_quest_8hpp_1a4816f5fc6dfc00a7f07213eff150652e">MAGIQUEST_PERIOD</link> / 4)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_ir___magi_quest_8hpp_1ab75301149b3c053390e08668e270574e">MAGIQUEST_ONE_MARK</link>   (2 * <link linkend="_ir___magi_quest_8hpp_1ab55a5562099370a536d44962ad2db98a">MAGIQUEST_UNIT</link>)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_ir___magi_quest_8hpp_1a1965f9aa88f57ed564f46654f8247103">MAGIQUEST_ONE_SPACE</link>   (2 * <link linkend="_ir___magi_quest_8hpp_1ab55a5562099370a536d44962ad2db98a">MAGIQUEST_UNIT</link>)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_ir___magi_quest_8hpp_1ac1bc4e99d5e1b697df724d180357095d">MAGIQUEST_ZERO_MARK</link>   <link linkend="_ir___magi_quest_8hpp_1ab55a5562099370a536d44962ad2db98a">MAGIQUEST_UNIT</link></para>
+</listitem>
+            <listitem><para>#define <link linkend="_ir___magi_quest_8hpp_1a95ff1854b629d4e2dce95224f470f031">MAGIQUEST_ZERO_SPACE</link>   (3 * <link linkend="_ir___magi_quest_8hpp_1ab55a5562099370a536d44962ad2db98a">MAGIQUEST_UNIT</link>)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Macro Definition Documentation</title>
+<anchor xml:id="_ir___magi_quest_8hpp_1a5ad7278bb378f828e4ef743ce1611734"/><section>
+    <title>MAGIQUEST_BITS</title>
+<indexterm><primary>MAGIQUEST_BITS</primary><secondary>ir_MagiQuest.hpp</secondary></indexterm>
+<indexterm><primary>ir_MagiQuest.hpp</primary><secondary>MAGIQUEST_BITS</secondary></indexterm>
+<para><computeroutput>#define MAGIQUEST_BITS   (<link linkend="_ir___magi_quest_8hpp_1a64aeb7e87d7a2f844ca6ec967e6bdf34">MAGIQUEST_MAGNITUDE_BITS</link> + <link linkend="_ir___magi_quest_8hpp_1a6f9ee212ff850e280f9c241c5143cee5">MAGIQUEST_WAND_ID_BITS</link>)</computeroutput></para><para>
+Definition at line <link linkend="_ir___magi_quest_8hpp_source_1l00066">66</link> of file <link linkend="_ir___magi_quest_8hpp_source">ir_MagiQuest.hpp</link>.</para>
+</section>
+<anchor xml:id="_ir___magi_quest_8hpp_1a64aeb7e87d7a2f844ca6ec967e6bdf34"/><section>
+    <title>MAGIQUEST_MAGNITUDE_BITS</title>
+<indexterm><primary>MAGIQUEST_MAGNITUDE_BITS</primary><secondary>ir_MagiQuest.hpp</secondary></indexterm>
+<indexterm><primary>ir_MagiQuest.hpp</primary><secondary>MAGIQUEST_MAGNITUDE_BITS</secondary></indexterm>
+<para><computeroutput>#define MAGIQUEST_MAGNITUDE_BITS   (sizeof(uint16_t) * 8)</computeroutput></para><para>
+Definition at line <link linkend="_ir___magi_quest_8hpp_source_1l00061">61</link> of file <link linkend="_ir___magi_quest_8hpp_source">ir_MagiQuest.hpp</link>.</para>
+</section>
+<anchor xml:id="_ir___magi_quest_8hpp_1ab75301149b3c053390e08668e270574e"/><section>
+    <title>MAGIQUEST_ONE_MARK</title>
+<indexterm><primary>MAGIQUEST_ONE_MARK</primary><secondary>ir_MagiQuest.hpp</secondary></indexterm>
+<indexterm><primary>ir_MagiQuest.hpp</primary><secondary>MAGIQUEST_ONE_MARK</secondary></indexterm>
+<para><computeroutput>#define MAGIQUEST_ONE_MARK   (2 * <link linkend="_ir___magi_quest_8hpp_1ab55a5562099370a536d44962ad2db98a">MAGIQUEST_UNIT</link>)</computeroutput></para><para>
+Definition at line <link linkend="_ir___magi_quest_8hpp_source_1l00081">81</link> of file <link linkend="_ir___magi_quest_8hpp_source">ir_MagiQuest.hpp</link>.</para>
+</section>
+<anchor xml:id="_ir___magi_quest_8hpp_1a1965f9aa88f57ed564f46654f8247103"/><section>
+    <title>MAGIQUEST_ONE_SPACE</title>
+<indexterm><primary>MAGIQUEST_ONE_SPACE</primary><secondary>ir_MagiQuest.hpp</secondary></indexterm>
+<indexterm><primary>ir_MagiQuest.hpp</primary><secondary>MAGIQUEST_ONE_SPACE</secondary></indexterm>
+<para><computeroutput>#define MAGIQUEST_ONE_SPACE   (2 * <link linkend="_ir___magi_quest_8hpp_1ab55a5562099370a536d44962ad2db98a">MAGIQUEST_UNIT</link>)</computeroutput></para><para>
+Definition at line <link linkend="_ir___magi_quest_8hpp_source_1l00082">82</link> of file <link linkend="_ir___magi_quest_8hpp_source">ir_MagiQuest.hpp</link>.</para>
+</section>
+<anchor xml:id="_ir___magi_quest_8hpp_1ab0e21cd13f5bde3d08248afbc05ccffc"/><section>
+    <title>MAGIQUEST_PACKET_SIZE</title>
+<indexterm><primary>MAGIQUEST_PACKET_SIZE</primary><secondary>ir_MagiQuest.hpp</secondary></indexterm>
+<indexterm><primary>ir_MagiQuest.hpp</primary><secondary>MAGIQUEST_PACKET_SIZE</secondary></indexterm>
+<para><computeroutput>#define MAGIQUEST_PACKET_SIZE   (2 * (<link linkend="_ir___magi_quest_8hpp_1a5ad7278bb378f828e4ef743ce1611734">MAGIQUEST_BITS</link> + <link linkend="_ir___magi_quest_8hpp_1a8488d2b8be79a7b84056d215c8fa83f0">MAGIQUEST_PADDING_BITS</link>))</computeroutput></para><para>
+Definition at line <link linkend="_ir___magi_quest_8hpp_source_1l00069">69</link> of file <link linkend="_ir___magi_quest_8hpp_source">ir_MagiQuest.hpp</link>.</para>
+</section>
+<anchor xml:id="_ir___magi_quest_8hpp_1a8488d2b8be79a7b84056d215c8fa83f0"/><section>
+    <title>MAGIQUEST_PADDING_BITS</title>
+<indexterm><primary>MAGIQUEST_PADDING_BITS</primary><secondary>ir_MagiQuest.hpp</secondary></indexterm>
+<indexterm><primary>ir_MagiQuest.hpp</primary><secondary>MAGIQUEST_PADDING_BITS</secondary></indexterm>
+<para><computeroutput>#define MAGIQUEST_PADDING_BITS   (sizeof(uint8_t) * 8)</computeroutput></para><para>
+Definition at line <link linkend="_ir___magi_quest_8hpp_source_1l00063">63</link> of file <link linkend="_ir___magi_quest_8hpp_source">ir_MagiQuest.hpp</link>.</para>
+</section>
+<anchor xml:id="_ir___magi_quest_8hpp_1a4816f5fc6dfc00a7f07213eff150652e"/><section>
+    <title>MAGIQUEST_PERIOD</title>
+<indexterm><primary>MAGIQUEST_PERIOD</primary><secondary>ir_MagiQuest.hpp</secondary></indexterm>
+<indexterm><primary>ir_MagiQuest.hpp</primary><secondary>MAGIQUEST_PERIOD</secondary></indexterm>
+<para><computeroutput>#define MAGIQUEST_PERIOD   1150</computeroutput></para><para>
+Definition at line <link linkend="_ir___magi_quest_8hpp_source_1l00065">65</link> of file <link linkend="_ir___magi_quest_8hpp_source">ir_MagiQuest.hpp</link>.</para>
+</section>
+<anchor xml:id="_ir___magi_quest_8hpp_1ab55a5562099370a536d44962ad2db98a"/><section>
+    <title>MAGIQUEST_UNIT</title>
+<indexterm><primary>MAGIQUEST_UNIT</primary><secondary>ir_MagiQuest.hpp</secondary></indexterm>
+<indexterm><primary>ir_MagiQuest.hpp</primary><secondary>MAGIQUEST_UNIT</secondary></indexterm>
+<para><computeroutput>#define MAGIQUEST_UNIT   (<link linkend="_ir___magi_quest_8hpp_1a4816f5fc6dfc00a7f07213eff150652e">MAGIQUEST_PERIOD</link> / 4)</computeroutput></para><para>
+Definition at line <link linkend="_ir___magi_quest_8hpp_source_1l00079">79</link> of file <link linkend="_ir___magi_quest_8hpp_source">ir_MagiQuest.hpp</link>.</para>
+</section>
+<anchor xml:id="_ir___magi_quest_8hpp_1a6f9ee212ff850e280f9c241c5143cee5"/><section>
+    <title>MAGIQUEST_WAND_ID_BITS</title>
+<indexterm><primary>MAGIQUEST_WAND_ID_BITS</primary><secondary>ir_MagiQuest.hpp</secondary></indexterm>
+<indexterm><primary>ir_MagiQuest.hpp</primary><secondary>MAGIQUEST_WAND_ID_BITS</secondary></indexterm>
+<para><computeroutput>#define MAGIQUEST_WAND_ID_BITS   (sizeof(uint32_t) * 8)</computeroutput></para><para>
+Definition at line <link linkend="_ir___magi_quest_8hpp_source_1l00062">62</link> of file <link linkend="_ir___magi_quest_8hpp_source">ir_MagiQuest.hpp</link>.</para>
+</section>
+<anchor xml:id="_ir___magi_quest_8hpp_1ac1bc4e99d5e1b697df724d180357095d"/><section>
+    <title>MAGIQUEST_ZERO_MARK</title>
+<indexterm><primary>MAGIQUEST_ZERO_MARK</primary><secondary>ir_MagiQuest.hpp</secondary></indexterm>
+<indexterm><primary>ir_MagiQuest.hpp</primary><secondary>MAGIQUEST_ZERO_MARK</secondary></indexterm>
+<para><computeroutput>#define MAGIQUEST_ZERO_MARK   <link linkend="_ir___magi_quest_8hpp_1ab55a5562099370a536d44962ad2db98a">MAGIQUEST_UNIT</link></computeroutput></para><para>
+Definition at line <link linkend="_ir___magi_quest_8hpp_source_1l00083">83</link> of file <link linkend="_ir___magi_quest_8hpp_source">ir_MagiQuest.hpp</link>.</para>
+</section>
+<anchor xml:id="_ir___magi_quest_8hpp_1a95ff1854b629d4e2dce95224f470f031"/><section>
+    <title>MAGIQUEST_ZERO_SPACE</title>
+<indexterm><primary>MAGIQUEST_ZERO_SPACE</primary><secondary>ir_MagiQuest.hpp</secondary></indexterm>
+<indexterm><primary>ir_MagiQuest.hpp</primary><secondary>MAGIQUEST_ZERO_SPACE</secondary></indexterm>
+<para><computeroutput>#define MAGIQUEST_ZERO_SPACE   (3 * <link linkend="_ir___magi_quest_8hpp_1ab55a5562099370a536d44962ad2db98a">MAGIQUEST_UNIT</link>)</computeroutput></para><para>
+Definition at line <link linkend="_ir___magi_quest_8hpp_source_1l00084">84</link> of file <link linkend="_ir___magi_quest_8hpp_source">ir_MagiQuest.hpp</link>.</para>
+</section>
+</section>
+</section>

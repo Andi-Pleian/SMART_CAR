@@ -1,0 +1,320 @@
+\hypertarget{ir___l_g_8hpp_source}{}\doxysection{ir\+\_\+\+LG.\+hpp}
+\label{ir___l_g_8hpp_source}\index{IRRemote/ir\_LG.hpp@{IRRemote/ir\_LG.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * ir\_LG.hpp}}
+\DoxyCodeLine{3 \textcolor{comment}{ *}}
+\DoxyCodeLine{4 \textcolor{comment}{ *  Contains functions for receiving and sending LG IR Protocol in "{}raw"{} and standard format with 16 or 8 bit address and 8 bit command}}
+\DoxyCodeLine{5 \textcolor{comment}{ *}}
+\DoxyCodeLine{6 \textcolor{comment}{ *  This file is part of Arduino-\/IRremote https://github.com/Arduino-\/IRremote/Arduino-\/IRremote.}}
+\DoxyCodeLine{7 \textcolor{comment}{ *}}
+\DoxyCodeLine{8 \textcolor{comment}{ ************************************************************************************}}
+\DoxyCodeLine{9 \textcolor{comment}{ * MIT License}}
+\DoxyCodeLine{10 \textcolor{comment}{ *}}
+\DoxyCodeLine{11 \textcolor{comment}{ * Copyright (c) 2017-\/2021 Darryl Smith, Armin Joachimsmeyer}}
+\DoxyCodeLine{12 \textcolor{comment}{ *}}
+\DoxyCodeLine{13 \textcolor{comment}{ * Permission is hereby granted, free of charge, to any person obtaining a copy}}
+\DoxyCodeLine{14 \textcolor{comment}{ * of this software and associated documentation files (the "{}Software"{}), to deal}}
+\DoxyCodeLine{15 \textcolor{comment}{ * in the Software without restriction, including without limitation the rights}}
+\DoxyCodeLine{16 \textcolor{comment}{ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell}}
+\DoxyCodeLine{17 \textcolor{comment}{ * copies of the Software, and to permit persons to whom the Software is furnished}}
+\DoxyCodeLine{18 \textcolor{comment}{ * to do so, subject to the following conditions:}}
+\DoxyCodeLine{19 \textcolor{comment}{ *}}
+\DoxyCodeLine{20 \textcolor{comment}{ * The above copyright notice and this permission notice shall be included in all}}
+\DoxyCodeLine{21 \textcolor{comment}{ * copies or substantial portions of the Software.}}
+\DoxyCodeLine{22 \textcolor{comment}{ *}}
+\DoxyCodeLine{23 \textcolor{comment}{ * THE SOFTWARE IS PROVIDED "{}AS IS"{}, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,}}
+\DoxyCodeLine{24 \textcolor{comment}{ * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A}}
+\DoxyCodeLine{25 \textcolor{comment}{ * PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT}}
+\DoxyCodeLine{26 \textcolor{comment}{ * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF}}
+\DoxyCodeLine{27 \textcolor{comment}{ * CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE}}
+\DoxyCodeLine{28 \textcolor{comment}{ * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.}}
+\DoxyCodeLine{29 \textcolor{comment}{ *}}
+\DoxyCodeLine{30 \textcolor{comment}{ ************************************************************************************}}
+\DoxyCodeLine{31 \textcolor{comment}{ */}}
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#ifndef IR\_LG\_HPP}}
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#define IR\_LG\_HPP}}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35 \textcolor{preprocessor}{\#include <Arduino.h>}}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37 \textcolor{comment}{//\#define DEBUG // Activate this for lots of lovely debug output from this decoder.}}
+\DoxyCodeLine{38 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_i_rremote_int_8h}{IRremoteInt.h}}"{}} \textcolor{comment}{// evaluates the DEBUG for IR\_DEBUG\_PRINT}}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{43 \textcolor{comment}{//==============================================================================}}
+\DoxyCodeLine{44 \textcolor{comment}{//                               L       GGGG}}
+\DoxyCodeLine{45 \textcolor{comment}{//                               L      G}}
+\DoxyCodeLine{46 \textcolor{comment}{//                               L      G  GG}}
+\DoxyCodeLine{47 \textcolor{comment}{//                               L      G   G}}
+\DoxyCodeLine{48 \textcolor{comment}{//                               LLLLL   GGG}}
+\DoxyCodeLine{49 \textcolor{comment}{//==============================================================================}}
+\DoxyCodeLine{50 \textcolor{comment}{// LG originally added by Darryl Smith (based on the JVC protocol)}}
+\DoxyCodeLine{51 \textcolor{comment}{// see: https://github.com/Arduino-\/IRremote/Arduino-\/IRremote/tree/master/examples/LGAirConditionerSendDemo}}
+\DoxyCodeLine{52 \textcolor{comment}{// see: https://www.mikrocontroller.net/articles/IRMP\_-\/\_english\#LGAIR}}
+\DoxyCodeLine{53 \textcolor{comment}{// MSB first, 1 start bit + 8 bit address + 16 bit command + 4 bit checksum + 1 stop bit (28 data bits).}}
+\DoxyCodeLine{54 \textcolor{comment}{// Bit and repeat timing is like NEC}}
+\DoxyCodeLine{55 \textcolor{comment}{// LG2 has different header timing and a shorter bit time}}
+\DoxyCodeLine{56 \textcolor{comment}{/*}}
+\DoxyCodeLine{57 \textcolor{comment}{ * LG remote measurements: Type AKB73315611, Ver1.1 from 2011.03.01}}
+\DoxyCodeLine{58 \textcolor{comment}{ * Internal crystal: 4 MHz}}
+\DoxyCodeLine{59 \textcolor{comment}{ * Header:  8.9 ms mark 4.15 ms space}}
+\DoxyCodeLine{60 \textcolor{comment}{ * Data:    500 / 540 and 500 / 1580;}}
+\DoxyCodeLine{61 \textcolor{comment}{ * Clock is nor synchronized with gate so you have 19 and sometimes 19 and a spike pulses for mark}}
+\DoxyCodeLine{62 \textcolor{comment}{ * Duty:    9 us on 17 us off => around 33 \% duty}}
+\DoxyCodeLine{63 \textcolor{comment}{ * NO REPEAT: If value like temperature has changed during long press, the last value is send at button release.}}
+\DoxyCodeLine{64 \textcolor{comment}{ * If you do a double press, the next value can be sent after around 118 ms. Tested with the fan button.}}
+\DoxyCodeLine{65 \textcolor{comment}{ *}}
+\DoxyCodeLine{66 \textcolor{comment}{ * The codes of the LG air conditioner are documented in https://github.com/Arduino-\/IRremote/Arduino-\/IRremote/blob/master/ac\_LG.cpp}}
+\DoxyCodeLine{67 \textcolor{comment}{ */}}
+\DoxyCodeLine{68 \textcolor{preprocessor}{\#define LG\_ADDRESS\_BITS          8}}
+\DoxyCodeLine{69 \textcolor{preprocessor}{\#define LG\_COMMAND\_BITS         16}}
+\DoxyCodeLine{70 \textcolor{preprocessor}{\#define LG\_CHECKSUM\_BITS         4}}
+\DoxyCodeLine{71 \textcolor{preprocessor}{\#define LG\_BITS                 (LG\_ADDRESS\_BITS + LG\_COMMAND\_BITS + LG\_CHECKSUM\_BITS) }\textcolor{comment}{// 28}}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73 \textcolor{preprocessor}{\#define LG\_UNIT                 500 }\textcolor{comment}{// 19 periods of 38 kHz}}
+\DoxyCodeLine{74 }
+\DoxyCodeLine{75 \textcolor{preprocessor}{\#define LG\_HEADER\_MARK          (18 * LG\_UNIT) }\textcolor{comment}{// 9000}}
+\DoxyCodeLine{76 \textcolor{preprocessor}{\#define LG\_HEADER\_SPACE         4200}}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{78 \textcolor{preprocessor}{\#define LG2\_HEADER\_MARK         (6 * LG\_UNIT)  }\textcolor{comment}{// 3000}}
+\DoxyCodeLine{79 \textcolor{preprocessor}{\#define LG2\_HEADER\_SPACE        (19 * LG\_UNIT) }\textcolor{comment}{// 9500}}
+\DoxyCodeLine{80 }
+\DoxyCodeLine{81 \textcolor{preprocessor}{\#define LG\_BIT\_MARK             LG\_UNIT}}
+\DoxyCodeLine{82 \textcolor{preprocessor}{\#define LG\_ONE\_SPACE            1580  }\textcolor{comment}{// 60 periods of 38 kHz}}
+\DoxyCodeLine{83 \textcolor{preprocessor}{\#define LG\_ZERO\_SPACE           550}}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{85 \textcolor{preprocessor}{\#define LG\_REPEAT\_HEADER\_SPACE  (4 * LG\_UNIT)  }\textcolor{comment}{// 2250}}
+\DoxyCodeLine{86 \textcolor{preprocessor}{\#define LG\_AVERAGE\_DURATION     58000 }\textcolor{comment}{// LG\_HEADER\_MARK + LG\_HEADER\_SPACE  + 32 * 2,5 * LG\_UNIT) + LG\_UNIT // 2.5 because we assume more zeros than ones}}
+\DoxyCodeLine{87 \textcolor{preprocessor}{\#define LG\_REPEAT\_DURATION      (LG\_HEADER\_MARK  + LG\_REPEAT\_HEADER\_SPACE + LG\_BIT\_MARK)}}
+\DoxyCodeLine{88 \textcolor{preprocessor}{\#define LG\_REPEAT\_PERIOD        110000 }\textcolor{comment}{// Commands are repeated every 110 ms (measured from start to start) for as long as the key on the remote control is held down.}}
+\DoxyCodeLine{89 \textcolor{preprocessor}{\#define LG\_REPEAT\_SPACE         (LG\_REPEAT\_PERIOD -\/ LG\_AVERAGE\_DURATION) }\textcolor{comment}{// 52 ms}}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{91 \textcolor{comment}{//+=============================================================================}}
+\DoxyCodeLine{92 \textcolor{comment}{/*}}
+\DoxyCodeLine{93 \textcolor{comment}{ * Send repeat}}
+\DoxyCodeLine{94 \textcolor{comment}{ * Repeat commands should be sent in a 110 ms raster.}}
+\DoxyCodeLine{95 \textcolor{comment}{ */}}
+\DoxyCodeLine{96 \textcolor{keywordtype}{void} IRsend::sendLGRepeat(\textcolor{keywordtype}{bool} aUseLG2Protocol) \{}
+\DoxyCodeLine{97     \mbox{\hyperlink{group___sending_ga42c04af63d252b320c017ffa2bfc90e5}{enableIROut}}(LG\_KHZ); \textcolor{comment}{// 38 kHz}}
+\DoxyCodeLine{98     \textcolor{keywordflow}{if} (aUseLG2Protocol) \{}
+\DoxyCodeLine{99         \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(LG2\_HEADER\_MARK);}
+\DoxyCodeLine{100     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{101         \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(LG\_HEADER\_MARK);}
+\DoxyCodeLine{102     \}}
+\DoxyCodeLine{103     \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(LG\_REPEAT\_HEADER\_SPACE);}
+\DoxyCodeLine{104     \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(LG\_BIT\_MARK);}
+\DoxyCodeLine{105 \}}
+\DoxyCodeLine{106 }
+\DoxyCodeLine{112 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___decoder_gaf5095df5a6598fe2651510e4a8d5e018}{IRsend::sendLG}}(uint8\_t aAddress, uint16\_t aCommand, uint\_fast8\_t aNumberOfRepeats, \textcolor{keywordtype}{bool} aIsRepeat, \textcolor{keywordtype}{bool} aUseLG2Protocol) \{}
+\DoxyCodeLine{113     uint32\_t tRawData = ((uint32\_t) aAddress << (LG\_COMMAND\_BITS + LG\_CHECKSUM\_BITS)) | ((uint32\_t) aCommand << LG\_CHECKSUM\_BITS);}
+\DoxyCodeLine{114     \textcolor{comment}{/*}}
+\DoxyCodeLine{115 \textcolor{comment}{     * My guess of the 4 bit checksum}}
+\DoxyCodeLine{116 \textcolor{comment}{     * Addition of all 4 nibbles of the 16 bit command}}
+\DoxyCodeLine{117 \textcolor{comment}{     */}}
+\DoxyCodeLine{118     uint8\_t tChecksum = 0;}
+\DoxyCodeLine{119     uint16\_t tTempForChecksum = aCommand;}
+\DoxyCodeLine{120     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < 4; ++i) \{}
+\DoxyCodeLine{121         tChecksum += tTempForChecksum \& 0xF; \textcolor{comment}{// add low nibble}}
+\DoxyCodeLine{122         tTempForChecksum >>= 4; \textcolor{comment}{// shift by a nibble}}
+\DoxyCodeLine{123     \}}
+\DoxyCodeLine{124     tRawData |= (tChecksum \& 0xF);}
+\DoxyCodeLine{125     sendLGRaw(tRawData, aNumberOfRepeats, aIsRepeat, aUseLG2Protocol);}
+\DoxyCodeLine{126 \}}
+\DoxyCodeLine{127 }
+\DoxyCodeLine{128 \textcolor{comment}{/*}}
+\DoxyCodeLine{129 \textcolor{comment}{ * Here you can put your raw data, even one with "{}wrong"{} checksum}}
+\DoxyCodeLine{130 \textcolor{comment}{ */}}
+\DoxyCodeLine{131 \textcolor{keywordtype}{void} IRsend::sendLGRaw(uint32\_t aRawData, uint\_fast8\_t aNumberOfRepeats, \textcolor{keywordtype}{bool} aIsRepeat, \textcolor{keywordtype}{bool} aUseLG2Protocol) \{}
+\DoxyCodeLine{132     \textcolor{keywordflow}{if} (aIsRepeat) \{}
+\DoxyCodeLine{133         sendLGRepeat();}
+\DoxyCodeLine{134         \textcolor{keywordflow}{return};}
+\DoxyCodeLine{135     \}}
+\DoxyCodeLine{136     \textcolor{comment}{// Set IR carrier frequency}}
+\DoxyCodeLine{137     \mbox{\hyperlink{group___sending_ga42c04af63d252b320c017ffa2bfc90e5}{enableIROut}}(LG\_KHZ);}
+\DoxyCodeLine{138 }
+\DoxyCodeLine{139     \textcolor{comment}{// Header}}
+\DoxyCodeLine{140     \textcolor{keywordflow}{if} (aUseLG2Protocol) \{}
+\DoxyCodeLine{141         \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(LG2\_HEADER\_MARK);}
+\DoxyCodeLine{142         \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(LG2\_HEADER\_SPACE);}
+\DoxyCodeLine{143         \textcolor{comment}{// MSB first}}
+\DoxyCodeLine{144         \mbox{\hyperlink{group___sending_ga6904a411999a4c9f7306dba49851eb7b}{sendPulseDistanceWidthData}}(LG\_BIT\_MARK, LG\_ONE\_SPACE, LG\_BIT\_MARK, LG\_ZERO\_SPACE, aRawData, LG\_BITS, PROTOCOL\_IS\_MSB\_FIRST,}
+\DoxyCodeLine{145         SEND\_STOP\_BIT);}
+\DoxyCodeLine{146     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{147         \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(LG\_HEADER\_MARK);}
+\DoxyCodeLine{148         \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(LG\_HEADER\_SPACE);}
+\DoxyCodeLine{149         \textcolor{comment}{// MSB first}}
+\DoxyCodeLine{150         \mbox{\hyperlink{group___sending_ga6904a411999a4c9f7306dba49851eb7b}{sendPulseDistanceWidthData}}(LG\_BIT\_MARK, LG\_ONE\_SPACE, LG\_BIT\_MARK, LG\_ZERO\_SPACE, aRawData, LG\_BITS, PROTOCOL\_IS\_MSB\_FIRST,}
+\DoxyCodeLine{151         SEND\_STOP\_BIT);}
+\DoxyCodeLine{152     \}}
+\DoxyCodeLine{153 }
+\DoxyCodeLine{154     \textcolor{keywordflow}{for} (uint\_fast8\_t i = 0; i < aNumberOfRepeats; ++i) \{}
+\DoxyCodeLine{155         \textcolor{comment}{// send repeat in a 110 ms raster}}
+\DoxyCodeLine{156         \textcolor{keywordflow}{if} (i == 0) \{}
+\DoxyCodeLine{157             delay(LG\_REPEAT\_SPACE / MICROS\_IN\_ONE\_MILLI);}
+\DoxyCodeLine{158         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{159             delay((LG\_REPEAT\_PERIOD -\/ LG\_REPEAT\_DURATION) / MICROS\_IN\_ONE\_MILLI);}
+\DoxyCodeLine{160         \}}
+\DoxyCodeLine{161         \textcolor{comment}{// send repeat}}
+\DoxyCodeLine{162         sendLGRepeat(aUseLG2Protocol);}
+\DoxyCodeLine{163     \}}
+\DoxyCodeLine{164 \}}
+\DoxyCodeLine{165 }
+\DoxyCodeLine{166 \textcolor{comment}{//+=============================================================================}}
+\DoxyCodeLine{167 \textcolor{comment}{// LGs has a repeat like NEC}}
+\DoxyCodeLine{168 \textcolor{comment}{//}}
+\DoxyCodeLine{169 \textcolor{comment}{/*}}
+\DoxyCodeLine{170 \textcolor{comment}{ * First check for right data length}}
+\DoxyCodeLine{171 \textcolor{comment}{ * Next check start bit}}
+\DoxyCodeLine{172 \textcolor{comment}{ * Next try the decode}}
+\DoxyCodeLine{173 \textcolor{comment}{ * Last check stop bit}}
+\DoxyCodeLine{174 \textcolor{comment}{ */}}
+\DoxyCodeLine{175 \textcolor{keywordtype}{bool} IRrecv::decodeLG() \{}
+\DoxyCodeLine{176     \mbox{\hyperlink{_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fad}{decode\_type\_t}} tProtocol = LG;}
+\DoxyCodeLine{177     uint16\_t tHeaderSpace = LG\_HEADER\_SPACE;}
+\DoxyCodeLine{178 }
+\DoxyCodeLine{179 \textcolor{comment}{// Check we have the right amount of data (60). The +4 is for initial gap, start bit mark and space + stop bit mark.}}
+\DoxyCodeLine{180     \textcolor{keywordflow}{if} (decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_af0571ac479d1c38c79502651b0631432}{rawlen}} != ((2 * LG\_BITS) + 4) \&\& (decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_af0571ac479d1c38c79502651b0631432}{rawlen}} != 4)) \{}
+\DoxyCodeLine{181         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(F(\textcolor{stringliteral}{"{}LG: "{}}));}
+\DoxyCodeLine{182         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(\textcolor{stringliteral}{"{}Data length="{}});}
+\DoxyCodeLine{183         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_af0571ac479d1c38c79502651b0631432}{rawlen}});}
+\DoxyCodeLine{184         \mbox{\hyperlink{_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{} is not 60 or 4"{}});}
+\DoxyCodeLine{185         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{186     \}}
+\DoxyCodeLine{187 }
+\DoxyCodeLine{188 \textcolor{comment}{// Check header "{}mark"{} this must be done for repeat and data}}
+\DoxyCodeLine{189     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{group___receiving_ga4472564ea96b1ee10b51f594f60d7aeb}{matchMark}}(decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_a7aa7b811dcc0fb5ab0da7c0bddaf97f8}{rawbuf}}[1], LG\_HEADER\_MARK)) \{}
+\DoxyCodeLine{190         \textcolor{keywordflow}{if} (!\mbox{\hyperlink{group___receiving_ga4472564ea96b1ee10b51f594f60d7aeb}{matchMark}}(decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_a7aa7b811dcc0fb5ab0da7c0bddaf97f8}{rawbuf}}[1], LG2\_HEADER\_MARK)) \{}
+\DoxyCodeLine{191             \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(F(\textcolor{stringliteral}{"{}LG: "{}}));}
+\DoxyCodeLine{192             \mbox{\hyperlink{_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}Header mark is wrong"{}});}
+\DoxyCodeLine{193             \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{194         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{195             tProtocol = LG2;}
+\DoxyCodeLine{196             tHeaderSpace = LG2\_HEADER\_SPACE;}
+\DoxyCodeLine{197         \}}
+\DoxyCodeLine{198     \}}
+\DoxyCodeLine{199 }
+\DoxyCodeLine{200 \textcolor{comment}{// Check for repeat -\/ here we have another header space length}}
+\DoxyCodeLine{201     \textcolor{keywordflow}{if} (decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_af0571ac479d1c38c79502651b0631432}{rawlen}} == 4) \{}
+\DoxyCodeLine{202         \textcolor{keywordflow}{if} (\mbox{\hyperlink{group___receiving_ga7902b620f6c01463b5b6e50ef604ac8b}{matchSpace}}(decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_a7aa7b811dcc0fb5ab0da7c0bddaf97f8}{rawbuf}}[2], LG\_REPEAT\_HEADER\_SPACE)}
+\DoxyCodeLine{203                 \&\& \mbox{\hyperlink{group___receiving_ga4472564ea96b1ee10b51f594f60d7aeb}{matchMark}}(decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_a7aa7b811dcc0fb5ab0da7c0bddaf97f8}{rawbuf}}[3], LG\_BIT\_MARK)) \{}
+\DoxyCodeLine{204             decodedIRData.\mbox{\hyperlink{struct_i_r_data_aaaad48fc0d90e5c6daec601987848a51}{flags}} = IRDATA\_FLAGS\_IS\_REPEAT | \mbox{\hyperlink{_i_rremote_int_8h_a7f6872e6f83c0571e3150ba86428af4c}{IRDATA\_FLAGS\_IS\_MSB\_FIRST}};}
+\DoxyCodeLine{205             decodedIRData.\mbox{\hyperlink{struct_i_r_data_a1255a5b7d704d34fda83dcabcb903d4c}{address}} = lastDecodedAddress;}
+\DoxyCodeLine{206             decodedIRData.\mbox{\hyperlink{struct_i_r_data_ab0ce2b36765ea429e8c4bfa0706a45e7}{command}} = lastDecodedCommand;}
+\DoxyCodeLine{207             decodedIRData.\mbox{\hyperlink{struct_i_r_data_a703592faec26bab5cbe465f53ef14245}{protocol}} = lastDecodedProtocol;}
+\DoxyCodeLine{208             \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{209         \}}
+\DoxyCodeLine{210         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(F(\textcolor{stringliteral}{"{}LG: "{}}));}
+\DoxyCodeLine{211         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(\textcolor{stringliteral}{"{}Repeat header space is wrong"{}});}
+\DoxyCodeLine{212         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{213     \}}
+\DoxyCodeLine{214 }
+\DoxyCodeLine{215 \textcolor{comment}{// Check command header space}}
+\DoxyCodeLine{216     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{group___receiving_ga7902b620f6c01463b5b6e50ef604ac8b}{matchSpace}}(decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_a7aa7b811dcc0fb5ab0da7c0bddaf97f8}{rawbuf}}[2], tHeaderSpace)) \{}
+\DoxyCodeLine{217         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(F(\textcolor{stringliteral}{"{}LG: "{}}));}
+\DoxyCodeLine{218         \mbox{\hyperlink{_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(F(\textcolor{stringliteral}{"{}Header space length is wrong"{}}));}
+\DoxyCodeLine{219         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{220     \}}
+\DoxyCodeLine{221 }
+\DoxyCodeLine{222     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{group___receiving_gaf8c9cdb5f7280043a552f22265bdb2d5}{decodePulseDistanceData}}(LG\_BITS, 3, LG\_BIT\_MARK, LG\_ONE\_SPACE, LG\_ZERO\_SPACE, PROTOCOL\_IS\_MSB\_FIRST)) \{}
+\DoxyCodeLine{223         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(F(\textcolor{stringliteral}{"{}LG: "{}}));}
+\DoxyCodeLine{224         \mbox{\hyperlink{_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(F(\textcolor{stringliteral}{"{}Decode failed"{}}));}
+\DoxyCodeLine{225         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{226     \}}
+\DoxyCodeLine{227 }
+\DoxyCodeLine{228 \textcolor{comment}{// Stop bit}}
+\DoxyCodeLine{229     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{group___receiving_ga4472564ea96b1ee10b51f594f60d7aeb}{matchMark}}(decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_a7aa7b811dcc0fb5ab0da7c0bddaf97f8}{rawbuf}}[3 + (2 * LG\_BITS)], LG\_BIT\_MARK)) \{}
+\DoxyCodeLine{230         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(F(\textcolor{stringliteral}{"{}LG: "{}}));}
+\DoxyCodeLine{231         \mbox{\hyperlink{_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(F(\textcolor{stringliteral}{"{}Stop bit mark length is wrong"{}}));}
+\DoxyCodeLine{232         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{233     \}}
+\DoxyCodeLine{234 }
+\DoxyCodeLine{235 \textcolor{comment}{// Success}}
+\DoxyCodeLine{236     decodedIRData.\mbox{\hyperlink{struct_i_r_data_aaaad48fc0d90e5c6daec601987848a51}{flags}} = \mbox{\hyperlink{_i_rremote_int_8h_a7f6872e6f83c0571e3150ba86428af4c}{IRDATA\_FLAGS\_IS\_MSB\_FIRST}};}
+\DoxyCodeLine{237     decodedIRData.\mbox{\hyperlink{struct_i_r_data_ab0ce2b36765ea429e8c4bfa0706a45e7}{command}} = (decodedIRData.\mbox{\hyperlink{struct_i_r_data_aeca55ebf36bf919312a933597b8734d8}{decodedRawData}} >> LG\_CHECKSUM\_BITS) \& 0xFFFF;}
+\DoxyCodeLine{238     decodedIRData.\mbox{\hyperlink{struct_i_r_data_a1255a5b7d704d34fda83dcabcb903d4c}{address}} = decodedIRData.\mbox{\hyperlink{struct_i_r_data_aeca55ebf36bf919312a933597b8734d8}{decodedRawData}} >> (LG\_COMMAND\_BITS + LG\_CHECKSUM\_BITS); \textcolor{comment}{// first 8 bit}}
+\DoxyCodeLine{239 }
+\DoxyCodeLine{240     \textcolor{comment}{/*}}
+\DoxyCodeLine{241 \textcolor{comment}{     * My guess of the checksum}}
+\DoxyCodeLine{242 \textcolor{comment}{     */}}
+\DoxyCodeLine{243     uint8\_t tChecksum = 0;}
+\DoxyCodeLine{244     uint16\_t tTempForChecksum = decodedIRData.\mbox{\hyperlink{struct_i_r_data_ab0ce2b36765ea429e8c4bfa0706a45e7}{command}};}
+\DoxyCodeLine{245     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < 4; ++i) \{}
+\DoxyCodeLine{246         tChecksum += tTempForChecksum \& 0xF; \textcolor{comment}{// add low nibble}}
+\DoxyCodeLine{247         tTempForChecksum >>= 4; \textcolor{comment}{// shift by a nibble}}
+\DoxyCodeLine{248     \}}
+\DoxyCodeLine{249 \textcolor{comment}{// Checksum check}}
+\DoxyCodeLine{250     \textcolor{keywordflow}{if} ((tChecksum \& 0xF) != (decodedIRData.\mbox{\hyperlink{struct_i_r_data_aeca55ebf36bf919312a933597b8734d8}{decodedRawData}} \& 0xF)) \{}
+\DoxyCodeLine{251         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(F(\textcolor{stringliteral}{"{}LG: "{}}));}
+\DoxyCodeLine{252         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(\textcolor{stringliteral}{"{}4 bit checksum is not correct. expected=0x"{}});}
+\DoxyCodeLine{253         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(tChecksum, HEX);}
+\DoxyCodeLine{254         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(\textcolor{stringliteral}{"{} received=0x"{}});}
+\DoxyCodeLine{255         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}((decodedIRData.\mbox{\hyperlink{struct_i_r_data_aeca55ebf36bf919312a933597b8734d8}{decodedRawData}} \& 0xF), HEX);}
+\DoxyCodeLine{256         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(\textcolor{stringliteral}{"{} data=0x"{}});}
+\DoxyCodeLine{257         \mbox{\hyperlink{_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(decodedIRData.\mbox{\hyperlink{struct_i_r_data_ab0ce2b36765ea429e8c4bfa0706a45e7}{command}}, HEX);}
+\DoxyCodeLine{258         decodedIRData.\mbox{\hyperlink{struct_i_r_data_aaaad48fc0d90e5c6daec601987848a51}{flags}} |= \mbox{\hyperlink{_i_rremote_int_8h_a1a60f95f0885b1865dc5514ddd80e093}{IRDATA\_FLAGS\_PARITY\_FAILED}};}
+\DoxyCodeLine{259     \}}
+\DoxyCodeLine{260 }
+\DoxyCodeLine{261     decodedIRData.\mbox{\hyperlink{struct_i_r_data_a703592faec26bab5cbe465f53ef14245}{protocol}} = tProtocol; \textcolor{comment}{// LG or LG2}}
+\DoxyCodeLine{262     decodedIRData.\mbox{\hyperlink{struct_i_r_data_a945c41b8463a36cf00b0f38b0aa73200}{numberOfBits}} = LG\_BITS;}
+\DoxyCodeLine{263 }
+\DoxyCodeLine{264     \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{265 \}}
+\DoxyCodeLine{266 }
+\DoxyCodeLine{267 \textcolor{keywordtype}{bool} IRrecv::decodeLGMSB(\mbox{\hyperlink{structdecode__results}{decode\_results}} *aResults) \{}
+\DoxyCodeLine{268     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} offset = 1; \textcolor{comment}{// Skip first space}}
+\DoxyCodeLine{269 }
+\DoxyCodeLine{270 \textcolor{comment}{// Check we have enough data (60) -\/ +4 for initial gap, start bit mark and space + stop bit mark}}
+\DoxyCodeLine{271     \textcolor{keywordflow}{if} (aResults-\/>rawlen != (2 * LG\_BITS) + 4) \{}
+\DoxyCodeLine{272         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{273     \}}
+\DoxyCodeLine{274 }
+\DoxyCodeLine{275 \textcolor{comment}{// Initial mark/space}}
+\DoxyCodeLine{276     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{group___receiving_ga4472564ea96b1ee10b51f594f60d7aeb}{matchMark}}(aResults-\/>rawbuf[offset], LG\_HEADER\_MARK)) \{}
+\DoxyCodeLine{277         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{278     \}}
+\DoxyCodeLine{279     offset++;}
+\DoxyCodeLine{280 }
+\DoxyCodeLine{281     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{group___receiving_ga7902b620f6c01463b5b6e50ef604ac8b}{matchSpace}}(aResults-\/>rawbuf[offset], LG\_HEADER\_SPACE)) \{}
+\DoxyCodeLine{282         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{283     \}}
+\DoxyCodeLine{284     offset++;}
+\DoxyCodeLine{285 }
+\DoxyCodeLine{286     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{group___receiving_gaf8c9cdb5f7280043a552f22265bdb2d5}{decodePulseDistanceData}}(LG\_BITS, offset, LG\_BIT\_MARK, LG\_ONE\_SPACE, LG\_ZERO\_SPACE, PROTOCOL\_IS\_MSB\_FIRST)) \{}
+\DoxyCodeLine{287         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{288     \}}
+\DoxyCodeLine{289 \textcolor{comment}{// Stop bit}}
+\DoxyCodeLine{290     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{group___receiving_ga4472564ea96b1ee10b51f594f60d7aeb}{matchMark}}(aResults-\/>rawbuf[offset + (2 * LG\_BITS)], LG\_BIT\_MARK)) \{}
+\DoxyCodeLine{291         \mbox{\hyperlink{_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(F(\textcolor{stringliteral}{"{}Stop bit mark length is wrong"{}}));}
+\DoxyCodeLine{292         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{293     \}}
+\DoxyCodeLine{294 }
+\DoxyCodeLine{295 \textcolor{comment}{// Success}}
+\DoxyCodeLine{296     aResults-\/>value = decodedIRData.\mbox{\hyperlink{struct_i_r_data_aeca55ebf36bf919312a933597b8734d8}{decodedRawData}};}
+\DoxyCodeLine{297     aResults-\/>bits = LG\_BITS;}
+\DoxyCodeLine{298     aResults-\/>decode\_type = LG;}
+\DoxyCodeLine{299     decodedIRData.\mbox{\hyperlink{struct_i_r_data_a703592faec26bab5cbe465f53ef14245}{protocol}} = LG;}
+\DoxyCodeLine{300     \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{301 \}}
+\DoxyCodeLine{302 }
+\DoxyCodeLine{303 \textcolor{comment}{//+=============================================================================}}
+\DoxyCodeLine{304 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___decoder_gaf5095df5a6598fe2651510e4a8d5e018}{IRsend::sendLG}}(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} data, \textcolor{keywordtype}{int} nbits) \{}
+\DoxyCodeLine{305 \textcolor{comment}{// Set IR carrier frequency}}
+\DoxyCodeLine{306     \mbox{\hyperlink{group___sending_ga42c04af63d252b320c017ffa2bfc90e5}{enableIROut}}(LG\_KHZ);}
+\DoxyCodeLine{307 \textcolor{preprocessor}{\#if !(defined(\_\_AVR\_ATtiny25\_\_) || defined(\_\_AVR\_ATtiny45\_\_) || defined(\_\_AVR\_ATtiny85\_\_) || defined(\_\_AVR\_ATtiny87\_\_) || defined(\_\_AVR\_ATtiny167\_\_))}}
+\DoxyCodeLine{308     Serial.println(}
+\DoxyCodeLine{309             \textcolor{stringliteral}{"{}The function sendLG(data, nbits) is deprecated and may not work as expected! Use sendLGRaw(data, NumberOfRepeats) or better sendLG(Address, Command, NumberOfRepeats)."{}});}
+\DoxyCodeLine{310 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{311 \textcolor{comment}{// Header}}
+\DoxyCodeLine{312     \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(LG\_HEADER\_MARK);}
+\DoxyCodeLine{313     \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(LG\_HEADER\_SPACE);}
+\DoxyCodeLine{314 \textcolor{comment}{//    mark(LG\_BIT\_MARK);}}
+\DoxyCodeLine{315 }
+\DoxyCodeLine{316 \textcolor{comment}{// Data + stop bit}}
+\DoxyCodeLine{317     \mbox{\hyperlink{group___sending_ga6904a411999a4c9f7306dba49851eb7b}{sendPulseDistanceWidthData}}(LG\_BIT\_MARK, LG\_ONE\_SPACE, LG\_BIT\_MARK, LG\_ZERO\_SPACE, data, nbits, PROTOCOL\_IS\_MSB\_FIRST,}
+\DoxyCodeLine{318     SEND\_STOP\_BIT);}
+\DoxyCodeLine{319 \}}
+\DoxyCodeLine{320 }
+\DoxyCodeLine{322 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{323 \textcolor{preprocessor}{\#pragma once}}
+
+\end{DoxyCode}

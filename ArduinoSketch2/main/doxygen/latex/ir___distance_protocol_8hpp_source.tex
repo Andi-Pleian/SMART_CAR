@@ -1,0 +1,316 @@
+\hypertarget{ir___distance_protocol_8hpp_source}{}\doxysection{ir\+\_\+\+Distance\+Protocol.\+hpp}
+\label{ir___distance_protocol_8hpp_source}\index{IRRemote/ir\_DistanceProtocol.hpp@{IRRemote/ir\_DistanceProtocol.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * ir\_DistanceProtocol.hpp}}
+\DoxyCodeLine{3 \textcolor{comment}{ *}}
+\DoxyCodeLine{4 \textcolor{comment}{ * This decoder tries to decode a pulse width or pulse distance protocol.}}
+\DoxyCodeLine{5 \textcolor{comment}{ * 1. Analyze all space and mark length}}
+\DoxyCodeLine{6 \textcolor{comment}{ * 2. Decide if we have an pulse width or distance protocol}}
+\DoxyCodeLine{7 \textcolor{comment}{ * 3. Try to decode with the mark and space data found in step 1}}
+\DoxyCodeLine{8 \textcolor{comment}{ * No data and address decoding, only raw data as result.}}
+\DoxyCodeLine{9 \textcolor{comment}{ *}}
+\DoxyCodeLine{10 \textcolor{comment}{ * Pulse distance data can be sent with the generic function:}}
+\DoxyCodeLine{11 \textcolor{comment}{ * void sendPulseDistanceWidthData(unsigned int aOneMarkMicros, unsigned int aOneSpaceMicros, unsigned int aZeroMarkMicros,}}
+\DoxyCodeLine{12 \textcolor{comment}{ *            unsigned int aZeroSpaceMicros, uint32\_t aData, uint8\_t aNumberOfBits, bool aMSBfirst, bool aSendStopBit = false)}}
+\DoxyCodeLine{13 \textcolor{comment}{ * The header must be sent manually with:}}
+\DoxyCodeLine{14 \textcolor{comment}{ *          IrSender.mark(MarkMicros)}}
+\DoxyCodeLine{15 \textcolor{comment}{ *          IrSender.space(SpaceMicros);}}
+\DoxyCodeLine{16 \textcolor{comment}{ * see also: SendDemo example line 150}}
+\DoxyCodeLine{17 \textcolor{comment}{ *}}
+\DoxyCodeLine{18 \textcolor{comment}{ *  This file is part of Arduino-\/IRremote https://github.com/Arduino-\/IRremote/Arduino-\/IRremote.}}
+\DoxyCodeLine{19 \textcolor{comment}{ *}}
+\DoxyCodeLine{20 \textcolor{comment}{ ************************************************************************************}}
+\DoxyCodeLine{21 \textcolor{comment}{ * MIT License}}
+\DoxyCodeLine{22 \textcolor{comment}{ *}}
+\DoxyCodeLine{23 \textcolor{comment}{ * Permission is hereby granted, free of charge, to any person obtaining a copy}}
+\DoxyCodeLine{24 \textcolor{comment}{ * of this software and associated documentation files (the "{}Software"{}), to deal}}
+\DoxyCodeLine{25 \textcolor{comment}{ * in the Software without restriction, including without limitation the rights}}
+\DoxyCodeLine{26 \textcolor{comment}{ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell}}
+\DoxyCodeLine{27 \textcolor{comment}{ * copies of the Software, and to permit persons to whom the Software is furnished}}
+\DoxyCodeLine{28 \textcolor{comment}{ * to do so, subject to the following conditions:}}
+\DoxyCodeLine{29 \textcolor{comment}{ *}}
+\DoxyCodeLine{30 \textcolor{comment}{ * The above copyright notice and this permission notice shall be included in all}}
+\DoxyCodeLine{31 \textcolor{comment}{ * copies or substantial portions of the Software.}}
+\DoxyCodeLine{32 \textcolor{comment}{ *}}
+\DoxyCodeLine{33 \textcolor{comment}{ * THE SOFTWARE IS PROVIDED "{}AS IS"{}, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,}}
+\DoxyCodeLine{34 \textcolor{comment}{ * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A}}
+\DoxyCodeLine{35 \textcolor{comment}{ * PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT}}
+\DoxyCodeLine{36 \textcolor{comment}{ * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF}}
+\DoxyCodeLine{37 \textcolor{comment}{ * CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE}}
+\DoxyCodeLine{38 \textcolor{comment}{ * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.}}
+\DoxyCodeLine{39 \textcolor{comment}{ *}}
+\DoxyCodeLine{40 \textcolor{comment}{ ************************************************************************************}}
+\DoxyCodeLine{41 \textcolor{comment}{ */}}
+\DoxyCodeLine{42 \textcolor{preprocessor}{\#ifndef IR\_DISTANCE\_HPP}}
+\DoxyCodeLine{43 \textcolor{preprocessor}{\#define IR\_DISTANCE\_HPP}}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45 \textcolor{preprocessor}{\#include <Arduino.h>}}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47 \textcolor{comment}{// accept durations up to 50 * 50 (MICROS\_PER\_TICK) 2500 microseconds}}
+\DoxyCodeLine{48 \textcolor{preprocessor}{\#define DURATION\_ARRAY\_SIZE 50}}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50 \textcolor{comment}{// Switch the decoding according to your needs}}
+\DoxyCodeLine{51 \textcolor{preprocessor}{\#define DISTANCE\_DO\_MSB\_DECODING PROTOCOL\_IS\_LSB\_FIRST }\textcolor{comment}{// this results in the same decodedRawData as e.g. the NEC and Kaseikyo/Panasonic decoder}}
+\DoxyCodeLine{52 \textcolor{comment}{//\#define DISTANCE\_DO\_MSB\_DECODING PROTOCOL\_IS\_MSB\_FIRST // this resembles the JVC, Denon}}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{54 \textcolor{comment}{//\#define INFO // Activate this to save program space and suppress info output.}}
+\DoxyCodeLine{55 \textcolor{comment}{//\#define DEBUG // Activate this for lots of lovely debug output from this decoder.}}
+\DoxyCodeLine{56 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_i_rremote_int_8h}{IRremoteInt.h}}"{}} \textcolor{comment}{// evaluates the DEBUG for IR\_DEBUG\_PRINT}}
+\DoxyCodeLine{57 \textcolor{comment}{//\#include "{}LongUnion.h"{}}}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{62 \textcolor{comment}{// see: https://www.mikrocontroller.net/articles/IRMP\_-\/\_english\#Codings}}
+\DoxyCodeLine{63 \textcolor{preprocessor}{\#if defined(DEBUG)}}
+\DoxyCodeLine{64 \textcolor{keywordtype}{void} printDurations(uint8\_t aArray[], uint8\_t aMaxIndex) \{}
+\DoxyCodeLine{65     \textcolor{keywordflow}{for} (uint\_fast8\_t i = 0; i <= aMaxIndex; i++) \{}
+\DoxyCodeLine{66         \textcolor{keywordflow}{if} (i \% 10 == 0) \{}
+\DoxyCodeLine{67             \textcolor{keywordflow}{if} (i == 0) \{}
+\DoxyCodeLine{68                 Serial.print(\textcolor{charliteral}{' '}); \textcolor{comment}{// indentation for the 0}}
+\DoxyCodeLine{69             \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{70                 Serial.println();}
+\DoxyCodeLine{71             \}}
+\DoxyCodeLine{72             Serial.print(i);}
+\DoxyCodeLine{73             Serial.print(F(\textcolor{stringliteral}{"{}:"{}}));}
+\DoxyCodeLine{74         \}}
+\DoxyCodeLine{75         Serial.print(F(\textcolor{stringliteral}{"{} | "{}}));}
+\DoxyCodeLine{76         Serial.print(aArray[i]);}
+\DoxyCodeLine{77     \}}
+\DoxyCodeLine{78     Serial.println();}
+\DoxyCodeLine{79 \}}
+\DoxyCodeLine{80 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{82 \textcolor{keywordtype}{bool} aggregateArrayCounts(uint8\_t aArray[], uint8\_t aMaxIndex, uint8\_t *aShortIndex, uint8\_t *aLongIndex) \{}
+\DoxyCodeLine{83     uint8\_t tSum = 0;}
+\DoxyCodeLine{84     uint16\_t tWeightedSum = 0;}
+\DoxyCodeLine{85     \textcolor{keywordflow}{for} (uint\_fast8\_t i = 0; i <= aMaxIndex; i++) \{}
+\DoxyCodeLine{86         uint8\_t tCurrentDurations = aArray[i];}
+\DoxyCodeLine{87         \textcolor{keywordflow}{if} (tCurrentDurations != 0) \{}
+\DoxyCodeLine{88             \textcolor{comment}{// Add it to sum and remove array content}}
+\DoxyCodeLine{89             tSum += tCurrentDurations;}
+\DoxyCodeLine{90             tWeightedSum += (tCurrentDurations * i);}
+\DoxyCodeLine{91             aArray[i] = 0;}
+\DoxyCodeLine{92         \}}
+\DoxyCodeLine{93         \textcolor{keywordflow}{if} ((tCurrentDurations == 0 || i == aMaxIndex) \&\& tSum != 0) \{}
+\DoxyCodeLine{94             \textcolor{comment}{// here we have a sum and a gap after the values}}
+\DoxyCodeLine{95             uint8\_t tAggregateIndex = (tWeightedSum + (tSum / 2)) / tSum; \textcolor{comment}{// with rounding}}
+\DoxyCodeLine{96             aArray[tAggregateIndex] = tSum; \textcolor{comment}{// disabling this line increases code size by 2 -\/ unbelievable!}}
+\DoxyCodeLine{97             \textcolor{comment}{// store aggregate for later decoding}}
+\DoxyCodeLine{98             \textcolor{keywordflow}{if} (*aShortIndex == 0) \{}
+\DoxyCodeLine{99                 *aShortIndex = tAggregateIndex;}
+\DoxyCodeLine{100             \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (*aLongIndex == 0) \{}
+\DoxyCodeLine{101                 *aLongIndex = tAggregateIndex;}
+\DoxyCodeLine{102             \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{103                 \textcolor{comment}{// we have 3 bins => this is likely no pulse width or distance protocol. e.g. it can be RC5.}}
+\DoxyCodeLine{104                 \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{105             \}}
+\DoxyCodeLine{106             \textcolor{comment}{// initialize for next aggregation}}
+\DoxyCodeLine{107             tSum = 0;}
+\DoxyCodeLine{108             tWeightedSum = 0;}
+\DoxyCodeLine{109         \}}
+\DoxyCodeLine{110     \}}
+\DoxyCodeLine{111     \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{112 \}}
+\DoxyCodeLine{113 }
+\DoxyCodeLine{114 \textcolor{comment}{/*}}
+\DoxyCodeLine{115 \textcolor{comment}{ * Try to decode a pulse width or pulse distance protocol.}}
+\DoxyCodeLine{116 \textcolor{comment}{ * 1. Analyze all space and mark length}}
+\DoxyCodeLine{117 \textcolor{comment}{ * 2. Decide if we have an pulse width or distance protocol}}
+\DoxyCodeLine{118 \textcolor{comment}{ * 3. Try to decode with the mark and space data found in step 1}}
+\DoxyCodeLine{119 \textcolor{comment}{ * No data and address decoding, only raw data as result.}}
+\DoxyCodeLine{120 \textcolor{comment}{ */}}
+\DoxyCodeLine{121 \textcolor{keywordtype}{bool} IRrecv::decodeDistance() \{}
+\DoxyCodeLine{122     uint8\_t tDurationArray[DURATION\_ARRAY\_SIZE];}
+\DoxyCodeLine{123 }
+\DoxyCodeLine{124     \textcolor{comment}{/*}}
+\DoxyCodeLine{125 \textcolor{comment}{     * Accept only protocols with at least 8 bits}}
+\DoxyCodeLine{126 \textcolor{comment}{     */}}
+\DoxyCodeLine{127     \textcolor{keywordflow}{if} (decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_af0571ac479d1c38c79502651b0631432}{rawlen}} < (2 * 8) + 4) \{}
+\DoxyCodeLine{128         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(\textcolor{stringliteral}{"{}PULSE\_DISTANCE: "{}});}
+\DoxyCodeLine{129         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(\textcolor{stringliteral}{"{}Data length="{}});}
+\DoxyCodeLine{130         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_af0571ac479d1c38c79502651b0631432}{rawlen}});}
+\DoxyCodeLine{131         \mbox{\hyperlink{_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{} is less than 20"{}});}
+\DoxyCodeLine{132         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{133     \}}
+\DoxyCodeLine{134 }
+\DoxyCodeLine{135     uint\_fast8\_t i;}
+\DoxyCodeLine{136 \textcolor{comment}{// Reset array}}
+\DoxyCodeLine{137     memset(tDurationArray, 0, \textcolor{keyword}{sizeof}(tDurationArray));}
+\DoxyCodeLine{138 }
+\DoxyCodeLine{139     uint8\_t tMaxDurationIndex = 0;}
+\DoxyCodeLine{140     \textcolor{comment}{// Count space durations. Skip leading start and trailing stop bit.}}
+\DoxyCodeLine{141     \textcolor{keywordflow}{for} (i = 4; i < (uint\_fast8\_t) decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_af0571ac479d1c38c79502651b0631432}{rawlen}} -\/ 2; i += 2) \{}
+\DoxyCodeLine{142         uint8\_t tDurationTicks = decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_a7aa7b811dcc0fb5ab0da7c0bddaf97f8}{rawbuf}}[i];}
+\DoxyCodeLine{143         \textcolor{keywordflow}{if} (tDurationTicks < \textcolor{keyword}{sizeof}(tDurationArray)) \{}
+\DoxyCodeLine{144             tDurationArray[tDurationTicks]++;}
+\DoxyCodeLine{145             \textcolor{keywordflow}{if} (tMaxDurationIndex < tDurationTicks) \{}
+\DoxyCodeLine{146                 tMaxDurationIndex = tDurationTicks;}
+\DoxyCodeLine{147             \}}
+\DoxyCodeLine{148         \}}
+\DoxyCodeLine{149     \}}
+\DoxyCodeLine{150 }
+\DoxyCodeLine{151 \textcolor{comment}{// aggregate counts to one duration bin}}
+\DoxyCodeLine{152     uint8\_t tSpaceTicksShort = 0;}
+\DoxyCodeLine{153     uint8\_t tSpaceTicksLong = 0;}
+\DoxyCodeLine{154     \textcolor{keywordflow}{if} (!aggregateArrayCounts(tDurationArray, tMaxDurationIndex, \&tSpaceTicksShort, \&tSpaceTicksLong)) \{}
+\DoxyCodeLine{155         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(F(\textcolor{stringliteral}{"{}PULSE\_DISTANCE: "{}}));}
+\DoxyCodeLine{156         \mbox{\hyperlink{_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(F(\textcolor{stringliteral}{"{}Space aggregation failed, more than 2 distinct duration values found"{}}));}
+\DoxyCodeLine{157         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{158     \}}
+\DoxyCodeLine{159 }
+\DoxyCodeLine{160 \textcolor{preprocessor}{\#if defined(DEBUG)}}
+\DoxyCodeLine{161     Serial.println(F(\textcolor{stringliteral}{"{}Space:"{}}));}
+\DoxyCodeLine{162     printDurations(tDurationArray, tMaxDurationIndex);}
+\DoxyCodeLine{163 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{164 }
+\DoxyCodeLine{165     \textcolor{comment}{// Reset array}}
+\DoxyCodeLine{166     memset(tDurationArray, 0, \textcolor{keyword}{sizeof}(tDurationArray));}
+\DoxyCodeLine{167 }
+\DoxyCodeLine{168     tMaxDurationIndex = 0;}
+\DoxyCodeLine{169     \textcolor{comment}{// Count mark durations. Skip leading start and trailing stop bit.}}
+\DoxyCodeLine{170     \textcolor{keywordflow}{for} (i = 3; i < (uint\_fast8\_t) decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_af0571ac479d1c38c79502651b0631432}{rawlen}} -\/ 2; i += 2) \{}
+\DoxyCodeLine{171         uint8\_t tDurationTicks = decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_a7aa7b811dcc0fb5ab0da7c0bddaf97f8}{rawbuf}}[i];}
+\DoxyCodeLine{172         \textcolor{keywordflow}{if} (tDurationTicks < \textcolor{keyword}{sizeof}(tDurationArray)) \{}
+\DoxyCodeLine{173             tDurationArray[tDurationTicks]++;}
+\DoxyCodeLine{174             \textcolor{keywordflow}{if} (tMaxDurationIndex < tDurationTicks) \{}
+\DoxyCodeLine{175                 tMaxDurationIndex = tDurationTicks;}
+\DoxyCodeLine{176             \}}
+\DoxyCodeLine{177         \}}
+\DoxyCodeLine{178     \}}
+\DoxyCodeLine{179 }
+\DoxyCodeLine{180     uint8\_t tMarkTicksShort = 0;}
+\DoxyCodeLine{181     uint8\_t tMarkTicksLong = 0;}
+\DoxyCodeLine{182     \textcolor{keywordflow}{if} (!aggregateArrayCounts(tDurationArray, tMaxDurationIndex, \&tMarkTicksShort, \&tMarkTicksLong)) \{}
+\DoxyCodeLine{183         \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(F(\textcolor{stringliteral}{"{}PULSE\_DISTANCE: "{}}));}
+\DoxyCodeLine{184         \mbox{\hyperlink{_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(F(\textcolor{stringliteral}{"{}Mark aggregation failed, more than 2 distinct duration values found"{}}));}
+\DoxyCodeLine{185     \}}
+\DoxyCodeLine{186 }
+\DoxyCodeLine{187 \textcolor{preprocessor}{\#if defined(DEBUG)}}
+\DoxyCodeLine{188     Serial.println(F(\textcolor{stringliteral}{"{}Mark:"{}}));}
+\DoxyCodeLine{189     printDurations(tDurationArray, tMaxDurationIndex);}
+\DoxyCodeLine{190 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{191     \textcolor{comment}{// skip leading start and trailing stop bit.}}
+\DoxyCodeLine{192     uint16\_t tNumberOfBits = (decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_af0571ac479d1c38c79502651b0631432}{rawlen}} / 2) -\/ 2;}
+\DoxyCodeLine{193     uint8\_t tStartIndex = 3;}
+\DoxyCodeLine{194     decodedIRData.\mbox{\hyperlink{struct_i_r_data_a945c41b8463a36cf00b0f38b0aa73200}{numberOfBits}} = tNumberOfBits;}
+\DoxyCodeLine{195     uint8\_t tNumberOfAdditionalLong = (tNumberOfBits -\/ 1) / 32;}
+\DoxyCodeLine{196 }
+\DoxyCodeLine{197     \textcolor{comment}{/*}}
+\DoxyCodeLine{198 \textcolor{comment}{     * decide, if we have an pulse width or distance protocol}}
+\DoxyCodeLine{199 \textcolor{comment}{     */}}
+\DoxyCodeLine{200     \textcolor{keywordflow}{if} (tSpaceTicksLong == 0) \{}
+\DoxyCodeLine{201         \textcolor{keywordflow}{if} (tMarkTicksLong == 0) \{}
+\DoxyCodeLine{202             \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(F(\textcolor{stringliteral}{"{}PULSE\_DISTANCE: "{}}));}
+\DoxyCodeLine{203             \mbox{\hyperlink{_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(F(\textcolor{stringliteral}{"{}Only 1 distinct duration value for each space and mark found"{}}));}
+\DoxyCodeLine{204             \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{205         \}}
+\DoxyCodeLine{206 \textcolor{comment}{//        // check if last bit can be decoded as data or not, in this case take it as a stop bit}}
+\DoxyCodeLine{207 \textcolor{comment}{//        if (decodePulseWidthData(1, decodedIRData.rawDataPtr-\/>rawlen -\/ 3, tMarkTicksLong * MICROS\_PER\_TICK,}}
+\DoxyCodeLine{208 \textcolor{comment}{//                tMarkTicksShort * MICROS\_PER\_TICK, tSpaceTicksShort * MICROS\_PER\_TICK, DISTANCE\_DO\_MSB\_DECODING)) \{}}
+\DoxyCodeLine{209 \textcolor{comment}{//            tNumberOfBits++;}}
+\DoxyCodeLine{210 \textcolor{comment}{//        \}}}
+\DoxyCodeLine{211         \textcolor{comment}{// decode without leading start bit. Currently only seen for sony protocol}}
+\DoxyCodeLine{212         \textcolor{keywordflow}{for} (uint\_fast8\_t i = 0; i <= tNumberOfAdditionalLong; ++i) \{}
+\DoxyCodeLine{213             uint8\_t tNumberOfBitsForOneDecode = tNumberOfBits;}
+\DoxyCodeLine{214             \textcolor{keywordflow}{if} (tNumberOfBitsForOneDecode > 32) \{}
+\DoxyCodeLine{215                 tNumberOfBitsForOneDecode = 32;}
+\DoxyCodeLine{216             \}}
+\DoxyCodeLine{217             \textcolor{keywordflow}{if} (!\mbox{\hyperlink{group___receiving_ga208047cf25c7850842984462bfa11cd0}{decodePulseWidthData}}(tNumberOfBitsForOneDecode, tStartIndex, tMarkTicksLong * \mbox{\hyperlink{_i_rremote_int_8h_a1c7eebb527483c272812530caa313d20}{MICROS\_PER\_TICK}},}
+\DoxyCodeLine{218                     tMarkTicksShort * \mbox{\hyperlink{_i_rremote_int_8h_a1c7eebb527483c272812530caa313d20}{MICROS\_PER\_TICK}}, tSpaceTicksShort * \mbox{\hyperlink{_i_rremote_int_8h_a1c7eebb527483c272812530caa313d20}{MICROS\_PER\_TICK}}, DISTANCE\_DO\_MSB\_DECODING)) \{}
+\DoxyCodeLine{219                 \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(F(\textcolor{stringliteral}{"{}PULSE\_WIDTH: "{}}));}
+\DoxyCodeLine{220                 \mbox{\hyperlink{_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(F(\textcolor{stringliteral}{"{}Decode failed"{}}));}
+\DoxyCodeLine{221                 \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{222             \}}
+\DoxyCodeLine{223             \textcolor{keywordflow}{if} (i == 0) \{}
+\DoxyCodeLine{224                 \textcolor{comment}{// Print protocol timing and length only once}}
+\DoxyCodeLine{225                 \mbox{\hyperlink{_i_rremote_int_8h_ac118c2eff8dfdd56b2be1b5b839ad5e9}{IR\_INFO\_PRINTLN}}();}
+\DoxyCodeLine{226                 \mbox{\hyperlink{_i_rremote_int_8h_aba66faba11cfd0d64b57de6d734f3d74}{IR\_INFO\_PRINT}}(F(\textcolor{stringliteral}{"{}PULSE\_WIDTH:"{}}));}
+\DoxyCodeLine{227                 \mbox{\hyperlink{_i_rremote_int_8h_aba66faba11cfd0d64b57de6d734f3d74}{IR\_INFO\_PRINT}}(F(\textcolor{stringliteral}{"{} HeaderMarkMicros="{}}));}
+\DoxyCodeLine{228                 \mbox{\hyperlink{_i_rremote_int_8h_aba66faba11cfd0d64b57de6d734f3d74}{IR\_INFO\_PRINT}}(decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_a7aa7b811dcc0fb5ab0da7c0bddaf97f8}{rawbuf}}[1] * \mbox{\hyperlink{_i_rremote_int_8h_a1c7eebb527483c272812530caa313d20}{MICROS\_PER\_TICK}});}
+\DoxyCodeLine{229                 \mbox{\hyperlink{_i_rremote_int_8h_aba66faba11cfd0d64b57de6d734f3d74}{IR\_INFO\_PRINT}}(F(\textcolor{stringliteral}{"{} HeaderSpaceMicros="{}}));}
+\DoxyCodeLine{230                 \mbox{\hyperlink{_i_rremote_int_8h_aba66faba11cfd0d64b57de6d734f3d74}{IR\_INFO\_PRINT}}(decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_a7aa7b811dcc0fb5ab0da7c0bddaf97f8}{rawbuf}}[2] * \mbox{\hyperlink{_i_rremote_int_8h_a1c7eebb527483c272812530caa313d20}{MICROS\_PER\_TICK}});}
+\DoxyCodeLine{231                 \mbox{\hyperlink{_i_rremote_int_8h_aba66faba11cfd0d64b57de6d734f3d74}{IR\_INFO\_PRINT}}(F(\textcolor{stringliteral}{"{} OneMarkMicros="{}}));}
+\DoxyCodeLine{232                 \mbox{\hyperlink{_i_rremote_int_8h_aba66faba11cfd0d64b57de6d734f3d74}{IR\_INFO\_PRINT}}(tMarkTicksLong * \mbox{\hyperlink{_i_rremote_int_8h_a1c7eebb527483c272812530caa313d20}{MICROS\_PER\_TICK}});}
+\DoxyCodeLine{233                 \mbox{\hyperlink{_i_rremote_int_8h_aba66faba11cfd0d64b57de6d734f3d74}{IR\_INFO\_PRINT}}(F(\textcolor{stringliteral}{"{} ZeroMarkMicros="{}}));}
+\DoxyCodeLine{234                 \mbox{\hyperlink{_i_rremote_int_8h_aba66faba11cfd0d64b57de6d734f3d74}{IR\_INFO\_PRINT}}(tMarkTicksShort * \mbox{\hyperlink{_i_rremote_int_8h_a1c7eebb527483c272812530caa313d20}{MICROS\_PER\_TICK}});}
+\DoxyCodeLine{235                 \mbox{\hyperlink{_i_rremote_int_8h_aba66faba11cfd0d64b57de6d734f3d74}{IR\_INFO\_PRINT}}(F(\textcolor{stringliteral}{"{} SpaceMicros="{}}));}
+\DoxyCodeLine{236                 \mbox{\hyperlink{_i_rremote_int_8h_aba66faba11cfd0d64b57de6d734f3d74}{IR\_INFO\_PRINT}}(tSpaceTicksShort * \mbox{\hyperlink{_i_rremote_int_8h_a1c7eebb527483c272812530caa313d20}{MICROS\_PER\_TICK}});}
+\DoxyCodeLine{237                 \mbox{\hyperlink{_i_rremote_int_8h_aba66faba11cfd0d64b57de6d734f3d74}{IR\_INFO\_PRINT}}(F(\textcolor{stringliteral}{"{} NumberOfBits="{}}));}
+\DoxyCodeLine{238                 \mbox{\hyperlink{_i_rremote_int_8h_aba66faba11cfd0d64b57de6d734f3d74}{IR\_INFO\_PRINT}}(decodedIRData.\mbox{\hyperlink{struct_i_r_data_a945c41b8463a36cf00b0f38b0aa73200}{numberOfBits}});}
+\DoxyCodeLine{239                 \mbox{\hyperlink{_i_rremote_int_8h_aba66faba11cfd0d64b57de6d734f3d74}{IR\_INFO\_PRINT}}(F(\textcolor{stringliteral}{"{} DecodedRawData:"{}}));}
+\DoxyCodeLine{240 }
+\DoxyCodeLine{241             \}}
+\DoxyCodeLine{242             \mbox{\hyperlink{_i_rremote_int_8h_aba66faba11cfd0d64b57de6d734f3d74}{IR\_INFO\_PRINT}}(F(\textcolor{stringliteral}{"{} 0x"{}}));}
+\DoxyCodeLine{243             \mbox{\hyperlink{_i_rremote_int_8h_aba66faba11cfd0d64b57de6d734f3d74}{IR\_INFO\_PRINT}}(decodedIRData.\mbox{\hyperlink{struct_i_r_data_aeca55ebf36bf919312a933597b8734d8}{decodedRawData}}, HEX);}
+\DoxyCodeLine{244             tStartIndex += 64;}
+\DoxyCodeLine{245             tNumberOfBits -\/= 32;}
+\DoxyCodeLine{246         \}}
+\DoxyCodeLine{247         \mbox{\hyperlink{_i_rremote_int_8h_ac118c2eff8dfdd56b2be1b5b839ad5e9}{IR\_INFO\_PRINTLN}}();}
+\DoxyCodeLine{248 }
+\DoxyCodeLine{249         \textcolor{comment}{// Store ticks used for decoding in extra}}
+\DoxyCodeLine{250         decodedIRData.\mbox{\hyperlink{struct_i_r_data_a0b71fa1a17e3ab0ae9bc9462b795213f}{extra}} = (tMarkTicksShort << 8) | tMarkTicksLong;}
+\DoxyCodeLine{251         decodedIRData.\mbox{\hyperlink{struct_i_r_data_a703592faec26bab5cbe465f53ef14245}{protocol}} = PULSE\_WIDTH;}
+\DoxyCodeLine{252     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{253 \textcolor{comment}{//        // check if last bit can be decoded as data or not, in this case take it as a stop bit}}
+\DoxyCodeLine{254 \textcolor{comment}{//        if (decodePulseDistanceData(1, decodedIRData.rawDataPtr-\/>rawlen -\/ 3, tMarkTicksShort * MICROS\_PER\_TICK,}}
+\DoxyCodeLine{255 \textcolor{comment}{//                tSpaceTicksLong * MICROS\_PER\_TICK, tSpaceTicksShort * MICROS\_PER\_TICK, DISTANCE\_DO\_MSB\_DECODING)) \{}}
+\DoxyCodeLine{256 \textcolor{comment}{//            Serial.print(F("{}tNumberOfBits++ "{}));}}
+\DoxyCodeLine{257 \textcolor{comment}{//            tNumberOfBits++;}}
+\DoxyCodeLine{258 \textcolor{comment}{//        \}}}
+\DoxyCodeLine{259 }
+\DoxyCodeLine{260         \textcolor{comment}{/*}}
+\DoxyCodeLine{261 \textcolor{comment}{         * Decode in 32 bit chunks}}
+\DoxyCodeLine{262 \textcolor{comment}{         */}}
+\DoxyCodeLine{263         \textcolor{keywordflow}{for} (uint\_fast8\_t i = 0; i <= tNumberOfAdditionalLong; ++i) \{}
+\DoxyCodeLine{264             uint8\_t tNumberOfBitsForOneDecode = tNumberOfBits;}
+\DoxyCodeLine{265             \textcolor{keywordflow}{if} (tNumberOfBitsForOneDecode > 32) \{}
+\DoxyCodeLine{266                 tNumberOfBitsForOneDecode = 32;}
+\DoxyCodeLine{267             \}}
+\DoxyCodeLine{268             \textcolor{keywordflow}{if} (!\mbox{\hyperlink{group___receiving_gaf8c9cdb5f7280043a552f22265bdb2d5}{decodePulseDistanceData}}(tNumberOfBitsForOneDecode, tStartIndex, tMarkTicksShort * \mbox{\hyperlink{_i_rremote_int_8h_a1c7eebb527483c272812530caa313d20}{MICROS\_PER\_TICK}},}
+\DoxyCodeLine{269                     tSpaceTicksLong * \mbox{\hyperlink{_i_rremote_int_8h_a1c7eebb527483c272812530caa313d20}{MICROS\_PER\_TICK}}, tSpaceTicksShort * \mbox{\hyperlink{_i_rremote_int_8h_a1c7eebb527483c272812530caa313d20}{MICROS\_PER\_TICK}}, DISTANCE\_DO\_MSB\_DECODING)) \{}
+\DoxyCodeLine{270                 \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(F(\textcolor{stringliteral}{"{}PULSE\_DISTANCE: "{}}));}
+\DoxyCodeLine{271                 \mbox{\hyperlink{_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(F(\textcolor{stringliteral}{"{}Decode failed"{}}));}
+\DoxyCodeLine{272                 \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{273             \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{274                 \textcolor{keywordflow}{if} (i == 0) \{}
+\DoxyCodeLine{275                     \textcolor{comment}{// Print protocol timing only once}}
+\DoxyCodeLine{276                     \mbox{\hyperlink{_i_rremote_int_8h_ac118c2eff8dfdd56b2be1b5b839ad5e9}{IR\_INFO\_PRINTLN}}();}
+\DoxyCodeLine{277                     \mbox{\hyperlink{_i_rremote_int_8h_aba66faba11cfd0d64b57de6d734f3d74}{IR\_INFO\_PRINT}}(F(\textcolor{stringliteral}{"{}PULSE\_DISTANCE:"{}}));}
+\DoxyCodeLine{278                     \mbox{\hyperlink{_i_rremote_int_8h_aba66faba11cfd0d64b57de6d734f3d74}{IR\_INFO\_PRINT}}(F(\textcolor{stringliteral}{"{} HeaderMarkMicros="{}}));}
+\DoxyCodeLine{279                     \mbox{\hyperlink{_i_rremote_int_8h_aba66faba11cfd0d64b57de6d734f3d74}{IR\_INFO\_PRINT}}(decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_a7aa7b811dcc0fb5ab0da7c0bddaf97f8}{rawbuf}}[1] * \mbox{\hyperlink{_i_rremote_int_8h_a1c7eebb527483c272812530caa313d20}{MICROS\_PER\_TICK}});}
+\DoxyCodeLine{280                     \mbox{\hyperlink{_i_rremote_int_8h_aba66faba11cfd0d64b57de6d734f3d74}{IR\_INFO\_PRINT}}(F(\textcolor{stringliteral}{"{} HeaderSpaceMicros="{}}));}
+\DoxyCodeLine{281                     \mbox{\hyperlink{_i_rremote_int_8h_aba66faba11cfd0d64b57de6d734f3d74}{IR\_INFO\_PRINT}}(decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_a7aa7b811dcc0fb5ab0da7c0bddaf97f8}{rawbuf}}[2] * \mbox{\hyperlink{_i_rremote_int_8h_a1c7eebb527483c272812530caa313d20}{MICROS\_PER\_TICK}});}
+\DoxyCodeLine{282                     \mbox{\hyperlink{_i_rremote_int_8h_aba66faba11cfd0d64b57de6d734f3d74}{IR\_INFO\_PRINT}}(F(\textcolor{stringliteral}{"{} MarkMicros="{}}));}
+\DoxyCodeLine{283                     \mbox{\hyperlink{_i_rremote_int_8h_aba66faba11cfd0d64b57de6d734f3d74}{IR\_INFO\_PRINT}}(tMarkTicksShort * \mbox{\hyperlink{_i_rremote_int_8h_a1c7eebb527483c272812530caa313d20}{MICROS\_PER\_TICK}});}
+\DoxyCodeLine{284                     \mbox{\hyperlink{_i_rremote_int_8h_aba66faba11cfd0d64b57de6d734f3d74}{IR\_INFO\_PRINT}}(F(\textcolor{stringliteral}{"{} OneSpaceMicros="{}}));}
+\DoxyCodeLine{285                     \mbox{\hyperlink{_i_rremote_int_8h_aba66faba11cfd0d64b57de6d734f3d74}{IR\_INFO\_PRINT}}(tSpaceTicksLong * \mbox{\hyperlink{_i_rremote_int_8h_a1c7eebb527483c272812530caa313d20}{MICROS\_PER\_TICK}});}
+\DoxyCodeLine{286                     \mbox{\hyperlink{_i_rremote_int_8h_aba66faba11cfd0d64b57de6d734f3d74}{IR\_INFO\_PRINT}}(F(\textcolor{stringliteral}{"{} ZeroSpaceMicros="{}}));}
+\DoxyCodeLine{287                     \mbox{\hyperlink{_i_rremote_int_8h_aba66faba11cfd0d64b57de6d734f3d74}{IR\_INFO\_PRINT}}(tSpaceTicksShort * \mbox{\hyperlink{_i_rremote_int_8h_a1c7eebb527483c272812530caa313d20}{MICROS\_PER\_TICK}});}
+\DoxyCodeLine{288                     \mbox{\hyperlink{_i_rremote_int_8h_aba66faba11cfd0d64b57de6d734f3d74}{IR\_INFO\_PRINT}}(F(\textcolor{stringliteral}{"{} NumberOfBits="{}}));}
+\DoxyCodeLine{289                     \mbox{\hyperlink{_i_rremote_int_8h_aba66faba11cfd0d64b57de6d734f3d74}{IR\_INFO\_PRINT}}(decodedIRData.\mbox{\hyperlink{struct_i_r_data_a945c41b8463a36cf00b0f38b0aa73200}{numberOfBits}});}
+\DoxyCodeLine{290                     \mbox{\hyperlink{_i_rremote_int_8h_aba66faba11cfd0d64b57de6d734f3d74}{IR\_INFO\_PRINT}}(F(\textcolor{stringliteral}{"{} DecodedRawData:"{}}));}
+\DoxyCodeLine{291                 \}}
+\DoxyCodeLine{292                 \mbox{\hyperlink{_i_rremote_int_8h_aba66faba11cfd0d64b57de6d734f3d74}{IR\_INFO\_PRINT}}(F(\textcolor{stringliteral}{"{} 0x"{}}));}
+\DoxyCodeLine{293                 \mbox{\hyperlink{_i_rremote_int_8h_aba66faba11cfd0d64b57de6d734f3d74}{IR\_INFO\_PRINT}}(decodedIRData.\mbox{\hyperlink{struct_i_r_data_aeca55ebf36bf919312a933597b8734d8}{decodedRawData}}, HEX);}
+\DoxyCodeLine{294                 tStartIndex += 64;}
+\DoxyCodeLine{295                 tNumberOfBits -\/= 32;}
+\DoxyCodeLine{296             \}}
+\DoxyCodeLine{297             \mbox{\hyperlink{_i_rremote_int_8h_ac118c2eff8dfdd56b2be1b5b839ad5e9}{IR\_INFO\_PRINTLN}}();}
+\DoxyCodeLine{298         \}}
+\DoxyCodeLine{299 }
+\DoxyCodeLine{300         \textcolor{comment}{// Store ticks used for decoding in extra}}
+\DoxyCodeLine{301         decodedIRData.\mbox{\hyperlink{struct_i_r_data_a0b71fa1a17e3ab0ae9bc9462b795213f}{extra}} = (tSpaceTicksShort << 8) | tSpaceTicksLong;}
+\DoxyCodeLine{302         decodedIRData.\mbox{\hyperlink{struct_i_r_data_a703592faec26bab5cbe465f53ef14245}{protocol}} = PULSE\_DISTANCE;}
+\DoxyCodeLine{303     \}}
+\DoxyCodeLine{304 }
+\DoxyCodeLine{305     \textcolor{keywordflow}{if} (DISTANCE\_DO\_MSB\_DECODING) \{}
+\DoxyCodeLine{306         decodedIRData.\mbox{\hyperlink{struct_i_r_data_aaaad48fc0d90e5c6daec601987848a51}{flags}} = \mbox{\hyperlink{_i_rremote_int_8h_a7f6872e6f83c0571e3150ba86428af4c}{IRDATA\_FLAGS\_IS\_MSB\_FIRST}};}
+\DoxyCodeLine{307     \}}
+\DoxyCodeLine{308 }
+\DoxyCodeLine{309     \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{310 \}}
+\DoxyCodeLine{311 }
+\DoxyCodeLine{313 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{314 \textcolor{preprocessor}{\#pragma once}}
+
+\end{DoxyCode}

@@ -1,0 +1,16 @@
+digraph "hexDigit"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="hexDigit",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="dumpDigit",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_i_r_remote___library_2ir___pronto_8hpp.html#gaa82a581fafa8fa2310b7241fe1ded33d",tooltip=" "];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="dumpNumber",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_i_r_remote___library_2ir___pronto_8hpp.html#ga69048be6384abbbe3c17e3f25432a392",tooltip=" "];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="dumpDuration",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_i_r_remote___library_2ir___pronto_8hpp.html#ga479fbb18cdfa303a8bc4322123f831df",tooltip=" "];
+  Node4 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="compensateAndDumpSequence",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_i_r_remote___library_2ir___pronto_8hpp.html#ga8a8a6b504851150df425d5b490d92640",tooltip=" "];
+}

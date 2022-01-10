@@ -7,15 +7,7 @@
         <itemizedlist>
             <listitem><para>directory <link linkend="_dir_9acf9d49aa904e11290aa99fbb847bf2">Buzzer</link></para>
 </listitem>
-            <listitem><para>directory <link linkend="_dir_179d9d7b5054d4948b6bb45d9b56a464">HeadLight</link></para>
-</listitem>
-            <listitem><para>directory <link linkend="_dir_0d0590a7bf92788992d6e58b37e049c4">HMI</link></para>
-</listitem>
-            <listitem><para>directory <link linkend="_dir_680e86b29db3c85f5493be87330c544f">MotorDriver</link></para>
-</listitem>
-            <listitem><para>directory <link linkend="_dir_59d4f5f11f923e68731a5b501df14139">StopLight</link></para>
-</listitem>
-            <listitem><para>directory <link linkend="_dir_30e273e6ba610b47a4afe80ee7f41078">TurnLight</link></para>
+            <listitem><para>directory <link linkend="_dir_30ff622b9c0222f055b9cb27c0f4274d">MotorControl</link></para>
 </listitem>
         </itemizedlist>
 </simplesect>

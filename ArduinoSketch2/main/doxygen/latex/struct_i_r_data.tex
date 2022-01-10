@@ -1,0 +1,41 @@
+\hypertarget{struct_i_r_data}{}\doxysection{IRData Struct Reference}
+\label{struct_i_r_data}\index{IRData@{IRData}}
+
+
+{\ttfamily \#include $<$IRremote\+Int.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_i_r_data_a703592faec26bab5cbe465f53ef14245}\label{struct_i_r_data_a703592faec26bab5cbe465f53ef14245}} 
+\mbox{\hyperlink{_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fad}{decode\+\_\+type\+\_\+t}} {\bfseries protocol}
+\begin{DoxyCompactList}\small\item\em UNKNOWN, NEC, SONY, RC5, ... \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_i_r_data_a1255a5b7d704d34fda83dcabcb903d4c}\label{struct_i_r_data_a1255a5b7d704d34fda83dcabcb903d4c}} 
+uint16\+\_\+t {\bfseries address}
+\begin{DoxyCompactList}\small\item\em Decoded address. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_i_r_data_ab0ce2b36765ea429e8c4bfa0706a45e7}\label{struct_i_r_data_ab0ce2b36765ea429e8c4bfa0706a45e7}} 
+uint16\+\_\+t {\bfseries command}
+\begin{DoxyCompactList}\small\item\em Decoded command. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_i_r_data_a0b71fa1a17e3ab0ae9bc9462b795213f}\label{struct_i_r_data_a0b71fa1a17e3ab0ae9bc9462b795213f}} 
+uint16\+\_\+t {\bfseries extra}
+\begin{DoxyCompactList}\small\item\em Used by Magi\+Quest and for Kaseikyo unknown vendor ID. Ticks used for decoding Distance protocol. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_i_r_data_a945c41b8463a36cf00b0f38b0aa73200}\label{struct_i_r_data_a945c41b8463a36cf00b0f38b0aa73200}} 
+uint16\+\_\+t {\bfseries number\+Of\+Bits}
+\begin{DoxyCompactList}\small\item\em Number of bits received for data (address + command + parity) -\/ to determine protocol length if different length are possible. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_i_r_data_aaaad48fc0d90e5c6daec601987848a51}\label{struct_i_r_data_aaaad48fc0d90e5c6daec601987848a51}} 
+uint8\+\_\+t {\bfseries flags}
+\begin{DoxyCompactList}\small\item\em See IRDATA\+\_\+\+FLAGS\+\_\+$\ast$ definitions above. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_i_r_data_aeca55ebf36bf919312a933597b8734d8}\label{struct_i_r_data_aeca55ebf36bf919312a933597b8734d8}} 
+uint32\+\_\+t {\bfseries decoded\+Raw\+Data}
+\begin{DoxyCompactList}\small\item\em Up to 32 bit decoded raw data, used for send\+Raw functions. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}\label{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}} 
+\mbox{\hyperlink{structirparams__struct}{irparams\+\_\+struct}} $\ast$ {\bfseries raw\+Data\+Ptr}
+\begin{DoxyCompactList}\small\item\em Pointer of the raw timing data to be decoded. Mainly the data buffer filled by receiving ISR. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Data structure for the user application, available as decoded\+IRData. Filled by decoders and read by print functions or user application. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+IRRemote/\mbox{\hyperlink{_i_rremote_int_8h}{IRremote\+Int.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,144 @@
+\hypertarget{_i_r_protocol_8h}{}\doxysection{IRRemote/\+IRProtocol.h File Reference}
+\label{_i_r_protocol_8h}\index{IRRemote/IRProtocol.h@{IRRemote/IRProtocol.h}}
+
+
+Common declarations for receiving and sending.  
+
+
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{_i_r_protocol_8h_a8717702b4019c982727719bd40af7630}\label{_i_r_protocol_8h_a8717702b4019c982727719bd40af7630}} 
+\#define {\bfseries PROTOCOL\+\_\+\+IS\+\_\+\+LSB\+\_\+\+FIRST}~false
+\item 
+\mbox{\Hypertarget{_i_r_protocol_8h_a2db53e8319cd3f5de758337fa08552d0}\label{_i_r_protocol_8h_a2db53e8319cd3f5de758337fa08552d0}} 
+\#define {\bfseries PROTOCOL\+\_\+\+IS\+\_\+\+MSB\+\_\+\+FIRST}~true
+\item 
+\mbox{\Hypertarget{_i_r_protocol_8h_a5dcaa6ec48a7a0b663e5de0ce853a541}\label{_i_r_protocol_8h_a5dcaa6ec48a7a0b663e5de0ce853a541}} 
+\#define {\bfseries SONY\+\_\+\+KHZ}~40
+\item 
+\mbox{\Hypertarget{_i_r_protocol_8h_a5e8586b46bb336ab800f4239b9bc46d1}\label{_i_r_protocol_8h_a5e8586b46bb336ab800f4239b9bc46d1}} 
+\#define {\bfseries BOSEWAVE\+\_\+\+KHZ}~38
+\item 
+\mbox{\Hypertarget{_i_r_protocol_8h_ad2ebee0d7bd6593a38e1998ddd6b0c90}\label{_i_r_protocol_8h_ad2ebee0d7bd6593a38e1998ddd6b0c90}} 
+\#define {\bfseries DENON\+\_\+\+KHZ}~38
+\item 
+\mbox{\Hypertarget{_i_r_protocol_8h_abcc6e2b61050500362daed1341bef91b}\label{_i_r_protocol_8h_abcc6e2b61050500362daed1341bef91b}} 
+\#define {\bfseries JVC\+\_\+\+KHZ}~38
+\item 
+\mbox{\Hypertarget{_i_r_protocol_8h_ada5cace06e49eefd0eceb54fa57ad824}\label{_i_r_protocol_8h_ada5cace06e49eefd0eceb54fa57ad824}} 
+\#define {\bfseries LG\+\_\+\+KHZ}~38
+\item 
+\mbox{\Hypertarget{_i_r_protocol_8h_ae1333ec007e3f586daf2b4af76894fc9}\label{_i_r_protocol_8h_ae1333ec007e3f586daf2b4af76894fc9}} 
+\#define {\bfseries NEC\+\_\+\+KHZ}~38
+\item 
+\mbox{\Hypertarget{_i_r_protocol_8h_ac386480bc33f2fa50193da38a023b8ce}\label{_i_r_protocol_8h_ac386480bc33f2fa50193da38a023b8ce}} 
+\#define {\bfseries SAMSUNG\+\_\+\+KHZ}~38
+\item 
+\mbox{\Hypertarget{_i_r_protocol_8h_ae59fcf8145e60472b2b94f7e72a1d441}\label{_i_r_protocol_8h_ae59fcf8145e60472b2b94f7e72a1d441}} 
+\#define {\bfseries KASEIKYO\+\_\+\+KHZ}~37
+\item 
+\mbox{\Hypertarget{_i_r_protocol_8h_a1e8fcd1e00b7fa15e99fae5ea30f35ae}\label{_i_r_protocol_8h_a1e8fcd1e00b7fa15e99fae5ea30f35ae}} 
+\#define {\bfseries RC5\+\_\+\+RC6\+\_\+\+KHZ}~36
+\item 
+\mbox{\Hypertarget{_i_r_protocol_8h_a310adca9c81e03bc122d77251a594440}\label{_i_r_protocol_8h_a310adca9c81e03bc122d77251a594440}} 
+\#define {\bfseries PANASONIC\+\_\+\+VENDOR\+\_\+\+ID\+\_\+\+CODE}~0x2002
+\item 
+\mbox{\Hypertarget{_i_r_protocol_8h_aeb3d85736eb3f3e60af419edd191e14d}\label{_i_r_protocol_8h_aeb3d85736eb3f3e60af419edd191e14d}} 
+\#define {\bfseries DENON\+\_\+\+VENDOR\+\_\+\+ID\+\_\+\+CODE}~0x3254
+\item 
+\mbox{\Hypertarget{_i_r_protocol_8h_aca397cf0ba4543c581f0f5bfaf50ef25}\label{_i_r_protocol_8h_aca397cf0ba4543c581f0f5bfaf50ef25}} 
+\#define {\bfseries MITSUBISHI\+\_\+\+VENDOR\+\_\+\+ID\+\_\+\+CODE}~0x\+CB23
+\item 
+\mbox{\Hypertarget{_i_r_protocol_8h_a2ee9972dc5425130b659242589ceb098}\label{_i_r_protocol_8h_a2ee9972dc5425130b659242589ceb098}} 
+\#define {\bfseries SHARP\+\_\+\+VENDOR\+\_\+\+ID\+\_\+\+CODE}~0x5\+AAA
+\item 
+\mbox{\Hypertarget{_i_r_protocol_8h_a3e456885d3a0286f50fb024b0b3f90a2}\label{_i_r_protocol_8h_a3e456885d3a0286f50fb024b0b3f90a2}} 
+\#define {\bfseries JVC\+\_\+\+VENDOR\+\_\+\+ID\+\_\+\+CODE}~0x0103
+\item 
+\mbox{\Hypertarget{_i_r_protocol_8h_a8a2dbf77031a92783a200b9902c8459b}\label{_i_r_protocol_8h_a8a2dbf77031a92783a200b9902c8459b}} 
+\#define {\bfseries SIRCS\+\_\+12\+\_\+\+PROTOCOL}~12
+\item 
+\mbox{\Hypertarget{_i_r_protocol_8h_a75fe4989c11b3e3176262acfa9bce2ce}\label{_i_r_protocol_8h_a75fe4989c11b3e3176262acfa9bce2ce}} 
+\#define {\bfseries SIRCS\+\_\+15\+\_\+\+PROTOCOL}~15
+\item 
+\mbox{\Hypertarget{_i_r_protocol_8h_a4014bf0435ac7da04aa0bb1b0949eb8e}\label{_i_r_protocol_8h_a4014bf0435ac7da04aa0bb1b0949eb8e}} 
+\#define {\bfseries SIRCS\+\_\+20\+\_\+\+PROTOCOL}~20
+\item 
+\mbox{\Hypertarget{_i_r_protocol_8h_acd9e7f1a67b4ac536be4b7754db8da62}\label{_i_r_protocol_8h_acd9e7f1a67b4ac536be4b7754db8da62}} 
+\#define {\bfseries LEGO\+\_\+\+MODE\+\_\+\+EXTENDED}~0
+\item 
+\mbox{\Hypertarget{_i_r_protocol_8h_a47c92bffd09d8ad45b99db6c6eda8e0b}\label{_i_r_protocol_8h_a47c92bffd09d8ad45b99db6c6eda8e0b}} 
+\#define {\bfseries LEGO\+\_\+\+MODE\+\_\+\+COMBO}~1
+\item 
+\mbox{\Hypertarget{_i_r_protocol_8h_a4b8e451f62edbd13839eec57242fa6bf}\label{_i_r_protocol_8h_a4b8e451f62edbd13839eec57242fa6bf}} 
+\#define {\bfseries LEGO\+\_\+\+MODE\+\_\+\+SINGLE}~0x4
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fad}{decode\+\_\+type\+\_\+t}} \{ \newline
+{\bfseries UNKNOWN} = 0
+, {\bfseries PULSE\+\_\+\+DISTANCE}
+, {\bfseries PULSE\+\_\+\+WIDTH}
+, {\bfseries DENON}
+, \newline
+{\bfseries DISH}
+, {\bfseries JVC}
+, {\bfseries LG}
+, {\bfseries LG2}
+, \newline
+{\bfseries NEC}
+, {\bfseries PANASONIC}
+, {\bfseries KASEIKYO}
+, {\bfseries KASEIKYO\+\_\+\+JVC}
+, \newline
+{\bfseries KASEIKYO\+\_\+\+DENON}
+, {\bfseries KASEIKYO\+\_\+\+SHARP}
+, {\bfseries KASEIKYO\+\_\+\+MITSUBISHI}
+, {\bfseries RC5}
+, \newline
+{\bfseries RC6}
+, {\bfseries SAMSUNG}
+, {\bfseries SHARP}
+, {\bfseries SONY}
+, \newline
+{\bfseries ONKYO}
+, {\bfseries APPLE}
+, {\bfseries BOSEWAVE}
+, {\bfseries LEGO\+\_\+\+PF}
+, \newline
+{\bfseries MAGIQUEST}
+, {\bfseries WHYNTER}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+const \+\_\+\+\_\+\+Flash\+String\+Helper $\ast$ {\bfseries get\+Protocol\+String} (\mbox{\hyperlink{_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fad}{decode\+\_\+type\+\_\+t}} a\+Protocol)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Common declarations for receiving and sending. 
+
+This file is part of Arduino-\/\+IRremote \href{https://github.com/Arduino-IRremote/Arduino-IRremote}{\texttt{ https\+://github.\+com/\+Arduino-\/\+IRremote/\+Arduino-\/\+IRremote}}.
+
+MIT License
+
+Copyright (c) 2020-\/2021 Armin Joachimsmeyer
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \char`\"{}\+Software\char`\"{}), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions\+:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED \char`\"{}\+AS IS\char`\"{}, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. 
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fad}\label{_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fad}} 
+\index{IRProtocol.h@{IRProtocol.h}!decode\_type\_t@{decode\_type\_t}}
+\index{decode\_type\_t@{decode\_type\_t}!IRProtocol.h@{IRProtocol.h}}
+\doxysubsubsection{\texorpdfstring{decode\_type\_t}{decode\_type\_t}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fad}{decode\+\_\+type\+\_\+t}}}
+
+An enum consisting of all supported formats. You do NOT need to remove entries from this list when disabling protocols! 

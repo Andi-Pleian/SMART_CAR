@@ -1,0 +1,145 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="__i_r_remote_2ac___l_g_8h" xml:lang="en-US">
+<title>main/IRRemote/ac_LG.h File Reference</title>
+<indexterm><primary>main/IRRemote/ac_LG.h</primary></indexterm>
+<programlisting linenumbering="unnumbered">#include &lt;Arduino.h&gt;
+</programlisting>Include dependency graph for ac_LG.h:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="_i_r_remote_2ac___l_g_8h__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+This graph shows which files directly or indirectly include this file:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="_i_r_remote_2ac___l_g_8h__dep__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Classes    </title>
+        <itemizedlist>
+            <listitem><para>union <link linkend="_union_l_g_protocol">LGProtocol</link></para>
+</listitem>
+            <listitem><para>class <link linkend="_class_aircondition___l_g">Aircondition_LG</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Macros    </title>
+        <itemizedlist>
+            <listitem><para>#define <link linkend="_group___airconditoners_1ga23c78d99597e1fb79900c2c2162703ed">LG_ADDRESS</link>   0x88</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1ga2e4ee6b0d489a06eb1115213bf8055ed">LG_SWITCH_ON_MASK</link>   0x0800</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1gaae2e0db9a5ce4151112a6906bfb1090c">LG_MODE_COOLING</link>   0x0800</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1gac49c9a2cf24d0bac6724167416236498">LG_MODE_DEHUMIDIFIYING</link>   0x0990</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1gae82f0963f74d72085d63857a33a8abfe">LG_MODE_FAN</link>   0x0A30</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1ga7474777d5b8f60c2871b141c4c8febdc">LG_MODE_AUTO</link>   0x0B00</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1ga49b7354b9ea838746bd12d44a73cbbfe">LG_MODE_HEATING</link>   0x0C00</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1ga50a68c01f30d77719bd0965849eb9432">LG_ENERGY_SAVING_ON</link>   0x1004</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1gaa04556b565d50612183d76a1cf17162a">LG_ENERGY_SAVING_OFF</link>   0x1005</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1gac832ef74f7acce9703cf4bfe3af9c62c">LG_JET_ON</link>   0x1008</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1ga6e9da9436e1330717c4e521c3274f9e7">LG_WALL_SWING_ON</link>   0x1314</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1gac4018dd9d884ac5f47a72f8f97a30013">LG_WALL_SWING_OFF</link>   0x1315</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1gae2aa0cea45172493aff78b178429498b">LG_SWING_ON</link>   0x1316</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1gae948545d5555a8e1661bf9ed84f8a5bd">LG_SWING_OFF</link>   0x1317</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1ga0d3fa053a91e0ccdbf82607d6f191884">LG_TIMER_ON</link>   0x8000</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1ga953e35300b777bf9b39ecb1c97fbe92b">LG_TIMER_OFF</link>   0x9000</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1gafa12114ef5d9a8113d9b812e1c3f215d">LG_SLEEP</link>   0xA000</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1gabbff1ff71274f875aab9304e201697a9">LG_CLEAR_ALL</link>   0xB000</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1gac55cb8592c8e9e1d0d9d47e8921862d0">LG_POWER_DOWN</link>   0xC005</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1gafc7cc7b8e3f42b30e478d80f917c917c">LG_LIGHT</link>   0xC00A</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1ga3f6636d07bce14c9610e5acd74e4c32c">LG_AUTO_CLEAN_ON</link>   0xC00B</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1ga61b4e884ce7bb6f44749e52af3fe93dc">LG_AUTO_CLEAN_OFF</link>   0xC00C</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1ga24fd67c4d0d7bf87fd4a7d788070a226">LG_COMMAND_OFF</link>   &apos;0&apos;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1ga79162224c70f14abcb2a2dba386148c1">LG_COMMAND_ON</link>   &apos;1&apos;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1ga82d5b518dba56f050e6563f22d9c2206">LG_COMMAND_SWING</link>   &apos;s&apos;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1ga718a9952e98c9ff0db43168edff9f9e1">LG_COMMAND_AUTO_CLEAN</link>   &apos;a&apos;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1ga64f924ab6a2a070627ca40bb8ea718a2">LG_COMMAND_JET</link>   &apos;j&apos;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1ga78b9d595527aac3bc74b16079f6a5875">LG_COMMAND_ENERGY</link>   &apos;e&apos;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1ga96e898832dfdd0788ba0d188eefed0c9">LG_COMMAND_LIGHT</link>   &apos;l&apos;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1ga7476ae7bbae7d8bbc85101df2481e928">LG_COMMAND_FAN_SPEED</link>   &apos;f&apos;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1gaee4c1f6351dff61efa70ac0f59c301b9">LG_COMMAND_TEMPERATURE</link>   &apos;t&apos;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1ga26bce5b8f0b1f61c21135f7ce116bd0e">LG_COMMAND_TEMPERATURE_PLUS</link>   &apos;+&apos;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1gad15f415d50b1f65322b15ea607d718d7">LG_COMMAND_TEMPERATURE_MINUS</link>   &apos;-&apos;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1ga8da7f66cacc866d8f7e50bfe1b80bab1">LG_COMMAND_MODE</link>   &apos;m&apos;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1gaded0337c0d938ef82caaf8c2f1c59283">LG_COMMAND_SLEEP</link>   &apos;S&apos;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1ga414f526948aba8247f62b560d75834d6">LG_COMMAND_TIMER_ON</link>   &apos;T&apos;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1ga2a765b54db1abe3e11c72f19feaa071f">LG_COMMAND_TIMER_OFF</link>   &apos;O&apos;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1gaf1ec2778dd50f24b0eee7e2141a74de2">LG_COMMAND_CLEAR_ALL</link>   &apos;C&apos;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1gad40cb179d8947abb261c66c4025d6f5c">AC_MODE_COOLING</link>   &apos;c&apos;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1ga3c73605f2e327ae30c0cb5cb90fdade5">AC_MODE_DEHUMIDIFIYING</link>   &apos;d&apos;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1gaa95639ff20eae994eac17c04cd1af46a">AC_MODE_FAN</link>   &apos;f&apos;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1ga5e3517bd87cdd71f3faedd5648f3869a">AC_MODE_AUTO</link>   &apos;a&apos;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1ga4d1f100bd13d68bbff9165cfeb1d011c">AC_MODE_HEATING</link>   &apos;h&apos;</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote_2ac___l_g_8h_1a2e8eafcea40ac8c271441c6828ab3650">LG_IS_WALL_TYPE</link>   true</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote_2ac___l_g_8h_1af24e4af37feee6f77a7dbbf379b02705">LG_IS_TOWER_TYPE</link>   false</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Macro Definition Documentation</title>
+<anchor xml:id="__i_r_remote_2ac___l_g_8h_1af24e4af37feee6f77a7dbbf379b02705"/><section>
+    <title>LG_IS_TOWER_TYPE</title>
+<indexterm><primary>LG_IS_TOWER_TYPE</primary><secondary>ac_LG.h</secondary></indexterm>
+<indexterm><primary>ac_LG.h</primary><secondary>LG_IS_TOWER_TYPE</secondary></indexterm>
+<para><computeroutput>#define LG_IS_TOWER_TYPE   false</computeroutput></para><para>
+Definition at line <link linkend="__i_r_remote_2ac___l_g_8h_source_1l00126">126</link> of file <link linkend="__i_r_remote_2ac___l_g_8h_source">ac_LG.h</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote_2ac___l_g_8h_1a2e8eafcea40ac8c271441c6828ab3650"/><section>
+    <title>LG_IS_WALL_TYPE</title>
+<indexterm><primary>LG_IS_WALL_TYPE</primary><secondary>ac_LG.h</secondary></indexterm>
+<indexterm><primary>ac_LG.h</primary><secondary>LG_IS_WALL_TYPE</secondary></indexterm>
+<para><computeroutput>#define LG_IS_WALL_TYPE   true</computeroutput></para><para>
+Definition at line <link linkend="__i_r_remote_2ac___l_g_8h_source_1l00125">125</link> of file <link linkend="__i_r_remote_2ac___l_g_8h_source">ac_LG.h</link>.</para>
+</section>
+</section>
+</section>

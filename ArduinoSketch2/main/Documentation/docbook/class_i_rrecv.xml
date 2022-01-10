@@ -1,0 +1,282 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_i_rrecv" xml:lang="en-US">
+<title>IRrecv Class Reference</title>
+<indexterm><primary>IRrecv</primary></indexterm>
+<para>
+<computeroutput>#include &lt;IRremoteInt.h&gt;</computeroutput>
+</para>
+Collaboration diagram for IRrecv:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="class_i_rrecv__coll__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_group___receiving_1ga81eee3a1f9153578d595c771688003e8">IRrecv</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_group___receiving_1ga223c74ba081592e2fba4b5cd08c8a45c">IRrecv</link> (uint8_t aReceivePin)</para>
+</listitem>
+            <listitem><para><link linkend="_group___receiving_1ga78bb606b282e710d0d542e2aa44786d8">IRrecv</link> (uint8_t aReceivePin, uint8_t aFeedbackLEDPin)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___receiving_1gac3c968e5acf5b0bbd1e1b87e0b5af61f">setReceivePin</link> (uint8_t aReceivePinNumber)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___receiving_1ga69d3e9314aea4a37b43b74a0b4f3f976">enableIRIn</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___receiving_1gaf828d23c733b1bde8f61e39230d9dbcd">disableIRIn</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___receiving_1ga0358fc4a683ba3f8d31fdde1e22be724">begin</link> (uint8_t aReceivePin, bool aEnableLEDFeedback=false, uint8_t aFeedbackLEDPin=<link linkend="__i_rremote_int_8h_1a575e74508c30d1ccf92f7e142a43dd3d">USE_DEFAULT_FEEDBACK_LED_PIN</link>)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___receiving_1ga2c06971f0e4e0c4131930c8903eb21dc">start</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___receiving_1ga9588bd3637dadf9b488a8d669030db9d">start</link> (uint32_t aMicrosecondsToAddToGapCounter)</para>
+</listitem>
+            <listitem><para>bool <link linkend="_group___receiving_1gaa4f466138c416bf4e1548f5399be0298">available</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_struct_i_r_data">IRData</link> * <link linkend="_group___receiving_1ga471a42c75e807e43827e319852536e3c">read</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___receiving_1gaadb62786cd826cd539683c03734e46fe">stop</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___receiving_1ga8ffd22c2d4c6e93918d987a4b7c3ba5b">end</link> ()</para>
+</listitem>
+            <listitem><para>bool <link linkend="_group___receiving_1gacfbf39fb284cc2d200158f20747c4ae3">isIdle</link> ()</para>
+</listitem>
+            <listitem><para>bool <link linkend="_group___receiving_1ga913af602be49b9182fb0b22e9e351b36">decode</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___receiving_1gaf40f1e16b1cc911e47ac3f0a9b3b1ec5">resume</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___receiving_1ga1c11036a46d1e9624e283821f0a99aee">printIRResultShort</link> (Print *aSerial)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___receiving_1ga4597a1f83fb256e1673291c424449c51">printIRResultMinimal</link> (Print *aSerial)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___receiving_1ga0d8405bf5ec373798c74684b9c7c2e2d">printIRResultRawFormatted</link> (Print *aSerial, bool aOutputMicrosecondsInsteadOfTicks=true)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___receiving_1gae24919a83cfbea5b2c53a851e1d3fed0">printIRResultAsCVariables</link> (Print *aSerial)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___receiving_1ga21364e5f35756fe0f72581c00b1b33b1">compensateAndPrintIRResultAsCArray</link> (Print *aSerial, bool aOutputMicrosecondsInsteadOfTicks=true)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___decoder_1gaa701711c860c8ff58d332c4567e7ff89">compensateAndPrintIRResultAsPronto</link> (Print *aSerial, unsigned int frequency=38000U)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___receiving_1ga5a515633f91a505e621cba3bab5e53d0">compensateAndStoreIRResultInArray</link> (uint8_t *aArrayPtr)</para>
+</listitem>
+            <listitem><para>size_t <link linkend="_group___decoder_1ga48195517ee0e2cd73788c7956e413014">compensateAndStorePronto</link> (String *aString, unsigned int frequency=38000U)</para>
+</listitem>
+            <listitem><para>bool <link linkend="_group___receiving_1gaf8c9cdb5f7280043a552f22265bdb2d5">decodePulseDistanceData</link> (uint8_t aNumberOfBits, uint8_t aStartOffset, uint16_t aBitMarkMicros, uint16_t aOneSpaceMicros, uint16_t aZeroSpaceMicros, bool aMSBfirst)</para>
+</listitem>
+            <listitem><para>bool <link linkend="_group___receiving_1ga208047cf25c7850842984462bfa11cd0">decodePulseWidthData</link> (uint8_t aNumberOfBits, uint8_t aStartOffset, uint16_t aOneMarkMicros, uint16_t aZeroMarkMicros, uint16_t aBitSpaceMicros, bool aMSBfirst)</para>
+</listitem>
+            <listitem><para>bool <link linkend="_class_i_rrecv_1a9f72960e141618a12b57de0e4c0cae4f">decodeBiPhaseData</link> (uint_fast8_t aNumberOfBits, uint_fast8_t aStartOffset, uint_fast8_t aStartClockCount, uint_fast8_t aValueOfSpaceToMarkTransition, uint16_t aBiphaseTimeUnit)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___receiving_1ga51376b9bd8d1d9ac5c694f6a8c8ecc98">initBiphaselevel</link> (uint8_t aRCDecodeRawbuffOffset, uint16_t aBiphaseTimeUnit)</para>
+</listitem>
+            <listitem><para>uint8_t <link linkend="_group___receiving_1ga7d26f9254747368762e4d4c09dc22fb0">getBiphaselevel</link> ()</para>
+</listitem>
+            <listitem><para>bool <link linkend="_group___decoder_1gaf9a5bf8248971aca9d4f5b68f3e9f858">decodeBoseWave</link> ()</para>
+</listitem>
+            <listitem><para>bool <link linkend="_group___decoder_1ga680c0090daf6945a85fd2658af84dfac">decodeDenon</link> ()</para>
+</listitem>
+            <listitem><para>bool <link linkend="_group___decoder_1gad6ecf38f85cefea8f71090fce4dbbbed">decodeJVC</link> ()</para>
+</listitem>
+            <listitem><para>bool <link linkend="_group___decoder_1ga099d67ab5fef881af8838d6cb11d0b14">decodeKaseikyo</link> ()</para>
+</listitem>
+            <listitem><para>bool <link linkend="_group___decoder_1gae96d28d8682a352cb1118aae25d5bba5">decodeLegoPowerFunctions</link> ()</para>
+</listitem>
+            <listitem><para>bool <link linkend="_group___decoder_1gac098ec62da77aa75ca9016d289f3d7aa">decodeLG</link> ()</para>
+</listitem>
+            <listitem><para>bool <link linkend="_class_i_rrecv_1a436c84fc521802e1a22f480b39df8e5d">decodeMagiQuest</link> ()</para>
+</listitem>
+            <listitem><para>bool <link linkend="_group___decoder_1ga3f1a3a12862517a61341a92dfb0ea7f8">decodeNEC</link> ()</para>
+</listitem>
+            <listitem><para>bool <link linkend="_group___decoder_1ga5720b53e427e0346ecc248e55c57e2b9">decodeRC5</link> ()</para>
+</listitem>
+            <listitem><para>bool <link linkend="_group___decoder_1gad98448418d525479e74c1a38725b498f">decodeRC6</link> ()</para>
+</listitem>
+            <listitem><para>bool <link linkend="_group___decoder_1ga06311ef402fe0a9cc85ad9defd35fdec">decodeSamsung</link> ()</para>
+</listitem>
+            <listitem><para>bool <link linkend="_group___decoder_1ga7edfd9309ccd7f87762a17480635dcd6">decodeSharp</link> ()</para>
+</listitem>
+            <listitem><para>bool <link linkend="_group___decoder_1gaa4b87d095decf4ec8d9e4c445d6dfa27">decodeSony</link> ()</para>
+</listitem>
+            <listitem><para>bool <link linkend="_group___decoder_1ga1de38e9831f29991f9be0e7a2583f142">decodeWhynter</link> ()</para>
+</listitem>
+            <listitem><para>bool <link linkend="_group___decoder_1ga0d0267f8c89e3cffbecd103195b67f3c">decodeDistance</link> ()</para>
+</listitem>
+            <listitem><para>bool <link linkend="_class_i_rrecv_1ab33be9e29578a2eb95beb3da169228dc">decodeHash</link> ()</para>
+</listitem>
+            <listitem><para>bool <link linkend="_class_i_rrecv_1a6207eb34d90c00db7d8d6c79e53e721d">decodeShuzu</link> ()</para>
+</listitem>
+            <listitem><para>bool <link linkend="_group___decoder_1ga5d11ba281c103fe66e0912c46276c26e">decodeDenonOld</link> (<link linkend="_structdecode__results">decode_results</link> *aResults)</para>
+</listitem>
+            <listitem><para>bool <link linkend="_group___decoder_1gad7512fb183efc882f493ce5ab4c2bd10">decodeJVCMSB</link> (<link linkend="_structdecode__results">decode_results</link> *aResults)</para>
+</listitem>
+            <listitem><para>bool <link linkend="_group___decoder_1ga1db023ba20fabb7190751b66445cc872">decodeLGMSB</link> (<link linkend="_structdecode__results">decode_results</link> *aResults)</para>
+</listitem>
+            <listitem><para>bool <link linkend="_group___decoder_1ga2b6633498c7e7b1ce64bb7f12a1ab4bd">decodeNECMSB</link> (<link linkend="_structdecode__results">decode_results</link> *aResults)</para>
+</listitem>
+            <listitem><para>bool <link linkend="_group___decoder_1ga5b0375df7166d1b6b1886891768a9379">decodePanasonicMSB</link> (<link linkend="_structdecode__results">decode_results</link> *aResults)</para>
+</listitem>
+            <listitem><para>bool <link linkend="_group___decoder_1ga7ea1a0eb3b832974be8fd6c2cbde602f">decodeSonyMSB</link> (<link linkend="_structdecode__results">decode_results</link> *aResults)</para>
+</listitem>
+            <listitem><para>bool <link linkend="_group___decoder_1ga6bdd668914f10932bc87bc57c4059ccd">decodeSAMSUNG</link> (<link linkend="_structdecode__results">decode_results</link> *aResults)</para>
+</listitem>
+            <listitem><para>bool <link linkend="_class_i_rrecv_1acc379370caac8ca6ab6f1fd1a4cc4359">decodeHashOld</link> (<link linkend="_structdecode__results">decode_results</link> *aResults)</para>
+</listitem>
+            <listitem><para>bool <link linkend="_group___receiving_1ga9705c2ae98b44014e6e8bf55191b2eba">decode</link> (<link linkend="_structdecode__results">decode_results</link> *aResults) __attribute__((deprecated(&quot;Please use IrReceiver.decode() without a parameter and IrReceiver.decodedIRData.&lt;fieldname&gt; .&quot;)))</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___feedback_l_e_d_functions_1ga1519a6ae287c97cf2764666d3250b074">blink13</link> (bool aEnableLEDFeedback) __attribute__((deprecated(&quot;Please use <link linkend="_group___feedback_l_e_d_functions_1ga53e5ec641a900f2c572c8bffd42da921">setLEDFeedback</link>() or <link linkend="_group___feedback_l_e_d_functions_1ga1150b1e371cd7d424d53dbcae6619e54">enableLEDFeedback</link>() / <link linkend="_group___feedback_l_e_d_functions_1gab72e6123a449de7feaaa1c3dcb9f8630">disableLEDFeedback</link>().&quot;)))</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___receiving_1ga26e37f666387134ed18393fd930f68db">initDecodedIRData</link> ()</para>
+</listitem>
+            <listitem><para>uint8_t <link linkend="_class_i_rrecv_1a93f90a8f4b380a181c2a9452a2dc916a">compare</link> (unsigned int oldval, unsigned int newval)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Public Attributes    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_struct_i_r_data">IRData</link> <link linkend="_class_i_rrecv_1a19d71758b1b0e1fbee948ad917c5b828">decodedIRData</link></para>
+</listitem>
+            <listitem><para><link linkend="__i_r_protocol_8h_1ad5b287a488a8c1b7b8661f029ab56fad">decode_type_t</link> <link linkend="_class_i_rrecv_1ac557e8dec6b8429f95f282370c93eb03">lastDecodedProtocol</link></para>
+</listitem>
+            <listitem><para>uint32_t <link linkend="_class_i_rrecv_1a1cf9af80cfeba7c722155c82b2d05c65">lastDecodedAddress</link></para>
+</listitem>
+            <listitem><para>uint32_t <link linkend="_class_i_rrecv_1ab82d9993e4791d7904ec3b62bb9bc1cf">lastDecodedCommand</link></para>
+</listitem>
+            <listitem><para>uint8_t <link linkend="_class_i_rrecv_1a75a2cb038de23ec735c044f176c84b3a">repeatCount</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>Main class for receiving IR signals </para>
+<para>
+Definition at line <link linkend="__i_rremote_int_8h_source_1l00213">213</link> of file <link linkend="__i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_class_i_rrecv_1a93f90a8f4b380a181c2a9452a2dc916a"/><section>
+    <title>compare()</title>
+<indexterm><primary>compare</primary><secondary>IRrecv</secondary></indexterm>
+<indexterm><primary>IRrecv</primary><secondary>compare</secondary></indexterm>
+<para><computeroutput>uint8_t IRrecv::compare (unsigned int oldval, unsigned int newval)</computeroutput></para></section>
+<anchor xml:id="_class_i_rrecv_1a9f72960e141618a12b57de0e4c0cae4f"/><section>
+    <title>decodeBiPhaseData()</title>
+<indexterm><primary>decodeBiPhaseData</primary><secondary>IRrecv</secondary></indexterm>
+<indexterm><primary>IRrecv</primary><secondary>decodeBiPhaseData</secondary></indexterm>
+<para><computeroutput>bool IRrecv::decodeBiPhaseData (uint_fast8_t aNumberOfBits, uint_fast8_t aStartOffset, uint_fast8_t aStartClockCount, uint_fast8_t aValueOfSpaceToMarkTransition, uint16_t aBiphaseTimeUnit)</computeroutput></para></section>
+<anchor xml:id="_class_i_rrecv_1ab33be9e29578a2eb95beb3da169228dc"/><section>
+    <title>decodeHash()</title>
+<indexterm><primary>decodeHash</primary><secondary>IRrecv</secondary></indexterm>
+<indexterm><primary>IRrecv</primary><secondary>decodeHash</secondary></indexterm>
+<para><computeroutput>bool IRrecv::decodeHash ( )</computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="class_i_rrecv_ab33be9e29578a2eb95beb3da169228dc_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_i_rrecv_1acc379370caac8ca6ab6f1fd1a4cc4359"/><section>
+    <title>decodeHashOld()</title>
+<indexterm><primary>decodeHashOld</primary><secondary>IRrecv</secondary></indexterm>
+<indexterm><primary>IRrecv</primary><secondary>decodeHashOld</secondary></indexterm>
+<para><computeroutput>bool IRrecv::decodeHashOld (<link linkend="_structdecode__results">decode_results</link> * aResults)</computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="class_i_rrecv_acc379370caac8ca6ab6f1fd1a4cc4359_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_i_rrecv_1a436c84fc521802e1a22f480b39df8e5d"/><section>
+    <title>decodeMagiQuest()</title>
+<indexterm><primary>decodeMagiQuest</primary><secondary>IRrecv</secondary></indexterm>
+<indexterm><primary>IRrecv</primary><secondary>decodeMagiQuest</secondary></indexterm>
+<para><computeroutput>bool IRrecv::decodeMagiQuest ( )</computeroutput></para><para>
+Definition at line <link linkend="_ir___magi_quest_8hpp_source_1l00112">112</link> of file <link linkend="_ir___magi_quest_8hpp_source">ir_MagiQuest.hpp</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="class_i_rrecv_a436c84fc521802e1a22f480b39df8e5d_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="class_i_rrecv_a436c84fc521802e1a22f480b39df8e5d_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_i_rrecv_1a6207eb34d90c00db7d8d6c79e53e721d"/><section>
+    <title>decodeShuzu()</title>
+<indexterm><primary>decodeShuzu</primary><secondary>IRrecv</secondary></indexterm>
+<indexterm><primary>IRrecv</primary><secondary>decodeShuzu</secondary></indexterm>
+<para><computeroutput>bool IRrecv::decodeShuzu ( )</computeroutput></para><para>
+Definition at line <link linkend="_ir___template_8hpp_source_1l00204">204</link> of file <link linkend="_ir___template_8hpp_source">ir_Template.hpp</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="class_i_rrecv_a6207eb34d90c00db7d8d6c79e53e721d_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+<section>
+<title>Member Data Documentation</title>
+<anchor xml:id="_class_i_rrecv_1a19d71758b1b0e1fbee948ad917c5b828"/><section>
+    <title>decodedIRData</title>
+<indexterm><primary>decodedIRData</primary><secondary>IRrecv</secondary></indexterm>
+<indexterm><primary>IRrecv</primary><secondary>decodedIRData</secondary></indexterm>
+<para><computeroutput><link linkend="_struct_i_r_data">IRData</link> IRrecv::decodedIRData</computeroutput></para><para>
+Definition at line <link linkend="__i_rremote_int_8h_source_1l00328">328</link> of file <link linkend="__i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<anchor xml:id="_class_i_rrecv_1a1cf9af80cfeba7c722155c82b2d05c65"/><section>
+    <title>lastDecodedAddress</title>
+<indexterm><primary>lastDecodedAddress</primary><secondary>IRrecv</secondary></indexterm>
+<indexterm><primary>IRrecv</primary><secondary>lastDecodedAddress</secondary></indexterm>
+<para><computeroutput>uint32_t IRrecv::lastDecodedAddress</computeroutput></para><para>
+Definition at line <link linkend="__i_rremote_int_8h_source_1l00332">332</link> of file <link linkend="__i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<anchor xml:id="_class_i_rrecv_1ab82d9993e4791d7904ec3b62bb9bc1cf"/><section>
+    <title>lastDecodedCommand</title>
+<indexterm><primary>lastDecodedCommand</primary><secondary>IRrecv</secondary></indexterm>
+<indexterm><primary>IRrecv</primary><secondary>lastDecodedCommand</secondary></indexterm>
+<para><computeroutput>uint32_t IRrecv::lastDecodedCommand</computeroutput></para><para>
+Definition at line <link linkend="__i_rremote_int_8h_source_1l00333">333</link> of file <link linkend="__i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<anchor xml:id="_class_i_rrecv_1ac557e8dec6b8429f95f282370c93eb03"/><section>
+    <title>lastDecodedProtocol</title>
+<indexterm><primary>lastDecodedProtocol</primary><secondary>IRrecv</secondary></indexterm>
+<indexterm><primary>IRrecv</primary><secondary>lastDecodedProtocol</secondary></indexterm>
+<para><computeroutput><link linkend="__i_r_protocol_8h_1ad5b287a488a8c1b7b8661f029ab56fad">decode_type_t</link> IRrecv::lastDecodedProtocol</computeroutput></para><para>
+Definition at line <link linkend="__i_rremote_int_8h_source_1l00331">331</link> of file <link linkend="__i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<anchor xml:id="_class_i_rrecv_1a75a2cb038de23ec735c044f176c84b3a"/><section>
+    <title>repeatCount</title>
+<indexterm><primary>repeatCount</primary><secondary>IRrecv</secondary></indexterm>
+<indexterm><primary>IRrecv</primary><secondary>repeatCount</secondary></indexterm>
+<para><computeroutput>uint8_t IRrecv::repeatCount</computeroutput></para><para>
+Definition at line <link linkend="__i_rremote_int_8h_source_1l00335">335</link> of file <link linkend="__i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<para>
+The documentation for this class was generated from the following files:</para>
+main/IRRemote_Library/<link linkend="__i_rremote_int_8h">IRremoteInt.h</link>main/IRRemote_Library/<link linkend="_ir___bose_wave_8hpp">ir_BoseWave.hpp</link>main/IRRemote_Library/<link linkend="_ir___denon_8hpp">ir_Denon.hpp</link>main/IRRemote_Library/<link linkend="_ir___distance_protocol_8hpp">ir_DistanceProtocol.hpp</link>main/IRRemote_Library/<link linkend="_ir___j_v_c_8hpp">ir_JVC.hpp</link>main/IRRemote_Library/<link linkend="_ir___kaseikyo_8hpp">ir_Kaseikyo.hpp</link>main/IRRemote_Library/<link linkend="_ir___lego_8hpp">ir_Lego.hpp</link>main/IRRemote_Library/<link linkend="_ir___l_g_8hpp">ir_LG.hpp</link>main/IRRemote_Library/<link linkend="_ir___magi_quest_8hpp">ir_MagiQuest.hpp</link>main/IRRemote_Library/<link linkend="_ir___n_e_c_8hpp">ir_NEC.hpp</link>main/IRRemote_Library/<link linkend="_ir___pronto_8hpp">ir_Pronto.hpp</link>main/IRRemote_Library/<link linkend="_ir___r_c5___r_c6_8hpp">ir_RC5_RC6.hpp</link>main/IRRemote_Library/<link linkend="_ir___samsung_8hpp">ir_Samsung.hpp</link>main/IRRemote_Library/<link linkend="_ir___sony_8hpp">ir_Sony.hpp</link>main/IRRemote_Library/<link linkend="_ir___template_8hpp">ir_Template.hpp</link>main/IRRemote_Library/<link linkend="_ir___whynter_8hpp">ir_Whynter.hpp</link>main/IRRemote_Library/<link linkend="__i_r_feedback_l_e_d_8hpp">IRFeedbackLED.hpp</link>main/IRRemote_Library/<link linkend="__i_r_receive_8hpp">IRReceive.hpp</link></section>
+</section>

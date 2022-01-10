@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="__i_r_remote___library_2ir___distance_protocol_8hpp" xml:lang="en-US">
+<title>main/IRRemote_Library/ir_DistanceProtocol.hpp File Reference</title>
+<indexterm><primary>main/IRRemote_Library/ir_DistanceProtocol.hpp</primary></indexterm>
+<programlisting linenumbering="unnumbered">#include &lt;Arduino.h&gt;
+#include &quot;IRremoteInt.h&quot;
+</programlisting>Include dependency graph for ir_DistanceProtocol.hpp:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="_i_r_remote___library_2ir___distance_protocol_8hpp__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+This graph shows which files directly or indirectly include this file:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="_i_r_remote___library_2ir___distance_protocol_8hpp__dep__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Macros    </title>
+        <itemizedlist>
+            <listitem><para>#define <link linkend="__i_r_remote___library_2ir___distance_protocol_8hpp_1af1f016fd203720aad6ea8f57a47a76ae">DURATION_ARRAY_SIZE</link>   50</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote___library_2ir___distance_protocol_8hpp_1a696372dc181e4c7221279cb6307acf1d">DISTANCE_DO_MSB_DECODING</link>   <link linkend="__i_r_remote___library_2_i_r_protocol_8h_1a8717702b4019c982727719bd40af7630">PROTOCOL_IS_LSB_FIRST</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Functions    </title>
+        <itemizedlist>
+            <listitem><para>bool <link linkend="_group___decoder_1ga90217576bd30a0755127207435731549">aggregateArrayCounts</link> (uint8_t aArray[], uint8_t aMaxIndex, uint8_t *aShortIndex, uint8_t *aLongIndex)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Macro Definition Documentation</title>
+<anchor xml:id="__i_r_remote___library_2ir___distance_protocol_8hpp_1a696372dc181e4c7221279cb6307acf1d"/><section>
+    <title>DISTANCE_DO_MSB_DECODING</title>
+<indexterm><primary>DISTANCE_DO_MSB_DECODING</primary><secondary>ir_DistanceProtocol.hpp</secondary></indexterm>
+<indexterm><primary>ir_DistanceProtocol.hpp</primary><secondary>DISTANCE_DO_MSB_DECODING</secondary></indexterm>
+<para><computeroutput>#define DISTANCE_DO_MSB_DECODING   <link linkend="__i_r_remote___library_2_i_r_protocol_8h_1a8717702b4019c982727719bd40af7630">PROTOCOL_IS_LSB_FIRST</link></computeroutput></para><para>
+Definition at line <link linkend="__i_r_remote___library_2ir___distance_protocol_8hpp_source_1l00051">51</link> of file <link linkend="__i_r_remote___library_2ir___distance_protocol_8hpp_source">ir_DistanceProtocol.hpp</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote___library_2ir___distance_protocol_8hpp_1af1f016fd203720aad6ea8f57a47a76ae"/><section>
+    <title>DURATION_ARRAY_SIZE</title>
+<indexterm><primary>DURATION_ARRAY_SIZE</primary><secondary>ir_DistanceProtocol.hpp</secondary></indexterm>
+<indexterm><primary>ir_DistanceProtocol.hpp</primary><secondary>DURATION_ARRAY_SIZE</secondary></indexterm>
+<para><computeroutput>#define DURATION_ARRAY_SIZE   50</computeroutput></para><para>
+Definition at line <link linkend="__i_r_remote___library_2ir___distance_protocol_8hpp_source_1l00048">48</link> of file <link linkend="__i_r_remote___library_2ir___distance_protocol_8hpp_source">ir_DistanceProtocol.hpp</link>.</para>
+</section>
+</section>
+</section>

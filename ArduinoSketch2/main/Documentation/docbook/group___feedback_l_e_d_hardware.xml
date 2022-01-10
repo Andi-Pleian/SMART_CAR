@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_group___feedback_l_e_d_hardware" xml:lang="en-US">
+<title>Definitions of FEEDBACK_LED_ON and FEEDBACK_LED_OFF for the different CPU / boards</title>
+<indexterm><primary>Definitions of FEEDBACK_LED_ON and FEEDBACK_LED_OFF for the different CPU / boards</primary></indexterm>
+Collaboration diagram for Definitions of FEEDBACK_LED_ON and FEEDBACK_LED_OFF for the different CPU / boards:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="group___feedback_l_e_d_hardware.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>

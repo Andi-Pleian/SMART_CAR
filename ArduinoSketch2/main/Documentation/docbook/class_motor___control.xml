@@ -1,0 +1,114 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_motor___control" xml:lang="en-US">
+<title>Motor_Control Class Reference</title>
+<indexterm><primary>Motor_Control</primary></indexterm>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_motor___control_1ad3a4ef49fd904eab34322818a64183c1">Motor_Control</link> (unsigned short int, unsigned short int, unsigned short int, unsigned short int, unsigned short int, unsigned short int)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Public Attributes    </title>
+        <itemizedlist>
+            <listitem><para>unsigned short int <link linkend="_class_motor___control_1ad30b6a8d571e7b1bf802c1ef98b4e734">enA</link></para>
+</listitem>
+            <listitem><para>unsigned short int <link linkend="_class_motor___control_1ab6ff5e4c89bbf9f44b0f034c5539b63e">enB</link></para>
+</listitem>
+            <listitem><para>unsigned short int <link linkend="_class_motor___control_1a1c4aa3738ba68f56cca2f318e3569ea5">rightBackward</link></para>
+</listitem>
+            <listitem><para>unsigned short int <link linkend="_class_motor___control_1a84f9f0d7a10d44a10f5587960dfea191">rightForward</link></para>
+</listitem>
+            <listitem><para>unsigned short int <link linkend="_class_motor___control_1abbb803251c96937376ad2d28702968c0">leftForward</link></para>
+</listitem>
+            <listitem><para>unsigned short int <link linkend="_class_motor___control_1ac709affe0d5a95a821d084c25e1c5cac">leftBackward</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Private Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><anchor xml:id="_class_motor___control_1a839dd40bcc230ae0751934e486eeeef0"/><emphasis role="strong">Motor_Control</emphasis> (const <link linkend="_class_motor___control">Motor_Control</link> &amp;c)</para>
+</listitem>
+            <listitem><para><anchor xml:id="_class_motor___control_1aa4372d420a470d61d000695ef9324255"/><link linkend="_class_motor___control">Motor_Control</link> &amp; <emphasis role="strong">operator=</emphasis> (const <link linkend="_class_motor___control">Motor_Control</link> &amp;c)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+<para>
+Definition at line <link linkend="__motor___control_8h_source_1l00013">13</link> of file <link linkend="__motor___control_8h_source">Motor_Control.h</link>.</para>
+</section>
+<section>
+<title>Constructor &amp; Destructor Documentation</title>
+<anchor xml:id="_class_motor___control_1ab6d63f7fa4d0d40fecbdb96118873747"/><section>
+    <title>Motor_Control()<computeroutput>[1/2]</computeroutput></title>
+<indexterm><primary>Motor_Control</primary><secondary>Motor_Control</secondary></indexterm>
+<indexterm><primary>Motor_Control</primary><secondary>Motor_Control</secondary></indexterm>
+<para><computeroutput>Motor_Control::Motor_Control ( )</computeroutput></para><para>
+Definition at line <link linkend="__motor___control_8cpp_source_1l00012">12</link> of file <link linkend="__motor___control_8cpp_source">Motor_Control.cpp</link>.</para>
+</section>
+<anchor xml:id="_class_motor___control_1ad3a4ef49fd904eab34322818a64183c1"/><section>
+    <title>Motor_Control()<computeroutput>[2/2]</computeroutput></title>
+<indexterm><primary>Motor_Control</primary><secondary>Motor_Control</secondary></indexterm>
+<indexterm><primary>Motor_Control</primary><secondary>Motor_Control</secondary></indexterm>
+<para><computeroutput>Motor_Control::Motor_Control (unsigned short int enA_arg, unsigned short int enB_arg, unsigned short int in1_arg, unsigned short int in2_arg, unsigned short int in3_arg, unsigned short int in4_arg)</computeroutput></para><para>
+Definition at line <link linkend="__motor___control_8cpp_source_1l00022">22</link> of file <link linkend="__motor___control_8cpp_source">Motor_Control.cpp</link>.</para>
+</section>
+<anchor xml:id="_class_motor___control_1aa4b9dbade1b5aed20b063379238044c4"/><section>
+    <title>~Motor_Control()</title>
+<indexterm><primary>~Motor_Control</primary><secondary>Motor_Control</secondary></indexterm>
+<indexterm><primary>Motor_Control</primary><secondary>~Motor_Control</secondary></indexterm>
+<para><computeroutput>Motor_Control::~Motor_Control ( )</computeroutput></para><para>
+Definition at line <link linkend="__motor___control_8cpp_source_1l00017">17</link> of file <link linkend="__motor___control_8cpp_source">Motor_Control.cpp</link>.</para>
+</section>
+</section>
+<section>
+<title>Member Data Documentation</title>
+<anchor xml:id="_class_motor___control_1ad30b6a8d571e7b1bf802c1ef98b4e734"/><section>
+    <title>enA</title>
+<indexterm><primary>enA</primary><secondary>Motor_Control</secondary></indexterm>
+<indexterm><primary>Motor_Control</primary><secondary>enA</secondary></indexterm>
+<para><computeroutput>unsigned short int Motor_Control::enA</computeroutput></para><para>
+Definition at line <link linkend="__motor___control_8h_source_1l00015">15</link> of file <link linkend="__motor___control_8h_source">Motor_Control.h</link>.</para>
+</section>
+<anchor xml:id="_class_motor___control_1ab6ff5e4c89bbf9f44b0f034c5539b63e"/><section>
+    <title>enB</title>
+<indexterm><primary>enB</primary><secondary>Motor_Control</secondary></indexterm>
+<indexterm><primary>Motor_Control</primary><secondary>enB</secondary></indexterm>
+<para><computeroutput>unsigned short int Motor_Control::enB</computeroutput></para><para>
+Definition at line <link linkend="__motor___control_8h_source_1l00016">16</link> of file <link linkend="__motor___control_8h_source">Motor_Control.h</link>.</para>
+</section>
+<anchor xml:id="_class_motor___control_1ac709affe0d5a95a821d084c25e1c5cac"/><section>
+    <title>leftBackward</title>
+<indexterm><primary>leftBackward</primary><secondary>Motor_Control</secondary></indexterm>
+<indexterm><primary>Motor_Control</primary><secondary>leftBackward</secondary></indexterm>
+<para><computeroutput>unsigned short int Motor_Control::leftBackward</computeroutput></para><para>
+Definition at line <link linkend="__motor___control_8h_source_1l00021">21</link> of file <link linkend="__motor___control_8h_source">Motor_Control.h</link>.</para>
+</section>
+<anchor xml:id="_class_motor___control_1abbb803251c96937376ad2d28702968c0"/><section>
+    <title>leftForward</title>
+<indexterm><primary>leftForward</primary><secondary>Motor_Control</secondary></indexterm>
+<indexterm><primary>Motor_Control</primary><secondary>leftForward</secondary></indexterm>
+<para><computeroutput>unsigned short int Motor_Control::leftForward</computeroutput></para><para>
+Definition at line <link linkend="__motor___control_8h_source_1l00020">20</link> of file <link linkend="__motor___control_8h_source">Motor_Control.h</link>.</para>
+</section>
+<anchor xml:id="_class_motor___control_1a1c4aa3738ba68f56cca2f318e3569ea5"/><section>
+    <title>rightBackward</title>
+<indexterm><primary>rightBackward</primary><secondary>Motor_Control</secondary></indexterm>
+<indexterm><primary>Motor_Control</primary><secondary>rightBackward</secondary></indexterm>
+<para><computeroutput>unsigned short int Motor_Control::rightBackward</computeroutput></para><para>
+Definition at line <link linkend="__motor___control_8h_source_1l00018">18</link> of file <link linkend="__motor___control_8h_source">Motor_Control.h</link>.</para>
+</section>
+<anchor xml:id="_class_motor___control_1a84f9f0d7a10d44a10f5587960dfea191"/><section>
+    <title>rightForward</title>
+<indexterm><primary>rightForward</primary><secondary>Motor_Control</secondary></indexterm>
+<indexterm><primary>Motor_Control</primary><secondary>rightForward</secondary></indexterm>
+<para><computeroutput>unsigned short int Motor_Control::rightForward</computeroutput></para><para>
+Definition at line <link linkend="__motor___control_8h_source_1l00019">19</link> of file <link linkend="__motor___control_8h_source">Motor_Control.h</link>.</para>
+</section>
+<para>
+The documentation for this class was generated from the following files:</para>
+ArduinoSketch2/main/Modules/Actuators/MotorControl/Motor_Control.hArduinoSketch2/main/Modules/Actuators/MotorControl/Motor_Control.cpp</section>
+</section>

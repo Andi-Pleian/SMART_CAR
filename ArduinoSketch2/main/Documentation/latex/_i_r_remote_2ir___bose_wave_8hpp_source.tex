@@ -1,0 +1,138 @@
+\hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source}{}\doxysection{ir\+\_\+\+Bose\+Wave.\+hpp}
+\label{_i_r_remote_2ir___bose_wave_8hpp_source}\index{main/IRRemote/ir\_BoseWave.hpp@{main/IRRemote/ir\_BoseWave.hpp}}
+\mbox{\hyperlink{_i_r_remote_2ir___bose_wave_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00001}00001 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00002}00002 \textcolor{comment}{ * ir\_BoseWave.cpp}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00003}00003 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00004}00004 \textcolor{comment}{ *  Contains functions for receiving and sending Bose IR Protocol}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00005}00005 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00006}00006 \textcolor{comment}{ *  This file is part of Arduino-\/IRremote https://github.com/Arduino-\/IRremote/Arduino-\/IRremote.}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00007}00007 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00008}00008 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00009}00009 \textcolor{preprocessor}{\#ifndef IR\_BOSEWAVE\_HPP}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00010}00010 \textcolor{preprocessor}{\#define IR\_BOSEWAVE\_HPP}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00011}00011 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00012}00012 \textcolor{preprocessor}{\#include <Arduino.h>}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00013}00013 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00014}00014 \textcolor{comment}{//\#define DEBUG // Activate this for lots of lovely debug output from this decoder.}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00015}00015 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h}{IRremoteInt.h}}"{}} \textcolor{comment}{// evaluates the DEBUG for IR\_DEBUG\_PRINT}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00016}00016 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00020}00020 \textcolor{comment}{//==============================================================================}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00021}00021 \textcolor{comment}{//                           BBBB    OOO    SSSS  EEEEE}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00022}00022 \textcolor{comment}{//                           B   B  O   O  S      E}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00023}00023 \textcolor{comment}{//                           BB B   O   O   SSS   EEEE}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00024}00024 \textcolor{comment}{//                           B   B  O   O      S  E}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00025}00025 \textcolor{comment}{//                           BBBB    OOO   SSSS   EEEEE}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00026}00026 \textcolor{comment}{//==============================================================================}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00027}00027 \textcolor{comment}{// see http://lirc.sourceforge.net/remotes/bose/WAVERADIO}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00028}00028 \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00029}00029 \textcolor{comment}{// Support for Bose Wave Radio CD initially provided by https://github.com/uvotguy.}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00030}00030 \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00031}00031 \textcolor{comment}{// As seen on my trusty oscilloscope, there is no repeat code.  Instead, when I}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00032}00032 \textcolor{comment}{// press and hold a button on my remote, it sends a command, makes a 51.2ms space,}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00033}00033 \textcolor{comment}{// and resends the command, etc, etc.}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00034}00034 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00035}00035 \textcolor{comment}{// LSB first, 1 start bit + 8 bit data + 8 bit inverted data + 1 stop bit.}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00036}\mbox{\hyperlink{group___decoder_ga97929dcf9c3088fe6b5ea9984179ee2a}{00036}} \textcolor{preprocessor}{\#define BOSEWAVE\_BITS             16 }\textcolor{comment}{// Command and inverted command}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00037}00037 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00038}\mbox{\hyperlink{group___decoder_ga01910d7deda73c7866abb73405e982d5}{00038}} \textcolor{preprocessor}{\#define BOSEWAVE\_HEADER\_MARK    1060}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00039}\mbox{\hyperlink{group___decoder_ga1d790d85945d62aeac5b1324dcbc0654}{00039}} \textcolor{preprocessor}{\#define BOSEWAVE\_HEADER\_SPACE   1450}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00040}\mbox{\hyperlink{group___decoder_ga4a7b99be53662b1689675e92c5e8d640}{00040}} \textcolor{preprocessor}{\#define BOSEWAVE\_BIT\_MARK        534}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00041}\mbox{\hyperlink{group___decoder_gac5abcecc1e901cf947864d70ef5fd685}{00041}} \textcolor{preprocessor}{\#define BOSEWAVE\_ONE\_SPACE       468}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00042}\mbox{\hyperlink{group___decoder_ga1a90821da64722ab8ddaefe4d084c4b9}{00042}} \textcolor{preprocessor}{\#define BOSEWAVE\_ZERO\_SPACE     1447}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00043}00043 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00044}\mbox{\hyperlink{group___decoder_gaaccf319744a0908453bf1e686a1eccf7}{00044}} \textcolor{preprocessor}{\#define BOSEWAVE\_REPEAT\_SPACE  52000}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00045}00045 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00046}00046 \textcolor{comment}{//+=============================================================================}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00047}00047 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00048}\mbox{\hyperlink{group___decoder_ga56bfe794dedefda7cc2487301fe1f1f3}{00048}} \textcolor{keywordtype}{void} \mbox{\hyperlink{group___decoder_ga56bfe794dedefda7cc2487301fe1f1f3}{IRsend::sendBoseWave}}(uint8\_t aCommand, uint\_fast8\_t aNumberOfRepeats) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00049}00049     \textcolor{comment}{// Set IR carrier frequency}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00050}00050     \mbox{\hyperlink{group___sending_ga42c04af63d252b320c017ffa2bfc90e5}{enableIROut}}(\mbox{\hyperlink{_i_r_remote_2_i_r_protocol_8h_a5e8586b46bb336ab800f4239b9bc46d1}{BOSEWAVE\_KHZ}}); \textcolor{comment}{// 38 kHz}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00051}00051 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00052}00052     uint\_fast8\_t tNumberOfCommands = \mbox{\hyperlink{class_i_rsend_aff233b57d2382a713926797ce5da0fd3}{aNumberOfRepeats}} + 1;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00053}00053     \textcolor{keywordflow}{while} (tNumberOfCommands > 0) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00054}00054 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00055}00055         \textcolor{comment}{// Header}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00056}00056         \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(\mbox{\hyperlink{group___decoder_ga01910d7deda73c7866abb73405e982d5}{BOSEWAVE\_HEADER\_MARK}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00057}00057         \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(\mbox{\hyperlink{group___decoder_ga1d790d85945d62aeac5b1324dcbc0654}{BOSEWAVE\_HEADER\_SPACE}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00058}00058         \textcolor{comment}{// send 8 command bits and then 8 inverted command bits LSB first}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00059}00059         uint16\_t tData = ((\string~aCommand) << 8) | \mbox{\hyperlink{class_i_rsend_a5f5d819c72ce2f74395d14166e77c7cc}{aCommand}};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00060}00060 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00061}00061         \mbox{\hyperlink{group___sending_ga6904a411999a4c9f7306dba49851eb7b}{sendPulseDistanceWidthData}}(\mbox{\hyperlink{group___decoder_ga4a7b99be53662b1689675e92c5e8d640}{BOSEWAVE\_BIT\_MARK}}, \mbox{\hyperlink{group___decoder_gac5abcecc1e901cf947864d70ef5fd685}{BOSEWAVE\_ONE\_SPACE}}, \mbox{\hyperlink{group___decoder_ga4a7b99be53662b1689675e92c5e8d640}{BOSEWAVE\_BIT\_MARK}}, \mbox{\hyperlink{group___decoder_ga1a90821da64722ab8ddaefe4d084c4b9}{BOSEWAVE\_ZERO\_SPACE}}, tData,}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00062}00062         \mbox{\hyperlink{group___decoder_ga97929dcf9c3088fe6b5ea9984179ee2a}{BOSEWAVE\_BITS}}, \mbox{\hyperlink{_i_r_remote_2_i_r_protocol_8h_a8717702b4019c982727719bd40af7630}{PROTOCOL\_IS\_LSB\_FIRST}}, \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a48e176b38988494bc725ac4fa98c534a}{SEND\_STOP\_BIT}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00063}00063 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00064}00064         tNumberOfCommands-\/-\/;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00065}00065         \textcolor{comment}{// skip last delay!}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00066}00066         \textcolor{keywordflow}{if} (tNumberOfCommands > 0) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00067}00067             \textcolor{comment}{// send repeated command with a fixed space gap}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00068}00068             delay( \mbox{\hyperlink{group___decoder_gaaccf319744a0908453bf1e686a1eccf7}{BOSEWAVE\_REPEAT\_SPACE}} / \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_ae9ba0b7dd556e22688f7da01019bba68}{MICROS\_IN\_ONE\_MILLI}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00069}00069         \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00070}00070     \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00071}00071 \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00072}00072 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00073}00073 \textcolor{comment}{//+=============================================================================}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00074}\mbox{\hyperlink{group___decoder_gaf9a5bf8248971aca9d4f5b68f3e9f858}{00074}} \textcolor{keywordtype}{bool} \mbox{\hyperlink{group___decoder_gaf9a5bf8248971aca9d4f5b68f3e9f858}{IRrecv::decodeBoseWave}}() \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00075}00075 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00076}00076     \textcolor{comment}{// Check header "{}mark"{}}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00077}00077     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{group___receiving_ga4472564ea96b1ee10b51f594f60d7aeb}{matchMark}}(\mbox{\hyperlink{class_i_rrecv_a19d71758b1b0e1fbee948ad917c5b828}{decodedIRData}}.\mbox{\hyperlink{struct_i_r_data_aea978b2fc583715678eb92ac96aac8fe}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_a24c9f838f5442649b9655dd53e4b029c}{rawbuf}}[1], \mbox{\hyperlink{group___decoder_ga01910d7deda73c7866abb73405e982d5}{BOSEWAVE\_HEADER\_MARK}})) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00078}00078         \textcolor{comment}{// no debug output, since this check is mainly to determine the received protocol}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00079}00079         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00080}00080     \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00081}00081 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00082}00082     \textcolor{comment}{// Check we have enough data +4 for initial gap, start bit mark and space + stop bit mark}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00083}00083     \textcolor{keywordflow}{if} (\mbox{\hyperlink{class_i_rrecv_a19d71758b1b0e1fbee948ad917c5b828}{decodedIRData}}.\mbox{\hyperlink{struct_i_r_data_aea978b2fc583715678eb92ac96aac8fe}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_af0571ac479d1c38c79502651b0631432}{rawlen}} != (2 * \mbox{\hyperlink{group___decoder_ga97929dcf9c3088fe6b5ea9984179ee2a}{BOSEWAVE\_BITS}}) + 4) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00084}00084         \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(\textcolor{stringliteral}{"{}Bose: "{}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00085}00085         \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(\textcolor{stringliteral}{"{}Data length="{}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00086}00086         \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(\mbox{\hyperlink{class_i_rrecv_a19d71758b1b0e1fbee948ad917c5b828}{decodedIRData}}.\mbox{\hyperlink{struct_i_r_data_aea978b2fc583715678eb92ac96aac8fe}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_af0571ac479d1c38c79502651b0631432}{rawlen}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00087}00087         \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{} is not 36"{}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00088}00088         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00089}00089     \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00090}00090     \textcolor{comment}{// Check header "{}space"{}}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00091}00091     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{group___receiving_ga7902b620f6c01463b5b6e50ef604ac8b}{matchSpace}}(\mbox{\hyperlink{class_i_rrecv_a19d71758b1b0e1fbee948ad917c5b828}{decodedIRData}}.\mbox{\hyperlink{struct_i_r_data_aea978b2fc583715678eb92ac96aac8fe}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_a24c9f838f5442649b9655dd53e4b029c}{rawbuf}}[2], \mbox{\hyperlink{group___decoder_ga1d790d85945d62aeac5b1324dcbc0654}{BOSEWAVE\_HEADER\_SPACE}})) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00092}00092         \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(\textcolor{stringliteral}{"{}Bose: "{}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00093}00093         \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}Header space length is wrong"{}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00094}00094         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00095}00095     \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00096}00096 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00097}00097     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{group___receiving_gaf8c9cdb5f7280043a552f22265bdb2d5}{decodePulseDistanceData}}(\mbox{\hyperlink{group___decoder_ga97929dcf9c3088fe6b5ea9984179ee2a}{BOSEWAVE\_BITS}}, 3, \mbox{\hyperlink{group___decoder_ga4a7b99be53662b1689675e92c5e8d640}{BOSEWAVE\_BIT\_MARK}}, \mbox{\hyperlink{group___decoder_gac5abcecc1e901cf947864d70ef5fd685}{BOSEWAVE\_ONE\_SPACE}}, \mbox{\hyperlink{group___decoder_ga1a90821da64722ab8ddaefe4d084c4b9}{BOSEWAVE\_ZERO\_SPACE}}, \mbox{\hyperlink{_i_r_remote_2_i_r_protocol_8h_a8717702b4019c982727719bd40af7630}{PROTOCOL\_IS\_LSB\_FIRST}})) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00098}00098         \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(\textcolor{stringliteral}{"{}Bose: "{}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00099}00099         \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}Decode failed"{}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00100}00100         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00101}00101     \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00102}00102 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00103}00103     \textcolor{comment}{// Stop bit}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00104}00104     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{group___receiving_ga4472564ea96b1ee10b51f594f60d7aeb}{matchMark}}(\mbox{\hyperlink{class_i_rrecv_a19d71758b1b0e1fbee948ad917c5b828}{decodedIRData}}.\mbox{\hyperlink{struct_i_r_data_aea978b2fc583715678eb92ac96aac8fe}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_a24c9f838f5442649b9655dd53e4b029c}{rawbuf}}[3 + (2 * \mbox{\hyperlink{group___decoder_ga97929dcf9c3088fe6b5ea9984179ee2a}{BOSEWAVE\_BITS}})], \mbox{\hyperlink{group___decoder_ga4a7b99be53662b1689675e92c5e8d640}{BOSEWAVE\_BIT\_MARK}})) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00105}00105         \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(\textcolor{stringliteral}{"{}Bose: "{}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00106}00106         \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(F(\textcolor{stringliteral}{"{}Stop bit mark length is wrong"{}}));}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00107}00107         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00108}00108     \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00109}00109 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00110}00110     \textcolor{comment}{// Success}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00111}00111 \textcolor{comment}{//    decodedIRData.flags = IRDATA\_FLAGS\_IS\_LSB\_FIRST; // Not required, since this is the start value}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00112}00112     uint16\_t tDecodedValue = \mbox{\hyperlink{class_i_rrecv_a19d71758b1b0e1fbee948ad917c5b828}{decodedIRData}}.\mbox{\hyperlink{struct_i_r_data_aeca55ebf36bf919312a933597b8734d8}{decodedRawData}};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00113}00113     uint8\_t tCommandNotInverted = tDecodedValue \& 0xFF;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00114}00114     uint8\_t tCommandInverted = tDecodedValue >> 8;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00115}00115     \textcolor{comment}{// parity check for command. Use this variant to avoid compiler warning "{}comparison of promoted \string~unsigned with unsigned [-\/Wsign-\/compare]"{}}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00116}00116     \textcolor{keywordflow}{if} ((tCommandNotInverted \string^ tCommandInverted) != 0xFF) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00117}00117         \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(\textcolor{stringliteral}{"{}Bose: "{}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00118}00118         \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(\textcolor{stringliteral}{"{}Command and inverted command check failed"{}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00119}00119         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00120}00120     \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00121}00121 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00122}00122     \textcolor{comment}{// check for repeat}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00123}00123     \textcolor{keywordflow}{if} (\mbox{\hyperlink{class_i_rrecv_a19d71758b1b0e1fbee948ad917c5b828}{decodedIRData}}.\mbox{\hyperlink{struct_i_r_data_aea978b2fc583715678eb92ac96aac8fe}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_a24c9f838f5442649b9655dd53e4b029c}{rawbuf}}[0] < ((\mbox{\hyperlink{group___decoder_gaaccf319744a0908453bf1e686a1eccf7}{BOSEWAVE\_REPEAT\_SPACE}} + (\mbox{\hyperlink{group___decoder_gaaccf319744a0908453bf1e686a1eccf7}{BOSEWAVE\_REPEAT\_SPACE}} / 4)) / \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a1c7eebb527483c272812530caa313d20}{MICROS\_PER\_TICK}})) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00124}00124         \mbox{\hyperlink{class_i_rrecv_a19d71758b1b0e1fbee948ad917c5b828}{decodedIRData}}.\mbox{\hyperlink{struct_i_r_data_aaaad48fc0d90e5c6daec601987848a51}{flags}} = \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_aaa9952cd64b58083c28873484c494abf}{IRDATA\_FLAGS\_IS\_REPEAT}} | \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a035e96118f9daf6d8e5152a1ae466538}{IRDATA\_FLAGS\_IS\_LSB\_FIRST}};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00125}00125     \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00126}00126 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00127}00127     \mbox{\hyperlink{class_i_rrecv_a19d71758b1b0e1fbee948ad917c5b828}{decodedIRData}}.\mbox{\hyperlink{struct_i_r_data_ab0ce2b36765ea429e8c4bfa0706a45e7}{command}} = tCommandNotInverted;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00128}00128     \mbox{\hyperlink{class_i_rrecv_a19d71758b1b0e1fbee948ad917c5b828}{decodedIRData}}.\mbox{\hyperlink{struct_i_r_data_a703592faec26bab5cbe465f53ef14245}{protocol}} = \mbox{\hyperlink{_i_r_remote_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada20736b037c0e7444d4dc7ff06e9dea54}{BOSEWAVE}};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00129}00129     \mbox{\hyperlink{class_i_rrecv_a19d71758b1b0e1fbee948ad917c5b828}{decodedIRData}}.\mbox{\hyperlink{struct_i_r_data_a945c41b8463a36cf00b0f38b0aa73200}{numberOfBits}} = \mbox{\hyperlink{group___decoder_ga97929dcf9c3088fe6b5ea9984179ee2a}{BOSEWAVE\_BITS}};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00130}00130 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00131}00131     \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00132}00132 \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00133}00133 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00135}00135 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \#ifndef IR\_BOSEWAVE\_HPP}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___bose_wave_8hpp_source_l00136}00136 \textcolor{preprocessor}{\#pragma once}}
+
+\end{DoxyCode}

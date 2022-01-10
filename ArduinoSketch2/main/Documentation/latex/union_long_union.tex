@@ -1,0 +1,339 @@
+\hypertarget{union_long_union}{}\doxysection{Long\+Union Union Reference}
+\label{union_long_union}\index{LongUnion@{LongUnion}}
+
+
+{\ttfamily \#include $<$Long\+Union.\+h$>$}
+
+
+
+Collaboration diagram for Long\+Union\+:
+% FIG 0
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>uint8\_t \mbox{\hyperlink{union_long_union_aa41368107679917a1c39f30999f4e9d9}{LowByte}}\\
+\>uint8\_t \mbox{\hyperlink{union_long_union_aeed69e051ef3c5c3d03e0efa260226b1}{MidLowByte}}\\
+\>uint8\_t \mbox{\hyperlink{union_long_union_aba027b17010803cf910996cae9201f32}{MidHighByte}}\\
+\>uint8\_t \mbox{\hyperlink{union_long_union_a67e1514b7a6ccc4d017eb6928c327e5c}{HighByte}}\\
+\} \mbox{\hyperlink{union_long_union_a1dfe8893e7015a65e9482671c15a099f}{UByte}}\\
+
+\end{tabbing}\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>int8\_t \mbox{\hyperlink{union_long_union_a953d8a796924426954a56a4a324e35b6}{LowByte}}\\
+\>int8\_t \mbox{\hyperlink{union_long_union_abbb97b234b56a9fc85e675baef650eb2}{MidLowByte}}\\
+\>int8\_t \mbox{\hyperlink{union_long_union_a5404235118006061ae33de167803c70a}{MidHighByte}}\\
+\>int8\_t \mbox{\hyperlink{union_long_union_a9c076778ee637e06ea2ccec3ee6703ec}{HighByte}}\\
+\} \mbox{\hyperlink{union_long_union_a1c2dae40c6f3cc0a71a7625c71417f21}{Byte}}\\
+
+\end{tabbing}\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>uint8\_t \mbox{\hyperlink{union_long_union_aa41368107679917a1c39f30999f4e9d9}{LowByte}}\\
+\>\mbox{\hyperlink{union_word_union}{WordUnion}} \mbox{\hyperlink{union_long_union_aa4ca6414a8a8f155b113c02995fa2887}{MidWord}}\\
+\>uint8\_t \mbox{\hyperlink{union_long_union_a67e1514b7a6ccc4d017eb6928c327e5c}{HighByte}}\\
+\} \mbox{\hyperlink{union_long_union_a01dc27d7394fa94bb24a9c0a1e3bf925}{ByteWord}}\\
+
+\end{tabbing}\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>int16\_t \mbox{\hyperlink{union_long_union_a9c0af1e73f44cf26341485cdac332bd2}{LowWord}}\\
+\>int16\_t \mbox{\hyperlink{union_long_union_a2b12288fe56e397d39ba9085fca70616}{HighWord}}\\
+\} \mbox{\hyperlink{union_long_union_a38025526d128638a496c4c9f0a9182d0}{Word}}\\
+
+\end{tabbing}\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>\mbox{\hyperlink{union_word_union}{WordUnion}} \mbox{\hyperlink{union_long_union_a45adb668aa3c266c1caa869b64f5110f}{LowWord}}\\
+\>\mbox{\hyperlink{union_word_union}{WordUnion}} \mbox{\hyperlink{union_long_union_a5595650293a30be4a2aa52013b953d88}{HighWord}}\\
+\} \mbox{\hyperlink{union_long_union_a8956cd66850e78483c6bce6056df63c3}{WordUnion}}\\
+
+\end{tabbing}\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>uint16\_t \mbox{\hyperlink{union_long_union_a05f946f8845eb4dda0407470d34854e2}{LowWord}}\\
+\>uint16\_t \mbox{\hyperlink{union_long_union_afd26d7d3a11130649129850162a7eb39}{HighWord}}\\
+\} \mbox{\hyperlink{union_long_union_a68a0c249634ca250ca5fdb31a06cbb18}{UWord}}\\
+
+\end{tabbing}\item 
+uint8\+\_\+t \mbox{\hyperlink{union_long_union_a683822101c9e06c7cec0dde475d23ad3}{UBytes}} \mbox{[}4\mbox{]}
+\item 
+int8\+\_\+t \mbox{\hyperlink{union_long_union_a8c5178886b7c046da66506d996ee6587}{Bytes}} \mbox{[}4\mbox{]}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{union_long_union_a96deff8963ef4155f33a26390f8f0a4b}{UWords}} \mbox{[}2\mbox{]}
+\item 
+int16\+\_\+t \mbox{\hyperlink{union_long_union_a67e933c7563c43956226e5db844984d5}{Words}} \mbox{[}2\mbox{]}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{union_long_union_aaf8815ca810b2d8386b5912f127586a7}{ULong}}
+\item 
+int32\+\_\+t \mbox{\hyperlink{union_long_union_a987b9b0499e30d1ba84f33e38d4cb034}{Long}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Union to specify parts / manifestations of a 32 bit Long without casts and shifts. It also supports the compiler generating small code. 
+
+Definition at line \mbox{\hyperlink{_long_union_8h_source_l00054}{54}} of file \mbox{\hyperlink{_long_union_8h_source}{Long\+Union.\+h}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{union_long_union_a1c2dae40c6f3cc0a71a7625c71417f21}\label{union_long_union_a1c2dae40c6f3cc0a71a7625c71417f21}} 
+\index{LongUnion@{LongUnion}!Byte@{Byte}}
+\index{Byte@{Byte}!LongUnion@{LongUnion}}
+\doxysubsubsection{\texorpdfstring{}{}}
+{\footnotesize\ttfamily struct  \{ ... \}  Long\+Union\+::\+Byte}
+
+\mbox{\Hypertarget{union_long_union_a8c5178886b7c046da66506d996ee6587}\label{union_long_union_a8c5178886b7c046da66506d996ee6587}} 
+\index{LongUnion@{LongUnion}!Bytes@{Bytes}}
+\index{Bytes@{Bytes}!LongUnion@{LongUnion}}
+\doxysubsubsection{\texorpdfstring{Bytes}{Bytes}}
+{\footnotesize\ttfamily int8\+\_\+t Long\+Union\+::\+Bytes\mbox{[}4\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{_long_union_8h_source_l00085}{85}} of file \mbox{\hyperlink{_long_union_8h_source}{Long\+Union.\+h}}.
+
+\mbox{\Hypertarget{union_long_union_a01dc27d7394fa94bb24a9c0a1e3bf925}\label{union_long_union_a01dc27d7394fa94bb24a9c0a1e3bf925}} 
+\index{LongUnion@{LongUnion}!ByteWord@{ByteWord}}
+\index{ByteWord@{ByteWord}!LongUnion@{LongUnion}}
+\doxysubsubsection{\texorpdfstring{}{}}
+{\footnotesize\ttfamily struct  \{ ... \}  Long\+Union\+::\+Byte\+Word}
+
+\mbox{\Hypertarget{union_long_union_a67e1514b7a6ccc4d017eb6928c327e5c}\label{union_long_union_a67e1514b7a6ccc4d017eb6928c327e5c}} 
+\index{LongUnion@{LongUnion}!HighByte@{HighByte}}
+\index{HighByte@{HighByte}!LongUnion@{LongUnion}}
+\doxysubsubsection{\texorpdfstring{HighByte}{HighByte}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily uint8\+\_\+t Long\+Union\+::\+High\+Byte}
+
+
+
+Definition at line \mbox{\hyperlink{_long_union_8h_source_l00059}{59}} of file \mbox{\hyperlink{_long_union_8h_source}{Long\+Union.\+h}}.
+
+\mbox{\Hypertarget{union_long_union_a9c076778ee637e06ea2ccec3ee6703ec}\label{union_long_union_a9c076778ee637e06ea2ccec3ee6703ec}} 
+\index{LongUnion@{LongUnion}!HighByte@{HighByte}}
+\index{HighByte@{HighByte}!LongUnion@{LongUnion}}
+\doxysubsubsection{\texorpdfstring{HighByte}{HighByte}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily int8\+\_\+t Long\+Union\+::\+High\+Byte}
+
+
+
+Definition at line \mbox{\hyperlink{_long_union_8h_source_l00065}{65}} of file \mbox{\hyperlink{_long_union_8h_source}{Long\+Union.\+h}}.
+
+\mbox{\Hypertarget{union_long_union_a2b12288fe56e397d39ba9085fca70616}\label{union_long_union_a2b12288fe56e397d39ba9085fca70616}} 
+\index{LongUnion@{LongUnion}!HighWord@{HighWord}}
+\index{HighWord@{HighWord}!LongUnion@{LongUnion}}
+\doxysubsubsection{\texorpdfstring{HighWord}{HighWord}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily int16\+\_\+t Long\+Union\+::\+High\+Word}
+
+
+
+Definition at line \mbox{\hyperlink{_long_union_8h_source_l00074}{74}} of file \mbox{\hyperlink{_long_union_8h_source}{Long\+Union.\+h}}.
+
+\mbox{\Hypertarget{union_long_union_a5595650293a30be4a2aa52013b953d88}\label{union_long_union_a5595650293a30be4a2aa52013b953d88}} 
+\index{LongUnion@{LongUnion}!HighWord@{HighWord}}
+\index{HighWord@{HighWord}!LongUnion@{LongUnion}}
+\doxysubsubsection{\texorpdfstring{HighWord}{HighWord}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{union_word_union}{Word\+Union}} Long\+Union\+::\+High\+Word}
+
+
+
+Definition at line \mbox{\hyperlink{_long_union_8h_source_l00078}{78}} of file \mbox{\hyperlink{_long_union_8h_source}{Long\+Union.\+h}}.
+
+\mbox{\Hypertarget{union_long_union_afd26d7d3a11130649129850162a7eb39}\label{union_long_union_afd26d7d3a11130649129850162a7eb39}} 
+\index{LongUnion@{LongUnion}!HighWord@{HighWord}}
+\index{HighWord@{HighWord}!LongUnion@{LongUnion}}
+\doxysubsubsection{\texorpdfstring{HighWord}{HighWord}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily uint16\+\_\+t Long\+Union\+::\+High\+Word}
+
+
+
+Definition at line \mbox{\hyperlink{_long_union_8h_source_l00082}{82}} of file \mbox{\hyperlink{_long_union_8h_source}{Long\+Union.\+h}}.
+
+\mbox{\Hypertarget{union_long_union_a987b9b0499e30d1ba84f33e38d4cb034}\label{union_long_union_a987b9b0499e30d1ba84f33e38d4cb034}} 
+\index{LongUnion@{LongUnion}!Long@{Long}}
+\index{Long@{Long}!LongUnion@{LongUnion}}
+\doxysubsubsection{\texorpdfstring{Long}{Long}}
+{\footnotesize\ttfamily int32\+\_\+t Long\+Union\+::\+Long}
+
+
+
+Definition at line \mbox{\hyperlink{_long_union_8h_source_l00089}{89}} of file \mbox{\hyperlink{_long_union_8h_source}{Long\+Union.\+h}}.
+
+\mbox{\Hypertarget{union_long_union_aa41368107679917a1c39f30999f4e9d9}\label{union_long_union_aa41368107679917a1c39f30999f4e9d9}} 
+\index{LongUnion@{LongUnion}!LowByte@{LowByte}}
+\index{LowByte@{LowByte}!LongUnion@{LongUnion}}
+\doxysubsubsection{\texorpdfstring{LowByte}{LowByte}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily uint8\+\_\+t Long\+Union\+::\+Low\+Byte}
+
+
+
+Definition at line \mbox{\hyperlink{_long_union_8h_source_l00056}{56}} of file \mbox{\hyperlink{_long_union_8h_source}{Long\+Union.\+h}}.
+
+\mbox{\Hypertarget{union_long_union_a953d8a796924426954a56a4a324e35b6}\label{union_long_union_a953d8a796924426954a56a4a324e35b6}} 
+\index{LongUnion@{LongUnion}!LowByte@{LowByte}}
+\index{LowByte@{LowByte}!LongUnion@{LongUnion}}
+\doxysubsubsection{\texorpdfstring{LowByte}{LowByte}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily int8\+\_\+t Long\+Union\+::\+Low\+Byte}
+
+
+
+Definition at line \mbox{\hyperlink{_long_union_8h_source_l00062}{62}} of file \mbox{\hyperlink{_long_union_8h_source}{Long\+Union.\+h}}.
+
+\mbox{\Hypertarget{union_long_union_a9c0af1e73f44cf26341485cdac332bd2}\label{union_long_union_a9c0af1e73f44cf26341485cdac332bd2}} 
+\index{LongUnion@{LongUnion}!LowWord@{LowWord}}
+\index{LowWord@{LowWord}!LongUnion@{LongUnion}}
+\doxysubsubsection{\texorpdfstring{LowWord}{LowWord}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily int16\+\_\+t Long\+Union\+::\+Low\+Word}
+
+
+
+Definition at line \mbox{\hyperlink{_long_union_8h_source_l00073}{73}} of file \mbox{\hyperlink{_long_union_8h_source}{Long\+Union.\+h}}.
+
+\mbox{\Hypertarget{union_long_union_a45adb668aa3c266c1caa869b64f5110f}\label{union_long_union_a45adb668aa3c266c1caa869b64f5110f}} 
+\index{LongUnion@{LongUnion}!LowWord@{LowWord}}
+\index{LowWord@{LowWord}!LongUnion@{LongUnion}}
+\doxysubsubsection{\texorpdfstring{LowWord}{LowWord}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{union_word_union}{Word\+Union}} Long\+Union\+::\+Low\+Word}
+
+
+
+Definition at line \mbox{\hyperlink{_long_union_8h_source_l00077}{77}} of file \mbox{\hyperlink{_long_union_8h_source}{Long\+Union.\+h}}.
+
+\mbox{\Hypertarget{union_long_union_a05f946f8845eb4dda0407470d34854e2}\label{union_long_union_a05f946f8845eb4dda0407470d34854e2}} 
+\index{LongUnion@{LongUnion}!LowWord@{LowWord}}
+\index{LowWord@{LowWord}!LongUnion@{LongUnion}}
+\doxysubsubsection{\texorpdfstring{LowWord}{LowWord}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily uint16\+\_\+t Long\+Union\+::\+Low\+Word}
+
+
+
+Definition at line \mbox{\hyperlink{_long_union_8h_source_l00081}{81}} of file \mbox{\hyperlink{_long_union_8h_source}{Long\+Union.\+h}}.
+
+\mbox{\Hypertarget{union_long_union_aba027b17010803cf910996cae9201f32}\label{union_long_union_aba027b17010803cf910996cae9201f32}} 
+\index{LongUnion@{LongUnion}!MidHighByte@{MidHighByte}}
+\index{MidHighByte@{MidHighByte}!LongUnion@{LongUnion}}
+\doxysubsubsection{\texorpdfstring{MidHighByte}{MidHighByte}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily uint8\+\_\+t Long\+Union\+::\+Mid\+High\+Byte}
+
+
+
+Definition at line \mbox{\hyperlink{_long_union_8h_source_l00058}{58}} of file \mbox{\hyperlink{_long_union_8h_source}{Long\+Union.\+h}}.
+
+\mbox{\Hypertarget{union_long_union_a5404235118006061ae33de167803c70a}\label{union_long_union_a5404235118006061ae33de167803c70a}} 
+\index{LongUnion@{LongUnion}!MidHighByte@{MidHighByte}}
+\index{MidHighByte@{MidHighByte}!LongUnion@{LongUnion}}
+\doxysubsubsection{\texorpdfstring{MidHighByte}{MidHighByte}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily int8\+\_\+t Long\+Union\+::\+Mid\+High\+Byte}
+
+
+
+Definition at line \mbox{\hyperlink{_long_union_8h_source_l00064}{64}} of file \mbox{\hyperlink{_long_union_8h_source}{Long\+Union.\+h}}.
+
+\mbox{\Hypertarget{union_long_union_aeed69e051ef3c5c3d03e0efa260226b1}\label{union_long_union_aeed69e051ef3c5c3d03e0efa260226b1}} 
+\index{LongUnion@{LongUnion}!MidLowByte@{MidLowByte}}
+\index{MidLowByte@{MidLowByte}!LongUnion@{LongUnion}}
+\doxysubsubsection{\texorpdfstring{MidLowByte}{MidLowByte}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily uint8\+\_\+t Long\+Union\+::\+Mid\+Low\+Byte}
+
+
+
+Definition at line \mbox{\hyperlink{_long_union_8h_source_l00057}{57}} of file \mbox{\hyperlink{_long_union_8h_source}{Long\+Union.\+h}}.
+
+\mbox{\Hypertarget{union_long_union_abbb97b234b56a9fc85e675baef650eb2}\label{union_long_union_abbb97b234b56a9fc85e675baef650eb2}} 
+\index{LongUnion@{LongUnion}!MidLowByte@{MidLowByte}}
+\index{MidLowByte@{MidLowByte}!LongUnion@{LongUnion}}
+\doxysubsubsection{\texorpdfstring{MidLowByte}{MidLowByte}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily int8\+\_\+t Long\+Union\+::\+Mid\+Low\+Byte}
+
+
+
+Definition at line \mbox{\hyperlink{_long_union_8h_source_l00063}{63}} of file \mbox{\hyperlink{_long_union_8h_source}{Long\+Union.\+h}}.
+
+\mbox{\Hypertarget{union_long_union_aa4ca6414a8a8f155b113c02995fa2887}\label{union_long_union_aa4ca6414a8a8f155b113c02995fa2887}} 
+\index{LongUnion@{LongUnion}!MidWord@{MidWord}}
+\index{MidWord@{MidWord}!LongUnion@{LongUnion}}
+\doxysubsubsection{\texorpdfstring{MidWord}{MidWord}}
+{\footnotesize\ttfamily \mbox{\hyperlink{union_word_union}{Word\+Union}} Long\+Union\+::\+Mid\+Word}
+
+
+
+Definition at line \mbox{\hyperlink{_long_union_8h_source_l00069}{69}} of file \mbox{\hyperlink{_long_union_8h_source}{Long\+Union.\+h}}.
+
+\mbox{\Hypertarget{union_long_union_a1dfe8893e7015a65e9482671c15a099f}\label{union_long_union_a1dfe8893e7015a65e9482671c15a099f}} 
+\index{LongUnion@{LongUnion}!UByte@{UByte}}
+\index{UByte@{UByte}!LongUnion@{LongUnion}}
+\doxysubsubsection{\texorpdfstring{}{}}
+{\footnotesize\ttfamily struct  \{ ... \}  Long\+Union\+::\+UByte}
+
+\mbox{\Hypertarget{union_long_union_a683822101c9e06c7cec0dde475d23ad3}\label{union_long_union_a683822101c9e06c7cec0dde475d23ad3}} 
+\index{LongUnion@{LongUnion}!UBytes@{UBytes}}
+\index{UBytes@{UBytes}!LongUnion@{LongUnion}}
+\doxysubsubsection{\texorpdfstring{UBytes}{UBytes}}
+{\footnotesize\ttfamily uint8\+\_\+t Long\+Union\+::\+UBytes\mbox{[}4\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{_long_union_8h_source_l00084}{84}} of file \mbox{\hyperlink{_long_union_8h_source}{Long\+Union.\+h}}.
+
+\mbox{\Hypertarget{union_long_union_aaf8815ca810b2d8386b5912f127586a7}\label{union_long_union_aaf8815ca810b2d8386b5912f127586a7}} 
+\index{LongUnion@{LongUnion}!ULong@{ULong}}
+\index{ULong@{ULong}!LongUnion@{LongUnion}}
+\doxysubsubsection{\texorpdfstring{ULong}{ULong}}
+{\footnotesize\ttfamily uint32\+\_\+t Long\+Union\+::\+ULong}
+
+
+
+Definition at line \mbox{\hyperlink{_long_union_8h_source_l00088}{88}} of file \mbox{\hyperlink{_long_union_8h_source}{Long\+Union.\+h}}.
+
+\mbox{\Hypertarget{union_long_union_a68a0c249634ca250ca5fdb31a06cbb18}\label{union_long_union_a68a0c249634ca250ca5fdb31a06cbb18}} 
+\index{LongUnion@{LongUnion}!UWord@{UWord}}
+\index{UWord@{UWord}!LongUnion@{LongUnion}}
+\doxysubsubsection{\texorpdfstring{}{}}
+{\footnotesize\ttfamily struct  \{ ... \}  Long\+Union\+::\+UWord}
+
+\mbox{\Hypertarget{union_long_union_a96deff8963ef4155f33a26390f8f0a4b}\label{union_long_union_a96deff8963ef4155f33a26390f8f0a4b}} 
+\index{LongUnion@{LongUnion}!UWords@{UWords}}
+\index{UWords@{UWords}!LongUnion@{LongUnion}}
+\doxysubsubsection{\texorpdfstring{UWords}{UWords}}
+{\footnotesize\ttfamily uint16\+\_\+t Long\+Union\+::\+UWords\mbox{[}2\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{_long_union_8h_source_l00086}{86}} of file \mbox{\hyperlink{_long_union_8h_source}{Long\+Union.\+h}}.
+
+\mbox{\Hypertarget{union_long_union_a38025526d128638a496c4c9f0a9182d0}\label{union_long_union_a38025526d128638a496c4c9f0a9182d0}} 
+\index{LongUnion@{LongUnion}!Word@{Word}}
+\index{Word@{Word}!LongUnion@{LongUnion}}
+\doxysubsubsection{\texorpdfstring{}{}}
+{\footnotesize\ttfamily struct  \{ ... \}  Long\+Union\+::\+Word}
+
+\mbox{\Hypertarget{union_long_union_a67e933c7563c43956226e5db844984d5}\label{union_long_union_a67e933c7563c43956226e5db844984d5}} 
+\index{LongUnion@{LongUnion}!Words@{Words}}
+\index{Words@{Words}!LongUnion@{LongUnion}}
+\doxysubsubsection{\texorpdfstring{Words}{Words}}
+{\footnotesize\ttfamily int16\+\_\+t Long\+Union\+::\+Words\mbox{[}2\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{_long_union_8h_source_l00087}{87}} of file \mbox{\hyperlink{_long_union_8h_source}{Long\+Union.\+h}}.
+
+\mbox{\Hypertarget{union_long_union_a8956cd66850e78483c6bce6056df63c3}\label{union_long_union_a8956cd66850e78483c6bce6056df63c3}} 
+\index{LongUnion@{LongUnion}!WordUnion@{WordUnion}}
+\index{WordUnion@{WordUnion}!LongUnion@{LongUnion}}
+\doxysubsubsection{\texorpdfstring{}{}}
+{\footnotesize\ttfamily struct  \{ ... \}  Long\+Union\+::\+Word\+Union}
+
+
+
+The documentation for this union was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+main/\+IRRemote\+\_\+\+Library/\mbox{\hyperlink{_long_union_8h}{Long\+Union.\+h}}\end{DoxyCompactItemize}

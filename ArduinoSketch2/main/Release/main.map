@@ -668,25 +668,6 @@ Discarded input sections
  .bss.sLastSendToggleValue
                 0x00000000        0x1 main.o
  .bss.IrSender  0x00000000        0x5 main.o
- .text          0x00000000        0x0 Modules/Sensors/SPS/SPS_Master.o
- .data          0x00000000        0x0 Modules/Sensors/SPS/SPS_Master.o
- .bss           0x00000000        0x0 Modules/Sensors/SPS/SPS_Master.o
- .text._ZN10SPS_MasterD2Ev
-                0x00000000       0x5e Modules/Sensors/SPS/SPS_Master.o
- .text._ZN10SPS_MasterC2Etttttttttttt
-                0x00000000      0x196 Modules/Sensors/SPS/SPS_Master.o
- .text._ZN10SPS_Master11Master_TaskEv
-                0x00000000       0x28 Modules/Sensors/SPS/SPS_Master.o
- .debug_info    0x00000000      0x892 Modules/Sensors/SPS/SPS_Master.o
- .debug_abbrev  0x00000000      0x1bb Modules/Sensors/SPS/SPS_Master.o
- .debug_loc     0x00000000      0x3a9 Modules/Sensors/SPS/SPS_Master.o
- .debug_aranges
-                0x00000000       0x30 Modules/Sensors/SPS/SPS_Master.o
- .debug_ranges  0x00000000       0x20 Modules/Sensors/SPS/SPS_Master.o
- .debug_line    0x00000000      0x17b Modules/Sensors/SPS/SPS_Master.o
- .debug_str     0x00000000      0x56c Modules/Sensors/SPS/SPS_Master.o
- .comment       0x00000000       0x31 Modules/Sensors/SPS/SPS_Master.o
- .debug_frame   0x00000000       0xd0 Modules/Sensors/SPS/SPS_Master.o
  .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fixsfsi.o)
  .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fixsfsi.o)
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fixsfsi.o)
@@ -1597,7 +1578,6 @@ LOAD Modules/Actuators/Buzzer/Buzz.o
 LOAD Modules/Actuators/MotorControl/Motor_Control.o
 LOAD Modules/Sensors/SPS/SPS.o
 LOAD main.o
-LOAD Modules/Sensors/SPS/SPS_Master.o
 START GROUP
 LOAD c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a
 LOAD Z:\Facultate\Anul 2\Semestrul 1\Proiect Individual\ArduinoSketch2\ArduinoSketch2\ArduinoCore\Release\libArduinoCore.a

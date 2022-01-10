@@ -1,0 +1,154 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_struct_i_r_data" xml:lang="en-US">
+<title>IRData Struct Reference</title>
+<indexterm><primary>IRData</primary></indexterm>
+<para>
+<computeroutput>#include &lt;IRremoteInt.h&gt;</computeroutput>
+</para>
+Collaboration diagram for IRData:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="struct_i_r_data__coll__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Public Attributes    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="__i_r_protocol_8h_1ad5b287a488a8c1b7b8661f029ab56fad">decode_type_t</link> <link linkend="_struct_i_r_data_1a703592faec26bab5cbe465f53ef14245">protocol</link></para>
+
+<para>UNKNOWN, NEC, SONY, RC5, ... </para>
+</listitem>
+            <listitem><para>uint16_t <link linkend="_struct_i_r_data_1a1255a5b7d704d34fda83dcabcb903d4c">address</link></para>
+
+<para>Decoded address. </para>
+</listitem>
+            <listitem><para>uint16_t <link linkend="_struct_i_r_data_1ab0ce2b36765ea429e8c4bfa0706a45e7">command</link></para>
+
+<para>Decoded command. </para>
+</listitem>
+            <listitem><para>uint16_t <link linkend="_struct_i_r_data_1a0b71fa1a17e3ab0ae9bc9462b795213f">extra</link></para>
+
+<para>Used by MagiQuest and for Kaseikyo unknown vendor ID. Ticks used for decoding Distance protocol. </para>
+</listitem>
+            <listitem><para>uint16_t <link linkend="_struct_i_r_data_1a945c41b8463a36cf00b0f38b0aa73200">numberOfBits</link></para>
+
+<para>Number of bits received for data (address + command + parity) - to determine protocol length if different length are possible. </para>
+</listitem>
+            <listitem><para>uint8_t <link linkend="_struct_i_r_data_1aaaad48fc0d90e5c6daec601987848a51">flags</link></para>
+
+<para>See IRDATA_FLAGS_* definitions above. </para>
+</listitem>
+            <listitem><para>uint32_t <link linkend="_struct_i_r_data_1aeca55ebf36bf919312a933597b8734d8">decodedRawData</link></para>
+
+<para>Up to 32 bit decoded raw data, used for sendRaw functions. </para>
+</listitem>
+            <listitem><para><link linkend="_structirparams__struct">irparams_struct</link> * <link linkend="_struct_i_r_data_1a8d7c987d63874731ff2e1120b21a1a08">rawDataPtr</link></para>
+
+<para>Pointer of the raw timing data to be decoded. Mainly the data buffer filled by receiving ISR. </para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>Data structure for the user application, available as decodedIRData. Filled by decoders and read by print functions or user application. </para>
+<para>
+Definition at line <link linkend="__i_rremote_int_8h_source_1l00181">181</link> of file <link linkend="__i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<section>
+<title>Member Data Documentation</title>
+<anchor xml:id="_struct_i_r_data_1a1255a5b7d704d34fda83dcabcb903d4c"/><section>
+    <title>address</title>
+<indexterm><primary>address</primary><secondary>IRData</secondary></indexterm>
+<indexterm><primary>IRData</primary><secondary>address</secondary></indexterm>
+<para><computeroutput>uint16_t IRData::address</computeroutput></para><para>
+
+<para>Decoded address. </para>
+</para>
+<para>
+Definition at line <link linkend="__i_rremote_int_8h_source_1l00183">183</link> of file <link linkend="__i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<anchor xml:id="_struct_i_r_data_1ab0ce2b36765ea429e8c4bfa0706a45e7"/><section>
+    <title>command</title>
+<indexterm><primary>command</primary><secondary>IRData</secondary></indexterm>
+<indexterm><primary>IRData</primary><secondary>command</secondary></indexterm>
+<para><computeroutput>uint16_t IRData::command</computeroutput></para><para>
+
+<para>Decoded command. </para>
+</para>
+<para>
+Definition at line <link linkend="__i_rremote_int_8h_source_1l00184">184</link> of file <link linkend="__i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<anchor xml:id="_struct_i_r_data_1aeca55ebf36bf919312a933597b8734d8"/><section>
+    <title>decodedRawData</title>
+<indexterm><primary>decodedRawData</primary><secondary>IRData</secondary></indexterm>
+<indexterm><primary>IRData</primary><secondary>decodedRawData</secondary></indexterm>
+<para><computeroutput>uint32_t IRData::decodedRawData</computeroutput></para><para>
+
+<para>Up to 32 bit decoded raw data, used for sendRaw functions. </para>
+</para>
+<para>
+Definition at line <link linkend="__i_rremote_int_8h_source_1l00188">188</link> of file <link linkend="__i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<anchor xml:id="_struct_i_r_data_1a0b71fa1a17e3ab0ae9bc9462b795213f"/><section>
+    <title>extra</title>
+<indexterm><primary>extra</primary><secondary>IRData</secondary></indexterm>
+<indexterm><primary>IRData</primary><secondary>extra</secondary></indexterm>
+<para><computeroutput>uint16_t IRData::extra</computeroutput></para><para>
+
+<para>Used by MagiQuest and for Kaseikyo unknown vendor ID. Ticks used for decoding Distance protocol. </para>
+</para>
+<para>
+Definition at line <link linkend="__i_rremote_int_8h_source_1l00185">185</link> of file <link linkend="__i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<anchor xml:id="_struct_i_r_data_1aaaad48fc0d90e5c6daec601987848a51"/><section>
+    <title>flags</title>
+<indexterm><primary>flags</primary><secondary>IRData</secondary></indexterm>
+<indexterm><primary>IRData</primary><secondary>flags</secondary></indexterm>
+<para><computeroutput>uint8_t IRData::flags</computeroutput></para><para>
+
+<para>See IRDATA_FLAGS_* definitions above. </para>
+</para>
+<para>
+Definition at line <link linkend="__i_rremote_int_8h_source_1l00187">187</link> of file <link linkend="__i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<anchor xml:id="_struct_i_r_data_1a945c41b8463a36cf00b0f38b0aa73200"/><section>
+    <title>numberOfBits</title>
+<indexterm><primary>numberOfBits</primary><secondary>IRData</secondary></indexterm>
+<indexterm><primary>IRData</primary><secondary>numberOfBits</secondary></indexterm>
+<para><computeroutput>uint16_t IRData::numberOfBits</computeroutput></para><para>
+
+<para>Number of bits received for data (address + command + parity) - to determine protocol length if different length are possible. </para>
+</para>
+<para>
+Definition at line <link linkend="__i_rremote_int_8h_source_1l00186">186</link> of file <link linkend="__i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<anchor xml:id="_struct_i_r_data_1a703592faec26bab5cbe465f53ef14245"/><section>
+    <title>protocol</title>
+<indexterm><primary>protocol</primary><secondary>IRData</secondary></indexterm>
+<indexterm><primary>IRData</primary><secondary>protocol</secondary></indexterm>
+<para><computeroutput><link linkend="__i_r_protocol_8h_1ad5b287a488a8c1b7b8661f029ab56fad">decode_type_t</link> IRData::protocol</computeroutput></para><para>
+
+<para>UNKNOWN, NEC, SONY, RC5, ... </para>
+</para>
+<para>
+Definition at line <link linkend="__i_rremote_int_8h_source_1l00182">182</link> of file <link linkend="__i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<anchor xml:id="_struct_i_r_data_1a8d7c987d63874731ff2e1120b21a1a08"/><section>
+    <title>rawDataPtr</title>
+<indexterm><primary>rawDataPtr</primary><secondary>IRData</secondary></indexterm>
+<indexterm><primary>IRData</primary><secondary>rawDataPtr</secondary></indexterm>
+<para><computeroutput><link linkend="_structirparams__struct">irparams_struct</link>* IRData::rawDataPtr</computeroutput></para><para>
+
+<para>Pointer of the raw timing data to be decoded. Mainly the data buffer filled by receiving ISR. </para>
+</para>
+<para>
+Definition at line <link linkend="__i_rremote_int_8h_source_1l00189">189</link> of file <link linkend="__i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<para>
+The documentation for this struct was generated from the following file:</para>
+main/IRRemote_Library/<link linkend="__i_rremote_int_8h">IRremoteInt.h</link></section>
+</section>

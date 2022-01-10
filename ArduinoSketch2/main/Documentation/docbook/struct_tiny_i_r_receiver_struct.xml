@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_struct_tiny_i_r_receiver_struct" xml:lang="en-US">
+<title>TinyIRReceiverStruct Struct Reference</title>
+<indexterm><primary>TinyIRReceiverStruct</primary></indexterm>
+<para>
+<computeroutput>#include &lt;TinyIRReceiver.h&gt;</computeroutput>
+</para>
+Collaboration diagram for TinyIRReceiverStruct:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="struct_tiny_i_r_receiver_struct__coll__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Public Attributes    </title>
+        <itemizedlist>
+            <listitem><para>uint32_t <link linkend="_struct_tiny_i_r_receiver_struct_1a978f2ac480cb3ab428ff3016239413f1">LastChangeMicros</link></para>
+
+<para>microseconds of last Pin Change Interrupt. </para>
+</listitem>
+            <listitem><para>uint8_t <link linkend="_struct_tiny_i_r_receiver_struct_1aca59e5c5331a581e0603a59c552fa8c9">IRReceiverState</link></para>
+
+<para>the state of the state machine. </para>
+</listitem>
+            <listitem><para>uint8_t <link linkend="_struct_tiny_i_r_receiver_struct_1accdf38f518f17dfaf1a8aa870d77ce91">IRRawDataBitCounter</link></para>
+</listitem>
+            <listitem><para>uint32_t <link linkend="_struct_tiny_i_r_receiver_struct_1aa6f580c1bf0c11c37edefd255283361a">IRRawDataMask</link></para>
+</listitem>
+            <listitem><para><link linkend="_union_long_union">LongUnion</link> <link linkend="_struct_tiny_i_r_receiver_struct_1a6277ed6c719314aef883af018f886056">IRRawData</link></para>
+</listitem>
+            <listitem><para>bool <link linkend="_struct_tiny_i_r_receiver_struct_1a003e482629350aaee549b482dd653922">IRRepeatDetected</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>Control and data variables of the state machine for TinyReceiver </para>
+<para>
+Definition at line <link linkend="__tiny_i_r_receiver_8h_source_1l00081">81</link> of file <link linkend="__tiny_i_r_receiver_8h_source">TinyIRReceiver.h</link>.</para>
+</section>
+<section>
+<title>Member Data Documentation</title>
+<anchor xml:id="_struct_tiny_i_r_receiver_struct_1a6277ed6c719314aef883af018f886056"/><section>
+    <title>IRRawData</title>
+<indexterm><primary>IRRawData</primary><secondary>TinyIRReceiverStruct</secondary></indexterm>
+<indexterm><primary>TinyIRReceiverStruct</primary><secondary>IRRawData</secondary></indexterm>
+<para><computeroutput><link linkend="_union_long_union">LongUnion</link> TinyIRReceiverStruct::IRRawData</computeroutput></para><para>
+Definition at line <link linkend="__tiny_i_r_receiver_8h_source_1l00092">92</link> of file <link linkend="__tiny_i_r_receiver_8h_source">TinyIRReceiver.h</link>.</para>
+</section>
+<anchor xml:id="_struct_tiny_i_r_receiver_struct_1accdf38f518f17dfaf1a8aa870d77ce91"/><section>
+    <title>IRRawDataBitCounter</title>
+<indexterm><primary>IRRawDataBitCounter</primary><secondary>TinyIRReceiverStruct</secondary></indexterm>
+<indexterm><primary>TinyIRReceiverStruct</primary><secondary>IRRawDataBitCounter</secondary></indexterm>
+<para><computeroutput>uint8_t TinyIRReceiverStruct::IRRawDataBitCounter</computeroutput></para><para>
+Definition at line <link linkend="__tiny_i_r_receiver_8h_source_1l00087">87</link> of file <link linkend="__tiny_i_r_receiver_8h_source">TinyIRReceiver.h</link>.</para>
+</section>
+<anchor xml:id="_struct_tiny_i_r_receiver_struct_1aa6f580c1bf0c11c37edefd255283361a"/><section>
+    <title>IRRawDataMask</title>
+<indexterm><primary>IRRawDataMask</primary><secondary>TinyIRReceiverStruct</secondary></indexterm>
+<indexterm><primary>TinyIRReceiverStruct</primary><secondary>IRRawDataMask</secondary></indexterm>
+<para><computeroutput>uint32_t TinyIRReceiverStruct::IRRawDataMask</computeroutput></para><para>
+Definition at line <link linkend="__tiny_i_r_receiver_8h_source_1l00091">91</link> of file <link linkend="__tiny_i_r_receiver_8h_source">TinyIRReceiver.h</link>.</para>
+</section>
+<anchor xml:id="_struct_tiny_i_r_receiver_struct_1aca59e5c5331a581e0603a59c552fa8c9"/><section>
+    <title>IRReceiverState</title>
+<indexterm><primary>IRReceiverState</primary><secondary>TinyIRReceiverStruct</secondary></indexterm>
+<indexterm><primary>TinyIRReceiverStruct</primary><secondary>IRReceiverState</secondary></indexterm>
+<para><computeroutput>uint8_t TinyIRReceiverStruct::IRReceiverState</computeroutput></para><para>
+
+<para>the state of the state machine. </para>
+</para>
+<para>
+Definition at line <link linkend="__tiny_i_r_receiver_8h_source_1l00086">86</link> of file <link linkend="__tiny_i_r_receiver_8h_source">TinyIRReceiver.h</link>.</para>
+</section>
+<anchor xml:id="_struct_tiny_i_r_receiver_struct_1a003e482629350aaee549b482dd653922"/><section>
+    <title>IRRepeatDetected</title>
+<indexterm><primary>IRRepeatDetected</primary><secondary>TinyIRReceiverStruct</secondary></indexterm>
+<indexterm><primary>TinyIRReceiverStruct</primary><secondary>IRRepeatDetected</secondary></indexterm>
+<para><computeroutput>bool TinyIRReceiverStruct::IRRepeatDetected</computeroutput></para><para>
+Definition at line <link linkend="__tiny_i_r_receiver_8h_source_1l00093">93</link> of file <link linkend="__tiny_i_r_receiver_8h_source">TinyIRReceiver.h</link>.</para>
+</section>
+<anchor xml:id="_struct_tiny_i_r_receiver_struct_1a978f2ac480cb3ab428ff3016239413f1"/><section>
+    <title>LastChangeMicros</title>
+<indexterm><primary>LastChangeMicros</primary><secondary>TinyIRReceiverStruct</secondary></indexterm>
+<indexterm><primary>TinyIRReceiverStruct</primary><secondary>LastChangeMicros</secondary></indexterm>
+<para><computeroutput>uint32_t TinyIRReceiverStruct::LastChangeMicros</computeroutput></para><para>
+
+<para>microseconds of last Pin Change Interrupt. </para>
+</para>
+<para>
+Definition at line <link linkend="__tiny_i_r_receiver_8h_source_1l00085">85</link> of file <link linkend="__tiny_i_r_receiver_8h_source">TinyIRReceiver.h</link>.</para>
+</section>
+<para>
+The documentation for this struct was generated from the following file:</para>
+main/IRRemote_Library/<link linkend="__tiny_i_r_receiver_8h">TinyIRReceiver.h</link></section>
+</section>

@@ -1,0 +1,315 @@
+\hypertarget{ir___pronto_8hpp_source}{}\doxysection{ir\+\_\+\+Pronto.\+hpp}
+\label{ir___pronto_8hpp_source}\index{IRRemote/ir\_Pronto.hpp@{IRRemote/ir\_Pronto.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * @file ir\_Pronto.hpp}}
+\DoxyCodeLine{3 \textcolor{comment}{ * @brief In this file, the functions IRrecv::compensateAndPrintPronto and IRsend::sendPronto are defined.}}
+\DoxyCodeLine{4 \textcolor{comment}{ *}}
+\DoxyCodeLine{5 \textcolor{comment}{ * See http://www.harctoolbox.org/Glossary.html\#ProntoSemantics}}
+\DoxyCodeLine{6 \textcolor{comment}{ * Pronto database http://www.remotecentral.com/search.htm}}
+\DoxyCodeLine{7 \textcolor{comment}{ *}}
+\DoxyCodeLine{8 \textcolor{comment}{ *  This file is part of Arduino-\/IRremote https://github.com/Arduino-\/IRremote/Arduino-\/IRremote.}}
+\DoxyCodeLine{9 \textcolor{comment}{ *}}
+\DoxyCodeLine{10 \textcolor{comment}{ ************************************************************************************}}
+\DoxyCodeLine{11 \textcolor{comment}{ * MIT License}}
+\DoxyCodeLine{12 \textcolor{comment}{ *}}
+\DoxyCodeLine{13 \textcolor{comment}{ * Copyright (c) 2020 Bengt Martensson}}
+\DoxyCodeLine{14 \textcolor{comment}{ *}}
+\DoxyCodeLine{15 \textcolor{comment}{ * Permission is hereby granted, free of charge, to any person obtaining a copy}}
+\DoxyCodeLine{16 \textcolor{comment}{ * of this software and associated documentation files (the "{}Software"{}), to deal}}
+\DoxyCodeLine{17 \textcolor{comment}{ * in the Software without restriction, including without limitation the rights}}
+\DoxyCodeLine{18 \textcolor{comment}{ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell}}
+\DoxyCodeLine{19 \textcolor{comment}{ * copies of the Software, and to permit persons to whom the Software is furnished}}
+\DoxyCodeLine{20 \textcolor{comment}{ * to do so, subject to the following conditions:}}
+\DoxyCodeLine{21 \textcolor{comment}{ *}}
+\DoxyCodeLine{22 \textcolor{comment}{ * The above copyright notice and this permission notice shall be included in all}}
+\DoxyCodeLine{23 \textcolor{comment}{ * copies or substantial portions of the Software.}}
+\DoxyCodeLine{24 \textcolor{comment}{ *}}
+\DoxyCodeLine{25 \textcolor{comment}{ * THE SOFTWARE IS PROVIDED "{}AS IS"{}, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,}}
+\DoxyCodeLine{26 \textcolor{comment}{ * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A}}
+\DoxyCodeLine{27 \textcolor{comment}{ * PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT}}
+\DoxyCodeLine{28 \textcolor{comment}{ * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF}}
+\DoxyCodeLine{29 \textcolor{comment}{ * CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE}}
+\DoxyCodeLine{30 \textcolor{comment}{ * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.}}
+\DoxyCodeLine{31 \textcolor{comment}{ *}}
+\DoxyCodeLine{32 \textcolor{comment}{ ************************************************************************************}}
+\DoxyCodeLine{33 \textcolor{comment}{ */}}
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#ifndef IR\_PRONTO\_HPP}}
+\DoxyCodeLine{35 \textcolor{preprocessor}{\#define IR\_PRONTO\_HPP}}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37 \textcolor{comment}{// The first number, here 0000, denotes the type of the signal. 0000 denotes a raw IR signal with modulation,}}
+\DoxyCodeLine{38 \textcolor{comment}{// The second number, here 006C, denotes a frequency code}}
+\DoxyCodeLine{39 \textcolor{preprocessor}{\#include <Arduino.h>}}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41 \textcolor{comment}{//\#define DEBUG // Activate this for lots of lovely debug output from this decoder.}}
+\DoxyCodeLine{42 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_i_rremote_int_8h}{IRremoteInt.h}}"{}} \textcolor{comment}{// evaluates the DEBUG for IR\_DEBUG\_PRINT"{}}}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{48 \textcolor{comment}{// TODO remove 6/2021}}
+\DoxyCodeLine{49 \textcolor{preprocessor}{\#if defined(\_\_STM32F1\_\_) || defined(ARDUINO\_ARCH\_STM32F1) }\textcolor{comment}{// Recommended original Arduino\_STM32 by Roger Clark.}}
+\DoxyCodeLine{50 \textcolor{preprocessor}{\#  if !defined(strncpy\_P)}}
+\DoxyCodeLine{51 \textcolor{comment}{// this define is not included in the pgmspace.h file see https://github.com/rogerclarkmelbourne/Arduino\_STM32/issues/852}}
+\DoxyCodeLine{52 \textcolor{preprocessor}{\#define strncpy\_P(dest, src, size) strncpy((dest), (src), (size))}}
+\DoxyCodeLine{53 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{54 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{57 \textcolor{comment}{// DO NOT EXPORT from this file}}
+\DoxyCodeLine{58 \textcolor{keyword}{static} \textcolor{keyword}{const} uint16\_t learnedToken = 0x0000U;}
+\DoxyCodeLine{59 \textcolor{keyword}{static} \textcolor{keyword}{const} uint16\_t learnedNonModulatedToken = 0x0100U;}
+\DoxyCodeLine{60 \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} bitsInHexadecimal = 4U;}
+\DoxyCodeLine{61 \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} digitsInProntoNumber = 4U;}
+\DoxyCodeLine{62 \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} numbersInPreamble = 4U;}
+\DoxyCodeLine{63 \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} hexMask = 0xFU;}
+\DoxyCodeLine{64 \textcolor{keyword}{static} \textcolor{keyword}{const} uint32\_t referenceFrequency = 4145146UL;}
+\DoxyCodeLine{65 \textcolor{keyword}{static} \textcolor{keyword}{const} uint16\_t fallbackFrequency = 64767U; \textcolor{comment}{// To use with frequency = 0;}}
+\DoxyCodeLine{66 \textcolor{keyword}{static} \textcolor{keyword}{const} uint32\_t microsecondsInSeconds = 1000000UL;}
+\DoxyCodeLine{67 \textcolor{keyword}{static} \textcolor{keyword}{const} uint16\_t PRONTO\_DEFAULT\_GAP = 45000;}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{70 \textcolor{keyword}{static} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} toFrequencyKHz(uint16\_t code) \{}
+\DoxyCodeLine{71     \textcolor{keywordflow}{return} ((referenceFrequency / code) + 500) / 1000;}
+\DoxyCodeLine{72 \}}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{74 \textcolor{comment}{/*}}
+\DoxyCodeLine{75 \textcolor{comment}{ * Parse the string given as Pronto Hex, and send it a number of times given as argument.}}
+\DoxyCodeLine{76 \textcolor{comment}{ */}}
+\DoxyCodeLine{77 \textcolor{keywordtype}{void} IRsend::sendPronto(\textcolor{keyword}{const} uint16\_t *data, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} length, uint\_fast8\_t aNumberOfRepeats) \{}
+\DoxyCodeLine{78     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} timebase = (microsecondsInSeconds * data[1] + referenceFrequency / 2) / referenceFrequency;}
+\DoxyCodeLine{79     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} khz;}
+\DoxyCodeLine{80     \textcolor{keywordflow}{switch} (data[0]) \{}
+\DoxyCodeLine{81     \textcolor{keywordflow}{case} learnedToken: \textcolor{comment}{// normal, "{}learned"{}}}
+\DoxyCodeLine{82         khz = toFrequencyKHz(data[1]);}
+\DoxyCodeLine{83         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{84     \textcolor{keywordflow}{case} learnedNonModulatedToken: \textcolor{comment}{// non-\/demodulated, "{}learned"{}}}
+\DoxyCodeLine{85         khz = 0U;}
+\DoxyCodeLine{86         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{87     \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{88         \textcolor{keywordflow}{return}; \textcolor{comment}{// There are other types, but they are not handled yet.}}
+\DoxyCodeLine{89     \}}
+\DoxyCodeLine{90     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} intros = 2 * data[2];}
+\DoxyCodeLine{91     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} repeats = 2 * data[3];}
+\DoxyCodeLine{92     \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(F(\textcolor{stringliteral}{"{}sendPronto intros="{}}));}
+\DoxyCodeLine{93     \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(intros);}
+\DoxyCodeLine{94     \mbox{\hyperlink{_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(F(\textcolor{stringliteral}{"{} repeats="{}}));}
+\DoxyCodeLine{95     \mbox{\hyperlink{_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(repeats);}
+\DoxyCodeLine{96     \textcolor{keywordflow}{if} (numbersInPreamble + intros + repeats != length) \{ \textcolor{comment}{// inconsistent sizes}}
+\DoxyCodeLine{97         \textcolor{keywordflow}{return};}
+\DoxyCodeLine{98     \}}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{100     \textcolor{comment}{/*}}
+\DoxyCodeLine{101 \textcolor{comment}{     * Generate a new microseconds timing array for sendRaw.}}
+\DoxyCodeLine{102 \textcolor{comment}{     * If recorded by IRremote, intro contains the whole IR data and repeat is empty}}
+\DoxyCodeLine{103 \textcolor{comment}{     */}}
+\DoxyCodeLine{104     uint16\_t durations[intros + repeats];}
+\DoxyCodeLine{105     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i = 0; i < intros + repeats; i++) \{}
+\DoxyCodeLine{106         uint32\_t duration = ((uint32\_t) data[i + numbersInPreamble]) * timebase;}
+\DoxyCodeLine{107         durations[i] = (\textcolor{keywordtype}{unsigned} int) ((duration <= \_\_UINT16\_MAX\_\_) ? duration : \_\_UINT16\_MAX\_\_);}
+\DoxyCodeLine{108     \}}
+\DoxyCodeLine{109 }
+\DoxyCodeLine{110     \textcolor{comment}{/*}}
+\DoxyCodeLine{111 \textcolor{comment}{     * Send the intro. intros is even.}}
+\DoxyCodeLine{112 \textcolor{comment}{     * Do not send the trailing space here, send it if repeats are requested}}
+\DoxyCodeLine{113 \textcolor{comment}{     */}}
+\DoxyCodeLine{114     \textcolor{keywordflow}{if} (intros >= 2) \{}
+\DoxyCodeLine{115         \mbox{\hyperlink{group___sending_ga1c9027bc86e6a726295219ac11e06a1b}{sendRaw}}(durations, intros -\/ 1, khz);}
+\DoxyCodeLine{116     \}}
+\DoxyCodeLine{117 }
+\DoxyCodeLine{118     \textcolor{keywordflow}{if} (repeats == 0 || aNumberOfRepeats == 0) \{}
+\DoxyCodeLine{119         \textcolor{comment}{// only send intro once}}
+\DoxyCodeLine{120         \textcolor{keywordflow}{return};}
+\DoxyCodeLine{121     \}}
+\DoxyCodeLine{122 }
+\DoxyCodeLine{123     \textcolor{comment}{/*}}
+\DoxyCodeLine{124 \textcolor{comment}{     * Now send the trailing space/gap of the intro and all the repeats}}
+\DoxyCodeLine{125 \textcolor{comment}{     */}}
+\DoxyCodeLine{126     \textcolor{keywordflow}{if} (intros >= 2) \{}
+\DoxyCodeLine{127         delay(durations[intros -\/ 1] / MICROS\_IN\_ONE\_MILLI); \textcolor{comment}{// equivalent to space(durations[intros -\/ 1]); but allow bigger values for the gap}}
+\DoxyCodeLine{128     \}}
+\DoxyCodeLine{129     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i = 0; i < aNumberOfRepeats; i++) \{}
+\DoxyCodeLine{130         \mbox{\hyperlink{group___sending_ga1c9027bc86e6a726295219ac11e06a1b}{sendRaw}}(durations + intros, repeats -\/ 1, khz);}
+\DoxyCodeLine{131         \textcolor{keywordflow}{if} ((i + 1) < aNumberOfRepeats) \{ \textcolor{comment}{// skip last trailing space/gap, see above}}
+\DoxyCodeLine{132             delay(durations[intros + repeats -\/ 1] / MICROS\_IN\_ONE\_MILLI);}
+\DoxyCodeLine{133         \}}
+\DoxyCodeLine{134     \}}
+\DoxyCodeLine{135 \}}
+\DoxyCodeLine{136 }
+\DoxyCodeLine{154 \textcolor{keywordtype}{void} IRsend::sendPronto(\textcolor{keyword}{const} \textcolor{keywordtype}{char} *str, uint\_fast8\_t aNumberOfRepeats) \{}
+\DoxyCodeLine{155     \textcolor{keywordtype}{size\_t} len = strlen(str) / (digitsInProntoNumber + 1) + 1;}
+\DoxyCodeLine{156     uint16\_t data[len];}
+\DoxyCodeLine{157     \textcolor{keyword}{const} \textcolor{keywordtype}{char} *p = str;}
+\DoxyCodeLine{158     \textcolor{keywordtype}{char} *endptr[1];}
+\DoxyCodeLine{159     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i = 0; i < len; i++) \{}
+\DoxyCodeLine{160         \textcolor{keywordtype}{long} x = strtol(p, endptr, 16);}
+\DoxyCodeLine{161         \textcolor{keywordflow}{if} (x == 0 \&\& i >= numbersInPreamble) \{}
+\DoxyCodeLine{162             \textcolor{comment}{// Alignment error?, bail immediately (often right result).}}
+\DoxyCodeLine{163             len = i;}
+\DoxyCodeLine{164             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{165         \}}
+\DoxyCodeLine{166         data[i] = \textcolor{keyword}{static\_cast<}uint16\_t\textcolor{keyword}{>}(x); \textcolor{comment}{// If input is conforming, there can be no overflow!}}
+\DoxyCodeLine{167         p = *endptr;}
+\DoxyCodeLine{168     \}}
+\DoxyCodeLine{169     sendPronto(data, len, aNumberOfRepeats);}
+\DoxyCodeLine{170 \}}
+\DoxyCodeLine{171 }
+\DoxyCodeLine{172 \textcolor{preprocessor}{\#if defined(\_\_AVR\_\_)}}
+\DoxyCodeLine{178 \textcolor{comment}{//far pointer (? for ATMega2560 etc.)}}
+\DoxyCodeLine{179 \textcolor{keywordtype}{void} IRsend::sendPronto\_PF(uint\_farptr\_t str, uint\_fast8\_t aNumberOfRepeats) \{}
+\DoxyCodeLine{180     \textcolor{keywordtype}{size\_t} len = strlen\_PF(str);}
+\DoxyCodeLine{181     \textcolor{keywordtype}{char} work[len + 1];}
+\DoxyCodeLine{182     strncpy\_PF(work, str, len);}
+\DoxyCodeLine{183     sendPronto(work, aNumberOfRepeats);}
+\DoxyCodeLine{184 \}}
+\DoxyCodeLine{185 }
+\DoxyCodeLine{186 \textcolor{comment}{//standard pointer}}
+\DoxyCodeLine{187 \textcolor{keywordtype}{void} IRsend::sendPronto\_P(\textcolor{keyword}{const} \textcolor{keywordtype}{char} *str, uint\_fast8\_t aNumberOfRepeats) \{}
+\DoxyCodeLine{188     \textcolor{keywordtype}{size\_t} len = strlen\_P(str);}
+\DoxyCodeLine{189     \textcolor{keywordtype}{char} work[len + 1];}
+\DoxyCodeLine{190     strncpy\_P(work, str, len);}
+\DoxyCodeLine{191     sendPronto(work, aNumberOfRepeats);}
+\DoxyCodeLine{192 \}}
+\DoxyCodeLine{193 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{194 }
+\DoxyCodeLine{195 \textcolor{keywordtype}{void} IRsend::sendPronto(\textcolor{keyword}{const} \_\_FlashStringHelper *str, uint\_fast8\_t aNumberOfRepeats) \{}
+\DoxyCodeLine{196     \textcolor{keywordtype}{size\_t} len = strlen\_P(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const }\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(str));}
+\DoxyCodeLine{197     \textcolor{keywordtype}{char} work[len + 1];}
+\DoxyCodeLine{198     strncpy\_P(work, \textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const }\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(str), len);}
+\DoxyCodeLine{199     \textcolor{keywordflow}{return} sendPronto(work, aNumberOfRepeats);}
+\DoxyCodeLine{200 \}}
+\DoxyCodeLine{201 }
+\DoxyCodeLine{202 \textcolor{keyword}{static} uint16\_t effectiveFrequency(uint16\_t frequency) \{}
+\DoxyCodeLine{203     \textcolor{keywordflow}{return} frequency > 0 ? frequency : fallbackFrequency;}
+\DoxyCodeLine{204 \}}
+\DoxyCodeLine{205 }
+\DoxyCodeLine{206 \textcolor{keyword}{static} uint16\_t toTimebase(uint16\_t frequency) \{}
+\DoxyCodeLine{207     \textcolor{keywordflow}{return} microsecondsInSeconds / effectiveFrequency(frequency);}
+\DoxyCodeLine{208 \}}
+\DoxyCodeLine{209 }
+\DoxyCodeLine{210 \textcolor{keyword}{static} uint16\_t toFrequencyCode(uint16\_t frequency) \{}
+\DoxyCodeLine{211     \textcolor{keywordflow}{return} referenceFrequency / effectiveFrequency(frequency);}
+\DoxyCodeLine{212 \}}
+\DoxyCodeLine{213 }
+\DoxyCodeLine{214 \textcolor{keyword}{static} \textcolor{keywordtype}{char} hexDigit(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} x) \{}
+\DoxyCodeLine{215     \textcolor{keywordflow}{return} (\textcolor{keywordtype}{char}) (x <= 9 ? (\textcolor{charliteral}{'0'} + x) : (\textcolor{charliteral}{'A'} + (x -\/ 10)));}
+\DoxyCodeLine{216 \}}
+\DoxyCodeLine{217 }
+\DoxyCodeLine{218 \textcolor{keyword}{static} \textcolor{keywordtype}{void} dumpDigit(Print *aSerial, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} number) \{}
+\DoxyCodeLine{219     aSerial-\/>print(hexDigit(number));}
+\DoxyCodeLine{220 \}}
+\DoxyCodeLine{221 }
+\DoxyCodeLine{222 \textcolor{keyword}{static} \textcolor{keywordtype}{void} dumpNumber(Print *aSerial, uint16\_t number) \{}
+\DoxyCodeLine{223     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i = 0; i < digitsInProntoNumber; i++) \{}
+\DoxyCodeLine{224         \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} shifts = bitsInHexadecimal * (digitsInProntoNumber -\/ 1 -\/ i);}
+\DoxyCodeLine{225         dumpDigit(aSerial, (number >> shifts) \& hexMask);}
+\DoxyCodeLine{226     \}}
+\DoxyCodeLine{227     aSerial-\/>print(\textcolor{charliteral}{' '});}
+\DoxyCodeLine{228 \}}
+\DoxyCodeLine{229 }
+\DoxyCodeLine{230 \textcolor{keyword}{static} \textcolor{keywordtype}{void} dumpDuration(Print *aSerial, uint32\_t duration, uint16\_t timebase) \{}
+\DoxyCodeLine{231     dumpNumber(aSerial, (duration + timebase / 2) / timebase);}
+\DoxyCodeLine{232 \}}
+\DoxyCodeLine{233 }
+\DoxyCodeLine{234 \textcolor{comment}{/*}}
+\DoxyCodeLine{235 \textcolor{comment}{ * Compensate received values by MARK\_EXCESS\_MICROS, like it is done for decoding!}}
+\DoxyCodeLine{236 \textcolor{comment}{ */}}
+\DoxyCodeLine{237 \textcolor{keyword}{static} \textcolor{keywordtype}{void} compensateAndDumpSequence(Print *aSerial, \textcolor{keyword}{const} \textcolor{keyword}{volatile} uint16\_t *data, \textcolor{keywordtype}{size\_t} length, uint16\_t timebase) \{}
+\DoxyCodeLine{238     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < length; i++) \{}
+\DoxyCodeLine{239         uint32\_t tDuration = data[i] * \mbox{\hyperlink{_i_rremote_int_8h_a1c7eebb527483c272812530caa313d20}{MICROS\_PER\_TICK}};}
+\DoxyCodeLine{240         \textcolor{keywordflow}{if} (i \& 1) \{}
+\DoxyCodeLine{241             \textcolor{comment}{// Mark}}
+\DoxyCodeLine{242             tDuration -\/= \mbox{\hyperlink{group___receiving_gab1d28d4dd67d6bf808c0328a92e2d863}{getMarkExcessMicros}}();}
+\DoxyCodeLine{243         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{244             tDuration += \mbox{\hyperlink{group___receiving_gab1d28d4dd67d6bf808c0328a92e2d863}{getMarkExcessMicros}}();}
+\DoxyCodeLine{245         \}}
+\DoxyCodeLine{246         dumpDuration(aSerial, tDuration, timebase);}
+\DoxyCodeLine{247     \}}
+\DoxyCodeLine{248 }
+\DoxyCodeLine{249     \textcolor{comment}{// append a gap}}
+\DoxyCodeLine{250     dumpDuration(aSerial, PRONTO\_DEFAULT\_GAP, timebase);}
+\DoxyCodeLine{251 \}}
+\DoxyCodeLine{252 }
+\DoxyCodeLine{259 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___decoder_gaa701711c860c8ff58d332c4567e7ff89}{IRrecv::compensateAndPrintIRResultAsPronto}}(Print *aSerial, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} aFrequencyHertz) \{}
+\DoxyCodeLine{260     aSerial-\/>println(F(\textcolor{stringliteral}{"{}Pronto Hex as string"{}}));}
+\DoxyCodeLine{261     aSerial-\/>print(F(\textcolor{stringliteral}{"{}char prontoData[] = \(\backslash\)"{}"{}}));}
+\DoxyCodeLine{262     dumpNumber(aSerial, aFrequencyHertz > 0 ? learnedToken : learnedNonModulatedToken);}
+\DoxyCodeLine{263     dumpNumber(aSerial, toFrequencyCode(aFrequencyHertz));}
+\DoxyCodeLine{264     dumpNumber(aSerial, (decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_af0571ac479d1c38c79502651b0631432}{rawlen}} + 1) / 2);}
+\DoxyCodeLine{265     dumpNumber(aSerial, 0);}
+\DoxyCodeLine{266     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} timebase = toTimebase(aFrequencyHertz);}
+\DoxyCodeLine{267     compensateAndDumpSequence(aSerial, \&decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_a7aa7b811dcc0fb5ab0da7c0bddaf97f8}{rawbuf}}[1], decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_af0571ac479d1c38c79502651b0631432}{rawlen}} -\/ 1, timebase); \textcolor{comment}{// skip leading space}}
+\DoxyCodeLine{268     aSerial-\/>println(\textcolor{stringliteral}{"{}\(\backslash\)"{};"{}});}
+\DoxyCodeLine{269 \}}
+\DoxyCodeLine{270 }
+\DoxyCodeLine{271 \textcolor{comment}{/*}}
+\DoxyCodeLine{272 \textcolor{comment}{ * Functions for dumping Pronto to a String. This is not very time and space efficient}}
+\DoxyCodeLine{273 \textcolor{comment}{ * and can lead to resource problems especially on small processors like AVR's}}
+\DoxyCodeLine{274 \textcolor{comment}{ */}}
+\DoxyCodeLine{275 }
+\DoxyCodeLine{276 \textcolor{keyword}{static} \textcolor{keywordtype}{bool} dumpDigit(String *aString, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} number) \{}
+\DoxyCodeLine{277     aString-\/>concat(hexDigit(number));}
+\DoxyCodeLine{278     \textcolor{keywordflow}{return} number;}
+\DoxyCodeLine{279 \}}
+\DoxyCodeLine{280 }
+\DoxyCodeLine{281 \textcolor{keyword}{static} \textcolor{keywordtype}{size\_t} dumpNumber(String *aString, uint16\_t number) \{}
+\DoxyCodeLine{282 }
+\DoxyCodeLine{283     \textcolor{keywordtype}{size\_t} size = 0;}
+\DoxyCodeLine{284 }
+\DoxyCodeLine{285     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i = 0; i < digitsInProntoNumber; i++) \{}
+\DoxyCodeLine{286         \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} shifts = bitsInHexadecimal * (digitsInProntoNumber -\/ 1 -\/ i);}
+\DoxyCodeLine{287         size += dumpDigit(aString, (number >> shifts) \& hexMask);}
+\DoxyCodeLine{288     \}}
+\DoxyCodeLine{289     aString-\/>concat(\textcolor{charliteral}{' '});}
+\DoxyCodeLine{290     size++;}
+\DoxyCodeLine{291 }
+\DoxyCodeLine{292     \textcolor{keywordflow}{return} size;}
+\DoxyCodeLine{293 \}}
+\DoxyCodeLine{294 }
+\DoxyCodeLine{295 \textcolor{comment}{/*}}
+\DoxyCodeLine{296 \textcolor{comment}{ * Compensate received values by MARK\_EXCESS\_MICROS, like it is done for decoding!}}
+\DoxyCodeLine{297 \textcolor{comment}{ */}}
+\DoxyCodeLine{298 \textcolor{keyword}{static} \textcolor{keywordtype}{size\_t} dumpDuration(String *aString, uint32\_t duration, uint16\_t timebase) \{}
+\DoxyCodeLine{299     \textcolor{keywordflow}{return} dumpNumber(aString, (duration + timebase / 2) / timebase);}
+\DoxyCodeLine{300 \}}
+\DoxyCodeLine{301 }
+\DoxyCodeLine{302 \textcolor{keyword}{static} \textcolor{keywordtype}{size\_t} compensateAndDumpSequence(String *aString, \textcolor{keyword}{const} \textcolor{keyword}{volatile} uint16\_t *data, \textcolor{keywordtype}{size\_t} length, uint16\_t timebase) \{}
+\DoxyCodeLine{303 }
+\DoxyCodeLine{304     \textcolor{keywordtype}{size\_t} size = 0;}
+\DoxyCodeLine{305 }
+\DoxyCodeLine{306     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < length; i++) \{}
+\DoxyCodeLine{307         uint32\_t tDuration = data[i] * \mbox{\hyperlink{_i_rremote_int_8h_a1c7eebb527483c272812530caa313d20}{MICROS\_PER\_TICK}};}
+\DoxyCodeLine{308         \textcolor{keywordflow}{if} (i \& 1) \{}
+\DoxyCodeLine{309             \textcolor{comment}{// Mark}}
+\DoxyCodeLine{310             tDuration -\/= \mbox{\hyperlink{group___receiving_gab1d28d4dd67d6bf808c0328a92e2d863}{getMarkExcessMicros}}();}
+\DoxyCodeLine{311         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{312             tDuration += \mbox{\hyperlink{group___receiving_gab1d28d4dd67d6bf808c0328a92e2d863}{getMarkExcessMicros}}();}
+\DoxyCodeLine{313         \}}
+\DoxyCodeLine{314         size += dumpDuration(aString, tDuration, timebase);}
+\DoxyCodeLine{315     \}}
+\DoxyCodeLine{316 }
+\DoxyCodeLine{317     \textcolor{comment}{// append minimum gap}}
+\DoxyCodeLine{318     size += dumpDuration(aString, PRONTO\_DEFAULT\_GAP, timebase);}
+\DoxyCodeLine{319 }
+\DoxyCodeLine{320     \textcolor{keywordflow}{return} size;}
+\DoxyCodeLine{321 \}}
+\DoxyCodeLine{322 }
+\DoxyCodeLine{323 \textcolor{comment}{/*}}
+\DoxyCodeLine{324 \textcolor{comment}{ * Writes Pronto HEX to a String object.}}
+\DoxyCodeLine{325 \textcolor{comment}{ * Returns the amount of characters added to the string.(360 characters for a NEC code!)}}
+\DoxyCodeLine{326 \textcolor{comment}{ */}}
+\DoxyCodeLine{327 \textcolor{keywordtype}{size\_t} IRrecv::compensateAndStorePronto(String *aString, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} frequency) \{}
+\DoxyCodeLine{328 }
+\DoxyCodeLine{329     \textcolor{keywordtype}{size\_t} size = 0;}
+\DoxyCodeLine{330     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} timebase = toTimebase(frequency);}
+\DoxyCodeLine{331 }
+\DoxyCodeLine{332     size += dumpNumber(aString, frequency > 0 ? learnedToken : learnedNonModulatedToken);}
+\DoxyCodeLine{333     size += dumpNumber(aString, toFrequencyCode(frequency));}
+\DoxyCodeLine{334     size += dumpNumber(aString, (decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_af0571ac479d1c38c79502651b0631432}{rawlen}} + 1) / 2);}
+\DoxyCodeLine{335     size += dumpNumber(aString, 0);}
+\DoxyCodeLine{336     size += compensateAndDumpSequence(aString, \&decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_a7aa7b811dcc0fb5ab0da7c0bddaf97f8}{rawbuf}}[1], decodedIRData.\mbox{\hyperlink{struct_i_r_data_a8d7c987d63874731ff2e1120b21a1a08}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_af0571ac479d1c38c79502651b0631432}{rawlen}} -\/ 1,}
+\DoxyCodeLine{337             timebase); \textcolor{comment}{// skip leading space}}
+\DoxyCodeLine{338 }
+\DoxyCodeLine{339     \textcolor{keywordflow}{return} size;}
+\DoxyCodeLine{340 \}}
+\DoxyCodeLine{341 }
+\DoxyCodeLine{343 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{344 \textcolor{preprocessor}{\#pragma once}}
+
+\end{DoxyCode}

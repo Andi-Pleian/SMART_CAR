@@ -1,0 +1,18 @@
+digraph "IRrecv::begin"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="IRrecv::begin",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="IRrecv::enableIRIn",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group___receiving.html#ga69d3e9314aea4a37b43b74a0b4f3f976",tooltip=" "];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="IRrecv::resume",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group___receiving.html#gaf40f1e16b1cc911e47ac3f0a9b3b1ec5",tooltip=" "];
+  Node2 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="timerConfigForReceive",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group___timer.html#ga8cca92581b5452eaac5b3075227c6c56",tooltip=" "];
+  Node1 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="setLEDFeedback",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group___feedback_l_e_d_functions.html#gaa5949b509ec061d9239867caa628cfec",tooltip=" "];
+  Node1 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="IRrecv::setReceivePin",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group___receiving.html#gac3c968e5acf5b0bbd1e1b87e0b5af61f",tooltip=" "];
+}

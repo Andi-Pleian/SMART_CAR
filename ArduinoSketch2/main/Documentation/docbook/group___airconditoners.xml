@@ -1,0 +1,545 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_group___airconditoners" xml:lang="en-US">
+<title>Air conditioner special code</title>
+<indexterm><primary>Air conditioner special code</primary></indexterm>
+<simplesect>
+    <title>Classes    </title>
+        <itemizedlist>
+            <listitem><para>union <link linkend="_union_l_g_protocol">LGProtocol</link></para>
+</listitem>
+            <listitem><para>class <link linkend="_class_aircondition___l_g">Aircondition_LG</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Macros    </title>
+        <itemizedlist>
+            <listitem><para>#define <link linkend="_group___airconditoners_1ga23c78d99597e1fb79900c2c2162703ed">LG_ADDRESS</link>   0x88</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1ga2e4ee6b0d489a06eb1115213bf8055ed">LG_SWITCH_ON_MASK</link>   0x0800</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1gaae2e0db9a5ce4151112a6906bfb1090c">LG_MODE_COOLING</link>   0x0800</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1gac49c9a2cf24d0bac6724167416236498">LG_MODE_DEHUMIDIFIYING</link>   0x0990</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1gae82f0963f74d72085d63857a33a8abfe">LG_MODE_FAN</link>   0x0A30</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1ga7474777d5b8f60c2871b141c4c8febdc">LG_MODE_AUTO</link>   0x0B00</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1ga49b7354b9ea838746bd12d44a73cbbfe">LG_MODE_HEATING</link>   0x0C00</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1ga50a68c01f30d77719bd0965849eb9432">LG_ENERGY_SAVING_ON</link>   0x1004</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1gaa04556b565d50612183d76a1cf17162a">LG_ENERGY_SAVING_OFF</link>   0x1005</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1gac832ef74f7acce9703cf4bfe3af9c62c">LG_JET_ON</link>   0x1008</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1ga6e9da9436e1330717c4e521c3274f9e7">LG_WALL_SWING_ON</link>   0x1314</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1gac4018dd9d884ac5f47a72f8f97a30013">LG_WALL_SWING_OFF</link>   0x1315</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1gae2aa0cea45172493aff78b178429498b">LG_SWING_ON</link>   0x1316</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1gae948545d5555a8e1661bf9ed84f8a5bd">LG_SWING_OFF</link>   0x1317</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1ga0d3fa053a91e0ccdbf82607d6f191884">LG_TIMER_ON</link>   0x8000</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1ga953e35300b777bf9b39ecb1c97fbe92b">LG_TIMER_OFF</link>   0x9000</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1gafa12114ef5d9a8113d9b812e1c3f215d">LG_SLEEP</link>   0xA000</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1gabbff1ff71274f875aab9304e201697a9">LG_CLEAR_ALL</link>   0xB000</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1gac55cb8592c8e9e1d0d9d47e8921862d0">LG_POWER_DOWN</link>   0xC005</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1gafc7cc7b8e3f42b30e478d80f917c917c">LG_LIGHT</link>   0xC00A</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1ga3f6636d07bce14c9610e5acd74e4c32c">LG_AUTO_CLEAN_ON</link>   0xC00B</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1ga61b4e884ce7bb6f44749e52af3fe93dc">LG_AUTO_CLEAN_OFF</link>   0xC00C</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1ga24fd67c4d0d7bf87fd4a7d788070a226">LG_COMMAND_OFF</link>   &apos;0&apos;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1ga79162224c70f14abcb2a2dba386148c1">LG_COMMAND_ON</link>   &apos;1&apos;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1ga82d5b518dba56f050e6563f22d9c2206">LG_COMMAND_SWING</link>   &apos;s&apos;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1ga718a9952e98c9ff0db43168edff9f9e1">LG_COMMAND_AUTO_CLEAN</link>   &apos;a&apos;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1ga64f924ab6a2a070627ca40bb8ea718a2">LG_COMMAND_JET</link>   &apos;j&apos;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1ga78b9d595527aac3bc74b16079f6a5875">LG_COMMAND_ENERGY</link>   &apos;e&apos;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1ga96e898832dfdd0788ba0d188eefed0c9">LG_COMMAND_LIGHT</link>   &apos;l&apos;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1ga7476ae7bbae7d8bbc85101df2481e928">LG_COMMAND_FAN_SPEED</link>   &apos;f&apos;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1gaee4c1f6351dff61efa70ac0f59c301b9">LG_COMMAND_TEMPERATURE</link>   &apos;t&apos;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1ga26bce5b8f0b1f61c21135f7ce116bd0e">LG_COMMAND_TEMPERATURE_PLUS</link>   &apos;+&apos;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1gad15f415d50b1f65322b15ea607d718d7">LG_COMMAND_TEMPERATURE_MINUS</link>   &apos;-&apos;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1ga8da7f66cacc866d8f7e50bfe1b80bab1">LG_COMMAND_MODE</link>   &apos;m&apos;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1gaded0337c0d938ef82caaf8c2f1c59283">LG_COMMAND_SLEEP</link>   &apos;S&apos;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1ga414f526948aba8247f62b560d75834d6">LG_COMMAND_TIMER_ON</link>   &apos;T&apos;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1ga2a765b54db1abe3e11c72f19feaa071f">LG_COMMAND_TIMER_OFF</link>   &apos;O&apos;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1gaf1ec2778dd50f24b0eee7e2141a74de2">LG_COMMAND_CLEAR_ALL</link>   &apos;C&apos;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1gad40cb179d8947abb261c66c4025d6f5c">AC_MODE_COOLING</link>   &apos;c&apos;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1ga3c73605f2e327ae30c0cb5cb90fdade5">AC_MODE_DEHUMIDIFIYING</link>   &apos;d&apos;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1gaa95639ff20eae994eac17c04cd1af46a">AC_MODE_FAN</link>   &apos;f&apos;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1ga5e3517bd87cdd71f3faedd5648f3869a">AC_MODE_AUTO</link>   &apos;a&apos;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1ga4d1f100bd13d68bbff9165cfeb1d011c">AC_MODE_HEATING</link>   &apos;h&apos;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___airconditoners_1ga6d745a4e59f5d14e9983d174b6e9705a">SIZE_OF_FAN_SPEED_MAPPING_TABLE</link>   4</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Functions    </title>
+        <itemizedlist>
+            <listitem><para>void <link linkend="_group___airconditoners_1ga75056e4f4dfa299b6f328df460f3f174">Aircondition_LG::setType</link> (bool aIsWallType)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___airconditoners_1ga0210285f615ce3a1ac9b26fd1af51dd9">Aircondition_LG::printMenu</link> (Print *aSerial)</para>
+</listitem>
+            <listitem><para>bool <link linkend="_group___airconditoners_1ga65bba14a0302268cc515831d37e95b7a">Aircondition_LG::sendCommandAndParameter</link> (char aCommand, int aParameter)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___airconditoners_1ga113704b3b19c8477635210341163bf9e">Aircondition_LG::sendIRCommand</link> (uint16_t aCommand)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___airconditoners_1ga83d18e2597cc2ea78f25889bc6c060e3">Aircondition_LG::sendTemperatureFanSpeedAndMode</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Variables    </title>
+        <itemizedlist>
+            <listitem><para>const int <link linkend="_group___airconditoners_1ga9e4c45659819db87363cdef65209ee56">AC_FAN_TOWER</link> [<link linkend="_group___airconditoners_1ga6d745a4e59f5d14e9983d174b6e9705a">SIZE_OF_FAN_SPEED_MAPPING_TABLE</link>] = { 0, 4, 6, 6 }</para>
+</listitem>
+            <listitem><para>const int <link linkend="_group___airconditoners_1ga06d1cb86267a1aa639caa670ba813600">AC_FAN_WALL</link> [<link linkend="_group___airconditoners_1ga6d745a4e59f5d14e9983d174b6e9705a">SIZE_OF_FAN_SPEED_MAPPING_TABLE</link>] = { 0, 2, 4, 5 }</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+</section>
+<section>
+<title>Macro Definition Documentation</title>
+<anchor xml:id="_group___airconditoners_1ga5e3517bd87cdd71f3faedd5648f3869a"/><section>
+    <title>AC_MODE_AUTO</title>
+<indexterm><primary>AC_MODE_AUTO</primary><secondary>Air conditioner special code</secondary></indexterm>
+<indexterm><primary>Air conditioner special code</primary><secondary>AC_MODE_AUTO</secondary></indexterm>
+<para><computeroutput>#define AC_MODE_AUTO   &apos;a&apos;</computeroutput></para><para>
+Definition at line <link linkend="_ac___l_g_8h_source_1l00097">97</link> of file <link linkend="_ac___l_g_8h_source">ac_LG.h</link>.</para>
+</section>
+<anchor xml:id="_group___airconditoners_1gad40cb179d8947abb261c66c4025d6f5c"/><section>
+    <title>AC_MODE_COOLING</title>
+<indexterm><primary>AC_MODE_COOLING</primary><secondary>Air conditioner special code</secondary></indexterm>
+<indexterm><primary>Air conditioner special code</primary><secondary>AC_MODE_COOLING</secondary></indexterm>
+<para><computeroutput>#define AC_MODE_COOLING   &apos;c&apos;</computeroutput></para><para>
+Definition at line <link linkend="_ac___l_g_8h_source_1l00094">94</link> of file <link linkend="_ac___l_g_8h_source">ac_LG.h</link>.</para>
+</section>
+<anchor xml:id="_group___airconditoners_1ga3c73605f2e327ae30c0cb5cb90fdade5"/><section>
+    <title>AC_MODE_DEHUMIDIFIYING</title>
+<indexterm><primary>AC_MODE_DEHUMIDIFIYING</primary><secondary>Air conditioner special code</secondary></indexterm>
+<indexterm><primary>Air conditioner special code</primary><secondary>AC_MODE_DEHUMIDIFIYING</secondary></indexterm>
+<para><computeroutput>#define AC_MODE_DEHUMIDIFIYING   &apos;d&apos;</computeroutput></para><para>
+Definition at line <link linkend="_ac___l_g_8h_source_1l00095">95</link> of file <link linkend="_ac___l_g_8h_source">ac_LG.h</link>.</para>
+</section>
+<anchor xml:id="_group___airconditoners_1gaa95639ff20eae994eac17c04cd1af46a"/><section>
+    <title>AC_MODE_FAN</title>
+<indexterm><primary>AC_MODE_FAN</primary><secondary>Air conditioner special code</secondary></indexterm>
+<indexterm><primary>Air conditioner special code</primary><secondary>AC_MODE_FAN</secondary></indexterm>
+<para><computeroutput>#define AC_MODE_FAN   &apos;f&apos;</computeroutput></para><para>
+Definition at line <link linkend="_ac___l_g_8h_source_1l00096">96</link> of file <link linkend="_ac___l_g_8h_source">ac_LG.h</link>.</para>
+</section>
+<anchor xml:id="_group___airconditoners_1ga4d1f100bd13d68bbff9165cfeb1d011c"/><section>
+    <title>AC_MODE_HEATING</title>
+<indexterm><primary>AC_MODE_HEATING</primary><secondary>Air conditioner special code</secondary></indexterm>
+<indexterm><primary>Air conditioner special code</primary><secondary>AC_MODE_HEATING</secondary></indexterm>
+<para><computeroutput>#define AC_MODE_HEATING   &apos;h&apos;</computeroutput></para><para>
+Definition at line <link linkend="_ac___l_g_8h_source_1l00098">98</link> of file <link linkend="_ac___l_g_8h_source">ac_LG.h</link>.</para>
+</section>
+<anchor xml:id="_group___airconditoners_1ga23c78d99597e1fb79900c2c2162703ed"/><section>
+    <title>LG_ADDRESS</title>
+<indexterm><primary>LG_ADDRESS</primary><secondary>Air conditioner special code</secondary></indexterm>
+<indexterm><primary>Air conditioner special code</primary><secondary>LG_ADDRESS</secondary></indexterm>
+<para><computeroutput>#define LG_ADDRESS   0x88</computeroutput></para><para>
+Definition at line <link linkend="_ac___l_g_8h_source_1l00042">42</link> of file <link linkend="_ac___l_g_8h_source">ac_LG.h</link>.</para>
+</section>
+<anchor xml:id="_group___airconditoners_1ga61b4e884ce7bb6f44749e52af3fe93dc"/><section>
+    <title>LG_AUTO_CLEAN_OFF</title>
+<indexterm><primary>LG_AUTO_CLEAN_OFF</primary><secondary>Air conditioner special code</secondary></indexterm>
+<indexterm><primary>Air conditioner special code</primary><secondary>LG_AUTO_CLEAN_OFF</secondary></indexterm>
+<para><computeroutput>#define LG_AUTO_CLEAN_OFF   0xC00C</computeroutput></para><para>
+Definition at line <link linkend="_ac___l_g_8h_source_1l00069">69</link> of file <link linkend="_ac___l_g_8h_source">ac_LG.h</link>.</para>
+</section>
+<anchor xml:id="_group___airconditoners_1ga3f6636d07bce14c9610e5acd74e4c32c"/><section>
+    <title>LG_AUTO_CLEAN_ON</title>
+<indexterm><primary>LG_AUTO_CLEAN_ON</primary><secondary>Air conditioner special code</secondary></indexterm>
+<indexterm><primary>Air conditioner special code</primary><secondary>LG_AUTO_CLEAN_ON</secondary></indexterm>
+<para><computeroutput>#define LG_AUTO_CLEAN_ON   0xC00B</computeroutput></para><para>
+Definition at line <link linkend="_ac___l_g_8h_source_1l00068">68</link> of file <link linkend="_ac___l_g_8h_source">ac_LG.h</link>.</para>
+</section>
+<anchor xml:id="_group___airconditoners_1gabbff1ff71274f875aab9304e201697a9"/><section>
+    <title>LG_CLEAR_ALL</title>
+<indexterm><primary>LG_CLEAR_ALL</primary><secondary>Air conditioner special code</secondary></indexterm>
+<indexterm><primary>Air conditioner special code</primary><secondary>LG_CLEAR_ALL</secondary></indexterm>
+<para><computeroutput>#define LG_CLEAR_ALL   0xB000</computeroutput></para><para>
+Definition at line <link linkend="_ac___l_g_8h_source_1l00065">65</link> of file <link linkend="_ac___l_g_8h_source">ac_LG.h</link>.</para>
+</section>
+<anchor xml:id="_group___airconditoners_1ga718a9952e98c9ff0db43168edff9f9e1"/><section>
+    <title>LG_COMMAND_AUTO_CLEAN</title>
+<indexterm><primary>LG_COMMAND_AUTO_CLEAN</primary><secondary>Air conditioner special code</secondary></indexterm>
+<indexterm><primary>Air conditioner special code</primary><secondary>LG_COMMAND_AUTO_CLEAN</secondary></indexterm>
+<para><computeroutput>#define LG_COMMAND_AUTO_CLEAN   &apos;a&apos;</computeroutput></para><para>
+Definition at line <link linkend="_ac___l_g_8h_source_1l00077">77</link> of file <link linkend="_ac___l_g_8h_source">ac_LG.h</link>.</para>
+</section>
+<anchor xml:id="_group___airconditoners_1gaf1ec2778dd50f24b0eee7e2141a74de2"/><section>
+    <title>LG_COMMAND_CLEAR_ALL</title>
+<indexterm><primary>LG_COMMAND_CLEAR_ALL</primary><secondary>Air conditioner special code</secondary></indexterm>
+<indexterm><primary>Air conditioner special code</primary><secondary>LG_COMMAND_CLEAR_ALL</secondary></indexterm>
+<para><computeroutput>#define LG_COMMAND_CLEAR_ALL   &apos;C&apos;</computeroutput></para><para>
+Definition at line <link linkend="_ac___l_g_8h_source_1l00089">89</link> of file <link linkend="_ac___l_g_8h_source">ac_LG.h</link>.</para>
+</section>
+<anchor xml:id="_group___airconditoners_1ga78b9d595527aac3bc74b16079f6a5875"/><section>
+    <title>LG_COMMAND_ENERGY</title>
+<indexterm><primary>LG_COMMAND_ENERGY</primary><secondary>Air conditioner special code</secondary></indexterm>
+<indexterm><primary>Air conditioner special code</primary><secondary>LG_COMMAND_ENERGY</secondary></indexterm>
+<para><computeroutput>#define LG_COMMAND_ENERGY   &apos;e&apos;</computeroutput></para><para>
+Definition at line <link linkend="_ac___l_g_8h_source_1l00079">79</link> of file <link linkend="_ac___l_g_8h_source">ac_LG.h</link>.</para>
+</section>
+<anchor xml:id="_group___airconditoners_1ga7476ae7bbae7d8bbc85101df2481e928"/><section>
+    <title>LG_COMMAND_FAN_SPEED</title>
+<indexterm><primary>LG_COMMAND_FAN_SPEED</primary><secondary>Air conditioner special code</secondary></indexterm>
+<indexterm><primary>Air conditioner special code</primary><secondary>LG_COMMAND_FAN_SPEED</secondary></indexterm>
+<para><computeroutput>#define LG_COMMAND_FAN_SPEED   &apos;f&apos;</computeroutput></para><para>
+Definition at line <link linkend="_ac___l_g_8h_source_1l00081">81</link> of file <link linkend="_ac___l_g_8h_source">ac_LG.h</link>.</para>
+</section>
+<anchor xml:id="_group___airconditoners_1ga64f924ab6a2a070627ca40bb8ea718a2"/><section>
+    <title>LG_COMMAND_JET</title>
+<indexterm><primary>LG_COMMAND_JET</primary><secondary>Air conditioner special code</secondary></indexterm>
+<indexterm><primary>Air conditioner special code</primary><secondary>LG_COMMAND_JET</secondary></indexterm>
+<para><computeroutput>#define LG_COMMAND_JET   &apos;j&apos;</computeroutput></para><para>
+Definition at line <link linkend="_ac___l_g_8h_source_1l00078">78</link> of file <link linkend="_ac___l_g_8h_source">ac_LG.h</link>.</para>
+</section>
+<anchor xml:id="_group___airconditoners_1ga96e898832dfdd0788ba0d188eefed0c9"/><section>
+    <title>LG_COMMAND_LIGHT</title>
+<indexterm><primary>LG_COMMAND_LIGHT</primary><secondary>Air conditioner special code</secondary></indexterm>
+<indexterm><primary>Air conditioner special code</primary><secondary>LG_COMMAND_LIGHT</secondary></indexterm>
+<para><computeroutput>#define LG_COMMAND_LIGHT   &apos;l&apos;</computeroutput></para><para>
+Definition at line <link linkend="_ac___l_g_8h_source_1l00080">80</link> of file <link linkend="_ac___l_g_8h_source">ac_LG.h</link>.</para>
+</section>
+<anchor xml:id="_group___airconditoners_1ga8da7f66cacc866d8f7e50bfe1b80bab1"/><section>
+    <title>LG_COMMAND_MODE</title>
+<indexterm><primary>LG_COMMAND_MODE</primary><secondary>Air conditioner special code</secondary></indexterm>
+<indexterm><primary>Air conditioner special code</primary><secondary>LG_COMMAND_MODE</secondary></indexterm>
+<para><computeroutput>#define LG_COMMAND_MODE   &apos;m&apos;</computeroutput></para><para>
+Definition at line <link linkend="_ac___l_g_8h_source_1l00085">85</link> of file <link linkend="_ac___l_g_8h_source">ac_LG.h</link>.</para>
+</section>
+<anchor xml:id="_group___airconditoners_1ga24fd67c4d0d7bf87fd4a7d788070a226"/><section>
+    <title>LG_COMMAND_OFF</title>
+<indexterm><primary>LG_COMMAND_OFF</primary><secondary>Air conditioner special code</secondary></indexterm>
+<indexterm><primary>Air conditioner special code</primary><secondary>LG_COMMAND_OFF</secondary></indexterm>
+<para><computeroutput>#define LG_COMMAND_OFF   &apos;0&apos;</computeroutput></para><para>
+Definition at line <link linkend="_ac___l_g_8h_source_1l00074">74</link> of file <link linkend="_ac___l_g_8h_source">ac_LG.h</link>.</para>
+</section>
+<anchor xml:id="_group___airconditoners_1ga79162224c70f14abcb2a2dba386148c1"/><section>
+    <title>LG_COMMAND_ON</title>
+<indexterm><primary>LG_COMMAND_ON</primary><secondary>Air conditioner special code</secondary></indexterm>
+<indexterm><primary>Air conditioner special code</primary><secondary>LG_COMMAND_ON</secondary></indexterm>
+<para><computeroutput>#define LG_COMMAND_ON   &apos;1&apos;</computeroutput></para><para>
+Definition at line <link linkend="_ac___l_g_8h_source_1l00075">75</link> of file <link linkend="_ac___l_g_8h_source">ac_LG.h</link>.</para>
+</section>
+<anchor xml:id="_group___airconditoners_1gaded0337c0d938ef82caaf8c2f1c59283"/><section>
+    <title>LG_COMMAND_SLEEP</title>
+<indexterm><primary>LG_COMMAND_SLEEP</primary><secondary>Air conditioner special code</secondary></indexterm>
+<indexterm><primary>Air conditioner special code</primary><secondary>LG_COMMAND_SLEEP</secondary></indexterm>
+<para><computeroutput>#define LG_COMMAND_SLEEP   &apos;S&apos;</computeroutput></para><para>
+Definition at line <link linkend="_ac___l_g_8h_source_1l00086">86</link> of file <link linkend="_ac___l_g_8h_source">ac_LG.h</link>.</para>
+</section>
+<anchor xml:id="_group___airconditoners_1ga82d5b518dba56f050e6563f22d9c2206"/><section>
+    <title>LG_COMMAND_SWING</title>
+<indexterm><primary>LG_COMMAND_SWING</primary><secondary>Air conditioner special code</secondary></indexterm>
+<indexterm><primary>Air conditioner special code</primary><secondary>LG_COMMAND_SWING</secondary></indexterm>
+<para><computeroutput>#define LG_COMMAND_SWING   &apos;s&apos;</computeroutput></para><para>
+Definition at line <link linkend="_ac___l_g_8h_source_1l00076">76</link> of file <link linkend="_ac___l_g_8h_source">ac_LG.h</link>.</para>
+</section>
+<anchor xml:id="_group___airconditoners_1gaee4c1f6351dff61efa70ac0f59c301b9"/><section>
+    <title>LG_COMMAND_TEMPERATURE</title>
+<indexterm><primary>LG_COMMAND_TEMPERATURE</primary><secondary>Air conditioner special code</secondary></indexterm>
+<indexterm><primary>Air conditioner special code</primary><secondary>LG_COMMAND_TEMPERATURE</secondary></indexterm>
+<para><computeroutput>#define LG_COMMAND_TEMPERATURE   &apos;t&apos;</computeroutput></para><para>
+Definition at line <link linkend="_ac___l_g_8h_source_1l00082">82</link> of file <link linkend="_ac___l_g_8h_source">ac_LG.h</link>.</para>
+</section>
+<anchor xml:id="_group___airconditoners_1gad15f415d50b1f65322b15ea607d718d7"/><section>
+    <title>LG_COMMAND_TEMPERATURE_MINUS</title>
+<indexterm><primary>LG_COMMAND_TEMPERATURE_MINUS</primary><secondary>Air conditioner special code</secondary></indexterm>
+<indexterm><primary>Air conditioner special code</primary><secondary>LG_COMMAND_TEMPERATURE_MINUS</secondary></indexterm>
+<para><computeroutput>#define LG_COMMAND_TEMPERATURE_MINUS   &apos;-&apos;</computeroutput></para><para>
+Definition at line <link linkend="_ac___l_g_8h_source_1l00084">84</link> of file <link linkend="_ac___l_g_8h_source">ac_LG.h</link>.</para>
+</section>
+<anchor xml:id="_group___airconditoners_1ga26bce5b8f0b1f61c21135f7ce116bd0e"/><section>
+    <title>LG_COMMAND_TEMPERATURE_PLUS</title>
+<indexterm><primary>LG_COMMAND_TEMPERATURE_PLUS</primary><secondary>Air conditioner special code</secondary></indexterm>
+<indexterm><primary>Air conditioner special code</primary><secondary>LG_COMMAND_TEMPERATURE_PLUS</secondary></indexterm>
+<para><computeroutput>#define LG_COMMAND_TEMPERATURE_PLUS   &apos;+&apos;</computeroutput></para><para>
+Definition at line <link linkend="_ac___l_g_8h_source_1l00083">83</link> of file <link linkend="_ac___l_g_8h_source">ac_LG.h</link>.</para>
+</section>
+<anchor xml:id="_group___airconditoners_1ga2a765b54db1abe3e11c72f19feaa071f"/><section>
+    <title>LG_COMMAND_TIMER_OFF</title>
+<indexterm><primary>LG_COMMAND_TIMER_OFF</primary><secondary>Air conditioner special code</secondary></indexterm>
+<indexterm><primary>Air conditioner special code</primary><secondary>LG_COMMAND_TIMER_OFF</secondary></indexterm>
+<para><computeroutput>#define LG_COMMAND_TIMER_OFF   &apos;O&apos;</computeroutput></para><para>
+Definition at line <link linkend="_ac___l_g_8h_source_1l00088">88</link> of file <link linkend="_ac___l_g_8h_source">ac_LG.h</link>.</para>
+</section>
+<anchor xml:id="_group___airconditoners_1ga414f526948aba8247f62b560d75834d6"/><section>
+    <title>LG_COMMAND_TIMER_ON</title>
+<indexterm><primary>LG_COMMAND_TIMER_ON</primary><secondary>Air conditioner special code</secondary></indexterm>
+<indexterm><primary>Air conditioner special code</primary><secondary>LG_COMMAND_TIMER_ON</secondary></indexterm>
+<para><computeroutput>#define LG_COMMAND_TIMER_ON   &apos;T&apos;</computeroutput></para><para>
+Definition at line <link linkend="_ac___l_g_8h_source_1l00087">87</link> of file <link linkend="_ac___l_g_8h_source">ac_LG.h</link>.</para>
+</section>
+<anchor xml:id="_group___airconditoners_1gaa04556b565d50612183d76a1cf17162a"/><section>
+    <title>LG_ENERGY_SAVING_OFF</title>
+<indexterm><primary>LG_ENERGY_SAVING_OFF</primary><secondary>Air conditioner special code</secondary></indexterm>
+<indexterm><primary>Air conditioner special code</primary><secondary>LG_ENERGY_SAVING_OFF</secondary></indexterm>
+<para><computeroutput>#define LG_ENERGY_SAVING_OFF   0x1005</computeroutput></para><para>
+Definition at line <link linkend="_ac___l_g_8h_source_1l00056">56</link> of file <link linkend="_ac___l_g_8h_source">ac_LG.h</link>.</para>
+</section>
+<anchor xml:id="_group___airconditoners_1ga50a68c01f30d77719bd0965849eb9432"/><section>
+    <title>LG_ENERGY_SAVING_ON</title>
+<indexterm><primary>LG_ENERGY_SAVING_ON</primary><secondary>Air conditioner special code</secondary></indexterm>
+<indexterm><primary>Air conditioner special code</primary><secondary>LG_ENERGY_SAVING_ON</secondary></indexterm>
+<para><computeroutput>#define LG_ENERGY_SAVING_ON   0x1004</computeroutput></para><para>
+Definition at line <link linkend="_ac___l_g_8h_source_1l00055">55</link> of file <link linkend="_ac___l_g_8h_source">ac_LG.h</link>.</para>
+</section>
+<anchor xml:id="_group___airconditoners_1gac832ef74f7acce9703cf4bfe3af9c62c"/><section>
+    <title>LG_JET_ON</title>
+<indexterm><primary>LG_JET_ON</primary><secondary>Air conditioner special code</secondary></indexterm>
+<indexterm><primary>Air conditioner special code</primary><secondary>LG_JET_ON</secondary></indexterm>
+<para><computeroutput>#define LG_JET_ON   0x1008</computeroutput></para><para>
+Definition at line <link linkend="_ac___l_g_8h_source_1l00057">57</link> of file <link linkend="_ac___l_g_8h_source">ac_LG.h</link>.</para>
+</section>
+<anchor xml:id="_group___airconditoners_1gafc7cc7b8e3f42b30e478d80f917c917c"/><section>
+    <title>LG_LIGHT</title>
+<indexterm><primary>LG_LIGHT</primary><secondary>Air conditioner special code</secondary></indexterm>
+<indexterm><primary>Air conditioner special code</primary><secondary>LG_LIGHT</secondary></indexterm>
+<para><computeroutput>#define LG_LIGHT   0xC00A</computeroutput></para><para>
+Definition at line <link linkend="_ac___l_g_8h_source_1l00067">67</link> of file <link linkend="_ac___l_g_8h_source">ac_LG.h</link>.</para>
+</section>
+<anchor xml:id="_group___airconditoners_1ga7474777d5b8f60c2871b141c4c8febdc"/><section>
+    <title>LG_MODE_AUTO</title>
+<indexterm><primary>LG_MODE_AUTO</primary><secondary>Air conditioner special code</secondary></indexterm>
+<indexterm><primary>Air conditioner special code</primary><secondary>LG_MODE_AUTO</secondary></indexterm>
+<para><computeroutput>#define LG_MODE_AUTO   0x0B00</computeroutput></para><para>
+Definition at line <link linkend="_ac___l_g_8h_source_1l00053">53</link> of file <link linkend="_ac___l_g_8h_source">ac_LG.h</link>.</para>
+</section>
+<anchor xml:id="_group___airconditoners_1gaae2e0db9a5ce4151112a6906bfb1090c"/><section>
+    <title>LG_MODE_COOLING</title>
+<indexterm><primary>LG_MODE_COOLING</primary><secondary>Air conditioner special code</secondary></indexterm>
+<indexterm><primary>Air conditioner special code</primary><secondary>LG_MODE_COOLING</secondary></indexterm>
+<para><computeroutput>#define LG_MODE_COOLING   0x0800</computeroutput></para><para>
+Definition at line <link linkend="_ac___l_g_8h_source_1l00050">50</link> of file <link linkend="_ac___l_g_8h_source">ac_LG.h</link>.</para>
+</section>
+<anchor xml:id="_group___airconditoners_1gac49c9a2cf24d0bac6724167416236498"/><section>
+    <title>LG_MODE_DEHUMIDIFIYING</title>
+<indexterm><primary>LG_MODE_DEHUMIDIFIYING</primary><secondary>Air conditioner special code</secondary></indexterm>
+<indexterm><primary>Air conditioner special code</primary><secondary>LG_MODE_DEHUMIDIFIYING</secondary></indexterm>
+<para><computeroutput>#define LG_MODE_DEHUMIDIFIYING   0x0990</computeroutput></para><para>
+Definition at line <link linkend="_ac___l_g_8h_source_1l00051">51</link> of file <link linkend="_ac___l_g_8h_source">ac_LG.h</link>.</para>
+</section>
+<anchor xml:id="_group___airconditoners_1gae82f0963f74d72085d63857a33a8abfe"/><section>
+    <title>LG_MODE_FAN</title>
+<indexterm><primary>LG_MODE_FAN</primary><secondary>Air conditioner special code</secondary></indexterm>
+<indexterm><primary>Air conditioner special code</primary><secondary>LG_MODE_FAN</secondary></indexterm>
+<para><computeroutput>#define LG_MODE_FAN   0x0A30</computeroutput></para><para>
+Definition at line <link linkend="_ac___l_g_8h_source_1l00052">52</link> of file <link linkend="_ac___l_g_8h_source">ac_LG.h</link>.</para>
+</section>
+<anchor xml:id="_group___airconditoners_1ga49b7354b9ea838746bd12d44a73cbbfe"/><section>
+    <title>LG_MODE_HEATING</title>
+<indexterm><primary>LG_MODE_HEATING</primary><secondary>Air conditioner special code</secondary></indexterm>
+<indexterm><primary>Air conditioner special code</primary><secondary>LG_MODE_HEATING</secondary></indexterm>
+<para><computeroutput>#define LG_MODE_HEATING   0x0C00</computeroutput></para><para>
+Definition at line <link linkend="_ac___l_g_8h_source_1l00054">54</link> of file <link linkend="_ac___l_g_8h_source">ac_LG.h</link>.</para>
+</section>
+<anchor xml:id="_group___airconditoners_1gac55cb8592c8e9e1d0d9d47e8921862d0"/><section>
+    <title>LG_POWER_DOWN</title>
+<indexterm><primary>LG_POWER_DOWN</primary><secondary>Air conditioner special code</secondary></indexterm>
+<indexterm><primary>Air conditioner special code</primary><secondary>LG_POWER_DOWN</secondary></indexterm>
+<para><computeroutput>#define LG_POWER_DOWN   0xC005</computeroutput></para><para>
+Definition at line <link linkend="_ac___l_g_8h_source_1l00066">66</link> of file <link linkend="_ac___l_g_8h_source">ac_LG.h</link>.</para>
+</section>
+<anchor xml:id="_group___airconditoners_1gafa12114ef5d9a8113d9b812e1c3f215d"/><section>
+    <title>LG_SLEEP</title>
+<indexterm><primary>LG_SLEEP</primary><secondary>Air conditioner special code</secondary></indexterm>
+<indexterm><primary>Air conditioner special code</primary><secondary>LG_SLEEP</secondary></indexterm>
+<para><computeroutput>#define LG_SLEEP   0xA000</computeroutput></para><para>
+Definition at line <link linkend="_ac___l_g_8h_source_1l00064">64</link> of file <link linkend="_ac___l_g_8h_source">ac_LG.h</link>.</para>
+</section>
+<anchor xml:id="_group___airconditoners_1gae948545d5555a8e1661bf9ed84f8a5bd"/><section>
+    <title>LG_SWING_OFF</title>
+<indexterm><primary>LG_SWING_OFF</primary><secondary>Air conditioner special code</secondary></indexterm>
+<indexterm><primary>Air conditioner special code</primary><secondary>LG_SWING_OFF</secondary></indexterm>
+<para><computeroutput>#define LG_SWING_OFF   0x1317</computeroutput></para><para>
+Definition at line <link linkend="_ac___l_g_8h_source_1l00061">61</link> of file <link linkend="_ac___l_g_8h_source">ac_LG.h</link>.</para>
+</section>
+<anchor xml:id="_group___airconditoners_1gae2aa0cea45172493aff78b178429498b"/><section>
+    <title>LG_SWING_ON</title>
+<indexterm><primary>LG_SWING_ON</primary><secondary>Air conditioner special code</secondary></indexterm>
+<indexterm><primary>Air conditioner special code</primary><secondary>LG_SWING_ON</secondary></indexterm>
+<para><computeroutput>#define LG_SWING_ON   0x1316</computeroutput></para><para>
+Definition at line <link linkend="_ac___l_g_8h_source_1l00060">60</link> of file <link linkend="_ac___l_g_8h_source">ac_LG.h</link>.</para>
+</section>
+<anchor xml:id="_group___airconditoners_1ga2e4ee6b0d489a06eb1115213bf8055ed"/><section>
+    <title>LG_SWITCH_ON_MASK</title>
+<indexterm><primary>LG_SWITCH_ON_MASK</primary><secondary>Air conditioner special code</secondary></indexterm>
+<indexterm><primary>Air conditioner special code</primary><secondary>LG_SWITCH_ON_MASK</secondary></indexterm>
+<para><computeroutput>#define LG_SWITCH_ON_MASK   0x0800</computeroutput></para><para>
+Definition at line <link linkend="_ac___l_g_8h_source_1l00049">49</link> of file <link linkend="_ac___l_g_8h_source">ac_LG.h</link>.</para>
+</section>
+<anchor xml:id="_group___airconditoners_1ga953e35300b777bf9b39ecb1c97fbe92b"/><section>
+    <title>LG_TIMER_OFF</title>
+<indexterm><primary>LG_TIMER_OFF</primary><secondary>Air conditioner special code</secondary></indexterm>
+<indexterm><primary>Air conditioner special code</primary><secondary>LG_TIMER_OFF</secondary></indexterm>
+<para><computeroutput>#define LG_TIMER_OFF   0x9000</computeroutput></para><para>
+Definition at line <link linkend="_ac___l_g_8h_source_1l00063">63</link> of file <link linkend="_ac___l_g_8h_source">ac_LG.h</link>.</para>
+</section>
+<anchor xml:id="_group___airconditoners_1ga0d3fa053a91e0ccdbf82607d6f191884"/><section>
+    <title>LG_TIMER_ON</title>
+<indexterm><primary>LG_TIMER_ON</primary><secondary>Air conditioner special code</secondary></indexterm>
+<indexterm><primary>Air conditioner special code</primary><secondary>LG_TIMER_ON</secondary></indexterm>
+<para><computeroutput>#define LG_TIMER_ON   0x8000</computeroutput></para><para>
+Definition at line <link linkend="_ac___l_g_8h_source_1l00062">62</link> of file <link linkend="_ac___l_g_8h_source">ac_LG.h</link>.</para>
+</section>
+<anchor xml:id="_group___airconditoners_1gac4018dd9d884ac5f47a72f8f97a30013"/><section>
+    <title>LG_WALL_SWING_OFF</title>
+<indexterm><primary>LG_WALL_SWING_OFF</primary><secondary>Air conditioner special code</secondary></indexterm>
+<indexterm><primary>Air conditioner special code</primary><secondary>LG_WALL_SWING_OFF</secondary></indexterm>
+<para><computeroutput>#define LG_WALL_SWING_OFF   0x1315</computeroutput></para><para>
+Definition at line <link linkend="_ac___l_g_8h_source_1l00059">59</link> of file <link linkend="_ac___l_g_8h_source">ac_LG.h</link>.</para>
+</section>
+<anchor xml:id="_group___airconditoners_1ga6e9da9436e1330717c4e521c3274f9e7"/><section>
+    <title>LG_WALL_SWING_ON</title>
+<indexterm><primary>LG_WALL_SWING_ON</primary><secondary>Air conditioner special code</secondary></indexterm>
+<indexterm><primary>Air conditioner special code</primary><secondary>LG_WALL_SWING_ON</secondary></indexterm>
+<para><computeroutput>#define LG_WALL_SWING_ON   0x1314</computeroutput></para><para>
+Definition at line <link linkend="_ac___l_g_8h_source_1l00058">58</link> of file <link linkend="_ac___l_g_8h_source">ac_LG.h</link>.</para>
+</section>
+<anchor xml:id="_group___airconditoners_1ga6d745a4e59f5d14e9983d174b6e9705a"/><section>
+    <title>SIZE_OF_FAN_SPEED_MAPPING_TABLE</title>
+<indexterm><primary>SIZE_OF_FAN_SPEED_MAPPING_TABLE</primary><secondary>Air conditioner special code</secondary></indexterm>
+<indexterm><primary>Air conditioner special code</primary><secondary>SIZE_OF_FAN_SPEED_MAPPING_TABLE</secondary></indexterm>
+<para><computeroutput>#define SIZE_OF_FAN_SPEED_MAPPING_TABLE   4</computeroutput></para><para>
+Definition at line <link linkend="_ac___l_g_8hpp_source_1l00056">56</link> of file <link linkend="_ac___l_g_8hpp_source">ac_LG.hpp</link>.</para>
+</section>
+</section>
+<section>
+<title>Function Documentation</title>
+<anchor xml:id="_group___airconditoners_1ga0210285f615ce3a1ac9b26fd1af51dd9"/><section>
+    <title>printMenu()</title>
+<indexterm><primary>printMenu</primary><secondary>Air conditioner special code</secondary></indexterm>
+<indexterm><primary>Air conditioner special code</primary><secondary>printMenu</secondary></indexterm>
+<para><computeroutput>void Aircondition_LG::printMenu (Print * aSerial)</computeroutput></para><para>
+Definition at line <link linkend="_ac___l_g_8hpp_source_1l00066">66</link> of file <link linkend="_ac___l_g_8hpp_source">ac_LG.hpp</link>.</para>
+</section>
+<anchor xml:id="_group___airconditoners_1ga65bba14a0302268cc515831d37e95b7a"/><section>
+    <title>sendCommandAndParameter()</title>
+<indexterm><primary>sendCommandAndParameter</primary><secondary>Air conditioner special code</secondary></indexterm>
+<indexterm><primary>Air conditioner special code</primary><secondary>sendCommandAndParameter</secondary></indexterm>
+<para><computeroutput>bool Aircondition_LG::sendCommandAndParameter (char aCommand, int aParameter)</computeroutput></para><para>
+Definition at line <link linkend="_ac___l_g_8hpp_source_1l00096">96</link> of file <link linkend="_ac___l_g_8hpp_source">ac_LG.hpp</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="group___airconditoners_ga65bba14a0302268cc515831d37e95b7a_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_group___airconditoners_1ga113704b3b19c8477635210341163bf9e"/><section>
+    <title>sendIRCommand()</title>
+<indexterm><primary>sendIRCommand</primary><secondary>Air conditioner special code</secondary></indexterm>
+<indexterm><primary>Air conditioner special code</primary><secondary>sendIRCommand</secondary></indexterm>
+<para><computeroutput>void Aircondition_LG::sendIRCommand (uint16_t aCommand)</computeroutput></para><para>
+Definition at line <link linkend="_ac___l_g_8hpp_source_1l00246">246</link> of file <link linkend="_ac___l_g_8hpp_source">ac_LG.hpp</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="group___airconditoners_ga113704b3b19c8477635210341163bf9e_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="group___airconditoners_ga113704b3b19c8477635210341163bf9e_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_group___airconditoners_1ga83d18e2597cc2ea78f25889bc6c060e3"/><section>
+    <title>sendTemperatureFanSpeedAndMode()</title>
+<indexterm><primary>sendTemperatureFanSpeedAndMode</primary><secondary>Air conditioner special code</secondary></indexterm>
+<indexterm><primary>Air conditioner special code</primary><secondary>sendTemperatureFanSpeedAndMode</secondary></indexterm>
+<para><computeroutput>void Aircondition_LG::sendTemperatureFanSpeedAndMode ( )</computeroutput></para><para>
+Definition at line <link linkend="_ac___l_g_8hpp_source_1l00259">259</link> of file <link linkend="_ac___l_g_8hpp_source">ac_LG.hpp</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="group___airconditoners_ga83d18e2597cc2ea78f25889bc6c060e3_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="group___airconditoners_ga83d18e2597cc2ea78f25889bc6c060e3_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_group___airconditoners_1ga75056e4f4dfa299b6f328df460f3f174"/><section>
+    <title>setType()</title>
+<indexterm><primary>setType</primary><secondary>Air conditioner special code</secondary></indexterm>
+<indexterm><primary>Air conditioner special code</primary><secondary>setType</secondary></indexterm>
+<para><computeroutput>void Aircondition_LG::setType (bool aIsWallType)</computeroutput></para><para>
+Definition at line <link linkend="_ac___l_g_8hpp_source_1l00060">60</link> of file <link linkend="_ac___l_g_8hpp_source">ac_LG.hpp</link>.</para>
+</section>
+</section>
+<section>
+<title>Variable Documentation</title>
+<anchor xml:id="_group___airconditoners_1ga9e4c45659819db87363cdef65209ee56"/><section>
+    <title>AC_FAN_TOWER</title>
+<indexterm><primary>AC_FAN_TOWER</primary><secondary>Air conditioner special code</secondary></indexterm>
+<indexterm><primary>Air conditioner special code</primary><secondary>AC_FAN_TOWER</secondary></indexterm>
+<para><computeroutput>const int AC_FAN_TOWER[<link linkend="_group___airconditoners_1ga6d745a4e59f5d14e9983d174b6e9705a">SIZE_OF_FAN_SPEED_MAPPING_TABLE</link>] = { 0, 4, 6, 6 }</computeroutput></para><para>
+Definition at line <link linkend="_ac___l_g_8hpp_source_1l00057">57</link> of file <link linkend="_ac___l_g_8hpp_source">ac_LG.hpp</link>.</para>
+</section>
+<anchor xml:id="_group___airconditoners_1ga06d1cb86267a1aa639caa670ba813600"/><section>
+    <title>AC_FAN_WALL</title>
+<indexterm><primary>AC_FAN_WALL</primary><secondary>Air conditioner special code</secondary></indexterm>
+<indexterm><primary>Air conditioner special code</primary><secondary>AC_FAN_WALL</secondary></indexterm>
+<para><computeroutput>const int AC_FAN_WALL[<link linkend="_group___airconditoners_1ga6d745a4e59f5d14e9983d174b6e9705a">SIZE_OF_FAN_SPEED_MAPPING_TABLE</link>] = { 0, 2, 4, 5 }</computeroutput></para><para>
+Definition at line <link linkend="_ac___l_g_8hpp_source_1l00058">58</link> of file <link linkend="_ac___l_g_8hpp_source">ac_LG.hpp</link>.</para>
+</section>
+</section>
+</section>

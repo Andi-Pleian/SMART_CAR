@@ -1,0 +1,264 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_parking_sensor" xml:lang="en-US">
+<title>ParkingSensor Class Reference</title>
+<indexterm><primary>ParkingSensor</primary></indexterm>
+<para>
+
+<para>Smart Parking Sensor. </para>
+ 
+</para>
+<para>
+<computeroutput>#include &lt;ParkingSensor.h&gt;</computeroutput>
+</para>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_parking_sensor_1a5f59f713e82968fdb71c9956a3c37f8e">ParkingSensor</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_class_parking_sensor_1a77486ddcba156d5a8768047574963ec4">~ParkingSensor</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_class_parking_sensor_1a50f7d8db46e89b0a84b10f434fed4ded">ParkingSensor</link> (unsigned short int, unsigned short int, unsigned short int)</para>
+</listitem>
+            <listitem><para><link linkend="_class_parking_sensor_1a1fc5c87cd15800606eda0accc8d2b225">ParkingSensor</link> (const <link linkend="_class_parking_sensor">ParkingSensor</link> &amp;s)</para>
+</listitem>
+            <listitem><para>int <link linkend="_class_parking_sensor_1afe9352318215cf3ca634bbd9629eb65b">getDistanceToObject</link> ()</para>
+</listitem>
+            <listitem><para>long <link linkend="_class_parking_sensor_1a54f438a973ae30d67dbf1786f9794982">getWaveComebackTime</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_class_parking_sensor_1a4c630df384e9be608ce86ca5aabef07a">serialPrintDistance</link> ()</para>
+</listitem>
+            <listitem><para>unsigned short int <link linkend="_class_parking_sensor_1a81edd2f2b878d51a0a27c046b1ffc409">getTrigPin</link> ()</para>
+</listitem>
+            <listitem><para>unsigned short int <link linkend="_class_parking_sensor_1ae28e23f81f22d8e462d9fce8cd92a18e">getEchoPin</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_class_parking_sensor_1adf87bce85f37a86bce44bc322d6fe02a">setTrigPin</link> (unsigned short int)</para>
+</listitem>
+            <listitem><para>void <link linkend="_class_parking_sensor_1a149ddf442a430e87a079939efa4a740f">setEchoPin</link> (unsigned short int)</para>
+</listitem>
+            <listitem><para>void <link linkend="_class_parking_sensor_1a6fb5861e5a5e2918db5810fb396c97f6">Task</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Public Attributes    </title>
+        <itemizedlist>
+            <listitem><para>Buzzer * <link linkend="_class_parking_sensor_1abf68f673f81bc141d9fe4de5e7183a61">buzzer</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Private Attributes    </title>
+        <itemizedlist>
+            <listitem><para>unsigned short int <link linkend="_class_parking_sensor_1adb1d39c112be08cd8e8acf2a4c6a9e76">trigPin</link></para>
+</listitem>
+            <listitem><para>unsigned short int <link linkend="_class_parking_sensor_1aa1c2ebc54dbbe12b19a3ea3dd5e25b47">echoPin</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>Smart Parking Sensor. </para>
+
+
+
+<para>This class is used for implementing the Smart Parking Sensor</para>
+
+<para>The parking sensor consists of:<itemizedlist>
+<listitem>
+<para>one ultrasonic sensor (used for measuring distance to objects)</para>
+</listitem><listitem>
+<para>one piezo buzzer (used to alert us when we are too close to an object) </para>
+</listitem></itemizedlist>
+</para>
+<para>
+Definition at line <link linkend="__parking_sensor_8h_source_1l00039">39</link> of file <link linkend="__parking_sensor_8h_source">ParkingSensor.h</link>.</para>
+</section>
+<section>
+<title>Constructor &amp; Destructor Documentation</title>
+<anchor xml:id="_class_parking_sensor_1a5f59f713e82968fdb71c9956a3c37f8e"/><section>
+    <title>ParkingSensor()<computeroutput>[1/3]</computeroutput></title>
+<indexterm><primary>ParkingSensor</primary><secondary>ParkingSensor</secondary></indexterm>
+<indexterm><primary>ParkingSensor</primary><secondary>ParkingSensor</secondary></indexterm>
+<para><computeroutput>ParkingSensor::ParkingSensor ( )</computeroutput></para>
+<para>Default constructor (Basic Init) </para>
+<para>
+Definition at line <link linkend="__parking_sensor_8cpp_source_1l00029">29</link> of file <link linkend="__parking_sensor_8cpp_source">ParkingSensor.cpp</link>.</para>
+</section>
+<anchor xml:id="_class_parking_sensor_1a77486ddcba156d5a8768047574963ec4"/><section>
+    <title>~ParkingSensor()</title>
+<indexterm><primary>~ParkingSensor</primary><secondary>ParkingSensor</secondary></indexterm>
+<indexterm><primary>ParkingSensor</primary><secondary>~ParkingSensor</secondary></indexterm>
+<para><computeroutput>ParkingSensor::~ParkingSensor ( )</computeroutput></para>
+<para>Default destructor (Empty) </para>
+<para>
+Definition at line <link linkend="__parking_sensor_8cpp_source_1l00049">49</link> of file <link linkend="__parking_sensor_8cpp_source">ParkingSensor.cpp</link>.</para>
+</section>
+<anchor xml:id="_class_parking_sensor_1a50f7d8db46e89b0a84b10f434fed4ded"/><section>
+    <title>ParkingSensor()<computeroutput>[2/3]</computeroutput></title>
+<indexterm><primary>ParkingSensor</primary><secondary>ParkingSensor</secondary></indexterm>
+<indexterm><primary>ParkingSensor</primary><secondary>ParkingSensor</secondary></indexterm>
+<para><computeroutput>ParkingSensor::ParkingSensor (unsigned short int trigPin_arg, unsigned short int echoPin_arg, unsigned short int buzzerPin_arg)</computeroutput></para>
+<para>Custom constructor used for initializing a new <link linkend="_class_parking_sensor">ParkingSensor</link></para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>in</entry><entry>trigPin_arg</entry><entry>
+<para>TriggerPin </para>
+</entry>
+                            </row>
+                            <row>
+<entry>in</entry><entry>echoPin_arg</entry><entry>
+<para>EchoPin </para>
+</entry>
+                            </row>
+                            <row>
+<entry>in</entry><entry>tag_arg</entry><entry>
+<para><link linkend="_class_parking_sensor">ParkingSensor</link>&apos;s tag </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="__parking_sensor_8cpp_source_1l00069">69</link> of file <link linkend="__parking_sensor_8cpp_source">ParkingSensor.cpp</link>.</para>
+</section>
+<anchor xml:id="_class_parking_sensor_1a1fc5c87cd15800606eda0accc8d2b225"/><section>
+    <title>ParkingSensor()<computeroutput>[3/3]</computeroutput></title>
+<indexterm><primary>ParkingSensor</primary><secondary>ParkingSensor</secondary></indexterm>
+<indexterm><primary>ParkingSensor</primary><secondary>ParkingSensor</secondary></indexterm>
+<para><computeroutput>ParkingSensor::ParkingSensor (const <link linkend="_class_parking_sensor">ParkingSensor</link> &amp; s)</computeroutput></para>
+<para>Copy constructor (NOT USED) </para>
+<para>
+Definition at line <link linkend="__parking_sensor_8cpp_source_1l00038">38</link> of file <link linkend="__parking_sensor_8cpp_source">ParkingSensor.cpp</link>.</para>
+</section>
+</section>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_class_parking_sensor_1afe9352318215cf3ca634bbd9629eb65b"/><section>
+    <title>getDistanceToObject()</title>
+<indexterm><primary>getDistanceToObject</primary><secondary>ParkingSensor</secondary></indexterm>
+<indexterm><primary>ParkingSensor</primary><secondary>getDistanceToObject</secondary></indexterm>
+<para><computeroutput>int ParkingSensor::getDistanceToObject ( )</computeroutput></para>
+<para>Measures distance (in cm) to object based on ultrasound comeback time, using the following formula: Distance = (Time * Speed) / 2</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>Distance in cm to object </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="__parking_sensor_8cpp_source_1l00102">102</link> of file <link linkend="__parking_sensor_8cpp_source">ParkingSensor.cpp</link>.</para>
+</section>
+<anchor xml:id="_class_parking_sensor_1ae28e23f81f22d8e462d9fce8cd92a18e"/><section>
+    <title>getEchoPin()</title>
+<indexterm><primary>getEchoPin</primary><secondary>ParkingSensor</secondary></indexterm>
+<indexterm><primary>ParkingSensor</primary><secondary>getEchoPin</secondary></indexterm>
+<para><computeroutput>unsigned short int ParkingSensor::getEchoPin ( )</computeroutput></para><para>
+Definition at line <link linkend="__parking_sensor_8cpp_source_1l00157">157</link> of file <link linkend="__parking_sensor_8cpp_source">ParkingSensor.cpp</link>.</para>
+</section>
+<anchor xml:id="_class_parking_sensor_1a81edd2f2b878d51a0a27c046b1ffc409"/><section>
+    <title>getTrigPin()</title>
+<indexterm><primary>getTrigPin</primary><secondary>ParkingSensor</secondary></indexterm>
+<indexterm><primary>ParkingSensor</primary><secondary>getTrigPin</secondary></indexterm>
+<para><computeroutput>unsigned short int ParkingSensor::getTrigPin ( )</computeroutput></para><para>
+Definition at line <link linkend="__parking_sensor_8cpp_source_1l00149">149</link> of file <link linkend="__parking_sensor_8cpp_source">ParkingSensor.cpp</link>.</para>
+</section>
+<anchor xml:id="_class_parking_sensor_1a54f438a973ae30d67dbf1786f9794982"/><section>
+    <title>getWaveComebackTime()</title>
+<indexterm><primary>getWaveComebackTime</primary><secondary>ParkingSensor</secondary></indexterm>
+<indexterm><primary>ParkingSensor</primary><secondary>getWaveComebackTime</secondary></indexterm>
+<para><computeroutput>long ParkingSensor::getWaveComebackTime ( )</computeroutput></para>
+<para>This function sends an ultrasound through trigPin and receives it back in echoPin from where we get the wave travel time with pulseIn() method</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>Sound wave travel time </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="__parking_sensor_8cpp_source_1l00085">85</link> of file <link linkend="__parking_sensor_8cpp_source">ParkingSensor.cpp</link>.</para>
+</section>
+<anchor xml:id="_class_parking_sensor_1a4c630df384e9be608ce86ca5aabef07a"/><section>
+    <title>serialPrintDistance()</title>
+<indexterm><primary>serialPrintDistance</primary><secondary>ParkingSensor</secondary></indexterm>
+<indexterm><primary>ParkingSensor</primary><secondary>serialPrintDistance</secondary></indexterm>
+<para><computeroutput>void ParkingSensor::serialPrintDistance ( )</computeroutput></para>
+<para>Prints distance to object measured by <link linkend="_class_parking_sensor">ParkingSensor</link> to Serial COM</para>
+
+<para>(!!!USED FOR SINGLE <link linkend="_class_parking_sensor">ParkingSensor</link> TESTING!!!) </para>
+<para>
+Definition at line <link linkend="__parking_sensor_8cpp_source_1l00111">111</link> of file <link linkend="__parking_sensor_8cpp_source">ParkingSensor.cpp</link>.</para>
+</section>
+<anchor xml:id="_class_parking_sensor_1a149ddf442a430e87a079939efa4a740f"/><section>
+    <title>setEchoPin()</title>
+<indexterm><primary>setEchoPin</primary><secondary>ParkingSensor</secondary></indexterm>
+<indexterm><primary>ParkingSensor</primary><secondary>setEchoPin</secondary></indexterm>
+<para><computeroutput>void ParkingSensor::setEchoPin (unsigned short int echoPin_arg)</computeroutput></para><para>
+Definition at line <link linkend="__parking_sensor_8cpp_source_1l00173">173</link> of file <link linkend="__parking_sensor_8cpp_source">ParkingSensor.cpp</link>.</para>
+</section>
+<anchor xml:id="_class_parking_sensor_1adf87bce85f37a86bce44bc322d6fe02a"/><section>
+    <title>setTrigPin()</title>
+<indexterm><primary>setTrigPin</primary><secondary>ParkingSensor</secondary></indexterm>
+<indexterm><primary>ParkingSensor</primary><secondary>setTrigPin</secondary></indexterm>
+<para><computeroutput>void ParkingSensor::setTrigPin (unsigned short int trigPin_arg)</computeroutput></para><para>
+Definition at line <link linkend="__parking_sensor_8cpp_source_1l00165">165</link> of file <link linkend="__parking_sensor_8cpp_source">ParkingSensor.cpp</link>.</para>
+</section>
+<anchor xml:id="_class_parking_sensor_1a6fb5861e5a5e2918db5810fb396c97f6"/><section>
+    <title>Task()</title>
+<indexterm><primary>Task</primary><secondary>ParkingSensor</secondary></indexterm>
+<indexterm><primary>ParkingSensor</primary><secondary>Task</secondary></indexterm>
+<para><computeroutput>void ParkingSensor::Task ( )</computeroutput></para>
+<para><link linkend="_class_parking_sensor">ParkingSensor</link>&apos;s Task</para>
+
+<para>This function is used to Check distance to object for each stage and call Buzzer&apos;s Task to react to it. </para>
+<para>
+Definition at line <link linkend="__parking_sensor_8cpp_source_1l00124">124</link> of file <link linkend="__parking_sensor_8cpp_source">ParkingSensor.cpp</link>.</para>
+</section>
+</section>
+<section>
+<title>Member Data Documentation</title>
+<anchor xml:id="_class_parking_sensor_1abf68f673f81bc141d9fe4de5e7183a61"/><section>
+    <title>buzzer</title>
+<indexterm><primary>buzzer</primary><secondary>ParkingSensor</secondary></indexterm>
+<indexterm><primary>ParkingSensor</primary><secondary>buzzer</secondary></indexterm>
+<para><computeroutput>Buzzer* ParkingSensor::buzzer</computeroutput></para>
+<para>Buzzer associated with this <link linkend="_class_parking_sensor">ParkingSensor</link> </para>
+<para>
+Definition at line <link linkend="__parking_sensor_8h_source_1l00049">49</link> of file <link linkend="__parking_sensor_8h_source">ParkingSensor.h</link>.</para>
+</section>
+<anchor xml:id="_class_parking_sensor_1aa1c2ebc54dbbe12b19a3ea3dd5e25b47"/><section>
+    <title>echoPin</title>
+<indexterm><primary>echoPin</primary><secondary>ParkingSensor</secondary></indexterm>
+<indexterm><primary>ParkingSensor</primary><secondary>echoPin</secondary></indexterm>
+<para><computeroutput>unsigned short int ParkingSensor::echoPin<computeroutput>[private]</computeroutput></computeroutput></para>
+<para>Echo pin </para>
+<para>
+Definition at line <link linkend="__parking_sensor_8h_source_1l00063">63</link> of file <link linkend="__parking_sensor_8h_source">ParkingSensor.h</link>.</para>
+</section>
+<anchor xml:id="_class_parking_sensor_1adb1d39c112be08cd8e8acf2a4c6a9e76"/><section>
+    <title>trigPin</title>
+<indexterm><primary>trigPin</primary><secondary>ParkingSensor</secondary></indexterm>
+<indexterm><primary>ParkingSensor</primary><secondary>trigPin</secondary></indexterm>
+<para><computeroutput>unsigned short int ParkingSensor::trigPin<computeroutput>[private]</computeroutput></computeroutput></para>
+<para>Trigger pin </para>
+<para>
+Definition at line <link linkend="__parking_sensor_8h_source_1l00060">60</link> of file <link linkend="__parking_sensor_8h_source">ParkingSensor.h</link>.</para>
+</section>
+<para>
+The documentation for this class was generated from the following files:</para>
+ArduinoSketch2/main/Modules/Sensors/ParkingSensor/ParkingSensor.hArduinoSketch2/main/Modules/Sensors/ParkingSensor/ParkingSensor.cpp</section>
+</section>

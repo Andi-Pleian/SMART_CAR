@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="__i_r_remote_2ir___bose_wave_8hpp" xml:lang="en-US">
+<title>main/IRRemote/ir_BoseWave.hpp File Reference</title>
+<indexterm><primary>main/IRRemote/ir_BoseWave.hpp</primary></indexterm>
+<programlisting linenumbering="unnumbered">#include &lt;Arduino.h&gt;
+#include &quot;IRremoteInt.h&quot;
+</programlisting>Include dependency graph for ir_BoseWave.hpp:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="_i_r_remote_2ir___bose_wave_8hpp__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+This graph shows which files directly or indirectly include this file:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="_i_r_remote_2ir___bose_wave_8hpp__dep__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Macros    </title>
+        <itemizedlist>
+            <listitem><para>#define <link linkend="_group___decoder_1ga97929dcf9c3088fe6b5ea9984179ee2a">BOSEWAVE_BITS</link>   16</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga01910d7deda73c7866abb73405e982d5">BOSEWAVE_HEADER_MARK</link>   1060</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga1d790d85945d62aeac5b1324dcbc0654">BOSEWAVE_HEADER_SPACE</link>   1450</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga4a7b99be53662b1689675e92c5e8d640">BOSEWAVE_BIT_MARK</link>   534</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1gac5abcecc1e901cf947864d70ef5fd685">BOSEWAVE_ONE_SPACE</link>   468</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga1a90821da64722ab8ddaefe4d084c4b9">BOSEWAVE_ZERO_SPACE</link>   1447</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1gaaccf319744a0908453bf1e686a1eccf7">BOSEWAVE_REPEAT_SPACE</link>   52000</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

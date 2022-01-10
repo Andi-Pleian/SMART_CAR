@@ -1,0 +1,42 @@
+\hypertarget{_i_r_remote___library_2ir___n_e_c_8hpp}{}\doxysection{main/\+IRRemote\+\_\+\+Library/ir\+\_\+\+NEC.hpp File Reference}
+\label{_i_r_remote___library_2ir___n_e_c_8hpp}\index{main/IRRemote\_Library/ir\_NEC.hpp@{main/IRRemote\_Library/ir\_NEC.hpp}}
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}IRremote\+Int.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Long\+Union.\+h\char`\"{}}\newline
+Include dependency graph for ir\+\_\+\+NEC.\+hpp\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group___decoder_ga2ab110e480a4b16fe516c2afd16a1ea2}{NEC\+\_\+\+ADDRESS\+\_\+\+BITS}}~16
+\item 
+\#define \mbox{\hyperlink{group___decoder_ga07e295da53565eb7146072bdfeb2ed32}{NEC\+\_\+\+COMMAND\+\_\+\+BITS}}~16
+\item 
+\#define \mbox{\hyperlink{group___decoder_gaa82c77bc0131ac28bc3534b8cf3422bc}{NEC\+\_\+\+BITS}}~(\mbox{\hyperlink{group___tiny_receiver_ga2ab110e480a4b16fe516c2afd16a1ea2}{NEC\+\_\+\+ADDRESS\+\_\+\+BITS}} + \mbox{\hyperlink{group___tiny_receiver_ga07e295da53565eb7146072bdfeb2ed32}{NEC\+\_\+\+COMMAND\+\_\+\+BITS}})
+\item 
+\#define \mbox{\hyperlink{group___decoder_gaf3317b0cf5cf7d3063addbaa0a256158}{NEC\+\_\+\+UNIT}}~560
+\item 
+\#define \mbox{\hyperlink{group___decoder_ga8d393b95d8df4dfa15873aec6a37965e}{NEC\+\_\+\+HEADER\+\_\+\+MARK}}~(16 $\ast$ \mbox{\hyperlink{group___tiny_receiver_gaf3317b0cf5cf7d3063addbaa0a256158}{NEC\+\_\+\+UNIT}})
+\item 
+\#define \mbox{\hyperlink{group___decoder_ga5c728ed320ffee624e26767be0a80404}{NEC\+\_\+\+HEADER\+\_\+\+SPACE}}~(8 $\ast$ \mbox{\hyperlink{group___tiny_receiver_gaf3317b0cf5cf7d3063addbaa0a256158}{NEC\+\_\+\+UNIT}})
+\item 
+\#define \mbox{\hyperlink{group___decoder_ga3abbe30ef3781c1cf2490003e1c1443a}{NEC\+\_\+\+BIT\+\_\+\+MARK}}~\mbox{\hyperlink{group___tiny_receiver_gaf3317b0cf5cf7d3063addbaa0a256158}{NEC\+\_\+\+UNIT}}
+\item 
+\#define \mbox{\hyperlink{group___decoder_ga5ac04ec8b2185c9fb257d39c472733b1}{NEC\+\_\+\+ONE\+\_\+\+SPACE}}~(3 $\ast$ \mbox{\hyperlink{group___tiny_receiver_gaf3317b0cf5cf7d3063addbaa0a256158}{NEC\+\_\+\+UNIT}})
+\item 
+\#define \mbox{\hyperlink{group___decoder_ga5ee46914e98bf7f87f32a7104843b243}{NEC\+\_\+\+ZERO\+\_\+\+SPACE}}~\mbox{\hyperlink{group___tiny_receiver_gaf3317b0cf5cf7d3063addbaa0a256158}{NEC\+\_\+\+UNIT}}
+\item 
+\#define \mbox{\hyperlink{group___decoder_ga91880ffa0b09391f2c827d3a1c565abf}{NEC\+\_\+\+REPEAT\+\_\+\+HEADER\+\_\+\+SPACE}}~(4 $\ast$ \mbox{\hyperlink{group___tiny_receiver_gaf3317b0cf5cf7d3063addbaa0a256158}{NEC\+\_\+\+UNIT}})
+\item 
+\#define \mbox{\hyperlink{group___decoder_gad086d93e5fb59de2890e12653a9c2f4f}{NEC\+\_\+\+AVERAGE\+\_\+\+DURATION}}~62000
+\item 
+\#define \mbox{\hyperlink{group___decoder_ga0e78e019c888522fce3d5a4d4104753d}{NEC\+\_\+\+REPEAT\+\_\+\+DURATION}}~(\mbox{\hyperlink{group___tiny_receiver_ga8d393b95d8df4dfa15873aec6a37965e}{NEC\+\_\+\+HEADER\+\_\+\+MARK}}  + \mbox{\hyperlink{group___tiny_receiver_ga91880ffa0b09391f2c827d3a1c565abf}{NEC\+\_\+\+REPEAT\+\_\+\+HEADER\+\_\+\+SPACE}} + \mbox{\hyperlink{group___tiny_receiver_ga3abbe30ef3781c1cf2490003e1c1443a}{NEC\+\_\+\+BIT\+\_\+\+MARK}})
+\item 
+\#define \mbox{\hyperlink{group___decoder_gac2dab5c4a22f8c4915217d3ee4676f08}{NEC\+\_\+\+REPEAT\+\_\+\+PERIOD}}~110000
+\item 
+\#define \mbox{\hyperlink{group___decoder_gad075e7ecc3052e071d1c9076137c2b35}{NEC\+\_\+\+REPEAT\+\_\+\+SPACE}}~(\mbox{\hyperlink{group___tiny_receiver_gac2dab5c4a22f8c4915217d3ee4676f08}{NEC\+\_\+\+REPEAT\+\_\+\+PERIOD}} -\/ \mbox{\hyperlink{group___decoder_gad086d93e5fb59de2890e12653a9c2f4f}{NEC\+\_\+\+AVERAGE\+\_\+\+DURATION}})
+\item 
+\#define \mbox{\hyperlink{group___decoder_ga4d268b1bd7431cab88c570c446d4810b}{APPLE\+\_\+\+ADDRESS}}~0x87\+EE
+\end{DoxyCompactItemize}

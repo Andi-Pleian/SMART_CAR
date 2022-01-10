@@ -1,0 +1,6 @@
+\hypertarget{_buzz_8cpp}{}\doxysection{main/\+Modules/\+Actuators/\+Buzzer/\+Buzz.cpp File Reference}
+\label{_buzz_8cpp}\index{main/Modules/Actuators/Buzzer/Buzz.cpp@{main/Modules/Actuators/Buzzer/Buzz.cpp}}
+{\ttfamily \#include \char`\"{}Buzz.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}..\textbackslash{}..\textbackslash{}..\textbackslash{}..\textbackslash{}\+Arduino\+Core\textbackslash{}include\textbackslash{}core\textbackslash{}\+Arduino.\+h\char`\"{}}\newline
+Include dependency graph for Buzz.\+cpp\+:
+% FIG 0

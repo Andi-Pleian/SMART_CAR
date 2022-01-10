@@ -1,0 +1,187 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_group___feedback_l_e_d_functions" xml:lang="en-US">
+<title>Feedback LED functions</title>
+<indexterm><primary>Feedback LED functions</primary></indexterm>
+<simplesect>
+    <title>Classes    </title>
+        <itemizedlist>
+            <listitem><para>struct <link linkend="_struct_feedback_l_e_d_control_struct">FeedbackLEDControlStruct</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Functions    </title>
+        <itemizedlist>
+            <listitem><para>void <link linkend="_group___feedback_l_e_d_functions_1gaa5949b509ec061d9239867caa628cfec">setLEDFeedback</link> (uint8_t aFeedbackLEDPin, bool aEnableLEDFeedback)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___feedback_l_e_d_functions_1ga53e5ec641a900f2c572c8bffd42da921">setLEDFeedback</link> (bool aEnableLEDFeedback)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___feedback_l_e_d_functions_1ga1150b1e371cd7d424d53dbcae6619e54">enableLEDFeedback</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___feedback_l_e_d_functions_1gab72e6123a449de7feaaa1c3dcb9f8630">disableLEDFeedback</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___feedback_l_e_d_functions_1ga072624eeba964d8aa105822da00090ba">setFeedbackLED</link> (bool aSwitchLedOn)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___feedback_l_e_d_functions_1ga5f1d479f43dcd56febf146e97a3904db">setBlinkPin</link> (uint8_t aBlinkPin)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___feedback_l_e_d_functions_1ga1519a6ae287c97cf2764666d3250b074">IRrecv::blink13</link> (bool aEnableLEDFeedback) __attribute__((deprecated(&quot;Please use <link linkend="_group___feedback_l_e_d_functions_1ga53e5ec641a900f2c572c8bffd42da921">setLEDFeedback</link>() or <link linkend="_group___feedback_l_e_d_functions_1ga1150b1e371cd7d424d53dbcae6619e54">enableLEDFeedback</link>() / <link linkend="_group___feedback_l_e_d_functions_1gab72e6123a449de7feaaa1c3dcb9f8630">disableLEDFeedback</link>().&quot;)))</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Variables    </title>
+        <itemizedlist>
+            <listitem><para>struct <link linkend="_struct_feedback_l_e_d_control_struct">FeedbackLEDControlStruct</link> <link linkend="_group___feedback_l_e_d_functions_1ga456f04616e9881e7d85eb56c941942d2">FeedbackLEDControl</link></para>
+
+<para>The feedback LED control instance. </para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+</section>
+<section>
+<title>Function Documentation</title>
+<anchor xml:id="_group___feedback_l_e_d_functions_1ga1519a6ae287c97cf2764666d3250b074"/><section>
+    <title>blink13()</title>
+<indexterm><primary>blink13</primary><secondary>Feedback LED functions</secondary></indexterm>
+<indexterm><primary>Feedback LED functions</primary><secondary>blink13</secondary></indexterm>
+<para><computeroutput>void IRrecv::blink13 (bool aEnableLEDFeedback)</computeroutput></para>
+<para>Old deprecated function name for <link linkend="_group___feedback_l_e_d_functions_1gaa5949b509ec061d9239867caa628cfec">setLEDFeedback()</link> or <link linkend="_group___feedback_l_e_d_functions_1ga1150b1e371cd7d424d53dbcae6619e54">enableLEDFeedback()</link> / <link linkend="_group___feedback_l_e_d_functions_1gab72e6123a449de7feaaa1c3dcb9f8630">disableLEDFeedback()</link> </para>
+<para>
+Definition at line <link linkend="__i_r_feedback_l_e_d_8hpp_source_1l00125">125</link> of file <link linkend="__i_r_feedback_l_e_d_8hpp_source">IRFeedbackLED.hpp</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="group___feedback_l_e_d_functions_ga1519a6ae287c97cf2764666d3250b074_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_group___feedback_l_e_d_functions_1gab72e6123a449de7feaaa1c3dcb9f8630"/><section>
+    <title>disableLEDFeedback()</title>
+<indexterm><primary>disableLEDFeedback</primary><secondary>Feedback LED functions</secondary></indexterm>
+<indexterm><primary>Feedback LED functions</primary><secondary>disableLEDFeedback</secondary></indexterm>
+<para><computeroutput>void disableLEDFeedback ( )</computeroutput></para><para>
+Definition at line <link linkend="__i_r_feedback_l_e_d_8hpp_source_1l00081">81</link> of file <link linkend="__i_r_feedback_l_e_d_8hpp_source">IRFeedbackLED.hpp</link>.</para>
+</section>
+<anchor xml:id="_group___feedback_l_e_d_functions_1ga1150b1e371cd7d424d53dbcae6619e54"/><section>
+    <title>enableLEDFeedback()</title>
+<indexterm><primary>enableLEDFeedback</primary><secondary>Feedback LED functions</secondary></indexterm>
+<indexterm><primary>Feedback LED functions</primary><secondary>enableLEDFeedback</secondary></indexterm>
+<para><computeroutput>void enableLEDFeedback ( )</computeroutput></para><para>
+Definition at line <link linkend="__i_r_feedback_l_e_d_8hpp_source_1l00077">77</link> of file <link linkend="__i_r_feedback_l_e_d_8hpp_source">IRFeedbackLED.hpp</link>.</para>
+</section>
+<anchor xml:id="_group___feedback_l_e_d_functions_1ga5f1d479f43dcd56febf146e97a3904db"/><section>
+    <title>setBlinkPin()</title>
+<indexterm><primary>setBlinkPin</primary><secondary>Feedback LED functions</secondary></indexterm>
+<indexterm><primary>Feedback LED functions</primary><secondary>setBlinkPin</secondary></indexterm>
+<para><computeroutput>void setBlinkPin (uint8_t aBlinkPin)</computeroutput></para>
+<para>Old deprecated function name for <link linkend="_group___feedback_l_e_d_functions_1gaa5949b509ec061d9239867caa628cfec">setLEDFeedback()</link> </para>
+<para>
+Definition at line <link linkend="__i_r_feedback_l_e_d_8hpp_source_1l00131">131</link> of file <link linkend="__i_r_feedback_l_e_d_8hpp_source">IRFeedbackLED.hpp</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="group___feedback_l_e_d_functions_ga5f1d479f43dcd56febf146e97a3904db_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_group___feedback_l_e_d_functions_1ga072624eeba964d8aa105822da00090ba"/><section>
+    <title>setFeedbackLED()</title>
+<indexterm><primary>setFeedbackLED</primary><secondary>Feedback LED functions</secondary></indexterm>
+<indexterm><primary>Feedback LED functions</primary><secondary>setFeedbackLED</secondary></indexterm>
+<para><computeroutput>void setFeedbackLED (bool aSwitchLedOn)</computeroutput></para>
+<para>Flash LED while receiving IR data, if enabled. Handles the LedFeedbackEnabled flag as well as the 0 value of FeedbackLEDPin and the macro FEEDBACK_LED_IS_ACTIVE_LOW. </para>
+<para>
+Definition at line <link linkend="__i_r_feedback_l_e_d_8hpp_source_1l00092">92</link> of file <link linkend="__i_r_feedback_l_e_d_8hpp_source">IRFeedbackLED.hpp</link>.</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="group___feedback_l_e_d_functions_ga072624eeba964d8aa105822da00090ba_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_group___feedback_l_e_d_functions_1ga53e5ec641a900f2c572c8bffd42da921"/><section>
+    <title>setLEDFeedback()<computeroutput>[1/2]</computeroutput></title>
+<indexterm><primary>setLEDFeedback</primary><secondary>Feedback LED functions</secondary></indexterm>
+<indexterm><primary>Feedback LED functions</primary><secondary>setLEDFeedback</secondary></indexterm>
+<para><computeroutput>void setLEDFeedback (bool aEnableLEDFeedback)</computeroutput></para><para>
+Definition at line <link linkend="__i_r_feedback_l_e_d_8hpp_source_1l00073">73</link> of file <link linkend="__i_r_feedback_l_e_d_8hpp_source">IRFeedbackLED.hpp</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="group___feedback_l_e_d_functions_ga53e5ec641a900f2c572c8bffd42da921_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_group___feedback_l_e_d_functions_1gaa5949b509ec061d9239867caa628cfec"/><section>
+    <title>setLEDFeedback()<computeroutput>[2/2]</computeroutput></title>
+<indexterm><primary>setLEDFeedback</primary><secondary>Feedback LED functions</secondary></indexterm>
+<indexterm><primary>Feedback LED functions</primary><secondary>setLEDFeedback</secondary></indexterm>
+<para><computeroutput>void setLEDFeedback (uint8_t aFeedbackLEDPin, bool aEnableLEDFeedback)</computeroutput></para>
+<para>Enable/disable blinking of Feedback LED (LED_BUILTIN is taken as default) on IR sending and receiving 
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>aFeedbackLEDPin</entry><entry>
+<para>If aFeedbackLEDPin == 0, then take board specific FEEDBACK_LED_ON() and FEEDBACK_LED_OFF() functions </para>
+</entry>
+                            </row>
+                            <row>
+<entry>aEnableLEDFeedback</entry><entry>
+<para>true -&gt; enable blinking of Feedback LED </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="__i_r_feedback_l_e_d_8hpp_source_1l00055">55</link> of file <link linkend="__i_r_feedback_l_e_d_8hpp_source">IRFeedbackLED.hpp</link>.</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="group___feedback_l_e_d_functions_gaa5949b509ec061d9239867caa628cfec_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+<section>
+<title>Variable Documentation</title>
+<anchor xml:id="_group___feedback_l_e_d_functions_1ga456f04616e9881e7d85eb56c941942d2"/><section>
+    <title>FeedbackLEDControl</title>
+<indexterm><primary>FeedbackLEDControl</primary><secondary>Feedback LED functions</secondary></indexterm>
+<indexterm><primary>Feedback LED functions</primary><secondary>FeedbackLEDControl</secondary></indexterm>
+<para><computeroutput>struct <link linkend="_struct_feedback_l_e_d_control_struct">FeedbackLEDControlStruct</link> FeedbackLEDControl</computeroutput></para><para>
+
+<para>The feedback LED control instance. </para>
+</para>
+<para>
+Definition at line <link linkend="__i_r_feedback_l_e_d_8hpp_source_1l00048">48</link> of file <link linkend="__i_r_feedback_l_e_d_8hpp_source">IRFeedbackLED.hpp</link>.</para>
+</section>
+</section>
+</section>

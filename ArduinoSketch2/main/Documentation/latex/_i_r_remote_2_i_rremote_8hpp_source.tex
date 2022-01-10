@@ -1,0 +1,195 @@
+\hypertarget{_i_r_remote_2_i_rremote_8hpp_source}{}\doxysection{IRremote.\+hpp}
+\label{_i_r_remote_2_i_rremote_8hpp_source}\index{main/IRRemote/IRremote.hpp@{main/IRRemote/IRremote.hpp}}
+\mbox{\hyperlink{_i_r_remote_2_i_rremote_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00001}00001 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00043}00043 \textcolor{preprocessor}{\#ifndef IRremote\_hpp}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00044}00044 \textcolor{preprocessor}{\#define IRremote\_hpp}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00045}00045 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00046}\mbox{\hyperlink{_i_r_remote_2_i_rremote_8hpp_ad9f03906065f749788cc9e3f68fb6253}{00046}} \textcolor{preprocessor}{\#define VERSION\_IRREMOTE "{}3.5.0"{}}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00047}\mbox{\hyperlink{_i_r_remote_2_i_rremote_8hpp_a5fccc9834ba25cd17b7ca45e14aa7751}{00047}} \textcolor{preprocessor}{\#define VERSION\_IRREMOTE\_MAJOR 3}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00048}\mbox{\hyperlink{_i_r_remote_2_i_rremote_8hpp_a824e2f61336bde09dd9b835e8606683f}{00048}} \textcolor{preprocessor}{\#define VERSION\_IRREMOTE\_MINOR 5}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00049}00049 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00050}00050 \textcolor{comment}{// activate it for all cores that does not use the -\/flto flag, if you get false error messages regarding begin() during compilation.}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00051}00051 \textcolor{comment}{//\#define SUPPRESS\_ERROR\_MESSAGE\_FOR\_BEGIN}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00052}00052 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00053}00053 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00054}00054 \textcolor{comment}{ * If activated, BOSEWAVE, MAGIQUEST,WHYNTER and LEGO\_PF are excluded in decoding and in sending with IrSender.write}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00055}00055 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00056}00056 \textcolor{comment}{//\#define EXCLUDE\_EXOTIC\_PROTOCOLS}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00057}00057 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00060}00060 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00061}00061 \textcolor{comment}{ * Supported IR protocols}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00062}00062 \textcolor{comment}{ * Each protocol you include costs memory and, during decode, costs time}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00063}00063 \textcolor{comment}{ * Copy the lines with the protocols you need in your program before the  \#include <IRremote.hpp> line}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00064}00064 \textcolor{comment}{ * See also SimpleReceiver example}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00065}00065 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00066}00066 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00067}00067 \textcolor{preprocessor}{\#if !defined(NO\_DECODER) }\textcolor{comment}{// for sending raw only}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00068}00068 \textcolor{preprocessor}{\#if (!(defined(DECODE\_DENON) || defined(DECODE\_JVC) || defined(DECODE\_KASEIKYO) \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00069}00069 \textcolor{preprocessor}{|| defined(DECODE\_PANASONIC) || defined(DECODE\_LG) || defined(DECODE\_NEC) || defined(DECODE\_SAMSUNG) \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00070}00070 \textcolor{preprocessor}{|| defined(DECODE\_SONY) || defined(DECODE\_RC5) || defined(DECODE\_RC6) || defined(DECODE\_HASH) \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00071}00071 \textcolor{preprocessor}{|| defined(DECODE\_BOSEWAVE) || defined(DECODE\_LEGO\_PF) || defined(DECODE\_WHYNTER)))}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00072}\mbox{\hyperlink{_i_r_remote_2_i_rremote_8hpp_a589c5f91ad251aff0cbdc179a5faaa60}{00072}} \textcolor{preprocessor}{\#define DECODE\_DENON        }\textcolor{comment}{// Includes Sharp}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00073}\mbox{\hyperlink{_i_r_remote_2_i_rremote_8hpp_ac1f2b013768a77943b002953197cb573}{00073}} \textcolor{preprocessor}{\#define DECODE\_JVC}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00074}\mbox{\hyperlink{_i_r_remote_2_i_rremote_8hpp_acd46d28198948511f9c8b97328b5fdde}{00074}} \textcolor{preprocessor}{\#define DECODE\_KASEIKYO}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00075}\mbox{\hyperlink{_i_r_remote_2_i_rremote_8hpp_a018b3df8bf49d3f6cc094db8491ad2ad}{00075}} \textcolor{preprocessor}{\#define DECODE\_PANASONIC    }\textcolor{comment}{// the same as DECODE\_KASEIKYO}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00076}\mbox{\hyperlink{_i_r_remote_2_i_rremote_8hpp_a54d5d4710700ef373384f64409df677f}{00076}} \textcolor{preprocessor}{\#define DECODE\_LG}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00077}\mbox{\hyperlink{_i_r_remote_2_i_rremote_8hpp_ac1592db6a7ef80a046d9f33a5a2ed5d8}{00077}} \textcolor{preprocessor}{\#define DECODE\_NEC          }\textcolor{comment}{// Includes Apple and Onkyo}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00078}\mbox{\hyperlink{_i_r_remote_2_i_rremote_8hpp_aa460f8aea781d305b7e0fef9b6748523}{00078}} \textcolor{preprocessor}{\#define DECODE\_SAMSUNG}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00079}\mbox{\hyperlink{_i_r_remote_2_i_rremote_8hpp_a308d000d6a90fac72f4dcf47323bef21}{00079}} \textcolor{preprocessor}{\#define DECODE\_SONY}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00080}\mbox{\hyperlink{_i_r_remote_2_i_rremote_8hpp_aa1dbf245adf93ffa573dc4863ea29c5b}{00080}} \textcolor{preprocessor}{\#define DECODE\_RC5}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00081}\mbox{\hyperlink{_i_r_remote_2_i_rremote_8hpp_a4f3761bb8157be080bee1d9e4c1bc8c8}{00081}} \textcolor{preprocessor}{\#define DECODE\_RC6}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00082}00082 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00083}00083 \textcolor{preprocessor}{\#  if !defined(EXCLUDE\_EXOTIC\_PROTOCOLS) }\textcolor{comment}{// saves around 2000 bytes program space}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00084}\mbox{\hyperlink{_i_r_remote_2_i_rremote_8hpp_a2935e3b14cf449b00b4166f71eecf8af}{00084}} \textcolor{preprocessor}{\#define DECODE\_BOSEWAVE}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00085}\mbox{\hyperlink{_i_r_remote_2_i_rremote_8hpp_a95bc1b009436547a892527e2c2f43384}{00085}} \textcolor{preprocessor}{\#define DECODE\_LEGO\_PF}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00086}\mbox{\hyperlink{_i_r_remote_2_i_rremote_8hpp_ad1f31ad2d36110ba06286b7fb1d1ddcf}{00086}} \textcolor{preprocessor}{\#define DECODE\_WHYNTER}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00087}\mbox{\hyperlink{_i_r_remote_2_i_rremote_8hpp_a4f3f73855171522cc6a9fa5ba5f51896}{00087}} \textcolor{preprocessor}{\#define DECODE\_MAGIQUEST }\textcolor{comment}{// It modifies the RAW\_BUFFER\_LENGTH from 100 to 112}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00088}00088 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00089}00089 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00090}00090 \textcolor{preprocessor}{\#  if !defined(EXCLUDE\_UNIVERSAL\_PROTOCOLS)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00091}\mbox{\hyperlink{_i_r_remote_2_i_rremote_8hpp_ac56dd3a6901bd61a6a122e1f683e5105}{00091}} \textcolor{preprocessor}{\#define DECODE\_DISTANCE     }\textcolor{comment}{// universal decoder for pulse width or pulse distance protocols -\/ requires up to 750 bytes additional program space}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00092}\mbox{\hyperlink{_i_r_remote_2_i_rremote_8hpp_a4ee00d8b9631462888e74c95712234e1}{00092}} \textcolor{preprocessor}{\#define DECODE\_HASH         }\textcolor{comment}{// special decoder for all protocols -\/ requires up to 250 bytes additional program space}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00093}00093 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00094}00094 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00095}00095 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// !defined(NO\_DECODER)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00096}00096 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00097}00097 \textcolor{preprocessor}{\#if defined(DECODE\_NEC) \&\& !(\string~(\string~DECODE\_NEC + 0) == 0 \&\& \string~(\string~DECODE\_NEC + 1) == 1)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00098}00098 \textcolor{preprocessor}{\#warning "{}The macros DECODE\_XXX no longer require a value. Decoding is now switched by defining / non defining the macro."{}}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00099}00099 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00100}00100 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00101}00101 \textcolor{comment}{//\#define DEBUG // Activate this for lots of lovely debug output from the IRremote core.}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00102}00102 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00103}00103 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00111}00111 \textcolor{preprocessor}{\#if !defined(RAW\_BUFFER\_LENGTH)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00112}00112 \textcolor{preprocessor}{\#  if defined(DECODE\_MAGIQUEST)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00113}\mbox{\hyperlink{_i_r_remote_2_i_rremote_8hpp_a589aa40429eeb37b6e83a2c09854a47b}{00113}} \textcolor{preprocessor}{\#define RAW\_BUFFER\_LENGTH  112  }\textcolor{comment}{// MagiQuest requires 112 bytes.}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00114}00114 \textcolor{preprocessor}{\#  else}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00115}00115 \textcolor{preprocessor}{\#define RAW\_BUFFER\_LENGTH  100  }}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00116}00116 \textcolor{comment}{//\#define RAW\_BUFFER\_LENGTH  750  // 750 is the value for air condition remotes.}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00117}00117 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00118}00118 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00119}00119 \textcolor{preprocessor}{\#if RAW\_BUFFER\_LENGTH \% 2 == 1}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00120}00120 \textcolor{preprocessor}{\#error RAW\_BUFFER\_LENGTH must be even, since the array consists of space / mark pairs.}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00121}00121 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00122}00122 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00138}00138 \textcolor{preprocessor}{\#if !defined(MARK\_EXCESS\_MICROS)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00139}00139 \textcolor{comment}{// To change this value, you simply can add a line \#define "{}MARK\_EXCESS\_MICROS <My\_new\_value>"{} in your ino file before the line "{}\#include <IRremote.hpp>"{}}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00140}\mbox{\hyperlink{_i_r_remote_2_i_rremote_8hpp_a6cb4ad1bc3f0b5d2c4503615058a1d90}{00140}} \textcolor{preprocessor}{\#define MARK\_EXCESS\_MICROS    20}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00141}00141 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00142}00142 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00149}00149 \textcolor{preprocessor}{\#if !defined(RECORD\_GAP\_MICROS)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00150}00150 \textcolor{comment}{// To change this value, you simply can add a line \#define "{}RECORD\_GAP\_MICROS <My\_new\_value>"{} in your ino file before the line "{}\#include <IRremote.hpp>"{}}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00151}\mbox{\hyperlink{_i_r_remote_2_i_rremote_8hpp_a2eb6de0bae8bc6f19f3832c00e91f499}{00151}} \textcolor{preprocessor}{\#define RECORD\_GAP\_MICROS   5000 }\textcolor{comment}{// FREDRICH28AC / LG2 header space is 9700, NEC header space is 4500}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00152}00152 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00156}00156 \textcolor{preprocessor}{\#if !defined(RECORD\_GAP\_MICROS\_WARNING\_THRESHOLD)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00157}00157 \textcolor{comment}{// To change this value, you simply can add a line \#define "{}RECORD\_GAP\_MICROS\_WARNING\_THRESHOLD <My\_new\_value>"{} in your ino file before the line "{}\#include <IRremote.hpp>"{}}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00158}\mbox{\hyperlink{_i_r_remote_2_i_rremote_8hpp_a6afa54ea105253cce361d8c571da5fa9}{00158}} \textcolor{preprocessor}{\#define RECORD\_GAP\_MICROS\_WARNING\_THRESHOLD   20000}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00159}00159 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00160}00160 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00162}\mbox{\hyperlink{_i_r_remote_2_i_rremote_8hpp_a1ba5a08e87f922d04e6acb5c07867386}{00162}} \textcolor{preprocessor}{\#define RECORD\_GAP\_TICKS    (RECORD\_GAP\_MICROS / MICROS\_PER\_TICK) }\textcolor{comment}{// 221 for 1100}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00163}00163 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00164}00164 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00165}00165 \textcolor{comment}{ * Activate this line if your receiver has an external output driver transistor / "{}inverted"{} output}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00166}00166 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00167}00167 \textcolor{comment}{//\#define IR\_INPUT\_IS\_ACTIVE\_HIGH}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00168}00168 \textcolor{preprocessor}{\#ifdef IR\_INPUT\_IS\_ACTIVE\_HIGH}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00169}00169 \textcolor{comment}{// IR detector output is active high}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00170}00170 \textcolor{preprocessor}{\#define INPUT\_MARK   1 }}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00171}00171 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00172}00172 \textcolor{comment}{// IR detector output is active low}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00173}\mbox{\hyperlink{_i_r_remote_2_i_rremote_8hpp_ace39503e8ded5ffb7a1c0d6f651f8d43}{00173}} \textcolor{preprocessor}{\#define INPUT\_MARK   0 }}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00174}00174 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00175}00175 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00181}00181 \textcolor{preprocessor}{\#if defined(ESP32)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00182}00182 \textcolor{preprocessor}{\#define SEND\_PWM\_BY\_TIMER       }\textcolor{comment}{// the best and default method for ESP32}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00183}00183 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00184}00184 \textcolor{comment}{//\#define SEND\_PWM\_BY\_TIMER}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00185}00185 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00186}00186 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00190}00190 \textcolor{comment}{//\#define USE\_NO\_SEND\_PWM}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00191}00191 \textcolor{preprocessor}{\#if defined(SEND\_PWM\_BY\_TIMER) \&\& defined(USE\_NO\_SEND\_PWM)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00192}00192 \textcolor{preprocessor}{\#undef SEND\_PWM\_BY\_TIMER }\textcolor{comment}{// USE\_NO\_SEND\_PWM overrides SEND\_PWM\_BY\_TIMER}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00193}00193 \textcolor{preprocessor}{\#warning "{}SEND\_PWM\_BY\_TIMER and USE\_NO\_SEND\_PWM are both defined -\/> undefine SEND\_PWM\_BY\_TIMER now!"{}}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00194}00194 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00195}00195 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00200}00200 \textcolor{comment}{//\#define USE\_OPEN\_DRAIN\_OUTPUT\_FOR\_SEND\_PIN}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00206}00206 \textcolor{comment}{}\textcolor{preprocessor}{\#if !defined(PULSE\_CORRECTION\_NANOS)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00207}00207 \textcolor{preprocessor}{\#  if defined(F\_CPU)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00208}00208 \textcolor{comment}{// To change this value, you simply can add a line \#define "{}PULSE\_CORRECTION\_NANOS <My\_new\_value>"{} in your ino file before the line "{}\#include <IRremote.hpp>"{}}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00209}00209 \textcolor{preprocessor}{\#define PULSE\_CORRECTION\_NANOS (48000L / (F\_CPU/MICROS\_IN\_ONE\_SECOND)) }\textcolor{comment}{// 3000 @16MHz, 666 @72MHz}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00210}00210 \textcolor{preprocessor}{\#  else}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00211}\mbox{\hyperlink{_i_r_remote_2_i_rremote_8hpp_ac836377a7a04f6f4044daab71d9660f9}{00211}} \textcolor{preprocessor}{\#define PULSE\_CORRECTION\_NANOS 600}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00212}00212 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00213}00213 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00214}00214 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00215}00215 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h}{IRremoteInt.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00216}00216 \textcolor{preprocessor}{\#include "{}private/IRTimer.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00217}00217 \textcolor{preprocessor}{\#if !defined(NO\_LED\_FEEDBACK\_CODE)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00218}00218 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_i_r_remote___library_2_i_r_feedback_l_e_d_8hpp}{IRFeedbackLED.hpp}}"{}}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00219}00219 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00220}00220 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00221}00221 \textcolor{comment}{ * Include the sources here to enable compilation with macro values set by user program.}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00222}00222 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00223}00223 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_i_r_remote___library_2_i_r_receive_8hpp}{IRReceive.hpp}}"{}}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00224}00224 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_i_r_remote___library_2_i_r_send_8hpp}{IRSend.hpp}}"{}}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00225}00225 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00226}00226 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00227}00227 \textcolor{comment}{ * Include the sources of all decoders here to enable compilation with macro values set by user program.}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00228}00228 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00229}00229 \textcolor{preprocessor}{\#if defined(DECODE\_BOSEWAVE)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00230}00230 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_i_r_remote___library_2ir___bose_wave_8hpp}{ir\_BoseWave.hpp}}"{}}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00231}00231 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00232}00232 \textcolor{preprocessor}{\#if defined(DECODE\_DENON )       }\textcolor{comment}{// Includes Sharp}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00233}00233 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_i_r_remote___library_2ir___denon_8hpp}{ir\_Denon.hpp}}"{}}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00234}00234 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00235}00235 \textcolor{preprocessor}{\#if defined(DECODE\_DISTANCE)     }\textcolor{comment}{// universal decoder for pulse width or pulse distance protocols -\/ requires up to 750 bytes additional program space}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00236}00236 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_i_r_remote___library_2ir___distance_protocol_8hpp}{ir\_DistanceProtocol.hpp}}"{}}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00237}00237 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00238}00238 \textcolor{preprocessor}{\#if defined(DECODE\_JVC)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00239}00239 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_i_r_remote___library_2ir___j_v_c_8hpp}{ir\_JVC.hpp}}"{}}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00240}00240 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00241}00241 \textcolor{preprocessor}{\#if defined(DECODE\_KASEIKYO) || defined(DECODE\_PANASONIC)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00242}00242 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_i_r_remote___library_2ir___kaseikyo_8hpp}{ir\_Kaseikyo.hpp}}"{}}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00243}00243 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00244}00244 \textcolor{preprocessor}{\#if defined(DECODE\_LEGO\_PF)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00245}00245 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_i_r_remote___library_2ir___lego_8hpp}{ir\_Lego.hpp}}"{}}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00246}00246 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00247}00247 \textcolor{preprocessor}{\#if defined(DECODE\_LG)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00248}00248 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_i_r_remote___library_2ir___l_g_8hpp}{ir\_LG.hpp}}"{}}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00249}00249 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00250}00250 \textcolor{preprocessor}{\#if defined(DECODE\_MAGIQUEST)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00251}00251 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_i_r_remote___library_2ir___magi_quest_8hpp}{ir\_MagiQuest.hpp}}"{}}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00252}00252 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00253}00253 \textcolor{preprocessor}{\#if defined(DECODE\_NEC)          }\textcolor{comment}{// Includes Apple and Onkyo}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00254}00254 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_i_r_remote___library_2ir___n_e_c_8hpp}{ir\_NEC.hpp}}"{}}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00255}00255 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00256}00256 \textcolor{preprocessor}{\#if defined(DECODE\_RC5) || defined(DECODE\_RC6)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00257}00257 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_i_r_remote___library_2ir___r_c5___r_c6_8hpp}{ir\_RC5\_RC6.hpp}}"{}}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00258}00258 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00259}00259 \textcolor{preprocessor}{\#if defined(DECODE\_SAMSUNG)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00260}00260 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_i_r_remote___library_2ir___samsung_8hpp}{ir\_Samsung.hpp}}"{}}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00261}00261 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00262}00262 \textcolor{preprocessor}{\#if defined(DECODE\_SONY)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00263}00263 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_i_r_remote___library_2ir___sony_8hpp}{ir\_Sony.hpp}}"{}}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00264}00264 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00265}00265 \textcolor{preprocessor}{\#if defined(DECODE\_WHYNTER)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00266}00266 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_i_r_remote___library_2ir___whynter_8hpp}{ir\_Whynter.hpp}}"{}}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00267}00267 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00268}00268 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00269}00269 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_i_r_remote___library_2ir___pronto_8hpp}{ir\_Pronto.hpp}}"{}} \textcolor{comment}{// pronto is an universal decoder and encoder}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00270}00270 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00271}00271 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_i_r_remote___library_2ir___dish_8hpp}{ir\_Dish.hpp}}"{}} \textcolor{comment}{// contains only sendDISH(unsigned long data, int nbits)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00272}00272 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00276}\mbox{\hyperlink{_i_r_remote_2_i_rremote_8hpp_abb919079668bcc14433d4c857ab8a196}{00276}} \textcolor{preprocessor}{\#define RAWBUF  101  }\textcolor{comment}{// Maximum length of raw duration buffer}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00277}\mbox{\hyperlink{_i_r_remote_2_i_rremote_8hpp_a2c9384c67919c632913b8db2088f8341}{00277}} \textcolor{preprocessor}{\#define REPEAT 0xFFFFFFFF}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00278}\mbox{\hyperlink{_i_r_remote_2_i_rremote_8hpp_aad2fcaac88c28bf54ecbd42146a56e3f}{00278}} \textcolor{preprocessor}{\#define USECPERTICK MICROS\_PER\_TICK}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00279}\mbox{\hyperlink{_i_r_remote_2_i_rremote_8hpp_ac21b48ddc487212fbce7d6474423e080}{00279}} \textcolor{preprocessor}{\#define MARK\_EXCESS MARK\_EXCESS\_MICROS}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00280}00280 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00281}00281 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// IRremote\_hpp}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00282}00282 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00283}00283 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_rremote_8hpp_source_l00284}00284 }
+
+\end{DoxyCode}

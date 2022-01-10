@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="__parking_sensor_8cpp" xml:lang="en-US">
+<title>main/Modules/Sensors/ParkingSensor/ParkingSensor.cpp File Reference</title>
+<indexterm><primary>main/Modules/Sensors/ParkingSensor/ParkingSensor.cpp</primary></indexterm>
+<programlisting linenumbering="unnumbered">#include &quot;ParkingSensor.h&quot;
+#include &lt;string.h&gt;
+#include &quot;..\..\..\..\ArduinoCore\include\core\Arduino.h&quot;
+</programlisting>Include dependency graph for ParkingSensor.cpp:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="_parking_sensor_8cpp__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>

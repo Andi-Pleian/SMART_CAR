@@ -1,0 +1,120 @@
+\hypertarget{structirparams__struct}{}\doxysection{irparams\+\_\+struct Struct Reference}
+\label{structirparams__struct}\index{irparams\_struct@{irparams\_struct}}
+
+
+{\ttfamily \#include $<$IRremote\+Int.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+volatile uint8\+\_\+t \mbox{\hyperlink{structirparams__struct_aea7300a6d0cd2e463887a8595c6c1e2e}{State\+For\+ISR}}
+\begin{DoxyCompactList}\small\item\em State Machine state. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{structirparams__struct_aaa76c636723e7d1937edac2f0f197dcb}{IRReceive\+Pin}}
+\begin{DoxyCompactList}\small\item\em Pin connected to IR data from detector. \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{structirparams__struct_ad0b5caeae83ea38517415e7210829b85}{Tick\+Counter\+For\+ISR}}
+\begin{DoxyCompactList}\small\item\em Counts 50uS ticks. The value is copied into the rawbuf array on every transition. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structirparams__struct_add9591d883df748c9ceeb46fa0de1ebc}{Overflow\+Flag}}
+\begin{DoxyCompactList}\small\item\em Raw buffer Overflow\+Flag occurred. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{structirparams__struct_af0571ac479d1c38c79502651b0631432}{rawlen}}
+\begin{DoxyCompactList}\small\item\em counter of entries in rawbuf \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{structirparams__struct_a7aa7b811dcc0fb5ab0da7c0bddaf97f8}{rawbuf}} \mbox{[}\mbox{\hyperlink{_i_rremote_8hpp_a589aa40429eeb37b6e83a2c09854a47b}{RAW\+\_\+\+BUFFER\+\_\+\+LENGTH}}\mbox{]}
+\begin{DoxyCompactList}\small\item\em raw data / tick counts per mark/space, first entry is the length of the gap between previous and current command \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This struct contains the data and control used for receiver static functions and the ISR (interrupt service routine) Only State\+For\+ISR needs to be volatile. All the other fields are not written by ISR after data available and before start/resume. 
+
+Definition at line \mbox{\hyperlink{_i_rremote_int_8h_source_l00099}{99}} of file \mbox{\hyperlink{_i_rremote_int_8h_source}{IRremote\+Int.\+h}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structirparams__struct_aaa76c636723e7d1937edac2f0f197dcb}\label{structirparams__struct_aaa76c636723e7d1937edac2f0f197dcb}} 
+\index{irparams\_struct@{irparams\_struct}!IRReceivePin@{IRReceivePin}}
+\index{IRReceivePin@{IRReceivePin}!irparams\_struct@{irparams\_struct}}
+\doxysubsubsection{\texorpdfstring{IRReceivePin}{IRReceivePin}}
+{\footnotesize\ttfamily uint8\+\_\+t irparams\+\_\+struct\+::\+IRReceive\+Pin}
+
+
+
+Pin connected to IR data from detector. 
+
+
+
+Definition at line \mbox{\hyperlink{_i_rremote_int_8h_source_l00102}{102}} of file \mbox{\hyperlink{_i_rremote_int_8h_source}{IRremote\+Int.\+h}}.
+
+\mbox{\Hypertarget{structirparams__struct_add9591d883df748c9ceeb46fa0de1ebc}\label{structirparams__struct_add9591d883df748c9ceeb46fa0de1ebc}} 
+\index{irparams\_struct@{irparams\_struct}!OverflowFlag@{OverflowFlag}}
+\index{OverflowFlag@{OverflowFlag}!irparams\_struct@{irparams\_struct}}
+\doxysubsubsection{\texorpdfstring{OverflowFlag}{OverflowFlag}}
+{\footnotesize\ttfamily bool irparams\+\_\+struct\+::\+Overflow\+Flag}
+
+
+
+Raw buffer Overflow\+Flag occurred. 
+
+
+
+Definition at line \mbox{\hyperlink{_i_rremote_int_8h_source_l00109}{109}} of file \mbox{\hyperlink{_i_rremote_int_8h_source}{IRremote\+Int.\+h}}.
+
+\mbox{\Hypertarget{structirparams__struct_a7aa7b811dcc0fb5ab0da7c0bddaf97f8}\label{structirparams__struct_a7aa7b811dcc0fb5ab0da7c0bddaf97f8}} 
+\index{irparams\_struct@{irparams\_struct}!rawbuf@{rawbuf}}
+\index{rawbuf@{rawbuf}!irparams\_struct@{irparams\_struct}}
+\doxysubsubsection{\texorpdfstring{rawbuf}{rawbuf}}
+{\footnotesize\ttfamily uint16\+\_\+t irparams\+\_\+struct\+::rawbuf\mbox{[}\mbox{\hyperlink{_i_rremote_8hpp_a589aa40429eeb37b6e83a2c09854a47b}{RAW\+\_\+\+BUFFER\+\_\+\+LENGTH}}\mbox{]}}
+
+
+
+raw data / tick counts per mark/space, first entry is the length of the gap between previous and current command 
+
+
+
+Definition at line \mbox{\hyperlink{_i_rremote_int_8h_source_l00115}{115}} of file \mbox{\hyperlink{_i_rremote_int_8h_source}{IRremote\+Int.\+h}}.
+
+\mbox{\Hypertarget{structirparams__struct_af0571ac479d1c38c79502651b0631432}\label{structirparams__struct_af0571ac479d1c38c79502651b0631432}} 
+\index{irparams\_struct@{irparams\_struct}!rawlen@{rawlen}}
+\index{rawlen@{rawlen}!irparams\_struct@{irparams\_struct}}
+\doxysubsubsection{\texorpdfstring{rawlen}{rawlen}}
+{\footnotesize\ttfamily uint8\+\_\+t irparams\+\_\+struct\+::rawlen}
+
+
+
+counter of entries in rawbuf 
+
+
+
+Definition at line \mbox{\hyperlink{_i_rremote_int_8h_source_l00111}{111}} of file \mbox{\hyperlink{_i_rremote_int_8h_source}{IRremote\+Int.\+h}}.
+
+\mbox{\Hypertarget{structirparams__struct_aea7300a6d0cd2e463887a8595c6c1e2e}\label{structirparams__struct_aea7300a6d0cd2e463887a8595c6c1e2e}} 
+\index{irparams\_struct@{irparams\_struct}!StateForISR@{StateForISR}}
+\index{StateForISR@{StateForISR}!irparams\_struct@{irparams\_struct}}
+\doxysubsubsection{\texorpdfstring{StateForISR}{StateForISR}}
+{\footnotesize\ttfamily volatile uint8\+\_\+t irparams\+\_\+struct\+::\+State\+For\+ISR}
+
+
+
+State Machine state. 
+
+
+
+Definition at line \mbox{\hyperlink{_i_rremote_int_8h_source_l00101}{101}} of file \mbox{\hyperlink{_i_rremote_int_8h_source}{IRremote\+Int.\+h}}.
+
+\mbox{\Hypertarget{structirparams__struct_ad0b5caeae83ea38517415e7210829b85}\label{structirparams__struct_ad0b5caeae83ea38517415e7210829b85}} 
+\index{irparams\_struct@{irparams\_struct}!TickCounterForISR@{TickCounterForISR}}
+\index{TickCounterForISR@{TickCounterForISR}!irparams\_struct@{irparams\_struct}}
+\doxysubsubsection{\texorpdfstring{TickCounterForISR}{TickCounterForISR}}
+{\footnotesize\ttfamily uint16\+\_\+t irparams\+\_\+struct\+::\+Tick\+Counter\+For\+ISR}
+
+
+
+Counts 50uS ticks. The value is copied into the rawbuf array on every transition. 
+
+
+
+Definition at line \mbox{\hyperlink{_i_rremote_int_8h_source_l00107}{107}} of file \mbox{\hyperlink{_i_rremote_int_8h_source}{IRremote\+Int.\+h}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+main/\+IRRemote\+\_\+\+Library/\mbox{\hyperlink{_i_rremote_int_8h}{IRremote\+Int.\+h}}\end{DoxyCompactItemize}

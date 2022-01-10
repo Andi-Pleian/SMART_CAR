@@ -1,0 +1,377 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="__i_r_remote_2_i_rremote_8hpp" xml:lang="en-US">
+<title>main/IRRemote/IRremote.hpp File Reference</title>
+<indexterm><primary>main/IRRemote/IRremote.hpp</primary></indexterm>
+<para>
+
+<para>Public API to the library. </para>
+ 
+</para>
+<programlisting linenumbering="unnumbered">#include &quot;IRremoteInt.h&quot;
+#include &quot;private/IRTimer.hpp&quot;
+#include &quot;IRFeedbackLED.hpp&quot;
+#include &quot;IRReceive.hpp&quot;
+#include &quot;IRSend.hpp&quot;
+#include &quot;ir_BoseWave.hpp&quot;
+#include &quot;ir_Denon.hpp&quot;
+#include &quot;ir_DistanceProtocol.hpp&quot;
+#include &quot;ir_JVC.hpp&quot;
+#include &quot;ir_Kaseikyo.hpp&quot;
+#include &quot;ir_Lego.hpp&quot;
+#include &quot;ir_LG.hpp&quot;
+#include &quot;ir_MagiQuest.hpp&quot;
+#include &quot;ir_NEC.hpp&quot;
+#include &quot;ir_RC5_RC6.hpp&quot;
+#include &quot;ir_Samsung.hpp&quot;
+#include &quot;ir_Sony.hpp&quot;
+#include &quot;ir_Whynter.hpp&quot;
+#include &quot;ir_Pronto.hpp&quot;
+#include &quot;ir_Dish.hpp&quot;
+</programlisting>Include dependency graph for IRremote.hpp:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="_i_r_remote_2_i_rremote_8hpp__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+This graph shows which files directly or indirectly include this file:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="_i_r_remote_2_i_rremote_8hpp__dep__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Macros    </title>
+        <itemizedlist>
+            <listitem><para>#define <link linkend="__i_r_remote_2_i_rremote_8hpp_1ad9f03906065f749788cc9e3f68fb6253">VERSION_IRREMOTE</link>   &quot;3.5.0&quot;</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote_2_i_rremote_8hpp_1a5fccc9834ba25cd17b7ca45e14aa7751">VERSION_IRREMOTE_MAJOR</link>   3</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote_2_i_rremote_8hpp_1a824e2f61336bde09dd9b835e8606683f">VERSION_IRREMOTE_MINOR</link>   5</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote_2_i_rremote_8hpp_1a589c5f91ad251aff0cbdc179a5faaa60">DECODE_DENON</link></para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote_2_i_rremote_8hpp_1ac1f2b013768a77943b002953197cb573">DECODE_JVC</link></para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote_2_i_rremote_8hpp_1acd46d28198948511f9c8b97328b5fdde">DECODE_KASEIKYO</link></para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote_2_i_rremote_8hpp_1a018b3df8bf49d3f6cc094db8491ad2ad">DECODE_PANASONIC</link></para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote_2_i_rremote_8hpp_1a54d5d4710700ef373384f64409df677f">DECODE_LG</link></para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote_2_i_rremote_8hpp_1ac1592db6a7ef80a046d9f33a5a2ed5d8">DECODE_NEC</link></para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote_2_i_rremote_8hpp_1aa460f8aea781d305b7e0fef9b6748523">DECODE_SAMSUNG</link></para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote_2_i_rremote_8hpp_1a308d000d6a90fac72f4dcf47323bef21">DECODE_SONY</link></para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote_2_i_rremote_8hpp_1aa1dbf245adf93ffa573dc4863ea29c5b">DECODE_RC5</link></para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote_2_i_rremote_8hpp_1a4f3761bb8157be080bee1d9e4c1bc8c8">DECODE_RC6</link></para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote_2_i_rremote_8hpp_1a2935e3b14cf449b00b4166f71eecf8af">DECODE_BOSEWAVE</link></para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote_2_i_rremote_8hpp_1a95bc1b009436547a892527e2c2f43384">DECODE_LEGO_PF</link></para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote_2_i_rremote_8hpp_1ad1f31ad2d36110ba06286b7fb1d1ddcf">DECODE_WHYNTER</link></para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote_2_i_rremote_8hpp_1a4f3f73855171522cc6a9fa5ba5f51896">DECODE_MAGIQUEST</link></para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote_2_i_rremote_8hpp_1ac56dd3a6901bd61a6a122e1f683e5105">DECODE_DISTANCE</link></para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote_2_i_rremote_8hpp_1a4ee00d8b9631462888e74c95712234e1">DECODE_HASH</link></para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote_2_i_rremote_8hpp_1a589aa40429eeb37b6e83a2c09854a47b">RAW_BUFFER_LENGTH</link>   112</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote_2_i_rremote_8hpp_1a6cb4ad1bc3f0b5d2c4503615058a1d90">MARK_EXCESS_MICROS</link>   20</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote_2_i_rremote_8hpp_1a2eb6de0bae8bc6f19f3832c00e91f499">RECORD_GAP_MICROS</link>   5000</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote_2_i_rremote_8hpp_1a6afa54ea105253cce361d8c571da5fa9">RECORD_GAP_MICROS_WARNING_THRESHOLD</link>   20000</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote_2_i_rremote_8hpp_1a1ba5a08e87f922d04e6acb5c07867386">RECORD_GAP_TICKS</link>   (<link linkend="__i_r_remote___library_2_i_rremote_8hpp_1a2eb6de0bae8bc6f19f3832c00e91f499">RECORD_GAP_MICROS</link> / <link linkend="__i_r_remote___library_2_i_rremote_int_8h_1a1c7eebb527483c272812530caa313d20">MICROS_PER_TICK</link>)</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote_2_i_rremote_8hpp_1ace39503e8ded5ffb7a1c0d6f651f8d43">INPUT_MARK</link>   0</para>
+
+<para>Sensor output for a mark (&quot;flash&quot;) </para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote_2_i_rremote_8hpp_1ac836377a7a04f6f4044daab71d9660f9">PULSE_CORRECTION_NANOS</link>   600</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote_2_i_rremote_8hpp_1abb919079668bcc14433d4c857ab8a196">RAWBUF</link>   101</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote_2_i_rremote_8hpp_1a2c9384c67919c632913b8db2088f8341">REPEAT</link>   0xFFFFFFFF</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote_2_i_rremote_8hpp_1aad2fcaac88c28bf54ecbd42146a56e3f">USECPERTICK</link>   <link linkend="__i_r_remote___library_2_i_rremote_int_8h_1a1c7eebb527483c272812530caa313d20">MICROS_PER_TICK</link></para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote_2_i_rremote_8hpp_1ac21b48ddc487212fbce7d6474423e080">MARK_EXCESS</link>   <link linkend="__i_r_remote___library_2_i_rremote_8hpp_1a6cb4ad1bc3f0b5d2c4503615058a1d90">MARK_EXCESS_MICROS</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>Public API to the library. </para>
+
+<para><literallayout><computeroutput>!!!&#32;All&#32;the&#32;macro&#32;values&#32;defined&#32;here&#32;can&#32;be&#32;overwritten&#32;with&#32;values,&#32;&#32;&#32;&#32;!!!
+!!!&#32;the&#32;user&#32;defines&#32;in&#32;its&#32;source&#32;code&#32;BEFORE&#32;the&#32;#include&#32;&lt;IRremote.hpp&gt;&#32;!!!
+</computeroutput></literallayout></para>
+
+<para>This file is part of Arduino-IRremote <link xlink:href="https://github.com/Arduino-IRremote/Arduino-IRremote">https://github.com/Arduino-IRremote/Arduino-IRremote</link>.</para>
+
+<para>MIT License</para>
+
+<para>Copyright (c) 2015-2021 Ken Shirriff <link xlink:href="http://www.righto.com">http://www.righto.com</link>, Rafi Khan, Armin Joachimsmeyer</para>
+
+<para>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</para>
+
+<para>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</para>
+
+<para>THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</para>
+
+<para>For Ken Shiriffs original blog entry, see <link xlink:href="http://www.righto.com/2009/08/multi-protocol-infrared-remote-library.html">http://www.righto.com/2009/08/multi-protocol-infrared-remote-library.html</link> Initially influenced by: <link xlink:href="http://www.arduino.cc/cgi-bin/yabb2/YaBB.pl?num=1210243556">http://www.arduino.cc/cgi-bin/yabb2/YaBB.pl?num=1210243556</link> and <link xlink:href="http://zovirl.com/2008/11/12/building-a-universal-remote-with-an-arduino/">http://zovirl.com/2008/11/12/building-a-universal-remote-with-an-arduino/</link> </para>
+<para>
+Definition in file <link linkend="__i_r_remote_2_i_rremote_8hpp_source">IRremote.hpp</link>.</para>
+</section>
+<section>
+<title>Macro Definition Documentation</title>
+<anchor xml:id="__i_r_remote_2_i_rremote_8hpp_1a2935e3b14cf449b00b4166f71eecf8af"/><section>
+    <title>DECODE_BOSEWAVE</title>
+<indexterm><primary>DECODE_BOSEWAVE</primary><secondary>IRremote.hpp</secondary></indexterm>
+<indexterm><primary>IRremote.hpp</primary><secondary>DECODE_BOSEWAVE</secondary></indexterm>
+<para><computeroutput>#define DECODE_BOSEWAVE</computeroutput></para><para>
+Definition at line <link linkend="__i_r_remote_2_i_rremote_8hpp_source_1l00084">84</link> of file <link linkend="__i_r_remote_2_i_rremote_8hpp_source">IRremote.hpp</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote_2_i_rremote_8hpp_1a589c5f91ad251aff0cbdc179a5faaa60"/><section>
+    <title>DECODE_DENON</title>
+<indexterm><primary>DECODE_DENON</primary><secondary>IRremote.hpp</secondary></indexterm>
+<indexterm><primary>IRremote.hpp</primary><secondary>DECODE_DENON</secondary></indexterm>
+<para><computeroutput>#define DECODE_DENON</computeroutput></para>
+<para>PROTOCOLS </para>
+<para>
+Definition at line <link linkend="__i_r_remote_2_i_rremote_8hpp_source_1l00072">72</link> of file <link linkend="__i_r_remote_2_i_rremote_8hpp_source">IRremote.hpp</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote_2_i_rremote_8hpp_1ac56dd3a6901bd61a6a122e1f683e5105"/><section>
+    <title>DECODE_DISTANCE</title>
+<indexterm><primary>DECODE_DISTANCE</primary><secondary>IRremote.hpp</secondary></indexterm>
+<indexterm><primary>IRremote.hpp</primary><secondary>DECODE_DISTANCE</secondary></indexterm>
+<para><computeroutput>#define DECODE_DISTANCE</computeroutput></para><para>
+Definition at line <link linkend="__i_r_remote_2_i_rremote_8hpp_source_1l00091">91</link> of file <link linkend="__i_r_remote_2_i_rremote_8hpp_source">IRremote.hpp</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote_2_i_rremote_8hpp_1a4ee00d8b9631462888e74c95712234e1"/><section>
+    <title>DECODE_HASH</title>
+<indexterm><primary>DECODE_HASH</primary><secondary>IRremote.hpp</secondary></indexterm>
+<indexterm><primary>IRremote.hpp</primary><secondary>DECODE_HASH</secondary></indexterm>
+<para><computeroutput>#define DECODE_HASH</computeroutput></para><para>
+Definition at line <link linkend="__i_r_remote_2_i_rremote_8hpp_source_1l00092">92</link> of file <link linkend="__i_r_remote_2_i_rremote_8hpp_source">IRremote.hpp</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote_2_i_rremote_8hpp_1ac1f2b013768a77943b002953197cb573"/><section>
+    <title>DECODE_JVC</title>
+<indexterm><primary>DECODE_JVC</primary><secondary>IRremote.hpp</secondary></indexterm>
+<indexterm><primary>IRremote.hpp</primary><secondary>DECODE_JVC</secondary></indexterm>
+<para><computeroutput>#define DECODE_JVC</computeroutput></para><para>
+Definition at line <link linkend="__i_r_remote_2_i_rremote_8hpp_source_1l00073">73</link> of file <link linkend="__i_r_remote_2_i_rremote_8hpp_source">IRremote.hpp</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote_2_i_rremote_8hpp_1acd46d28198948511f9c8b97328b5fdde"/><section>
+    <title>DECODE_KASEIKYO</title>
+<indexterm><primary>DECODE_KASEIKYO</primary><secondary>IRremote.hpp</secondary></indexterm>
+<indexterm><primary>IRremote.hpp</primary><secondary>DECODE_KASEIKYO</secondary></indexterm>
+<para><computeroutput>#define DECODE_KASEIKYO</computeroutput></para><para>
+Definition at line <link linkend="__i_r_remote_2_i_rremote_8hpp_source_1l00074">74</link> of file <link linkend="__i_r_remote_2_i_rremote_8hpp_source">IRremote.hpp</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote_2_i_rremote_8hpp_1a95bc1b009436547a892527e2c2f43384"/><section>
+    <title>DECODE_LEGO_PF</title>
+<indexterm><primary>DECODE_LEGO_PF</primary><secondary>IRremote.hpp</secondary></indexterm>
+<indexterm><primary>IRremote.hpp</primary><secondary>DECODE_LEGO_PF</secondary></indexterm>
+<para><computeroutput>#define DECODE_LEGO_PF</computeroutput></para><para>
+Definition at line <link linkend="__i_r_remote_2_i_rremote_8hpp_source_1l00085">85</link> of file <link linkend="__i_r_remote_2_i_rremote_8hpp_source">IRremote.hpp</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote_2_i_rremote_8hpp_1a54d5d4710700ef373384f64409df677f"/><section>
+    <title>DECODE_LG</title>
+<indexterm><primary>DECODE_LG</primary><secondary>IRremote.hpp</secondary></indexterm>
+<indexterm><primary>IRremote.hpp</primary><secondary>DECODE_LG</secondary></indexterm>
+<para><computeroutput>#define DECODE_LG</computeroutput></para><para>
+Definition at line <link linkend="__i_r_remote_2_i_rremote_8hpp_source_1l00076">76</link> of file <link linkend="__i_r_remote_2_i_rremote_8hpp_source">IRremote.hpp</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote_2_i_rremote_8hpp_1a4f3f73855171522cc6a9fa5ba5f51896"/><section>
+    <title>DECODE_MAGIQUEST</title>
+<indexterm><primary>DECODE_MAGIQUEST</primary><secondary>IRremote.hpp</secondary></indexterm>
+<indexterm><primary>IRremote.hpp</primary><secondary>DECODE_MAGIQUEST</secondary></indexterm>
+<para><computeroutput>#define DECODE_MAGIQUEST</computeroutput></para><para>
+Definition at line <link linkend="__i_r_remote_2_i_rremote_8hpp_source_1l00087">87</link> of file <link linkend="__i_r_remote_2_i_rremote_8hpp_source">IRremote.hpp</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote_2_i_rremote_8hpp_1ac1592db6a7ef80a046d9f33a5a2ed5d8"/><section>
+    <title>DECODE_NEC</title>
+<indexterm><primary>DECODE_NEC</primary><secondary>IRremote.hpp</secondary></indexterm>
+<indexterm><primary>IRremote.hpp</primary><secondary>DECODE_NEC</secondary></indexterm>
+<para><computeroutput>#define DECODE_NEC</computeroutput></para><para>
+Definition at line <link linkend="__i_r_remote_2_i_rremote_8hpp_source_1l00077">77</link> of file <link linkend="__i_r_remote_2_i_rremote_8hpp_source">IRremote.hpp</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote_2_i_rremote_8hpp_1a018b3df8bf49d3f6cc094db8491ad2ad"/><section>
+    <title>DECODE_PANASONIC</title>
+<indexterm><primary>DECODE_PANASONIC</primary><secondary>IRremote.hpp</secondary></indexterm>
+<indexterm><primary>IRremote.hpp</primary><secondary>DECODE_PANASONIC</secondary></indexterm>
+<para><computeroutput>#define DECODE_PANASONIC</computeroutput></para><para>
+Definition at line <link linkend="__i_r_remote_2_i_rremote_8hpp_source_1l00075">75</link> of file <link linkend="__i_r_remote_2_i_rremote_8hpp_source">IRremote.hpp</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote_2_i_rremote_8hpp_1aa1dbf245adf93ffa573dc4863ea29c5b"/><section>
+    <title>DECODE_RC5</title>
+<indexterm><primary>DECODE_RC5</primary><secondary>IRremote.hpp</secondary></indexterm>
+<indexterm><primary>IRremote.hpp</primary><secondary>DECODE_RC5</secondary></indexterm>
+<para><computeroutput>#define DECODE_RC5</computeroutput></para><para>
+Definition at line <link linkend="__i_r_remote_2_i_rremote_8hpp_source_1l00080">80</link> of file <link linkend="__i_r_remote_2_i_rremote_8hpp_source">IRremote.hpp</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote_2_i_rremote_8hpp_1a4f3761bb8157be080bee1d9e4c1bc8c8"/><section>
+    <title>DECODE_RC6</title>
+<indexterm><primary>DECODE_RC6</primary><secondary>IRremote.hpp</secondary></indexterm>
+<indexterm><primary>IRremote.hpp</primary><secondary>DECODE_RC6</secondary></indexterm>
+<para><computeroutput>#define DECODE_RC6</computeroutput></para><para>
+Definition at line <link linkend="__i_r_remote_2_i_rremote_8hpp_source_1l00081">81</link> of file <link linkend="__i_r_remote_2_i_rremote_8hpp_source">IRremote.hpp</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote_2_i_rremote_8hpp_1aa460f8aea781d305b7e0fef9b6748523"/><section>
+    <title>DECODE_SAMSUNG</title>
+<indexterm><primary>DECODE_SAMSUNG</primary><secondary>IRremote.hpp</secondary></indexterm>
+<indexterm><primary>IRremote.hpp</primary><secondary>DECODE_SAMSUNG</secondary></indexterm>
+<para><computeroutput>#define DECODE_SAMSUNG</computeroutput></para><para>
+Definition at line <link linkend="__i_r_remote_2_i_rremote_8hpp_source_1l00078">78</link> of file <link linkend="__i_r_remote_2_i_rremote_8hpp_source">IRremote.hpp</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote_2_i_rremote_8hpp_1a308d000d6a90fac72f4dcf47323bef21"/><section>
+    <title>DECODE_SONY</title>
+<indexterm><primary>DECODE_SONY</primary><secondary>IRremote.hpp</secondary></indexterm>
+<indexterm><primary>IRremote.hpp</primary><secondary>DECODE_SONY</secondary></indexterm>
+<para><computeroutput>#define DECODE_SONY</computeroutput></para><para>
+Definition at line <link linkend="__i_r_remote_2_i_rremote_8hpp_source_1l00079">79</link> of file <link linkend="__i_r_remote_2_i_rremote_8hpp_source">IRremote.hpp</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote_2_i_rremote_8hpp_1ad1f31ad2d36110ba06286b7fb1d1ddcf"/><section>
+    <title>DECODE_WHYNTER</title>
+<indexterm><primary>DECODE_WHYNTER</primary><secondary>IRremote.hpp</secondary></indexterm>
+<indexterm><primary>IRremote.hpp</primary><secondary>DECODE_WHYNTER</secondary></indexterm>
+<para><computeroutput>#define DECODE_WHYNTER</computeroutput></para><para>
+Definition at line <link linkend="__i_r_remote_2_i_rremote_8hpp_source_1l00086">86</link> of file <link linkend="__i_r_remote_2_i_rremote_8hpp_source">IRremote.hpp</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote_2_i_rremote_8hpp_1ace39503e8ded5ffb7a1c0d6f651f8d43"/><section>
+    <title>INPUT_MARK</title>
+<indexterm><primary>INPUT_MARK</primary><secondary>IRremote.hpp</secondary></indexterm>
+<indexterm><primary>IRremote.hpp</primary><secondary>INPUT_MARK</secondary></indexterm>
+<para><computeroutput>#define INPUT_MARK   0</computeroutput></para><para>
+
+<para>Sensor output for a mark (&quot;flash&quot;) </para>
+</para>
+<para>
+Definition at line <link linkend="__i_r_remote_2_i_rremote_8hpp_source_1l00173">173</link> of file <link linkend="__i_r_remote_2_i_rremote_8hpp_source">IRremote.hpp</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote_2_i_rremote_8hpp_1ac21b48ddc487212fbce7d6474423e080"/><section>
+    <title>MARK_EXCESS</title>
+<indexterm><primary>MARK_EXCESS</primary><secondary>IRremote.hpp</secondary></indexterm>
+<indexterm><primary>IRremote.hpp</primary><secondary>MARK_EXCESS</secondary></indexterm>
+<para><computeroutput>#define MARK_EXCESS   <link linkend="__i_r_remote___library_2_i_rremote_8hpp_1a6cb4ad1bc3f0b5d2c4503615058a1d90">MARK_EXCESS_MICROS</link></computeroutput></para><para>
+Definition at line <link linkend="__i_r_remote_2_i_rremote_8hpp_source_1l00279">279</link> of file <link linkend="__i_r_remote_2_i_rremote_8hpp_source">IRremote.hpp</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote_2_i_rremote_8hpp_1a6cb4ad1bc3f0b5d2c4503615058a1d90"/><section>
+    <title>MARK_EXCESS_MICROS</title>
+<indexterm><primary>MARK_EXCESS_MICROS</primary><secondary>IRremote.hpp</secondary></indexterm>
+<indexterm><primary>IRremote.hpp</primary><secondary>MARK_EXCESS_MICROS</secondary></indexterm>
+<para><computeroutput>#define MARK_EXCESS_MICROS   20</computeroutput></para>
+<para>MARK_EXCESS_MICROS is subtracted from all marks and added to all spaces before decoding, to compensate for the signal forming of different IR receiver modules For Vishay TSOP*, marks tend to be too long and spaces tend to be too short. If you set MARK_EXCESS_MICROS to approx. 50us then the TSOP4838 works best. At 100us it also worked, but not as well. Set MARK_EXCESS to 100us and the VS1838 doesn&apos;t work at all.</para>
+
+<para>The right value is critical for IR codes using short pulses like Denon / Sharp / Lego</para>
+
+<para>Observed values: Delta of each signal type is around 50 up to 100 and at low signals up to 200. TSOP is better, especially at low IR signal level. VS1838 Mark Excess -50 to +50 us TSOP31238 Mark Excess 0 to +50 </para>
+<para>
+Definition at line <link linkend="__i_r_remote_2_i_rremote_8hpp_source_1l00140">140</link> of file <link linkend="__i_r_remote_2_i_rremote_8hpp_source">IRremote.hpp</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote_2_i_rremote_8hpp_1ac836377a7a04f6f4044daab71d9660f9"/><section>
+    <title>PULSE_CORRECTION_NANOS</title>
+<indexterm><primary>PULSE_CORRECTION_NANOS</primary><secondary>IRremote.hpp</secondary></indexterm>
+<indexterm><primary>IRremote.hpp</primary><secondary>PULSE_CORRECTION_NANOS</secondary></indexterm>
+<para><computeroutput>#define PULSE_CORRECTION_NANOS   600</computeroutput></para>
+<para>SENDING Define to disable carrier PWM generation in software and use (restricted) hardware PWM. Define to use no carrier PWM, just simulate an active low receiver signal. Define to use or simulate open drain output mode at send pin. Attention, active state of open drain is LOW, so connect the send LED between positive supply and send pin! This amount is subtracted from the on-time of the pulses generated for software PWM generation. It should be the time used for digitalWrite(sendPin, LOW) and the call to delayMicros() Measured value for Nano @16MHz is around 3000, for Bluepill @72MHz is around 700, for Zero 3600 </para>
+<para>
+Definition at line <link linkend="__i_r_remote_2_i_rremote_8hpp_source_1l00211">211</link> of file <link linkend="__i_r_remote_2_i_rremote_8hpp_source">IRremote.hpp</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote_2_i_rremote_8hpp_1a589aa40429eeb37b6e83a2c09854a47b"/><section>
+    <title>RAW_BUFFER_LENGTH</title>
+<indexterm><primary>RAW_BUFFER_LENGTH</primary><secondary>IRremote.hpp</secondary></indexterm>
+<indexterm><primary>IRremote.hpp</primary><secondary>RAW_BUFFER_LENGTH</secondary></indexterm>
+<para><computeroutput>#define RAW_BUFFER_LENGTH   112</computeroutput></para>
+<para>RECEIVING The length of the buffer where the IR timing data is stored before decoding 100 is sufficient for most standard protocols, but air conditioners often send a longer protocol data stream </para>
+<para>
+Definition at line <link linkend="__i_r_remote_2_i_rremote_8hpp_source_1l00113">113</link> of file <link linkend="__i_r_remote_2_i_rremote_8hpp_source">IRremote.hpp</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote_2_i_rremote_8hpp_1abb919079668bcc14433d4c857ab8a196"/><section>
+    <title>RAWBUF</title>
+<indexterm><primary>RAWBUF</primary><secondary>IRremote.hpp</secondary></indexterm>
+<indexterm><primary>IRremote.hpp</primary><secondary>RAWBUF</secondary></indexterm>
+<para><computeroutput>#define RAWBUF   101</computeroutput></para>
+<para>Macros for legacy compatibility </para>
+<para>
+Definition at line <link linkend="__i_r_remote_2_i_rremote_8hpp_source_1l00276">276</link> of file <link linkend="__i_r_remote_2_i_rremote_8hpp_source">IRremote.hpp</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote_2_i_rremote_8hpp_1a2eb6de0bae8bc6f19f3832c00e91f499"/><section>
+    <title>RECORD_GAP_MICROS</title>
+<indexterm><primary>RECORD_GAP_MICROS</primary><secondary>IRremote.hpp</secondary></indexterm>
+<indexterm><primary>IRremote.hpp</primary><secondary>RECORD_GAP_MICROS</secondary></indexterm>
+<para><computeroutput>#define RECORD_GAP_MICROS   5000</computeroutput></para>
+<para>Minimum gap between IR transmissions, to detect the end of a protocol. Must be greater than any space of a protocol e.g. the NEC header space of 4500 us. Must be smaller than any gap between a command and a repeat; e.g. the retransmission gap for Sony is around 24 ms. Keep in mind, that this is the delay between the end of the received command and the start of decoding. </para>
+<para>
+Definition at line <link linkend="__i_r_remote_2_i_rremote_8hpp_source_1l00151">151</link> of file <link linkend="__i_r_remote_2_i_rremote_8hpp_source">IRremote.hpp</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote_2_i_rremote_8hpp_1a6afa54ea105253cce361d8c571da5fa9"/><section>
+    <title>RECORD_GAP_MICROS_WARNING_THRESHOLD</title>
+<indexterm><primary>RECORD_GAP_MICROS_WARNING_THRESHOLD</primary><secondary>IRremote.hpp</secondary></indexterm>
+<indexterm><primary>IRremote.hpp</primary><secondary>RECORD_GAP_MICROS_WARNING_THRESHOLD</secondary></indexterm>
+<para><computeroutput>#define RECORD_GAP_MICROS_WARNING_THRESHOLD   20000</computeroutput></para>
+<para>Threshold for warnings at printIRResult*() to report about changing the RECORD_GAP_MICROS value to a higher value. </para>
+<para>
+Definition at line <link linkend="__i_r_remote_2_i_rremote_8hpp_source_1l00158">158</link> of file <link linkend="__i_r_remote_2_i_rremote_8hpp_source">IRremote.hpp</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote_2_i_rremote_8hpp_1a1ba5a08e87f922d04e6acb5c07867386"/><section>
+    <title>RECORD_GAP_TICKS</title>
+<indexterm><primary>RECORD_GAP_TICKS</primary><secondary>IRremote.hpp</secondary></indexterm>
+<indexterm><primary>IRremote.hpp</primary><secondary>RECORD_GAP_TICKS</secondary></indexterm>
+<para><computeroutput>#define RECORD_GAP_TICKS   (<link linkend="__i_r_remote___library_2_i_rremote_8hpp_1a2eb6de0bae8bc6f19f3832c00e91f499">RECORD_GAP_MICROS</link> / <link linkend="__i_r_remote___library_2_i_rremote_int_8h_1a1c7eebb527483c272812530caa313d20">MICROS_PER_TICK</link>)</computeroutput></para>
+<para>Minimum gap between IR transmissions, in MICROS_PER_TICK </para>
+<para>
+Definition at line <link linkend="__i_r_remote_2_i_rremote_8hpp_source_1l00162">162</link> of file <link linkend="__i_r_remote_2_i_rremote_8hpp_source">IRremote.hpp</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote_2_i_rremote_8hpp_1a2c9384c67919c632913b8db2088f8341"/><section>
+    <title>REPEAT</title>
+<indexterm><primary>REPEAT</primary><secondary>IRremote.hpp</secondary></indexterm>
+<indexterm><primary>IRremote.hpp</primary><secondary>REPEAT</secondary></indexterm>
+<para><computeroutput>#define REPEAT   0xFFFFFFFF</computeroutput></para><para>
+Definition at line <link linkend="__i_r_remote_2_i_rremote_8hpp_source_1l00277">277</link> of file <link linkend="__i_r_remote_2_i_rremote_8hpp_source">IRremote.hpp</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote_2_i_rremote_8hpp_1aad2fcaac88c28bf54ecbd42146a56e3f"/><section>
+    <title>USECPERTICK</title>
+<indexterm><primary>USECPERTICK</primary><secondary>IRremote.hpp</secondary></indexterm>
+<indexterm><primary>IRremote.hpp</primary><secondary>USECPERTICK</secondary></indexterm>
+<para><computeroutput>#define USECPERTICK   <link linkend="__i_r_remote___library_2_i_rremote_int_8h_1a1c7eebb527483c272812530caa313d20">MICROS_PER_TICK</link></computeroutput></para><para>
+Definition at line <link linkend="__i_r_remote_2_i_rremote_8hpp_source_1l00278">278</link> of file <link linkend="__i_r_remote_2_i_rremote_8hpp_source">IRremote.hpp</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote_2_i_rremote_8hpp_1ad9f03906065f749788cc9e3f68fb6253"/><section>
+    <title>VERSION_IRREMOTE</title>
+<indexterm><primary>VERSION_IRREMOTE</primary><secondary>IRremote.hpp</secondary></indexterm>
+<indexterm><primary>IRremote.hpp</primary><secondary>VERSION_IRREMOTE</secondary></indexterm>
+<para><computeroutput>#define VERSION_IRREMOTE   &quot;3.5.0&quot;</computeroutput></para><para>
+Definition at line <link linkend="__i_r_remote_2_i_rremote_8hpp_source_1l00046">46</link> of file <link linkend="__i_r_remote_2_i_rremote_8hpp_source">IRremote.hpp</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote_2_i_rremote_8hpp_1a5fccc9834ba25cd17b7ca45e14aa7751"/><section>
+    <title>VERSION_IRREMOTE_MAJOR</title>
+<indexterm><primary>VERSION_IRREMOTE_MAJOR</primary><secondary>IRremote.hpp</secondary></indexterm>
+<indexterm><primary>IRremote.hpp</primary><secondary>VERSION_IRREMOTE_MAJOR</secondary></indexterm>
+<para><computeroutput>#define VERSION_IRREMOTE_MAJOR   3</computeroutput></para><para>
+Definition at line <link linkend="__i_r_remote_2_i_rremote_8hpp_source_1l00047">47</link> of file <link linkend="__i_r_remote_2_i_rremote_8hpp_source">IRremote.hpp</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote_2_i_rremote_8hpp_1a824e2f61336bde09dd9b835e8606683f"/><section>
+    <title>VERSION_IRREMOTE_MINOR</title>
+<indexterm><primary>VERSION_IRREMOTE_MINOR</primary><secondary>IRremote.hpp</secondary></indexterm>
+<indexterm><primary>IRremote.hpp</primary><secondary>VERSION_IRREMOTE_MINOR</secondary></indexterm>
+<para><computeroutput>#define VERSION_IRREMOTE_MINOR   5</computeroutput></para><para>
+Definition at line <link linkend="__i_r_remote_2_i_rremote_8hpp_source_1l00048">48</link> of file <link linkend="__i_r_remote_2_i_rremote_8hpp_source">IRremote.hpp</link>.</para>
+</section>
+</section>
+</section>

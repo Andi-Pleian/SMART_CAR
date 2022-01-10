@@ -1,0 +1,568 @@
+\hypertarget{_i_r_remote_2_i_r_send_8hpp_source}{}\doxysection{IRSend.\+hpp}
+\label{_i_r_remote_2_i_r_send_8hpp_source}\index{main/IRRemote/IRSend.hpp@{main/IRRemote/IRSend.hpp}}
+\mbox{\hyperlink{_i_r_remote_2_i_r_send_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00001}00001 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00002}00002 \textcolor{comment}{ * IRSend.hpp}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00003}00003 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00004}00004 \textcolor{comment}{ *  Contains common functions for sending}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00005}00005 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00006}00006 \textcolor{comment}{ *  This file is part of Arduino-\/IRremote https://github.com/Arduino-\/IRremote/Arduino-\/IRremote.}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00007}00007 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00008}00008 \textcolor{comment}{ ************************************************************************************}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00009}00009 \textcolor{comment}{ * MIT License}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00010}00010 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00011}00011 \textcolor{comment}{ * Copyright (c) 2009-\/2021 Ken Shirriff, Rafi Khan, Armin Joachimsmeyer}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00012}00012 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00013}00013 \textcolor{comment}{ * Permission is hereby granted, free of charge, to any person obtaining a copy}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00014}00014 \textcolor{comment}{ * of this software and associated documentation files (the "{}Software"{}), to deal}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00015}00015 \textcolor{comment}{ * in the Software without restriction, including without limitation the rights}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00016}00016 \textcolor{comment}{ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00017}00017 \textcolor{comment}{ * copies of the Software, and to permit persons to whom the Software is furnished}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00018}00018 \textcolor{comment}{ * to do so, subject to the following conditions:}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00019}00019 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00020}00020 \textcolor{comment}{ * The above copyright notice and this permission notice shall be included in all}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00021}00021 \textcolor{comment}{ * copies or substantial portions of the Software.}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00022}00022 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00023}00023 \textcolor{comment}{ * THE SOFTWARE IS PROVIDED "{}AS IS"{}, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00024}00024 \textcolor{comment}{ * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00025}00025 \textcolor{comment}{ * PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00026}00026 \textcolor{comment}{ * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00027}00027 \textcolor{comment}{ * CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00028}00028 \textcolor{comment}{ * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00029}00029 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00030}00030 \textcolor{comment}{ ************************************************************************************}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00031}00031 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00032}00032 \textcolor{preprocessor}{\#ifndef IR\_SEND\_HPP}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00033}00033 \textcolor{preprocessor}{\#define IR\_SEND\_HPP}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00034}00034 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00035}00035 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h}{IRremoteInt.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00036}00036 \textcolor{preprocessor}{\#if defined(IR\_SEND\_PIN)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00037}00037 \textcolor{preprocessor}{\#define sendPin IR\_SEND\_PIN}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00038}00038 \textcolor{preprocessor}{\#include "{}digitalWriteFast.h"{}}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00039}00039 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00040}\mbox{\hyperlink{_i_r_remote_2_i_r_send_8hpp_a9bef074dfc5a83ffbb27929185ef9597}{00040}} \textcolor{preprocessor}{\#define digitalWriteFast    digitalWrite}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00041}\mbox{\hyperlink{_i_r_remote_2_i_r_send_8hpp_a99fa3e1d72f2f1a9ffba996b06767a39}{00041}} \textcolor{preprocessor}{\#define pinModeFast         pinMode}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00042}00042 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00043}00043 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00048}00048 \textcolor{comment}{// The sender instance}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00049}\mbox{\hyperlink{group___sending_gafba8232b747be85f72c1c4612780d5cf}{00049}} \mbox{\hyperlink{class_i_rsend}{IRsend}} \mbox{\hyperlink{group___sending_gafba8232b747be85f72c1c4612780d5cf}{IrSender}};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00050}00050 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00051}\mbox{\hyperlink{group___sending_ga047d9e3f47864869afaa5076579c9f63}{00051}} \mbox{\hyperlink{group___sending_ga047d9e3f47864869afaa5076579c9f63}{IRsend::IRsend}}() \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00052}00052 \textcolor{preprocessor}{\#if !defined(NO\_LED\_FEEDBACK\_CODE)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00053}00053     \mbox{\hyperlink{group___feedback_l_e_d_functions_gaa5949b509ec061d9239867caa628cfec}{setLEDFeedback}}(0, \textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00054}00054 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00055}00055 \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00056}00056 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00057}00057 \textcolor{preprocessor}{\#if !defined(IR\_SEND\_PIN) \&\& !defined(SEND\_PWM\_BY\_TIMER)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00058}00058 \textcolor{comment}{// there is no sendPin variable if IR\_SEND\_PIN or SEND\_PWM\_BY\_TIMER is defined}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00059}\mbox{\hyperlink{group___sending_gabf55f45c8cfe3558053130bea46e7f14}{00059}} \mbox{\hyperlink{group___sending_ga047d9e3f47864869afaa5076579c9f63}{IRsend::IRsend}}(uint8\_t aSendPin) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00060}00060     \mbox{\hyperlink{class_i_rsend_a39f9782dd884b804bcf0034ab71ac202}{sendPin}} = aSendPin;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00061}00061 \textcolor{preprocessor}{\#if !defined(NO\_LED\_FEEDBACK\_CODE)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00062}00062     \mbox{\hyperlink{group___feedback_l_e_d_functions_gaa5949b509ec061d9239867caa628cfec}{setLEDFeedback}}(0, \textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00063}00063 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00064}00064 \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00065}00065 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00066}\mbox{\hyperlink{group___sending_ga5f592984c8cda2db23aa533cd0d7e827}{00066}} \textcolor{keywordtype}{void} \mbox{\hyperlink{group___sending_ga5f592984c8cda2db23aa533cd0d7e827}{IRsend::setSendPin}}(uint8\_t aSendPin) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00067}00067     \mbox{\hyperlink{class_i_rsend_a39f9782dd884b804bcf0034ab71ac202}{sendPin}} = aSendPin;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00068}00068 \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00069}00069 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00074}\mbox{\hyperlink{group___sending_ga7db69257658d7ee780a5319bc463dbe9}{00074}} \textcolor{keywordtype}{void} \mbox{\hyperlink{group___sending_ga28a0bb05c6b5d7330b2185c8447ef7a2}{IRsend::begin}}(uint8\_t aSendPin) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00075}00075     \mbox{\hyperlink{class_i_rsend_a39f9782dd884b804bcf0034ab71ac202}{sendPin}} = aSendPin;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00076}00076 \textcolor{preprocessor}{\#if !defined(NO\_LED\_FEEDBACK\_CODE)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00077}00077     \mbox{\hyperlink{group___feedback_l_e_d_functions_gaa5949b509ec061d9239867caa628cfec}{setLEDFeedback}}(\mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a575e74508c30d1ccf92f7e142a43dd3d}{USE\_DEFAULT\_FEEDBACK\_LED\_PIN}}, \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00078}00078 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00079}00079 \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00080}00080 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00081}00081 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00082}00082 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00083}00083 \textcolor{preprocessor}{\#if defined(IR\_SEND\_PIN)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00087}00087 \textcolor{keywordtype}{void} \mbox{\hyperlink{group___sending_ga28a0bb05c6b5d7330b2185c8447ef7a2}{IRsend::begin}}()\{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00088}00088 \textcolor{preprocessor}{\#  if !defined(NO\_LED\_FEEDBACK\_CODE)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00089}00089     \mbox{\hyperlink{group___feedback_l_e_d_functions_gaa5949b509ec061d9239867caa628cfec}{setLEDFeedback}}(\mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a575e74508c30d1ccf92f7e142a43dd3d}{USE\_DEFAULT\_FEEDBACK\_LED\_PIN}}, \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00090}00090 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00091}00091 \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00092}00092 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00093}00093 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00099}\mbox{\hyperlink{group___sending_gaf2fb03ebe7de801ffc2c1ea0a7ea1cbf}{00099}} \textcolor{keywordtype}{void} \mbox{\hyperlink{group___sending_ga28a0bb05c6b5d7330b2185c8447ef7a2}{IRsend::begin}}(uint8\_t aSendPin, \textcolor{keywordtype}{bool} aEnableLEDFeedback, uint8\_t aFeedbackLEDPin) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00100}00100 \textcolor{preprocessor}{\#if !defined(IR\_SEND\_PIN) \&\& !defined(SEND\_PWM\_BY\_TIMER)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00101}00101     \mbox{\hyperlink{class_i_rsend_a39f9782dd884b804bcf0034ab71ac202}{sendPin}} = aSendPin;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00102}00102 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00103}00103     (void) aSendPin; \textcolor{comment}{// there is no sendPin variable if IR\_SEND\_PIN or SEND\_PWM\_BY\_TIMER is defined}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00104}00104 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00105}00105 \textcolor{preprocessor}{\#if !defined(NO\_LED\_FEEDBACK\_CODE)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00106}00106     \mbox{\hyperlink{group___feedback_l_e_d_functions_gaa5949b509ec061d9239867caa628cfec}{setLEDFeedback}}(aFeedbackLEDPin, aEnableLEDFeedback);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00107}00107 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00108}00108     (void) aEnableLEDFeedback;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00109}00109     (void) aFeedbackLEDPin;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00110}00110 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00111}00111 \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00112}00112 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00113}00113 \textcolor{comment}{//\_\_attribute((error("{}Error: You must use begin(<sendPin>, <EnableLEDFeedback>, <aFeedbackLEDPin>) if IR\_SEND\_PIN and SEND\_PWM\_BY\_TIMER are not defined or USE\_NO\_SEND\_PWM is defined. To suppress this error, enable lto or activate the line \#define SUPPRESS\_ERROR\_MESSAGE\_FOR\_BEGIN in IRremote.hpp."{}))) void beginUsageError();}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00114}00114 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00118}\mbox{\hyperlink{group___sending_ga28a0bb05c6b5d7330b2185c8447ef7a2}{00118}} \textcolor{keywordtype}{void} \mbox{\hyperlink{group___sending_ga28a0bb05c6b5d7330b2185c8447ef7a2}{IRsend::begin}}(\textcolor{keywordtype}{bool} aEnableLEDFeedback, uint8\_t aFeedbackLEDPin) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00119}00119 \textcolor{preprocessor}{\#if !defined(IR\_SEND\_PIN)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00120}00120 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00121}00121     \textcolor{comment}{// must exclude cores by MCUdude, MEGATINYCORE, NRF5, SAMD and ESP32 because they do not use the -\/flto flag for compile}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00122}00122 \textcolor{preprocessor}{\#  if (!defined(SEND\_PWM\_BY\_TIMER) || defined(USE\_NO\_SEND\_PWM)) \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00123}00123 \textcolor{preprocessor}{        \&\& !defined(SUPPRESS\_ERROR\_MESSAGE\_FOR\_BEGIN) \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00124}00124 \textcolor{preprocessor}{        \&\& !(defined(NRF5) || defined(ARDUINO\_ARCH\_NRF52840)) \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00125}00125 \textcolor{preprocessor}{        \&\& !defined(ARDUINO\_ARCH\_SAMD) \&\& !defined(ARDUINO\_ARCH\_RP2040) \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00126}00126 \textcolor{preprocessor}{        \&\& !defined(ESP32) \&\& !defined(ESP8266) \&\& !defined(MEGATINYCORE) \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00127}00127 \textcolor{preprocessor}{        \&\& !defined(MINICORE) \&\& !defined(MIGHTYCORE) \&\& !defined(MEGACORE) \&\& !defined(MAJORCORE) \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00128}00128 \textcolor{preprocessor}{    \&\& !(defined(\_\_STM32F1\_\_) || defined(ARDUINO\_ARCH\_STM32F1)) \&\& !(defined(STM32F1xx) || defined(ARDUINO\_ARCH\_STM32))}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00129}00129     \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00130}00130 \textcolor{comment}{     * This error shows up, if this function is really used/called by the user program.}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00131}00131 \textcolor{comment}{     * This check works only if lto is enabled, otherwise it always pops up :-\/(.}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00132}00132 \textcolor{comment}{     * In this case activate the line \#define SUPPRESS\_ERROR\_MESSAGE\_FOR\_BEGIN in IRremote.h to suppress this message.}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00133}00133 \textcolor{comment}{     * I know now way to check for lto flag here.}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00134}00134 \textcolor{comment}{     */}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00135}00135     \textcolor{comment}{//beginUsageError();}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00136}00136 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00137}00137 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00138}00138 \textcolor{preprocessor}{\#if !defined(NO\_LED\_FEEDBACK\_CODE)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00139}00139     \mbox{\hyperlink{group___feedback_l_e_d_functions_gaa5949b509ec061d9239867caa628cfec}{setLEDFeedback}}(aFeedbackLEDPin, aEnableLEDFeedback);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00140}00140 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00141}00141     (void) aEnableLEDFeedback;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00142}00142     (void) aFeedbackLEDPin;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00143}00143 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00144}00144 \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00145}00145 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00150}\mbox{\hyperlink{group___sending_ga567f59869ebc6c7f53d0dc9b360dd4c3}{00150}} \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{group___sending_ga567f59869ebc6c7f53d0dc9b360dd4c3}{IRsend::write}}(\mbox{\hyperlink{struct_i_r_data}{IRData}} *aIRSendData, uint\_fast8\_t aNumberOfRepeats) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00151}00151 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00152}00152     \textcolor{keyword}{auto} tProtocol = aIRSendData-\/>\mbox{\hyperlink{struct_i_r_data_a703592faec26bab5cbe465f53ef14245}{protocol}};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00153}00153     \textcolor{keyword}{auto} tAddress = aIRSendData-\/>\mbox{\hyperlink{struct_i_r_data_a1255a5b7d704d34fda83dcabcb903d4c}{address}};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00154}00154     \textcolor{keyword}{auto} tCommand = aIRSendData-\/>\mbox{\hyperlink{struct_i_r_data_ab0ce2b36765ea429e8c4bfa0706a45e7}{command}};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00155}00155     \textcolor{keywordtype}{bool} tSendRepeat = (aIRSendData-\/>\mbox{\hyperlink{struct_i_r_data_aaaad48fc0d90e5c6daec601987848a51}{flags}} \& \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_aaa9952cd64b58083c28873484c494abf}{IRDATA\_FLAGS\_IS\_REPEAT}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00156}00156 \textcolor{comment}{//    switch (tProtocol) \{ // 26 bytes bigger than if, else if, else}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00157}00157 \textcolor{comment}{//    case NEC:}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00158}00158 \textcolor{comment}{//        sendNEC(tAddress, tCommand, aNumberOfRepeats, tSendRepeat);}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00159}00159 \textcolor{comment}{//        break;}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00160}00160 \textcolor{comment}{//    case SAMSUNG:}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00161}00161 \textcolor{comment}{//        sendSamsung(tAddress, tCommand, aNumberOfRepeats, tSendRepeat);}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00162}00162 \textcolor{comment}{//        break;}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00163}00163 \textcolor{comment}{//    case SONY:}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00164}00164 \textcolor{comment}{//        sendSony(tAddress, tCommand, aNumberOfRepeats, aIRSendData-\/>numberOfBits);}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00165}00165 \textcolor{comment}{//        break;}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00166}00166 \textcolor{comment}{//    case PANASONIC:}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00167}00167 \textcolor{comment}{//        sendPanasonic(tAddress, tCommand, aNumberOfRepeats);}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00168}00168 \textcolor{comment}{//        break;}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00169}00169 \textcolor{comment}{//    case DENON:}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00170}00170 \textcolor{comment}{//        sendDenon(tAddress, tCommand, aNumberOfRepeats);}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00171}00171 \textcolor{comment}{//        break;}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00172}00172 \textcolor{comment}{//    case SHARP:}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00173}00173 \textcolor{comment}{//        sendSharp(tAddress, tCommand, aNumberOfRepeats);}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00174}00174 \textcolor{comment}{//        break;}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00175}00175 \textcolor{comment}{//    case JVC:}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00176}00176 \textcolor{comment}{//        sendJVC((uint8\_t) tAddress, (uint8\_t) tCommand, aNumberOfRepeats); // casts are required to specify the right function}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00177}00177 \textcolor{comment}{//        break;}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00178}00178 \textcolor{comment}{//    case RC5:}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00179}00179 \textcolor{comment}{//        sendRC5(tAddress, tCommand, aNumberOfRepeats, !tSendRepeat); // No toggle for repeats}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00180}00180 \textcolor{comment}{//        break;}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00181}00181 \textcolor{comment}{//    case RC6:}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00182}00182 \textcolor{comment}{//        // No toggle for repeats//        sendRC6(tAddress, tCommand, aNumberOfRepeats, !tSendRepeat); // No toggle for repeats}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00183}00183 \textcolor{comment}{//        break;}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00184}00184 \textcolor{comment}{//    default:}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00185}00185 \textcolor{comment}{//        break;}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00186}00186 \textcolor{comment}{//    \}}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00187}00187 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00188}00188     \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00189}00189 \textcolor{comment}{     * Order of protocols is in guessed relevance :-\/)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00190}00190 \textcolor{comment}{     */}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00191}00191     \textcolor{keywordflow}{if} (tProtocol == \mbox{\hyperlink{_i_r_remote_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada0811f93a25b0873e21979d569eeac05e}{NEC}}) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00192}00192         \mbox{\hyperlink{group___decoder_gacc081690ddf61dec5d3f1c55000da7f5}{sendNEC}}(tAddress, tCommand, \mbox{\hyperlink{class_i_rsend_aff233b57d2382a713926797ce5da0fd3}{aNumberOfRepeats}}, tSendRepeat);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00193}00193 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00194}00194     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (tProtocol == \mbox{\hyperlink{_i_r_remote_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada2b451b6e7bebbf070d0913ec77d5d438}{SAMSUNG}}) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00195}00195         \mbox{\hyperlink{group___decoder_ga5d194d783811b52669eb1c1ab17a3a0f}{sendSamsung}}(tAddress, tCommand, \mbox{\hyperlink{class_i_rsend_aff233b57d2382a713926797ce5da0fd3}{aNumberOfRepeats}}, tSendRepeat);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00196}00196 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00197}00197     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (tProtocol == \mbox{\hyperlink{_i_r_remote_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada72d58193d4d25517202d22b7e57a65c3}{SONY}}) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00198}00198         \mbox{\hyperlink{group___decoder_ga64cfeb90c005e597c62586ea19b93b12}{sendSony}}(tAddress, tCommand, \mbox{\hyperlink{class_i_rsend_aff233b57d2382a713926797ce5da0fd3}{aNumberOfRepeats}}, aIRSendData-\/>\mbox{\hyperlink{struct_i_r_data_a945c41b8463a36cf00b0f38b0aa73200}{numberOfBits}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00199}00199 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00200}00200     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (tProtocol == \mbox{\hyperlink{_i_r_remote_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fadaf87c99938d26a1f77d4f082c070d4660}{PANASONIC}}) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00201}00201         \mbox{\hyperlink{group___decoder_gad3a14e1a94a402a4cbe0eeeded312173}{sendPanasonic}}(tAddress, tCommand, \mbox{\hyperlink{class_i_rsend_aff233b57d2382a713926797ce5da0fd3}{aNumberOfRepeats}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00202}00202 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00203}00203     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (tProtocol == \mbox{\hyperlink{_i_r_remote_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada2bda37b76abb290d1675c3e027e3c2e1}{DENON}}) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00204}00204         \mbox{\hyperlink{group___decoder_ga342baabd2418ed33d6d847ea5f53f165}{sendDenon}}(tAddress, tCommand, \mbox{\hyperlink{class_i_rsend_aff233b57d2382a713926797ce5da0fd3}{aNumberOfRepeats}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00205}00205 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00206}00206     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (tProtocol == \mbox{\hyperlink{_i_r_remote_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fadaad63db67a2284cd7e3ffe382b6d6ea82}{SHARP}}) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00207}00207         \mbox{\hyperlink{group___decoder_ga81b608682a7f7f89e0b1fd00756bb714}{sendSharp}}(tAddress, tCommand, \mbox{\hyperlink{class_i_rsend_aff233b57d2382a713926797ce5da0fd3}{aNumberOfRepeats}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00208}00208 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00209}00209     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (tProtocol == \mbox{\hyperlink{_i_r_remote_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fadadf6c249ac7d923229f9e623eff9a61f4}{LG}}) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00210}00210         \mbox{\hyperlink{group___decoder_gaf5095df5a6598fe2651510e4a8d5e018}{sendLG}}(tAddress, tCommand, \mbox{\hyperlink{class_i_rsend_aff233b57d2382a713926797ce5da0fd3}{aNumberOfRepeats}}, tSendRepeat);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00211}00211 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00212}00212     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (tProtocol == \mbox{\hyperlink{_i_r_remote_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada5b6f507fb4bbd70ee70be4e2e0b0371d}{JVC}}) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00213}00213         \mbox{\hyperlink{group___decoder_ga5b226cb8ff607ec666fbab236fcd1ec9}{sendJVC}}((uint8\_t) tAddress, (uint8\_t) tCommand, \mbox{\hyperlink{class_i_rsend_aff233b57d2382a713926797ce5da0fd3}{aNumberOfRepeats}}); \textcolor{comment}{// casts are required to specify the right function}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00214}00214 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00215}00215     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (tProtocol == \mbox{\hyperlink{_i_r_remote_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fadac3c0a3883a1488209bcd91730ece33b2}{RC5}}) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00216}00216         \mbox{\hyperlink{group___decoder_ga55808fcce8aaf429ebbb1d34cb7f5ee5}{sendRC5}}(tAddress, tCommand, \mbox{\hyperlink{class_i_rsend_aff233b57d2382a713926797ce5da0fd3}{aNumberOfRepeats}}, !tSendRepeat); \textcolor{comment}{// No toggle for repeats}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00217}00217 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00218}00218     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (tProtocol == \mbox{\hyperlink{_i_r_remote_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada7f7247f15587eb3812846f424b941abe}{RC6}}) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00219}00219         \mbox{\hyperlink{group___decoder_gad26a55d87f9f8cc64a77b4571ae79e5f}{sendRC6}}(tAddress, tCommand, \mbox{\hyperlink{class_i_rsend_aff233b57d2382a713926797ce5da0fd3}{aNumberOfRepeats}}, !tSendRepeat); \textcolor{comment}{// No toggle for repeats}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00220}00220 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00221}00221     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (tProtocol == \mbox{\hyperlink{_i_r_remote_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada6b221b79427a02288ea41683a7d04841}{KASEIKYO\_JVC}}) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00222}00222         \mbox{\hyperlink{group___decoder_ga43bf86aaaa216292f8eb7d0941731241}{sendKaseikyo\_JVC}}(tAddress, tCommand, \mbox{\hyperlink{class_i_rsend_aff233b57d2382a713926797ce5da0fd3}{aNumberOfRepeats}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00223}00223 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00224}00224     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (tProtocol == \mbox{\hyperlink{_i_r_remote_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada4cb93fe0fe3dbe0681b8764a9294733b}{KASEIKYO\_DENON}}) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00225}00225         \mbox{\hyperlink{group___decoder_ga9c3687ea0ab26ce088bd2a8a0aa1f1c8}{sendKaseikyo\_Denon}}(tAddress, tCommand, \mbox{\hyperlink{class_i_rsend_aff233b57d2382a713926797ce5da0fd3}{aNumberOfRepeats}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00226}00226 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00227}00227     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (tProtocol == \mbox{\hyperlink{_i_r_remote_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada181746513f88dba0d824c5dfeeec68b6}{KASEIKYO\_SHARP}}) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00228}00228         \mbox{\hyperlink{group___decoder_ga6fee66f189ae46afac1ebe876ffbbf58}{sendKaseikyo\_Sharp}}(tAddress, tCommand, \mbox{\hyperlink{class_i_rsend_aff233b57d2382a713926797ce5da0fd3}{aNumberOfRepeats}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00229}00229 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00230}00230     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (tProtocol == \mbox{\hyperlink{_i_r_remote_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada2516be3bdfd7614bb64961800fa49e43}{KASEIKYO\_MITSUBISHI}}) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00231}00231         \mbox{\hyperlink{group___decoder_gaf42f22f1d83211811b4ec765d4dc0a7f}{sendKaseikyo\_Mitsubishi}}(tAddress, tCommand, \mbox{\hyperlink{class_i_rsend_aff233b57d2382a713926797ce5da0fd3}{aNumberOfRepeats}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00232}00232 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00233}00233     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (tProtocol == \mbox{\hyperlink{_i_r_remote_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada20603784a6e8d35a82b2476366010344}{ONKYO}}) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00234}00234         \mbox{\hyperlink{group___decoder_ga857b05f2b99e8b705cb6d00470c4e78b}{sendOnkyo}}(tAddress, tCommand, \mbox{\hyperlink{class_i_rsend_aff233b57d2382a713926797ce5da0fd3}{aNumberOfRepeats}}, tSendRepeat);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00235}00235 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00236}00236     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (tProtocol == \mbox{\hyperlink{_i_r_remote_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada5484ec37ffd1fcffb7aba549a4839910}{APPLE}}) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00237}00237         \mbox{\hyperlink{group___decoder_ga15fbc8a08b929395d6be6549cb296db5}{sendApple}}(tAddress, tCommand, \mbox{\hyperlink{class_i_rsend_aff233b57d2382a713926797ce5da0fd3}{aNumberOfRepeats}}, tSendRepeat);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00238}00238 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00239}00239 \textcolor{preprocessor}{\#if !defined(EXCLUDE\_EXOTIC\_PROTOCOLS)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00240}00240     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (tProtocol == \mbox{\hyperlink{_i_r_remote_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada20736b037c0e7444d4dc7ff06e9dea54}{BOSEWAVE}}) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00241}00241         \mbox{\hyperlink{group___decoder_ga56bfe794dedefda7cc2487301fe1f1f3}{sendBoseWave}}(tCommand, \mbox{\hyperlink{class_i_rsend_aff233b57d2382a713926797ce5da0fd3}{aNumberOfRepeats}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00242}00242 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00243}00243     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (tProtocol == \mbox{\hyperlink{_i_r_remote_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fadaf47be4dad020b9c36aa255c582e25510}{LEGO\_PF}}) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00244}00244         \mbox{\hyperlink{group___decoder_gaa62e64650aaae09b6f001a53a31f00b8}{sendLegoPowerFunctions}}(tAddress, tCommand, tCommand >> 4, tSendRepeat); \textcolor{comment}{// send 5 autorepeats}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00245}00245 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00246}00246 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00247}00247     \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00248}00248     \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00249}00249 \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00250}00250 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00255}\mbox{\hyperlink{group___sending_gacdb18ddcfd936246e214e0a9519209bf}{00255}} \textcolor{keywordtype}{void} \mbox{\hyperlink{group___sending_ga1c9027bc86e6a726295219ac11e06a1b}{IRsend::sendRaw}}(\textcolor{keyword}{const} uint16\_t aBufferWithMicroseconds[], uint\_fast8\_t aLengthOfBuffer, uint\_fast8\_t aIRFrequencyKilohertz) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00256}00256 \textcolor{comment}{// Set IR carrier frequency}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00257}00257     \mbox{\hyperlink{group___sending_ga42c04af63d252b320c017ffa2bfc90e5}{enableIROut}}(aIRFrequencyKilohertz);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00258}00258 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00259}00259     \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00260}00260 \textcolor{comment}{     * Raw data starts with a mark.}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00261}00261 \textcolor{comment}{     */}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00262}00262     \textcolor{keywordflow}{for} (uint\_fast8\_t i = 0; i < aLengthOfBuffer; i++) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00263}00263         \textcolor{keywordflow}{if} (i \& 1) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00264}00264             \textcolor{comment}{// Odd}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00265}00265             \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(aBufferWithMicroseconds[i]);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00266}00266         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00267}00267             \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(aBufferWithMicroseconds[i]);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00268}00268         \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00269}00269     \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00270}00270 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00271}00271 \textcolor{comment}{//    ledOff();  // Always end with the LED off}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00272}00272 \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00273}00273 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00278}\mbox{\hyperlink{group___sending_ga1c9027bc86e6a726295219ac11e06a1b}{00278}} \textcolor{keywordtype}{void} \mbox{\hyperlink{group___sending_ga1c9027bc86e6a726295219ac11e06a1b}{IRsend::sendRaw}}(\textcolor{keyword}{const} uint8\_t aBufferWithTicks[], uint\_fast8\_t aLengthOfBuffer, uint\_fast8\_t aIRFrequencyKilohertz) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00279}00279 \textcolor{comment}{// Set IR carrier frequency}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00280}00280     \mbox{\hyperlink{group___sending_ga42c04af63d252b320c017ffa2bfc90e5}{enableIROut}}(aIRFrequencyKilohertz);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00281}00281 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00282}00282     \textcolor{keywordflow}{for} (uint\_fast8\_t i = 0; i < aLengthOfBuffer; i++) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00283}00283         \textcolor{keywordflow}{if} (i \& 1) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00284}00284             \textcolor{comment}{// Odd}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00285}00285             \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(aBufferWithTicks[i] * \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a1c7eebb527483c272812530caa313d20}{MICROS\_PER\_TICK}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00286}00286         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00287}00287             \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(aBufferWithTicks[i] * \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a1c7eebb527483c272812530caa313d20}{MICROS\_PER\_TICK}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00288}00288         \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00289}00289     \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00290}00290     \mbox{\hyperlink{group___sending_ga5242741b8da4fbfaae237eee2b279dd0}{IRLedOff}}();  \textcolor{comment}{// Always end with the LED off}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00291}00291 \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00292}00292 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00297}\mbox{\hyperlink{group___sending_ga34540fe390a44b055bfea3da6a79008c}{00297}} \textcolor{keywordtype}{void} \mbox{\hyperlink{group___sending_gac351cb665bc0a5c863bc7a070b3aee4e}{IRsend::sendRaw\_P}}(\textcolor{keyword}{const} uint16\_t aBufferWithMicroseconds[], uint\_fast8\_t aLengthOfBuffer, uint\_fast8\_t aIRFrequencyKilohertz) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00298}00298 \textcolor{preprocessor}{\#if !defined(\_\_AVR\_\_)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00299}00299     \mbox{\hyperlink{group___sending_ga1c9027bc86e6a726295219ac11e06a1b}{sendRaw}}(aBufferWithMicroseconds, aLengthOfBuffer, aIRFrequencyKilohertz); \textcolor{comment}{// Let the function work for non AVR platforms}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00300}00300 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00301}00301 \textcolor{comment}{// Set IR carrier frequency}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00302}00302     \mbox{\hyperlink{group___sending_ga42c04af63d252b320c017ffa2bfc90e5}{enableIROut}}(aIRFrequencyKilohertz);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00303}00303     \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00304}00304 \textcolor{comment}{     * Raw data starts with a mark}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00305}00305 \textcolor{comment}{     */}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00306}00306     \textcolor{keywordflow}{for} (uint\_fast8\_t i = 0; i < aLengthOfBuffer; i++) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00307}00307         uint16\_t duration = \mbox{\hyperlink{_i_r_remote_2digital_write_fast_8h_a910fb5f01313d339d3b835d45e1e5ad0}{pgm\_read\_word}}(\&aBufferWithMicroseconds[i]);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00308}00308         \textcolor{keywordflow}{if} (i \& 1) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00309}00309             \textcolor{comment}{// Odd}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00310}00310             \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(duration);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00311}00311         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00312}00312             \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(duration);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00313}00313         \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00314}00314     \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00315}00315 \textcolor{comment}{//    ledOff();  // Always end with the LED off}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00316}00316 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00317}00317 \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00318}00318 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00323}\mbox{\hyperlink{group___sending_gac351cb665bc0a5c863bc7a070b3aee4e}{00323}} \textcolor{keywordtype}{void} \mbox{\hyperlink{group___sending_gac351cb665bc0a5c863bc7a070b3aee4e}{IRsend::sendRaw\_P}}(\textcolor{keyword}{const} uint8\_t aBufferWithTicks[], uint\_fast8\_t aLengthOfBuffer, uint\_fast8\_t aIRFrequencyKilohertz) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00324}00324 \textcolor{preprocessor}{\#if !defined(\_\_AVR\_\_)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00325}00325     \mbox{\hyperlink{group___sending_ga1c9027bc86e6a726295219ac11e06a1b}{sendRaw}}(aBufferWithTicks, aLengthOfBuffer, aIRFrequencyKilohertz); \textcolor{comment}{// Let the function work for non AVR platforms}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00326}00326 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00327}00327 \textcolor{comment}{// Set IR carrier frequency}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00328}00328     \mbox{\hyperlink{group___sending_ga42c04af63d252b320c017ffa2bfc90e5}{enableIROut}}(aIRFrequencyKilohertz);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00329}00329 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00330}00330     \textcolor{keywordflow}{for} (uint\_fast8\_t i = 0; i < aLengthOfBuffer; i++) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00331}00331         uint16\_t duration = \mbox{\hyperlink{_i_r_remote_2digital_write_fast_8h_a48c60b057902adf805797f183286728d}{pgm\_read\_byte}}(\&aBufferWithTicks[i]) * (uint16\_t) \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a1c7eebb527483c272812530caa313d20}{MICROS\_PER\_TICK}};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00332}00332         \textcolor{keywordflow}{if} (i \& 1) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00333}00333             \textcolor{comment}{// Odd}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00334}00334             \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(duration);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00335}00335         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00336}00336             \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(duration);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00337}00337         \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00338}00338     \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00339}00339     \mbox{\hyperlink{group___sending_ga5242741b8da4fbfaae237eee2b279dd0}{IRLedOff}}();  \textcolor{comment}{// Always end with the LED off}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00340}00340 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00341}00341 \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00342}00342 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00347}\mbox{\hyperlink{group___sending_ga6904a411999a4c9f7306dba49851eb7b}{00347}} \textcolor{keywordtype}{void} \mbox{\hyperlink{group___sending_ga6904a411999a4c9f7306dba49851eb7b}{IRsend::sendPulseDistanceWidthData}}(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} aOneMarkMicros, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} aOneSpaceMicros, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} aZeroMarkMicros,}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00348}00348         \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} aZeroSpaceMicros, uint32\_t aData, uint8\_t aNumberOfBits, \textcolor{keywordtype}{bool} aMSBfirst, \textcolor{keywordtype}{bool} aSendStopBit) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00349}00349 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00350}00350     \textcolor{keywordflow}{if} (aMSBfirst) \{  \textcolor{comment}{// Send the MSB first.}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00351}00351         \textcolor{comment}{// send data from MSB to LSB until mask bit is shifted out}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00352}00352         \textcolor{keywordflow}{for} (uint32\_t tMask = 1UL << (aNumberOfBits -\/ 1); tMask; tMask >>= 1) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00353}00353             \textcolor{keywordflow}{if} (aData \& tMask) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00354}00354                 \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_af7b7c32d41d80a578f482d2828b05326}{IR\_TRACE\_PRINT}}(\textcolor{charliteral}{'1'});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00355}00355                 \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(aOneMarkMicros);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00356}00356                 \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(aOneSpaceMicros);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00357}00357             \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00358}00358                 \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_af7b7c32d41d80a578f482d2828b05326}{IR\_TRACE\_PRINT}}(\textcolor{charliteral}{'0'});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00359}00359                 \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(aZeroMarkMicros);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00360}00360                 \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(aZeroSpaceMicros);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00361}00361             \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00362}00362         \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00363}00363     \} \textcolor{keywordflow}{else} \{  \textcolor{comment}{// Send the Least Significant Bit (LSB) first / MSB last.}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00364}00364         \textcolor{keywordflow}{for} (uint\_fast8\_t bit = 0; bit < aNumberOfBits; bit++, aData >>= 1)}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00365}00365             \textcolor{keywordflow}{if} (aData \& 1) \{  \textcolor{comment}{// Send a 1}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00366}00366                 \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_af7b7c32d41d80a578f482d2828b05326}{IR\_TRACE\_PRINT}}(\textcolor{charliteral}{'1'});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00367}00367                 \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(aOneMarkMicros);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00368}00368                 \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(aOneSpaceMicros);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00369}00369             \} \textcolor{keywordflow}{else} \{  \textcolor{comment}{// Send a 0}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00370}00370                 \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_af7b7c32d41d80a578f482d2828b05326}{IR\_TRACE\_PRINT}}(\textcolor{charliteral}{'0'});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00371}00371                 \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(aZeroMarkMicros);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00372}00372                 \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(aZeroSpaceMicros);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00373}00373             \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00374}00374     \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00375}00375     \textcolor{keywordflow}{if} (aSendStopBit) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00376}00376         \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_af7b7c32d41d80a578f482d2828b05326}{IR\_TRACE\_PRINT}}(\textcolor{charliteral}{'S'});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00377}00377         \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(aZeroMarkMicros); \textcolor{comment}{// seems like this is used for stop bits}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00378}00378     \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00379}00379     \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a5eafde7d90e22ca8caed5fa952448228}{IR\_TRACE\_PRINTLN}}(\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00380}00380 \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00381}00381 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00382}00382 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00383}00383 \textcolor{comment}{ * Sends Biphase data MSB first}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00384}00384 \textcolor{comment}{ * Always send start bit, do not send the trailing space of the start bit}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00385}00385 \textcolor{comment}{ * 0 -\/> mark+space}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00386}00386 \textcolor{comment}{ * 1 -\/> space+mark}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00387}00387 \textcolor{comment}{ * The output always ends with a space}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00388}00388 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00389}\mbox{\hyperlink{group___sending_ga50162b158e0fa94b105d3717318b8b2c}{00389}} \textcolor{keywordtype}{void} \mbox{\hyperlink{group___sending_ga50162b158e0fa94b105d3717318b8b2c}{IRsend::sendBiphaseData}}(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} aBiphaseTimeUnit, uint32\_t aData, uint\_fast8\_t aNumberOfBits) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00390}00390 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00391}00391 \textcolor{comment}{// do not send the trailing space of the start bit}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00392}00392     \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(aBiphaseTimeUnit);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00393}00393 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00394}00394     \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_af7b7c32d41d80a578f482d2828b05326}{IR\_TRACE\_PRINT}}(\textcolor{charliteral}{'S'});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00395}00395     uint8\_t tLastBitValue = 1; \textcolor{comment}{// Start bit is a 1}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00396}00396 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00397}00397 \textcolor{comment}{// Data -\/ Biphase code MSB first}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00398}00398     \textcolor{keywordflow}{for} (uint32\_t tMask = 1UL << (aNumberOfBits -\/ 1); tMask; tMask >>= 1) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00399}00399         \textcolor{keywordflow}{if} (aData \& tMask) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00400}00400             \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_af7b7c32d41d80a578f482d2828b05326}{IR\_TRACE\_PRINT}}(\textcolor{charliteral}{'1'});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00401}00401             \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(aBiphaseTimeUnit);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00402}00402             \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(aBiphaseTimeUnit);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00403}00403             tLastBitValue = 1;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00404}00404 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00405}00405         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00406}00406             \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_af7b7c32d41d80a578f482d2828b05326}{IR\_TRACE\_PRINT}}(\textcolor{charliteral}{'0'});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00407}00407 \textcolor{preprocessor}{\#if defined(SEND\_PWM\_BY\_TIMER) || defined(USE\_NO\_SEND\_PWM)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00408}00408             \textcolor{keywordflow}{if} (tLastBitValue) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00409}00409                 \textcolor{comment}{// Extend the current mark in order to generate a continuous signal without short breaks}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00410}00410                 delayMicroseconds(aBiphaseTimeUnit);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00411}00411             \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00412}00412                 \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(aBiphaseTimeUnit);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00413}00413             \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00414}00414 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00415}00415             (void) tLastBitValue; \textcolor{comment}{// to avoid compiler warnings}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00416}00416             \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(aBiphaseTimeUnit); \textcolor{comment}{// can not eventually delay here, we must call mark to generate the signal}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00417}00417 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00418}00418             \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(aBiphaseTimeUnit);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00419}00419             tLastBitValue = 0;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00420}00420         \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00421}00421     \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00422}00422     \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a5eafde7d90e22ca8caed5fa952448228}{IR\_TRACE\_PRINTLN}}(\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00423}00423 \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00424}00424 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00431}\mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{00431}} \textcolor{keywordtype}{void} \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{IRsend::mark}}(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} aMarkMicros) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00432}00432 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00433}00433 \textcolor{preprocessor}{\#if defined(SEND\_PWM\_BY\_TIMER)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00434}00434 \textcolor{preprocessor}{\#  if !defined(NO\_LED\_FEEDBACK\_CODE)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00435}00435     \mbox{\hyperlink{group___feedback_l_e_d_functions_ga072624eeba964d8aa105822da00090ba}{setFeedbackLED}}(\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00436}00436 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00437}00437     \mbox{\hyperlink{group___timer_ga188e83488bfec8bb484bbaa96cfbdc5a}{ENABLE\_SEND\_PWM\_BY\_TIMER}}; \textcolor{comment}{// Enable timer or ledcWrite() generated PWM output}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00438}00438     \mbox{\hyperlink{group___sending_ga78e52089f1ee53b3d080db7d8c25f798}{customDelayMicroseconds}}(aMarkMicros);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00439}00439     \mbox{\hyperlink{group___sending_ga5242741b8da4fbfaae237eee2b279dd0}{IRLedOff}}();}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00440}00440 \textcolor{preprocessor}{\#  if !defined(NO\_LED\_FEEDBACK\_CODE)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00441}00441     \mbox{\hyperlink{group___feedback_l_e_d_functions_ga072624eeba964d8aa105822da00090ba}{setFeedbackLED}}(\textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00442}00442 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00443}00443 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00444}00444 \textcolor{preprocessor}{\#elif defined(USE\_NO\_SEND\_PWM)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00445}00445 \textcolor{preprocessor}{\#  if !defined(NO\_LED\_FEEDBACK\_CODE)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00446}00446     \mbox{\hyperlink{group___feedback_l_e_d_functions_ga072624eeba964d8aa105822da00090ba}{setFeedbackLED}}(\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00447}00447 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00448}00448 \textcolor{preprocessor}{\#  if defined(USE\_OPEN\_DRAIN\_OUTPUT\_FOR\_SEND\_PIN) \&\& !defined(OUTPUT\_OPEN\_DRAIN)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00449}00449     \mbox{\hyperlink{_i_r_remote_2_i_r_send_8hpp_a99fa3e1d72f2f1a9ffba996b06767a39}{pinModeFast}}(\mbox{\hyperlink{class_i_rsend_a39f9782dd884b804bcf0034ab71ac202}{sendPin}}, OUTPUT); \textcolor{comment}{// active state for mimicking open drain}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00450}00450 \textcolor{preprocessor}{\#  else}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00451}00451     \mbox{\hyperlink{_i_r_remote_2_i_r_send_8hpp_a9bef074dfc5a83ffbb27929185ef9597}{digitalWriteFast}}(\mbox{\hyperlink{class_i_rsend_a39f9782dd884b804bcf0034ab71ac202}{sendPin}}, LOW); \textcolor{comment}{// Set output to active low.}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00452}00452 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00453}00453 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00454}00454     \mbox{\hyperlink{group___sending_ga78e52089f1ee53b3d080db7d8c25f798}{customDelayMicroseconds}}(aMarkMicros);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00455}00455     \mbox{\hyperlink{group___sending_ga5242741b8da4fbfaae237eee2b279dd0}{IRLedOff}}();}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00456}00456 \textcolor{preprocessor}{\#  if !defined(NO\_LED\_FEEDBACK\_CODE)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00457}00457     \mbox{\hyperlink{group___feedback_l_e_d_functions_ga072624eeba964d8aa105822da00090ba}{setFeedbackLED}}(\textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00458}00458 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00459}00459 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00460}00460 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00461}00461     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} startMicros = micros();}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00462}00462     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} nextPeriodEnding = startMicros;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00463}00463     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} tMicros;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00464}00464 \textcolor{preprocessor}{\#  if !defined(NO\_LED\_FEEDBACK\_CODE)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00465}00465     \textcolor{keywordtype}{bool} FeedbackLedIsActive = \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00466}00466 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00467}00467 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00468}00468     \textcolor{keywordflow}{do} \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00469}00469 \textcolor{comment}{//        digitalToggleFast(\_IR\_TIMING\_TEST\_PIN);}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00470}00470         \textcolor{comment}{// Output the PWM pulse}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00471}00471         noInterrupts(); \textcolor{comment}{// do not let interrupts extend the short on period}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00472}00472 \textcolor{preprocessor}{\#  if defined(USE\_OPEN\_DRAIN\_OUTPUT\_FOR\_SEND\_PIN)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00473}00473 \textcolor{preprocessor}{\#    if defined(OUTPUT\_OPEN\_DRAIN)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00474}00474         \mbox{\hyperlink{_i_r_remote_2_i_r_send_8hpp_a9bef074dfc5a83ffbb27929185ef9597}{digitalWriteFast}}(\mbox{\hyperlink{class_i_rsend_a39f9782dd884b804bcf0034ab71ac202}{sendPin}}, LOW); \textcolor{comment}{// active state for open drain}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00475}00475 \textcolor{preprocessor}{\#    else}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00476}00476         \mbox{\hyperlink{_i_r_remote_2_i_r_send_8hpp_a99fa3e1d72f2f1a9ffba996b06767a39}{pinModeFast}}(\mbox{\hyperlink{class_i_rsend_a39f9782dd884b804bcf0034ab71ac202}{sendPin}}, OUTPUT); \textcolor{comment}{// active state for mimicking open drain}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00477}00477 \textcolor{preprocessor}{\#    endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00478}00478 \textcolor{preprocessor}{\#  else}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00479}00479 \textcolor{preprocessor}{\#    if defined(IR\_SEND\_PIN)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00480}00480         \mbox{\hyperlink{_i_r_remote_2_i_r_send_8hpp_a9bef074dfc5a83ffbb27929185ef9597}{digitalWriteFast}}(IR\_SEND\_PIN, HIGH); \textcolor{comment}{// 3.5 us from FeedbackLed on to pin setting. 5.7 us from call of mark() to pin setting incl. setting of feedback pin.}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00481}00481 \textcolor{preprocessor}{\#    else}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00482}00482         digitalWrite(\mbox{\hyperlink{class_i_rsend_a39f9782dd884b804bcf0034ab71ac202}{sendPin}}, HIGH); \textcolor{comment}{// 4.3 us from do\{ to pin setting}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00483}00483 \textcolor{preprocessor}{\#    endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00484}00484 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00485}00485         delayMicroseconds(\mbox{\hyperlink{class_i_rsend_a09e9265c2c7b55632d8c2feae4c08203}{periodOnTimeMicros}}); \textcolor{comment}{// this is normally implemented by a blocking wait}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00486}00486 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00487}00487         \textcolor{comment}{// Output the PWM pause}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00488}00488 \textcolor{preprocessor}{\#  if defined(USE\_OPEN\_DRAIN\_OUTPUT\_FOR\_SEND\_PIN) \&\& !defined(OUTPUT\_OPEN\_DRAIN)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00489}00489 \textcolor{preprocessor}{\#    if defined(OUTPUT\_OPEN\_DRAIN)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00490}00490         \mbox{\hyperlink{_i_r_remote_2_i_r_send_8hpp_a9bef074dfc5a83ffbb27929185ef9597}{digitalWriteFast}}(\mbox{\hyperlink{class_i_rsend_a39f9782dd884b804bcf0034ab71ac202}{sendPin}}, HIGH); \textcolor{comment}{// Set output to inactive high.}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00491}00491 \textcolor{preprocessor}{\#    else}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00492}00492         \mbox{\hyperlink{_i_r_remote_2_i_r_send_8hpp_a99fa3e1d72f2f1a9ffba996b06767a39}{pinModeFast}}(\mbox{\hyperlink{class_i_rsend_a39f9782dd884b804bcf0034ab71ac202}{sendPin}}, INPUT); \textcolor{comment}{// inactive state to mimic open drain}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00493}00493 \textcolor{preprocessor}{\#    endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00494}00494 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00495}00495 \textcolor{preprocessor}{\#  else}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00496}00496         \mbox{\hyperlink{_i_r_remote_2_i_r_send_8hpp_a9bef074dfc5a83ffbb27929185ef9597}{digitalWriteFast}}(\mbox{\hyperlink{class_i_rsend_a39f9782dd884b804bcf0034ab71ac202}{sendPin}}, LOW);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00497}00497 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00498}00498         interrupts(); \textcolor{comment}{// Enable interrupts -\/to keep micros correct-\/ for the longer off period 3.4 us until receive ISR is active (for 7 us + pop's)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00499}00499 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00500}00500 \textcolor{preprocessor}{\#  if !defined(NO\_LED\_FEEDBACK\_CODE)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00501}00501         \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00502}00502 \textcolor{comment}{         * Delayed call of setFeedbackLED() to get better timing}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00503}00503 \textcolor{comment}{         */}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00504}00504         \textcolor{keywordflow}{if} (!FeedbackLedIsActive) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00505}00505             FeedbackLedIsActive = \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00506}00506             \mbox{\hyperlink{group___feedback_l_e_d_functions_ga072624eeba964d8aa105822da00090ba}{setFeedbackLED}}(\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00507}00507         \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00508}00508 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00509}00509         \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00510}00510 \textcolor{comment}{         * Pause timing}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00511}00511 \textcolor{comment}{         */}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00512}00512         nextPeriodEnding += \mbox{\hyperlink{class_i_rsend_a4793a33b9ac0066d198d6938d6dd2256}{periodTimeMicros}};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00513}00513         \textcolor{keywordflow}{do} \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00514}00514             tMicros = micros(); \textcolor{comment}{// we have only 4 us resolution for AVR @16MHz}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00515}00515             \textcolor{comment}{// check for aMarkMicros to be gone}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00516}00516             \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} tDeltaMicros = tMicros -\/ startMicros;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00517}00517 \textcolor{preprocessor}{\#if defined(\_\_AVR\_\_)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00518}00518 \textcolor{comment}{//            tDeltaMicros += (160 / CLOCKS\_PER\_MICRO); // adding this once increases program size !}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00519}00519 \textcolor{preprocessor}{\#  if !defined(NO\_LED\_FEEDBACK\_CODE)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00520}00520             \textcolor{keywordflow}{if} (tDeltaMicros >= aMarkMicros -\/ (30 + (112 / CLOCKS\_PER\_MICRO))) \{ \textcolor{comment}{// 30 to be constant. Using periodTimeMicros increases program size too much.}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00521}00521             \textcolor{comment}{// reset feedback led in the last pause before end}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00522}00522                 \mbox{\hyperlink{group___feedback_l_e_d_functions_ga072624eeba964d8aa105822da00090ba}{setFeedbackLED}}(\textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00523}00523             \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00524}00524 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00525}00525             \textcolor{keywordflow}{if} (tDeltaMicros >= aMarkMicros -\/ (112 / CLOCKS\_PER\_MICRO)) \{ \textcolor{comment}{// To compensate for call duration -\/ 112 is an empirical value}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00526}00526 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00527}00527             \textcolor{keywordflow}{if} (tDeltaMicros >= aMarkMicros) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00528}00528 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00529}00529                 \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00530}00530             \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00531}00531 \textcolor{comment}{//            digitalToggleFast(\_IR\_TIMING\_TEST\_PIN); // 3.0 us per call @16MHz}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00532}00532         \} \textcolor{keywordflow}{while} (tMicros < nextPeriodEnding);  \textcolor{comment}{// 3.4 us @16MHz}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00533}00533     \} \textcolor{keywordflow}{while} (\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00534}00534 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00535}00535 \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00536}00536 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00542}\mbox{\hyperlink{group___sending_ga5242741b8da4fbfaae237eee2b279dd0}{00542}} \textcolor{keywordtype}{void} \mbox{\hyperlink{group___sending_ga5242741b8da4fbfaae237eee2b279dd0}{IRsend::IRLedOff}}() \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00543}00543 \textcolor{preprocessor}{\#if defined(SEND\_PWM\_BY\_TIMER)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00544}00544     \mbox{\hyperlink{group___timer_ga00c73e29496913c8cff34b1a12c613ab}{DISABLE\_SEND\_PWM\_BY\_TIMER}}; \textcolor{comment}{// Disable PWM output}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00545}00545 \textcolor{preprocessor}{\#elif defined(USE\_NO\_SEND\_PWM)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00546}00546 \textcolor{preprocessor}{\#  if defined(USE\_OPEN\_DRAIN\_OUTPUT\_FOR\_SEND\_PIN) \&\& !defined(OUTPUT\_OPEN\_DRAIN)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00547}00547     \mbox{\hyperlink{_i_r_remote_2_i_r_send_8hpp_a9bef074dfc5a83ffbb27929185ef9597}{digitalWriteFast}}(\mbox{\hyperlink{class_i_rsend_a39f9782dd884b804bcf0034ab71ac202}{sendPin}}, LOW); \textcolor{comment}{// prepare for all next active states.}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00548}00548     \mbox{\hyperlink{_i_r_remote_2_i_r_send_8hpp_a99fa3e1d72f2f1a9ffba996b06767a39}{pinModeFast}}(\mbox{\hyperlink{class_i_rsend_a39f9782dd884b804bcf0034ab71ac202}{sendPin}}, INPUT); \textcolor{comment}{// inactive state for open drain}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00549}00549 \textcolor{preprocessor}{\#  else}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00550}00550     \mbox{\hyperlink{_i_r_remote_2_i_r_send_8hpp_a9bef074dfc5a83ffbb27929185ef9597}{digitalWriteFast}}(\mbox{\hyperlink{class_i_rsend_a39f9782dd884b804bcf0034ab71ac202}{sendPin}}, HIGH); \textcolor{comment}{// Set output to inactive high.}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00551}00551 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00552}00552 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00553}00553 \textcolor{preprocessor}{\#  if defined(USE\_OPEN\_DRAIN\_OUTPUT\_FOR\_SEND\_PIN)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00554}00554 \textcolor{preprocessor}{\#    if defined(OUTPUT\_OPEN\_DRAIN)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00555}00555     \mbox{\hyperlink{_i_r_remote_2_i_r_send_8hpp_a9bef074dfc5a83ffbb27929185ef9597}{digitalWriteFast}}(\mbox{\hyperlink{class_i_rsend_a39f9782dd884b804bcf0034ab71ac202}{sendPin}}, HIGH); \textcolor{comment}{// Set output to inactive high.}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00556}00556 \textcolor{preprocessor}{\#    else}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00557}00557     \mbox{\hyperlink{_i_r_remote_2_i_r_send_8hpp_a99fa3e1d72f2f1a9ffba996b06767a39}{pinModeFast}}(\mbox{\hyperlink{class_i_rsend_a39f9782dd884b804bcf0034ab71ac202}{sendPin}}, INPUT); \textcolor{comment}{// inactive state to mimic open drain}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00558}00558 \textcolor{preprocessor}{\#    endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00559}00559 \textcolor{preprocessor}{\#  else}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00560}00560     \mbox{\hyperlink{_i_r_remote_2_i_r_send_8hpp_a9bef074dfc5a83ffbb27929185ef9597}{digitalWriteFast}}(\mbox{\hyperlink{class_i_rsend_a39f9782dd884b804bcf0034ab71ac202}{sendPin}}, LOW);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00561}00561 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00562}00562 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00563}00563 \textcolor{preprocessor}{\#if !defined(NO\_LED\_FEEDBACK\_CODE)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00564}00564     \mbox{\hyperlink{group___feedback_l_e_d_functions_ga072624eeba964d8aa105822da00090ba}{setFeedbackLED}}(\textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00565}00565 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00566}00566 \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00567}00567 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00572}\mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{00572}} \textcolor{keywordtype}{void} \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{IRsend::space}}(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} aSpaceMicros) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00573}00573     \mbox{\hyperlink{group___sending_ga78e52089f1ee53b3d080db7d8c25f798}{customDelayMicroseconds}}(aSpaceMicros);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00574}00574 \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00575}00575 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00580}\mbox{\hyperlink{group___sending_ga78e52089f1ee53b3d080db7d8c25f798}{00580}} \textcolor{keywordtype}{void} \mbox{\hyperlink{group___sending_ga78e52089f1ee53b3d080db7d8c25f798}{IRsend::customDelayMicroseconds}}(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} aMicroseconds) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00581}00581 \textcolor{preprocessor}{\#if defined(\_\_AVR\_\_)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00582}00582     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} start = micros() -\/ (64 / clockCyclesPerMicrosecond()); \textcolor{comment}{// -\/ (64 / clockCyclesPerMicrosecond()) for reduced resolution and additional overhead}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00583}00583 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00584}00584     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} start = micros();}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00585}00585 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00586}00586     \textcolor{comment}{// overflow invariant comparison :-\/)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00587}00587     \textcolor{keywordflow}{while} (micros() -\/ start < aMicroseconds) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00588}00588     \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00589}00589 \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00590}00590 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00603}\mbox{\hyperlink{group___sending_ga42c04af63d252b320c017ffa2bfc90e5}{00603}} \textcolor{keywordtype}{void} \mbox{\hyperlink{group___sending_ga42c04af63d252b320c017ffa2bfc90e5}{IRsend::enableIROut}}(uint8\_t aFrequencyKHz) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00604}00604 \textcolor{preprocessor}{\#if defined(SEND\_PWM\_BY\_TIMER)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00605}00605     \mbox{\hyperlink{group___timer_gaa526c768d410a407fb5433f7662527a7}{TIMER\_DISABLE\_RECEIVE\_INTR}}; \textcolor{comment}{// Just in case receiving was active}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00606}00606     \mbox{\hyperlink{group___timer_ga45d57d84d5fee327f67afde5f8649e6d}{timerConfigForSend}}(aFrequencyKHz);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00607}00607 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00608}00608 \textcolor{preprocessor}{\#elif defined(USE\_NO\_SEND\_PWM)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00609}00609     (void) aFrequencyKHz;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00610}00610 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00611}00611 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00612}00612     \mbox{\hyperlink{class_i_rsend_a4793a33b9ac0066d198d6938d6dd2256}{periodTimeMicros}} = (1000U + (aFrequencyKHz / 2)) / aFrequencyKHz; \textcolor{comment}{// rounded value -\/> 26 for 38.46 kHz, 27 for 37.04 kHz, 25 for 40 kHz.}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00613}00613 \textcolor{preprocessor}{\#  if defined(IR\_SEND\_PIN)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00614}00614     \mbox{\hyperlink{class_i_rsend_a09e9265c2c7b55632d8c2feae4c08203}{periodOnTimeMicros}} = (((\mbox{\hyperlink{class_i_rsend_a4793a33b9ac0066d198d6938d6dd2256}{periodTimeMicros}} * \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_ac534825448d4687e6471c3855bf71cf5}{IR\_SEND\_DUTY\_CYCLE}}) + 50) / 100U); \textcolor{comment}{// +50 for rounding -\/> 830/100 for 30\% and 16 MHz}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00615}00615 \textcolor{preprocessor}{\#  else}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00616}00616     \mbox{\hyperlink{class_i_rsend_a09e9265c2c7b55632d8c2feae4c08203}{periodOnTimeMicros}} = (((\mbox{\hyperlink{class_i_rsend_a4793a33b9ac0066d198d6938d6dd2256}{periodTimeMicros}} * \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_ac534825448d4687e6471c3855bf71cf5}{IR\_SEND\_DUTY\_CYCLE}}) + 50 -\/ (\mbox{\hyperlink{_i_r_remote_2_i_rremote_8hpp_ac836377a7a04f6f4044daab71d9660f9}{PULSE\_CORRECTION\_NANOS}} / 10)) / 100U); \textcolor{comment}{// +50 for rounding -\/> 530/100 for 30\% and 16 MHz}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00617}00617 \textcolor{preprocessor}{\#  endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00618}00618 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00619}00619 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00620}00620 \textcolor{preprocessor}{\#if defined(USE\_OPEN\_DRAIN\_OUTPUT\_FOR\_SEND\_PIN)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00621}00621 \textcolor{preprocessor}{\#  if defined(OUTPUT\_OPEN\_DRAIN)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00622}00622     pinMode(\mbox{\hyperlink{class_i_rsend_a39f9782dd884b804bcf0034ab71ac202}{sendPin}}, OUTPUT\_OPEN\_DRAIN); \textcolor{comment}{// the only place where this mode is set for sendPin}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00623}00623 \textcolor{preprocessor}{\#  endif }\textcolor{comment}{// the mode INPUT for mimicking open drain is set at IRLedOff()}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00624}00624 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00625}00625 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00626}00626     \mbox{\hyperlink{_i_r_remote_2_i_r_send_8hpp_a99fa3e1d72f2f1a9ffba996b06767a39}{pinModeFast}}(\mbox{\hyperlink{class_i_rsend_a39f9782dd884b804bcf0034ab71ac202}{sendPin}}, OUTPUT);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00627}00627 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00628}00628     \mbox{\hyperlink{group___sending_ga5242741b8da4fbfaae237eee2b279dd0}{IRLedOff}}(); \textcolor{comment}{// When not sending, we want it low/inactive}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00629}00629 \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00630}00630 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00631}\mbox{\hyperlink{group___sending_ga39034e110ba58c6a5effb7711801d74a}{00631}} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{group___sending_ga39034e110ba58c6a5effb7711801d74a}{IRsend::getPulseCorrectionNanos}}() \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00632}00632     \textcolor{keywordflow}{return} \mbox{\hyperlink{_i_r_remote_2_i_rremote_8hpp_ac836377a7a04f6f4044daab71d9660f9}{PULSE\_CORRECTION\_NANOS}};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00633}00633 \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00634}00634 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00636}00636 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// IR\_SEND\_HPP}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2_i_r_send_8hpp_source_l00637}00637 \textcolor{preprocessor}{\#pragma once}}
+
+\end{DoxyCode}

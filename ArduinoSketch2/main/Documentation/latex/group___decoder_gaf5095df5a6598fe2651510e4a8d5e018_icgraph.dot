@@ -1,0 +1,17 @@
+digraph "IRsend::sendLG"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="IRsend::sendLG",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="Aircondition_LG::sendIRCommand",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group___airconditoners.html#ga113704b3b19c8477635210341163bf9e",tooltip=" "];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="Aircondition_LG::sendCommand\lAndParameter",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group___airconditoners.html#ga65bba14a0302268cc515831d37e95b7a",tooltip=" "];
+  Node2 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node4 [label="Aircondition_LG::sendTemperature\lFanSpeedAndMode",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group___airconditoners.html#ga83d18e2597cc2ea78f25889bc6c060e3",tooltip=" "];
+  Node4 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node5 [label="IRsend::write",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group___sending.html#ga567f59869ebc6c7f53d0dc9b360dd4c3",tooltip=" "];
+}

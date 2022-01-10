@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_ir___samsung_8hpp" xml:lang="en-US">
+<title>main/IRRemote_Library/ir_Samsung.hpp File Reference</title>
+<indexterm><primary>main/IRRemote_Library/ir_Samsung.hpp</primary></indexterm>
+<programlisting linenumbering="unnumbered">#include &lt;Arduino.h&gt;
+#include &quot;IRremoteInt.h&quot;
+#include &quot;LongUnion.h&quot;
+</programlisting>Include dependency graph for ir_Samsung.hpp:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="ir___samsung_8hpp__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+This graph shows which files directly or indirectly include this file:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="ir___samsung_8hpp__dep__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Macros    </title>
+        <itemizedlist>
+            <listitem><para>#define <link linkend="_group___decoder_1ga283d6e91f30293b52d3b0d7aeb11c2cb">SAMSUNG_ADDRESS_BITS</link>   16</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga12d540662f0eaef3297b2fee1be653b9">SAMSUNG_COMMAND16_BITS</link>   16</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1gab7035588b69b6a1c30dd496a1e8351c0">SAMSUNG_COMMAND32_BITS</link>   32</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1gafc27510b737f1ce90042bee6ef245592">SAMSUNG_BITS</link>   (<link linkend="_group___decoder_1ga283d6e91f30293b52d3b0d7aeb11c2cb">SAMSUNG_ADDRESS_BITS</link> + <link linkend="_group___decoder_1ga12d540662f0eaef3297b2fee1be653b9">SAMSUNG_COMMAND16_BITS</link>)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1gac442c5511ca3736cafc683e2507db6b4">SAMSUNG48_BITS</link>   (<link linkend="_group___decoder_1ga283d6e91f30293b52d3b0d7aeb11c2cb">SAMSUNG_ADDRESS_BITS</link> + <link linkend="_group___decoder_1gab7035588b69b6a1c30dd496a1e8351c0">SAMSUNG_COMMAND32_BITS</link>)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga651bd895c4ad553171399aebcc7297ea">SAMSUNG_UNIT</link>   553</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1gaba5b0346e4a7aca7a202768a6abf7cae">SAMSUNG_HEADER_MARK</link>   (8 * <link linkend="_group___decoder_1ga651bd895c4ad553171399aebcc7297ea">SAMSUNG_UNIT</link>)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga22d50c9e05c2de32c73cda0a9b05a8c4">SAMSUNG_HEADER_SPACE</link>   (8 * <link linkend="_group___decoder_1ga651bd895c4ad553171399aebcc7297ea">SAMSUNG_UNIT</link>)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga838b0e3727e67fd3b986d2f3b77ffb7c">SAMSUNG_BIT_MARK</link>   <link linkend="_group___decoder_1ga651bd895c4ad553171399aebcc7297ea">SAMSUNG_UNIT</link></para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga139bb990e482496d098c49c6409047bf">SAMSUNG_ONE_SPACE</link>   (3 * <link linkend="_group___decoder_1ga651bd895c4ad553171399aebcc7297ea">SAMSUNG_UNIT</link>)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga47aa3d1eeb1f86ee48a8c9a9e2c1e4d2">SAMSUNG_ZERO_SPACE</link>   <link linkend="_group___decoder_1ga651bd895c4ad553171399aebcc7297ea">SAMSUNG_UNIT</link></para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1gad3410f25a216ddb5a2a975d3aa33fdcd">SAMSUNG_AVERAGE_DURATION</link>   55000</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga2d02df520e7d312e045090f6f1e62897">SAMSUNG_REPEAT_DURATION</link>   (<link linkend="_group___decoder_1gaba5b0346e4a7aca7a202768a6abf7cae">SAMSUNG_HEADER_MARK</link>  + <link linkend="_group___decoder_1ga22d50c9e05c2de32c73cda0a9b05a8c4">SAMSUNG_HEADER_SPACE</link> + <link linkend="_group___decoder_1ga838b0e3727e67fd3b986d2f3b77ffb7c">SAMSUNG_BIT_MARK</link> + <link linkend="_group___decoder_1ga47aa3d1eeb1f86ee48a8c9a9e2c1e4d2">SAMSUNG_ZERO_SPACE</link> + <link linkend="_group___decoder_1ga838b0e3727e67fd3b986d2f3b77ffb7c">SAMSUNG_BIT_MARK</link>)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___decoder_1ga7611f37500fda881b03220c8a7fd9d74">SAMSUNG_REPEAT_PERIOD</link>   110000</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

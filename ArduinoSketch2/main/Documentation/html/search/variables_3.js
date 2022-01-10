@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['trigpin_0',['trigPin',['../class_s_p_s.html#a553b8d744a502577564eac19da2a1479',1,'SPS']]]
+  ['motorcontrol_0',['MotorControl',['../main_8cpp.html#a4a738d24d10bc2508668ba064221c275',1,'main.cpp']]]
 ];

@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_group___timer" xml:lang="en-US">
+<title>Usage of timers for the different CPU / boards</title>
+<indexterm><primary>Usage of timers for the different CPU / boards</primary></indexterm>
+Collaboration diagram for Usage of timers for the different CPU / boards:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="group___timer.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Macros    </title>
+        <itemizedlist>
+            <listitem><para>#define <link linkend="_group___timer_1ga56882eeb7842d9b52bb5c36febad0ccd">TIMER_RESET_INTR_PENDING</link></para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___timer_1ga188e83488bfec8bb484bbaa96cfbdc5a">ENABLE_SEND_PWM_BY_TIMER</link></para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___timer_1ga00c73e29496913c8cff34b1a12c613ab">DISABLE_SEND_PWM_BY_TIMER</link></para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___timer_1ga3127b57492af4dfc90ddacf40c6162d0">TIMER_ENABLE_RECEIVE_INTR</link></para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___timer_1gaa526c768d410a407fb5433f7662527a7">TIMER_DISABLE_RECEIVE_INTR</link></para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___timer_1ga301c12193509807588b4db8e1b4ad5e7">ISR</link>()   void notImplemented(void)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Functions    </title>
+        <itemizedlist>
+            <listitem><para>void <link linkend="_group___timer_1ga45d57d84d5fee327f67afde5f8649e6d">timerConfigForSend</link> (uint8_t aFrequencyKHz)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___timer_1ga8cca92581b5452eaac5b3075227c6c56">timerConfigForReceive</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+</section>
+<section>
+<title>Macro Definition Documentation</title>
+<anchor xml:id="_group___timer_1ga00c73e29496913c8cff34b1a12c613ab"/><section>
+    <title>DISABLE_SEND_PWM_BY_TIMER</title>
+<indexterm><primary>DISABLE_SEND_PWM_BY_TIMER</primary><secondary>Usage of timers for the different CPU / boards</secondary></indexterm>
+<indexterm><primary>Usage of timers for the different CPU / boards</primary><secondary>DISABLE_SEND_PWM_BY_TIMER</secondary></indexterm>
+<para><computeroutput>#define DISABLE_SEND_PWM_BY_TIMER</computeroutput></para><para>
+Definition at line <link linkend="__i_r_timer_8hpp_source_1l01343">1343</link> of file <link linkend="__i_r_timer_8hpp_source">IRTimer.hpp</link>.</para>
+</section>
+<anchor xml:id="_group___timer_1ga188e83488bfec8bb484bbaa96cfbdc5a"/><section>
+    <title>ENABLE_SEND_PWM_BY_TIMER</title>
+<indexterm><primary>ENABLE_SEND_PWM_BY_TIMER</primary><secondary>Usage of timers for the different CPU / boards</secondary></indexterm>
+<indexterm><primary>Usage of timers for the different CPU / boards</primary><secondary>ENABLE_SEND_PWM_BY_TIMER</secondary></indexterm>
+<para><computeroutput>#define ENABLE_SEND_PWM_BY_TIMER</computeroutput></para><para>
+Definition at line <link linkend="__i_r_timer_8hpp_source_1l01342">1342</link> of file <link linkend="__i_r_timer_8hpp_source">IRTimer.hpp</link>.</para>
+</section>
+<anchor xml:id="_group___timer_1ga301c12193509807588b4db8e1b4ad5e7"/><section>
+    <title>ISR</title>
+<indexterm><primary>ISR</primary><secondary>Usage of timers for the different CPU / boards</secondary></indexterm>
+<indexterm><primary>Usage of timers for the different CPU / boards</primary><secondary>ISR</secondary></indexterm>
+<para><computeroutput>#define ISR( )   void notImplemented(void)</computeroutput></para><para>
+Definition at line <link linkend="__i_r_timer_8hpp_source_1l01350">1350</link> of file <link linkend="__i_r_timer_8hpp_source">IRTimer.hpp</link>.</para>
+</section>
+<anchor xml:id="_group___timer_1gaa526c768d410a407fb5433f7662527a7"/><section>
+    <title>TIMER_DISABLE_RECEIVE_INTR</title>
+<indexterm><primary>TIMER_DISABLE_RECEIVE_INTR</primary><secondary>Usage of timers for the different CPU / boards</secondary></indexterm>
+<indexterm><primary>Usage of timers for the different CPU / boards</primary><secondary>TIMER_DISABLE_RECEIVE_INTR</secondary></indexterm>
+<para><computeroutput>#define TIMER_DISABLE_RECEIVE_INTR</computeroutput></para><para>
+Definition at line <link linkend="__i_r_timer_8hpp_source_1l01345">1345</link> of file <link linkend="__i_r_timer_8hpp_source">IRTimer.hpp</link>.</para>
+</section>
+<anchor xml:id="_group___timer_1ga3127b57492af4dfc90ddacf40c6162d0"/><section>
+    <title>TIMER_ENABLE_RECEIVE_INTR</title>
+<indexterm><primary>TIMER_ENABLE_RECEIVE_INTR</primary><secondary>Usage of timers for the different CPU / boards</secondary></indexterm>
+<indexterm><primary>Usage of timers for the different CPU / boards</primary><secondary>TIMER_ENABLE_RECEIVE_INTR</secondary></indexterm>
+<para><computeroutput>#define TIMER_ENABLE_RECEIVE_INTR</computeroutput></para><para>
+Definition at line <link linkend="__i_r_timer_8hpp_source_1l01344">1344</link> of file <link linkend="__i_r_timer_8hpp_source">IRTimer.hpp</link>.</para>
+</section>
+<anchor xml:id="_group___timer_1ga56882eeb7842d9b52bb5c36febad0ccd"/><section>
+    <title>TIMER_RESET_INTR_PENDING</title>
+<indexterm><primary>TIMER_RESET_INTR_PENDING</primary><secondary>Usage of timers for the different CPU / boards</secondary></indexterm>
+<indexterm><primary>Usage of timers for the different CPU / boards</primary><secondary>TIMER_RESET_INTR_PENDING</secondary></indexterm>
+<para><computeroutput>#define TIMER_RESET_INTR_PENDING</computeroutput></para><para>
+Definition at line <link linkend="__i_r_timer_8hpp_source_1l01341">1341</link> of file <link linkend="__i_r_timer_8hpp_source">IRTimer.hpp</link>.</para>
+</section>
+</section>
+<section>
+<title>Function Documentation</title>
+<anchor xml:id="_group___timer_1ga8cca92581b5452eaac5b3075227c6c56"/><section>
+    <title>timerConfigForReceive()</title>
+<indexterm><primary>timerConfigForReceive</primary><secondary>Usage of timers for the different CPU / boards</secondary></indexterm>
+<indexterm><primary>Usage of timers for the different CPU / boards</primary><secondary>timerConfigForReceive</secondary></indexterm>
+<para><computeroutput>void timerConfigForReceive ( )</computeroutput></para><para>
+Definition at line <link linkend="__i_r_timer_8hpp_source_1l01355">1355</link> of file <link linkend="__i_r_timer_8hpp_source">IRTimer.hpp</link>.</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="group___timer_ga8cca92581b5452eaac5b3075227c6c56_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_group___timer_1ga45d57d84d5fee327f67afde5f8649e6d"/><section>
+    <title>timerConfigForSend()</title>
+<indexterm><primary>timerConfigForSend</primary><secondary>Usage of timers for the different CPU / boards</secondary></indexterm>
+<indexterm><primary>Usage of timers for the different CPU / boards</primary><secondary>timerConfigForSend</secondary></indexterm>
+<para><computeroutput>void timerConfigForSend (uint8_t aFrequencyKHz)</computeroutput></para><para>
+Definition at line <link linkend="__i_r_timer_8hpp_source_1l01352">1352</link> of file <link linkend="__i_r_timer_8hpp_source">IRTimer.hpp</link>.</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="group___timer_ga45d57d84d5fee327f67afde5f8649e6d_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+</section>

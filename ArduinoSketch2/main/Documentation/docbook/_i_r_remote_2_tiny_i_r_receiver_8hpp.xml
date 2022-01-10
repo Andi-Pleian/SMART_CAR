@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="__i_r_remote_2_tiny_i_r_receiver_8hpp" xml:lang="en-US">
+<title>main/IRRemote/TinyIRReceiver.hpp File Reference</title>
+<indexterm><primary>main/IRRemote/TinyIRReceiver.hpp</primary></indexterm>
+<programlisting linenumbering="unnumbered">#include &lt;Arduino.h&gt;
+#include &quot;TinyIRReceiver.h&quot;
+#include &quot;digitalWriteFast.h&quot;
+</programlisting>Include dependency graph for TinyIRReceiver.hpp:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="_i_r_remote_2_tiny_i_r_receiver_8hpp__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Macros    </title>
+        <itemizedlist>
+            <listitem><para>#define <link linkend="_group___tiny_receiver_1ga57d0c5b7d83f10557910205596d66dfb">IR_INPUT_PIN</link>   2</para>
+</listitem>
+            <listitem><para>#define <link linkend="_group___tiny_receiver_1gae7054616db7e69e979dfcd5ad38fb968">TINY_RECEIVER_USE_ARDUINO_ATTACH_INTERRUPT</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Functions    </title>
+        <itemizedlist>
+            <listitem><para>void <link linkend="_group___tiny_receiver_1gaf44d26445244a24863cda1636eb8bf97">handleReceivedIRData</link> (uint16_t aAddress, uint8_t aCommand, bool isRepetition)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___tiny_receiver_1ga3c3d6703d25dbcc0555823e23eec0e69">IRPinChangeInterruptHandler</link> (void)</para>
+</listitem>
+            <listitem><para>bool <link linkend="_group___tiny_receiver_1gab65e33fe496d3bee4af897e5d8bd9420">isTinyReceiverIdle</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___tiny_receiver_1ga1f3913249343258d738ea0a48f7e1aed">initPCIInterruptForTinyReceiver</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___tiny_receiver_1gad23b935e2236a42a070a87379c7c36a4">enablePCIInterruptForTinyReceiver</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___tiny_receiver_1ga4217cae1ded4a9b2ed54bc3a1e8cd86e">disablePCIInterruptForTinyReceiver</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Variables    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_struct_tiny_i_r_receiver_struct">TinyIRReceiverStruct</link> <link linkend="_group___tiny_receiver_1ga30567324f26c2fae24bb11592262b6d3">TinyIRReceiverControl</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

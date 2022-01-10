@@ -1,0 +1,526 @@
+\hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source}{}\doxysection{ir\+\_\+\+RC5\+\_\+\+RC6.\+hpp}
+\label{_i_r_remote_2ir___r_c5___r_c6_8hpp_source}\index{main/IRRemote/ir\_RC5\_RC6.hpp@{main/IRRemote/ir\_RC5\_RC6.hpp}}
+\mbox{\hyperlink{_i_r_remote_2ir___r_c5___r_c6_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00001}00001 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00002}00002 \textcolor{comment}{ * ir\_RC5\_RC6.hpp}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00003}00003 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00004}00004 \textcolor{comment}{ *  Contains functions for receiving and sending RC5, RC5X Protocols}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00005}00005 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00006}00006 \textcolor{comment}{ *  This file is part of Arduino-\/IRremote https://github.com/Arduino-\/IRremote/Arduino-\/IRremote.}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00007}00007 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00008}00008 \textcolor{comment}{ ************************************************************************************}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00009}00009 \textcolor{comment}{ * MIT License}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00010}00010 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00011}00011 \textcolor{comment}{ * Permission is hereby granted, free of charge, to any person obtaining a copy}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00012}00012 \textcolor{comment}{ * of this software and associated documentation files (the "{}Software"{}), to deal}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00013}00013 \textcolor{comment}{ * in the Software without restriction, including without limitation the rights}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00014}00014 \textcolor{comment}{ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00015}00015 \textcolor{comment}{ * copies of the Software, and to permit persons to whom the Software is furnished}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00016}00016 \textcolor{comment}{ * to do so, subject to the following conditions:}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00017}00017 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00018}00018 \textcolor{comment}{ * The above copyright notice and this permission notice shall be included in all}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00019}00019 \textcolor{comment}{ * copies or substantial portions of the Software.}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00020}00020 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00021}00021 \textcolor{comment}{ * THE SOFTWARE IS PROVIDED "{}AS IS"{}, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00022}00022 \textcolor{comment}{ * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00023}00023 \textcolor{comment}{ * PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00024}00024 \textcolor{comment}{ * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00025}00025 \textcolor{comment}{ * CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00026}00026 \textcolor{comment}{ * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00027}00027 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00028}00028 \textcolor{comment}{ ************************************************************************************}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00029}00029 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00030}00030 \textcolor{preprocessor}{\#ifndef IR\_RC5\_RC6\_HPP}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00031}00031 \textcolor{preprocessor}{\#define IR\_RC5\_RC6\_HPP}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00032}00032 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00033}00033 \textcolor{preprocessor}{\#include <Arduino.h>}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00034}00034 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00035}00035 \textcolor{comment}{//\#define DEBUG // Activate this for lots of lovely debug output from this decoder.}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00036}00036 \textcolor{comment}{//\#define TRACE // Activate this for more debug output from this decoder.}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00037}00037 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_i_r_remote___library_2_i_rremote_int_8h}{IRremoteInt.h}}"{}} \textcolor{comment}{// evaluates the DEBUG for IR\_DEBUG\_PRINT}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00038}00038 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_i_r_remote___library_2_long_union_8h}{LongUnion.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00039}00039 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00043}\mbox{\hyperlink{group___decoder_gaf9adc578f613a3d00e25f6a7fe1d371b}{00043}} \textcolor{keywordtype}{bool} \mbox{\hyperlink{group___decoder_gaf9adc578f613a3d00e25f6a7fe1d371b}{sLastSendToggleValue}} = \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00044}00044 \textcolor{comment}{//uint8\_t sLastReceiveToggleValue = 3; // 3 -\/> start value}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00045}00045 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00046}00046 \textcolor{comment}{//==============================================================================}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00047}00047 \textcolor{comment}{//     RRRR    CCCC  55555}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00048}00048 \textcolor{comment}{//     R   R  C      5}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00049}00049 \textcolor{comment}{//     RRRR   C      5555}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00050}00050 \textcolor{comment}{//     R  R   C          5}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00051}00051 \textcolor{comment}{//     R   R   CCCC  5555}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00052}00052 \textcolor{comment}{//==============================================================================}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00053}00053 \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00054}00054 \textcolor{comment}{// see: https://www.sbprojects.net/knowledge/ir/rc5.php}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00055}00055 \textcolor{comment}{// https://en.wikipedia.org/wiki/Manchester\_code}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00056}00056 \textcolor{comment}{// mark-\/>space => 0}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00057}00057 \textcolor{comment}{// space-\/>mark => 1}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00058}00058 \textcolor{comment}{// MSB first 1 start bit, 1 field bit, 1 toggle bit + 5 bit address + 6 bit command (6 bit command plus one field bit for RC5X), no stop bit}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00059}00059 \textcolor{comment}{// duty factor is 25\%,}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00060}00060 \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00061}\mbox{\hyperlink{group___decoder_ga6a67feee58533e6520c703ce2f21c74d}{00061}} \textcolor{preprocessor}{\#define RC5\_ADDRESS\_BITS        5}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00062}\mbox{\hyperlink{group___decoder_gad486165e9022f3ee3a36c2d6c0068901}{00062}} \textcolor{preprocessor}{\#define RC5\_COMMAND\_BITS        6}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00063}\mbox{\hyperlink{group___decoder_ga736ff0f98dd2db7eb6998fd0d99f4764}{00063}} \textcolor{preprocessor}{\#define RC5\_COMMAND\_FIELD\_BIT   1}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00064}\mbox{\hyperlink{group___decoder_ga5b54edc58ba3827fa05eb934f570f27d}{00064}} \textcolor{preprocessor}{\#define RC5\_TOGGLE\_BIT          1}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00065}00065 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00066}\mbox{\hyperlink{group___decoder_gabc94db01a9d2e2f8caccaa32ec2ffa8a}{00066}} \textcolor{preprocessor}{\#define RC5\_BITS            (RC5\_COMMAND\_FIELD\_BIT + RC5\_TOGGLE\_BIT + RC5\_ADDRESS\_BITS + RC5\_COMMAND\_BITS) }\textcolor{comment}{// 13}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00067}00067 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00068}\mbox{\hyperlink{group___decoder_ga29c2e67aa7b0ee1ed87b0e154eaf6f69}{00068}} \textcolor{preprocessor}{\#define RC5\_UNIT            889 }\textcolor{comment}{// 32 periods of 36 kHz (888.8888)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00069}00069 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00070}\mbox{\hyperlink{group___decoder_gaace57f5ebe7ac2d2f80a496702065627}{00070}} \textcolor{preprocessor}{\#define MIN\_RC5\_MARKS       ((RC5\_BITS + 1) / 2) }\textcolor{comment}{// 7}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00071}00071 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00072}\mbox{\hyperlink{group___decoder_ga72ef3521775a056c2009b22cc9a50a28}{00072}} \textcolor{preprocessor}{\#define RC5\_DURATION        (15L * RC5\_UNIT) }\textcolor{comment}{// 13335}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00073}\mbox{\hyperlink{group___decoder_ga985b139053cd231f47e363981e6a32e4}{00073}} \textcolor{preprocessor}{\#define RC5\_REPEAT\_PERIOD   (128L * RC5\_UNIT) }\textcolor{comment}{// 113792}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00074}\mbox{\hyperlink{group___decoder_ga97029fbe8be39f78c835bf30040a743b}{00074}} \textcolor{preprocessor}{\#define RC5\_REPEAT\_SPACE    (RC5\_REPEAT\_PERIOD -\/ RC5\_DURATION) }\textcolor{comment}{// 100 ms}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00075}00075 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00079}\mbox{\hyperlink{group___decoder_ga55808fcce8aaf429ebbb1d34cb7f5ee5}{00079}} \textcolor{keywordtype}{void} \mbox{\hyperlink{group___decoder_ga55808fcce8aaf429ebbb1d34cb7f5ee5}{IRsend::sendRC5}}(uint8\_t aAddress, uint8\_t aCommand, uint\_fast8\_t aNumberOfRepeats, \textcolor{keywordtype}{bool} aEnableAutomaticToggle) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00080}00080     \textcolor{comment}{// Set IR carrier frequency}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00081}00081     \mbox{\hyperlink{group___sending_ga42c04af63d252b320c017ffa2bfc90e5}{enableIROut}}(\mbox{\hyperlink{_i_r_remote_2_i_r_protocol_8h_a1e8fcd1e00b7fa15e99fae5ea30f35ae}{RC5\_RC6\_KHZ}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00082}00082 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00083}00083     uint16\_t tIRData = ((aAddress \& 0x1F) << \mbox{\hyperlink{group___decoder_gad486165e9022f3ee3a36c2d6c0068901}{RC5\_COMMAND\_BITS}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00084}00084 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00085}00085     \textcolor{keywordflow}{if} (\mbox{\hyperlink{class_i_rsend_a5f5d819c72ce2f74395d14166e77c7cc}{aCommand}} < 0x40) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00086}00086         \textcolor{comment}{// set field bit to lower field / set inverted upper command bit}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00087}00087         tIRData |= 1 << (\mbox{\hyperlink{group___decoder_ga5b54edc58ba3827fa05eb934f570f27d}{RC5\_TOGGLE\_BIT}} + \mbox{\hyperlink{group___decoder_ga6a67feee58533e6520c703ce2f21c74d}{RC5\_ADDRESS\_BITS}} + \mbox{\hyperlink{group___decoder_gad486165e9022f3ee3a36c2d6c0068901}{RC5\_COMMAND\_BITS}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00088}00088     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00089}00089         \textcolor{comment}{// let field bit zero}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00090}00090         \mbox{\hyperlink{class_i_rsend_a5f5d819c72ce2f74395d14166e77c7cc}{aCommand}} \&= 0x3F;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00091}00091     \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00092}00092 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00093}00093     tIRData |= \mbox{\hyperlink{class_i_rsend_a5f5d819c72ce2f74395d14166e77c7cc}{aCommand}};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00094}00094 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00095}00095     \textcolor{keywordflow}{if} (aEnableAutomaticToggle) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00096}00096         \textcolor{keywordflow}{if} (\mbox{\hyperlink{group___decoder_gaf9adc578f613a3d00e25f6a7fe1d371b}{sLastSendToggleValue}} == 0) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00097}00097             \mbox{\hyperlink{group___decoder_gaf9adc578f613a3d00e25f6a7fe1d371b}{sLastSendToggleValue}} = 1;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00098}00098             \textcolor{comment}{// set toggled bit}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00099}00099             tIRData |= 1 << (\mbox{\hyperlink{group___decoder_ga6a67feee58533e6520c703ce2f21c74d}{RC5\_ADDRESS\_BITS}} + \mbox{\hyperlink{group___decoder_gad486165e9022f3ee3a36c2d6c0068901}{RC5\_COMMAND\_BITS}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00100}00100         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00101}00101             \mbox{\hyperlink{group___decoder_gaf9adc578f613a3d00e25f6a7fe1d371b}{sLastSendToggleValue}} = 0;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00102}00102         \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00103}00103     \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00104}00104 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00105}00105     uint\_fast8\_t tNumberOfCommands = \mbox{\hyperlink{class_i_rsend_aff233b57d2382a713926797ce5da0fd3}{aNumberOfRepeats}} + 1;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00106}00106     \textcolor{keywordflow}{while} (tNumberOfCommands > 0) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00107}00107 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00108}00108         \textcolor{comment}{// start bit is sent by sendBiphaseData}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00109}00109         \mbox{\hyperlink{group___sending_ga50162b158e0fa94b105d3717318b8b2c}{sendBiphaseData}}(\mbox{\hyperlink{group___decoder_ga29c2e67aa7b0ee1ed87b0e154eaf6f69}{RC5\_UNIT}}, tIRData, \mbox{\hyperlink{group___decoder_gabc94db01a9d2e2f8caccaa32ec2ffa8a}{RC5\_BITS}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00110}00110 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00111}00111         tNumberOfCommands-\/-\/;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00112}00112         \textcolor{comment}{// skip last delay!}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00113}00113         \textcolor{keywordflow}{if} (tNumberOfCommands > 0) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00114}00114             \textcolor{comment}{// send repeated command in a fixed raster}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00115}00115             delay(\mbox{\hyperlink{group___decoder_ga97029fbe8be39f78c835bf30040a743b}{RC5\_REPEAT\_SPACE}} / \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_ae9ba0b7dd556e22688f7da01019bba68}{MICROS\_IN\_ONE\_MILLI}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00116}00116         \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00117}00117     \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00118}00118 \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00119}00119 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00132}\mbox{\hyperlink{group___decoder_ga5720b53e427e0346ecc248e55c57e2b9}{00132}} \textcolor{keywordtype}{bool} \mbox{\hyperlink{group___decoder_ga5720b53e427e0346ecc248e55c57e2b9}{IRrecv::decodeRC5}}() \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00133}00133     uint8\_t tBitIndex;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00134}00134     uint32\_t tDecodedRawData = 0;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00135}00135 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00136}00136     \textcolor{comment}{// Set Biphase decoding start values}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00137}00137     \mbox{\hyperlink{group___receiving_ga51376b9bd8d1d9ac5c694f6a8c8ecc98}{initBiphaselevel}}(1, \mbox{\hyperlink{group___decoder_ga29c2e67aa7b0ee1ed87b0e154eaf6f69}{RC5\_UNIT}}); \textcolor{comment}{// Skip gap space}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00138}00138 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00139}00139     \textcolor{comment}{// Check we have the right amount of data (11 to 26). The +2 is for initial gap and start bit mark.}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00140}00140     \textcolor{keywordflow}{if} (\mbox{\hyperlink{class_i_rrecv_a19d71758b1b0e1fbee948ad917c5b828}{decodedIRData}}.\mbox{\hyperlink{struct_i_r_data_aea978b2fc583715678eb92ac96aac8fe}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_af0571ac479d1c38c79502651b0631432}{rawlen}} < \mbox{\hyperlink{group___decoder_gaace57f5ebe7ac2d2f80a496702065627}{MIN\_RC5\_MARKS}} + 2 \&\& \mbox{\hyperlink{class_i_rrecv_a19d71758b1b0e1fbee948ad917c5b828}{decodedIRData}}.\mbox{\hyperlink{struct_i_r_data_aea978b2fc583715678eb92ac96aac8fe}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_af0571ac479d1c38c79502651b0631432}{rawlen}} > ((2 * \mbox{\hyperlink{group___decoder_gabc94db01a9d2e2f8caccaa32ec2ffa8a}{RC5\_BITS}}) + 2)) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00141}00141         \textcolor{comment}{// no debug output, since this check is mainly to determine the received protocol}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00142}00142         \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(F(\textcolor{stringliteral}{"{}RC5: "{}}));}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00143}00143         \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(\textcolor{stringliteral}{"{}Data length="{}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00144}00144         \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(\mbox{\hyperlink{class_i_rrecv_a19d71758b1b0e1fbee948ad917c5b828}{decodedIRData}}.\mbox{\hyperlink{struct_i_r_data_aea978b2fc583715678eb92ac96aac8fe}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_af0571ac479d1c38c79502651b0631432}{rawlen}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00145}00145         \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{} is not between 11 and 26"{}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00146}00146         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00147}00147     \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00148}00148 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00149}00149 \textcolor{comment}{// Check start bit, the first space is included in the gap}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00150}00150     \textcolor{keywordflow}{if} (\mbox{\hyperlink{group___receiving_ga7d26f9254747368762e4d4c09dc22fb0}{getBiphaselevel}}() != \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_abeb214368f7f34cff98de9047aa6eb2f}{MARK}}) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00151}00151         \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(F(\textcolor{stringliteral}{"{}RC5: "{}}));}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00152}00152         \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}first getBiphaselevel() is not MARK"{}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00153}00153         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00154}00154     \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00155}00155 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00156}00156     \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00157}00157 \textcolor{comment}{     * Get data bits -\/ MSB first}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00158}00158 \textcolor{comment}{     */}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00159}00159     \textcolor{keywordflow}{for} (tBitIndex = 0; \mbox{\hyperlink{group___receiving_ga3f8125d5a7cde4fca3ece58e361296f9}{sBiphaseDecodeRawbuffOffset}} < \mbox{\hyperlink{class_i_rrecv_a19d71758b1b0e1fbee948ad917c5b828}{decodedIRData}}.\mbox{\hyperlink{struct_i_r_data_aea978b2fc583715678eb92ac96aac8fe}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_af0571ac479d1c38c79502651b0631432}{rawlen}}; tBitIndex++) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00160}00160         uint8\_t tStartLevel = \mbox{\hyperlink{group___receiving_ga7d26f9254747368762e4d4c09dc22fb0}{getBiphaselevel}}();}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00161}00161         uint8\_t tEndLevel = \mbox{\hyperlink{group___receiving_ga7d26f9254747368762e4d4c09dc22fb0}{getBiphaselevel}}();}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00162}00162 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00163}00163         \textcolor{keywordflow}{if} ((tStartLevel == \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a5ff6e798033f03e74730e99f01936f84}{SPACE}}) \&\& (tEndLevel == \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_abeb214368f7f34cff98de9047aa6eb2f}{MARK}})) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00164}00164             \textcolor{comment}{// we have a space to mark transition here}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00165}00165             tDecodedRawData = (tDecodedRawData << 1) | 1;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00166}00166         \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} ((tStartLevel == \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_abeb214368f7f34cff98de9047aa6eb2f}{MARK}}) \&\& (tEndLevel == \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a5ff6e798033f03e74730e99f01936f84}{SPACE}})) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00167}00167             \textcolor{comment}{// we have a mark to space transition here}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00168}00168             tDecodedRawData = (tDecodedRawData << 1) | 0;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00169}00169         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00170}00170             \textcolor{comment}{// IR\_TRACE\_PRINT since I saw this too often}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00171}00171             \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(F(\textcolor{stringliteral}{"{}RC5: "{}}));}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00172}00172             \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(F(\textcolor{stringliteral}{"{}Decode failed"{}}));}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00173}00173             \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00174}00174         \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00175}00175     \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00176}00176 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00177}00177     \textcolor{comment}{// Success}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00178}00178     \mbox{\hyperlink{class_i_rrecv_a19d71758b1b0e1fbee948ad917c5b828}{decodedIRData}}.\mbox{\hyperlink{struct_i_r_data_a945c41b8463a36cf00b0f38b0aa73200}{numberOfBits}} = tBitIndex; \textcolor{comment}{// must be RC5\_BITS}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00179}00179 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00180}00180     \mbox{\hyperlink{union_long_union}{LongUnion}} tValue;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00181}00181     tValue.\mbox{\hyperlink{union_long_union_aaf8815ca810b2d8386b5912f127586a7}{ULong}} = tDecodedRawData;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00182}00182     \mbox{\hyperlink{class_i_rrecv_a19d71758b1b0e1fbee948ad917c5b828}{decodedIRData}}.\mbox{\hyperlink{struct_i_r_data_aeca55ebf36bf919312a933597b8734d8}{decodedRawData}} = tDecodedRawData;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00183}00183     \mbox{\hyperlink{class_i_rrecv_a19d71758b1b0e1fbee948ad917c5b828}{decodedIRData}}.\mbox{\hyperlink{struct_i_r_data_ab0ce2b36765ea429e8c4bfa0706a45e7}{command}} = tValue.\mbox{\hyperlink{union_long_union_a1dfe8893e7015a65e9482671c15a099f}{UByte}}.\mbox{\hyperlink{union_long_union_aa41368107679917a1c39f30999f4e9d9}{LowByte}} \& 0x3F;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00184}00184     \mbox{\hyperlink{class_i_rrecv_a19d71758b1b0e1fbee948ad917c5b828}{decodedIRData}}.\mbox{\hyperlink{struct_i_r_data_a1255a5b7d704d34fda83dcabcb903d4c}{address}} = (tValue.\mbox{\hyperlink{union_long_union_a68a0c249634ca250ca5fdb31a06cbb18}{UWord}}.\mbox{\hyperlink{union_long_union_a9c0af1e73f44cf26341485cdac332bd2}{LowWord}} >> \mbox{\hyperlink{group___decoder_gad486165e9022f3ee3a36c2d6c0068901}{RC5\_COMMAND\_BITS}}) \& 0x1F;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00185}00185 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00186}00186     \textcolor{comment}{// Get the inverted 7. command bit for RC5X, the inverted value is always 1 for RC5 and serves as a second start bit.}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00187}00187     \textcolor{keywordflow}{if} ((tValue.\mbox{\hyperlink{union_long_union_a68a0c249634ca250ca5fdb31a06cbb18}{UWord}}.\mbox{\hyperlink{union_long_union_a9c0af1e73f44cf26341485cdac332bd2}{LowWord}} \& (1 << (\mbox{\hyperlink{group___decoder_ga5b54edc58ba3827fa05eb934f570f27d}{RC5\_TOGGLE\_BIT}} + \mbox{\hyperlink{group___decoder_ga6a67feee58533e6520c703ce2f21c74d}{RC5\_ADDRESS\_BITS}} + \mbox{\hyperlink{group___decoder_gad486165e9022f3ee3a36c2d6c0068901}{RC5\_COMMAND\_BITS}}))) == 0) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00188}00188         \mbox{\hyperlink{class_i_rrecv_a19d71758b1b0e1fbee948ad917c5b828}{decodedIRData}}.\mbox{\hyperlink{struct_i_r_data_ab0ce2b36765ea429e8c4bfa0706a45e7}{command}} += 0x40;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00189}00189     \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00190}00190 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00191}00191     \mbox{\hyperlink{class_i_rrecv_a19d71758b1b0e1fbee948ad917c5b828}{decodedIRData}}.\mbox{\hyperlink{struct_i_r_data_aaaad48fc0d90e5c6daec601987848a51}{flags}} = \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a7f6872e6f83c0571e3150ba86428af4c}{IRDATA\_FLAGS\_IS\_MSB\_FIRST}};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00192}00192     \textcolor{keywordflow}{if} (tValue.\mbox{\hyperlink{union_long_union_a1dfe8893e7015a65e9482671c15a099f}{UByte}}.\mbox{\hyperlink{union_long_union_aeed69e051ef3c5c3d03e0efa260226b1}{MidLowByte}} \& 0x8) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00193}00193         \mbox{\hyperlink{class_i_rrecv_a19d71758b1b0e1fbee948ad917c5b828}{decodedIRData}}.\mbox{\hyperlink{struct_i_r_data_aaaad48fc0d90e5c6daec601987848a51}{flags}} = \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a6a8eaa19dc6174814fedc9d5b495560c}{IRDATA\_TOGGLE\_BIT\_MASK}} | \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a7f6872e6f83c0571e3150ba86428af4c}{IRDATA\_FLAGS\_IS\_MSB\_FIRST}};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00194}00194     \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00195}00195 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00196}00196     \textcolor{comment}{// check for repeat}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00197}00197     \textcolor{keywordflow}{if} (\mbox{\hyperlink{class_i_rrecv_a19d71758b1b0e1fbee948ad917c5b828}{decodedIRData}}.\mbox{\hyperlink{struct_i_r_data_aea978b2fc583715678eb92ac96aac8fe}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_a24c9f838f5442649b9655dd53e4b029c}{rawbuf}}[0] < (\mbox{\hyperlink{group___decoder_ga985b139053cd231f47e363981e6a32e4}{RC5\_REPEAT\_PERIOD}} / \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a1c7eebb527483c272812530caa313d20}{MICROS\_PER\_TICK}})) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00198}00198         \mbox{\hyperlink{class_i_rrecv_a19d71758b1b0e1fbee948ad917c5b828}{decodedIRData}}.\mbox{\hyperlink{struct_i_r_data_aaaad48fc0d90e5c6daec601987848a51}{flags}} |= \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_aaa9952cd64b58083c28873484c494abf}{IRDATA\_FLAGS\_IS\_REPEAT}};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00199}00199     \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00200}00200 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00201}00201     \mbox{\hyperlink{class_i_rrecv_a19d71758b1b0e1fbee948ad917c5b828}{decodedIRData}}.\mbox{\hyperlink{struct_i_r_data_a703592faec26bab5cbe465f53ef14245}{protocol}} = \mbox{\hyperlink{_i_r_remote_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fadac3c0a3883a1488209bcd91730ece33b2}{RC5}};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00202}00202     \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00203}00203 \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00204}00204 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00205}00205 \textcolor{comment}{//+=============================================================================}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00206}00206 \textcolor{comment}{// RRRR    CCCC   6666}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00207}00207 \textcolor{comment}{// R   R  C      6}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00208}00208 \textcolor{comment}{// RRRR   C      6666}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00209}00209 \textcolor{comment}{// R  R   C      6   6}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00210}00210 \textcolor{comment}{// R   R   CCCC   666}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00211}00211 \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00212}00212 \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00213}00213 \textcolor{comment}{// mark-\/>space => 1}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00214}00214 \textcolor{comment}{// space-\/>mark => 0}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00215}00215 \textcolor{comment}{// https://www.sbprojects.net/knowledge/ir/rc6.php}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00216}00216 \textcolor{comment}{// https://www.mikrocontroller.net/articles/IRMP\_-\/\_english\#RC6\_.2B\_RC6A}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00217}00217 \textcolor{comment}{// https://en.wikipedia.org/wiki/Manchester\_code}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00218}00218 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00219}\mbox{\hyperlink{group___decoder_ga864aa6044417289d715eb819c1be3e10}{00219}} \textcolor{preprocessor}{\#define MIN\_RC6\_SAMPLES         1}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00220}00220 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00221}\mbox{\hyperlink{group___decoder_gab20744e40f55c70de7fd11c163643d03}{00221}} \textcolor{preprocessor}{\#define RC6\_RPT\_LENGTH      46000}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00222}00222 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00223}\mbox{\hyperlink{group___decoder_gabe308752857e0c9d2aa632459efff68b}{00223}} \textcolor{preprocessor}{\#define RC6\_LEADING\_BIT         1}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00224}\mbox{\hyperlink{group___decoder_gace06a80186f826baaec50247cccd9fa6}{00224}} \textcolor{preprocessor}{\#define RC6\_MODE\_BITS           3 }\textcolor{comment}{// never seen others than all 0 for Philips TV}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00225}\mbox{\hyperlink{group___decoder_ga2899c3ab9e20e006a196f1e959e496f7}{00225}} \textcolor{preprocessor}{\#define RC6\_TOGGLE\_BIT          1 }\textcolor{comment}{// toggles at every key press. Can be used to distinguish repeats from 2 key presses.}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00226}\mbox{\hyperlink{group___decoder_ga998e578fa80abf8e58794f162b4e9c4f}{00226}} \textcolor{preprocessor}{\#define RC6\_ADDRESS\_BITS        8}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00227}\mbox{\hyperlink{group___decoder_ga2693e6912aaa2615f31b2c8298e84e83}{00227}} \textcolor{preprocessor}{\#define RC6\_COMMAND\_BITS        8}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00228}00228 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00229}\mbox{\hyperlink{group___decoder_gaf0ebba4bfe3db1f49f593ac87ecc78ea}{00229}} \textcolor{preprocessor}{\#define RC6\_BITS            (RC6\_LEADING\_BIT + RC6\_MODE\_BITS + RC6\_TOGGLE\_BIT + RC6\_ADDRESS\_BITS + RC6\_COMMAND\_BITS) }\textcolor{comment}{// 13}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00230}00230 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00231}\mbox{\hyperlink{group___decoder_ga0c8422e20817bc71f9b16f013d282800}{00231}} \textcolor{preprocessor}{\#define RC6\_UNIT            444 }\textcolor{comment}{// 16 periods of 36 kHz (444.4444)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00232}00232 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00233}\mbox{\hyperlink{group___decoder_ga89c0498dae46351ae778a263bd1c90c9}{00233}} \textcolor{preprocessor}{\#define RC6\_HEADER\_MARK     (6 * RC6\_UNIT) }\textcolor{comment}{// 2666}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00234}\mbox{\hyperlink{group___decoder_ga5c7e98f561ee9ffea33dbe1f5c6d124a}{00234}} \textcolor{preprocessor}{\#define RC6\_HEADER\_SPACE    (2 * RC6\_UNIT) }\textcolor{comment}{// 889}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00235}00235 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00236}\mbox{\hyperlink{group___decoder_ga80d136268d4d727245922ae0c85464c3}{00236}} \textcolor{preprocessor}{\#define RC6\_TRAILING\_SPACE  (6 * RC6\_UNIT) }\textcolor{comment}{// 2666}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00237}\mbox{\hyperlink{group___decoder_ga9d1c512ada596652f29f24b17ef7f900}{00237}} \textcolor{preprocessor}{\#define MIN\_RC6\_MARKS       4 + ((RC6\_ADDRESS\_BITS + RC6\_COMMAND\_BITS) / 2) }\textcolor{comment}{// 12, 4 are for preamble}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00238}00238 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00239}\mbox{\hyperlink{group___decoder_ga359feaa5ff007c309d1bce3debe3f579}{00239}} \textcolor{preprocessor}{\#define RC6\_REPEAT\_SPACE    107000 }\textcolor{comment}{// just a guess but > 2.666ms}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00240}00240 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00244}\mbox{\hyperlink{group___decoder_gab2553414d8480f449762eb00a3ff7d6d}{00244}} \textcolor{keywordtype}{void} \mbox{\hyperlink{group___decoder_gad26a55d87f9f8cc64a77b4571ae79e5f}{IRsend::sendRC6}}(uint32\_t aRawData, uint8\_t aNumberOfBitsToSend) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00245}00245 \textcolor{comment}{// Set IR carrier frequency}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00246}00246     \mbox{\hyperlink{group___sending_ga42c04af63d252b320c017ffa2bfc90e5}{enableIROut}}(\mbox{\hyperlink{_i_r_remote_2_i_r_protocol_8h_a1e8fcd1e00b7fa15e99fae5ea30f35ae}{RC5\_RC6\_KHZ}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00247}00247 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00248}00248 \textcolor{comment}{// Header}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00249}00249     \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(\mbox{\hyperlink{group___decoder_ga89c0498dae46351ae778a263bd1c90c9}{RC6\_HEADER\_MARK}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00250}00250     \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(\mbox{\hyperlink{group___decoder_ga5c7e98f561ee9ffea33dbe1f5c6d124a}{RC6\_HEADER\_SPACE}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00251}00251 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00252}00252 \textcolor{comment}{// Start bit}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00253}00253     \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(\mbox{\hyperlink{group___decoder_ga0c8422e20817bc71f9b16f013d282800}{RC6\_UNIT}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00254}00254     \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(\mbox{\hyperlink{group___decoder_ga0c8422e20817bc71f9b16f013d282800}{RC6\_UNIT}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00255}00255 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00256}00256 \textcolor{comment}{// Data MSB first}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00257}00257     uint32\_t mask = 1UL << (aNumberOfBitsToSend -\/ 1);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00258}00258     \textcolor{keywordflow}{for} (uint\_fast8\_t i = 1; mask; i++, mask >>= 1) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00259}00259         \textcolor{comment}{// The fourth bit we send is the "{}double width toggle bit"{}}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00260}00260         \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} t = (i == 4) ? (\mbox{\hyperlink{group___decoder_ga0c8422e20817bc71f9b16f013d282800}{RC6\_UNIT}} * 2) : (\mbox{\hyperlink{group___decoder_ga0c8422e20817bc71f9b16f013d282800}{RC6\_UNIT}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00261}00261         \textcolor{keywordflow}{if} (aRawData \& mask) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00262}00262             \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(t);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00263}00263             \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(t);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00264}00264         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00265}00265             \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(t);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00266}00266             \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(t);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00267}00267         \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00268}00268     \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00269}00269 \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00270}00270 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00275}\mbox{\hyperlink{group___decoder_gae6bfe6af18c1bb7f34fda4338882b435}{00275}} \textcolor{keywordtype}{void} \mbox{\hyperlink{group___decoder_gad26a55d87f9f8cc64a77b4571ae79e5f}{IRsend::sendRC6}}(uint64\_t data, uint8\_t nbits) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00276}00276 \textcolor{comment}{// Set IR carrier frequency}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00277}00277     \mbox{\hyperlink{group___sending_ga42c04af63d252b320c017ffa2bfc90e5}{enableIROut}}(\mbox{\hyperlink{_i_r_remote_2_i_r_protocol_8h_a1e8fcd1e00b7fa15e99fae5ea30f35ae}{RC5\_RC6\_KHZ}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00278}00278 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00279}00279 \textcolor{comment}{// Header}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00280}00280     \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(\mbox{\hyperlink{group___decoder_ga89c0498dae46351ae778a263bd1c90c9}{RC6\_HEADER\_MARK}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00281}00281     \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(\mbox{\hyperlink{group___decoder_ga5c7e98f561ee9ffea33dbe1f5c6d124a}{RC6\_HEADER\_SPACE}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00282}00282 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00283}00283 \textcolor{comment}{// Start bit}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00284}00284     \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(\mbox{\hyperlink{group___decoder_ga0c8422e20817bc71f9b16f013d282800}{RC6\_UNIT}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00285}00285     \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(\mbox{\hyperlink{group___decoder_ga0c8422e20817bc71f9b16f013d282800}{RC6\_UNIT}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00286}00286 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00287}00287 \textcolor{comment}{// Data MSB first}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00288}00288     uint64\_t mask = 1ULL << (nbits -\/ 1);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00289}00289     \textcolor{keywordflow}{for} (uint\_fast8\_t i = 1; mask; i++, mask >>= 1) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00290}00290         \textcolor{comment}{// The fourth bit we send is the "{}double width toggle bit"{}}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00291}00291         \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} t = (i == 4) ? (\mbox{\hyperlink{group___decoder_ga0c8422e20817bc71f9b16f013d282800}{RC6\_UNIT}} * 2) : (\mbox{\hyperlink{group___decoder_ga0c8422e20817bc71f9b16f013d282800}{RC6\_UNIT}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00292}00292         \textcolor{keywordflow}{if} (data \& mask) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00293}00293             \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(t);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00294}00294             \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(t);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00295}00295         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00296}00296             \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(t);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00297}00297             \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(t);}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00298}00298         \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00299}00299     \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00300}00300 \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00301}00301 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00307}\mbox{\hyperlink{group___decoder_gad26a55d87f9f8cc64a77b4571ae79e5f}{00307}} \textcolor{keywordtype}{void} \mbox{\hyperlink{group___decoder_gad26a55d87f9f8cc64a77b4571ae79e5f}{IRsend::sendRC6}}(uint8\_t aAddress, uint8\_t aCommand, uint\_fast8\_t aNumberOfRepeats, \textcolor{keywordtype}{bool} aEnableAutomaticToggle) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00308}00308 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00309}00309     \mbox{\hyperlink{union_long_union}{LongUnion}} tIRRawData;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00310}00310     tIRRawData.\mbox{\hyperlink{union_long_union_a1dfe8893e7015a65e9482671c15a099f}{UByte}}.\mbox{\hyperlink{union_long_union_aa41368107679917a1c39f30999f4e9d9}{LowByte}} = \mbox{\hyperlink{class_i_rsend_a5f5d819c72ce2f74395d14166e77c7cc}{aCommand}};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00311}00311     tIRRawData.\mbox{\hyperlink{union_long_union_a1dfe8893e7015a65e9482671c15a099f}{UByte}}.\mbox{\hyperlink{union_long_union_aeed69e051ef3c5c3d03e0efa260226b1}{MidLowByte}} = aAddress;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00312}00312 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00313}00313     tIRRawData.\mbox{\hyperlink{union_long_union_a68a0c249634ca250ca5fdb31a06cbb18}{UWord}}.\mbox{\hyperlink{union_long_union_a2b12288fe56e397d39ba9085fca70616}{HighWord}} = 0; \textcolor{comment}{// must clear high word}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00314}00314     \textcolor{keywordflow}{if} (aEnableAutomaticToggle) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00315}00315         \textcolor{keywordflow}{if} (\mbox{\hyperlink{group___decoder_gaf9adc578f613a3d00e25f6a7fe1d371b}{sLastSendToggleValue}} == 0) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00316}00316             \mbox{\hyperlink{group___decoder_gaf9adc578f613a3d00e25f6a7fe1d371b}{sLastSendToggleValue}} = 1;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00317}00317             \textcolor{comment}{// set toggled bit}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00318}00318             \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(F(\textcolor{stringliteral}{"{}Set Toggle "{}}));}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00319}00319             tIRRawData.\mbox{\hyperlink{union_long_union_a1dfe8893e7015a65e9482671c15a099f}{UByte}}.\mbox{\hyperlink{union_long_union_aba027b17010803cf910996cae9201f32}{MidHighByte}} = 1; \textcolor{comment}{// 3 Mode bits are 0}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00320}00320         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00321}00321             \mbox{\hyperlink{group___decoder_gaf9adc578f613a3d00e25f6a7fe1d371b}{sLastSendToggleValue}} = 0;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00322}00322         \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00323}00323     \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00324}00324 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00325}00325     \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(F(\textcolor{stringliteral}{"{}RC6: "{}}));}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00326}00326     \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(F(\textcolor{stringliteral}{"{}sLastSendToggleValue="{}}));}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00327}00327     \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(\mbox{\hyperlink{group___decoder_gaf9adc578f613a3d00e25f6a7fe1d371b}{sLastSendToggleValue}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00328}00328     \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(F(\textcolor{stringliteral}{"{} RawData="{}}));}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00329}00329     \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(tIRRawData.\mbox{\hyperlink{union_long_union_aaf8815ca810b2d8386b5912f127586a7}{ULong}}, \mbox{\hyperlink{_i_r_remote_2digital_write_fast_8h_a9075d93e0ab26ccd6e059fa06aa4e3de}{HEX}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00330}00330 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00331}00331     uint\_fast8\_t tNumberOfCommands = \mbox{\hyperlink{class_i_rsend_aff233b57d2382a713926797ce5da0fd3}{aNumberOfRepeats}} + 1;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00332}00332     \textcolor{keywordflow}{while} (tNumberOfCommands > 0) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00333}00333 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00334}00334         \textcolor{comment}{// start and leading bits are sent by sendRC6}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00335}00335         \mbox{\hyperlink{group___decoder_gad26a55d87f9f8cc64a77b4571ae79e5f}{sendRC6}}(tIRRawData.\mbox{\hyperlink{union_long_union_aaf8815ca810b2d8386b5912f127586a7}{ULong}}, \mbox{\hyperlink{group___decoder_gaf0ebba4bfe3db1f49f593ac87ecc78ea}{RC6\_BITS}} -\/ 1); \textcolor{comment}{// -\/1 since the leading bit is additionally sent by sendRC6}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00336}00336 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00337}00337         tNumberOfCommands-\/-\/;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00338}00338         \textcolor{comment}{// skip last delay!}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00339}00339         \textcolor{keywordflow}{if} (tNumberOfCommands > 0) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00340}00340             \textcolor{comment}{// send repeated command in a fixed raster}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00341}00341             delay(\mbox{\hyperlink{group___decoder_ga359feaa5ff007c309d1bce3debe3f579}{RC6\_REPEAT\_SPACE}} / \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_ae9ba0b7dd556e22688f7da01019bba68}{MICROS\_IN\_ONE\_MILLI}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00342}00342         \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00343}00343     \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00344}00344 \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00345}00345 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00349}\mbox{\hyperlink{group___decoder_gad98448418d525479e74c1a38725b498f}{00349}} \textcolor{keywordtype}{bool} \mbox{\hyperlink{group___decoder_gad98448418d525479e74c1a38725b498f}{IRrecv::decodeRC6}}() \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00350}00350     uint8\_t tBitIndex;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00351}00351     uint32\_t tDecodedRawData = 0;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00352}00352 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00353}00353     \textcolor{comment}{// Check we have the right amount of data (). The +3 for initial gap, start bit mark and space}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00354}00354     \textcolor{keywordflow}{if} (\mbox{\hyperlink{class_i_rrecv_a19d71758b1b0e1fbee948ad917c5b828}{decodedIRData}}.\mbox{\hyperlink{struct_i_r_data_aea978b2fc583715678eb92ac96aac8fe}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_af0571ac479d1c38c79502651b0631432}{rawlen}} < \mbox{\hyperlink{group___decoder_ga9d1c512ada596652f29f24b17ef7f900}{MIN\_RC6\_MARKS}} + 3 \&\& \mbox{\hyperlink{class_i_rrecv_a19d71758b1b0e1fbee948ad917c5b828}{decodedIRData}}.\mbox{\hyperlink{struct_i_r_data_aea978b2fc583715678eb92ac96aac8fe}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_af0571ac479d1c38c79502651b0631432}{rawlen}} > ((2 * \mbox{\hyperlink{group___decoder_gaf0ebba4bfe3db1f49f593ac87ecc78ea}{RC6\_BITS}}) + 3)) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00355}00355         \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(F(\textcolor{stringliteral}{"{}RC6: "{}}));}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00356}00356         \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(\textcolor{stringliteral}{"{}Data length="{}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00357}00357         \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(\mbox{\hyperlink{class_i_rrecv_a19d71758b1b0e1fbee948ad917c5b828}{decodedIRData}}.\mbox{\hyperlink{struct_i_r_data_aea978b2fc583715678eb92ac96aac8fe}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_af0571ac479d1c38c79502651b0631432}{rawlen}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00358}00358         \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{} is not between 15 and 45"{}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00359}00359         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00360}00360     \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00361}00361 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00362}00362     \textcolor{comment}{// Check header "{}mark"{} and "{}space"{}, this must be done for repeat and data}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00363}00363     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{group___receiving_ga4472564ea96b1ee10b51f594f60d7aeb}{matchMark}}(\mbox{\hyperlink{class_i_rrecv_a19d71758b1b0e1fbee948ad917c5b828}{decodedIRData}}.\mbox{\hyperlink{struct_i_r_data_aea978b2fc583715678eb92ac96aac8fe}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_a24c9f838f5442649b9655dd53e4b029c}{rawbuf}}[1], \mbox{\hyperlink{group___decoder_ga89c0498dae46351ae778a263bd1c90c9}{RC6\_HEADER\_MARK}})}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00364}00364             || !\mbox{\hyperlink{group___receiving_ga7902b620f6c01463b5b6e50ef604ac8b}{matchSpace}}(\mbox{\hyperlink{class_i_rrecv_a19d71758b1b0e1fbee948ad917c5b828}{decodedIRData}}.\mbox{\hyperlink{struct_i_r_data_aea978b2fc583715678eb92ac96aac8fe}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_a24c9f838f5442649b9655dd53e4b029c}{rawbuf}}[2], \mbox{\hyperlink{group___decoder_ga5c7e98f561ee9ffea33dbe1f5c6d124a}{RC6\_HEADER\_SPACE}})) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00365}00365         \textcolor{comment}{// no debug output, since this check is mainly to determine the received protocol}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00366}00366         \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(F(\textcolor{stringliteral}{"{}RC6: "{}}));}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00367}00367         \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}Header mark or space length is wrong"{}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00368}00368         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00369}00369     \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00370}00370 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00371}00371     \textcolor{comment}{// Set Biphase decoding start values}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00372}00372     \mbox{\hyperlink{group___receiving_ga51376b9bd8d1d9ac5c694f6a8c8ecc98}{initBiphaselevel}}(3, \mbox{\hyperlink{group___decoder_ga0c8422e20817bc71f9b16f013d282800}{RC6\_UNIT}}); \textcolor{comment}{// Skip gap-\/space and start-\/bit mark + space}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00373}00373 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00374}00374 \textcolor{comment}{// Process first bit, which is known to be a 1 (mark-\/>space)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00375}00375     \textcolor{keywordflow}{if} (\mbox{\hyperlink{group___receiving_ga7d26f9254747368762e4d4c09dc22fb0}{getBiphaselevel}}() != \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_abeb214368f7f34cff98de9047aa6eb2f}{MARK}}) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00376}00376         \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(F(\textcolor{stringliteral}{"{}RC6: "{}}));}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00377}00377         \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}first getBiphaselevel() is not MARK"{}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00378}00378         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00379}00379     \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00380}00380     \textcolor{keywordflow}{if} (\mbox{\hyperlink{group___receiving_ga7d26f9254747368762e4d4c09dc22fb0}{getBiphaselevel}}() != \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a5ff6e798033f03e74730e99f01936f84}{SPACE}}) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00381}00381         \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(F(\textcolor{stringliteral}{"{}RC6: "{}}));}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00382}00382         \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(\textcolor{stringliteral}{"{}second getBiphaselevel() is not SPACE"{}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00383}00383         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00384}00384     \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00385}00385 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00386}00386     \textcolor{keywordflow}{for} (tBitIndex = 0; \mbox{\hyperlink{group___receiving_ga3f8125d5a7cde4fca3ece58e361296f9}{sBiphaseDecodeRawbuffOffset}} < \mbox{\hyperlink{class_i_rrecv_a19d71758b1b0e1fbee948ad917c5b828}{decodedIRData}}.\mbox{\hyperlink{struct_i_r_data_aea978b2fc583715678eb92ac96aac8fe}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_af0571ac479d1c38c79502651b0631432}{rawlen}}; tBitIndex++) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00387}00387         uint8\_t tStartLevel; \textcolor{comment}{// start level of coded bit}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00388}00388         uint8\_t tEndLevel;   \textcolor{comment}{// end level of coded bit}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00389}00389 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00390}00390         tStartLevel = \mbox{\hyperlink{group___receiving_ga7d26f9254747368762e4d4c09dc22fb0}{getBiphaselevel}}();}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00391}00391         \textcolor{keywordflow}{if} (tBitIndex == 3) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00392}00392             \textcolor{comment}{// Toggle bit is double wide; make sure second half is equal first half}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00393}00393             \textcolor{keywordflow}{if} (tStartLevel != \mbox{\hyperlink{group___receiving_ga7d26f9254747368762e4d4c09dc22fb0}{getBiphaselevel}}()) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00394}00394                 \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(F(\textcolor{stringliteral}{"{}RC6: "{}}));}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00395}00395                 \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(F(\textcolor{stringliteral}{"{}Toggle mark or space length is wrong"{}}));}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00396}00396                 \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00397}00397             \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00398}00398         \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00399}00399 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00400}00400         tEndLevel = \mbox{\hyperlink{group___receiving_ga7d26f9254747368762e4d4c09dc22fb0}{getBiphaselevel}}();}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00401}00401         \textcolor{keywordflow}{if} (tBitIndex == 3) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00402}00402             \textcolor{comment}{// Toggle bit is double wide; make sure second half matches}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00403}00403             \textcolor{keywordflow}{if} (tEndLevel != \mbox{\hyperlink{group___receiving_ga7d26f9254747368762e4d4c09dc22fb0}{getBiphaselevel}}()) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00404}00404                 \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(F(\textcolor{stringliteral}{"{}RC6: "{}}));}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00405}00405                 \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(F(\textcolor{stringliteral}{"{}Toggle mark or space length is wrong"{}}));}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00406}00406                 \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00407}00407             \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00408}00408         \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00409}00409 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00410}00410         \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00411}00411 \textcolor{comment}{         * Determine tDecodedRawData bit value by checking the transition type}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00412}00412 \textcolor{comment}{         */}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00413}00413         \textcolor{keywordflow}{if} ((tStartLevel == \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_abeb214368f7f34cff98de9047aa6eb2f}{MARK}}) \&\& (tEndLevel == \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a5ff6e798033f03e74730e99f01936f84}{SPACE}})) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00414}00414             \textcolor{comment}{// we have a mark to space transition here}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00415}00415             tDecodedRawData = (tDecodedRawData << 1) | 1;  \textcolor{comment}{// inverted compared to RC5}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00416}00416         \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} ((tStartLevel == \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a5ff6e798033f03e74730e99f01936f84}{SPACE}}) \&\& (tEndLevel == \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_abeb214368f7f34cff98de9047aa6eb2f}{MARK}})) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00417}00417             \textcolor{comment}{// we have a space to mark transition here}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00418}00418             tDecodedRawData = (tDecodedRawData << 1) | 0;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00419}00419         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00420}00420             \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a093a1c04e9dd4d6845a48163554143a0}{IR\_DEBUG\_PRINT}}(F(\textcolor{stringliteral}{"{}RC6: "{}}));}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00421}00421             \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_aebf95fa57eb370cfe65ce6a9728b6e1f}{IR\_DEBUG\_PRINTLN}}(F(\textcolor{stringliteral}{"{}Decode failed"{}}));}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00422}00422             \textcolor{comment}{// we have no transition here or one level is -\/1 -\/> error}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00423}00423             \textcolor{keywordflow}{return} \textcolor{keyword}{false};            \textcolor{comment}{// Error}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00424}00424         \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00425}00425     \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00426}00426 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00427}00427 \textcolor{comment}{// Success}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00428}00428     \mbox{\hyperlink{class_i_rrecv_a19d71758b1b0e1fbee948ad917c5b828}{decodedIRData}}.\mbox{\hyperlink{struct_i_r_data_a945c41b8463a36cf00b0f38b0aa73200}{numberOfBits}} = tBitIndex;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00429}00429 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00430}00430     \mbox{\hyperlink{union_long_union}{LongUnion}} tValue;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00431}00431     tValue.\mbox{\hyperlink{union_long_union_aaf8815ca810b2d8386b5912f127586a7}{ULong}} = tDecodedRawData;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00432}00432     \mbox{\hyperlink{class_i_rrecv_a19d71758b1b0e1fbee948ad917c5b828}{decodedIRData}}.\mbox{\hyperlink{struct_i_r_data_aeca55ebf36bf919312a933597b8734d8}{decodedRawData}} = tDecodedRawData;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00433}00433 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00434}00434     \textcolor{keywordflow}{if} (tBitIndex < 36) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00435}00435         \textcolor{comment}{// RC6}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00436}00436         \mbox{\hyperlink{class_i_rrecv_a19d71758b1b0e1fbee948ad917c5b828}{decodedIRData}}.\mbox{\hyperlink{struct_i_r_data_aaaad48fc0d90e5c6daec601987848a51}{flags}} = \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a7f6872e6f83c0571e3150ba86428af4c}{IRDATA\_FLAGS\_IS\_MSB\_FIRST}};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00437}00437         \mbox{\hyperlink{class_i_rrecv_a19d71758b1b0e1fbee948ad917c5b828}{decodedIRData}}.\mbox{\hyperlink{struct_i_r_data_ab0ce2b36765ea429e8c4bfa0706a45e7}{command}} = tValue.\mbox{\hyperlink{union_long_union_a1dfe8893e7015a65e9482671c15a099f}{UByte}}.\mbox{\hyperlink{union_long_union_aa41368107679917a1c39f30999f4e9d9}{LowByte}};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00438}00438         \mbox{\hyperlink{class_i_rrecv_a19d71758b1b0e1fbee948ad917c5b828}{decodedIRData}}.\mbox{\hyperlink{struct_i_r_data_a1255a5b7d704d34fda83dcabcb903d4c}{address}} = tValue.\mbox{\hyperlink{union_long_union_a1dfe8893e7015a65e9482671c15a099f}{UByte}}.\mbox{\hyperlink{union_long_union_aeed69e051ef3c5c3d03e0efa260226b1}{MidLowByte}};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00439}00439         \textcolor{comment}{// Check for toggle flag}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00440}00440         \textcolor{keywordflow}{if} ((tValue.\mbox{\hyperlink{union_long_union_a1dfe8893e7015a65e9482671c15a099f}{UByte}}.\mbox{\hyperlink{union_long_union_aba027b17010803cf910996cae9201f32}{MidHighByte}} \& 1) != 0) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00441}00441             \mbox{\hyperlink{class_i_rrecv_a19d71758b1b0e1fbee948ad917c5b828}{decodedIRData}}.\mbox{\hyperlink{struct_i_r_data_aaaad48fc0d90e5c6daec601987848a51}{flags}} = \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a6a8eaa19dc6174814fedc9d5b495560c}{IRDATA\_TOGGLE\_BIT\_MASK}} | \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a7f6872e6f83c0571e3150ba86428af4c}{IRDATA\_FLAGS\_IS\_MSB\_FIRST}};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00442}00442         \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00443}00443     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00444}00444         \textcolor{comment}{// RC6A}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00445}00445         \mbox{\hyperlink{class_i_rrecv_a19d71758b1b0e1fbee948ad917c5b828}{decodedIRData}}.\mbox{\hyperlink{struct_i_r_data_aaaad48fc0d90e5c6daec601987848a51}{flags}} = \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a7f6872e6f83c0571e3150ba86428af4c}{IRDATA\_FLAGS\_IS\_MSB\_FIRST}} | \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_abf3b16f9ab35f4e4b95c8c362aca2d71}{IRDATA\_FLAGS\_EXTRA\_INFO}};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00446}00446         \textcolor{keywordflow}{if} ((tValue.\mbox{\hyperlink{union_long_union_a1dfe8893e7015a65e9482671c15a099f}{UByte}}.\mbox{\hyperlink{union_long_union_aeed69e051ef3c5c3d03e0efa260226b1}{MidLowByte}} \& 0x80) != 0) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00447}00447             \mbox{\hyperlink{class_i_rrecv_a19d71758b1b0e1fbee948ad917c5b828}{decodedIRData}}.\mbox{\hyperlink{struct_i_r_data_aaaad48fc0d90e5c6daec601987848a51}{flags}} = \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a6a8eaa19dc6174814fedc9d5b495560c}{IRDATA\_TOGGLE\_BIT\_MASK}} | \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a7f6872e6f83c0571e3150ba86428af4c}{IRDATA\_FLAGS\_IS\_MSB\_FIRST}} | \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_abf3b16f9ab35f4e4b95c8c362aca2d71}{IRDATA\_FLAGS\_EXTRA\_INFO}};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00448}00448         \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00449}00449         tValue.\mbox{\hyperlink{union_long_union_a1dfe8893e7015a65e9482671c15a099f}{UByte}}.\mbox{\hyperlink{union_long_union_aeed69e051ef3c5c3d03e0efa260226b1}{MidLowByte}} \&= 0x87F; \textcolor{comment}{// mask toggle bit}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00450}00450         \mbox{\hyperlink{class_i_rrecv_a19d71758b1b0e1fbee948ad917c5b828}{decodedIRData}}.\mbox{\hyperlink{struct_i_r_data_ab0ce2b36765ea429e8c4bfa0706a45e7}{command}} = tValue.\mbox{\hyperlink{union_long_union_a1dfe8893e7015a65e9482671c15a099f}{UByte}}.\mbox{\hyperlink{union_long_union_aa41368107679917a1c39f30999f4e9d9}{LowByte}};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00451}00451         \mbox{\hyperlink{class_i_rrecv_a19d71758b1b0e1fbee948ad917c5b828}{decodedIRData}}.\mbox{\hyperlink{struct_i_r_data_a1255a5b7d704d34fda83dcabcb903d4c}{address}} = tValue.\mbox{\hyperlink{union_long_union_a1dfe8893e7015a65e9482671c15a099f}{UByte}}.\mbox{\hyperlink{union_long_union_aeed69e051ef3c5c3d03e0efa260226b1}{MidLowByte}};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00452}00452         \textcolor{comment}{// get extra info}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00453}00453         \mbox{\hyperlink{class_i_rrecv_a19d71758b1b0e1fbee948ad917c5b828}{decodedIRData}}.\mbox{\hyperlink{struct_i_r_data_a0b71fa1a17e3ab0ae9bc9462b795213f}{extra}} = tValue.\mbox{\hyperlink{union_long_union_a68a0c249634ca250ca5fdb31a06cbb18}{UWord}}.\mbox{\hyperlink{union_long_union_a2b12288fe56e397d39ba9085fca70616}{HighWord}};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00454}00454     \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00455}00455 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00456}00456     \textcolor{comment}{// check for repeat, do not check toggle bit yet}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00457}00457     \textcolor{keywordflow}{if} (\mbox{\hyperlink{class_i_rrecv_a19d71758b1b0e1fbee948ad917c5b828}{decodedIRData}}.\mbox{\hyperlink{struct_i_r_data_aea978b2fc583715678eb92ac96aac8fe}{rawDataPtr}}-\/>\mbox{\hyperlink{structirparams__struct_a24c9f838f5442649b9655dd53e4b029c}{rawbuf}}[0] < ((\mbox{\hyperlink{group___decoder_ga359feaa5ff007c309d1bce3debe3f579}{RC6\_REPEAT\_SPACE}} + (\mbox{\hyperlink{group___decoder_ga359feaa5ff007c309d1bce3debe3f579}{RC6\_REPEAT\_SPACE}} / 4)) / \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_a1c7eebb527483c272812530caa313d20}{MICROS\_PER\_TICK}})) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00458}00458         \mbox{\hyperlink{class_i_rrecv_a19d71758b1b0e1fbee948ad917c5b828}{decodedIRData}}.\mbox{\hyperlink{struct_i_r_data_aaaad48fc0d90e5c6daec601987848a51}{flags}} |= \mbox{\hyperlink{_i_r_remote_2_i_rremote_int_8h_aaa9952cd64b58083c28873484c494abf}{IRDATA\_FLAGS\_IS\_REPEAT}};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00459}00459     \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00460}00460 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00461}00461     \mbox{\hyperlink{class_i_rrecv_a19d71758b1b0e1fbee948ad917c5b828}{decodedIRData}}.\mbox{\hyperlink{struct_i_r_data_a703592faec26bab5cbe465f53ef14245}{protocol}} = \mbox{\hyperlink{_i_r_remote_2_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fada7f7247f15587eb3812846f424b941abe}{RC6}};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00462}00462     \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00463}00463 \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00464}00464 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00468}\mbox{\hyperlink{group___decoder_ga6168e3ad4e47c657c9f3de0e5d7590b3}{00468}} \textcolor{keywordtype}{void} \mbox{\hyperlink{group___decoder_ga55808fcce8aaf429ebbb1d34cb7f5ee5}{IRsend::sendRC5}}(uint32\_t data, uint8\_t nbits) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00469}00469     \textcolor{comment}{// Set IR carrier frequency}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00470}00470     \mbox{\hyperlink{group___sending_ga42c04af63d252b320c017ffa2bfc90e5}{enableIROut}}(\mbox{\hyperlink{_i_r_remote_2_i_r_protocol_8h_a1e8fcd1e00b7fa15e99fae5ea30f35ae}{RC5\_RC6\_KHZ}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00471}00471 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00472}00472     \textcolor{comment}{// Start}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00473}00473     \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(\mbox{\hyperlink{group___decoder_ga29c2e67aa7b0ee1ed87b0e154eaf6f69}{RC5\_UNIT}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00474}00474     \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(\mbox{\hyperlink{group___decoder_ga29c2e67aa7b0ee1ed87b0e154eaf6f69}{RC5\_UNIT}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00475}00475     \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(\mbox{\hyperlink{group___decoder_ga29c2e67aa7b0ee1ed87b0e154eaf6f69}{RC5\_UNIT}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00476}00476 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00477}00477     \textcolor{comment}{// Data -\/ Biphase code MSB first}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00478}00478     \textcolor{keywordflow}{for} (uint32\_t mask = 1UL << (nbits -\/ 1); mask; mask >>= 1) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00479}00479         \textcolor{keywordflow}{if} (data \& mask) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00480}00480             \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(\mbox{\hyperlink{group___decoder_ga29c2e67aa7b0ee1ed87b0e154eaf6f69}{RC5\_UNIT}}); \textcolor{comment}{// 1 is space, then mark}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00481}00481             \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(\mbox{\hyperlink{group___decoder_ga29c2e67aa7b0ee1ed87b0e154eaf6f69}{RC5\_UNIT}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00482}00482         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00483}00483             \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(\mbox{\hyperlink{group___decoder_ga29c2e67aa7b0ee1ed87b0e154eaf6f69}{RC5\_UNIT}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00484}00484             \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(\mbox{\hyperlink{group___decoder_ga29c2e67aa7b0ee1ed87b0e154eaf6f69}{RC5\_UNIT}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00485}00485         \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00486}00486     \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00487}00487 \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00488}00488 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00489}00489 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00490}00490 \textcolor{comment}{ * Not longer required, use sendRC5 instead}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00491}00491 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00492}\mbox{\hyperlink{group___decoder_gaee1c9e1d8ab6dcf642d6707b4528385b}{00492}} \textcolor{keywordtype}{void} \mbox{\hyperlink{group___decoder_gaee1c9e1d8ab6dcf642d6707b4528385b}{IRsend::sendRC5ext}}(uint8\_t addr, uint8\_t cmd, \textcolor{keywordtype}{bool} toggle) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00493}00493 \textcolor{comment}{// Set IR carrier frequency}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00494}00494     \mbox{\hyperlink{group___sending_ga42c04af63d252b320c017ffa2bfc90e5}{enableIROut}}(\mbox{\hyperlink{_i_r_remote_2_i_r_protocol_8h_a1e8fcd1e00b7fa15e99fae5ea30f35ae}{RC5\_RC6\_KHZ}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00495}00495 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00496}00496     uint8\_t addressBits = 5;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00497}00497     uint8\_t commandBits = 7;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00498}00498 \textcolor{comment}{//    unsigned long nbits = addressBits + commandBits;}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00499}00499 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00500}00500 \textcolor{comment}{// Start}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00501}00501     \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(\mbox{\hyperlink{group___decoder_ga29c2e67aa7b0ee1ed87b0e154eaf6f69}{RC5\_UNIT}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00502}00502 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00503}00503 \textcolor{comment}{// Bit \#6 of the command part, but inverted!}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00504}00504     uint8\_t cmdBit6 = (1UL << (commandBits -\/ 1)) \& cmd;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00505}00505     \textcolor{keywordflow}{if} (cmdBit6) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00506}00506         \textcolor{comment}{// Inverted (1 -\/> 0 = mark-\/to-\/space)}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00507}00507         \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(\mbox{\hyperlink{group___decoder_ga29c2e67aa7b0ee1ed87b0e154eaf6f69}{RC5\_UNIT}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00508}00508         \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(\mbox{\hyperlink{group___decoder_ga29c2e67aa7b0ee1ed87b0e154eaf6f69}{RC5\_UNIT}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00509}00509     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00510}00510         \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(\mbox{\hyperlink{group___decoder_ga29c2e67aa7b0ee1ed87b0e154eaf6f69}{RC5\_UNIT}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00511}00511         \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(\mbox{\hyperlink{group___decoder_ga29c2e67aa7b0ee1ed87b0e154eaf6f69}{RC5\_UNIT}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00512}00512     \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00513}00513     commandBits-\/-\/;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00514}00514 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00515}00515 \textcolor{comment}{// Toggle bit}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00516}00516     \textcolor{keyword}{static} \textcolor{keywordtype}{int} toggleBit = 1;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00517}00517     \textcolor{keywordflow}{if} (toggle) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00518}00518         \textcolor{keywordflow}{if} (toggleBit == 0) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00519}00519             toggleBit = 1;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00520}00520         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00521}00521             toggleBit = 0;}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00522}00522         \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00523}00523     \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00524}00524     \textcolor{keywordflow}{if} (toggleBit) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00525}00525         \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(\mbox{\hyperlink{group___decoder_ga29c2e67aa7b0ee1ed87b0e154eaf6f69}{RC5\_UNIT}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00526}00526         \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(\mbox{\hyperlink{group___decoder_ga29c2e67aa7b0ee1ed87b0e154eaf6f69}{RC5\_UNIT}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00527}00527     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00528}00528         \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(\mbox{\hyperlink{group___decoder_ga29c2e67aa7b0ee1ed87b0e154eaf6f69}{RC5\_UNIT}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00529}00529         \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(\mbox{\hyperlink{group___decoder_ga29c2e67aa7b0ee1ed87b0e154eaf6f69}{RC5\_UNIT}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00530}00530     \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00531}00531 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00532}00532 \textcolor{comment}{// Address}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00533}00533     \textcolor{keywordflow}{for} (uint\_fast8\_t mask = 1UL << (addressBits -\/ 1); mask; mask >>= 1) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00534}00534         \textcolor{keywordflow}{if} (addr \& mask) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00535}00535             \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(\mbox{\hyperlink{group___decoder_ga29c2e67aa7b0ee1ed87b0e154eaf6f69}{RC5\_UNIT}}); \textcolor{comment}{// 1 is space, then mark}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00536}00536             \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(\mbox{\hyperlink{group___decoder_ga29c2e67aa7b0ee1ed87b0e154eaf6f69}{RC5\_UNIT}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00537}00537         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00538}00538             \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(\mbox{\hyperlink{group___decoder_ga29c2e67aa7b0ee1ed87b0e154eaf6f69}{RC5\_UNIT}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00539}00539             \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(\mbox{\hyperlink{group___decoder_ga29c2e67aa7b0ee1ed87b0e154eaf6f69}{RC5\_UNIT}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00540}00540         \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00541}00541     \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00542}00542 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00543}00543 \textcolor{comment}{// Command}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00544}00544     \textcolor{keywordflow}{for} (uint\_fast8\_t mask = 1UL << (commandBits -\/ 1); mask; mask >>= 1) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00545}00545         \textcolor{keywordflow}{if} (cmd \& mask) \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00546}00546             \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(\mbox{\hyperlink{group___decoder_ga29c2e67aa7b0ee1ed87b0e154eaf6f69}{RC5\_UNIT}}); \textcolor{comment}{// 1 is space, then mark}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00547}00547             \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(\mbox{\hyperlink{group___decoder_ga29c2e67aa7b0ee1ed87b0e154eaf6f69}{RC5\_UNIT}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00548}00548         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00549}00549             \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(\mbox{\hyperlink{group___decoder_ga29c2e67aa7b0ee1ed87b0e154eaf6f69}{RC5\_UNIT}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00550}00550             \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(\mbox{\hyperlink{group___decoder_ga29c2e67aa7b0ee1ed87b0e154eaf6f69}{RC5\_UNIT}});}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00551}00551         \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00552}00552     \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00553}00553 \}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00554}00554 }
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00556}00556 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_i_r_remote_2ir___r_c5___r_c6_8hpp_source_l00557}00557 \textcolor{preprocessor}{\#pragma once}}
+
+\end{DoxyCode}

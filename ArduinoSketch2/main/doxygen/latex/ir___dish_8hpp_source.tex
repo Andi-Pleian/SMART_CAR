@@ -1,0 +1,52 @@
+\hypertarget{ir___dish_8hpp_source}{}\doxysection{ir\+\_\+\+Dish.\+hpp}
+\label{ir___dish_8hpp_source}\index{IRRemote/ir\_Dish.hpp@{IRRemote/ir\_Dish.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_i_rremote_int_8h}{IRremoteInt.h}}"{}}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{comment}{//==============================================================================}}
+\DoxyCodeLine{4 \textcolor{comment}{//                       DDDD   IIIII   SSSS  H   H}}
+\DoxyCodeLine{5 \textcolor{comment}{//                        D  D    I    S      H   H}}
+\DoxyCodeLine{6 \textcolor{comment}{//                        D  D    I     SSS   HHHHH}}
+\DoxyCodeLine{7 \textcolor{comment}{//                        D  D    I        S  H   H}}
+\DoxyCodeLine{8 \textcolor{comment}{//                       DDDD   IIIII  SSSS   H   H}}
+\DoxyCodeLine{9 \textcolor{comment}{//==============================================================================}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{comment}{// Sharp and DISH support by Todd Treece ( http://unionbridge.org/design/ircommand )}}
+\DoxyCodeLine{12 \textcolor{comment}{//}}
+\DoxyCodeLine{13 \textcolor{comment}{// The send function needs to be repeated 4 times}}
+\DoxyCodeLine{14 \textcolor{comment}{//}}
+\DoxyCodeLine{15 \textcolor{comment}{// Only send the last for characters of the hex.}}
+\DoxyCodeLine{16 \textcolor{comment}{// I.E.  Use 0x1C10 instead of 0x0000000000001C10 as listed in the LIRC file.}}
+\DoxyCodeLine{17 \textcolor{comment}{//}}
+\DoxyCodeLine{18 \textcolor{comment}{// Here is the LIRC file I found that seems to match the remote codes from the}}
+\DoxyCodeLine{19 \textcolor{comment}{// oscilloscope:}}
+\DoxyCodeLine{20 \textcolor{comment}{//   DISH NETWORK (echostar 301):}}
+\DoxyCodeLine{21 \textcolor{comment}{//   http://lirc.sourceforge.net/remotes/echostar/301\_501\_3100\_5100\_58xx\_59xx}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#ifndef IR\_DISH\_HPP}}
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#define IR\_DISH\_HPP}}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#define DISH\_BITS             16}}
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#define DISH\_HEADER\_MARK     400}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#define DISH\_HEADER\_SPACE   6100}}
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#define DISH\_BIT\_MARK        400}}
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#define DISH\_ONE\_SPACE      1700}}
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#define DISH\_ZERO\_SPACE     2800}}
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#define DISH\_REPEAT\_SPACE   6200}}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33 \textcolor{comment}{//+=============================================================================}}
+\DoxyCodeLine{34 \textcolor{keywordtype}{void} IRsend::sendDISH(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} data, \textcolor{keywordtype}{int} nbits) \{}
+\DoxyCodeLine{35     \textcolor{comment}{// Set IR carrier frequency}}
+\DoxyCodeLine{36     \mbox{\hyperlink{group___sending_ga42c04af63d252b320c017ffa2bfc90e5}{enableIROut}}(56);}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38     \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(DISH\_HEADER\_MARK);}
+\DoxyCodeLine{39     \mbox{\hyperlink{group___sending_ga6a653dc4b2f718ce16a2ae87abdc2527}{space}}(DISH\_HEADER\_SPACE);}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41     \mbox{\hyperlink{group___sending_ga6904a411999a4c9f7306dba49851eb7b}{sendPulseDistanceWidthData}}(DISH\_BIT\_MARK, DISH\_ONE\_SPACE, DISH\_BIT\_MARK, DISH\_ZERO\_SPACE, data, nbits, PROTOCOL\_IS\_MSB\_FIRST);}
+\DoxyCodeLine{42     \mbox{\hyperlink{group___sending_ga7328943560a5f60f4e9e13d677716674}{mark}}(DISH\_HEADER\_MARK); \textcolor{comment}{//added 26th March 2016, by AnalysIR ( https://www.AnalysIR.com )}}
+\DoxyCodeLine{43 \}}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{46 \textcolor{preprocessor}{\#pragma once}}
+
+\end{DoxyCode}

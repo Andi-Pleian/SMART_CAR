@@ -1,0 +1,281 @@
+\hypertarget{class_i_rrecv}{}\doxysection{IRrecv Class Reference}
+\label{class_i_rrecv}\index{IRrecv@{IRrecv}}
+
+
+{\ttfamily \#include $<$IRremote\+Int.\+h$>$}
+
+
+
+Collaboration diagram for IRrecv\+:
+% FIG 0
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group___receiving_ga81eee3a1f9153578d595c771688003e8}{IRrecv}} ()
+\item 
+\mbox{\hyperlink{group___receiving_ga223c74ba081592e2fba4b5cd08c8a45c}{IRrecv}} (uint8\+\_\+t a\+Receive\+Pin)
+\item 
+\mbox{\hyperlink{group___receiving_ga78bb606b282e710d0d542e2aa44786d8}{IRrecv}} (uint8\+\_\+t a\+Receive\+Pin, uint8\+\_\+t a\+Feedback\+LEDPin)
+\item 
+void \mbox{\hyperlink{group___receiving_gac3c968e5acf5b0bbd1e1b87e0b5af61f}{set\+Receive\+Pin}} (uint8\+\_\+t a\+Receive\+Pin\+Number)
+\item 
+void \mbox{\hyperlink{group___receiving_ga69d3e9314aea4a37b43b74a0b4f3f976}{enable\+IRIn}} ()
+\item 
+void \mbox{\hyperlink{group___receiving_gaf828d23c733b1bde8f61e39230d9dbcd}{disable\+IRIn}} ()
+\item 
+void \mbox{\hyperlink{group___receiving_ga0358fc4a683ba3f8d31fdde1e22be724}{begin}} (uint8\+\_\+t a\+Receive\+Pin, bool a\+Enable\+LEDFeedback=false, uint8\+\_\+t a\+Feedback\+LEDPin=\mbox{\hyperlink{_i_rremote_int_8h_a575e74508c30d1ccf92f7e142a43dd3d}{USE\+\_\+\+DEFAULT\+\_\+\+FEEDBACK\+\_\+\+LED\+\_\+\+PIN}})
+\item 
+void \mbox{\hyperlink{group___receiving_ga2c06971f0e4e0c4131930c8903eb21dc}{start}} ()
+\item 
+void \mbox{\hyperlink{group___receiving_ga9588bd3637dadf9b488a8d669030db9d}{start}} (uint32\+\_\+t a\+Microseconds\+To\+Add\+To\+Gap\+Counter)
+\item 
+bool \mbox{\hyperlink{group___receiving_gaa4f466138c416bf4e1548f5399be0298}{available}} ()
+\item 
+\mbox{\hyperlink{struct_i_r_data}{IRData}} $\ast$ \mbox{\hyperlink{group___receiving_ga471a42c75e807e43827e319852536e3c}{read}} ()
+\item 
+void \mbox{\hyperlink{group___receiving_gaadb62786cd826cd539683c03734e46fe}{stop}} ()
+\item 
+void \mbox{\hyperlink{group___receiving_ga8ffd22c2d4c6e93918d987a4b7c3ba5b}{end}} ()
+\item 
+bool \mbox{\hyperlink{group___receiving_gacfbf39fb284cc2d200158f20747c4ae3}{is\+Idle}} ()
+\item 
+bool \mbox{\hyperlink{group___receiving_ga913af602be49b9182fb0b22e9e351b36}{decode}} ()
+\item 
+void \mbox{\hyperlink{group___receiving_gaf40f1e16b1cc911e47ac3f0a9b3b1ec5}{resume}} ()
+\item 
+void \mbox{\hyperlink{group___receiving_ga1c11036a46d1e9624e283821f0a99aee}{print\+IRResult\+Short}} (Print $\ast$a\+Serial)
+\item 
+void \mbox{\hyperlink{group___receiving_ga4597a1f83fb256e1673291c424449c51}{print\+IRResult\+Minimal}} (Print $\ast$a\+Serial)
+\item 
+void \mbox{\hyperlink{group___receiving_ga0d8405bf5ec373798c74684b9c7c2e2d}{print\+IRResult\+Raw\+Formatted}} (Print $\ast$a\+Serial, bool a\+Output\+Microseconds\+Instead\+Of\+Ticks=true)
+\item 
+void \mbox{\hyperlink{group___receiving_gae24919a83cfbea5b2c53a851e1d3fed0}{print\+IRResult\+As\+CVariables}} (Print $\ast$a\+Serial)
+\item 
+void \mbox{\hyperlink{group___receiving_ga21364e5f35756fe0f72581c00b1b33b1}{compensate\+And\+Print\+IRResult\+As\+CArray}} (Print $\ast$a\+Serial, bool a\+Output\+Microseconds\+Instead\+Of\+Ticks=true)
+\item 
+void \mbox{\hyperlink{group___decoder_gaa701711c860c8ff58d332c4567e7ff89}{compensate\+And\+Print\+IRResult\+As\+Pronto}} (Print $\ast$a\+Serial, unsigned int frequency=38000U)
+\item 
+void \mbox{\hyperlink{group___receiving_ga5a515633f91a505e621cba3bab5e53d0}{compensate\+And\+Store\+IRResult\+In\+Array}} (uint8\+\_\+t $\ast$a\+Array\+Ptr)
+\item 
+size\+\_\+t \mbox{\hyperlink{group___decoder_ga48195517ee0e2cd73788c7956e413014}{compensate\+And\+Store\+Pronto}} (String $\ast$a\+String, unsigned int frequency=38000U)
+\item 
+bool \mbox{\hyperlink{group___receiving_gaf8c9cdb5f7280043a552f22265bdb2d5}{decode\+Pulse\+Distance\+Data}} (uint8\+\_\+t a\+Number\+Of\+Bits, uint8\+\_\+t a\+Start\+Offset, uint16\+\_\+t a\+Bit\+Mark\+Micros, uint16\+\_\+t a\+One\+Space\+Micros, uint16\+\_\+t a\+Zero\+Space\+Micros, bool a\+MSBfirst)
+\item 
+bool \mbox{\hyperlink{group___receiving_ga208047cf25c7850842984462bfa11cd0}{decode\+Pulse\+Width\+Data}} (uint8\+\_\+t a\+Number\+Of\+Bits, uint8\+\_\+t a\+Start\+Offset, uint16\+\_\+t a\+One\+Mark\+Micros, uint16\+\_\+t a\+Zero\+Mark\+Micros, uint16\+\_\+t a\+Bit\+Space\+Micros, bool a\+MSBfirst)
+\item 
+bool \mbox{\hyperlink{class_i_rrecv_a9f72960e141618a12b57de0e4c0cae4f}{decode\+Bi\+Phase\+Data}} (uint\+\_\+fast8\+\_\+t a\+Number\+Of\+Bits, uint\+\_\+fast8\+\_\+t a\+Start\+Offset, uint\+\_\+fast8\+\_\+t a\+Start\+Clock\+Count, uint\+\_\+fast8\+\_\+t a\+Value\+Of\+Space\+To\+Mark\+Transition, uint16\+\_\+t a\+Biphase\+Time\+Unit)
+\item 
+void \mbox{\hyperlink{group___receiving_ga51376b9bd8d1d9ac5c694f6a8c8ecc98}{init\+Biphaselevel}} (uint8\+\_\+t a\+RCDecode\+Rawbuff\+Offset, uint16\+\_\+t a\+Biphase\+Time\+Unit)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{group___receiving_ga7d26f9254747368762e4d4c09dc22fb0}{get\+Biphaselevel}} ()
+\item 
+bool \mbox{\hyperlink{group___decoder_gaf9a5bf8248971aca9d4f5b68f3e9f858}{decode\+Bose\+Wave}} ()
+\item 
+bool \mbox{\hyperlink{group___decoder_ga680c0090daf6945a85fd2658af84dfac}{decode\+Denon}} ()
+\item 
+bool \mbox{\hyperlink{group___decoder_gad6ecf38f85cefea8f71090fce4dbbbed}{decode\+JVC}} ()
+\item 
+bool \mbox{\hyperlink{group___decoder_ga099d67ab5fef881af8838d6cb11d0b14}{decode\+Kaseikyo}} ()
+\item 
+bool \mbox{\hyperlink{group___decoder_gae96d28d8682a352cb1118aae25d5bba5}{decode\+Lego\+Power\+Functions}} ()
+\item 
+bool \mbox{\hyperlink{group___decoder_gac098ec62da77aa75ca9016d289f3d7aa}{decode\+LG}} ()
+\item 
+bool \mbox{\hyperlink{class_i_rrecv_a436c84fc521802e1a22f480b39df8e5d}{decode\+Magi\+Quest}} ()
+\item 
+bool \mbox{\hyperlink{group___decoder_ga3f1a3a12862517a61341a92dfb0ea7f8}{decode\+NEC}} ()
+\item 
+bool \mbox{\hyperlink{group___decoder_ga5720b53e427e0346ecc248e55c57e2b9}{decode\+RC5}} ()
+\item 
+bool \mbox{\hyperlink{group___decoder_gad98448418d525479e74c1a38725b498f}{decode\+RC6}} ()
+\item 
+bool \mbox{\hyperlink{group___decoder_ga06311ef402fe0a9cc85ad9defd35fdec}{decode\+Samsung}} ()
+\item 
+bool \mbox{\hyperlink{group___decoder_ga7edfd9309ccd7f87762a17480635dcd6}{decode\+Sharp}} ()
+\item 
+bool \mbox{\hyperlink{group___decoder_gaa4b87d095decf4ec8d9e4c445d6dfa27}{decode\+Sony}} ()
+\item 
+bool \mbox{\hyperlink{group___decoder_ga1de38e9831f29991f9be0e7a2583f142}{decode\+Whynter}} ()
+\item 
+bool \mbox{\hyperlink{group___decoder_ga0d0267f8c89e3cffbecd103195b67f3c}{decode\+Distance}} ()
+\item 
+bool \mbox{\hyperlink{class_i_rrecv_ab33be9e29578a2eb95beb3da169228dc}{decode\+Hash}} ()
+\item 
+bool \mbox{\hyperlink{class_i_rrecv_a6207eb34d90c00db7d8d6c79e53e721d}{decode\+Shuzu}} ()
+\item 
+bool \mbox{\hyperlink{group___decoder_ga5d11ba281c103fe66e0912c46276c26e}{decode\+Denon\+Old}} (\mbox{\hyperlink{structdecode__results}{decode\+\_\+results}} $\ast$a\+Results)
+\item 
+bool \mbox{\hyperlink{group___decoder_gad7512fb183efc882f493ce5ab4c2bd10}{decode\+JVCMSB}} (\mbox{\hyperlink{structdecode__results}{decode\+\_\+results}} $\ast$a\+Results)
+\item 
+bool \mbox{\hyperlink{group___decoder_ga1db023ba20fabb7190751b66445cc872}{decode\+LGMSB}} (\mbox{\hyperlink{structdecode__results}{decode\+\_\+results}} $\ast$a\+Results)
+\item 
+bool \mbox{\hyperlink{group___decoder_ga2b6633498c7e7b1ce64bb7f12a1ab4bd}{decode\+NECMSB}} (\mbox{\hyperlink{structdecode__results}{decode\+\_\+results}} $\ast$a\+Results)
+\item 
+bool \mbox{\hyperlink{group___decoder_ga5b0375df7166d1b6b1886891768a9379}{decode\+Panasonic\+MSB}} (\mbox{\hyperlink{structdecode__results}{decode\+\_\+results}} $\ast$a\+Results)
+\item 
+bool \mbox{\hyperlink{group___decoder_ga7ea1a0eb3b832974be8fd6c2cbde602f}{decode\+Sony\+MSB}} (\mbox{\hyperlink{structdecode__results}{decode\+\_\+results}} $\ast$a\+Results)
+\item 
+bool \mbox{\hyperlink{group___decoder_ga6bdd668914f10932bc87bc57c4059ccd}{decode\+SAMSUNG}} (\mbox{\hyperlink{structdecode__results}{decode\+\_\+results}} $\ast$a\+Results)
+\item 
+bool \mbox{\hyperlink{class_i_rrecv_acc379370caac8ca6ab6f1fd1a4cc4359}{decode\+Hash\+Old}} (\mbox{\hyperlink{structdecode__results}{decode\+\_\+results}} $\ast$a\+Results)
+\item 
+bool \mbox{\hyperlink{group___receiving_ga9705c2ae98b44014e6e8bf55191b2eba}{decode}} (\mbox{\hyperlink{structdecode__results}{decode\+\_\+results}} $\ast$a\+Results) \+\_\+\+\_\+attribute\+\_\+\+\_\+((deprecated(\char`\"{}Please use Ir\+Receiver.\+decode() without a parameter and Ir\+Receiver.\+decoded\+IRData.$<$fieldname$>$ .\char`\"{})))
+\item 
+void \mbox{\hyperlink{group___feedback_l_e_d_functions_ga1519a6ae287c97cf2764666d3250b074}{blink13}} (bool a\+Enable\+LEDFeedback) \+\_\+\+\_\+attribute\+\_\+\+\_\+((deprecated(\char`\"{}Please use \mbox{\hyperlink{group___feedback_l_e_d_functions_ga53e5ec641a900f2c572c8bffd42da921}{set\+LEDFeedback}}() or \mbox{\hyperlink{group___feedback_l_e_d_functions_ga1150b1e371cd7d424d53dbcae6619e54}{enable\+LEDFeedback}}() / \mbox{\hyperlink{group___feedback_l_e_d_functions_gab72e6123a449de7feaaa1c3dcb9f8630}{disable\+LEDFeedback}}().\char`\"{})))
+\item 
+void \mbox{\hyperlink{group___receiving_ga26e37f666387134ed18393fd930f68db}{init\+Decoded\+IRData}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_i_rrecv_a93f90a8f4b380a181c2a9452a2dc916a}{compare}} (unsigned int oldval, unsigned int newval)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_i_r_data}{IRData}} \mbox{\hyperlink{class_i_rrecv_a19d71758b1b0e1fbee948ad917c5b828}{decoded\+IRData}}
+\item 
+\mbox{\hyperlink{_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fad}{decode\+\_\+type\+\_\+t}} \mbox{\hyperlink{class_i_rrecv_ac557e8dec6b8429f95f282370c93eb03}{last\+Decoded\+Protocol}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{class_i_rrecv_a1cf9af80cfeba7c722155c82b2d05c65}{last\+Decoded\+Address}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{class_i_rrecv_ab82d9993e4791d7904ec3b62bb9bc1cf}{last\+Decoded\+Command}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_i_rrecv_a75a2cb038de23ec735c044f176c84b3a}{repeat\+Count}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Main class for receiving IR signals 
+
+Definition at line \mbox{\hyperlink{_i_rremote_int_8h_source_l00213}{213}} of file \mbox{\hyperlink{_i_rremote_int_8h_source}{IRremote\+Int.\+h}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_i_rrecv_a93f90a8f4b380a181c2a9452a2dc916a}\label{class_i_rrecv_a93f90a8f4b380a181c2a9452a2dc916a}} 
+\index{IRrecv@{IRrecv}!compare@{compare}}
+\index{compare@{compare}!IRrecv@{IRrecv}}
+\doxysubsubsection{\texorpdfstring{compare()}{compare()}}
+{\footnotesize\ttfamily uint8\+\_\+t IRrecv\+::compare (\begin{DoxyParamCaption}\item[{unsigned int}]{oldval,  }\item[{unsigned int}]{newval }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_i_rrecv_a9f72960e141618a12b57de0e4c0cae4f}\label{class_i_rrecv_a9f72960e141618a12b57de0e4c0cae4f}} 
+\index{IRrecv@{IRrecv}!decodeBiPhaseData@{decodeBiPhaseData}}
+\index{decodeBiPhaseData@{decodeBiPhaseData}!IRrecv@{IRrecv}}
+\doxysubsubsection{\texorpdfstring{decodeBiPhaseData()}{decodeBiPhaseData()}}
+{\footnotesize\ttfamily bool IRrecv\+::decode\+Bi\+Phase\+Data (\begin{DoxyParamCaption}\item[{uint\+\_\+fast8\+\_\+t}]{a\+Number\+Of\+Bits,  }\item[{uint\+\_\+fast8\+\_\+t}]{a\+Start\+Offset,  }\item[{uint\+\_\+fast8\+\_\+t}]{a\+Start\+Clock\+Count,  }\item[{uint\+\_\+fast8\+\_\+t}]{a\+Value\+Of\+Space\+To\+Mark\+Transition,  }\item[{uint16\+\_\+t}]{a\+Biphase\+Time\+Unit }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_i_rrecv_ab33be9e29578a2eb95beb3da169228dc}\label{class_i_rrecv_ab33be9e29578a2eb95beb3da169228dc}} 
+\index{IRrecv@{IRrecv}!decodeHash@{decodeHash}}
+\index{decodeHash@{decodeHash}!IRrecv@{IRrecv}}
+\doxysubsubsection{\texorpdfstring{decodeHash()}{decodeHash()}}
+{\footnotesize\ttfamily bool IRrecv\+::decode\+Hash (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+% FIG 1
+\mbox{\Hypertarget{class_i_rrecv_acc379370caac8ca6ab6f1fd1a4cc4359}\label{class_i_rrecv_acc379370caac8ca6ab6f1fd1a4cc4359}} 
+\index{IRrecv@{IRrecv}!decodeHashOld@{decodeHashOld}}
+\index{decodeHashOld@{decodeHashOld}!IRrecv@{IRrecv}}
+\doxysubsubsection{\texorpdfstring{decodeHashOld()}{decodeHashOld()}}
+{\footnotesize\ttfamily bool IRrecv\+::decode\+Hash\+Old (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structdecode__results}{decode\+\_\+results}} $\ast$}]{a\+Results }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+% FIG 2
+\mbox{\Hypertarget{class_i_rrecv_a436c84fc521802e1a22f480b39df8e5d}\label{class_i_rrecv_a436c84fc521802e1a22f480b39df8e5d}} 
+\index{IRrecv@{IRrecv}!decodeMagiQuest@{decodeMagiQuest}}
+\index{decodeMagiQuest@{decodeMagiQuest}!IRrecv@{IRrecv}}
+\doxysubsubsection{\texorpdfstring{decodeMagiQuest()}{decodeMagiQuest()}}
+{\footnotesize\ttfamily bool IRrecv\+::decode\+Magi\+Quest (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{ir___magi_quest_8hpp_source_l00112}{112}} of file \mbox{\hyperlink{ir___magi_quest_8hpp_source}{ir\+\_\+\+Magi\+Quest.\+hpp}}.
+
+Here is the call graph for this function\+:
+% FIG 3
+Here is the caller graph for this function\+:
+% FIG 4
+\mbox{\Hypertarget{class_i_rrecv_a6207eb34d90c00db7d8d6c79e53e721d}\label{class_i_rrecv_a6207eb34d90c00db7d8d6c79e53e721d}} 
+\index{IRrecv@{IRrecv}!decodeShuzu@{decodeShuzu}}
+\index{decodeShuzu@{decodeShuzu}!IRrecv@{IRrecv}}
+\doxysubsubsection{\texorpdfstring{decodeShuzu()}{decodeShuzu()}}
+{\footnotesize\ttfamily bool IRrecv\+::decode\+Shuzu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{ir___template_8hpp_source_l00204}{204}} of file \mbox{\hyperlink{ir___template_8hpp_source}{ir\+\_\+\+Template.\+hpp}}.
+
+Here is the call graph for this function\+:
+% FIG 5
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_i_rrecv_a19d71758b1b0e1fbee948ad917c5b828}\label{class_i_rrecv_a19d71758b1b0e1fbee948ad917c5b828}} 
+\index{IRrecv@{IRrecv}!decodedIRData@{decodedIRData}}
+\index{decodedIRData@{decodedIRData}!IRrecv@{IRrecv}}
+\doxysubsubsection{\texorpdfstring{decodedIRData}{decodedIRData}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_i_r_data}{IRData}} IRrecv\+::decoded\+IRData}
+
+
+
+Definition at line \mbox{\hyperlink{_i_rremote_int_8h_source_l00328}{328}} of file \mbox{\hyperlink{_i_rremote_int_8h_source}{IRremote\+Int.\+h}}.
+
+\mbox{\Hypertarget{class_i_rrecv_a1cf9af80cfeba7c722155c82b2d05c65}\label{class_i_rrecv_a1cf9af80cfeba7c722155c82b2d05c65}} 
+\index{IRrecv@{IRrecv}!lastDecodedAddress@{lastDecodedAddress}}
+\index{lastDecodedAddress@{lastDecodedAddress}!IRrecv@{IRrecv}}
+\doxysubsubsection{\texorpdfstring{lastDecodedAddress}{lastDecodedAddress}}
+{\footnotesize\ttfamily uint32\+\_\+t IRrecv\+::last\+Decoded\+Address}
+
+
+
+Definition at line \mbox{\hyperlink{_i_rremote_int_8h_source_l00332}{332}} of file \mbox{\hyperlink{_i_rremote_int_8h_source}{IRremote\+Int.\+h}}.
+
+\mbox{\Hypertarget{class_i_rrecv_ab82d9993e4791d7904ec3b62bb9bc1cf}\label{class_i_rrecv_ab82d9993e4791d7904ec3b62bb9bc1cf}} 
+\index{IRrecv@{IRrecv}!lastDecodedCommand@{lastDecodedCommand}}
+\index{lastDecodedCommand@{lastDecodedCommand}!IRrecv@{IRrecv}}
+\doxysubsubsection{\texorpdfstring{lastDecodedCommand}{lastDecodedCommand}}
+{\footnotesize\ttfamily uint32\+\_\+t IRrecv\+::last\+Decoded\+Command}
+
+
+
+Definition at line \mbox{\hyperlink{_i_rremote_int_8h_source_l00333}{333}} of file \mbox{\hyperlink{_i_rremote_int_8h_source}{IRremote\+Int.\+h}}.
+
+\mbox{\Hypertarget{class_i_rrecv_ac557e8dec6b8429f95f282370c93eb03}\label{class_i_rrecv_ac557e8dec6b8429f95f282370c93eb03}} 
+\index{IRrecv@{IRrecv}!lastDecodedProtocol@{lastDecodedProtocol}}
+\index{lastDecodedProtocol@{lastDecodedProtocol}!IRrecv@{IRrecv}}
+\doxysubsubsection{\texorpdfstring{lastDecodedProtocol}{lastDecodedProtocol}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_i_r_protocol_8h_ad5b287a488a8c1b7b8661f029ab56fad}{decode\+\_\+type\+\_\+t}} IRrecv\+::last\+Decoded\+Protocol}
+
+
+
+Definition at line \mbox{\hyperlink{_i_rremote_int_8h_source_l00331}{331}} of file \mbox{\hyperlink{_i_rremote_int_8h_source}{IRremote\+Int.\+h}}.
+
+\mbox{\Hypertarget{class_i_rrecv_a75a2cb038de23ec735c044f176c84b3a}\label{class_i_rrecv_a75a2cb038de23ec735c044f176c84b3a}} 
+\index{IRrecv@{IRrecv}!repeatCount@{repeatCount}}
+\index{repeatCount@{repeatCount}!IRrecv@{IRrecv}}
+\doxysubsubsection{\texorpdfstring{repeatCount}{repeatCount}}
+{\footnotesize\ttfamily uint8\+\_\+t IRrecv\+::repeat\+Count}
+
+
+
+Definition at line \mbox{\hyperlink{_i_rremote_int_8h_source_l00335}{335}} of file \mbox{\hyperlink{_i_rremote_int_8h_source}{IRremote\+Int.\+h}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+main/\+IRRemote\+\_\+\+Library/\mbox{\hyperlink{_i_rremote_int_8h}{IRremote\+Int.\+h}}\item 
+main/\+IRRemote\+\_\+\+Library/\mbox{\hyperlink{ir___bose_wave_8hpp}{ir\+\_\+\+Bose\+Wave.\+hpp}}\item 
+main/\+IRRemote\+\_\+\+Library/\mbox{\hyperlink{ir___denon_8hpp}{ir\+\_\+\+Denon.\+hpp}}\item 
+main/\+IRRemote\+\_\+\+Library/\mbox{\hyperlink{ir___distance_protocol_8hpp}{ir\+\_\+\+Distance\+Protocol.\+hpp}}\item 
+main/\+IRRemote\+\_\+\+Library/\mbox{\hyperlink{ir___j_v_c_8hpp}{ir\+\_\+\+JVC.\+hpp}}\item 
+main/\+IRRemote\+\_\+\+Library/\mbox{\hyperlink{ir___kaseikyo_8hpp}{ir\+\_\+\+Kaseikyo.\+hpp}}\item 
+main/\+IRRemote\+\_\+\+Library/\mbox{\hyperlink{ir___lego_8hpp}{ir\+\_\+\+Lego.\+hpp}}\item 
+main/\+IRRemote\+\_\+\+Library/\mbox{\hyperlink{ir___l_g_8hpp}{ir\+\_\+\+LG.\+hpp}}\item 
+main/\+IRRemote\+\_\+\+Library/\mbox{\hyperlink{ir___magi_quest_8hpp}{ir\+\_\+\+Magi\+Quest.\+hpp}}\item 
+main/\+IRRemote\+\_\+\+Library/\mbox{\hyperlink{ir___n_e_c_8hpp}{ir\+\_\+\+NEC.\+hpp}}\item 
+main/\+IRRemote\+\_\+\+Library/\mbox{\hyperlink{ir___pronto_8hpp}{ir\+\_\+\+Pronto.\+hpp}}\item 
+main/\+IRRemote\+\_\+\+Library/\mbox{\hyperlink{ir___r_c5___r_c6_8hpp}{ir\+\_\+\+RC5\+\_\+\+RC6.\+hpp}}\item 
+main/\+IRRemote\+\_\+\+Library/\mbox{\hyperlink{ir___samsung_8hpp}{ir\+\_\+\+Samsung.\+hpp}}\item 
+main/\+IRRemote\+\_\+\+Library/\mbox{\hyperlink{ir___sony_8hpp}{ir\+\_\+\+Sony.\+hpp}}\item 
+main/\+IRRemote\+\_\+\+Library/\mbox{\hyperlink{ir___template_8hpp}{ir\+\_\+\+Template.\+hpp}}\item 
+main/\+IRRemote\+\_\+\+Library/\mbox{\hyperlink{ir___whynter_8hpp}{ir\+\_\+\+Whynter.\+hpp}}\item 
+main/\+IRRemote\+\_\+\+Library/\mbox{\hyperlink{_i_r_feedback_l_e_d_8hpp}{IRFeedback\+LED.\+hpp}}\item 
+main/\+IRRemote\+\_\+\+Library/\mbox{\hyperlink{_i_r_receive_8hpp}{IRReceive.\+hpp}}\end{DoxyCompactItemize}

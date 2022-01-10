@@ -1,0 +1,188 @@
+\hypertarget{_i_rremote_8hpp}{}\doxysection{IRRemote/\+IRremote.hpp File Reference}
+\label{_i_rremote_8hpp}\index{IRRemote/IRremote.hpp@{IRRemote/IRremote.hpp}}
+
+
+Public API to the library.  
+
+
+{\ttfamily \#include \char`\"{}IRremote\+Int.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}private/\+IRTimer.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}IRFeedback\+LED.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}IRReceive.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}IRSend.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ir\+\_\+\+Bose\+Wave.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ir\+\_\+\+Denon.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ir\+\_\+\+Distance\+Protocol.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ir\+\_\+\+JVC.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ir\+\_\+\+Kaseikyo.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ir\+\_\+\+Lego.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ir\+\_\+\+LG.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ir\+\_\+\+Magi\+Quest.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ir\+\_\+\+NEC.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ir\+\_\+\+RC5\+\_\+\+RC6.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ir\+\_\+\+Samsung.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ir\+\_\+\+Sony.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ir\+\_\+\+Whynter.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ir\+\_\+\+Pronto.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ir\+\_\+\+Dish.\+hpp\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{_i_rremote_8hpp_ad9f03906065f749788cc9e3f68fb6253}\label{_i_rremote_8hpp_ad9f03906065f749788cc9e3f68fb6253}} 
+\#define {\bfseries VERSION\+\_\+\+IRREMOTE}~\char`\"{}3.\+5.\+0\char`\"{}
+\item 
+\mbox{\Hypertarget{_i_rremote_8hpp_a5fccc9834ba25cd17b7ca45e14aa7751}\label{_i_rremote_8hpp_a5fccc9834ba25cd17b7ca45e14aa7751}} 
+\#define {\bfseries VERSION\+\_\+\+IRREMOTE\+\_\+\+MAJOR}~3
+\item 
+\mbox{\Hypertarget{_i_rremote_8hpp_a824e2f61336bde09dd9b835e8606683f}\label{_i_rremote_8hpp_a824e2f61336bde09dd9b835e8606683f}} 
+\#define {\bfseries VERSION\+\_\+\+IRREMOTE\+\_\+\+MINOR}~5
+\item 
+\mbox{\Hypertarget{_i_rremote_8hpp_a589c5f91ad251aff0cbdc179a5faaa60}\label{_i_rremote_8hpp_a589c5f91ad251aff0cbdc179a5faaa60}} 
+\#define {\bfseries DECODE\+\_\+\+DENON}
+\item 
+\mbox{\Hypertarget{_i_rremote_8hpp_ac1f2b013768a77943b002953197cb573}\label{_i_rremote_8hpp_ac1f2b013768a77943b002953197cb573}} 
+\#define {\bfseries DECODE\+\_\+\+JVC}
+\item 
+\mbox{\Hypertarget{_i_rremote_8hpp_acd46d28198948511f9c8b97328b5fdde}\label{_i_rremote_8hpp_acd46d28198948511f9c8b97328b5fdde}} 
+\#define {\bfseries DECODE\+\_\+\+KASEIKYO}
+\item 
+\mbox{\Hypertarget{_i_rremote_8hpp_a018b3df8bf49d3f6cc094db8491ad2ad}\label{_i_rremote_8hpp_a018b3df8bf49d3f6cc094db8491ad2ad}} 
+\#define {\bfseries DECODE\+\_\+\+PANASONIC}
+\item 
+\mbox{\Hypertarget{_i_rremote_8hpp_a54d5d4710700ef373384f64409df677f}\label{_i_rremote_8hpp_a54d5d4710700ef373384f64409df677f}} 
+\#define {\bfseries DECODE\+\_\+\+LG}
+\item 
+\mbox{\Hypertarget{_i_rremote_8hpp_ac1592db6a7ef80a046d9f33a5a2ed5d8}\label{_i_rremote_8hpp_ac1592db6a7ef80a046d9f33a5a2ed5d8}} 
+\#define {\bfseries DECODE\+\_\+\+NEC}
+\item 
+\mbox{\Hypertarget{_i_rremote_8hpp_aa460f8aea781d305b7e0fef9b6748523}\label{_i_rremote_8hpp_aa460f8aea781d305b7e0fef9b6748523}} 
+\#define {\bfseries DECODE\+\_\+\+SAMSUNG}
+\item 
+\mbox{\Hypertarget{_i_rremote_8hpp_a308d000d6a90fac72f4dcf47323bef21}\label{_i_rremote_8hpp_a308d000d6a90fac72f4dcf47323bef21}} 
+\#define {\bfseries DECODE\+\_\+\+SONY}
+\item 
+\mbox{\Hypertarget{_i_rremote_8hpp_aa1dbf245adf93ffa573dc4863ea29c5b}\label{_i_rremote_8hpp_aa1dbf245adf93ffa573dc4863ea29c5b}} 
+\#define {\bfseries DECODE\+\_\+\+RC5}
+\item 
+\mbox{\Hypertarget{_i_rremote_8hpp_a4f3761bb8157be080bee1d9e4c1bc8c8}\label{_i_rremote_8hpp_a4f3761bb8157be080bee1d9e4c1bc8c8}} 
+\#define {\bfseries DECODE\+\_\+\+RC6}
+\item 
+\mbox{\Hypertarget{_i_rremote_8hpp_a2935e3b14cf449b00b4166f71eecf8af}\label{_i_rremote_8hpp_a2935e3b14cf449b00b4166f71eecf8af}} 
+\#define {\bfseries DECODE\+\_\+\+BOSEWAVE}
+\item 
+\mbox{\Hypertarget{_i_rremote_8hpp_a95bc1b009436547a892527e2c2f43384}\label{_i_rremote_8hpp_a95bc1b009436547a892527e2c2f43384}} 
+\#define {\bfseries DECODE\+\_\+\+LEGO\+\_\+\+PF}
+\item 
+\mbox{\Hypertarget{_i_rremote_8hpp_ad1f31ad2d36110ba06286b7fb1d1ddcf}\label{_i_rremote_8hpp_ad1f31ad2d36110ba06286b7fb1d1ddcf}} 
+\#define {\bfseries DECODE\+\_\+\+WHYNTER}
+\item 
+\mbox{\Hypertarget{_i_rremote_8hpp_a4f3f73855171522cc6a9fa5ba5f51896}\label{_i_rremote_8hpp_a4f3f73855171522cc6a9fa5ba5f51896}} 
+\#define {\bfseries DECODE\+\_\+\+MAGIQUEST}
+\item 
+\mbox{\Hypertarget{_i_rremote_8hpp_ac56dd3a6901bd61a6a122e1f683e5105}\label{_i_rremote_8hpp_ac56dd3a6901bd61a6a122e1f683e5105}} 
+\#define {\bfseries DECODE\+\_\+\+DISTANCE}
+\item 
+\mbox{\Hypertarget{_i_rremote_8hpp_a4ee00d8b9631462888e74c95712234e1}\label{_i_rremote_8hpp_a4ee00d8b9631462888e74c95712234e1}} 
+\#define {\bfseries DECODE\+\_\+\+HASH}
+\item 
+\#define \mbox{\hyperlink{_i_rremote_8hpp_a589aa40429eeb37b6e83a2c09854a47b}{RAW\+\_\+\+BUFFER\+\_\+\+LENGTH}}~112
+\item 
+\#define \mbox{\hyperlink{_i_rremote_8hpp_a6cb4ad1bc3f0b5d2c4503615058a1d90}{MARK\+\_\+\+EXCESS\+\_\+\+MICROS}}~20
+\item 
+\#define \mbox{\hyperlink{_i_rremote_8hpp_a2eb6de0bae8bc6f19f3832c00e91f499}{RECORD\+\_\+\+GAP\+\_\+\+MICROS}}~5000
+\item 
+\#define \mbox{\hyperlink{_i_rremote_8hpp_a6afa54ea105253cce361d8c571da5fa9}{RECORD\+\_\+\+GAP\+\_\+\+MICROS\+\_\+\+WARNING\+\_\+\+THRESHOLD}}~20000
+\item 
+\#define \mbox{\hyperlink{_i_rremote_8hpp_a1ba5a08e87f922d04e6acb5c07867386}{RECORD\+\_\+\+GAP\+\_\+\+TICKS}}~(\mbox{\hyperlink{_i_rremote_8hpp_a2eb6de0bae8bc6f19f3832c00e91f499}{RECORD\+\_\+\+GAP\+\_\+\+MICROS}} / \mbox{\hyperlink{_i_rremote_int_8h_a1c7eebb527483c272812530caa313d20}{MICROS\+\_\+\+PER\+\_\+\+TICK}})
+\item 
+\mbox{\Hypertarget{_i_rremote_8hpp_ace39503e8ded5ffb7a1c0d6f651f8d43}\label{_i_rremote_8hpp_ace39503e8ded5ffb7a1c0d6f651f8d43}} 
+\#define {\bfseries INPUT\+\_\+\+MARK}~0
+\begin{DoxyCompactList}\small\item\em Sensor output for a mark (\char`\"{}flash\char`\"{}) \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{_i_rremote_8hpp_ac836377a7a04f6f4044daab71d9660f9}{PULSE\+\_\+\+CORRECTION\+\_\+\+NANOS}}~600
+\item 
+\#define \mbox{\hyperlink{_i_rremote_8hpp_abb919079668bcc14433d4c857ab8a196}{RAWBUF}}~101
+\item 
+\mbox{\Hypertarget{_i_rremote_8hpp_a2c9384c67919c632913b8db2088f8341}\label{_i_rremote_8hpp_a2c9384c67919c632913b8db2088f8341}} 
+\#define {\bfseries REPEAT}~0x\+FFFFFFFF
+\item 
+\mbox{\Hypertarget{_i_rremote_8hpp_aad2fcaac88c28bf54ecbd42146a56e3f}\label{_i_rremote_8hpp_aad2fcaac88c28bf54ecbd42146a56e3f}} 
+\#define {\bfseries USECPERTICK}~\mbox{\hyperlink{_i_rremote_int_8h_a1c7eebb527483c272812530caa313d20}{MICROS\+\_\+\+PER\+\_\+\+TICK}}
+\item 
+\mbox{\Hypertarget{_i_rremote_8hpp_ac21b48ddc487212fbce7d6474423e080}\label{_i_rremote_8hpp_ac21b48ddc487212fbce7d6474423e080}} 
+\#define {\bfseries MARK\+\_\+\+EXCESS}~\mbox{\hyperlink{_i_rremote_8hpp_a6cb4ad1bc3f0b5d2c4503615058a1d90}{MARK\+\_\+\+EXCESS\+\_\+\+MICROS}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Public API to the library. 
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{!!! All the macro values defined here can be overwritten with values,    !!!}
+\DoxyCodeLine{!!! the user defines in its source code BEFORE the \#include <IRremote.hpp> !!!}
+
+\end{DoxyCode}
+
+
+This file is part of Arduino-\/\+IRremote \href{https://github.com/Arduino-IRremote/Arduino-IRremote}{\texttt{ https\+://github.\+com/\+Arduino-\/\+IRremote/\+Arduino-\/\+IRremote}}.
+
+MIT License
+
+Copyright (c) 2015-\/2021 Ken Shirriff \href{http://www.righto.com}{\texttt{ http\+://www.\+righto.\+com}}, Rafi Khan, Armin Joachimsmeyer
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \char`\"{}\+Software\char`\"{}), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions\+:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED \char`\"{}\+AS IS\char`\"{}, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+For Ken Shiriffs original blog entry, see \href{http://www.righto.com/2009/08/multi-protocol-infrared-remote-library.html}{\texttt{ http\+://www.\+righto.\+com/2009/08/multi-\/protocol-\/infrared-\/remote-\/library.\+html}} Initially influenced by\+: \href{http://www.arduino.cc/cgi-bin/yabb2/YaBB.pl?num=1210243556}{\texttt{ http\+://www.\+arduino.\+cc/cgi-\/bin/yabb2/\+Ya\+BB.\+pl?num=1210243556}} and \href{http://zovirl.com/2008/11/12/building-a-universal-remote-with-an-arduino/}{\texttt{ http\+://zovirl.\+com/2008/11/12/building-\/a-\/universal-\/remote-\/with-\/an-\/arduino/}} 
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{_i_rremote_8hpp_a6cb4ad1bc3f0b5d2c4503615058a1d90}\label{_i_rremote_8hpp_a6cb4ad1bc3f0b5d2c4503615058a1d90}} 
+\index{IRremote.hpp@{IRremote.hpp}!MARK\_EXCESS\_MICROS@{MARK\_EXCESS\_MICROS}}
+\index{MARK\_EXCESS\_MICROS@{MARK\_EXCESS\_MICROS}!IRremote.hpp@{IRremote.hpp}}
+\doxysubsubsection{\texorpdfstring{MARK\_EXCESS\_MICROS}{MARK\_EXCESS\_MICROS}}
+{\footnotesize\ttfamily \#define MARK\+\_\+\+EXCESS\+\_\+\+MICROS~20}
+
+MARK\+\_\+\+EXCESS\+\_\+\+MICROS is subtracted from all marks and added to all spaces before decoding, to compensate for the signal forming of different IR receiver modules For Vishay TSOP$\ast$, marks tend to be too long and spaces tend to be too short. If you set MARK\+\_\+\+EXCESS\+\_\+\+MICROS to approx. 50us then the TSOP4838 works best. At 100us it also worked, but not as well. Set MARK\+\_\+\+EXCESS to 100us and the VS1838 doesn\textquotesingle{}t work at all.
+
+The right value is critical for IR codes using short pulses like Denon / Sharp / Lego
+
+Observed values\+: Delta of each signal type is around 50 up to 100 and at low signals up to 200. TSOP is better, especially at low IR signal level. VS1838 Mark Excess -\/50 to +50 us TSOP31238 Mark Excess 0 to +50 \mbox{\Hypertarget{_i_rremote_8hpp_ac836377a7a04f6f4044daab71d9660f9}\label{_i_rremote_8hpp_ac836377a7a04f6f4044daab71d9660f9}} 
+\index{IRremote.hpp@{IRremote.hpp}!PULSE\_CORRECTION\_NANOS@{PULSE\_CORRECTION\_NANOS}}
+\index{PULSE\_CORRECTION\_NANOS@{PULSE\_CORRECTION\_NANOS}!IRremote.hpp@{IRremote.hpp}}
+\doxysubsubsection{\texorpdfstring{PULSE\_CORRECTION\_NANOS}{PULSE\_CORRECTION\_NANOS}}
+{\footnotesize\ttfamily \#define PULSE\+\_\+\+CORRECTION\+\_\+\+NANOS~600}
+
+Define to disable carrier PWM generation in software and use (restricted) hardware PWM. Define to use no carrier PWM, just simulate an active low receiver signal. Define to use or simulate open drain output mode at send pin. Attention, active state of open drain is LOW, so connect the send LED between positive supply and send pin! This amount is subtracted from the on-\/time of the pulses generated for software PWM generation. It should be the time used for digital\+Write(send\+Pin, LOW) and the call to delay\+Micros() Measured value for Nano @16MHz is around 3000, for Bluepill @72MHz is around 700, for Zero 3600 \mbox{\Hypertarget{_i_rremote_8hpp_a589aa40429eeb37b6e83a2c09854a47b}\label{_i_rremote_8hpp_a589aa40429eeb37b6e83a2c09854a47b}} 
+\index{IRremote.hpp@{IRremote.hpp}!RAW\_BUFFER\_LENGTH@{RAW\_BUFFER\_LENGTH}}
+\index{RAW\_BUFFER\_LENGTH@{RAW\_BUFFER\_LENGTH}!IRremote.hpp@{IRremote.hpp}}
+\doxysubsubsection{\texorpdfstring{RAW\_BUFFER\_LENGTH}{RAW\_BUFFER\_LENGTH}}
+{\footnotesize\ttfamily \#define RAW\+\_\+\+BUFFER\+\_\+\+LENGTH~112}
+
+The length of the buffer where the IR timing data is stored before decoding 100 is sufficient for most standard protocols, but air conditioners often send a longer protocol data stream \mbox{\Hypertarget{_i_rremote_8hpp_abb919079668bcc14433d4c857ab8a196}\label{_i_rremote_8hpp_abb919079668bcc14433d4c857ab8a196}} 
+\index{IRremote.hpp@{IRremote.hpp}!RAWBUF@{RAWBUF}}
+\index{RAWBUF@{RAWBUF}!IRremote.hpp@{IRremote.hpp}}
+\doxysubsubsection{\texorpdfstring{RAWBUF}{RAWBUF}}
+{\footnotesize\ttfamily \#define RAWBUF~101}
+
+Macros for legacy compatibility \mbox{\Hypertarget{_i_rremote_8hpp_a2eb6de0bae8bc6f19f3832c00e91f499}\label{_i_rremote_8hpp_a2eb6de0bae8bc6f19f3832c00e91f499}} 
+\index{IRremote.hpp@{IRremote.hpp}!RECORD\_GAP\_MICROS@{RECORD\_GAP\_MICROS}}
+\index{RECORD\_GAP\_MICROS@{RECORD\_GAP\_MICROS}!IRremote.hpp@{IRremote.hpp}}
+\doxysubsubsection{\texorpdfstring{RECORD\_GAP\_MICROS}{RECORD\_GAP\_MICROS}}
+{\footnotesize\ttfamily \#define RECORD\+\_\+\+GAP\+\_\+\+MICROS~5000}
+
+Minimum gap between IR transmissions, to detect the end of a protocol. Must be greater than any space of a protocol e.\+g. the NEC header space of 4500 us. Must be smaller than any gap between a command and a repeat; e.\+g. the retransmission gap for Sony is around 24 ms. Keep in mind, that this is the delay between the end of the received command and the start of decoding. \mbox{\Hypertarget{_i_rremote_8hpp_a6afa54ea105253cce361d8c571da5fa9}\label{_i_rremote_8hpp_a6afa54ea105253cce361d8c571da5fa9}} 
+\index{IRremote.hpp@{IRremote.hpp}!RECORD\_GAP\_MICROS\_WARNING\_THRESHOLD@{RECORD\_GAP\_MICROS\_WARNING\_THRESHOLD}}
+\index{RECORD\_GAP\_MICROS\_WARNING\_THRESHOLD@{RECORD\_GAP\_MICROS\_WARNING\_THRESHOLD}!IRremote.hpp@{IRremote.hpp}}
+\doxysubsubsection{\texorpdfstring{RECORD\_GAP\_MICROS\_WARNING\_THRESHOLD}{RECORD\_GAP\_MICROS\_WARNING\_THRESHOLD}}
+{\footnotesize\ttfamily \#define RECORD\+\_\+\+GAP\+\_\+\+MICROS\+\_\+\+WARNING\+\_\+\+THRESHOLD~20000}
+
+Threshold for warnings at print\+IRResult$\ast$() to report about changing the RECORD\+\_\+\+GAP\+\_\+\+MICROS value to a higher value. \mbox{\Hypertarget{_i_rremote_8hpp_a1ba5a08e87f922d04e6acb5c07867386}\label{_i_rremote_8hpp_a1ba5a08e87f922d04e6acb5c07867386}} 
+\index{IRremote.hpp@{IRremote.hpp}!RECORD\_GAP\_TICKS@{RECORD\_GAP\_TICKS}}
+\index{RECORD\_GAP\_TICKS@{RECORD\_GAP\_TICKS}!IRremote.hpp@{IRremote.hpp}}
+\doxysubsubsection{\texorpdfstring{RECORD\_GAP\_TICKS}{RECORD\_GAP\_TICKS}}
+{\footnotesize\ttfamily \#define RECORD\+\_\+\+GAP\+\_\+\+TICKS~(\mbox{\hyperlink{_i_rremote_8hpp_a2eb6de0bae8bc6f19f3832c00e91f499}{RECORD\+\_\+\+GAP\+\_\+\+MICROS}} / \mbox{\hyperlink{_i_rremote_int_8h_a1c7eebb527483c272812530caa313d20}{MICROS\+\_\+\+PER\+\_\+\+TICK}})}
+
+Minimum gap between IR transmissions, in MICROS\+\_\+\+PER\+\_\+\+TICK 

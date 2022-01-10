@@ -1,0 +1,404 @@
+\hypertarget{group___tiny_receiver}{}\doxysection{Minimal receiver for NEC protocol}
+\label{group___tiny_receiver}\index{Minimal receiver for NEC protocol@{Minimal receiver for NEC protocol}}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_tiny_i_r_receiver_struct}{Tiny\+IRReceiver\+Struct}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group___tiny_receiver_ga2ab110e480a4b16fe516c2afd16a1ea2}{NEC\+\_\+\+ADDRESS\+\_\+\+BITS}}~16
+\item 
+\#define \mbox{\hyperlink{group___tiny_receiver_ga07e295da53565eb7146072bdfeb2ed32}{NEC\+\_\+\+COMMAND\+\_\+\+BITS}}~16
+\item 
+\#define \mbox{\hyperlink{group___tiny_receiver_gaa82c77bc0131ac28bc3534b8cf3422bc}{NEC\+\_\+\+BITS}}~(\mbox{\hyperlink{group___tiny_receiver_ga2ab110e480a4b16fe516c2afd16a1ea2}{NEC\+\_\+\+ADDRESS\+\_\+\+BITS}} + \mbox{\hyperlink{group___tiny_receiver_ga07e295da53565eb7146072bdfeb2ed32}{NEC\+\_\+\+COMMAND\+\_\+\+BITS}})
+\item 
+\#define \mbox{\hyperlink{group___tiny_receiver_gaf3317b0cf5cf7d3063addbaa0a256158}{NEC\+\_\+\+UNIT}}~560
+\item 
+\#define \mbox{\hyperlink{group___tiny_receiver_ga8d393b95d8df4dfa15873aec6a37965e}{NEC\+\_\+\+HEADER\+\_\+\+MARK}}~(16 $\ast$ \mbox{\hyperlink{group___tiny_receiver_gaf3317b0cf5cf7d3063addbaa0a256158}{NEC\+\_\+\+UNIT}})
+\item 
+\#define \mbox{\hyperlink{group___tiny_receiver_ga5c728ed320ffee624e26767be0a80404}{NEC\+\_\+\+HEADER\+\_\+\+SPACE}}~(8 $\ast$ \mbox{\hyperlink{group___tiny_receiver_gaf3317b0cf5cf7d3063addbaa0a256158}{NEC\+\_\+\+UNIT}})
+\item 
+\#define \mbox{\hyperlink{group___tiny_receiver_ga3abbe30ef3781c1cf2490003e1c1443a}{NEC\+\_\+\+BIT\+\_\+\+MARK}}~\mbox{\hyperlink{group___tiny_receiver_gaf3317b0cf5cf7d3063addbaa0a256158}{NEC\+\_\+\+UNIT}}
+\item 
+\#define \mbox{\hyperlink{group___tiny_receiver_ga5ac04ec8b2185c9fb257d39c472733b1}{NEC\+\_\+\+ONE\+\_\+\+SPACE}}~(3 $\ast$ \mbox{\hyperlink{group___tiny_receiver_gaf3317b0cf5cf7d3063addbaa0a256158}{NEC\+\_\+\+UNIT}})
+\item 
+\#define \mbox{\hyperlink{group___tiny_receiver_ga5ee46914e98bf7f87f32a7104843b243}{NEC\+\_\+\+ZERO\+\_\+\+SPACE}}~\mbox{\hyperlink{group___tiny_receiver_gaf3317b0cf5cf7d3063addbaa0a256158}{NEC\+\_\+\+UNIT}}
+\item 
+\#define \mbox{\hyperlink{group___tiny_receiver_ga91880ffa0b09391f2c827d3a1c565abf}{NEC\+\_\+\+REPEAT\+\_\+\+HEADER\+\_\+\+SPACE}}~(4 $\ast$ \mbox{\hyperlink{group___tiny_receiver_gaf3317b0cf5cf7d3063addbaa0a256158}{NEC\+\_\+\+UNIT}})
+\item 
+\#define \mbox{\hyperlink{group___tiny_receiver_gac2dab5c4a22f8c4915217d3ee4676f08}{NEC\+\_\+\+REPEAT\+\_\+\+PERIOD}}~110000
+\item 
+\#define \mbox{\hyperlink{group___tiny_receiver_ga02b97ed6af9381a224ea3be0cab054a0}{lower\+Value25\+Percent}}(a\+Duration)~(a\+Duration -\/ (a\+Duration / 4))
+\item 
+\#define \mbox{\hyperlink{group___tiny_receiver_ga22a6cd77d395a6c06686eafdf9aa2b52}{upper\+Value25\+Percent}}(a\+Duration)~(a\+Duration + (a\+Duration / 4))
+\item 
+\#define \mbox{\hyperlink{group___tiny_receiver_gadc6908665014a0bef4442c7769ed5054}{lower\+Value}}(a\+Duration)~(a\+Duration -\/ (a\+Duration / 2))
+\item 
+\#define \mbox{\hyperlink{group___tiny_receiver_gaf6134d81e390f1e3dcd60e2aca9c9143}{upper\+Value}}(a\+Duration)~(a\+Duration + (a\+Duration / 2))
+\item 
+\#define \mbox{\hyperlink{group___tiny_receiver_ga2535b0f1ae380b696c6a37ffa69b3df3}{IR\+\_\+\+RECEIVER\+\_\+\+STATE\+\_\+\+WAITING\+\_\+\+FOR\+\_\+\+START\+\_\+\+MARK}}~0
+\item 
+\#define \mbox{\hyperlink{group___tiny_receiver_ga43017cba7c72b3f0d45265f417e5195d}{IR\+\_\+\+RECEIVER\+\_\+\+STATE\+\_\+\+WAITING\+\_\+\+FOR\+\_\+\+START\+\_\+\+SPACE}}~1
+\item 
+\#define \mbox{\hyperlink{group___tiny_receiver_gaecf505182d1fa2aa885fcde6cd4160bf}{IR\+\_\+\+RECEIVER\+\_\+\+STATE\+\_\+\+WAITING\+\_\+\+FOR\+\_\+\+FIRST\+\_\+\+DATA\+\_\+\+MARK}}~2
+\item 
+\#define \mbox{\hyperlink{group___tiny_receiver_gad3b7237c2aa120840c0eed233d5c627e}{IR\+\_\+\+RECEIVER\+\_\+\+STATE\+\_\+\+WAITING\+\_\+\+FOR\+\_\+\+DATA\+\_\+\+SPACE}}~3
+\item 
+\#define \mbox{\hyperlink{group___tiny_receiver_gae237abb240b59b9c8dd7d853fc3c76b1}{IR\+\_\+\+RECEIVER\+\_\+\+STATE\+\_\+\+WAITING\+\_\+\+FOR\+\_\+\+DATA\+\_\+\+MARK}}~4
+\item 
+\#define \mbox{\hyperlink{group___tiny_receiver_ga2f6f17e18c7b5f1ef4b9cfc907d086e4}{IR\+\_\+\+RECEIVER\+\_\+\+STATE\+\_\+\+WAITING\+\_\+\+FOR\+\_\+\+STOP\+\_\+\+MARK}}~5
+\item 
+\#define \mbox{\hyperlink{group___tiny_receiver_ga57d0c5b7d83f10557910205596d66dfb}{IR\+\_\+\+INPUT\+\_\+\+PIN}}~2
+\item 
+\#define \mbox{\hyperlink{group___tiny_receiver_gae7054616db7e69e979dfcd5ad38fb968}{TINY\+\_\+\+RECEIVER\+\_\+\+USE\+\_\+\+ARDUINO\+\_\+\+ATTACH\+\_\+\+INTERRUPT}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group___tiny_receiver_ga5c751ad19033cb8c209d7253dccf34e7}{handle\+Received\+Tiny\+IRData}} (uint16\+\_\+t a\+Address, uint8\+\_\+t a\+Command, bool is\+Repeat)
+\item 
+void \mbox{\hyperlink{group___tiny_receiver_ga1f3913249343258d738ea0a48f7e1aed}{init\+PCIInterrupt\+For\+Tiny\+Receiver}} ()
+\item 
+void \mbox{\hyperlink{group___tiny_receiver_gad23b935e2236a42a070a87379c7c36a4}{enable\+PCIInterrupt\+For\+Tiny\+Receiver}} ()
+\item 
+void \mbox{\hyperlink{group___tiny_receiver_ga4217cae1ded4a9b2ed54bc3a1e8cd86e}{disable\+PCIInterrupt\+For\+Tiny\+Receiver}} ()
+\item 
+bool \mbox{\hyperlink{group___tiny_receiver_gab65e33fe496d3bee4af897e5d8bd9420}{is\+Tiny\+Receiver\+Idle}} ()
+\item 
+void \mbox{\hyperlink{group___tiny_receiver_gaf44d26445244a24863cda1636eb8bf97}{handle\+Received\+IRData}} (uint16\+\_\+t a\+Address, uint8\+\_\+t a\+Command, bool is\+Repetition)
+\item 
+void \mbox{\hyperlink{group___tiny_receiver_ga3c3d6703d25dbcc0555823e23eec0e69}{IRPin\+Change\+Interrupt\+Handler}} (void)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_tiny_i_r_receiver_struct}{Tiny\+IRReceiver\+Struct}} \mbox{\hyperlink{group___tiny_receiver_ga30567324f26c2fae24bb11592262b6d3}{Tiny\+IRReceiver\+Control}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{group___tiny_receiver_ga57d0c5b7d83f10557910205596d66dfb}\label{group___tiny_receiver_ga57d0c5b7d83f10557910205596d66dfb}} 
+\index{Minimal receiver for NEC protocol@{Minimal receiver for NEC protocol}!IR\_INPUT\_PIN@{IR\_INPUT\_PIN}}
+\index{IR\_INPUT\_PIN@{IR\_INPUT\_PIN}!Minimal receiver for NEC protocol@{Minimal receiver for NEC protocol}}
+\doxysubsubsection{\texorpdfstring{IR\_INPUT\_PIN}{IR\_INPUT\_PIN}}
+{\footnotesize\ttfamily \#define IR\+\_\+\+INPUT\+\_\+\+PIN~2}
+
+
+
+Definition at line \mbox{\hyperlink{_tiny_i_r_receiver_8hpp_source_l00066}{66}} of file \mbox{\hyperlink{_tiny_i_r_receiver_8hpp_source}{Tiny\+IRReceiver.\+hpp}}.
+
+\mbox{\Hypertarget{group___tiny_receiver_gae237abb240b59b9c8dd7d853fc3c76b1}\label{group___tiny_receiver_gae237abb240b59b9c8dd7d853fc3c76b1}} 
+\index{Minimal receiver for NEC protocol@{Minimal receiver for NEC protocol}!IR\_RECEIVER\_STATE\_WAITING\_FOR\_DATA\_MARK@{IR\_RECEIVER\_STATE\_WAITING\_FOR\_DATA\_MARK}}
+\index{IR\_RECEIVER\_STATE\_WAITING\_FOR\_DATA\_MARK@{IR\_RECEIVER\_STATE\_WAITING\_FOR\_DATA\_MARK}!Minimal receiver for NEC protocol@{Minimal receiver for NEC protocol}}
+\doxysubsubsection{\texorpdfstring{IR\_RECEIVER\_STATE\_WAITING\_FOR\_DATA\_MARK}{IR\_RECEIVER\_STATE\_WAITING\_FOR\_DATA\_MARK}}
+{\footnotesize\ttfamily \#define IR\+\_\+\+RECEIVER\+\_\+\+STATE\+\_\+\+WAITING\+\_\+\+FOR\+\_\+\+DATA\+\_\+\+MARK~4}
+
+
+
+Definition at line \mbox{\hyperlink{_tiny_i_r_receiver_8h_source_l00076}{76}} of file \mbox{\hyperlink{_tiny_i_r_receiver_8h_source}{Tiny\+IRReceiver.\+h}}.
+
+\mbox{\Hypertarget{group___tiny_receiver_gad3b7237c2aa120840c0eed233d5c627e}\label{group___tiny_receiver_gad3b7237c2aa120840c0eed233d5c627e}} 
+\index{Minimal receiver for NEC protocol@{Minimal receiver for NEC protocol}!IR\_RECEIVER\_STATE\_WAITING\_FOR\_DATA\_SPACE@{IR\_RECEIVER\_STATE\_WAITING\_FOR\_DATA\_SPACE}}
+\index{IR\_RECEIVER\_STATE\_WAITING\_FOR\_DATA\_SPACE@{IR\_RECEIVER\_STATE\_WAITING\_FOR\_DATA\_SPACE}!Minimal receiver for NEC protocol@{Minimal receiver for NEC protocol}}
+\doxysubsubsection{\texorpdfstring{IR\_RECEIVER\_STATE\_WAITING\_FOR\_DATA\_SPACE}{IR\_RECEIVER\_STATE\_WAITING\_FOR\_DATA\_SPACE}}
+{\footnotesize\ttfamily \#define IR\+\_\+\+RECEIVER\+\_\+\+STATE\+\_\+\+WAITING\+\_\+\+FOR\+\_\+\+DATA\+\_\+\+SPACE~3}
+
+
+
+Definition at line \mbox{\hyperlink{_tiny_i_r_receiver_8h_source_l00075}{75}} of file \mbox{\hyperlink{_tiny_i_r_receiver_8h_source}{Tiny\+IRReceiver.\+h}}.
+
+\mbox{\Hypertarget{group___tiny_receiver_gaecf505182d1fa2aa885fcde6cd4160bf}\label{group___tiny_receiver_gaecf505182d1fa2aa885fcde6cd4160bf}} 
+\index{Minimal receiver for NEC protocol@{Minimal receiver for NEC protocol}!IR\_RECEIVER\_STATE\_WAITING\_FOR\_FIRST\_DATA\_MARK@{IR\_RECEIVER\_STATE\_WAITING\_FOR\_FIRST\_DATA\_MARK}}
+\index{IR\_RECEIVER\_STATE\_WAITING\_FOR\_FIRST\_DATA\_MARK@{IR\_RECEIVER\_STATE\_WAITING\_FOR\_FIRST\_DATA\_MARK}!Minimal receiver for NEC protocol@{Minimal receiver for NEC protocol}}
+\doxysubsubsection{\texorpdfstring{IR\_RECEIVER\_STATE\_WAITING\_FOR\_FIRST\_DATA\_MARK}{IR\_RECEIVER\_STATE\_WAITING\_FOR\_FIRST\_DATA\_MARK}}
+{\footnotesize\ttfamily \#define IR\+\_\+\+RECEIVER\+\_\+\+STATE\+\_\+\+WAITING\+\_\+\+FOR\+\_\+\+FIRST\+\_\+\+DATA\+\_\+\+MARK~2}
+
+
+
+Definition at line \mbox{\hyperlink{_tiny_i_r_receiver_8h_source_l00074}{74}} of file \mbox{\hyperlink{_tiny_i_r_receiver_8h_source}{Tiny\+IRReceiver.\+h}}.
+
+\mbox{\Hypertarget{group___tiny_receiver_ga2535b0f1ae380b696c6a37ffa69b3df3}\label{group___tiny_receiver_ga2535b0f1ae380b696c6a37ffa69b3df3}} 
+\index{Minimal receiver for NEC protocol@{Minimal receiver for NEC protocol}!IR\_RECEIVER\_STATE\_WAITING\_FOR\_START\_MARK@{IR\_RECEIVER\_STATE\_WAITING\_FOR\_START\_MARK}}
+\index{IR\_RECEIVER\_STATE\_WAITING\_FOR\_START\_MARK@{IR\_RECEIVER\_STATE\_WAITING\_FOR\_START\_MARK}!Minimal receiver for NEC protocol@{Minimal receiver for NEC protocol}}
+\doxysubsubsection{\texorpdfstring{IR\_RECEIVER\_STATE\_WAITING\_FOR\_START\_MARK}{IR\_RECEIVER\_STATE\_WAITING\_FOR\_START\_MARK}}
+{\footnotesize\ttfamily \#define IR\+\_\+\+RECEIVER\+\_\+\+STATE\+\_\+\+WAITING\+\_\+\+FOR\+\_\+\+START\+\_\+\+MARK~0}
+
+
+
+Definition at line \mbox{\hyperlink{_tiny_i_r_receiver_8h_source_l00072}{72}} of file \mbox{\hyperlink{_tiny_i_r_receiver_8h_source}{Tiny\+IRReceiver.\+h}}.
+
+\mbox{\Hypertarget{group___tiny_receiver_ga43017cba7c72b3f0d45265f417e5195d}\label{group___tiny_receiver_ga43017cba7c72b3f0d45265f417e5195d}} 
+\index{Minimal receiver for NEC protocol@{Minimal receiver for NEC protocol}!IR\_RECEIVER\_STATE\_WAITING\_FOR\_START\_SPACE@{IR\_RECEIVER\_STATE\_WAITING\_FOR\_START\_SPACE}}
+\index{IR\_RECEIVER\_STATE\_WAITING\_FOR\_START\_SPACE@{IR\_RECEIVER\_STATE\_WAITING\_FOR\_START\_SPACE}!Minimal receiver for NEC protocol@{Minimal receiver for NEC protocol}}
+\doxysubsubsection{\texorpdfstring{IR\_RECEIVER\_STATE\_WAITING\_FOR\_START\_SPACE}{IR\_RECEIVER\_STATE\_WAITING\_FOR\_START\_SPACE}}
+{\footnotesize\ttfamily \#define IR\+\_\+\+RECEIVER\+\_\+\+STATE\+\_\+\+WAITING\+\_\+\+FOR\+\_\+\+START\+\_\+\+SPACE~1}
+
+
+
+Definition at line \mbox{\hyperlink{_tiny_i_r_receiver_8h_source_l00073}{73}} of file \mbox{\hyperlink{_tiny_i_r_receiver_8h_source}{Tiny\+IRReceiver.\+h}}.
+
+\mbox{\Hypertarget{group___tiny_receiver_ga2f6f17e18c7b5f1ef4b9cfc907d086e4}\label{group___tiny_receiver_ga2f6f17e18c7b5f1ef4b9cfc907d086e4}} 
+\index{Minimal receiver for NEC protocol@{Minimal receiver for NEC protocol}!IR\_RECEIVER\_STATE\_WAITING\_FOR\_STOP\_MARK@{IR\_RECEIVER\_STATE\_WAITING\_FOR\_STOP\_MARK}}
+\index{IR\_RECEIVER\_STATE\_WAITING\_FOR\_STOP\_MARK@{IR\_RECEIVER\_STATE\_WAITING\_FOR\_STOP\_MARK}!Minimal receiver for NEC protocol@{Minimal receiver for NEC protocol}}
+\doxysubsubsection{\texorpdfstring{IR\_RECEIVER\_STATE\_WAITING\_FOR\_STOP\_MARK}{IR\_RECEIVER\_STATE\_WAITING\_FOR\_STOP\_MARK}}
+{\footnotesize\ttfamily \#define IR\+\_\+\+RECEIVER\+\_\+\+STATE\+\_\+\+WAITING\+\_\+\+FOR\+\_\+\+STOP\+\_\+\+MARK~5}
+
+
+
+Definition at line \mbox{\hyperlink{_tiny_i_r_receiver_8h_source_l00077}{77}} of file \mbox{\hyperlink{_tiny_i_r_receiver_8h_source}{Tiny\+IRReceiver.\+h}}.
+
+\mbox{\Hypertarget{group___tiny_receiver_gadc6908665014a0bef4442c7769ed5054}\label{group___tiny_receiver_gadc6908665014a0bef4442c7769ed5054}} 
+\index{Minimal receiver for NEC protocol@{Minimal receiver for NEC protocol}!lowerValue@{lowerValue}}
+\index{lowerValue@{lowerValue}!Minimal receiver for NEC protocol@{Minimal receiver for NEC protocol}}
+\doxysubsubsection{\texorpdfstring{lowerValue}{lowerValue}}
+{\footnotesize\ttfamily \#define lower\+Value(\begin{DoxyParamCaption}\item[{}]{a\+Duration }\end{DoxyParamCaption})~(a\+Duration -\/ (a\+Duration / 2))}
+
+
+
+Definition at line \mbox{\hyperlink{_tiny_i_r_receiver_8h_source_l00066}{66}} of file \mbox{\hyperlink{_tiny_i_r_receiver_8h_source}{Tiny\+IRReceiver.\+h}}.
+
+\mbox{\Hypertarget{group___tiny_receiver_ga02b97ed6af9381a224ea3be0cab054a0}\label{group___tiny_receiver_ga02b97ed6af9381a224ea3be0cab054a0}} 
+\index{Minimal receiver for NEC protocol@{Minimal receiver for NEC protocol}!lowerValue25Percent@{lowerValue25Percent}}
+\index{lowerValue25Percent@{lowerValue25Percent}!Minimal receiver for NEC protocol@{Minimal receiver for NEC protocol}}
+\doxysubsubsection{\texorpdfstring{lowerValue25Percent}{lowerValue25Percent}}
+{\footnotesize\ttfamily \#define lower\+Value25\+Percent(\begin{DoxyParamCaption}\item[{}]{a\+Duration }\end{DoxyParamCaption})~(a\+Duration -\/ (a\+Duration / 4))}
+
+
+
+Definition at line \mbox{\hyperlink{_tiny_i_r_receiver_8h_source_l00064}{64}} of file \mbox{\hyperlink{_tiny_i_r_receiver_8h_source}{Tiny\+IRReceiver.\+h}}.
+
+\mbox{\Hypertarget{group___tiny_receiver_ga2ab110e480a4b16fe516c2afd16a1ea2}\label{group___tiny_receiver_ga2ab110e480a4b16fe516c2afd16a1ea2}} 
+\index{Minimal receiver for NEC protocol@{Minimal receiver for NEC protocol}!NEC\_ADDRESS\_BITS@{NEC\_ADDRESS\_BITS}}
+\index{NEC\_ADDRESS\_BITS@{NEC\_ADDRESS\_BITS}!Minimal receiver for NEC protocol@{Minimal receiver for NEC protocol}}
+\doxysubsubsection{\texorpdfstring{NEC\_ADDRESS\_BITS}{NEC\_ADDRESS\_BITS}}
+{\footnotesize\ttfamily \#define NEC\+\_\+\+ADDRESS\+\_\+\+BITS~16}
+
+
+
+Definition at line \mbox{\hyperlink{_tiny_i_r_receiver_8h_source_l00045}{45}} of file \mbox{\hyperlink{_tiny_i_r_receiver_8h_source}{Tiny\+IRReceiver.\+h}}.
+
+\mbox{\Hypertarget{group___tiny_receiver_ga3abbe30ef3781c1cf2490003e1c1443a}\label{group___tiny_receiver_ga3abbe30ef3781c1cf2490003e1c1443a}} 
+\index{Minimal receiver for NEC protocol@{Minimal receiver for NEC protocol}!NEC\_BIT\_MARK@{NEC\_BIT\_MARK}}
+\index{NEC\_BIT\_MARK@{NEC\_BIT\_MARK}!Minimal receiver for NEC protocol@{Minimal receiver for NEC protocol}}
+\doxysubsubsection{\texorpdfstring{NEC\_BIT\_MARK}{NEC\_BIT\_MARK}}
+{\footnotesize\ttfamily \#define NEC\+\_\+\+BIT\+\_\+\+MARK~\mbox{\hyperlink{group___tiny_receiver_gaf3317b0cf5cf7d3063addbaa0a256158}{NEC\+\_\+\+UNIT}}}
+
+
+
+Definition at line \mbox{\hyperlink{_tiny_i_r_receiver_8h_source_l00054}{54}} of file \mbox{\hyperlink{_tiny_i_r_receiver_8h_source}{Tiny\+IRReceiver.\+h}}.
+
+\mbox{\Hypertarget{group___tiny_receiver_gaa82c77bc0131ac28bc3534b8cf3422bc}\label{group___tiny_receiver_gaa82c77bc0131ac28bc3534b8cf3422bc}} 
+\index{Minimal receiver for NEC protocol@{Minimal receiver for NEC protocol}!NEC\_BITS@{NEC\_BITS}}
+\index{NEC\_BITS@{NEC\_BITS}!Minimal receiver for NEC protocol@{Minimal receiver for NEC protocol}}
+\doxysubsubsection{\texorpdfstring{NEC\_BITS}{NEC\_BITS}}
+{\footnotesize\ttfamily \#define NEC\+\_\+\+BITS~(\mbox{\hyperlink{group___tiny_receiver_ga2ab110e480a4b16fe516c2afd16a1ea2}{NEC\+\_\+\+ADDRESS\+\_\+\+BITS}} + \mbox{\hyperlink{group___tiny_receiver_ga07e295da53565eb7146072bdfeb2ed32}{NEC\+\_\+\+COMMAND\+\_\+\+BITS}})}
+
+
+
+Definition at line \mbox{\hyperlink{_tiny_i_r_receiver_8h_source_l00048}{48}} of file \mbox{\hyperlink{_tiny_i_r_receiver_8h_source}{Tiny\+IRReceiver.\+h}}.
+
+\mbox{\Hypertarget{group___tiny_receiver_ga07e295da53565eb7146072bdfeb2ed32}\label{group___tiny_receiver_ga07e295da53565eb7146072bdfeb2ed32}} 
+\index{Minimal receiver for NEC protocol@{Minimal receiver for NEC protocol}!NEC\_COMMAND\_BITS@{NEC\_COMMAND\_BITS}}
+\index{NEC\_COMMAND\_BITS@{NEC\_COMMAND\_BITS}!Minimal receiver for NEC protocol@{Minimal receiver for NEC protocol}}
+\doxysubsubsection{\texorpdfstring{NEC\_COMMAND\_BITS}{NEC\_COMMAND\_BITS}}
+{\footnotesize\ttfamily \#define NEC\+\_\+\+COMMAND\+\_\+\+BITS~16}
+
+
+
+Definition at line \mbox{\hyperlink{_tiny_i_r_receiver_8h_source_l00046}{46}} of file \mbox{\hyperlink{_tiny_i_r_receiver_8h_source}{Tiny\+IRReceiver.\+h}}.
+
+\mbox{\Hypertarget{group___tiny_receiver_ga8d393b95d8df4dfa15873aec6a37965e}\label{group___tiny_receiver_ga8d393b95d8df4dfa15873aec6a37965e}} 
+\index{Minimal receiver for NEC protocol@{Minimal receiver for NEC protocol}!NEC\_HEADER\_MARK@{NEC\_HEADER\_MARK}}
+\index{NEC\_HEADER\_MARK@{NEC\_HEADER\_MARK}!Minimal receiver for NEC protocol@{Minimal receiver for NEC protocol}}
+\doxysubsubsection{\texorpdfstring{NEC\_HEADER\_MARK}{NEC\_HEADER\_MARK}}
+{\footnotesize\ttfamily \#define NEC\+\_\+\+HEADER\+\_\+\+MARK~(16 $\ast$ \mbox{\hyperlink{group___tiny_receiver_gaf3317b0cf5cf7d3063addbaa0a256158}{NEC\+\_\+\+UNIT}})}
+
+
+
+Definition at line \mbox{\hyperlink{_tiny_i_r_receiver_8h_source_l00051}{51}} of file \mbox{\hyperlink{_tiny_i_r_receiver_8h_source}{Tiny\+IRReceiver.\+h}}.
+
+\mbox{\Hypertarget{group___tiny_receiver_ga5c728ed320ffee624e26767be0a80404}\label{group___tiny_receiver_ga5c728ed320ffee624e26767be0a80404}} 
+\index{Minimal receiver for NEC protocol@{Minimal receiver for NEC protocol}!NEC\_HEADER\_SPACE@{NEC\_HEADER\_SPACE}}
+\index{NEC\_HEADER\_SPACE@{NEC\_HEADER\_SPACE}!Minimal receiver for NEC protocol@{Minimal receiver for NEC protocol}}
+\doxysubsubsection{\texorpdfstring{NEC\_HEADER\_SPACE}{NEC\_HEADER\_SPACE}}
+{\footnotesize\ttfamily \#define NEC\+\_\+\+HEADER\+\_\+\+SPACE~(8 $\ast$ \mbox{\hyperlink{group___tiny_receiver_gaf3317b0cf5cf7d3063addbaa0a256158}{NEC\+\_\+\+UNIT}})}
+
+
+
+Definition at line \mbox{\hyperlink{_tiny_i_r_receiver_8h_source_l00052}{52}} of file \mbox{\hyperlink{_tiny_i_r_receiver_8h_source}{Tiny\+IRReceiver.\+h}}.
+
+\mbox{\Hypertarget{group___tiny_receiver_ga5ac04ec8b2185c9fb257d39c472733b1}\label{group___tiny_receiver_ga5ac04ec8b2185c9fb257d39c472733b1}} 
+\index{Minimal receiver for NEC protocol@{Minimal receiver for NEC protocol}!NEC\_ONE\_SPACE@{NEC\_ONE\_SPACE}}
+\index{NEC\_ONE\_SPACE@{NEC\_ONE\_SPACE}!Minimal receiver for NEC protocol@{Minimal receiver for NEC protocol}}
+\doxysubsubsection{\texorpdfstring{NEC\_ONE\_SPACE}{NEC\_ONE\_SPACE}}
+{\footnotesize\ttfamily \#define NEC\+\_\+\+ONE\+\_\+\+SPACE~(3 $\ast$ \mbox{\hyperlink{group___tiny_receiver_gaf3317b0cf5cf7d3063addbaa0a256158}{NEC\+\_\+\+UNIT}})}
+
+
+
+Definition at line \mbox{\hyperlink{_tiny_i_r_receiver_8h_source_l00055}{55}} of file \mbox{\hyperlink{_tiny_i_r_receiver_8h_source}{Tiny\+IRReceiver.\+h}}.
+
+\mbox{\Hypertarget{group___tiny_receiver_ga91880ffa0b09391f2c827d3a1c565abf}\label{group___tiny_receiver_ga91880ffa0b09391f2c827d3a1c565abf}} 
+\index{Minimal receiver for NEC protocol@{Minimal receiver for NEC protocol}!NEC\_REPEAT\_HEADER\_SPACE@{NEC\_REPEAT\_HEADER\_SPACE}}
+\index{NEC\_REPEAT\_HEADER\_SPACE@{NEC\_REPEAT\_HEADER\_SPACE}!Minimal receiver for NEC protocol@{Minimal receiver for NEC protocol}}
+\doxysubsubsection{\texorpdfstring{NEC\_REPEAT\_HEADER\_SPACE}{NEC\_REPEAT\_HEADER\_SPACE}}
+{\footnotesize\ttfamily \#define NEC\+\_\+\+REPEAT\+\_\+\+HEADER\+\_\+\+SPACE~(4 $\ast$ \mbox{\hyperlink{group___tiny_receiver_gaf3317b0cf5cf7d3063addbaa0a256158}{NEC\+\_\+\+UNIT}})}
+
+
+
+Definition at line \mbox{\hyperlink{_tiny_i_r_receiver_8h_source_l00058}{58}} of file \mbox{\hyperlink{_tiny_i_r_receiver_8h_source}{Tiny\+IRReceiver.\+h}}.
+
+\mbox{\Hypertarget{group___tiny_receiver_gac2dab5c4a22f8c4915217d3ee4676f08}\label{group___tiny_receiver_gac2dab5c4a22f8c4915217d3ee4676f08}} 
+\index{Minimal receiver for NEC protocol@{Minimal receiver for NEC protocol}!NEC\_REPEAT\_PERIOD@{NEC\_REPEAT\_PERIOD}}
+\index{NEC\_REPEAT\_PERIOD@{NEC\_REPEAT\_PERIOD}!Minimal receiver for NEC protocol@{Minimal receiver for NEC protocol}}
+\doxysubsubsection{\texorpdfstring{NEC\_REPEAT\_PERIOD}{NEC\_REPEAT\_PERIOD}}
+{\footnotesize\ttfamily \#define NEC\+\_\+\+REPEAT\+\_\+\+PERIOD~110000}
+
+
+
+Definition at line \mbox{\hyperlink{_tiny_i_r_receiver_8h_source_l00059}{59}} of file \mbox{\hyperlink{_tiny_i_r_receiver_8h_source}{Tiny\+IRReceiver.\+h}}.
+
+\mbox{\Hypertarget{group___tiny_receiver_gaf3317b0cf5cf7d3063addbaa0a256158}\label{group___tiny_receiver_gaf3317b0cf5cf7d3063addbaa0a256158}} 
+\index{Minimal receiver for NEC protocol@{Minimal receiver for NEC protocol}!NEC\_UNIT@{NEC\_UNIT}}
+\index{NEC\_UNIT@{NEC\_UNIT}!Minimal receiver for NEC protocol@{Minimal receiver for NEC protocol}}
+\doxysubsubsection{\texorpdfstring{NEC\_UNIT}{NEC\_UNIT}}
+{\footnotesize\ttfamily \#define NEC\+\_\+\+UNIT~560}
+
+
+
+Definition at line \mbox{\hyperlink{_tiny_i_r_receiver_8h_source_l00049}{49}} of file \mbox{\hyperlink{_tiny_i_r_receiver_8h_source}{Tiny\+IRReceiver.\+h}}.
+
+\mbox{\Hypertarget{group___tiny_receiver_ga5ee46914e98bf7f87f32a7104843b243}\label{group___tiny_receiver_ga5ee46914e98bf7f87f32a7104843b243}} 
+\index{Minimal receiver for NEC protocol@{Minimal receiver for NEC protocol}!NEC\_ZERO\_SPACE@{NEC\_ZERO\_SPACE}}
+\index{NEC\_ZERO\_SPACE@{NEC\_ZERO\_SPACE}!Minimal receiver for NEC protocol@{Minimal receiver for NEC protocol}}
+\doxysubsubsection{\texorpdfstring{NEC\_ZERO\_SPACE}{NEC\_ZERO\_SPACE}}
+{\footnotesize\ttfamily \#define NEC\+\_\+\+ZERO\+\_\+\+SPACE~\mbox{\hyperlink{group___tiny_receiver_gaf3317b0cf5cf7d3063addbaa0a256158}{NEC\+\_\+\+UNIT}}}
+
+
+
+Definition at line \mbox{\hyperlink{_tiny_i_r_receiver_8h_source_l00056}{56}} of file \mbox{\hyperlink{_tiny_i_r_receiver_8h_source}{Tiny\+IRReceiver.\+h}}.
+
+\mbox{\Hypertarget{group___tiny_receiver_gae7054616db7e69e979dfcd5ad38fb968}\label{group___tiny_receiver_gae7054616db7e69e979dfcd5ad38fb968}} 
+\index{Minimal receiver for NEC protocol@{Minimal receiver for NEC protocol}!TINY\_RECEIVER\_USE\_ARDUINO\_ATTACH\_INTERRUPT@{TINY\_RECEIVER\_USE\_ARDUINO\_ATTACH\_INTERRUPT}}
+\index{TINY\_RECEIVER\_USE\_ARDUINO\_ATTACH\_INTERRUPT@{TINY\_RECEIVER\_USE\_ARDUINO\_ATTACH\_INTERRUPT}!Minimal receiver for NEC protocol@{Minimal receiver for NEC protocol}}
+\doxysubsubsection{\texorpdfstring{TINY\_RECEIVER\_USE\_ARDUINO\_ATTACH\_INTERRUPT}{TINY\_RECEIVER\_USE\_ARDUINO\_ATTACH\_INTERRUPT}}
+{\footnotesize\ttfamily \#define TINY\+\_\+\+RECEIVER\+\_\+\+USE\+\_\+\+ARDUINO\+\_\+\+ATTACH\+\_\+\+INTERRUPT}
+
+
+
+Definition at line \mbox{\hyperlink{_tiny_i_r_receiver_8hpp_source_l00085}{85}} of file \mbox{\hyperlink{_tiny_i_r_receiver_8hpp_source}{Tiny\+IRReceiver.\+hpp}}.
+
+\mbox{\Hypertarget{group___tiny_receiver_gaf6134d81e390f1e3dcd60e2aca9c9143}\label{group___tiny_receiver_gaf6134d81e390f1e3dcd60e2aca9c9143}} 
+\index{Minimal receiver for NEC protocol@{Minimal receiver for NEC protocol}!upperValue@{upperValue}}
+\index{upperValue@{upperValue}!Minimal receiver for NEC protocol@{Minimal receiver for NEC protocol}}
+\doxysubsubsection{\texorpdfstring{upperValue}{upperValue}}
+{\footnotesize\ttfamily \#define upper\+Value(\begin{DoxyParamCaption}\item[{}]{a\+Duration }\end{DoxyParamCaption})~(a\+Duration + (a\+Duration / 2))}
+
+
+
+Definition at line \mbox{\hyperlink{_tiny_i_r_receiver_8h_source_l00067}{67}} of file \mbox{\hyperlink{_tiny_i_r_receiver_8h_source}{Tiny\+IRReceiver.\+h}}.
+
+\mbox{\Hypertarget{group___tiny_receiver_ga22a6cd77d395a6c06686eafdf9aa2b52}\label{group___tiny_receiver_ga22a6cd77d395a6c06686eafdf9aa2b52}} 
+\index{Minimal receiver for NEC protocol@{Minimal receiver for NEC protocol}!upperValue25Percent@{upperValue25Percent}}
+\index{upperValue25Percent@{upperValue25Percent}!Minimal receiver for NEC protocol@{Minimal receiver for NEC protocol}}
+\doxysubsubsection{\texorpdfstring{upperValue25Percent}{upperValue25Percent}}
+{\footnotesize\ttfamily \#define upper\+Value25\+Percent(\begin{DoxyParamCaption}\item[{}]{a\+Duration }\end{DoxyParamCaption})~(a\+Duration + (a\+Duration / 4))}
+
+
+
+Definition at line \mbox{\hyperlink{_tiny_i_r_receiver_8h_source_l00065}{65}} of file \mbox{\hyperlink{_tiny_i_r_receiver_8h_source}{Tiny\+IRReceiver.\+h}}.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{group___tiny_receiver_ga4217cae1ded4a9b2ed54bc3a1e8cd86e}\label{group___tiny_receiver_ga4217cae1ded4a9b2ed54bc3a1e8cd86e}} 
+\index{Minimal receiver for NEC protocol@{Minimal receiver for NEC protocol}!disablePCIInterruptForTinyReceiver@{disablePCIInterruptForTinyReceiver}}
+\index{disablePCIInterruptForTinyReceiver@{disablePCIInterruptForTinyReceiver}!Minimal receiver for NEC protocol@{Minimal receiver for NEC protocol}}
+\doxysubsubsection{\texorpdfstring{disablePCIInterruptForTinyReceiver()}{disablePCIInterruptForTinyReceiver()}}
+{\footnotesize\ttfamily void disable\+PCIInterrupt\+For\+Tiny\+Receiver (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_tiny_i_r_receiver_8hpp_source_l00433}{433}} of file \mbox{\hyperlink{_tiny_i_r_receiver_8hpp_source}{Tiny\+IRReceiver.\+hpp}}.
+
+\mbox{\Hypertarget{group___tiny_receiver_gad23b935e2236a42a070a87379c7c36a4}\label{group___tiny_receiver_gad23b935e2236a42a070a87379c7c36a4}} 
+\index{Minimal receiver for NEC protocol@{Minimal receiver for NEC protocol}!enablePCIInterruptForTinyReceiver@{enablePCIInterruptForTinyReceiver}}
+\index{enablePCIInterruptForTinyReceiver@{enablePCIInterruptForTinyReceiver}!Minimal receiver for NEC protocol@{Minimal receiver for NEC protocol}}
+\doxysubsubsection{\texorpdfstring{enablePCIInterruptForTinyReceiver()}{enablePCIInterruptForTinyReceiver()}}
+{\footnotesize\ttfamily void enable\+PCIInterrupt\+For\+Tiny\+Receiver (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Initializes hardware interrupt generation according to IR\+\_\+\+INPUT\+\_\+\+PIN or use attach\+Interrupt() function. 
+
+Definition at line \mbox{\hyperlink{_tiny_i_r_receiver_8hpp_source_l00332}{332}} of file \mbox{\hyperlink{_tiny_i_r_receiver_8hpp_source}{Tiny\+IRReceiver.\+hpp}}.
+
+Here is the call graph for this function\+:
+% FIG 0
+Here is the caller graph for this function\+:
+% FIG 1
+\mbox{\Hypertarget{group___tiny_receiver_gaf44d26445244a24863cda1636eb8bf97}\label{group___tiny_receiver_gaf44d26445244a24863cda1636eb8bf97}} 
+\index{Minimal receiver for NEC protocol@{Minimal receiver for NEC protocol}!handleReceivedIRData@{handleReceivedIRData}}
+\index{handleReceivedIRData@{handleReceivedIRData}!Minimal receiver for NEC protocol@{Minimal receiver for NEC protocol}}
+\doxysubsubsection{\texorpdfstring{handleReceivedIRData()}{handleReceivedIRData()}}
+{\footnotesize\ttfamily void handle\+Received\+IRData (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{a\+Address,  }\item[{uint8\+\_\+t}]{a\+Command,  }\item[{bool}]{is\+Repetition }\end{DoxyParamCaption})}
+
+Declaration of the callback function provided by the user application. It is called every time a complete IR command or repeat was received. \mbox{\Hypertarget{group___tiny_receiver_ga5c751ad19033cb8c209d7253dccf34e7}\label{group___tiny_receiver_ga5c751ad19033cb8c209d7253dccf34e7}} 
+\index{Minimal receiver for NEC protocol@{Minimal receiver for NEC protocol}!handleReceivedTinyIRData@{handleReceivedTinyIRData}}
+\index{handleReceivedTinyIRData@{handleReceivedTinyIRData}!Minimal receiver for NEC protocol@{Minimal receiver for NEC protocol}}
+\doxysubsubsection{\texorpdfstring{handleReceivedTinyIRData()}{handleReceivedTinyIRData()}}
+{\footnotesize\ttfamily void handle\+Received\+Tiny\+IRData (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{a\+Address,  }\item[{uint8\+\_\+t}]{a\+Command,  }\item[{bool}]{is\+Repeat }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+% FIG 2
+\mbox{\Hypertarget{group___tiny_receiver_ga1f3913249343258d738ea0a48f7e1aed}\label{group___tiny_receiver_ga1f3913249343258d738ea0a48f7e1aed}} 
+\index{Minimal receiver for NEC protocol@{Minimal receiver for NEC protocol}!initPCIInterruptForTinyReceiver@{initPCIInterruptForTinyReceiver}}
+\index{initPCIInterruptForTinyReceiver@{initPCIInterruptForTinyReceiver}!Minimal receiver for NEC protocol@{Minimal receiver for NEC protocol}}
+\doxysubsubsection{\texorpdfstring{initPCIInterruptForTinyReceiver()}{initPCIInterruptForTinyReceiver()}}
+{\footnotesize\ttfamily void init\+PCIInterrupt\+For\+Tiny\+Receiver (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Sets IR\+\_\+\+INPUT\+\_\+\+PIN mode to INPUT\+\_\+\+PULLUP, if required, sets feedback LED output mode and call \mbox{\hyperlink{group___tiny_receiver_gad23b935e2236a42a070a87379c7c36a4}{enable\+PCIInterrupt\+For\+Tiny\+Receiver()}} 
+
+Definition at line \mbox{\hyperlink{_tiny_i_r_receiver_8hpp_source_l00314}{314}} of file \mbox{\hyperlink{_tiny_i_r_receiver_8hpp_source}{Tiny\+IRReceiver.\+hpp}}.
+
+Here is the call graph for this function\+:
+% FIG 3
+\mbox{\Hypertarget{group___tiny_receiver_ga3c3d6703d25dbcc0555823e23eec0e69}\label{group___tiny_receiver_ga3c3d6703d25dbcc0555823e23eec0e69}} 
+\index{Minimal receiver for NEC protocol@{Minimal receiver for NEC protocol}!IRPinChangeInterruptHandler@{IRPinChangeInterruptHandler}}
+\index{IRPinChangeInterruptHandler@{IRPinChangeInterruptHandler}!Minimal receiver for NEC protocol@{Minimal receiver for NEC protocol}}
+\doxysubsubsection{\texorpdfstring{IRPinChangeInterruptHandler()}{IRPinChangeInterruptHandler()}}
+{\footnotesize\ttfamily void IRPin\+Change\+Interrupt\+Handler (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+The ISR of Tiny\+IRRreceiver. It handles the NEC protocol decoding and calls the user callback function on complete. 5 us + 3 us for push + pop for a 16MHz ATmega 
+
+Definition at line \mbox{\hyperlink{_tiny_i_r_receiver_8hpp_source_l00108}{108}} of file \mbox{\hyperlink{_tiny_i_r_receiver_8hpp_source}{Tiny\+IRReceiver.\+hpp}}.
+
+Here is the call graph for this function\+:
+% FIG 4
+Here is the caller graph for this function\+:
+% FIG 5
+\mbox{\Hypertarget{group___tiny_receiver_gab65e33fe496d3bee4af897e5d8bd9420}\label{group___tiny_receiver_gab65e33fe496d3bee4af897e5d8bd9420}} 
+\index{Minimal receiver for NEC protocol@{Minimal receiver for NEC protocol}!isTinyReceiverIdle@{isTinyReceiverIdle}}
+\index{isTinyReceiverIdle@{isTinyReceiverIdle}!Minimal receiver for NEC protocol@{Minimal receiver for NEC protocol}}
+\doxysubsubsection{\texorpdfstring{isTinyReceiverIdle()}{isTinyReceiverIdle()}}
+{\footnotesize\ttfamily bool is\+Tiny\+Receiver\+Idle (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_tiny_i_r_receiver_8hpp_source_l00306}{306}} of file \mbox{\hyperlink{_tiny_i_r_receiver_8hpp_source}{Tiny\+IRReceiver.\+hpp}}.
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{group___tiny_receiver_ga30567324f26c2fae24bb11592262b6d3}\label{group___tiny_receiver_ga30567324f26c2fae24bb11592262b6d3}} 
+\index{Minimal receiver for NEC protocol@{Minimal receiver for NEC protocol}!TinyIRReceiverControl@{TinyIRReceiverControl}}
+\index{TinyIRReceiverControl@{TinyIRReceiverControl}!Minimal receiver for NEC protocol@{Minimal receiver for NEC protocol}}
+\doxysubsubsection{\texorpdfstring{TinyIRReceiverControl}{TinyIRReceiverControl}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_tiny_i_r_receiver_struct}{Tiny\+IRReceiver\+Struct}} Tiny\+IRReceiver\+Control}
+
+
+
+Definition at line \mbox{\hyperlink{_tiny_i_r_receiver_8hpp_source_l00055}{55}} of file \mbox{\hyperlink{_tiny_i_r_receiver_8hpp_source}{Tiny\+IRReceiver.\+hpp}}.
+

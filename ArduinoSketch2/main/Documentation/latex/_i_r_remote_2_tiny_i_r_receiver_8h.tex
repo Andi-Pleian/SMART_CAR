@@ -1,0 +1,71 @@
+\hypertarget{_i_r_remote_2_tiny_i_r_receiver_8h}{}\doxysection{main/\+IRRemote/\+Tiny\+IRReceiver.h File Reference}
+\label{_i_r_remote_2_tiny_i_r_receiver_8h}\index{main/IRRemote/TinyIRReceiver.h@{main/IRRemote/TinyIRReceiver.h}}
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}Long\+Union.\+h\char`\"{}}\newline
+Include dependency graph for Tiny\+IRReceiver.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_tiny_i_r_receiver_struct}{Tiny\+IRReceiver\+Struct}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group___tiny_receiver_ga2ab110e480a4b16fe516c2afd16a1ea2}{NEC\+\_\+\+ADDRESS\+\_\+\+BITS}}~16
+\item 
+\#define \mbox{\hyperlink{group___tiny_receiver_ga07e295da53565eb7146072bdfeb2ed32}{NEC\+\_\+\+COMMAND\+\_\+\+BITS}}~16
+\item 
+\#define \mbox{\hyperlink{group___tiny_receiver_gaa82c77bc0131ac28bc3534b8cf3422bc}{NEC\+\_\+\+BITS}}~(\mbox{\hyperlink{group___tiny_receiver_ga2ab110e480a4b16fe516c2afd16a1ea2}{NEC\+\_\+\+ADDRESS\+\_\+\+BITS}} + \mbox{\hyperlink{group___tiny_receiver_ga07e295da53565eb7146072bdfeb2ed32}{NEC\+\_\+\+COMMAND\+\_\+\+BITS}})
+\item 
+\#define \mbox{\hyperlink{group___tiny_receiver_gaf3317b0cf5cf7d3063addbaa0a256158}{NEC\+\_\+\+UNIT}}~560
+\item 
+\#define \mbox{\hyperlink{group___tiny_receiver_ga8d393b95d8df4dfa15873aec6a37965e}{NEC\+\_\+\+HEADER\+\_\+\+MARK}}~(16 $\ast$ \mbox{\hyperlink{group___tiny_receiver_gaf3317b0cf5cf7d3063addbaa0a256158}{NEC\+\_\+\+UNIT}})
+\item 
+\#define \mbox{\hyperlink{group___tiny_receiver_ga5c728ed320ffee624e26767be0a80404}{NEC\+\_\+\+HEADER\+\_\+\+SPACE}}~(8 $\ast$ \mbox{\hyperlink{group___tiny_receiver_gaf3317b0cf5cf7d3063addbaa0a256158}{NEC\+\_\+\+UNIT}})
+\item 
+\#define \mbox{\hyperlink{group___tiny_receiver_ga3abbe30ef3781c1cf2490003e1c1443a}{NEC\+\_\+\+BIT\+\_\+\+MARK}}~\mbox{\hyperlink{group___tiny_receiver_gaf3317b0cf5cf7d3063addbaa0a256158}{NEC\+\_\+\+UNIT}}
+\item 
+\#define \mbox{\hyperlink{group___tiny_receiver_ga5ac04ec8b2185c9fb257d39c472733b1}{NEC\+\_\+\+ONE\+\_\+\+SPACE}}~(3 $\ast$ \mbox{\hyperlink{group___tiny_receiver_gaf3317b0cf5cf7d3063addbaa0a256158}{NEC\+\_\+\+UNIT}})
+\item 
+\#define \mbox{\hyperlink{group___tiny_receiver_ga5ee46914e98bf7f87f32a7104843b243}{NEC\+\_\+\+ZERO\+\_\+\+SPACE}}~\mbox{\hyperlink{group___tiny_receiver_gaf3317b0cf5cf7d3063addbaa0a256158}{NEC\+\_\+\+UNIT}}
+\item 
+\#define \mbox{\hyperlink{group___tiny_receiver_ga91880ffa0b09391f2c827d3a1c565abf}{NEC\+\_\+\+REPEAT\+\_\+\+HEADER\+\_\+\+SPACE}}~(4 $\ast$ \mbox{\hyperlink{group___tiny_receiver_gaf3317b0cf5cf7d3063addbaa0a256158}{NEC\+\_\+\+UNIT}})
+\item 
+\#define \mbox{\hyperlink{group___tiny_receiver_gac2dab5c4a22f8c4915217d3ee4676f08}{NEC\+\_\+\+REPEAT\+\_\+\+PERIOD}}~110000
+\item 
+\#define \mbox{\hyperlink{group___tiny_receiver_ga02b97ed6af9381a224ea3be0cab054a0}{lower\+Value25\+Percent}}(a\+Duration)~(a\+Duration -\/ (a\+Duration / 4))
+\item 
+\#define \mbox{\hyperlink{group___tiny_receiver_ga22a6cd77d395a6c06686eafdf9aa2b52}{upper\+Value25\+Percent}}(a\+Duration)~(a\+Duration + (a\+Duration / 4))
+\item 
+\#define \mbox{\hyperlink{group___tiny_receiver_gadc6908665014a0bef4442c7769ed5054}{lower\+Value}}(a\+Duration)~(a\+Duration -\/ (a\+Duration / 2))
+\item 
+\#define \mbox{\hyperlink{group___tiny_receiver_gaf6134d81e390f1e3dcd60e2aca9c9143}{upper\+Value}}(a\+Duration)~(a\+Duration + (a\+Duration / 2))
+\item 
+\#define \mbox{\hyperlink{group___tiny_receiver_ga2535b0f1ae380b696c6a37ffa69b3df3}{IR\+\_\+\+RECEIVER\+\_\+\+STATE\+\_\+\+WAITING\+\_\+\+FOR\+\_\+\+START\+\_\+\+MARK}}~0
+\item 
+\#define \mbox{\hyperlink{group___tiny_receiver_ga43017cba7c72b3f0d45265f417e5195d}{IR\+\_\+\+RECEIVER\+\_\+\+STATE\+\_\+\+WAITING\+\_\+\+FOR\+\_\+\+START\+\_\+\+SPACE}}~1
+\item 
+\#define \mbox{\hyperlink{group___tiny_receiver_gaecf505182d1fa2aa885fcde6cd4160bf}{IR\+\_\+\+RECEIVER\+\_\+\+STATE\+\_\+\+WAITING\+\_\+\+FOR\+\_\+\+FIRST\+\_\+\+DATA\+\_\+\+MARK}}~2
+\item 
+\#define \mbox{\hyperlink{group___tiny_receiver_gad3b7237c2aa120840c0eed233d5c627e}{IR\+\_\+\+RECEIVER\+\_\+\+STATE\+\_\+\+WAITING\+\_\+\+FOR\+\_\+\+DATA\+\_\+\+SPACE}}~3
+\item 
+\#define \mbox{\hyperlink{group___tiny_receiver_gae237abb240b59b9c8dd7d853fc3c76b1}{IR\+\_\+\+RECEIVER\+\_\+\+STATE\+\_\+\+WAITING\+\_\+\+FOR\+\_\+\+DATA\+\_\+\+MARK}}~4
+\item 
+\#define \mbox{\hyperlink{group___tiny_receiver_ga2f6f17e18c7b5f1ef4b9cfc907d086e4}{IR\+\_\+\+RECEIVER\+\_\+\+STATE\+\_\+\+WAITING\+\_\+\+FOR\+\_\+\+STOP\+\_\+\+MARK}}~5
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group___tiny_receiver_ga5c751ad19033cb8c209d7253dccf34e7}{handle\+Received\+Tiny\+IRData}} (uint16\+\_\+t a\+Address, uint8\+\_\+t a\+Command, bool is\+Repeat)
+\item 
+void \mbox{\hyperlink{group___tiny_receiver_ga1f3913249343258d738ea0a48f7e1aed}{init\+PCIInterrupt\+For\+Tiny\+Receiver}} ()
+\item 
+void \mbox{\hyperlink{group___tiny_receiver_gad23b935e2236a42a070a87379c7c36a4}{enable\+PCIInterrupt\+For\+Tiny\+Receiver}} ()
+\item 
+void \mbox{\hyperlink{group___tiny_receiver_ga4217cae1ded4a9b2ed54bc3a1e8cd86e}{disable\+PCIInterrupt\+For\+Tiny\+Receiver}} ()
+\item 
+bool \mbox{\hyperlink{group___tiny_receiver_gab65e33fe496d3bee4af897e5d8bd9420}{is\+Tiny\+Receiver\+Idle}} ()
+\end{DoxyCompactItemize}

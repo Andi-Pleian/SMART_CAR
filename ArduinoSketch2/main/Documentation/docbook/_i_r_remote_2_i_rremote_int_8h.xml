@@ -1,0 +1,507 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="__i_r_remote_2_i_rremote_int_8h" xml:lang="en-US">
+<title>main/IRRemote/IRremoteInt.h File Reference</title>
+<indexterm><primary>main/IRRemote/IRremoteInt.h</primary></indexterm>
+<para>
+
+<para>Contains all declarations required for the interface to IRremote. Could not be named IRremote.h, since this has another semantic (it must include all *.hpp files) for old example code found in the wild. </para>
+ 
+</para>
+<programlisting linenumbering="unnumbered">#include &lt;Arduino.h&gt;
+#include &quot;IRProtocol.h&quot;
+</programlisting>Include dependency graph for IRremoteInt.h:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="_i_r_remote_2_i_rremote_int_8h__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+This graph shows which files directly or indirectly include this file:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="_i_r_remote_2_i_rremote_int_8h__dep__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Classes    </title>
+        <itemizedlist>
+            <listitem><para>struct <link linkend="_structirparams__struct">irparams_struct</link></para>
+</listitem>
+            <listitem><para>struct <link linkend="_struct_i_r_data">IRData</link></para>
+</listitem>
+            <listitem><para>struct <link linkend="_structdecode__results">decode_results</link></para>
+</listitem>
+            <listitem><para>class <link linkend="_class_i_rrecv">IRrecv</link></para>
+</listitem>
+            <listitem><para>class <link linkend="_class_i_rsend">IRsend</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Macros    </title>
+        <itemizedlist>
+            <listitem><para>#define <link linkend="__i_r_remote_2_i_rremote_int_8h_1abeb214368f7f34cff98de9047aa6eb2f">MARK</link>   1</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote_2_i_rremote_int_8h_1a5ff6e798033f03e74730e99f01936f84">SPACE</link>   0</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote_2_i_rremote_int_8h_1a551a361e5f7fbdcf8ec8e9679976b462">MILLIS_IN_ONE_SECOND</link>   1000L</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote_2_i_rremote_int_8h_1af33c8a218dd35ede965cf20a68a0068d">MICROS_IN_ONE_SECOND</link>   1000000L</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote_2_i_rremote_int_8h_1ae9ba0b7dd556e22688f7da01019bba68">MICROS_IN_ONE_MILLI</link>   1000L</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote_2_i_rremote_int_8h_1a3033a7d78620f2d895d7268ceb685129">DISABLE_LED_FEEDBACK</link>   false</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote_2_i_rremote_int_8h_1a2072e6070907411d00d0e5ca5ae1a9b2">ENABLE_LED_FEEDBACK</link>   true</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote_2_i_rremote_int_8h_1a575e74508c30d1ccf92f7e142a43dd3d">USE_DEFAULT_FEEDBACK_LED_PIN</link>   0</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote_2_i_rremote_int_8h_1a92edad56cde0f027e20711dcf83da843">IR_REC_STATE_IDLE</link>   0</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote_2_i_rremote_int_8h_1a1a419691eae4534ee2472565b9aff95a">IR_REC_STATE_MARK</link>   1</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote_2_i_rremote_int_8h_1acabdaf864f20981cb6d749b043490c94">IR_REC_STATE_SPACE</link>   2</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote_2_i_rremote_int_8h_1a1b1bdb2048293ad4cd31ff2705dec64c">IR_REC_STATE_STOP</link>   3</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote_2_i_rremote_int_8h_1aba66faba11cfd0d64b57de6d734f3d74">IR_INFO_PRINT</link>(...)   void()</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote_2_i_rremote_int_8h_1ac118c2eff8dfdd56b2be1b5b839ad5e9">IR_INFO_PRINTLN</link>(...)   void()</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote_2_i_rremote_int_8h_1a093a1c04e9dd4d6845a48163554143a0">IR_DEBUG_PRINT</link>(...)   void()</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote_2_i_rremote_int_8h_1aebf95fa57eb370cfe65ce6a9728b6e1f">IR_DEBUG_PRINTLN</link>(...)   void()</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote_2_i_rremote_int_8h_1af7b7c32d41d80a578f482d2828b05326">IR_TRACE_PRINT</link>(...)   void()</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote_2_i_rremote_int_8h_1a5eafde7d90e22ca8caed5fa952448228">IR_TRACE_PRINTLN</link>(...)   void()</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote_2_i_rremote_int_8h_1ad670ce496c4a3352cb9929284db11928">IRDATA_FLAGS_EMPTY</link>   0x00</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote_2_i_rremote_int_8h_1aaa9952cd64b58083c28873484c494abf">IRDATA_FLAGS_IS_REPEAT</link>   0x01</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote_2_i_rremote_int_8h_1a5c5e6ae69aa440bfa132550d120ace08">IRDATA_FLAGS_IS_AUTO_REPEAT</link>   0x02</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote_2_i_rremote_int_8h_1a1a60f95f0885b1865dc5514ddd80e093">IRDATA_FLAGS_PARITY_FAILED</link>   0x04</para>
+
+<para>the current (autorepeat) frame violated parity check </para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote_2_i_rremote_int_8h_1a6a8eaa19dc6174814fedc9d5b495560c">IRDATA_TOGGLE_BIT_MASK</link>   0x08</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote_2_i_rremote_int_8h_1abf3b16f9ab35f4e4b95c8c362aca2d71">IRDATA_FLAGS_EXTRA_INFO</link>   0x10</para>
+
+<para>there is unexpected extra info not contained in address and data (e.g. Kaseikyo unknown vendor ID) </para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote_2_i_rremote_int_8h_1a1acaa14d5a437ad317e17489e845f401">IRDATA_FLAGS_WAS_OVERFLOW</link>   0x40</para>
+
+<para>irparams.rawlen is 0 in this case to avoid endless OverflowFlag </para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote_2_i_rremote_int_8h_1a035e96118f9daf6d8e5152a1ae466538">IRDATA_FLAGS_IS_LSB_FIRST</link>   0x00</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote_2_i_rremote_int_8h_1a7f6872e6f83c0571e3150ba86428af4c">IRDATA_FLAGS_IS_MSB_FIRST</link>   0x80</para>
+
+<para>Just for info. Value is simply determined by the protocol. </para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote_2_i_rremote_int_8h_1a1c7eebb527483c272812530caa313d20">MICROS_PER_TICK</link>   50</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote_2_i_rremote_int_8h_1a30c17564229ec2e37dfea9c6c9ad643e">TOLERANCE</link>   25</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote_2_i_rremote_int_8h_1abd2c46e5e893c0f5fd23fe9fed2ae49a">LTOL</link>   (100 - <link linkend="__i_r_remote___library_2_i_rremote_int_8h_1a30c17564229ec2e37dfea9c6c9ad643e">TOLERANCE</link>)</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote_2_i_rremote_int_8h_1ad3a18e82bb4b51badb0727fce56a7557">UTOL</link>   (100 + <link linkend="__i_r_remote___library_2_i_rremote_int_8h_1a30c17564229ec2e37dfea9c6c9ad643e">TOLERANCE</link>)</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote_2_i_rremote_int_8h_1a92632ec97aa1c7a60a990811744a6902">TICKS_LOW</link>(us)   ((us)/67 )</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote_2_i_rremote_int_8h_1ac0d006cd9c029a2e6c4bd513ee5e7951">TICKS_HIGH</link>(us)   ((us)/40 + 1)</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote_2_i_rremote_int_8h_1a5d35fb37031b53f0083f8b88ae3cf2c2">NO_REPEATS</link>   0</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote_2_i_rremote_int_8h_1a48e176b38988494bc725ac4fa98c534a">SEND_STOP_BIT</link>   true</para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote_2_i_rremote_int_8h_1a1c39eebb08a1d9a2462580ce00a89acd">SEND_REPEAT_COMMAND</link>   true</para>
+
+<para>used for e.g. NEC, where a repeat is different from just repeating the data. </para>
+</listitem>
+            <listitem><para>#define <link linkend="__i_r_remote_2_i_rremote_int_8h_1ac534825448d4687e6471c3855bf71cf5">IR_SEND_DUTY_CYCLE</link>   30</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Functions    </title>
+        <itemizedlist>
+            <listitem><para>bool <link linkend="_group___receiving_1ga495b7f49ff71cde1289b118fac0f0674">matchTicks</link> (uint16_t aMeasuredTicks, uint16_t aMatchValueMicros)</para>
+</listitem>
+            <listitem><para>bool <link linkend="_group___receiving_1ga4472564ea96b1ee10b51f594f60d7aeb">matchMark</link> (uint16_t aMeasuredTicks, uint16_t aMatchValueMicros)</para>
+</listitem>
+            <listitem><para>bool <link linkend="_group___receiving_1ga7902b620f6c01463b5b6e50ef604ac8b">matchSpace</link> (uint16_t aMeasuredTicks, uint16_t aMatchValueMicros)</para>
+</listitem>
+            <listitem><para>bool <link linkend="_group___receiving_1ga0f9263ab71af2d2895add92f72a05ee9">MATCH</link> (uint16_t measured, uint16_t desired)</para>
+</listitem>
+            <listitem><para>bool <link linkend="_group___receiving_1gadab293a71386f20571db6d779d1d84b7">MATCH_MARK</link> (uint16_t measured_ticks, uint16_t desired_us)</para>
+</listitem>
+            <listitem><para>bool <link linkend="_group___receiving_1gab91e763e3ae44501f7c4f7b7ff8aca0f">MATCH_SPACE</link> (uint16_t measured_ticks, uint16_t desired_us)</para>
+</listitem>
+            <listitem><para>int <link linkend="_group___receiving_1gab1d28d4dd67d6bf808c0328a92e2d863">getMarkExcessMicros</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___receiving_1gada0f2fe0704a217c16ee497ba7b3630e">printActiveIRProtocols</link> (Print *aSerial)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___receiving_1ga545a2c08c0d21af0e95d65b052670bae">printIRResultShort</link> (Print *aSerial, <link linkend="_struct_i_r_data">IRData</link> *aIRDataPtr, uint16_t aLeadingSpaceDuration=0)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___feedback_l_e_d_functions_1ga072624eeba964d8aa105822da00090ba">setFeedbackLED</link> (bool aSwitchLedOn)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___feedback_l_e_d_functions_1gaa5949b509ec061d9239867caa628cfec">setLEDFeedback</link> (uint8_t aFeedbackLEDPin, bool aEnableLEDFeedback)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___feedback_l_e_d_functions_1ga53e5ec641a900f2c572c8bffd42da921">setLEDFeedback</link> (bool aEnableLEDFeedback)</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___feedback_l_e_d_functions_1ga1150b1e371cd7d424d53dbcae6619e54">enableLEDFeedback</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___feedback_l_e_d_functions_1gab72e6123a449de7feaaa1c3dcb9f8630">disableLEDFeedback</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_group___feedback_l_e_d_functions_1ga5f1d479f43dcd56febf146e97a3904db">setBlinkPin</link> (uint8_t aFeedbackLEDPin) __attribute__((deprecated(&quot;Please use <link linkend="_group___feedback_l_e_d_functions_1ga53e5ec641a900f2c572c8bffd42da921">setLEDFeedback</link>().&quot;)))</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Variables    </title>
+        <itemizedlist>
+            <listitem><para>uint8_t <link linkend="_group___receiving_1ga3f8125d5a7cde4fca3ece58e361296f9">sBiphaseDecodeRawbuffOffset</link></para>
+</listitem>
+            <listitem><para><link linkend="_class_i_rrecv">IRrecv</link> <link linkend="_group___receiving_1ga6813a2b456e5359ce674699c85a61cf9">IrReceiver</link></para>
+</listitem>
+            <listitem><para><link linkend="_class_i_rsend">IRsend</link> <link linkend="_group___sending_1gafba8232b747be85f72c1c4612780d5cf">IrSender</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>Contains all declarations required for the interface to IRremote. Could not be named IRremote.h, since this has another semantic (it must include all *.hpp files) for old example code found in the wild. </para>
+
+<para>This file is part of Arduino-IRremote <link xlink:href="https://github.com/Arduino-IRremote/Arduino-IRremote">https://github.com/Arduino-IRremote/Arduino-IRremote</link>.</para>
+
+<para>MIT License</para>
+
+<para>Copyright (c) 2015-2021 Ken Shirriff <link xlink:href="http://www.righto.com">http://www.righto.com</link>, Rafi Khan, Armin Joachimsmeyer</para>
+
+<para>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</para>
+
+<para>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</para>
+
+<para>THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. </para>
+<para>
+Definition in file <link linkend="__i_r_remote_2_i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<section>
+<title>Macro Definition Documentation</title>
+<anchor xml:id="__i_r_remote_2_i_rremote_int_8h_1a3033a7d78620f2d895d7268ceb685129"/><section>
+    <title>DISABLE_LED_FEEDBACK</title>
+<indexterm><primary>DISABLE_LED_FEEDBACK</primary><secondary>IRremoteInt.h</secondary></indexterm>
+<indexterm><primary>IRremoteInt.h</primary><secondary>DISABLE_LED_FEEDBACK</secondary></indexterm>
+<para><computeroutput>#define DISABLE_LED_FEEDBACK   false</computeroutput></para>
+<para>For better readability of code </para>
+<para>
+Definition at line <link linkend="__i_r_remote_2_i_rremote_int_8h_source_1l00080">80</link> of file <link linkend="__i_r_remote_2_i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote_2_i_rremote_int_8h_1a2072e6070907411d00d0e5ca5ae1a9b2"/><section>
+    <title>ENABLE_LED_FEEDBACK</title>
+<indexterm><primary>ENABLE_LED_FEEDBACK</primary><secondary>IRremoteInt.h</secondary></indexterm>
+<indexterm><primary>IRremoteInt.h</primary><secondary>ENABLE_LED_FEEDBACK</secondary></indexterm>
+<para><computeroutput>#define ENABLE_LED_FEEDBACK   true</computeroutput></para><para>
+Definition at line <link linkend="__i_r_remote_2_i_rremote_int_8h_source_1l00081">81</link> of file <link linkend="__i_r_remote_2_i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote_2_i_rremote_int_8h_1a093a1c04e9dd4d6845a48163554143a0"/><section>
+    <title>IR_DEBUG_PRINT</title>
+<indexterm><primary>IR_DEBUG_PRINT</primary><secondary>IRremoteInt.h</secondary></indexterm>
+<indexterm><primary>IRremoteInt.h</primary><secondary>IR_DEBUG_PRINT</secondary></indexterm>
+<para><computeroutput>#define IR_DEBUG_PRINT( ...)   void()</computeroutput></para>
+<para>If DEBUG, print the arguments, otherwise do nothing. </para>
+<para>
+Definition at line <link linkend="__i_r_remote_2_i_rremote_int_8h_source_1l00146">146</link> of file <link linkend="__i_r_remote_2_i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote_2_i_rremote_int_8h_1aebf95fa57eb370cfe65ce6a9728b6e1f"/><section>
+    <title>IR_DEBUG_PRINTLN</title>
+<indexterm><primary>IR_DEBUG_PRINTLN</primary><secondary>IRremoteInt.h</secondary></indexterm>
+<indexterm><primary>IRremoteInt.h</primary><secondary>IR_DEBUG_PRINTLN</secondary></indexterm>
+<para><computeroutput>#define IR_DEBUG_PRINTLN( ...)   void()</computeroutput></para>
+<para>If DEBUG, print the arguments as a line, otherwise do nothing. </para>
+<para>
+Definition at line <link linkend="__i_r_remote_2_i_rremote_int_8h_source_1l00150">150</link> of file <link linkend="__i_r_remote_2_i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote_2_i_rremote_int_8h_1aba66faba11cfd0d64b57de6d734f3d74"/><section>
+    <title>IR_INFO_PRINT</title>
+<indexterm><primary>IR_INFO_PRINT</primary><secondary>IRremoteInt.h</secondary></indexterm>
+<indexterm><primary>IRremoteInt.h</primary><secondary>IR_INFO_PRINT</secondary></indexterm>
+<para><computeroutput>#define IR_INFO_PRINT( ...)   void()</computeroutput></para>
+<para>If INFO, print the arguments, otherwise do nothing. </para>
+<para>
+Definition at line <link linkend="__i_r_remote_2_i_rremote_int_8h_source_1l00129">129</link> of file <link linkend="__i_r_remote_2_i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote_2_i_rremote_int_8h_1ac118c2eff8dfdd56b2be1b5b839ad5e9"/><section>
+    <title>IR_INFO_PRINTLN</title>
+<indexterm><primary>IR_INFO_PRINTLN</primary><secondary>IRremoteInt.h</secondary></indexterm>
+<indexterm><primary>IRremoteInt.h</primary><secondary>IR_INFO_PRINTLN</secondary></indexterm>
+<para><computeroutput>#define IR_INFO_PRINTLN( ...)   void()</computeroutput></para>
+<para>If INFO, print the arguments as a line, otherwise do nothing. </para>
+<para>
+Definition at line <link linkend="__i_r_remote_2_i_rremote_int_8h_source_1l00133">133</link> of file <link linkend="__i_r_remote_2_i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote_2_i_rremote_int_8h_1a92edad56cde0f027e20711dcf83da843"/><section>
+    <title>IR_REC_STATE_IDLE</title>
+<indexterm><primary>IR_REC_STATE_IDLE</primary><secondary>IRremoteInt.h</secondary></indexterm>
+<indexterm><primary>IRremoteInt.h</primary><secondary>IR_REC_STATE_IDLE</secondary></indexterm>
+<para><computeroutput>#define IR_REC_STATE_IDLE   0</computeroutput></para>
+<para>Declarations for the receiver Interrupt Service Routine </para>
+<para>
+Definition at line <link linkend="__i_r_remote_2_i_rremote_int_8h_source_1l00090">90</link> of file <link linkend="__i_r_remote_2_i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote_2_i_rremote_int_8h_1a1a419691eae4534ee2472565b9aff95a"/><section>
+    <title>IR_REC_STATE_MARK</title>
+<indexterm><primary>IR_REC_STATE_MARK</primary><secondary>IRremoteInt.h</secondary></indexterm>
+<indexterm><primary>IRremoteInt.h</primary><secondary>IR_REC_STATE_MARK</secondary></indexterm>
+<para><computeroutput>#define IR_REC_STATE_MARK   1</computeroutput></para><para>
+Definition at line <link linkend="__i_r_remote_2_i_rremote_int_8h_source_1l00091">91</link> of file <link linkend="__i_r_remote_2_i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote_2_i_rremote_int_8h_1acabdaf864f20981cb6d749b043490c94"/><section>
+    <title>IR_REC_STATE_SPACE</title>
+<indexterm><primary>IR_REC_STATE_SPACE</primary><secondary>IRremoteInt.h</secondary></indexterm>
+<indexterm><primary>IRremoteInt.h</primary><secondary>IR_REC_STATE_SPACE</secondary></indexterm>
+<para><computeroutput>#define IR_REC_STATE_SPACE   2</computeroutput></para><para>
+Definition at line <link linkend="__i_r_remote_2_i_rremote_int_8h_source_1l00092">92</link> of file <link linkend="__i_r_remote_2_i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote_2_i_rremote_int_8h_1a1b1bdb2048293ad4cd31ff2705dec64c"/><section>
+    <title>IR_REC_STATE_STOP</title>
+<indexterm><primary>IR_REC_STATE_STOP</primary><secondary>IRremoteInt.h</secondary></indexterm>
+<indexterm><primary>IRremoteInt.h</primary><secondary>IR_REC_STATE_STOP</secondary></indexterm>
+<para><computeroutput>#define IR_REC_STATE_STOP   3</computeroutput></para><para>
+Definition at line <link linkend="__i_r_remote_2_i_rremote_int_8h_source_1l00093">93</link> of file <link linkend="__i_r_remote_2_i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote_2_i_rremote_int_8h_1ac534825448d4687e6471c3855bf71cf5"/><section>
+    <title>IR_SEND_DUTY_CYCLE</title>
+<indexterm><primary>IR_SEND_DUTY_CYCLE</primary><secondary>IRremoteInt.h</secondary></indexterm>
+<indexterm><primary>IRremoteInt.h</primary><secondary>IR_SEND_DUTY_CYCLE</secondary></indexterm>
+<para><computeroutput>#define IR_SEND_DUTY_CYCLE   30</computeroutput></para>
+<para>Duty cycle in percent for sent signals. </para>
+<para>
+Definition at line <link linkend="__i_r_remote_2_i_rremote_int_8h_source_1l00421">421</link> of file <link linkend="__i_r_remote_2_i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote_2_i_rremote_int_8h_1af7b7c32d41d80a578f482d2828b05326"/><section>
+    <title>IR_TRACE_PRINT</title>
+<indexterm><primary>IR_TRACE_PRINT</primary><secondary>IRremoteInt.h</secondary></indexterm>
+<indexterm><primary>IRremoteInt.h</primary><secondary>IR_TRACE_PRINT</secondary></indexterm>
+<para><computeroutput>#define IR_TRACE_PRINT( ...)   void()</computeroutput></para><para>
+Definition at line <link linkend="__i_r_remote_2_i_rremote_int_8h_source_1l00157">157</link> of file <link linkend="__i_r_remote_2_i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote_2_i_rremote_int_8h_1a5eafde7d90e22ca8caed5fa952448228"/><section>
+    <title>IR_TRACE_PRINTLN</title>
+<indexterm><primary>IR_TRACE_PRINTLN</primary><secondary>IRremoteInt.h</secondary></indexterm>
+<indexterm><primary>IRremoteInt.h</primary><secondary>IR_TRACE_PRINTLN</secondary></indexterm>
+<para><computeroutput>#define IR_TRACE_PRINTLN( ...)   void()</computeroutput></para><para>
+Definition at line <link linkend="__i_r_remote_2_i_rremote_int_8h_source_1l00158">158</link> of file <link linkend="__i_r_remote_2_i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote_2_i_rremote_int_8h_1ad670ce496c4a3352cb9929284db11928"/><section>
+    <title>IRDATA_FLAGS_EMPTY</title>
+<indexterm><primary>IRDATA_FLAGS_EMPTY</primary><secondary>IRremoteInt.h</secondary></indexterm>
+<indexterm><primary>IRremoteInt.h</primary><secondary>IRDATA_FLAGS_EMPTY</secondary></indexterm>
+<para><computeroutput>#define IRDATA_FLAGS_EMPTY   0x00</computeroutput></para>
+<para>RECEIVING </para>
+<para>
+Definition at line <link linkend="__i_r_remote_2_i_rremote_int_8h_source_1l00167">167</link> of file <link linkend="__i_r_remote_2_i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote_2_i_rremote_int_8h_1abf3b16f9ab35f4e4b95c8c362aca2d71"/><section>
+    <title>IRDATA_FLAGS_EXTRA_INFO</title>
+<indexterm><primary>IRDATA_FLAGS_EXTRA_INFO</primary><secondary>IRremoteInt.h</secondary></indexterm>
+<indexterm><primary>IRremoteInt.h</primary><secondary>IRDATA_FLAGS_EXTRA_INFO</secondary></indexterm>
+<para><computeroutput>#define IRDATA_FLAGS_EXTRA_INFO   0x10</computeroutput></para><para>
+
+<para>there is unexpected extra info not contained in address and data (e.g. Kaseikyo unknown vendor ID) </para>
+</para>
+<para>
+Definition at line <link linkend="__i_r_remote_2_i_rremote_int_8h_source_1l00172">172</link> of file <link linkend="__i_r_remote_2_i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote_2_i_rremote_int_8h_1a5c5e6ae69aa440bfa132550d120ace08"/><section>
+    <title>IRDATA_FLAGS_IS_AUTO_REPEAT</title>
+<indexterm><primary>IRDATA_FLAGS_IS_AUTO_REPEAT</primary><secondary>IRremoteInt.h</secondary></indexterm>
+<indexterm><primary>IRremoteInt.h</primary><secondary>IRDATA_FLAGS_IS_AUTO_REPEAT</secondary></indexterm>
+<para><computeroutput>#define IRDATA_FLAGS_IS_AUTO_REPEAT   0x02</computeroutput></para><para>
+Definition at line <link linkend="__i_r_remote_2_i_rremote_int_8h_source_1l00169">169</link> of file <link linkend="__i_r_remote_2_i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote_2_i_rremote_int_8h_1a035e96118f9daf6d8e5152a1ae466538"/><section>
+    <title>IRDATA_FLAGS_IS_LSB_FIRST</title>
+<indexterm><primary>IRDATA_FLAGS_IS_LSB_FIRST</primary><secondary>IRremoteInt.h</secondary></indexterm>
+<indexterm><primary>IRremoteInt.h</primary><secondary>IRDATA_FLAGS_IS_LSB_FIRST</secondary></indexterm>
+<para><computeroutput>#define IRDATA_FLAGS_IS_LSB_FIRST   0x00</computeroutput></para><para>
+Definition at line <link linkend="__i_r_remote_2_i_rremote_int_8h_source_1l00174">174</link> of file <link linkend="__i_r_remote_2_i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote_2_i_rremote_int_8h_1a7f6872e6f83c0571e3150ba86428af4c"/><section>
+    <title>IRDATA_FLAGS_IS_MSB_FIRST</title>
+<indexterm><primary>IRDATA_FLAGS_IS_MSB_FIRST</primary><secondary>IRremoteInt.h</secondary></indexterm>
+<indexterm><primary>IRremoteInt.h</primary><secondary>IRDATA_FLAGS_IS_MSB_FIRST</secondary></indexterm>
+<para><computeroutput>#define IRDATA_FLAGS_IS_MSB_FIRST   0x80</computeroutput></para><para>
+
+<para>Just for info. Value is simply determined by the protocol. </para>
+</para>
+<para>
+Definition at line <link linkend="__i_r_remote_2_i_rremote_int_8h_source_1l00175">175</link> of file <link linkend="__i_r_remote_2_i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote_2_i_rremote_int_8h_1aaa9952cd64b58083c28873484c494abf"/><section>
+    <title>IRDATA_FLAGS_IS_REPEAT</title>
+<indexterm><primary>IRDATA_FLAGS_IS_REPEAT</primary><secondary>IRremoteInt.h</secondary></indexterm>
+<indexterm><primary>IRremoteInt.h</primary><secondary>IRDATA_FLAGS_IS_REPEAT</secondary></indexterm>
+<para><computeroutput>#define IRDATA_FLAGS_IS_REPEAT   0x01</computeroutput></para><para>
+Definition at line <link linkend="__i_r_remote_2_i_rremote_int_8h_source_1l00168">168</link> of file <link linkend="__i_r_remote_2_i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote_2_i_rremote_int_8h_1a1a60f95f0885b1865dc5514ddd80e093"/><section>
+    <title>IRDATA_FLAGS_PARITY_FAILED</title>
+<indexterm><primary>IRDATA_FLAGS_PARITY_FAILED</primary><secondary>IRremoteInt.h</secondary></indexterm>
+<indexterm><primary>IRremoteInt.h</primary><secondary>IRDATA_FLAGS_PARITY_FAILED</secondary></indexterm>
+<para><computeroutput>#define IRDATA_FLAGS_PARITY_FAILED   0x04</computeroutput></para><para>
+
+<para>the current (autorepeat) frame violated parity check </para>
+</para>
+<para>
+Definition at line <link linkend="__i_r_remote_2_i_rremote_int_8h_source_1l00170">170</link> of file <link linkend="__i_r_remote_2_i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote_2_i_rremote_int_8h_1a1acaa14d5a437ad317e17489e845f401"/><section>
+    <title>IRDATA_FLAGS_WAS_OVERFLOW</title>
+<indexterm><primary>IRDATA_FLAGS_WAS_OVERFLOW</primary><secondary>IRremoteInt.h</secondary></indexterm>
+<indexterm><primary>IRremoteInt.h</primary><secondary>IRDATA_FLAGS_WAS_OVERFLOW</secondary></indexterm>
+<para><computeroutput>#define IRDATA_FLAGS_WAS_OVERFLOW   0x40</computeroutput></para><para>
+
+<para>irparams.rawlen is 0 in this case to avoid endless OverflowFlag </para>
+</para>
+<para>
+Definition at line <link linkend="__i_r_remote_2_i_rremote_int_8h_source_1l00173">173</link> of file <link linkend="__i_r_remote_2_i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote_2_i_rremote_int_8h_1a6a8eaa19dc6174814fedc9d5b495560c"/><section>
+    <title>IRDATA_TOGGLE_BIT_MASK</title>
+<indexterm><primary>IRDATA_TOGGLE_BIT_MASK</primary><secondary>IRremoteInt.h</secondary></indexterm>
+<indexterm><primary>IRremoteInt.h</primary><secondary>IRDATA_TOGGLE_BIT_MASK</secondary></indexterm>
+<para><computeroutput>#define IRDATA_TOGGLE_BIT_MASK   0x08</computeroutput></para><para>
+Definition at line <link linkend="__i_r_remote_2_i_rremote_int_8h_source_1l00171">171</link> of file <link linkend="__i_r_remote_2_i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote_2_i_rremote_int_8h_1abd2c46e5e893c0f5fd23fe9fed2ae49a"/><section>
+    <title>LTOL</title>
+<indexterm><primary>LTOL</primary><secondary>IRremoteInt.h</secondary></indexterm>
+<indexterm><primary>IRremoteInt.h</primary><secondary>LTOL</secondary></indexterm>
+<para><computeroutput>#define LTOL   (100 - <link linkend="__i_r_remote___library_2_i_rremote_int_8h_1a30c17564229ec2e37dfea9c6c9ad643e">TOLERANCE</link>)</computeroutput></para>
+<para>Lower tolerance for comparison of measured data </para>
+<para>
+Definition at line <link linkend="__i_r_remote_2_i_rremote_int_8h_source_1l00386">386</link> of file <link linkend="__i_r_remote_2_i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote_2_i_rremote_int_8h_1abeb214368f7f34cff98de9047aa6eb2f"/><section>
+    <title>MARK</title>
+<indexterm><primary>MARK</primary><secondary>IRremoteInt.h</secondary></indexterm>
+<indexterm><primary>IRremoteInt.h</primary><secondary>MARK</secondary></indexterm>
+<para><computeroutput>#define MARK   1</computeroutput></para><para>
+Definition at line <link linkend="__i_r_remote_2_i_rremote_int_8h_source_1l00046">46</link> of file <link linkend="__i_r_remote_2_i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote_2_i_rremote_int_8h_1ae9ba0b7dd556e22688f7da01019bba68"/><section>
+    <title>MICROS_IN_ONE_MILLI</title>
+<indexterm><primary>MICROS_IN_ONE_MILLI</primary><secondary>IRremoteInt.h</secondary></indexterm>
+<indexterm><primary>IRremoteInt.h</primary><secondary>MICROS_IN_ONE_MILLI</secondary></indexterm>
+<para><computeroutput>#define MICROS_IN_ONE_MILLI   1000L</computeroutput></para><para>
+Definition at line <link linkend="__i_r_remote_2_i_rremote_int_8h_source_1l00051">51</link> of file <link linkend="__i_r_remote_2_i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote_2_i_rremote_int_8h_1af33c8a218dd35ede965cf20a68a0068d"/><section>
+    <title>MICROS_IN_ONE_SECOND</title>
+<indexterm><primary>MICROS_IN_ONE_SECOND</primary><secondary>IRremoteInt.h</secondary></indexterm>
+<indexterm><primary>IRremoteInt.h</primary><secondary>MICROS_IN_ONE_SECOND</secondary></indexterm>
+<para><computeroutput>#define MICROS_IN_ONE_SECOND   1000000L</computeroutput></para><para>
+Definition at line <link linkend="__i_r_remote_2_i_rremote_int_8h_source_1l00050">50</link> of file <link linkend="__i_r_remote_2_i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote_2_i_rremote_int_8h_1a1c7eebb527483c272812530caa313d20"/><section>
+    <title>MICROS_PER_TICK</title>
+<indexterm><primary>MICROS_PER_TICK</primary><secondary>IRremoteInt.h</secondary></indexterm>
+<indexterm><primary>IRremoteInt.h</primary><secondary>MICROS_PER_TICK</secondary></indexterm>
+<para><computeroutput>#define MICROS_PER_TICK   50</computeroutput></para>
+<para>microseconds per clock interrupt tick </para>
+<para>
+Definition at line <link linkend="__i_r_remote_2_i_rremote_int_8h_source_1l00373">373</link> of file <link linkend="__i_r_remote_2_i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote_2_i_rremote_int_8h_1a551a361e5f7fbdcf8ec8e9679976b462"/><section>
+    <title>MILLIS_IN_ONE_SECOND</title>
+<indexterm><primary>MILLIS_IN_ONE_SECOND</primary><secondary>IRremoteInt.h</secondary></indexterm>
+<indexterm><primary>IRremoteInt.h</primary><secondary>MILLIS_IN_ONE_SECOND</secondary></indexterm>
+<para><computeroutput>#define MILLIS_IN_ONE_SECOND   1000L</computeroutput></para><para>
+Definition at line <link linkend="__i_r_remote_2_i_rremote_int_8h_source_1l00049">49</link> of file <link linkend="__i_r_remote_2_i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote_2_i_rremote_int_8h_1a5d35fb37031b53f0083f8b88ae3cf2c2"/><section>
+    <title>NO_REPEATS</title>
+<indexterm><primary>NO_REPEATS</primary><secondary>IRremoteInt.h</secondary></indexterm>
+<indexterm><primary>IRremoteInt.h</primary><secondary>NO_REPEATS</secondary></indexterm>
+<para><computeroutput>#define NO_REPEATS   0</computeroutput></para>
+<para>SENDING Just for better readability of code </para>
+<para>
+Definition at line <link linkend="__i_r_remote_2_i_rremote_int_8h_source_1l00413">413</link> of file <link linkend="__i_r_remote_2_i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote_2_i_rremote_int_8h_1a1c39eebb08a1d9a2462580ce00a89acd"/><section>
+    <title>SEND_REPEAT_COMMAND</title>
+<indexterm><primary>SEND_REPEAT_COMMAND</primary><secondary>IRremoteInt.h</secondary></indexterm>
+<indexterm><primary>IRremoteInt.h</primary><secondary>SEND_REPEAT_COMMAND</secondary></indexterm>
+<para><computeroutput>#define SEND_REPEAT_COMMAND   true</computeroutput></para><para>
+
+<para>used for e.g. NEC, where a repeat is different from just repeating the data. </para>
+</para>
+<para>
+Definition at line <link linkend="__i_r_remote_2_i_rremote_int_8h_source_1l00415">415</link> of file <link linkend="__i_r_remote_2_i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote_2_i_rremote_int_8h_1a48e176b38988494bc725ac4fa98c534a"/><section>
+    <title>SEND_STOP_BIT</title>
+<indexterm><primary>SEND_STOP_BIT</primary><secondary>IRremoteInt.h</secondary></indexterm>
+<indexterm><primary>IRremoteInt.h</primary><secondary>SEND_STOP_BIT</secondary></indexterm>
+<para><computeroutput>#define SEND_STOP_BIT   true</computeroutput></para><para>
+Definition at line <link linkend="__i_r_remote_2_i_rremote_int_8h_source_1l00414">414</link> of file <link linkend="__i_r_remote_2_i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote_2_i_rremote_int_8h_1a5ff6e798033f03e74730e99f01936f84"/><section>
+    <title>SPACE</title>
+<indexterm><primary>SPACE</primary><secondary>IRremoteInt.h</secondary></indexterm>
+<indexterm><primary>IRremoteInt.h</primary><secondary>SPACE</secondary></indexterm>
+<para><computeroutput>#define SPACE   0</computeroutput></para><para>
+Definition at line <link linkend="__i_r_remote_2_i_rremote_int_8h_source_1l00047">47</link> of file <link linkend="__i_r_remote_2_i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote_2_i_rremote_int_8h_1ac0d006cd9c029a2e6c4bd513ee5e7951"/><section>
+    <title>TICKS_HIGH</title>
+<indexterm><primary>TICKS_HIGH</primary><secondary>IRremoteInt.h</secondary></indexterm>
+<indexterm><primary>IRremoteInt.h</primary><secondary>TICKS_HIGH</secondary></indexterm>
+<para><computeroutput>#define TICKS_HIGH( us)   ((us)/40 + 1)</computeroutput></para><para>
+Definition at line <link linkend="__i_r_remote_2_i_rremote_int_8h_source_1l00395">395</link> of file <link linkend="__i_r_remote_2_i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote_2_i_rremote_int_8h_1a92632ec97aa1c7a60a990811744a6902"/><section>
+    <title>TICKS_LOW</title>
+<indexterm><primary>TICKS_LOW</primary><secondary>IRremoteInt.h</secondary></indexterm>
+<indexterm><primary>IRremoteInt.h</primary><secondary>TICKS_LOW</secondary></indexterm>
+<para><computeroutput>#define TICKS_LOW( us)   ((us)/67 )</computeroutput></para><para>
+Definition at line <link linkend="__i_r_remote_2_i_rremote_int_8h_source_1l00394">394</link> of file <link linkend="__i_r_remote_2_i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote_2_i_rremote_int_8h_1a30c17564229ec2e37dfea9c6c9ad643e"/><section>
+    <title>TOLERANCE</title>
+<indexterm><primary>TOLERANCE</primary><secondary>IRremoteInt.h</secondary></indexterm>
+<indexterm><primary>IRremoteInt.h</primary><secondary>TOLERANCE</secondary></indexterm>
+<para><computeroutput>#define TOLERANCE   25</computeroutput></para>
+<para>Relative tolerance (in percent) for some comparisons on measured data. </para>
+<para>
+Definition at line <link linkend="__i_r_remote_2_i_rremote_int_8h_source_1l00382">382</link> of file <link linkend="__i_r_remote_2_i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote_2_i_rremote_int_8h_1a575e74508c30d1ccf92f7e142a43dd3d"/><section>
+    <title>USE_DEFAULT_FEEDBACK_LED_PIN</title>
+<indexterm><primary>USE_DEFAULT_FEEDBACK_LED_PIN</primary><secondary>IRremoteInt.h</secondary></indexterm>
+<indexterm><primary>IRremoteInt.h</primary><secondary>USE_DEFAULT_FEEDBACK_LED_PIN</secondary></indexterm>
+<para><computeroutput>#define USE_DEFAULT_FEEDBACK_LED_PIN   0</computeroutput></para><para>
+Definition at line <link linkend="__i_r_remote_2_i_rremote_int_8h_source_1l00082">82</link> of file <link linkend="__i_r_remote_2_i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+<anchor xml:id="__i_r_remote_2_i_rremote_int_8h_1ad3a18e82bb4b51badb0727fce56a7557"/><section>
+    <title>UTOL</title>
+<indexterm><primary>UTOL</primary><secondary>IRremoteInt.h</secondary></indexterm>
+<indexterm><primary>IRremoteInt.h</primary><secondary>UTOL</secondary></indexterm>
+<para><computeroutput>#define UTOL   (100 + <link linkend="__i_r_remote___library_2_i_rremote_int_8h_1a30c17564229ec2e37dfea9c6c9ad643e">TOLERANCE</link>)</computeroutput></para>
+<para>Upper tolerance for comparison of measured data </para>
+<para>
+Definition at line <link linkend="__i_r_remote_2_i_rremote_int_8h_source_1l00389">389</link> of file <link linkend="__i_r_remote_2_i_rremote_int_8h_source">IRremoteInt.h</link>.</para>
+</section>
+</section>
+</section>
