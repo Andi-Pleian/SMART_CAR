@@ -30,9 +30,9 @@ Motor_Control::Motor_Control(
 	this->enA = enA_arg;
 	this->enB = enB_arg;
 	
-	this->in1 = in1_arg;
-	this->in2 = in2_arg;
-	this->in3 = in3_arg;
-	this->in4 = in4_arg;		
+	this->rightBackward = in1_arg;
+	this->rightForward = in2_arg;
+	this->leftForward = in3_arg;
+	this->leftBackward = in4_arg;		
 									
 } //Motor_Control

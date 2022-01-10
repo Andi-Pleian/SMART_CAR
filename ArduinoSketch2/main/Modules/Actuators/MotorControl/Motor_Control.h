@@ -15,10 +15,10 @@ public:
 	unsigned short int enA;
 	unsigned short int enB;
 	
-	unsigned short int in1;
-	unsigned short int in2;
-	unsigned short int in3;
-	unsigned short int in4;
+	unsigned short int rightBackward;
+	unsigned short int rightForward;
+	unsigned short int leftForward;
+	unsigned short int leftBackward;
 
 //functions
 public:
@@ -35,3 +35,48 @@ private:
 }; //Motor_Control
 
 #endif //__MOTOR_CONTROL_H__
+
+
+/************************************************************************/
+/*								Motor Functions                         */
+/************************************************************************/
+
+// void forward()
+// {
+// 	digitalWrite(2, HIGH);
+// 	digitalWrite(3, LOW);
+// 	digitalWrite(5, HIGH);
+// 	digitalWrite(4, LOW);
+// }
+// 
+// void back()
+// {
+// 	digitalWrite(2, LOW);
+// 	digitalWrite(3, HIGH);
+// 	digitalWrite(4, LOW);
+// 	digitalWrite(5, HIGH);
+// }
+// 
+// void left()
+// {
+// 	digitalWrite(2, LOW);
+// 	digitalWrite(3, HIGH);
+// 	digitalWrite(4, HIGH);
+// 	digitalWrite(5, LOW);
+// }
+// 
+// void right()
+// {
+// 	digitalWrite(2, HIGH);
+// 	digitalWrite(3, LOW);
+// 	digitalWrite(4, LOW);
+// 	digitalWrite(5, HIGH);
+// }
+// 
+// void Stop()
+// {
+// 	digitalWrite(2, LOW);
+// 	digitalWrite(3, LOW);
+// 	digitalWrite(4, LOW);
+// 	digitalWrite(5, LOW);
+// }
